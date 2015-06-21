@@ -45,12 +45,13 @@ HIST_STAMPS="mm.dd.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git svn)
+plugins=(gitfast osx brew coffee docker npm pip python tmux)
 
 # User configuration
 
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:/opt/anaconda/bin"
+#export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:/opt/anaconda/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:~/bin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -79,19 +80,19 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export CIL="/Users/wil/projects/transplant/cil-1.6.0"
-alias phonehome="ssh wil@172.26.196.32 -p 6317"
 alias svn=colorsvn
 alias ls="ls -G"
 alias eclimd="/opt/homebrew-cask/Caskroom/eclipse-java/4.4.1/eclipse/eclimd -b"
+alias setup-docker="eval '$(boot2docker shellinit)'"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+alias vim='nvim'
 eval `/usr/libexec/path_helper -s`
 # Powerline stuff
 powerline-daemon -q
 . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-#export PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/opt/local/bin:$PATH:/opt/anaconda/bin
 # OPAM configuration
-. /home/wil/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-eval `opam config env`
 export MONO_GAC_PREFIX="/usr/local"
-export PATH="/usr/local/sbin:$PATH"
+export PATH="./node_modules/.bin:/usr/local/sbin:$PATH"
+source ~/.nvm/nvm.sh
+source ~/.rvm/scripts/rvm 
+ulimit -n 1000
