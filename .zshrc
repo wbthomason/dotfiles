@@ -83,7 +83,6 @@ source $ZSH/oh-my-zsh.sh
 alias svn=colorsvn
 alias ls="ls -G"
 alias eclimd="/opt/homebrew-cask/Caskroom/eclipse-java/4.4.1/eclipse/eclimd -b"
-alias setup-docker="eval '$(boot2docker shellinit)'"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias vim='nvim'
 eval `/usr/libexec/path_helper -s`
