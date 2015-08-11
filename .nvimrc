@@ -2,26 +2,53 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 call plug#begin()
+
+" Git
 Plug 'tpope/vim-fugitive'
+
+" Completion
 Plug 'Valloric/YouCompleteMe'
-Plug 'rust-lang/rust.vim'
-Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-markdown'
-Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdtree'
-Plug 'wookiehangover/jshint.vim'
-Plug 'marijnh/tern_for_vim'
-Plug 'kien/rainbow_parentheses.vim'
-"Plug 'vim-scripts/paredit.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'kchmck/vim-coffee-script'
-Plug 'bling/vim-airline'
-Plug 'digitaltoad/vim-jade'
-Plug 'groenewege/vim-less'
-Plug 'rking/ag.vim'
+
+" Rust
 Plug 'phildawes/racer'
+Plug 'rust-lang/rust.vim'
+
+" Clojure
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-salve'
+
+" Markdown
+Plug 'tpope/vim-markdown'
+
+" JS
+Plug 'marijnh/tern_for_vim'
+Plug 'pangloss/vim-javascript'
+Plug 'wookiehangover/jshint.vim'
+
+" Utilities
+Plug 'bling/vim-airline'
+Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/paredit.vim'
+
+" Coffeescript
+Plug 'kchmck/vim-coffee-script'
+
+" Jade
+Plug 'digitaltoad/vim-jade'
+
+" Less
+Plug 'groenewege/vim-less'
+
+" Elm
+Plug 'lambdatoast/elm.vim'
+
 call plug#end()
 
 filetype plugin indent on    " required
