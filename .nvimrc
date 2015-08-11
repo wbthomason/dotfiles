@@ -1,27 +1,29 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
+Plug 'tpope/vim-fugitive'
+Plug 'Valloric/YouCompleteMe'
+Plug 'rust-lang/rust.vim'
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-markdown'
+Plug 'pangloss/vim-javascript'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
+Plug 'wookiehangover/jshint.vim'
+Plug 'marijnh/tern_for_vim'
+Plug 'kien/rainbow_parentheses.vim'
+"Plug 'vim-scripts/paredit.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kchmck/vim-coffee-script'
+Plug 'bling/vim-airline'
+Plug 'digitaltoad/vim-jade'
+Plug 'groenewege/vim-less'
+Plug 'rking/ag.vim'
+Plug 'phildawes/racer'
+Plug 'kien/ctrlp.vim'
+call plug#end()
 
-" " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'wting/rust.vim'
-Plugin 'guns/vim-clojure-static'
-Plugin 'tpope/vim-markdown'
-Plugin 'pangloss/vim-javascript'
-Plugin 'scrooloose/syntastic'
-Plugin 'wookiehangover/jshint.vim'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'vim-scripts/paredit.vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'bling/vim-airline'
-" " All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
 set autoread
 set so=7
@@ -34,6 +36,7 @@ set magic
 set showmatch
 set noerrorbells
 set novisualbell
+set ignorecase
 set smartcase
 syntax enable
 colorscheme desert
@@ -43,6 +46,7 @@ set smarttab
 set shiftwidth=2
 set tabstop=2
 set number
+" " set autochdir
 set ai
 set si
 let g:EclimCompletionMethod = 'omnifunc'
@@ -89,7 +93,19 @@ let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 let g:airline_powerline_fonts = 1
 
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+set hidden
+let g:racer_cmd = "/Users/wil/racer/target/release/racer"
+let $RUST_SRC_PATH="/Users/wil/rust/src/"
