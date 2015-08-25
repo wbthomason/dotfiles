@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/wil/.oh-my-zsh
+export ZSH=/home/wil/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="jreese"
+ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -45,13 +45,13 @@ HIST_STAMPS="mm.dd.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast osx brew coffee docker npm pip python tmux)
+plugins=(gitfast archlinux cabal systemd coffee docker npm pip python svn tmux)
 
 # User configuration
 
 #export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:/opt/anaconda/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH:~/bin"
+#export PATH="/usr/local/bin:/usr/local/sbin:$PATH:~/bin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -81,17 +81,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias svn=colorsvn
-alias ls="ls -G"
-alias eclimd="/opt/homebrew-cask/Caskroom/eclipse-java/4.4.1/eclipse/eclimd -b"
+alias ls="ls --color=auto"
+eval $(dircolors -b)
+alias eclimd="/usr/lib/eclipse/eclimd -b"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-alias vim='nvim'
-eval `/usr/libexec/path_helper -s`
 # Powerline stuff
+#source /usr/share/zsh/site-contrib/powerline.zsh
 powerline-daemon -q
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
 # OPAM configuration
 export MONO_GAC_PREFIX="/usr/local"
-export PATH="./node_modules/.bin:/usr/local/sbin:$PATH"
-source ~/.nvm/nvm.sh
-source ~/.rvm/scripts/rvm 
+source /usr/share/nvm/nvm.sh
 ulimit -n 1000
