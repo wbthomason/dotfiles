@@ -49,6 +49,10 @@ Plug 'groenewege/vim-less'
 " Elm
 Plug 'lambdatoast/elm.vim'
 
+" OCaml
+Plug 'the-lambda-church/merlin'
+Plug 'OCamlPro/ocp-indent'
+
 call plug#end()
 
 filetype plugin indent on    " required
@@ -132,7 +136,9 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+set rtp^="/usr/local/share/ocp-indent/vim"
 set hidden
 let g:racer_cmd = "/Users/wil/racer/target/release/racer"
 let $RUST_SRC_PATH="/Users/wil/rust/src/"
