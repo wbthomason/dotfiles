@@ -1,10 +1,27 @@
+;; Remove UI
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(setq bell-volume 0)
+(define-key global-map (kbd "RET") 'newline-and-indent)
+(setq require-final-newline nil)
+
+(global-auto-revert-mode 1)
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+(global-hl-line-mode 1)
+(setq-default indent-tabs-mode nil)
+(setq tab-width 2)
+
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 ;; packages
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("org" . "http://orgmode.org/elpa/")
 			 ("marmalade" . "http://marmalade-repo.org/packages/")
 			 ("melpa" . "http://melpa.milkbox.net/packages/")))
-(package-initialize)
-
 (defun require-package (package)
   (setq-default highlight-tabs t)
   "Install given PACKAGE."
@@ -15,7 +32,7 @@
 (package-initialize)
 
 ;; Theme
-(load-theme 'ample-zen t)
+(load-theme 'airline-dark t)
 
 ;; Evil mode
 (require 'evil)
@@ -63,20 +80,6 @@
 
 ;; Evil nerd commenter
 (evilnc-default-hotkeys)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("1db337246ebc9c083be0d728f8d20913a0f46edc0a00277746ba411c149d7fe5" "91faf348ce7c8aa9ec8e2b3885394263da98ace3defb23f07e0ba0a76d427d46" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 ;; Helm
 (helm-mode 1)
@@ -96,28 +99,28 @@
 (global-linum-mode 1)
 
 ;; Cask
-(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
+(let ((default-directory "/usr/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; flycheck
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
-(after 'flycheck
-       (setq flycheck-check-syntax-automatically '(save mode-enabled))
+(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+(eval-after-load 'flycheck
+       '(progn (setq flycheck-check-syntax-automatically '(save mode-enabled))
        (setq flycheck-checkers (delq 'emacs-lisp-checkdoc flycheck-checkers))
        (setq flycheck-checkers (delq 'html-tidy flycheck-checkers))
-       (setq flycheck-standard-error-navigation nil))
+       (setq flycheck-standard-error-navigation nil)))
 
 (global-flycheck-mode t)
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
-    (interactive)
-    (if (and delete-selection-mode transient-mark-mode mark-active)
-	(setq deactivate-mark  t)
-      (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-      (abort-recursive-edit)))
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
@@ -127,3 +130,28 @@
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
 
+(color-theme-approximate-on)
+
+;; Paste like vim
+(define-key evil-normal-state-map ";" 'evil-ex)
+(define-key evil-normal-state-map "p" 'paste-newline)
+(defun paste-newline (&optional arguments)
+  "Pastes like vim does - on a new line."
+    (interactive) (evil-ret) (evil-paste-before nil))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("fbcdb6b7890d0ec1708fa21ab08eb0cc16a8b7611bb6517b722eba3891dfc9dd" "878e22a7fe00ca4faba87b4f16bc269b8d2be5409d1c513bb7eda025da7c1cf4" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; Company mode
+(add-hook 'after-init-hook 'global-company-mode)
