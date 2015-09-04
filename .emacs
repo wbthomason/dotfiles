@@ -31,6 +31,7 @@
     (package-install package)))
 (package-initialize)
 
+(elscreen-start)
 ;; Theme
 (load-theme 'airline-dark t)
 
