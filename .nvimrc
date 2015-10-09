@@ -8,7 +8,8 @@ Plug 'tpope/vim-fugitive'
 
 " Completion
 Plug 'Valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 
 " Rust
 Plug 'phildawes/racer'
@@ -53,10 +54,17 @@ Plug 'lambdatoast/elm.vim'
 Plug 'the-lambda-church/merlin'
 Plug 'OCamlPro/ocp-indent'
 
+" LaTeX
+"Plug 'kana/vim-textobj-user'
+"Plug 'rbonvall/vim-textobj-latex'
+Plug 'lervag/vimtex'
+
 call plug#end()
 
 filetype plugin indent on    " required
 set autoread
+set tw=80
+set formatoptions+=t
 set so=7
 set wildignore=*.o,*~,*.pyc
 set backspace=eol,start,indent
@@ -92,14 +100,14 @@ autocmd BufReadPost *
 	\ endif
 set viminfo^=%
 autocmd BufWinEnter * checktime
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -136,9 +144,16 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+au BufWritePost * Neomake
+"au BufWritePost *.tex !rubber -d <afile>
+au BufRead * Neomake
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 set rtp^="/usr/local/share/ocp-indent/vim"
 set hidden
-let g:racer_cmd = "/Users/wil/racer/target/release/racer"
-let $RUST_SRC_PATH="/Users/wil/rust/src/"
+let g:racer_cmd = "/usr/bin/racer"
+let $RUST_SRC_PATH="/home/wil/rust/src/"
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*']
