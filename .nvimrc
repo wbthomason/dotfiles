@@ -8,11 +8,12 @@ Plug 'tpope/vim-fugitive'
 
 " Completion
 Plug 'Valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 
 " Rust
 Plug 'phildawes/racer'
-Plug 'rust-lang/rust.vim'
+"Plug 'rust-lang/rust.vim'
 
 " Clojure
 Plug 'guns/vim-clojure-static'
@@ -36,6 +37,7 @@ Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/paredit.vim'
+Plug 'tmhedberg/matchit'
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script'
@@ -53,10 +55,20 @@ Plug 'lambdatoast/elm.vim'
 Plug 'the-lambda-church/merlin'
 Plug 'OCamlPro/ocp-indent'
 
+" LaTeX
+Plug 'lervag/vimtex'
+
 call plug#end()
 
 filetype plugin indent on    " required
+inoremap jk <ESC>
+let mapleader = "\<Space>"
+" set spell spellang=en_us
+nnoremap <leader>f 1z=
+nnoremap <leader>s :set spell!
 set autoread
+set tw=80
+set formatoptions+=t
 set so=7
 set wildignore=*.o,*~,*.pyc
 set backspace=eol,start,indent
@@ -92,14 +104,14 @@ autocmd BufReadPost *
 	\ endif
 set viminfo^=%
 autocmd BufWinEnter * checktime
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -136,9 +148,15 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+au BufWritePost * Neomake
+au BufRead * Neomake
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 set rtp^="/usr/local/share/ocp-indent/vim"
 set hidden
 let g:racer_cmd = "/Users/wil/racer/target/release/racer"
 let $RUST_SRC_PATH="/Users/wil/rust/src/"
+
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+let g:vimtex_view_general_options_latexmk = '-r 1'
