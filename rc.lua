@@ -289,7 +289,7 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "o", function() menubar.show() end)
+    awful.key({ modkey }, "q", function() menubar.show() end)
 )
 
 clientkeys = awful.util.table.join(
