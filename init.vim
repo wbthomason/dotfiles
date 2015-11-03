@@ -22,6 +22,11 @@ Plug 'tpope/vim-salve'
 
 " Markdown
 Plug 'tpope/vim-markdown'
+Plug 'vim-pandoc/vim-markdownfootnotes'
+
+" Pandoc/Markdown
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " JS
 Plug 'marijnh/tern_for_vim'
@@ -37,6 +42,8 @@ Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/paredit.vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script'
@@ -62,6 +69,14 @@ Plug 'lervag/vimtex'
 call plug#end()
 
 filetype plugin indent on    " required
+let mapleader = "\<Space>"
+nnoremap <Leader>hh :nohl<CR>
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>x :x<CR>
+nnoremap <Leader>to :tabe<CR>:CtrlP<CR>
+
 set autoread
 set tw=80
 set formatoptions+=t
@@ -140,12 +155,16 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
+function! BuildMadoko(filename)
+  let job1 = jobstart(['madoko', '--pdf', a:filename])
+endfunction
+
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 au BufWritePost * Neomake
-"au BufWritePost *.tex !rubber -d <afile>
+au BufWritePost *.mdk :call BuildMadoko(expand("%"))
 au BufRead * Neomake
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"

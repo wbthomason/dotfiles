@@ -3,6 +3,7 @@ local gears = require("gears")
 local awful = require("awful")
 awful.rules = require("awful.rules")
 require("awful.autofocus")
+require("revelation")
 -- Widget and layout library
 local wibox = require("wibox")
 local vicious = require("vicious")
@@ -41,11 +42,10 @@ do
 end
 
 -- }}}
-awful.util.spawn_with_shell("/home/wil/.screenlayout/desktop_dual.sh")
 -- awful.util.spawn_with_shell("/home/wil/bgscript.sh &")
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/usr/share/awesome/themes/nice-and-clean-theme/theme.lua")
+beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
 --awful.util.spawn_with_shell("cairo-compmgr &")
 -- This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"
@@ -59,6 +59,7 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 awful.util.spawn_with_shell("unagi &")
+awful.util.spawn_with_shell("albert &")
 -- Table of layouts to cover with awful.layout.inc, order matters.
 local layouts =
 {
@@ -90,7 +91,7 @@ local layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "main", "dev", "web", "files", "comms", "office", "media", "misc" }, s, layouts[1])
+    tags[s] = awful.tag({ "admin", "work", "web", "materials", "chat", "mail", "media", "notes", "logistics", "misc" }, s, layouts[1])
 end
 -- }}}
 
@@ -122,7 +123,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, '<span color="#cc9393">${enp2s0 down_kb}</span> <span color="#7f9f7f">${enp2s0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, '<span color="#cc9393">${eno1 down_kb}</span> <span color="#7f9f7f">${eno1 up_kb}</span>', 3)
 separator = wibox.widget.textbox()
 separator:set_text(" | ")
 -- Create a wibox for each screen and add it
@@ -261,6 +262,8 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "t", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "e", revelation),
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("dm-tool lock") end),
     awful.key({ modkey, "Shift" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -286,7 +289,7 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "o", function() menubar.show() end)
 )
 
 clientkeys = awful.util.table.join(
@@ -295,6 +298,7 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
+    awful.key({ modkey,           }, "x",      function (c) c.ontop = not c.ontop            end),
     awful.key({ modkey,           }, "x",      function (c) c.ontop = not c.ontop            end),
     awful.key({ modkey,           }, "n",
         function (c)
@@ -356,13 +360,6 @@ for i = 1, 9 do
                           awful.util.spawn_with_shell("xbacklight -dec 15", false) end),
                               awful.key({ }, "XF86MonBrightnessUp", function ()
                                       awful.util.spawn_with_shell("xbacklight -inc 15", false) end)
-     --awful.key({ }, "XF86AudioPlay", function () awful.util.spawn_with_shell("playerctl play-pause", false) end),
-     --awful.key({ }, "XF86AudioNext", function () awful.util.spawn_with_shell("playerctl next", false) end),
-     --awful.key({ }, "XF86AudioPrev", function () awful.util.spawn_with_shell("playerctl prev", false) end),
-    -- awful.key({ }, "XF86AudioRaiseVolume", function ()
-      --      awful.util.spawn_with_shell("amixer set Master 3%+", false) end),
-        --       awful.key({ }, "XF86AudioLowerVolume", function ()
-          --            awful.util.spawn_with_shell("amixer set Master 3%-", false) end)
                   )
 end
 
@@ -393,14 +390,6 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
-     { rule = { class = "Firefox" },
-       properties = { tag = tags[mouse.screen][3] } },
-     { rule = { class = "XTerm" }, 
-        properties = { opacity = 0. } },
-     --{ rule = { class = "Spotify" },
-      --  properties = { tag = tags[mouse.screen][7] } },
-     { rule = { class = "Thunderbird" },
-        properties = { tag = tags[mouse.screen][5] } },
      { rule = { class = "Firefox", instance = "Dialog" }, 
         callback = function(c) awful.client.movetotag(tags[mouse.screen][awful.tag.getidx()], c) end}
 }
@@ -429,7 +418,7 @@ client.connect_signal("manage", function (c, startup)
         end
     end
 
-    local titlebars_enabled = false
+    local titlebars_enabled = true
     if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
         -- buttons for the titlebar
         local buttons = awful.util.table.join(
