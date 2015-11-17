@@ -10,6 +10,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'Valloric/YouCompleteMe'
 " Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 " Rust
 Plug 'phildawes/racer'
@@ -176,3 +177,6 @@ if !exists('g:ycm_semantic_triggers')
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*']
+
+let g:neomake_cpp_clang_args = ['-std=c++11']
+autocmd CompleteDone * pclose
