@@ -8,12 +8,13 @@ Plug 'tpope/vim-fugitive'
 
 " Completion
 Plug 'Valloric/YouCompleteMe'
-"Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 " Rust
 Plug 'phildawes/racer'
-"Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 " Clojure
 Plug 'guns/vim-clojure-static'
@@ -22,6 +23,11 @@ Plug 'tpope/vim-salve'
 
 " Markdown
 Plug 'tpope/vim-markdown'
+Plug 'vim-pandoc/vim-markdownfootnotes'
+
+" Pandoc/Markdown
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " JS
 Plug 'marijnh/tern_for_vim'
@@ -37,7 +43,8 @@ Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/paredit.vim'
-Plug 'tmhedberg/matchit'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script'
@@ -56,6 +63,8 @@ Plug 'the-lambda-church/merlin'
 Plug 'OCamlPro/ocp-indent'
 
 " LaTeX
+"Plug 'kana/vim-textobj-user'
+"Plug 'rbonvall/vim-textobj-latex'
 Plug 'lervag/vimtex'
 
 call plug#end()
@@ -63,6 +72,12 @@ call plug#end()
 filetype plugin indent on    " required
 inoremap jk <ESC>
 let mapleader = "\<Space>"
+nnoremap <Leader>hh :nohl<CR>
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>x :x<CR>
+nnoremap <Leader>to :tabe<CR>:CtrlP<CR>
 " set spell spellang=en_us
 nnoremap <leader>f 1z=
 nnoremap <leader>s :set spell!
@@ -84,10 +99,10 @@ set smartcase
 syntax enable
 colorscheme desert
 set background=dark
-set expandtab
 set smarttab
 set shiftwidth=2
 set tabstop=2
+set expandtab
 set number
 " " set autochdir
 set ai
@@ -144,6 +159,11 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
+function MakeModoko(fname)
+  let foo = jobstart(['madoko', '--pdf', a:fname])
+endfunction
+
+au BufWritePost *.mdk :call MakeModoko(expand('%:t'))
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
@@ -160,3 +180,11 @@ let $RUST_SRC_PATH="/Users/wil/rust/src/"
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
 let g:vimtex_view_general_options_latexmk = '-r 1'
+
+let g:neomake_cpp_clang_args = ['-std=c++14']
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*']
+
+autocmd CompleteDone * pclose
