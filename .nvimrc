@@ -35,16 +35,19 @@ Plug 'pangloss/vim-javascript'
 Plug 'wookiehangover/jshint.vim'
 
 " Utilities
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'bling/vim-airline'
+Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-surround'
-Plug 'vim-scripts/paredit.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/paredit.vim'
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script'
@@ -83,7 +86,6 @@ nnoremap <leader>f 1z=
 nnoremap <leader>s :set spell!
 set autoread
 set tw=80
-set formatoptions+=t
 set so=7
 set wildignore=*.o,*~,*.pyc
 set backspace=eol,start,indent
@@ -186,5 +188,13 @@ if !exists('g:ycm_semantic_triggers')
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*']
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
 
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
 autocmd CompleteDone * pclose
+
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
+set fo+=t
