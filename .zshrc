@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh
+export ZSH=/home/wil/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -97,3 +97,27 @@ powerline-daemon -q
 export MONO_GAC_PREFIX="/usr/local"
 source /usr/share/nvm/nvm.sh
 ulimit -n 1000
+
+# OPAM configuration
+. /home/wil/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+eval `keychain --quiet --eval .ssh/id_rsa`
+eval "$(hub alias -s)"
+fpath=(~/.zsh/completions $fpath) 
+autoload -U compinit && compinit
+
+# ROS
+indigo() {
+  source /opt/ros/indigo/setup.zsh
+  export PYTHONPATH=/opt/ros/indigo/lib/python2.7/site-packages:$PYTHONPATH
+  export PKG_CONFIG_PATH="/opt/ros/indigo/lib/pkgconfig:$PKG_CONFIG_PATH"
+  # Optionally, you can set:
+  #export ROS_PACKAGE_PATH=/path/to/your/package/path:$ROS_PACKAGE_PATH
+
+  # Useful aliases
+  alias catkin_make="catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python2 -DPYTHON_INCLUDE_DIR=/usr/include/python2.7 -DPYTHON_LIBRARY=/usr/lib/libpython2.7.so"
+
+  # If you use Gazebo:
+  #source /usr/share/gazebo/setup.sh
+}
+source /usr/share/zsh/scripts/antigen/antigen.zsh
