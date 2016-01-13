@@ -13,7 +13,6 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'valloric/YouCompleteMe'
 
 " Rust
-Plug 'phildawes/racer'
 Plug 'rust-lang/rust.vim'
 
 " Clojure
@@ -77,6 +76,7 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>g :bn<CR>
 nnoremap <Leader>t :bp<CR>
+nnoremap <Leader>d :bd<CR>
 nnoremap <Leader>e :enew<CR>:CtrlP<CR>
 nnoremap <leader>f 1z=
 nnoremap <leader>s :set spell!
