@@ -11,7 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'benekastah/neomake'
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic', {'for': 'OCaml'}
+Plug 'scrooloose/syntastic', {'for': ['OCaml', 'clojure']}
 
 " Rust
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -20,9 +20,11 @@ Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'tpope/vim-salve', {'for': 'clojure'}
-Plug 'guns/vim-sexp', {'for': 'clojure'}
-Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+ Plug 'guns/vim-sexp', {'for': 'clojure'}
+ Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
+Plug 'venantius/vim-eastwood', {'for': 'clojure'}
+Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
 
 " Pandoc/Markdown
 Plug 'vim-pandoc/vim-pandoc', {'for': 'markdown'}
@@ -49,7 +51,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/paredit.vim'
+" Plug 'vim-scripts/paredit.vim'
 Plug 'whatyouhide/vim-gotham'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'yggdroot/indentLine'
