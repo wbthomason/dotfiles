@@ -9,8 +9,9 @@ Plug 'tpope/vim-fugitive'
 
 " Completion
 Plug 'benekastah/neomake'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'valloric/YouCompleteMe'
+Plug 'scrooloose/syntastic', {'for': 'OCaml'}
 
 " Rust
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -19,6 +20,9 @@ Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'tpope/vim-salve', {'for': 'clojure'}
+Plug 'guns/vim-sexp', {'for': 'clojure'}
+Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
 
 " Pandoc/Markdown
 Plug 'vim-pandoc/vim-pandoc', {'for': 'markdown'}
@@ -30,8 +34,11 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
 
 " Utilities
+Plug 'SirVer/ultisnips'
+Plug 'airblade/vim-rooter'
 Plug 'bling/vim-airline'
 Plug 'easymotion/vim-easymotion'
+Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
@@ -43,8 +50,9 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/paredit.vim'
-Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'whatyouhide/vim-gotham'
+Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'yggdroot/indentLine'
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
@@ -196,3 +204,8 @@ let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{(
 
 " Neomake settings
 let g:neomake_cpp_clang_args = ['-std=c++14']
+
+" IndentLine settings
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#09AA08'
+let g:indentLine_char = '│'
