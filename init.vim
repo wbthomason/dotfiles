@@ -13,21 +13,21 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 Plug 'valloric/YouCompleteMe'
 
 " Rust
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
 " Clojure
-Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-salve'
+Plug 'guns/vim-clojure-static', {'for': 'clojure'}
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'tpope/vim-salve', {'for': 'clojure'}
 
 " Pandoc/Markdown
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc', {'for': 'markdown'}
+Plug 'vim-pandoc/vim-pandoc-syntax', {'for': 'markdown'}
 
 " JS
-Plug 'marijnh/tern_for_vim'
-Plug 'pangloss/vim-javascript'
-Plug 'wookiehangover/jshint.vim'
+Plug 'marijnh/tern_for_vim', {'for': 'javascript'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
 
 " Utilities
 Plug 'bling/vim-airline'
@@ -35,6 +35,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -43,25 +44,26 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/paredit.vim'
 Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'whatyouhide/vim-gotham'
 
 " Coffeescript
-Plug 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
 
 " Jade
-Plug 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-jade', {'for': 'jade'}
 
 " Less
-Plug 'groenewege/vim-less'
+Plug 'groenewege/vim-less', {'for': 'less'}
 
 " Elm
-Plug 'lambdatoast/elm.vim'
+Plug 'lambdatoast/elm.vim', {'for': 'elm'}
 
 " OCaml
-Plug 'the-lambda-church/merlin'
-Plug 'OCamlPro/ocp-indent'
+Plug 'the-lambda-church/merlin', {'for': 'ocaml'}
+Plug 'OCamlPro/ocp-indent', {'for': 'ocaml'}
 
 " LaTeX
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', {'for': 'latex'}
 
 call plug#end()
 
@@ -100,7 +102,7 @@ set novisualbell
 set ignorecase
 set smartcase
 syntax enable
-colorscheme desert
+colorscheme gotham
 set background=dark
 set expandtab
 set smarttab
