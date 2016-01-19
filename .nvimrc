@@ -9,60 +9,71 @@ Plug 'tpope/vim-fugitive'
 
 " Completion
 Plug 'benekastah/neomake'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'valloric/YouCompleteMe'
+Plug 'scrooloose/syntastic', {'for': ['OCaml', 'clojure']}
 
 " Rust
-Plug 'phildawes/racer'
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
 " Clojure
-Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-salve'
+Plug 'guns/vim-clojure-static', {'for': 'clojure'}
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'tpope/vim-salve', {'for': 'clojure'}
+Plug 'guns/vim-sexp', {'for': 'clojure'}
+Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
+Plug 'venantius/vim-eastwood', {'for': 'clojure'}
+Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
 
 " Pandoc/Markdown
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc', {'for': 'markdown'}
+Plug 'vim-pandoc/vim-pandoc-syntax', {'for': 'markdown'}
 
 " JS
-Plug 'marijnh/tern_for_vim'
-Plug 'pangloss/vim-javascript'
-Plug 'wookiehangover/jshint.vim'
+Plug 'marijnh/tern_for_vim', {'for': 'javascript'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
 
 " Utilities
+Plug 'SirVer/ultisnips'
+Plug 'airblade/vim-rooter'
 Plug 'bling/vim-airline'
 Plug 'easymotion/vim-easymotion'
+Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/paredit.vim'
+" Plug 'vim-scripts/paredit.vim'
+Plug 'whatyouhide/vim-gotham'
 Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'yggdroot/indentLine'
 
 " Coffeescript
-Plug 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
 
 " Jade
-Plug 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-jade', {'for': 'jade'}
 
 " Less
-Plug 'groenewege/vim-less'
+Plug 'groenewege/vim-less', {'for': 'less'}
 
 " Elm
-Plug 'lambdatoast/elm.vim'
+Plug 'lambdatoast/elm.vim', {'for': 'elm'}
 
 " OCaml
-Plug 'the-lambda-church/merlin'
-Plug 'OCamlPro/ocp-indent'
+Plug 'the-lambda-church/merlin', {'for': 'ocaml'}
+Plug 'OCamlPro/ocp-indent', {'for': 'ocaml'}
 
 " LaTeX
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', {'for': 'latex'}
 
 call plug#end()
 
@@ -77,6 +88,7 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>g :bn<CR>
 nnoremap <Leader>t :bp<CR>
+nnoremap <Leader>d :bd<CR>
 nnoremap <Leader>e :enew<CR>:CtrlP<CR>
 nnoremap <leader>f 1z=
 nnoremap <leader>s :set spell!
@@ -100,7 +112,7 @@ set novisualbell
 set ignorecase
 set smartcase
 syntax enable
-colorscheme desert
+colorscheme gotham
 set background=dark
 set expandtab
 set smarttab
@@ -181,10 +193,6 @@ au BufNewFile,BufReadPost *.md set filetype=markdown
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 set rtp^="/usr/local/share/ocp-indent/vim"
-
-" Racer/Rust settings
-let g:racer_cmd = "/Users/wil/racer/target/release/racer"
-let $RUST_SRC_PATH="/Users/wil/rust/src/"
 
 " YCM Settings
 if !exists('g:ycm_semantic_triggers')
