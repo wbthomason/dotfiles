@@ -17,14 +17,14 @@ Plug 'scrooloose/syntastic', {'for': ['OCaml', 'clojure']}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
 " Clojure
-Plug 'guns/vim-clojure-static', {'for': 'clojure'}
-Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-Plug 'tpope/vim-salve', {'for': 'clojure'}
- Plug 'guns/vim-sexp', {'for': 'clojure'}
- Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
-Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
 Plug 'venantius/vim-eastwood', {'for': 'clojure'}
 Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'guns/vim-clojure-static', {'for': 'clojure'}
+Plug 'tpope/vim-salve', {'for': 'clojure'}
+Plug 'guns/vim-sexp', {'for': 'clojure'}
+Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
 
 " Pandoc/Markdown
 Plug 'vim-pandoc/vim-pandoc', {'for': 'markdown'}
