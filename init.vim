@@ -187,7 +187,7 @@ au BufWritePost * Neomake
 au BufWritePost *.mdk :call BuildMadoko(expand("%"))
 au BufRead * Neomake
 au CompleteDone * pclose
-au BufNewFile,BufReadPost *.md set filetype=markdown
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 
 " Opam/OCaml settings
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
@@ -211,3 +211,6 @@ let g:neomake_cpp_clang_args = ['-std=c++14']
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#09AA08'
 let g:indentLine_char = '│'
+
+" Pandoc settings
+let g:pandoc#syntax#conceal#use = 1
