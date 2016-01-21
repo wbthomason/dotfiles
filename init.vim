@@ -89,6 +89,7 @@ nnoremap <Leader>x :x<CR>
 nnoremap <Leader>g :bn<CR>
 nnoremap <Leader>t :bp<CR>
 nnoremap <Leader>d :bd<CR>
+nnoremap <Leader>m :Neomake!<CR>
 nnoremap <Leader>e :enew<CR>:CtrlP<CR>
 nnoremap <leader>f 1z=
 nnoremap <leader>s :set spell!
