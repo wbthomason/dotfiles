@@ -11,20 +11,20 @@ Plug 'tpope/vim-fugitive'
 Plug 'benekastah/neomake'
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic', {'for': ['OCaml', 'clojure']}
+Plug 'scrooloose/syntastic', {'for': ['ocaml', 'clojure']}
 
 " Rust
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
 " Clojure
-Plug 'guns/vim-clojure-static', {'for': 'clojure'}
+Plug 'venantius/vim-eastwood', {'for': 'clojure'}
+Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'guns/vim-clojure-static', {'for': 'clojure'}
 Plug 'tpope/vim-salve', {'for': 'clojure'}
 Plug 'guns/vim-sexp', {'for': 'clojure'}
 Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
 Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
-Plug 'venantius/vim-eastwood', {'for': 'clojure'}
-Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
 
 " Pandoc/Markdown
 Plug 'vim-pandoc/vim-pandoc', {'for': 'markdown'}
@@ -187,7 +187,7 @@ au BufWritePost * Neomake
 au BufWritePost *.mdk :call BuildMadoko(expand("%"))
 au BufRead * Neomake
 au CompleteDone * pclose
-au BufNewFile,BufReadPost *.md set filetype=markdown
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 
 " Opam/OCaml settings
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
@@ -202,8 +202,24 @@ let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{(
 
 " Neomake settings
 let g:neomake_cpp_clang_args = ['-std=c++14']
+let g:neomake_markdown_make_maker = {'append_file': 0, 'args': []}
+let g:neomake_markdown_enabled_makers = ['make']
 
 " Vimtex settings
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
 let g:vimtex_view_general_options_latexmk = '-r 1'
+
+" IndentLine settings
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#09AA08'
+let g:indentLine_char = '│'
+
+" Pandoc settings
+let g:pandoc#syntax#conceal#use = 1
+
+" Ultisnips settings
+let g:UltiSnipsExpandTrigger="<c-s>"
+
+" Syntastic settings
+let g:syntastic_ocaml_checkers=['merlin','caml4po']
