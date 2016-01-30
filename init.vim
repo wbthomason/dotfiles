@@ -180,7 +180,7 @@ let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 80
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#use_preview = 1
-let g:pandoc#command#autoexec_on_writes = 1
+let g:pandoc#command#autoexec_on_writes = 0
 let g:pandoc#command#autoexec_command = 'make'
 
 " Ultisnips settings
