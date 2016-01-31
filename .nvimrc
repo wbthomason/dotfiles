@@ -29,6 +29,7 @@ Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
 " Pandoc/Markdown
 Plug 'vim-pandoc/vim-pandoc', {'for': 'markdown'}
 Plug 'vim-pandoc/vim-pandoc-syntax', {'for': 'markdown'}
+Plug 'vim-pandoc/vim-pandoc-after', {'for': 'markdown'}
 
 " JS
 Plug 'marijnh/tern_for_vim', {'for': 'javascript'}
@@ -38,7 +39,8 @@ Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
 " Utilities
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-rooter'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
@@ -51,10 +53,10 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-" Plug 'vim-scripts/paredit.vim'
 Plug 'whatyouhide/vim-gotham'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'yggdroot/indentLine'
+Plug 'Shougo/unite.vim'
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
@@ -89,44 +91,12 @@ nnoremap <Leader>x :x<CR>
 nnoremap <Leader>g :bn<CR>
 nnoremap <Leader>t :bp<CR>
 nnoremap <Leader>d :bd<CR>
+nnoremap <Leader>m :Neomake!<CR>
 nnoremap <Leader>e :enew<CR>:CtrlP<CR>
 nnoremap <leader>f 1z=
 nnoremap <leader>s :set spell!
 
-" General settings
-set title
-set wildmenu
-set autoread
-set tw=80
-set formatoptions+=t
-set so=7
-set wildignore=*.o,*~,*.pyc
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-set incsearch
-set lazyredraw
-set magic
-set showmatch
-set noerrorbells
-set novisualbell
-set ignorecase
-set smartcase
-syntax enable
-colorscheme gotham
-set background=dark
-set expandtab
-set smarttab
-set shiftwidth=2
-set tabstop=2
-set number
-set ai
-set si
-set wrap
-set laststatus=2 " Always display the statusline in all windows
-set showtabline=2 " Always display the tabline, even if there is only one tab
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set viminfo^=%
-set hidden
+let maplocalleader = "\<cr>"
 
 " Eclim settings
 let g:EclimCompletionMethod = 'omnifunc'
@@ -168,11 +138,6 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" Madoko build function
-function! BuildMadoko(filename)
-  let job1 = jobstart(['madoko', '--pdf', a:filename])
-endfunction
-
 " Autocommands
 au BufReadPost *
 	\ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -184,7 +149,6 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 au BufWritePost * Neomake
-au BufWritePost *.mdk :call BuildMadoko(expand("%"))
 au BufRead * Neomake
 au CompleteDone * pclose
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
@@ -199,11 +163,10 @@ if !exists('g:ycm_semantic_triggers')
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*']
+let g:ycm_semantic_triggers.markdown = ['@']
 
 " Neomake settings
 let g:neomake_cpp_clang_args = ['-std=c++14']
-let g:neomake_markdown_make_maker = {'append_file': 0, 'args': []}
-let g:neomake_markdown_enabled_makers = ['make']
 
 " Vimtex settings
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
@@ -217,9 +180,53 @@ let g:indentLine_char = '│'
 
 " Pandoc settings
 let g:pandoc#syntax#conceal#use = 1
+let g:pandoc#after#modules#enabled = ['ultisnips']
+let g:pandoc#formatting#mode = 'haA'
+let g:pandoc#formatting#textwidth = 80
+let g:pandoc#biblio#use_bibtool = 1
+let g:pandoc#completion#bib#use_preview = 1
+let g:pandoc#command#autoexec_on_writes = 0
+let g:pandoc#command#autoexec_command = 'make'
 
 " Ultisnips settings
 let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger = '<c-d>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-a>'
 
 " Syntastic settings
 let g:syntastic_ocaml_checkers=['merlin','caml4po']
+
+" General settings
+set title
+set wildmenu
+set autoread
+set tw=80
+set formatoptions+=t
+set so=7
+set wildignore=*.o,*~,*.pyc
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+set incsearch
+set lazyredraw
+set magic
+set showmatch
+set noerrorbells
+set novisualbell
+set ignorecase
+set smartcase
+syntax enable
+colorscheme gotham
+set background=dark
+set expandtab
+set smarttab
+set shiftwidth=2
+set tabstop=2
+set number
+set ai
+set si
+set wrap
+set laststatus=2 " Always display the statusline in all windows
+set showtabline=2 " Always display the tabline, even if there is only one tab
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set viminfo^=%
+set hidden
