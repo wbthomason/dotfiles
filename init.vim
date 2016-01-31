@@ -188,6 +188,9 @@ let g:UltiSnipsExpandTrigger = '<c-s>'
 let g:UltiSnipsJumpForwardTrigger = '<c-d>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-a>'
 
+" Syntastic settings
+let g:syntastic_ocaml_checkers=['merlin','caml4po']
+
 " General settings
 set title
 set wildmenu
