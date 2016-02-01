@@ -3,7 +3,7 @@
 	email = wil.thomason@gmail.com
 
 [credential]
-	helper = osxkeychain
+	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
 
 [push]
   default = matching
