@@ -1,0 +1,25 @@
+[user]
+	name = Wil Thomason
+	email = wil.thomason@gmail.com
+[credential]
+	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
+[push]
+  default = matching
+[alias]
+  co    = checkout
+  ci    = commit
+  st    = status
+  br    = branch
+  hist  = log --pretty=format:\"%h %af | %s%d [%an]\" --graph --date=short
+  type  = cat-file -t
+  dump  = cat-file -p
+  d     = diff
+  pl    = pull
+  pu    = push
+  a     = add
+  ap    = add -p
+  ac    = !git add . && git commit -m
+  undo  = reset --soft HEAD~1
+  sub   = submodule update --init --recursive
+  cp    = cherry-pick
+  cl    = clone
