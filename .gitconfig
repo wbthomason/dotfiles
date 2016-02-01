@@ -1,10 +1,20 @@
 [user]
 	name = Wil Thomason
 	email = wil.thomason@gmail.com
+
 [credential]
-	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
+	helper = osxkeychain
+
 [push]
   default = matching
+
+[core]
+  editor = nvim
+	autocrlf = input
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+
 [alias]
   co    = checkout
   ci    = commit
