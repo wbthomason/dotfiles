@@ -153,6 +153,7 @@ au BufWritePost * Neomake
 au BufRead * Neomake
 au CompleteDone * pclose
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
 
 " Opam/OCaml settings
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
