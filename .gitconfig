@@ -4,7 +4,7 @@
 [credential]
 	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
 [push]
-  default = matching
+  default = simple
 [alias]
   co    = checkout
   ci    = commit
