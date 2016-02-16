@@ -11,7 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'benekastah/neomake'
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic', {'for': ['OCaml', 'clojure']}
+Plug 'scrooloose/syntastic', {'for': ['ocaml', 'clojure']}
 
 " Rust
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -73,6 +73,7 @@ Plug 'lambdatoast/elm.vim', {'for': 'elm'}
 " OCaml
 Plug 'the-lambda-church/merlin', {'for': 'ocaml'}
 Plug 'OCamlPro/ocp-indent', {'for': 'ocaml'}
+Plug 'rgrinberg/vim-ocaml', {'for': 'ocaml'}
 
 " LaTeX
 Plug 'lervag/vimtex', {'for': 'latex'}
@@ -176,7 +177,7 @@ let g:indentLine_char = '│'
 " Pandoc settings
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#after#modules#enabled = ['ultisnips']
-let g:pandoc#formatting#mode = 'haA'
+" let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 80
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#use_preview = 1
