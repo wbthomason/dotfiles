@@ -152,6 +152,7 @@ au BufWritePost * Neomake
 au BufRead * Neomake
 au CompleteDone * pclose
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
 
 " Opam/OCaml settings
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
@@ -181,7 +182,7 @@ let g:indentLine_char = '│'
 " Pandoc settings
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#after#modules#enabled = ['ultisnips']
-"let g:pandoc#formatting#mode = 'haA'
+let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 80
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#use_preview = 1
