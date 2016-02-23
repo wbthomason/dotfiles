@@ -181,7 +181,7 @@ let g:indentLine_char = '│'
 " Pandoc settings
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#after#modules#enabled = ['ultisnips']
-let g:pandoc#formatting#mode = 'haA'
+"let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 80
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#use_preview = 1
@@ -189,7 +189,7 @@ let g:pandoc#command#autoexec_on_writes = 0
 let g:pandoc#command#autoexec_command = 'make'
 
 " Ultisnips settings
-let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsExpandTrigger = '<c-s>'
 let g:UltiSnipsJumpForwardTrigger = '<c-d>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-a>'
 
