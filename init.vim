@@ -11,7 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'benekastah/neomake'
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic', {'for': ['ocaml', 'clojure']}
+Plug 'scrooloose/syntastic', {'for': ['ocaml', 'clojure', 'lua']}
 
 " Rust
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -54,6 +54,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'whatyouhide/vim-gotham'
+Plug 'robertmeta/nofrils'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'yggdroot/indentLine'
 Plug 'Shougo/unite.vim'
@@ -76,7 +77,10 @@ Plug 'OCamlPro/ocp-indent', {'for': 'ocaml'}
 Plug 'rgrinberg/vim-ocaml', {'for': 'ocaml'}
 
 " LaTeX
-Plug 'lervag/vimtex', {'for': 'latex'}
+Plug 'lervag/vimtex', {'for': 'tex'}
+
+" Torch
+Plug 'jakezhaojb/vim-torch-snipmate', {'for': 'lua'}
 
 call plug#end()
 
@@ -154,6 +158,7 @@ au BufRead * Neomake
 au CompleteDone * pclose
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
+au BufWritePost *.md Neomake!
 au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
 
 " Opam/OCaml settings
@@ -185,6 +190,9 @@ let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#use_preview = 1
 let g:pandoc#command#autoexec_on_writes = 0
 let g:pandoc#command#autoexec_command = 'make'
+
+" Vimtex settings
+let g:tex_conceal = ""
 
 " Ultisnips settings
 let g:UltiSnipsExpandTrigger = '<c-s>'
