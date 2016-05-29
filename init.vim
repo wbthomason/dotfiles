@@ -158,6 +158,7 @@ au BufRead * Neomake
 au CompleteDone * pclose
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
+au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
 au BufWritePost *.md Neomake!
 au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
 
@@ -228,6 +229,7 @@ set smarttab
 set shiftwidth=2
 set tabstop=2
 set number
+set relativenumber
 set ai
 set si
 set wrap

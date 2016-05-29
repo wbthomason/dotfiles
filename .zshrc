@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/wil/.oh-my-zsh
+ZSH=/usr/share/oh-my-zsh/
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -62,11 +62,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='vim'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -91,7 +91,7 @@ alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 # Powerline stuff
 #source /usr/share/zsh/site-contrib/powerline.zsh
 powerline-daemon -q
-. /usr/lib/python3.4/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # OPAM configuration
 export MONO_GAC_PREFIX="/usr/local"
@@ -101,16 +101,21 @@ ulimit -n 1000
 # OPAM configuration
 . /home/wil/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-eval `keychain --quiet --eval .ssh/id_rsa`
+if ! { [ -n "$TMUX" ]; } then
+  eval `keychain --quiet --eval .ssh/id_rsa`
+fi
 eval "$(hub alias -s)"
 fpath=(~/.zsh/completions $fpath) 
 autoload -U compinit && compinit
 
+source /usr/share/zsh/scripts/antigen/antigen.zsh
+LS_COLORS=$LS_COLORS:'di=0;36:ex=0;32:' ; export LS_COLORS
+
 # ROS
-indigo() {
-  source /opt/ros/indigo/setup.zsh
-  export PYTHONPATH=/opt/ros/indigo/lib/python2.7/site-packages:$PYTHONPATH
-  export PKG_CONFIG_PATH="/opt/ros/indigo/lib/pkgconfig:$PKG_CONFIG_PATH"
+jade() {
+  source /opt/ros/jade/setup.bash
+  export PYTHONPATH=/opt/ros/jade/lib/python2.7/site-packages:$PYTHONPATH
+  export PKG_CONFIG_PATH="/opt/ros/jade/lib/pkgconfig:$PKG_CONFIG_PATH"
   # Optionally, you can set:
   #export ROS_PACKAGE_PATH=/path/to/your/package/path:$ROS_PACKAGE_PATH
 
@@ -120,4 +125,4 @@ indigo() {
   # If you use Gazebo:
   #source /usr/share/gazebo/setup.sh
 }
-source /usr/share/zsh/scripts/antigen/antigen.zsh
+export PATH=/home/wil/.local/bin:$PATH

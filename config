@@ -31,10 +31,9 @@ exec --no-startup-id fc-cache -f
 # font, it doesn’t scale on retina/hidpi displays.
 
 # Configure monitors
-exec --no-startup-id xrandr --output VIRTUAL1 --off --output DP3 --mode 1920x1080 --pos 1080x408 --rotate normal --primary --output DP2 --mode 1920x1080 --pos 0x0 --rotate left --output HDMI2 --off --output HDMI1 --off --output VGA1 --off
+exec --no-startup-id xrandr --output DP-3 --off --output DVI-I-0 --off --output HDMI-0 --off --output DP-5 --off --output DP-4 --mode 1920x1080 --pos 1080x456 --rotate normal --output DVI-I-1 --off --output DP-2 --mode 1920x1080 --pos 0x0 --rotate left --output DP-1 --off --output DP-0 --off
  
 # startup programs
-exec --no-startup-id rofi
 exec --no-startup-id albert
 exec --no-startup-id /home/wil/bgscript.sh
 exec --no-startup-id redshift
@@ -52,6 +51,9 @@ bindsym $mod+t exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
+
+# rofi
+bindsym $mod+d exec rofi -show run
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
@@ -189,3 +191,5 @@ bar {
         #status_command py3status
         #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh 1080x+0+0 :0.0
 #}
+#for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_toggle
+no_focus [class="xfce4-notifyd"]
