@@ -36,6 +36,9 @@ Plug 'marijnh/tern_for_vim', {'for': 'javascript'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
 
+" Idris
+Plug 'idris-hackers/idris-vim', {'for': 'idris'}
+
 " Utilities
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-rooter'
@@ -54,7 +57,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'whatyouhide/vim-gotham'
-Plug 'robertmeta/nofrils'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'yggdroot/indentLine'
 Plug 'Shougo/unite.vim'

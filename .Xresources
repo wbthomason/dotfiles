@@ -41,7 +41,7 @@ URxvt*scrollBar_right: false
 URxvt*scrollBar_floating: false
 URxvt*visualBell: true
 
-URxvt*transparent: true
+URxvt*transparent: false
 URxvt*shading: 20
 ! Enabled modi
 rofi.modi:                           window,run,ssh

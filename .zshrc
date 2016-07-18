@@ -101,9 +101,7 @@ ulimit -n 1000
 # OPAM configuration
 . /home/wil/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-if ! { [ -n "$TMUX" ]; } then
-  eval `keychain --quiet --eval .ssh/id_rsa`
-fi
+eval `keychain --quiet --eval ~/.ssh/id_rsa`
 eval "$(hub alias -s)"
 fpath=(~/.zsh/completions $fpath) 
 autoload -U compinit && compinit
