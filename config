@@ -16,9 +16,9 @@ set $mod Mod4
 font pango:monospace 8
 
 # load fonts
-exec --no-startup-id xset +fp /home/wil/.fonts/misc
-exec --no-startup-id xset +fp /home/wil/.fonts/terminesspowerline
-exec --no-startup-id fc-cache -f
+exec --no-startup-id cbatticon -r 5 -l 10 -c "systemctl hibernate" -n
+exec --no-startup-id nm-applet
+exec --no-startup-id pasystray
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -30,13 +30,11 @@ exec --no-startup-id fc-cache -f
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-# Configure monitors
-exec xrandr --output DP-3 --off --output DVI-I-0 --off --output HDMI-0 --off --output DP-5 --off --output DP-4 --mode 1920x1080 --pos 3000x456 --rotate normal --output DVI-I-1 --mode 1920x1080 --pos 0x456 --rotate normal --output DP-2 --mode 1920x1080 --pos 1920x0 --rotate left --output DP-1 --off --output DP-0 --off
-
 # startup programs
 exec --no-startup-id albert
 exec --no-startup-id /home/wil/bgscript.sh
 exec --no-startup-id redshift
+exec --no-startup-id xbindkeys
 
 
 
@@ -45,6 +43,12 @@ floating_modifier $mod
 
 # Remove titlebars
 new_window 1pixel
+smart_borders on
+client.focused #00C1FF #00C1FF #000088 #00C1FF
+client.focused_inactive #2C2C2C #2C2C2C #ffffff #2C2C2C
+client.unfocused #2C2C2C #2C2C2C #ffffff #2C2C2C
+client.urgent #cc3 #cc3 #fa3 #cc3
+
 
 # start a terminal
 bindsym $mod+t exec urxvt
@@ -55,6 +59,8 @@ bindsym $mod+Shift+q kill
 # rofi
 bindsym $mod+d exec rofi -show run
 
+# suspending
+bindsym $mod+b exec systemctl suspend
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -182,7 +188,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         position top
-        status_command py3status
+        status_command i3status
         strip_workspace_numbers yes
         #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh +1080+408 :0.0
 }
