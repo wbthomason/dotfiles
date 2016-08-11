@@ -59,7 +59,7 @@ Plug 'tpope/vim-surround'
 Plug 'whatyouhide/vim-gotham'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'yggdroot/indentLine'
-Plug 'Shougo/unite.vim'
+Plug 'tpope/vim-obsession'
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
