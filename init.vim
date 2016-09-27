@@ -4,6 +4,28 @@ filetype off
 " Plugins
 call plug#begin()
 
+" Utilities
+Plug 'SirVer/ultisnips'
+Plug 'airblade/vim-rooter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'easymotion/vim-easymotion'
+Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kien/ctrlp.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'whatyouhide/vim-gotham'
+Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'yggdroot/indentLine'
+Plug 'tpope/vim-obsession'
+
 " Git
 Plug 'tpope/vim-fugitive'
 
@@ -38,28 +60,6 @@ Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
 
 " Idris
 Plug 'idris-hackers/idris-vim', {'for': 'idris'}
-
-" Utilities
-Plug 'SirVer/ultisnips'
-Plug 'airblade/vim-rooter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'easymotion/vim-easymotion'
-Plug 'honza/vim-snippets'
-Plug 'jiangmiao/auto-pairs'
-Plug 'kien/ctrlp.vim'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'rking/ag.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'whatyouhide/vim-gotham'
-Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'yggdroot/indentLine'
-Plug 'tpope/vim-obsession'
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}

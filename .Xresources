@@ -41,10 +41,10 @@ URxvt*scrollBar_right: false
 URxvt*scrollBar_floating: false
 URxvt*visualBell: true
 
-URxvt*transparent: true
+URxvt*transparent: false
 URxvt*shading: 15
 
-URxvt*font: xft:Hack:style=Regular:size=9
+URxvt*font: xft:Hack:style=Regular:size=8
 
 ! Enabled modi
 rofi.modi:                           window,run,ssh
