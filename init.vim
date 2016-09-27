@@ -188,7 +188,7 @@ let g:indentLine_char = '│'
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#after#modules#enabled = ['ultisnips']
 let g:pandoc#formatting#mode = 'haA'
-let g:pandoc#formatting#textwidth = 80
+let g:pandoc#formatting#textwidth = 100
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#use_preview = 1
 let g:pandoc#command#autoexec_on_writes = 0
@@ -209,7 +209,7 @@ let g:syntastic_ocaml_checkers=['merlin','caml4po']
 set title
 set wildmenu
 set autoread
-set tw=80
+set tw=100
 set formatoptions+=t
 set so=7
 set wildignore=*.o,*~,*.pyc

@@ -16,9 +16,9 @@ set $mod Mod4
 font pango:monospace 8
 
 # load fonts
-exec --no-startup-id cbatticon -r 5 -l 10 -c "systemctl hibernate" -n
-exec --no-startup-id nm-applet
-exec --no-startup-id pasystray
+#exec --no-startup-id cbatticon -r 5 -l 10 -c "systemctl hibernate" -n
+#exec --no-startup-id nm-applet
+#exec --no-startup-id pasystray
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -36,6 +36,7 @@ exec --no-startup-id /home/wil/bgscript.sh
 exec --no-startup-id redshift
 exec --no-startup-id xbindkeys
 
+exec --no-startup-id xrandr --output DP-3 --off --output DVI-I-0 --off --output HDMI-0 --off --output DP-5 --off --output DP-4 --mode 1920x1080 --pos 1920x0 --rotate left --output DVI-I-1 --mode 1920x1080 --pos 0x672 --rotate normal --output DP-2 --mode 1920x1080 --pos 3000x256 --rotate normal --output DP-1 --off --output DP-0 --off
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
