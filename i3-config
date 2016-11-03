@@ -52,7 +52,7 @@ client.urgent #cc3 #cc3 #fa3 #cc3
 
 
 # start a terminal
-bindsym $mod+t exec urxvt
+bindsym $mod+t exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
