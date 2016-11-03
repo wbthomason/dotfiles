@@ -6,7 +6,7 @@ call plug#begin()
 
 " Utilities
 Plug 'SirVer/ultisnips'
-Plug 'airblade/vim-rooter'
+"Plug 'airblade/vim-rooter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'easymotion/vim-easymotion'
@@ -21,7 +21,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'whatyouhide/vim-gotham'
+"Plug 'whatyouhide/vim-gotham'
+Plug 'flazz/vim-colorschemes'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'yggdroot/indentLine'
 Plug 'tpope/vim-obsession'
@@ -86,7 +87,7 @@ Plug 'jakezhaojb/vim-torch-snipmate', {'for': 'lua'}
 
 call plug#end()
 
-filetype plugin indent on
+filetype plugin indent off
 
 " Custom sequence bindings
 let mapleader = "\<space>"
@@ -173,7 +174,20 @@ set rtp^="/usr/local/share/ocp-indent/vim"
 if !exists('g:ycm_semantic_triggers')
   let g:ycm_semantic_triggers = {}
 endif
-let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*']
+"let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*']
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+      \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+      \ 're!\\hyperref\[[^]]*',
+      \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\(include(only)?|input){[^}]*',
+      \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+      \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ ]
 let g:ycm_semantic_triggers.markdown = ['@']
 
 " Neomake settings
@@ -196,11 +210,12 @@ let g:pandoc#command#autoexec_command = 'make'
 
 " Vimtex settings
 let g:tex_conceal = ""
+let g:tex_flavor = "latex"
 
 " Ultisnips settings
-let g:UltiSnipsExpandTrigger = '<c-s>'
-let g:UltiSnipsJumpForwardTrigger = '<c-d>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-a>'
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " Syntastic settings
 let g:syntastic_ocaml_checkers=['merlin','caml4po']
@@ -224,8 +239,8 @@ set novisualbell
 set ignorecase
 set smartcase
 syntax enable
-colorscheme gotham
-set background=dark
+colorscheme gotham256
+"set background=dark
 set expandtab
 set smarttab
 set shiftwidth=2
@@ -240,3 +255,4 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set viminfo^=%
 set hidden
+set termguicolors
