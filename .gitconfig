@@ -33,3 +33,5 @@
   sub   = submodule update --init --recursive
   cp    = cherry-pick
   cl    = clone
+[merge]
+	tool = diffuse

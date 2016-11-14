@@ -74,8 +74,11 @@ Plug 'lambdatoast/elm.vim', {'for': 'elm'}
 Plug 'the-lambda-church/merlin', {'for': 'ocaml'}
 Plug 'OCamlPro/ocp-indent', {'for': 'ocaml'}
 
+" Haskell
+Plug 'eagletmt/neco-ghc'
+
 " LaTeX
-Plug 'lervag/vimtex', {'for': 'latex'}
+Plug 'lervag/vimtex', {'for': 'tex'}
 
 call plug#end()
 
@@ -153,6 +156,7 @@ au BufRead * Neomake
 au CompleteDone * pclose
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
+au BufWritePost *.md Neomake!
 
 " Opam/OCaml settings
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
@@ -165,14 +169,21 @@ if !exists('g:ycm_semantic_triggers')
 endif
 let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*']
 let g:ycm_semantic_triggers.markdown = ['@']
+let g:ycm_semantic_triggers.haskell = ['.']
 
 " Neomake settings
 let g:neomake_cpp_clang_args = ['-std=c++14']
+
+" Haskell/Necoghc settings
+let g:necoghc_enable_detailed_browse = 1
+autocmd BufEnter *.hs set formatprg=pointfree
 
 " Vimtex settings
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
 let g:vimtex_view_general_options_latexmk = '-r 1'
+
+let g:tex_conceal=""
 
 " IndentLine settings
 let g:indentLine_color_term = 239
@@ -182,7 +193,7 @@ let g:indentLine_char = '│'
 " Pandoc settings
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#after#modules#enabled = ['ultisnips']
-let g:pandoc#formatting#mode = 'haA'
+"let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 80
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#use_preview = 1
@@ -196,6 +207,9 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-a>'
 
 " Syntastic settings
 let g:syntastic_ocaml_checkers=['merlin','caml4po']
+
+" Rust settings
+let g:ycm_rust_src_path = '/Users/wil/rust'
 
 " General settings
 set title
@@ -231,3 +245,4 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set viminfo^=%
 set hidden
+highlight Pmenu ctermbg=238 gui=bold
