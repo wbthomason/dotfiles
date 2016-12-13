@@ -1,5 +1,6 @@
 set nocompatible
-filetype off
+
+filetype plugin on
 
 " Plugins
 call plug#begin()
@@ -13,7 +14,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -21,11 +22,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-"Plug 'whatyouhide/vim-gotham'
 Plug 'flazz/vim-colorschemes'
 Plug 'xuyuanp/nerdtree-git-plugin'
 Plug 'yggdroot/indentLine'
 Plug 'tpope/vim-obsession'
+Plug 'severin-lemaignan/vim-minimap'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -87,75 +88,12 @@ Plug 'jakezhaojb/vim-torch-snipmate', {'for': 'lua'}
 
 call plug#end()
 
-filetype plugin indent off
-
-" Custom sequence bindings
-let mapleader = "\<space>"
-nnoremap <Leader>hh :nohl<CR>
-nnoremap <Leader>o :CtrlP<CR>
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader>x :x<CR>
-nnoremap <Leader>g :bn<CR>
-nnoremap <Leader>t :bp<CR>
-nnoremap <Leader>d :bd<CR>
-nnoremap <Leader>m :Neomake!<CR>
-nnoremap <Leader>e :enew<CR>:CtrlP<CR>
-nnoremap <leader>f 1z=
-nnoremap <leader>s :set spell!
-
-let maplocalleader = "\<cr>"
-
-" Eclim settings
-let g:EclimCompletionMethod = 'omnifunc'
-
-" Rainbow parens settings
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-
-" Airline settings
-let g:airline_powerline_fonts = 1
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-
-" CtrlP settings
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
 " Autocommands
 au BufReadPost *
 	\ if line("'\"") > 0 && line("'\"") <= line("$") |
 	\ exe "normal! g`\"" |
 	\ endif
 au BufWinEnter * checktime
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
 au BufWritePost * Neomake
 au BufRead * Neomake
 au CompleteDone * pclose
@@ -189,9 +127,11 @@ let g:ycm_semantic_triggers.tex = [
       \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
       \ ]
 let g:ycm_semantic_triggers.markdown = ['@']
+let g:ycm_confirm_extra_conf=0
 
 " Neomake settings
 let g:neomake_cpp_clang_args = ['-std=c++14']
+let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'vulture']
 
 " IndentLine settings
 let g:indentLine_color_term = 239
@@ -220,6 +160,44 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 " Syntastic settings
 let g:syntastic_ocaml_checkers=['merlin','caml4po']
 
+" Custom sequence bindings
+let mapleader = "\<space>"
+nnoremap <Leader>hh :nohl<CR>
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>x :x<CR>
+nnoremap <Leader>g :bn<CR>
+nnoremap <Leader>t :bp<CR>
+nnoremap <Leader>d :bd<CR>
+nnoremap <Leader>m :Neomake!<CR>
+nnoremap <Leader>e :enew<CR>:CtrlP<CR>
+nnoremap <leader>f 1z=
+nnoremap <leader>s :set spell!
+nnoremap <leader>l <C-^>
+
+let maplocalleader = "\<cr>"
+
+" Eclim settings
+let g:EclimCompletionMethod = 'omnifunc'
+
+" Rainbow parens settings
+let g:rainbow_active = 1
+
+" Airline settings
+let g:airline_powerline_fonts = 1
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" CtrlP settings
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
 " General settings
 set title
 set wildmenu
@@ -239,8 +217,7 @@ set novisualbell
 set ignorecase
 set smartcase
 syntax enable
-colorscheme gotham256
-"set background=dark
+colorscheme colorsbox-material
 set expandtab
 set smarttab
 set shiftwidth=2
@@ -256,3 +233,4 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 set viminfo^=%
 set hidden
 set termguicolors
+set bg=dark
