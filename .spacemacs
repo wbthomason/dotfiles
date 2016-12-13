@@ -43,11 +43,9 @@ values."
      fsharp
      go
      idris
-     ipython-notebook
      java
      javascript
      latex
-     haskell
      markdown
      ocaml
      rust
@@ -60,7 +58,10 @@ values."
      ;; ----------------------------------------------------------------
      helm
      smex
-     auto-completion
+     (auto-completion :variables
+     auto-completion-return-key-behavior nil
+     auto-completion-enable-snippets-in-popup t
+     )
      better-defaults
      emacs-lisp
      git
