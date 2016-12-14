@@ -88,6 +88,8 @@ alias ls="ls --color=auto"
 eval $(dircolors -b)
 alias eclimd="/usr/lib/eclipse/eclimd -b"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+alias em='emacsclient -nw'
+alias emd='emacs --daemon'
 # Powerline stuff
 #source /usr/share/zsh/site-contrib/powerline.zsh
 powerline-daemon -q
