@@ -40,6 +40,7 @@ values."
              python-fill-column 100
              python-sort-imports-on-save t
       )
+     ipython-notebook
      clojure
      csharp
      elixir
@@ -62,6 +63,7 @@ values."
      ;; ----------------------------------------------------------------
      smex
      helm
+     typography
      colors
      (auto-completion :variables
      auto-completion-enable-snippets-in-popup t
@@ -325,9 +327,28 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (spacemacs/toggle-highlight-indentation-current-column-on)
-  (spacemacs/toggle-highlight-indentation-on)
   (setq-default fill-column 100)
+  (defun turn-on-highlight-indentation-mode ()
+    (interactive)
+    (highlight-indentation-mode 1))
+
+  (define-globalized-minor-mode global-highlight-indentation-mode
+    highlight-indentation-mode turn-on-highlight-indentation-mode)
+
+  (global-highlight-indentation-mode 1)
+
+  (defun turn-on-highlight-column-indentation-mode ()
+    (interactive)
+    (highlight-indentation-current-column-mode 1))
+
+  (define-globalized-minor-mode global-highlight-indentation-current-column-mode
+    highlight-indentation-current-column-mode turn-on-highlight-column-indentation-mode)
+
+  (global-highlight-indentation-current-column-mode 1)
+
+  (setq-default default-tab-width 2)
+  (defvaralias 'c-basic-offset 'tab-width)
+  (defvaralias 'cperl-indent-level 'tab-width)
  )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -346,7 +367,7 @@ you should place your code here."
  '(hl-sexp-background-color "#121212")
  '(package-selected-packages
    (quote
-    (rainbow-mode rainbow-identifiers color-identifiers-mode sublime-themes material-theme tabbar wolfram-mode web-beautify utop tuareg caml toml-mode thrift stan-mode smex scad-mode racer qml-mode pandoc-mode ox-pandoc ht org-ref key-chord ivy omnisharp ocp-indent ob-elixir noflet merlin matlab-mode livid-mode skewer-mode simple-httpd julia-mode json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc intero idris-mode prop-menu hlint-refactor hindent helm-hoogle helm-bibtex parsebib haskell-snippets go-guru go-eldoc fsharp-mode company-quickhelp flycheck-rust flycheck-mix flycheck-haskell flycheck-elm ensime sbt-mode scala-mode elm-mode ein websocket disaster csharp-mode company-tern dash-functional tern company-go go-mode company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-auctex coffee-mode cmm-mode cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider seq queue clojure-mode cargo rust-mode biblio biblio-core auctex-latexmk auctex arduino-mode alchemist elixir-mode flymake-python-pyflakes gruvbox-theme yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic colorsarenice-theme xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme)))
+    (typo rainbow-mode rainbow-identifiers color-identifiers-mode sublime-themes material-theme tabbar wolfram-mode web-beautify utop tuareg caml toml-mode thrift stan-mode smex scad-mode racer qml-mode pandoc-mode ox-pandoc ht org-ref key-chord ivy omnisharp ocp-indent ob-elixir noflet merlin matlab-mode livid-mode skewer-mode simple-httpd julia-mode json-mode json-snatcher json-reformat js2-refactor js2-mode js-doc intero idris-mode prop-menu hlint-refactor hindent helm-hoogle helm-bibtex parsebib haskell-snippets go-guru go-eldoc fsharp-mode company-quickhelp flycheck-rust flycheck-mix flycheck-haskell flycheck-elm ensime sbt-mode scala-mode elm-mode ein websocket disaster csharp-mode company-tern dash-functional tern company-go go-mode company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-auctex coffee-mode cmm-mode cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider seq queue clojure-mode cargo rust-mode biblio biblio-core auctex-latexmk auctex arduino-mode alchemist elixir-mode flymake-python-pyflakes gruvbox-theme yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic colorsarenice-theme xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help diff-hl company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme)))
  '(tabbar-separator (quote (0.5)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
