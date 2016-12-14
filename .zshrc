@@ -88,6 +88,8 @@ alias ls="ls --color=auto"
 eval $(dircolors -b)
 alias eclimd="/usr/lib/eclipse/eclimd -b"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+alias em="emacsclient -nw"
+alias emd="emacs --daemon"
 # Powerline stuff
 #source /usr/share/zsh/site-contrib/powerline.zsh
 powerline-daemon -q
@@ -104,13 +106,15 @@ eval `opam config env`
 
 eval `keychain --quiet --eval ~/.ssh/id_rsa`
 eval "$(hub alias -s)"
-fpath=(~/.zsh/completions $fpath) 
+fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 
 LS_COLORS=$LS_COLORS:'di=0;36:ex=0;32:' ; export LS_COLORS
 
-# ROS
 export PATH=/home/wil/.local/bin:$PATH
-case $- in *i*)
-    [ -z "$TMUX" ] && exec tmux new-session -A -s sysadmin
-esac
+
+[[ $- != *i* ]] && return
+PARENT=`ps -p $PPID -o comm=`
+if [[ -z "$TMUX" && ! $PARENT =~ emacs ]]; then
+    exec tmux new-session -A -s sysadmin
+fi
