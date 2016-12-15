@@ -335,7 +335,7 @@ you should place your code here."
   (define-globalized-minor-mode global-highlight-indentation-mode
     highlight-indentation-mode turn-on-highlight-indentation-mode)
 
-  (global-highlight-indentation-mode 1)
+  ;; (global-highlight-indentation-mode 1)
 
   (defun turn-on-highlight-column-indentation-mode ()
     (interactive)
@@ -344,11 +344,11 @@ you should place your code here."
   (define-globalized-minor-mode global-highlight-indentation-current-column-mode
     highlight-indentation-current-column-mode turn-on-highlight-column-indentation-mode)
 
-  (global-highlight-indentation-current-column-mode 1)
+  ;; (global-highlight-indentation-current-column-mode 1)
 
   (setq-default default-tab-width 2)
-  (defvaralias 'c-basic-offset 'tab-width)
-  (defvaralias 'cperl-indent-level 'tab-width)
+  (defvaralias 'c-basic-offset 'default-tab-width)
+  (defvaralias 'cperl-indent-level 'default-tab-width)
  )
 
 ;; Do not write anything past this comment. This is where Emacs will
