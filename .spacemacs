@@ -350,6 +350,7 @@ you should place your code here."
   (setq-default default-tab-width 2)
   (defvaralias 'c-basic-offset 'default-tab-width)
   (defvaralias 'cperl-indent-level 'default-tab-width)
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
  )
 
 ;; Do not write anything past this comment. This is where Emacs will
