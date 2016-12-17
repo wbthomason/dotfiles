@@ -4,6 +4,29 @@ filetype off
 " Plugins
 call plug#begin()
 
+" Utilities
+Plug 'SirVer/ultisnips'
+"Plug 'airblade/vim-rooter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'easymotion/vim-easymotion'
+Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kien/ctrlp.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+"Plug 'whatyouhide/vim-gotham'
+Plug 'flazz/vim-colorschemes'
+Plug 'xuyuanp/nerdtree-git-plugin'
+Plug 'yggdroot/indentLine'
+Plug 'tpope/vim-obsession'
+
 " Git
 Plug 'tpope/vim-fugitive'
 
@@ -11,7 +34,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'benekastah/neomake'
 Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 Plug 'valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic', {'for': ['ocaml', 'clojure']}
+Plug 'scrooloose/syntastic', {'for': ['ocaml', 'clojure', 'lua']}
 
 " Rust
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
@@ -36,27 +59,8 @@ Plug 'marijnh/tern_for_vim', {'for': 'javascript'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
 
-" Utilities
-Plug 'SirVer/ultisnips'
-Plug 'airblade/vim-rooter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'easymotion/vim-easymotion'
-Plug 'honza/vim-snippets'
-Plug 'jiangmiao/auto-pairs'
-Plug 'kien/ctrlp.vim'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'rking/ag.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'whatyouhide/vim-gotham'
-Plug 'xuyuanp/nerdtree-git-plugin'
-Plug 'yggdroot/indentLine'
-Plug 'Shougo/unite.vim'
+" Idris
+Plug 'idris-hackers/idris-vim', {'for': 'idris'}
 
 " Coffeescript
 Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
@@ -73,19 +77,19 @@ Plug 'lambdatoast/elm.vim', {'for': 'elm'}
 " OCaml
 Plug 'the-lambda-church/merlin', {'for': 'ocaml'}
 Plug 'OCamlPro/ocp-indent', {'for': 'ocaml'}
-
-" Haskell
-Plug 'eagletmt/neco-ghc'
+Plug 'rgrinberg/vim-ocaml', {'for': 'ocaml'}
 
 " LaTeX
 Plug 'lervag/vimtex', {'for': 'tex'}
 
+" Torch
+Plug 'jakezhaojb/vim-torch-snipmate', {'for': 'lua'}
+
 call plug#end()
 
-filetype plugin indent on
 
 " Custom sequence bindings
-let mapleader = "\<Space>"
+let mapleader = "\<space>"
 nnoremap <Leader>hh :nohl<CR>
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>w :w<CR>
@@ -156,7 +160,9 @@ au BufRead * Neomake
 au CompleteDone * pclose
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
+au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
 au BufWritePost *.md Neomake!
+au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
 
 " Opam/OCaml settings
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
@@ -167,23 +173,24 @@ set rtp^="/usr/local/share/ocp-indent/vim"
 if !exists('g:ycm_semantic_triggers')
   let g:ycm_semantic_triggers = {}
 endif
-let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*']
+"let g:ycm_semantic_triggers.tex = ['re!\\[A-Za-z]*(ref|cite)[A-Za-z]*([^]]*])?{([^}]*, ?)*']
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+      \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+      \ 're!\\hyperref\[[^]]*',
+      \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\(include(only)?|input){[^}]*',
+      \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+      \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ ]
 let g:ycm_semantic_triggers.markdown = ['@']
-let g:ycm_semantic_triggers.haskell = ['.']
 
 " Neomake settings
 let g:neomake_cpp_clang_args = ['-std=c++14']
-
-" Haskell/Necoghc settings
-let g:necoghc_enable_detailed_browse = 1
-autocmd BufEnter *.hs set formatprg=pointfree
-
-" Vimtex settings
-let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-let g:vimtex_view_general_options = '-r @line @pdf @tex'
-let g:vimtex_view_general_options_latexmk = '-r 1'
-
-let g:tex_conceal=""
 
 " IndentLine settings
 let g:indentLine_color_term = 239
@@ -193,29 +200,30 @@ let g:indentLine_char = '│'
 " Pandoc settings
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#after#modules#enabled = ['ultisnips']
-"let g:pandoc#formatting#mode = 'haA'
-let g:pandoc#formatting#textwidth = 80
+let g:pandoc#formatting#mode = 'haA'
+let g:pandoc#formatting#textwidth = 100
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#use_preview = 1
 let g:pandoc#command#autoexec_on_writes = 0
 let g:pandoc#command#autoexec_command = 'make'
 
+" Vimtex settings
+let g:tex_conceal = ""
+let g:tex_flavor = "latex"
+
 " Ultisnips settings
-let g:UltiSnipsExpandTrigger = '<c-s>'
-let g:UltiSnipsJumpForwardTrigger = '<c-d>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-a>'
+let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " Syntastic settings
 let g:syntastic_ocaml_checkers=['merlin','caml4po']
-
-" Rust settings
-let g:ycm_rust_src_path = '/Users/wil/rust'
 
 " General settings
 set title
 set wildmenu
 set autoread
-set tw=80
+set tw=100
 set formatoptions+=t
 set so=7
 set wildignore=*.o,*~,*.pyc
@@ -230,13 +238,14 @@ set novisualbell
 set ignorecase
 set smartcase
 syntax enable
-colorscheme gotham
-set background=dark
+colorscheme gotham256
+"set background=dark
 set expandtab
 set smarttab
 set shiftwidth=2
 set tabstop=2
 set number
+set relativenumber
 set ai
 set si
 set wrap
@@ -245,4 +254,17 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set viminfo^=%
 set hidden
+set termguicolors
+
+" Haskell/Necoghc settings
+"let g:necoghc_enable_detailed_browse = 1
+"autocmd BufEnter *.hs set formatprg=pointfree
+
+" Vimtex settings
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+let g:vimtex_view_general_options_latexmk = '-r 1'
+
+let g:tex_conceal=""
+
 highlight Pmenu ctermbg=238 gui=bold
