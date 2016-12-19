@@ -1,26 +1,23 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/usr/share/oh-my-zsh
+export ZSH=/Users/wil/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="jreese"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
-if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir $ZSH_CACHE_DIR
-fi
+# DISABLE_AUTO_UPDATE="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -34,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -48,13 +45,14 @@ HIST_STAMPS="mm.dd.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast archlinux cabal systemd coffee docker npm pip python svn tmux)
+plugins=(gitfast osx brew coffee docker npm pip python tmux)
 
 # User configuration
 
 #export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:/opt/anaconda/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
-#export PATH="/usr/local/bin:/usr/local/sbin:$PATH:~/bin"
+#export PATH="/usr/bin/ssh-agent/usr/local/bin:/usr/local/sbin:$PATH:~/bin"
+export PATH="/usr/bin/ssh-agent:/usr/local/bin:/usr/local/sbin:$PATH:~/bin"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,16 +82,43 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias svn=colorsvn
-alias ls="ls --color=auto"
-eval $(dircolors -b)
-alias eclimd="/usr/lib/eclipse/eclimd -b"
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+alias ls="ls -G"
+alias eclimd="/opt/homebrew-cask/Caskroom/eclipse-java/4.4.1/eclipse/eclimd -b"
+alias vim='nvim'
+eval `/usr/libexec/path_helper -s`
+alias setup-opam='eval `opam config env`'
+alias wol='wakeonlan 10:c3:7b:8f:c6:83'
+alias phonehome='ssh -p 6317 mjolnir'
+alias ssh-add='/usr/bin/ssh-add'
+alias tree='tree -C'
+eval "$(thefuck --alias)"
+alias wat='huh'
+alias emd='emacs --daemon'
+alias em='emacsclient -nw'
 # Powerline stuff
-#source /usr/share/zsh/site-contrib/powerline.zsh
 powerline-daemon -q
-. /usr/lib/python3.4/site-packages/powerline/bindings/zsh/powerline.zsh
-
+. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 # OPAM configuration
 export MONO_GAC_PREFIX="/usr/local"
-source /usr/share/nvm/nvm.sh
+export PATH="./node_modules/.bin:/usr/local/sbin:$PATH"
 ulimit -n 1000
+
+# OPAM configuration
+. /Users/wil/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+
+export PATH="$PATH:/Library/TeX/Distributions/Programs/texbin"
+export PATH="$PATH:/Users/wil/.cabal/bin"
+export PATH="$PATH:/Users/wil/.cargo/bin"
+export PATH="$PATH:/Users/wil/.local/bin"
+export PATH="/usr/local/bin:$PATH"
+
+#ssh-add ~/.ssh/id_rsa
+eval "$(hub alias -s)"
+export EDITOR="nvim"
+
+[[ $- != *i* ]] && return
+PARENT=`ps -p $PPID -o comm=`
+if [[ -z "$TMUX" && ! $PARENT =~ emacs ]]; then
+    exec tmux new-session -A -s sysadmin
+fi
