@@ -110,6 +110,7 @@ fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 
 LS_COLORS=$LS_COLORS:'di=0;36:ex=0;32:' ; export LS_COLORS
+export RUST_SRC_PATH=/usr/src/rust/src
 
 export PATH=/home/wil/.local/bin:$PATH
 
