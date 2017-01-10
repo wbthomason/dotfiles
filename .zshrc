@@ -93,7 +93,7 @@ alias emd="emacs --daemon"
 # Powerline stuff
 #source /usr/share/zsh/site-contrib/powerline.zsh
 powerline-daemon -q
-. /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # OPAM configuration
 export MONO_GAC_PREFIX="/usr/local"
