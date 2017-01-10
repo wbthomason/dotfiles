@@ -40,17 +40,17 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('wellle/targets.vim')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('ludovicchabant/vim-gutentags')
-  call dein#add('ctrlpvim/ctrlp.vim', {'on_cmd': ['CtrlP', 'CtrlPMixed']})
+  call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
 
   " Unite
-  call dein#add('Shougo/unite.vim', {'merged': 0 , 'loadconf': 1, 'on_cmd': 'Unite'})
-  call dein#add('Shougo/unite-outline', {'on_cmd': 'Unite'})
-  call dein#add('Shougo/neomru.vim', {'on_cmd': 'Unite'})
-  call dein#add('osyo-manga/unite-quickfix', {'on_cmd': 'Unite'})
-  call dein#add('Shougo/unite-build', {'on_cmd': 'Unite'})
-  call dein#add('thinca/vim-unite-history', {'on_cmd': 'Unite'})
-  call dein#add('osyo-manga/unite-filetype', {'on_cmd': 'Unite'})
+  call dein#add('Shougo/unite.vim', {'merged': 0 , 'loadconf': 1})
+  call dein#add('Shougo/unite-outline')
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('osyo-manga/unite-quickfix')
+  call dein#add('Shougo/unite-build')
+  call dein#add('thinca/vim-unite-history')
+  call dein#add('osyo-manga/unite-filetype')
   
   " Git
   call dein#add('tpope/vim-fugitive')
@@ -83,6 +83,12 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('vim-pandoc/vim-pandoc', {'on_ft': 'markdown'})
   call dein#add('vim-pandoc/vim-pandoc-syntax', {'on_ft': 'markdown'})
   call dein#add('vim-pandoc/vim-pandoc-after', {'on_ft': 'markdown'})
+
+  " TOML
+  call dein#add('cespare/vim-toml', {'on_ft': 'toml'})
+
+  " Yaml
+  call dein#add('stephpy/vim-yaml', {'on_ft': 'yaml'})
 
   " JS
   call dein#add('marijnh/tern_for_vim', {'on_ft': 'javascript'})
@@ -201,7 +207,7 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>g :bn<CR>
 nnoremap <Leader>t :bp<CR>
-nnoremap <Leader>tt :TagbarToggle<CR>
+nnoremap <Leader>z :TagbarToggle<CR>
 nnoremap <Leader>d :bd<CR>
 nnoremap <Leader>m :Neomake!<CR>
 nnoremap <Leader>e :enew<CR>:CtrlPMixed<CR>
@@ -392,3 +398,6 @@ let g:tagbar_type_elixir = {
         \ 'r:records'
     \ ]
 \ }
+
+" Racer settings
+let g:racer_cmd = "/usr/bin/racer"
