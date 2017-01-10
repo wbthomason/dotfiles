@@ -37,6 +37,7 @@ exec --no-startup-id redshift-gtk
 exec --no-startup-id xbindkeys
 exec --no-startup-id nm-applet
 exec --no-startup-id volnoti
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -198,11 +199,11 @@ bindsym $mod+r mode "resize"
         #status_command py3status
         #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh 1080x+0+0 :0.0
 #}
-bar {
-       status_command    python ~/.config/i3/i3pystatus_config.py
-       position          top
-       workspace_buttons yes
-       strip_workspace_numbers yes
-}
+#bar {
+#       status_command    python ~/.config/i3/i3pystatus_config.py
+#       position          top
+#       workspace_buttons yes
+#       strip_workspace_numbers yes
+#}
 
 for_window [title="Localization"] floating enable
