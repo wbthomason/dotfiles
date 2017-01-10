@@ -11,6 +11,7 @@
 [core]
   editor = nvim
 	autocrlf = input
+	excludesfile = /home/wil/.gitignore_global
 
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
