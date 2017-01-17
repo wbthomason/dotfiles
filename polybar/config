@@ -80,7 +80,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %mountpoint%: %percentage_free%
+label-mounted = %mountpoint%: %percentage_free% free
 
 label-unmounted = %mountpoint%: not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
@@ -245,7 +245,7 @@ label-disconnected-foreground = ${colors.foreground-alt}
 type = internal/date
 interval = 5
 
-date = " %Y-%m-%d"
+date = " %Y.%m.%d"
 
 time = %H:%M:%S
 

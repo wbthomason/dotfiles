@@ -334,6 +334,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (global-unset-key "\C-a")
   (load-file "~/.emacs.d/private/local/colorsarenice-theme.el")
   (setq-default fill-column 100)
   (defun turn-on-highlight-indentation-mode ()

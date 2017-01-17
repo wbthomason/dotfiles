@@ -42,6 +42,10 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('ludovicchabant/vim-gutentags')
   call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('junegunn/limelight.vim', {'on_cmd': 'Limelight'})
+  call dein#add('metakirby5/codi.vim', {'on_cmd': 'Codi'})
+  call dein#add('chrisbra/unicode.vim')
 
   " Unite
   call dein#add('Shougo/unite.vim', {'merged': 0 , 'loadconf': 1})
@@ -54,6 +58,7 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   
   " Git
   call dein#add('tpope/vim-fugitive')
+  call dein#add('junegunn/gv.vim')
 
   " Completion
   call dein#add('Valloric/YouCompleteMe', {'merged': 0})
@@ -129,6 +134,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   " Elixir
   call dein#add('elixir-lang/vim-elixir', {'on_ft': 'elixir'})
   call dein#add('slashmili/alchemist.vim', { 'on_ft': 'elixir'})
+
+  " Scala
+  call dein#add('derekwyatt/vim-scala', {'on_ft': 'scala'})
 
   " Required:
   call dein#end()
@@ -401,3 +409,7 @@ let g:tagbar_type_elixir = {
 
 " Racer settings
 let g:racer_cmd = "/usr/bin/racer"
+
+" Gitgutter settings
+set updatetime=500
+
