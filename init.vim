@@ -47,6 +47,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('metakirby5/codi.vim', {'on_cmd': 'Codi'})
   call dein#add('chrisbra/unicode.vim')
 
+  " Journaling
+  call dein#add('vimwiki/vimwiki')
+
   " Unite
   call dein#add('Shougo/unite.vim', {'merged': 0 , 'loadconf': 1})
   call dein#add('Shougo/unite-outline')
