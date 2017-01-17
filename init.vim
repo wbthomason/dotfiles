@@ -43,6 +43,7 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
   call dein#add('airblade/vim-gitgutter')
+  call dein#add('junegunn/goyo.vim', {'on_cmd': 'Goyo'})
   call dein#add('junegunn/limelight.vim', {'on_cmd': 'Limelight'})
   call dein#add('metakirby5/codi.vim', {'on_cmd': 'Codi'})
   call dein#add('chrisbra/unicode.vim')
@@ -193,6 +194,12 @@ set viminfo^=%
 set hidden
 set bg=dark
 
+" Functions
+function Toggle_writer_mode()
+  execute ":Goyo"
+  execute ":Limelight!!"
+endfunction
+
 " Autocommands
 au BufReadPost *
 	\ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -202,7 +209,7 @@ au BufWinEnter * checktime
 au BufWritePost * Neomake
 au BufRead * Neomake
 au CompleteDone * pclose
-au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+au BufNewFile,BufFilePre,BufRead,BufEnter *.md set filetype=markdown.pandoc
 au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
 au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
 au BufWritePost *.md Neomake!
@@ -223,9 +230,10 @@ nnoremap <Leader>d :bd<CR>
 nnoremap <Leader>m :Neomake!<CR>
 nnoremap <Leader>e :enew<CR>:CtrlPMixed<CR>
 nnoremap <leader>f 1z=
-nnoremap <leader>s :set spell!
+nnoremap <leader>s :set spell!<CR>
 nnoremap <leader>l <C-^>
 nnoremap <leader>u :Unite<CR>
+nnoremap <leader>. :call Toggle_writer_mode()<CR>
 
 let maplocalleader = "\<cr>"
 
@@ -416,3 +424,18 @@ let g:racer_cmd = "/usr/bin/racer"
 " Gitgutter settings
 set updatetime=500
 
+" Vimwiki settings
+nmap <LocalLeader>ww <Plug>VimwikiIndex
+nmap <LocalLeader>wt <Plug>VimwikiTabIndex 
+nmap <LocalLeader>ws <Plug>VimwikiUISelect
+nmap <LocalLeader>ji <Plug>VimwikiDiaryIndex
+nmap <LocalLeader>j  <Plug>VimwikiMakeDiaryNote
+nmap <LocalLeader>jt <Plug>VimwikiTabMakeDiaryNote
+nmap <LocalLeader>jy <Plug>VimwikiMakeYesterdayDiaryNote
+nmap <LocalLeader>jl <Plug>VimwikiDiaryGenerateLinks
+let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+let g:vimwiki_list = [{'path': '$HOME/journal', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
+
+" Goyo settings
+let g:goyo_width = 100
