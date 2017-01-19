@@ -28,7 +28,7 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     call dein#add('easymotion/vim-easymotion')
 
     " Color visualization
-    call dein#add('luochen1990/rainbow')
+    call dein#add('chrisbra/Colorizer')
 
     " Indentation tracking
     call dein#add('yggdroot/indentLine')
@@ -36,9 +36,10 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     " Comments
     call dein#add('scrooloose/nerdcommenter')
 
-    " Wrapping
+    " Wrapping/delimiters
     call dein#add('tpope/vim-surround')
     call dein#add('jiangmiao/auto-pairs')
+    call dein#add('luochen1990/rainbow')
 
     " Sessions
     call dein#add('tpope/vim-obsession')
