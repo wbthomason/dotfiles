@@ -53,11 +53,12 @@ values."
      idris
      java
      javascript
-     latex
+     (latex :variables
+            latex-enable-auto-fill t
+            latex-enable-folding t)
      ocaml
      rust
      scala
-     pandoc
      emacs-lisp
      octave
      ;; ----------------------------------------------------------------
@@ -325,6 +326,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (load-file "~/dash.el")
+  (load-file "~/autothemer.el")
   )
 
 (defun dotspacemacs/user-config ()
@@ -337,6 +340,7 @@ you should place your code here."
   (global-unset-key "\C-a")
   (load-file "~/.emacs.d/private/local/colorsarenice-theme.el")
   (setq-default fill-column 100)
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (defun turn-on-highlight-indentation-mode ()
     (interactive)
     (highlight-indentation-mode 1))
