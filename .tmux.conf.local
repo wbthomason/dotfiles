@@ -102,7 +102,7 @@ tmux_conf_theme_window_status_format='#I #W'
 #   - built-in variables are:
 #     - #{circled_window_index}
 tmux_conf_theme_window_status_current_fg='#000000'      # black
-tmux_conf_theme_window_status_current_bg='#00afff'      # light blue
+tmux_conf_theme_window_status_current_bg='#81a1c1'      # light blue
 tmux_conf_theme_window_status_current_attr='bold'
 #tmux_conf_theme_window_status_current_format='#I #W'
 tmux_conf_theme_window_status_current_format='#{circled_window_index} #W'
@@ -158,13 +158,13 @@ tmux_conf_theme_status_right='#{paired}#{?battery_bar, #{battery_bar},}#{?batter
 #tmux_conf_theme_status_right='#{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
 
 # status left style
-tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
-tmux_conf_theme_status_left_bg='#ffff00,#0a770d,#00afff'  # yellow, pink, white blue
+tmux_conf_theme_status_left_fg='#2e3440,#e4e4e4,#e4e4e4'
+tmux_conf_theme_status_left_bg='#81a1c1,#4c566a,#81a1c1'
 tmux_conf_theme_status_left_attr='bold,none,none'
 
 # status right style
-tmux_conf_theme_status_right_fg='#8a8a8a,#e4e4e4,#000000' # light gray, white, black
-tmux_conf_theme_status_right_bg='#080808,#d70000,#e4e4e4' # dark gray, red, white
+tmux_conf_theme_status_right_fg='#e5e9f0,#e5e9f0,#2e3440'
+tmux_conf_theme_status_right_bg='#4c566a,#bf616a,#e5e9f0'
 tmux_conf_theme_status_right_attr='none,none,bold'
 
 # pairing indicator
