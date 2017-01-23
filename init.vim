@@ -47,9 +47,6 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     " Easier Dein use
     call dein#add('haya14busa/dein-command.vim')
 
-    " Documentation/references
-    call dein#add('Shougo/echodoc.vim')
-
     " Undo/redo
     call dein#add('mbbill/undotree')
 
@@ -75,6 +72,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
 
     " Special symbols
     call dein#add('chrisbra/unicode.vim')
+
+    " Project Management
+    call dein#add('airblade/vim-rooter')
 
   " Color schemes
   call dein#add('flazz/vim-colorschemes')
@@ -215,7 +215,6 @@ set smartcase
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-colorscheme nord
 set expandtab
 set smarttab
 set shiftwidth=2
@@ -239,20 +238,23 @@ function Toggle_writer_mode()
 endfunction
 
 " Autocommands
-au BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
-	\ exe "normal! g`\"" |
-	\ endif
-au BufWinEnter * checktime
-au BufWritePost * Neomake
-au BufRead * Neomake
-au CompleteDone * pclose
-au BufNewFile,BufFilePre,BufRead,BufEnter *.md set filetype=markdown.pandoc
-au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
-au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
-au BufWritePost *.md Neomake!
-au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
-au FileType haskell set omnifunc=necoghc#omnifunc
+augroup main_aucommands
+  autocmd!
+  au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \ exe "normal! g`\"" |
+    \ endif
+  au BufWinEnter * checktime
+  au BufWritePost * Neomake
+  au BufRead * Neomake
+  au CompleteDone * pclose
+  au BufNewFile,BufFilePre,BufRead,BufEnter *.md set filetype=markdown.pandoc
+  au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
+  au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
+  au BufWritePost *.md Neomake!
+  au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
+  au FileType haskell set omnifunc=necoghc#omnifunc
+augroup END
 
 " Custom sequence bindings
 let mapleader = "\<space>"
@@ -477,3 +479,11 @@ let g:vimwiki_global_ext = 0
 
 " Goyo settings
 let g:goyo_width = 100
+
+" Nord tweaks
+" TODO: Fuck shit up
+augroup color_tweaks
+  autocmd!
+  autocmd ColorScheme * highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#D8DEE9 guibg=NONE
+augroup END
+colorscheme nord
