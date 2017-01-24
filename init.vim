@@ -76,6 +76,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     " Project Management
     call dein#add('airblade/vim-rooter')
 
+    " REPL
+    call dein#add('jpalardy/vim-slime')
+
   " Color schemes
   call dein#add('flazz/vim-colorschemes')
   call dein#add('davidklsn/vim-sialoquent')
@@ -163,8 +166,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     call dein#add('lambdatoast/elm.vim', {'on_ft': 'elm'})
 
     " OCaml
-    call dein#add('the-lambda-church/merlin', {'on_ft': 'ocaml'})
-    call dein#add('OCamlPro/ocp-indent', {'on_ft': 'ocaml'})
+    " Handled with opam:
+      " call dein#add('the-lambda-church/merlin', {'on_ft': 'ocaml'})
+      " call dein#add('OCamlPro/ocp-indent', {'on_ft': 'ocaml'})
     call dein#add('rgrinberg/vim-ocaml', {'on_ft': 'ocaml'})
 
     " LaTeX
@@ -316,7 +320,8 @@ let g:dein#install_message_type = 'echo'
 " Opam/OCaml settings
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
-set rtp^="/usr/local/share/ocp-indent/vim"
+execute "helptags " . g:opamshare . "/merlin/vim/doc"
+execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
 
 " Neomake settings
 let g:neomake_cpp_clang_args = ['-std=c++14']
@@ -481,9 +486,11 @@ let g:vimwiki_global_ext = 0
 let g:goyo_width = 100
 
 " Nord tweaks
-" TODO: Fuck shit up
 augroup color_tweaks
   autocmd!
   autocmd ColorScheme * highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#D8DEE9 guibg=NONE
 augroup END
 colorscheme nord
+
+" Slime settings
+let g:slime_target = "tmux"
