@@ -110,7 +110,8 @@ if dein#load_state('/home/wil/.config/nvim/dein')
 
   " Checkers
   call dein#add('benekastah/neomake')
-  call dein#add('vim-syntastic/syntastic', {'on_ft': ['ocaml', 'clojure', 'lua']})
+  call dein#add('vim-syntastic/syntastic', {'on_ft': ['clojure', 'lua']})
+  call dein#add('w0rp/ale', {'on_ft': ['ocaml']})
 
   " Languages
 
@@ -494,3 +495,7 @@ colorscheme nord
 
 " Slime settings
 let g:slime_target = "tmux"
+
+" Ale settings
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '➤'
