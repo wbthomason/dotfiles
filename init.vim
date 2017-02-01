@@ -79,6 +79,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     " REPL
     call dein#add('jpalardy/vim-slime')
 
+    " Easier remote editing
+    call dein#add('zenbro/mirror.vim')
+
   " Color schemes
   call dein#add('flazz/vim-colorschemes')
   call dein#add('davidklsn/vim-sialoquent')
