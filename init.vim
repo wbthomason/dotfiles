@@ -330,6 +330,7 @@ execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
 " Neomake settings
 let g:neomake_cpp_clang_args = ['-std=c++14']
 let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'vulture']
+let g:neomake_open_list = 2
 
 " IndentLine settings
 let g:indentLine_color_term = 239
