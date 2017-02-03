@@ -101,6 +101,11 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('thinca/vim-unite-history')
   call dein#add('osyo-manga/unite-filetype')
   call dein#add('Shougo/vimfiler.vim')
+  call dein#add('ujihisa/unite-colorscheme')
+  call dein#add('ujihisa/unite-font')
+  call dein#add('tacroe/unite-mark')
+  call dein#add('mattn/unite-remotefile')
+  call dein#add('ujihisa/unite-haskellimport')
   
   " Git
   call dein#add('tpope/vim-fugitive')
@@ -282,6 +287,7 @@ nnoremap <leader>s :set spell!<CR>
 nnoremap <leader>l <C-^>
 nnoremap <leader>u :Unite<CR>
 nnoremap <leader>. :call Toggle_writer_mode()<CR>
+nnoremap <leader>a :VimFilerSplit<CR>
 
 let maplocalleader = "\<cr>"
 
