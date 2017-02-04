@@ -33,11 +33,11 @@ font pango:Arimo for Powerline 9
 
 # startup programs
 exec --no-startup-id /home/wil/bgscript.sh
-exec --no-startup-id redshift-gtk
 exec --no-startup-id xbindkeys
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id redshift-qt
 exec --no-startup-id nm-applet
 exec --no-startup-id volnoti
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
