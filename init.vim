@@ -139,9 +139,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     call dein#add('hkupty/acid.nvim', {'on_ft': 'clojure'})
 
     " Pandoc/Markdown
-    call dein#add('vim-pandoc/vim-pandoc', {'on_ft': 'markdown'})
-    call dein#add('vim-pandoc/vim-pandoc-syntax', {'on_ft': 'markdown'})
-    call dein#add('vim-pandoc/vim-pandoc-after', {'on_ft': 'markdown'})
+    call dein#add('vim-pandoc/vim-pandoc', {'on_ft': ['markdown', 'pandoc', 'markdown.pandoc']})
+    call dein#add('vim-pandoc/vim-pandoc-syntax', {'on_ft': ['markdown', 'pandoc', 'markdown.pandoc']})
+    call dein#add('vim-pandoc/vim-pandoc-after', {'on_ft': ['markdown', 'pandoc', 'markdown.pandoc']})
 
     " TOML
     call dein#add('cespare/vim-toml', {'on_ft': 'toml'})
@@ -261,7 +261,7 @@ augroup main_aucommands
   au BufWritePost * Neomake
   au BufRead * Neomake
   au CompleteDone * pclose
-  au BufNewFile,BufFilePre,BufRead,BufEnter *.md set filetype=markdown.pandoc
+  au BufNewFile,BufFilePre,BufRead,BufEnter *.md set filetype=pandoc
   au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
   au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
   au BufWritePost *.md Neomake!
@@ -354,10 +354,9 @@ let g:indentLine_char = '│'
 
 " Pandoc settings
 let g:pandoc#syntax#conceal#use = 1
-let g:pandoc#after#modules#enabled = ['ultisnips']
+let g:pandoc#after#modules#enabled = ['ultisnips', 'unite']
 let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 100
-let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#use_preview = 1
 let g:pandoc#command#autoexec_on_writes = 0
 let g:pandoc#command#autoexec_command = 'make'
@@ -399,9 +398,19 @@ let g:ycm_semantic_triggers =  {
                                     \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
                                 \ ],
                         \  'markdown': ['@'],
+                        \  'pandoc': ['@'],
                         \  'haskell': ['.']
                         \ }
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_filetype_blacklist = {
+        \ 'tagbar' : 1,
+        \ 'qf' : 1,
+        \ 'notes' : 1,
+        \ 'unite' : 1,
+        \ 'text' : 1,
+        \ 'infolog' : 1,
+        \ 'mail' : 1
+        \}
 
 " VimFiler settings
 let g:vimfiler_as_default_explorer = 1
