@@ -338,6 +338,15 @@ let g:neomake_cpp_clang_args = ['-std=c++14']
 let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'vulture']
 let g:neomake_open_list = 2
 
+augroup neomake_colors
+  au!
+  autocmd ColorScheme *
+    \ hi NeomakeErrorSign guifg=#bf616a |
+    \ hi NeomakeWarningSign guifg=#ebcb8b |
+    \ hi NeomakeInfoSign guifg=#eceff4 |
+    \ hi NeomakeMessageSign guifg=#88c0d0 |
+augroup END
+
 " IndentLine settings
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#09AA08'
