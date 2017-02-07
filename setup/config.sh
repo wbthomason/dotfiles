@@ -24,5 +24,3 @@ ln -s ~/.dotfiles/termite-config ~/.config/termite/config
 
 # Zsh
 ln -s ~/.dotfiles/.zshrc ~/.zshrc
-chsh wil
-
