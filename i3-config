@@ -35,7 +35,6 @@ font pango:Arimo for Powerline 9
 exec --no-startup-id /home/wil/bgscript.sh
 exec --no-startup-id xbindkeys
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id redshift-qt
 exec --no-startup-id nm-applet
 exec --no-startup-id volnoti
 
@@ -59,7 +58,7 @@ bindsym $mod+t exec termite
 bindsym $mod+Shift+q kill
 
 # rofi
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec "rofi -combi-modi window,run,ssh -matching fuzzy -show combi -modi combi"
 
 # suspending
 bindsym $mod+b exec systemctl suspend
