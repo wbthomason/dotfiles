@@ -287,8 +287,8 @@ nnoremap <leader>l <C-^>
 nnoremap <leader>u :Unite<CR>
 nnoremap <leader>. :call Toggle_writer_mode()<CR>
 nnoremap <leader>a :VimFilerSplit<CR>
-nnoremap <leader>eo :copen<CR>
-nnoremap <leader>ec :cclose<CR>
+nnoremap <leader>eo :lopen<CR>
+nnoremap <leader>ec :lclose<CR>
 
 let maplocalleader = "\<cr>"
 
