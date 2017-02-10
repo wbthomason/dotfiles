@@ -279,15 +279,16 @@ nnoremap <Leader>x :x<CR>
 nnoremap <Leader>g :bn<CR>
 nnoremap <Leader>t :bp<CR>
 nnoremap <Leader>z :TagbarToggle<CR>
-nnoremap <Leader>d :bd<CR>
+nnoremap <Leader>d :bw<CR>
 nnoremap <Leader>m :Neomake!<CR>
-nnoremap <Leader>e :enew<CR>:CtrlPMixed<CR>
 nnoremap <leader>f 1z=
 nnoremap <leader>s :set spell!<CR>
 nnoremap <leader>l <C-^>
 nnoremap <leader>u :Unite<CR>
 nnoremap <leader>. :call Toggle_writer_mode()<CR>
 nnoremap <leader>a :VimFilerSplit<CR>
+nnoremap <leader>eo :copen<CR>
+nnoremap <leader>ec :cclose<CR>
 
 let maplocalleader = "\<cr>"
 
@@ -336,7 +337,7 @@ execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
 " Neomake settings
 let g:neomake_cpp_clang_args = ['-std=c++14']
 let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'vulture']
-let g:neomake_open_list = 2
+"let g:neomake_open_list = 2
 
 augroup neomake_colors
   au!
