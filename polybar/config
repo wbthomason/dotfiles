@@ -334,11 +334,11 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
-[module/redshift]
-type = custom/script
-interval = 5
+/*[module/redshift]*/
+/*type = custom/script*/
+/*interval = 5*/
 
-exec = ~/.config/polybar/redshift.sh
+/*exec = ~/.config/polybar/redshift.sh*/
 
 [module/music]
 type = custom/script
