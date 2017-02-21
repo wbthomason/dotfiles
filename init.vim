@@ -118,8 +118,8 @@ if dein#load_state('/home/wil/.config/nvim/dein')
 
   " Checkers
   call dein#add('benekastah/neomake')
-  call dein#add('vim-syntastic/syntastic', {'on_ft': ['clojure', 'lua']})
-  call dein#add('w0rp/ale', {'on_ft': ['ocaml']})
+  call dein#add('vim-syntastic/syntastic', {'on_ft': 'clojure'})
+  call dein#add('w0rp/ale')
 
   " Languages
 
@@ -258,8 +258,8 @@ augroup main_aucommands
     \ exe "normal! g`\"" |
     \ endif
   au BufWinEnter * checktime
-  au BufWritePost * Neomake
-  au BufRead * Neomake
+  "au BufWritePost * Neomake
+  "au BufRead * Neomake
   au CompleteDone * pclose
   au BufNewFile,BufFilePre,BufRead,BufEnter *.md set filetype=pandoc
   au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
@@ -281,6 +281,7 @@ nnoremap <Leader>t :bp<CR>
 nnoremap <Leader>z :TagbarToggle<CR>
 nnoremap <Leader>d :bw<CR>
 nnoremap <Leader>m :Neomake!<CR>
+nnoremap <Leader>c :Neomake<CR>
 nnoremap <leader>f 1z=
 nnoremap <leader>s :set spell!<CR>
 nnoremap <leader>l <C-^>
@@ -498,6 +499,9 @@ let g:racer_cmd = "/usr/bin/racer"
 
 " Gitgutter settings
 set updatetime=500
+let g:gitgutter_sign_modified = '•'
+let g:gitgutter_sign_added = '＋'
+highlight GitGutterAdd guifg = '#A3E28B'
 
 " Vimwiki settings
 nmap <LocalLeader>ww <Plug>VimwikiIndex
@@ -520,7 +524,7 @@ augroup color_tweaks
   autocmd!
   autocmd ColorScheme * highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#D8DEE9 guibg=NONE
 augroup END
-colorscheme nord
+colorscheme sialoquent
 
 " Slime settings
 let g:slime_target = "tmux"
@@ -528,3 +532,7 @@ let g:slime_target = "tmux"
 " Ale settings
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '➤'
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 1
