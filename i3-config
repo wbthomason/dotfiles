@@ -58,7 +58,7 @@ bindsym $mod+t exec termite
 bindsym $mod+Shift+q kill
 
 # rofi
-bindsym $mod+d exec "rofi -combi-modi window,run,ssh -matching fuzzy -mesg -show combi -modi combi"
+bindsym $mod+d exec "rofi -combi-modi window,run,ssh -mesg -show combi -modi combi"
 
 # suspending
 bindsym $mod+b exec systemctl suspend
