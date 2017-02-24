@@ -1,0 +1,23 @@
+"pamixer --toggle-mute; if `pamixer --get-mute`; then volnoti-show -m; else volnoti-show `pamixer --get-volume`; fi"
+  m:0x0 + c:67
+
+"pamixer --decrease 5; volnoti-show `pamixer --get-volume`"
+  m:0x0 + c:68
+
+"pamixer --increase 5; volnoti-show `pamixer --get-volume`"
+  m:0x0 + c:69
+
+"xbacklight -dec 1"
+  m:0x0 + c:71
+
+"xbacklight -inc 1"
+  m:0x0 + c:72
+
+"playerctl play-pause"
+  m:0x0 + c:75
+
+"playerctl previous"
+  m:0x0 + c:95
+
+"playerctl next"
+  m:0x0 + c:96
