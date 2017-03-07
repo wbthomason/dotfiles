@@ -113,9 +113,12 @@ LS_COLORS=$LS_COLORS:'di=0;36:ex=0;32:' ; export LS_COLORS
 export RUST_SRC_PATH=/usr/src/rust/src
 
 export PATH=/home/wil/.local/bin:$PATH
+export DISPLAY=:0.0
 
 [[ $- != *i* ]] && return
 PARENT=`ps -p $PPID -o comm=`
 if [[ -z "$TMUX" && ! $PARENT =~ emacs ]]; then
     exec tmux new-session -A -s sysadmin
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
