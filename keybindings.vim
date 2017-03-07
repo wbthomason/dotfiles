@@ -9,7 +9,7 @@ nnoremap <leader>th :nohl<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>x :x<CR>
-nnoremap <leader>d :bw<CR>
+nnoremap <leader>d :bd<CR>
 nnoremap <leader>eo :lopen<CR>
 nnoremap <leader>ec :lclose<CR>
 
@@ -26,6 +26,7 @@ map g/ <Plug>(incsearch-stay)
 
 " FzF bindings
 nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>fr :FZFMru<CR>
 nnoremap <leader>ftt :Tags<CR>

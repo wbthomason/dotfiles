@@ -238,7 +238,7 @@ let g:vimwiki_list = [{'path': '$HOME/journal', 'syntax': 'markdown', 'ext': '.m
 let g:vimwiki_global_ext = 0
 
 " Goyo settings
-let g:goyo_width = 100
+let g:goyo_width = 110
 
 " Colorscheme
 let base16colorspace=256

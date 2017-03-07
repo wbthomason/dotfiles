@@ -14,6 +14,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
 
   " Utilities
 
+  " Startup screen
+  call dein#add('mhinz/vim-startify')
+
   " Snippets
   call dein#add('SirVer/ultisnips')
   call dein#add('honza/vim-snippets')
