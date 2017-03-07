@@ -64,7 +64,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
 
     " File opening/fuzzy finding
-    call dein#add('ctrlpvim/ctrlp.vim')
+    "call dein#add('ctrlpvim/ctrlp.vim')
+    call dein#add('junegunn/fzf', {'build': './install --all'})
+    call dein#add('junegunn/fzf.vim')
 
     " Writing
     call dein#add('junegunn/goyo.vim', {'on_cmd': 'Goyo'})
@@ -86,6 +88,7 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('flazz/vim-colorschemes')
   call dein#add('davidklsn/vim-sialoquent')
   call dein#add('arcticicestudio/nord-vim')
+  call dein#add('chriskempson/tomorrow-theme')
 
   " Journaling
   call dein#add('vimwiki/vimwiki')
@@ -117,7 +120,7 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('rdnetto/YCM-Generator', {'rev': 'stable'})
 
   " Checkers
-  call dein#add('benekastah/neomake')
+  "call dein#add('benekastah/neomake')
   call dein#add('vim-syntastic/syntastic', {'on_ft': 'clojure'})
   call dein#add('w0rp/ale')
 
@@ -159,6 +162,7 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     call dein#add('neovimhaskell/haskell-vim', {'on_ft': 'haskell'})
     call dein#add('eagletmt/neco-ghc', {'on_ft': 'haskell'})
     call dein#add('eagletmt/ghcmod-vim', {'on_ft': 'haskell'})
+    call dein#add('parsonsmatt/intero-neovim', {'on_ft': 'haskell'})
 
     " Coffeescript
     call dein#add('kchmck/vim-coffee-script', {'on_ft': 'coffeescript'})
@@ -243,7 +247,7 @@ set hidden
 set bg=dark
 
 " Functions
-function Toggle_writer_mode()
+function! Toggle_writer_mode()
   execute ":Goyo"
   execute ":Limelight!!"
 endfunction
@@ -305,6 +309,29 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
+" Intero settings
+" Process management:
+nnoremap <Leader>hio :InteroOpen<CR>
+nnoremap <Leader>hik :InteroKill<CR>
+nnoremap <Leader>hic :InteroHide<CR>
+nnoremap <Leader>hil :InteroLoadCurrentModule<CR>
+
+" REPL commands
+nnoremap <Leader>hie :InteroEval<CR>
+nnoremap <Leader>hit :InteroGenericType<CR>
+nnoremap <Leader>hiT :InteroType<CR>
+nnoremap <Leader>hii :InteroInfo<CR>
+nnoremap <Leader>hiI :InteroTypeInsert<CR>
+
+" Go to definition:
+nnoremap <Leader>hid :InteroGoToDef<CR>
+
+" Highlight uses of identifier:
+nnoremap <Leader>hiu :InteroUses<CR>
+
+" Reload the file in Intero after saving
+autocmd! BufWritePost *.hs InteroReload
+
 " Eclim settings
 let g:EclimCompletionMethod = 'omnifunc'
 
@@ -319,8 +346,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Denite settings
-call denite#custom#var('file_rec', 'command',
-	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 
 " Dein settings
 let g:dein#enable_notification = 1
@@ -333,8 +358,8 @@ execute "helptags " . g:opamshare . "/merlin/vim/doc"
 execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
 
 " Neomake settings
-let g:neomake_cpp_clang_args = ['-std=c++14']
-let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'vulture']
+"let g:neomake_cpp_clang_args = ['-std=c++14']
+"let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'vulture']
 "let g:neomake_open_list = 2
 
 augroup neomake_colors
@@ -516,12 +541,13 @@ let g:vimwiki_global_ext = 0
 " Goyo settings
 let g:goyo_width = 100
 
-" Nord tweaks
+" Colorscheme
+colorscheme Tomorrow-Night
+"" Highlighting tweaks
 augroup color_tweaks
   autocmd!
   autocmd ColorScheme * highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#D8DEE9 guibg=NONE | highlight LineNr guifg=#777777
 augroup END
-colorscheme sialoquent
 
 " Slime settings
 let g:slime_target = "tmux"

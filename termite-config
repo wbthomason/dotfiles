@@ -7,7 +7,7 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = Iosevka Term Light 10.5
+font = Iosevka Term Light 9.5
 scrollback_lines = 10000
 search_wrap = true
 #icon_name = terminal
@@ -31,143 +31,47 @@ filter_unmatched_urls = true
 # emit escape sequences for extra modified keys
 #modify_other_keys = false
 
-#[colors]
-##cursor = #dcdccc
-##cursor_foreground = #dcdccc
-#foreground = #dcdccc
-#foreground_bold = #ffffff
-#background = #1d1d1d
-#
-## 20% background transparency (requires a compositor)
-##background = rgba(63, 63, 63, 0.8)
-#
-## if unset, will reverse foreground and background
-#highlight = #2f2f2f
-#
-## colors from color0 to color254 can be set
-#color0 = #3f3f3f
-#color1 = #705050
-#color2 = #60b48a
-#color3 = #dfaf8f
-#color4 = #506070
-#color5 = #dc8cc3
-#color6 = #8cd0d3
-#color7 = #dcdccc
-#color8 = #709080
-#color9 = #dca3a3
-#color10 = #c3bf9f
-#color11 = #f0dfaf
-#color12 = #94bff3
-#color13 = #ec93d3
-#color14 = #93e0e3
-#color15 = #ffffff
-#[colors]
-#
-#foreground      = #98d1ce
-#foreground_bold = #98d1ce
-#cursor          = #98d1ce
-#background      = #0c0c0c
-#
-#color0  = #0a0f14
-#color8  = #10151b
-#
-#color1  = #c33027
-#color9  = #d26939
-#
-#color2  = #26a98b
-#color10 = #9c987f
-#
-#color3  = #edb54b
-#color11 = #7b97a0
-#
-#color4  = #195465
-#color12 = #5c6c72
-#
-#color5  = #4e5165
-#color13 = #888ba5
-#
-#color6  = #33859d
-#color14 = #599caa
-#
-#color7  = #98d1ce
-#color15 = #d3ebe9
-## GRUVBOX
-#[colors]
-## hard contrast: background = #1d2021
-#background = #282828
-## soft contrast: background = #32302f
-#foreground = #ebdbb2
-#foreground_bold = #ebdbb2
-#
-## dark0 + gray
-#color0 = #282828
-#color8 = #928374
-#
-## neutral_red + bright_red
-#color1 = #cc241d
-#color9 = #fb4934
-#
-## neutral_green + bright_green
-#color2 = #98971a
-#color10 = #b8bb26
-#
-## neutral_yellow + bright_yellow
-#color3 = #d79921
-#color11 = #fabd2f
-#
-## neutral_blue + bright_blue
-#color4 = #458588
-#color12 = #83a598
-#
-## neutral_purple + bright_purple
-#color5 = #b16286
-#color13 = #d3869b
-#
-## neutral_aqua + faded_aqua
-#color6 = #689d6a
-#color14 = #8ec07c
-#
-## light4 + light1
-#color7 = #a89984
-#color15 = #ebdbb2
-#
-## vim: ft=dosini cms=#%s
-
-# nord
+# Tomorrow-night
 [colors]
-foreground = #D8DEE9
-background = #2E3440
-foreground_bold = #D8DEE9
-cursor = #D8DEE9
-cursor_foreground = #2E3440
-highlight = #4C566A
+foreground = #c5c8c6
+foreground_bold = #ffffff
+#foreground_dim = #888888
+#background = #ededed
+background = #1d1f21
+#cursor = #aeafad
 
-color0  = #3B4252
-color1  = #BF616A
-color2  = #A3BE8C
-color3  = #EBCB8B
-color4  = #81A1C1
-color5  = #B48EAD
-color6  = #88C0D0
-color7  = #E5E9F0
-color8  = #4C566A
-color9  = #BF616A
-color10 = #A3BE8C
-color11 = #EBCB8B
-color12 = #81A1C1
-color13 = #B48EAD
-color14 = #8FBCBB
-color15 = #ECEFF4
+# if unset, will reverse foreground and background
+highlight = #d6d6d6
 
-[hints]
-#font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
+# colors from color0 to color254 can be set
+# Black + Grey
+color0 = #1d1f21
+color8 = #969896
 
-# vim: ft=dosini cms=#%s
+# Red + Bright Red
+color1 = #912226
+color9 = #cc6666
+
+# Green + Bright Green
+color2 = #778900
+color10 = #b5bd68
+
+# Yellow (Orange) + Bright Yellow (Yellow)
+color3 = #ae7b00
+color11 = #f0c674
+
+# Blue + Bright Blue
+color4 = #1d2594
+color12 = #81a2be
+
+# Magenta (Purple) + Bright Magenta
+color5 = #682a9b
+color13 = #b294bb
+
+# Cyan (Aqua) + Bright Cyan
+color6 = #2b6651
+color14 = #8abeb7
+
+# Light Grey (Selection) + White (Current Line)
+color7 = #929593
+color15 = #ecebec
