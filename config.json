@@ -1,0 +1,20 @@
+{
+ "env": {
+  "AUTO_CD": true
+ },
+ "foreign_shells": [
+  {
+   "login": true,
+   "shell": "zsh"
+  }
+ ],
+ "xontribs": [
+  "coreutils",
+  "jedi",
+  "mpl",
+  "prompt_ret_code",
+  "scrapy_tabcomplete",
+  "powerline",
+  "prompt_vi_mode"
+ ]
+}
