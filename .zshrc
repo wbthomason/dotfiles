@@ -114,6 +114,8 @@ export RUST_SRC_PATH=/usr/src/rust/src
 
 export PATH=/home/wil/.local/bin:$PATH
 
+source /opt/ros/kinetic/setup.zsh
+
 [[ $- != *i* ]] && return
 PARENT=`ps -p $PPID -o comm=`
 if [[ -z "$TMUX" && ! $PARENT =~ emacs ]]; then
