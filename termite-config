@@ -31,47 +31,52 @@ filter_unmatched_urls = true
 # emit escape sequences for extra modified keys
 #modify_other_keys = false
 
-# Tomorrow-night
 [colors]
-foreground = #c5c8c6
-foreground_bold = #ffffff
-#foreground_dim = #888888
-#background = #ededed
-background = #1d1f21
-#cursor = #aeafad
+# Base16 Tomorrow Night
+# Author: Chris Kempson (http://chriskempson.com)
 
-# if unset, will reverse foreground and background
-highlight = #d6d6d6
+foreground      = #c5c8c6
+foreground_bold = #e0e0e0
+cursor          = #e0e0e0
+background      = #1d1f21
 
-# colors from color0 to color254 can be set
-# Black + Grey
-color0 = #1d1f21
-color8 = #969896
+# 16 color space
 
-# Red + Bright Red
-color1 = #912226
-color9 = #cc6666
+# Black, Gray, Silver, White
+color0  = #1d1f21
+color8  = #969896
+color7  = #c5c8c6
+color15 = #ffffff
 
-# Green + Bright Green
-color2 = #778900
+# Red
+color1  = #cc6666
+color9  = #cc6666
+
+# Green
+color2  = #b5bd68
 color10 = #b5bd68
 
-# Yellow (Orange) + Bright Yellow (Yellow)
-color3 = #ae7b00
+# Yellow
+color3  = #f0c674
 color11 = #f0c674
 
-# Blue + Bright Blue
-color4 = #1d2594
+# Blue
+color4  = #81a2be
 color12 = #81a2be
 
-# Magenta (Purple) + Bright Magenta
-color5 = #682a9b
+# Purple
+color5  = #b294bb
 color13 = #b294bb
 
-# Cyan (Aqua) + Bright Cyan
-color6 = #2b6651
+# Teal
+color6  = #8abeb7
 color14 = #8abeb7
 
-# Light Grey (Selection) + White (Current Line)
-color7 = #929593
-color15 = #ecebec
+# Extra colors
+color15 = #ffffff
+color16 = #de935f
+color17 = #a3685a
+color18 = #282a2e
+color19 = #373b41
+color20 = #b4b7b4
+color21 = #e0e0e0
