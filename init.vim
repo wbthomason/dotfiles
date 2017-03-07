@@ -77,7 +77,7 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     call dein#add('airblade/vim-rooter')
 
     " REPL
-    call dein#add('jpalardy/vim-slime')
+    call dein#add('hkupty/iron.nvim')
 
     " Easier remote editing
     call dein#add('zenbro/mirror.vim')
@@ -130,9 +130,7 @@ if dein#load_state('/home/wil/.config/nvim/dein')
     " Clojure
     call dein#add('venantius/vim-eastwood', {'on_ft': 'clojure'})
     call dein#add('venantius/vim-cljfmt', {'on_ft': 'clojure'})
-    call dein#add('tpope/vim-fireplace', {'on_ft': 'clojure'})
     call dein#add('guns/vim-clojure-static', {'on_ft': 'clojure'})
-    call dein#add('tpope/vim-salve', {'on_ft': 'clojure'})
     call dein#add('guns/vim-sexp', {'on_ft': 'clojure'})
     call dein#add('tpope/vim-sexp-mappings-for-regular-people', {'on_ft': 'clojure'})
     call dein#add('guns/vim-clojure-highlight', {'on_ft': 'clojure'})
@@ -306,7 +304,6 @@ let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
 let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-let g:haskell_indent_disable = 1
 
 " Eclim settings
 let g:EclimCompletionMethod = 'omnifunc'
