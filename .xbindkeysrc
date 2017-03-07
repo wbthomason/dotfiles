@@ -1,23 +1,26 @@
 "pamixer --toggle-mute; if `pamixer --get-mute`; then volnoti-show -m; else volnoti-show `pamixer --get-volume`; fi"
-  m:0x0 + c:67
+  XF86AudioMute
 
 "pamixer --decrease 5; volnoti-show `pamixer --get-volume`"
-  m:0x0 + c:68
+  XF86AudioLowerVolume
 
 "pamixer --increase 5; volnoti-show `pamixer --get-volume`"
-  m:0x0 + c:69
+  XF86AudioRaiseVolume
 
 "xbacklight -dec 1"
-  m:0x0 + c:71
+  XF86MonBrightnessDown
 
 "xbacklight -inc 1"
-  m:0x0 + c:72
+  XF86MonBrightnessUp
 
 "playerctl play-pause"
-  m:0x0 + c:75
+  XF86AudioPlay
 
 "playerctl previous"
-  m:0x0 + c:95
+  XF86AudioPrev
 
 "playerctl next"
-  m:0x0 + c:96
+  XF86AudioNext
+
+"rofi -combi-modi window,run,ssh -mesg -show combi -modi combi"
+  XF86Search
