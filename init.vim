@@ -97,6 +97,7 @@ let g:pandoc#formatting#textwidth = 100
 let g:pandoc#completion#bib#use_preview = 1
 let g:pandoc#command#autoexec_on_writes = 0
 let g:pandoc#command#autoexec_command = 'make'
+let g:pandoc#modules#disabled = ["folding"]
 
 " Vimtex settings
 let g:tex_conceal = ""
@@ -330,6 +331,6 @@ let g:startify_custom_header = []
 
 " Vim-rooter settings
 " Add language-builder patterns before source control for nested projects
-let g:rooter_patterns = ['Cargo.toml', 'stack.yaml', '*.cabal', 'Makefile'] + g:rooter_patterns
+"let g:rooter_patterns = ['Cargo.toml', 'stack.yaml', '*.cabal', 'Makefile', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 let g:rooter_resolve_links = 1
 let g:rooter_silent_chdir = 1
