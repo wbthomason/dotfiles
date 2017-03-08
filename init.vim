@@ -11,7 +11,6 @@ function! ConfigInc(module)
   execute 'source ' . fnameescape(g:config_path) . fnameescape(a:module)
 endfunction
 
-
 " Add in plugins
 call ConfigInc('plugins.vim')
 
@@ -320,3 +319,10 @@ let s:menus.git.command_candidates = [
       \'Gcd'],
       \]
 call denite#custom#var('menu', 'menus', s:menus)
+
+" Startify settings
+let g:startify_list_order = ['commands', 'files', 'dir', 'bookmarks', 'sessions']
+let g:startify_commands = [{'u': ['Update plugins', 'call dein#update()']}]
+let g:startify_session_persistence = 1
+let g:startify_change_to_vcs_root = 1
+let g:startify_custom_header = []
