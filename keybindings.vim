@@ -42,6 +42,9 @@ nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gl :Gpull<CR>
 nnoremap <leader>gp :Gpush<CR>
 
+" Compilation bindings
+nnoremap <leader>m :Neomake!<CR>
+
 " Misc bindings
 nnoremap <leader>. :call Toggle_writer_mode()<CR>
 
