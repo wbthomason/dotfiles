@@ -112,7 +112,7 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('w0rp/ale')
 
   " Async building
-  call dein#add('neomake/neomake', {'on_cmd': 'Neomake!'})
+  call dein#add('tpope/vim-dispatch')
 
   " Languages
 
