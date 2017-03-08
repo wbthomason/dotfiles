@@ -327,3 +327,9 @@ let g:startify_commands = [{'u': ['Update plugins', 'call dein#update()']}]
 let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_custom_header = []
+
+" Vim-rooter settings
+" Add language-builder patterns before source control for nested projects
+let g:rooter_patterns = ['Cargo.toml', 'stack.yaml', '*.cabal', 'Makefile'] + g:rooter_patterns
+let g:rooter_resolve_links = 1
+let g:rooter_silent_chdir = 1
