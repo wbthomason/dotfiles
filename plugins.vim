@@ -62,7 +62,6 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('majutsushi/tagbar', {'on_cmd': 'TagbarToggle'})
 
   " File opening/fuzzy finding
-  "call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('junegunn/fzf', {'build': './install --all'})
   call dein#add('junegunn/fzf.vim')
 
@@ -165,9 +164,6 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('lambdatoast/elm.vim', {'on_ft': 'elm'})
 
   " OCaml
-  " Handled with opam:
-  " call dein#add('the-lambda-church/merlin', {'on_ft': 'ocaml'})
-  " call dein#add('OCamlPro/ocp-indent', {'on_ft': 'ocaml'})
   call dein#add('rgrinberg/vim-ocaml', {'on_ft': 'ocaml'})
 
   " LaTeX
