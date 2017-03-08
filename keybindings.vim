@@ -31,9 +31,9 @@ nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>fr :FZFMru<CR>
 nnoremap <leader>ftt :Tags<CR>
 nnoremap <leader>ftb :BTags<CR>
-nnoremap <leader>fc :Ag<CR>
+nnoremap <leader>fi :Ag<CR>
 nnoremap <leader>fl :Lines<CR>
-nnoremap <leader>cc :Colors<CR>
+nnoremap <leader>fc :Colors<CR>
 
 " Version control bindings
 nnoremap <leader>gg :Denite menu:git<CR>
