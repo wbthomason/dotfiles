@@ -323,7 +323,12 @@ let s:menus.git.command_candidates = [
 call denite#custom#var('menu', 'menus', s:menus)
 
 " Startify settings
-let g:startify_list_order = ['commands', 'files', 'dir', 'bookmarks', 'sessions']
+let g:startify_list_order = [
+      \ ['Update'], 'commands', 
+      \ ['Recent Files'], 'files', 
+      \ ['Recent Files in Directory'], 'dir', 
+      \ ['Bookmarks'], 'bookmarks', 
+      \ ['Sessions'], 'sessions']
 let g:startify_commands = [{'u': ['Update plugins', 'call dein#update()']}]
 let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1
