@@ -14,8 +14,6 @@ endfunction
 " Add in plugins
 call ConfigInc('plugins.vim')
 
-" General settings
-call ConfigInc('settings.vim')
 " Functions
 call ConfigInc('functions.vim')
 
@@ -57,11 +55,6 @@ let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 execute "helptags " . g:opamshare . "/merlin/vim/doc"
 execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
-
-" Neomake settings
-"let g:neomake_cpp_clang_args = ['-std=c++14']
-"let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'vulture']
-"let g:neomake_open_list = 2
 
 " Ale settings
 let g:ale_sign_error = '✖'
@@ -339,3 +332,6 @@ let g:startify_custom_header = []
 "let g:rooter_patterns = ['Cargo.toml', 'stack.yaml', '*.cabal', 'Makefile', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 let g:rooter_resolve_links = 1
 let g:rooter_silent_chdir = 1
+
+" General settings
+call ConfigInc('settings.vim')
