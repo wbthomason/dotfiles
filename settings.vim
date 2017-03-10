@@ -20,10 +20,11 @@ set smartcase
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set tabstop=4
+set softtabstop=0
 set expandtab
-set smarttab
 set shiftwidth=2
-set tabstop=2
+set smarttab
 set number
 set relativenumber
 set ai
@@ -35,4 +36,3 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 set viminfo^=%
 set hidden
 set bg=dark
-
