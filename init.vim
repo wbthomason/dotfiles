@@ -69,6 +69,8 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
+let g:ale_linters = {'haskell': ['stack-ghc', 'hlint']}
+
 
 augroup ale_colors
   au!
