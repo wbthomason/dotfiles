@@ -154,6 +154,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('eagletmt/ghcmod-vim', {'on_ft': 'haskell'})
   call dein#add('parsonsmatt/intero-neovim', {'on_ft': 'haskell'})
 
+  " Vimscript
+  call dein#add('Shougo/neco-vim', {'on_ft': 'vim'})
+
   " Coffeescript
   call dein#add('kchmck/vim-coffee-script', {'on_ft': 'coffeescript'})
 
