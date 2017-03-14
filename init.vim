@@ -69,7 +69,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
-let g:ale_linters = {'haskell': ['stack-ghc', 'hlint']}
+let g:ale_linters = {'haskell': ['hdevtools', 'hlint']}
 
 
 augroup ale_colors
@@ -241,6 +241,7 @@ colorscheme base16-tomorrow-night
 " Highlighting tweaks
 " TODO: There's something wrong with this highlight rule; it only works after the second sourcing of
 " a config file...
+" Update: Maybe not anymore?
 augroup color_tweaks
   autocmd!
   autocmd ColorScheme * highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#D8DEE9 guibg=NONE | highlight LineNr guifg=#777777
@@ -334,6 +335,11 @@ let g:startify_custom_header = []
 "let g:rooter_patterns = ['Cargo.toml', 'stack.yaml', '*.cabal', 'Makefile', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 let g:rooter_resolve_links = 1
 let g:rooter_silent_chdir = 1
+
+" NERDCommenter settings
+let g:NERDCompactSexyComs = 1
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
 
 " General settings
 call ConfigInc('settings.vim')
