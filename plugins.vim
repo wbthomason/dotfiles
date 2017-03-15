@@ -28,6 +28,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   " Movement
   call dein#add('easymotion/vim-easymotion')
 
+  " Tmux and vim split navigation
+  call dein#add('christoomey/vim-tmux-navigator')
+
   " Color visualization
   call dein#add('chrisbra/Colorizer')
 

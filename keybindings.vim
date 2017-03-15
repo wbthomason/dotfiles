@@ -45,6 +45,10 @@ nnoremap <leader>gp :Gpush<CR>
 " Compilation bindings
 nnoremap <leader>m :Make!<CR>
 
+" REPL and Terminal bindings
+tnoremap <Esc> <C-\><C-n>
+nnoremap <leader>r :IronRepl<CR>i
+
 " Misc bindings
 nnoremap <leader>. :call Toggle_writer_mode()<CR>
 

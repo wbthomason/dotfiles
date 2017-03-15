@@ -105,8 +105,8 @@ tmux_conf_theme_window_status_current_fg='#000000'      # black
 tmux_conf_theme_window_status_current_bg='#81a1c1'      # light blue
 tmux_conf_theme_window_status_current_attr='bold'
 #tmux_conf_theme_window_status_current_format='#I #W'
-tmux_conf_theme_window_status_current_format='#{circled_window_index} #W'
-#tmux_conf_theme_window_status_current_format='#I #W#{?window_zoomed_flag,🔍,}'
+#tmux_conf_theme_window_status_current_format='#{circled_window_index} #W'
+tmux_conf_theme_window_status_current_format='#I #W#{?window_zoomed_flag,🔍,}'
 
 # window activity status style
 tmux_conf_theme_window_status_activity_fg='default'
@@ -242,6 +242,7 @@ tmux_conf_theme_clock_style='24'
 set -g @tpm_plugins '         \
   tmux-plugins/tpm            \
   tmux-plugins/tmux-resurrect \
+  christoomey/vim-tmux-navigator \
 '
 set -g @resurrect-save 'S'
 set -g @resurrect-restore 'R'
@@ -250,6 +251,7 @@ set -g @resurrect-strategy-nvim 'session'
 set -g @resurrect-strategy-vim 'session'
 set -g repeat-time 200
 unbind-key Up
+bind C-l send-keys 'C-l'
 set -g default-terminal "tmux-256color"
 
 run '~/.tmux/plugins/tpm/tpm'

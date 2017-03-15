@@ -341,5 +341,7 @@ let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
+" BuildIt settings
+
 " General settings
 call ConfigInc('settings.vim')
