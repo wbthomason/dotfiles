@@ -118,6 +118,9 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('tpope/vim-dispatch')
 
   " Languages
+  
+  " Python
+  call dein#add('fisadev/vim-isort', {'on_ft': 'python'})
 
   " Rust
   call dein#add('rust-lang/rust.vim', {'on_ft': 'rust'})
