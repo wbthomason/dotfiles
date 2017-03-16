@@ -3,6 +3,7 @@
 set title
 set wildmenu
 set autoread
+set autochdir
 set tw=100
 set formatoptions+=t
 set so=7
