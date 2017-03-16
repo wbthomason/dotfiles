@@ -252,6 +252,6 @@ set -g @resurrect-strategy-vim 'session'
 set -g repeat-time 200
 unbind-key Up
 bind C-\ send-keys 'C-l'
-set -g default-terminal "tmux-256color"
+set -g default-terminal "tmux"
 
 run '~/.tmux/plugins/tpm/tpm'
