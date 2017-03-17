@@ -251,7 +251,7 @@ set -g @resurrect-strategy-nvim 'session'
 set -g @resurrect-strategy-vim 'session'
 set -g repeat-time 200
 unbind-key Up
-bind C-\ send-keys 'C-l'
+bind-key -n C-\; send-keys C-l
 set -g default-terminal "tmux"
 
 run '~/.tmux/plugins/tpm/tpm'
