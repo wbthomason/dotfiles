@@ -43,7 +43,8 @@ nnoremap <leader>gl :Gpull<CR>
 nnoremap <leader>gp :Gpush<CR>
 
 " Compilation bindings
-nnoremap <leader>m :Make!<CR>
+nnoremap <leader>bi :BuildIt!<CR>
+nnoremap <leader>bs :BuildIt!<CR>
 
 " REPL and Terminal bindings
 tnoremap <Esc> <C-\><C-n>

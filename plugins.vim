@@ -115,8 +115,7 @@ if dein#load_state('/home/wil/.config/nvim/dein')
   call dein#add('w0rp/ale')
 
   " Async building
-  call dein#add('tpope/vim-dispatch')
-  call dein#add('/home/wil/projects/personal/buildit.nvim')
+  call dein#add('wbthomason/buildit.nvim')
 
   " Languages
   
