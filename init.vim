@@ -47,9 +47,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Dein settings
-"let g:dein#enable_notification = 1
+let g:dein#enable_notification = 1
 let g:dein#install_message_type = 'echo'
-let g:dein#install_progress_type = 'title'
 
 " Opam/OCaml settings
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
