@@ -95,7 +95,6 @@ let g:pandoc#command#autoexec_command = 'make'
 let g:pandoc#modules#disabled = ["folding"]
 
 " Vimtex settings
-let g:tex_conceal = ""
 let g:tex_flavor = "latex"
 
 " Ultisnips settings
