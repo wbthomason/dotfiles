@@ -100,9 +100,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'w0rp/ale'
 
   " Async building
-  "Plug 'wbthomason/buildit.nvim', {'commit': 'ae460ab'}
-  Plug 'wbthomason/buildit.nvim', {'branch': 'remote-plugin-bugfix'}
-  "Plug '/home/wil/projects/personal/buildit.nvim'
+  Plug 'wbthomason/buildit.nvim'
 
   " Languages
   
