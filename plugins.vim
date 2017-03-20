@@ -79,6 +79,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Journaling
   Plug 'vimwiki/vimwiki'
 
+  " Denite and Unite
+  Plug 'Shougo/denite.nvim'
+  Plug 'Shougo/unite.vim'
+  Plug 'Shougo/vimproc.vim', {'do': 'make'}
+
   " Sources
   Plug 'Shougo/vimfiler.vim'
 
