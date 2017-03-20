@@ -43,6 +43,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Prettification
   Plug 'junegunn/vim-easy-align'
+  Plug 'sbdchd/neoformat'
 
   " Text objects
   Plug 'wellle/targets.vim'
@@ -58,6 +59,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Writing
   Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
   Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
+  Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
+  Plug 'dbmrq/vim-ditto', {'on': ['DittoOn', 'ToggleDitto']}
+  Plug 'reedes/vim-wordy', {'on': 'Wordy'}
 
   " Special symbols
   Plug 'chrisbra/unicode.vim'
@@ -90,6 +94,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim'
   Plug 'airblade/vim-gitgutter'
+  Plug 'jreybert/vimagit'
+  Plug 'rhysd/committia.vim'
 
   " Completion
   Plug 'Valloric/YouCompleteMe'
