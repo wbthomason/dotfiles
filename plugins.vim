@@ -1,6 +1,5 @@
 " Plugin installation
 
-
 call plug#begin('~/.local/share/nvim/plugged')
 
   " Utilities
@@ -101,7 +100,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'w0rp/ale'
 
   " Async building
-  Plug 'wbthomason/buildit.nvim'
+  "Plug 'wbthomason/buildit.nvim', {'commit': 'ae460ab'}
+  Plug 'wbthomason/buildit.nvim', {'branch': 'remote-plugin-bugfix'}
+  "Plug '/home/wil/projects/personal/buildit.nvim'
 
   " Languages
   
@@ -110,7 +111,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Rust
   Plug 'rust-lang/rust.vim', {'for': 'rust'}
-  Plug 'racer-rust/vim-racer', {'for': 'rust'}
 
   " Clojure
   Plug 'venantius/vim-eastwood', {'for': 'clojure'}
@@ -119,7 +119,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'guns/vim-sexp', {'for': 'clojure'}
   Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
   Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
-  Plug 'hkupty/acid.nvim', {'for': 'clojure'}
+  Plug 'clojure-vim/acid.nvim', {'for': 'clojure'}
 
   " Pandoc/Markdown
   Plug 'vim-pandoc/vim-pandoc', {'for': ['markdown', 'pandoc', 'markdown.pandoc']}

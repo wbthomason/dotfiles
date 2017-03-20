@@ -24,6 +24,9 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
+" Configuration bindings
+nnoremap <leader>o :so %<CR>
+
 " FzF bindings
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fg :GFiles<CR>
