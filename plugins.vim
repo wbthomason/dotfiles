@@ -22,7 +22,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'christoomey/vim-tmux-navigator'
 
   " Color visualization
-  Plug 'chrisbra/Colorizer'
+  Plug 'chrisbra/Colorizer', {'on': ['ColorHighlight', 'ColorClear', 'RGB2Term', 'HSL2RGB', 'Term2RGB', 'ColorContrast', 'ColorSwapFgBg', 'ColorToggle']}
 
   " Indentation tracking
   Plug 'yggdroot/indentLine'
@@ -72,11 +72,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " REPL
   Plug 'hkupty/iron.nvim'
 
-  " Easier remote editing
-  Plug 'zenbro/mirror.vim'
-
   " Color schemes
-  Plug 'flazz/vim-colorschemes'
   Plug 'chriskempson/base16-vim'
 
   " Journaling
@@ -86,8 +82,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/denite.nvim'
   Plug 'Shougo/unite.vim'
   Plug 'Shougo/vimproc.vim', {'do': 'make'}
-
-  " Sources
   Plug 'Shougo/vimfiler.vim'
 
   " Git
