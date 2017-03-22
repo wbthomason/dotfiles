@@ -320,8 +320,8 @@ call denite#custom#var('menu', 'menus', s:menus)
 " Startify settings
 let g:startify_list_order = [
       \ ['Update'], 'commands', 
-      \ ['Recent Files'], 'files', 
       \ ['Recent Files in Directory'], 'dir', 
+      \ ['Recent Files'], 'files', 
       \ ['Bookmarks'], 'bookmarks', 
       \ ['Sessions'], 'sessions']
 let g:startify_commands = [{'u': ['Update plugins', ':PlugUpdate']}, {'g': ['Upgrade Plug.vim', ':PlugUpgrade']}]
