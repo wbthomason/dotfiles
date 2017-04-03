@@ -5,6 +5,16 @@ function! Toggle_writer_mode()
   execute ":Limelight!!"
 endfunction
 
+function! Writer_checks_on()
+  execute ":GrammarousCheck"
+  execute ":DittoOn"
+endfunction
+
+function! Writer_checks_off()
+  execute ":GrammarousReset"
+  execute ":DittoOff"
+endfunction
+
 " Stolen from tracyone/t-vim
 
 function! s:get_input() abort
