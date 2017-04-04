@@ -1,20 +1,20 @@
 [user]
-	name = Wil Thomason
-	email = wil.thomason@gmail.com
+  name = Wil Thomason
+  email = wil.thomason@gmail.com
 
 [credential]
-	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
+  helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
 
 [push]
   default = simple
 
 [core]
   editor = nvim
-	autocrlf = input
-	excludesfile = /home/wil/.gitignore_global
+  autocrlf = input
+  excludesfile = /home/wil/.gitignore_global
 
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
 
 [alias]
   co    = checkout
