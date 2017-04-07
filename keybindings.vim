@@ -17,7 +17,7 @@ nnoremap <leader>ec :lclose<CR>
 nnoremap <leader>a :bp<CR>
 nnoremap <leader>s :bn<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
-nnoremap <leader>fb :VimFilerSplit<CR>
+nnoremap <leader>tf :VimFilerSplit<CR>
 
 " Incsearch bindings
 map /  <Plug>(incsearch-forward)
