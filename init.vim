@@ -135,7 +135,8 @@ let g:ycm_semantic_triggers =  {
       \ ],
       \  'markdown': ['@'],
       \  'pandoc': ['@'],
-      \  'haskell': ['.']
+      \  'haskell': ['.'],
+      \ 'typescript': ['.']
       \ }
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_filetype_blacklist = {

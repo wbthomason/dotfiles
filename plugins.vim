@@ -176,6 +176,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Scala
   Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 
+  " TypeScript
+  Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+  Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+
 call plug#end()
 
 " Required:
