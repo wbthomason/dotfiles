@@ -344,7 +344,7 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Deoplete settings
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 10
+let g:deoplete#auto_complete_delay = 20
 
 " BuildIt settings
 
