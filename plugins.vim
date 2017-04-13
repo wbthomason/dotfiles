@@ -97,6 +97,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/deoplete.nvim'
   Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/context_filetype.vim'
+  Plug 'ervandew/supertab'
 
   " Checkers
   Plug 'vim-syntastic/syntastic', {'for': 'clojure'}
@@ -185,6 +186,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " LaTeX
   Plug 'lervag/vimtex', {'for': 'tex'}
+  Plug 'poppyschmo/deoplete-latex', {'for': 'tex'}
 
   " Torch
   Plug 'jakezhaojb/vim-torch-snipmate', {'for': 'lua'}
