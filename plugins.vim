@@ -83,6 +83,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/unite.vim'
   Plug 'Shougo/vimproc.vim', {'do': 'make'}
   Plug 'Shougo/vimfiler.vim'
+  Plug 'msprev/unite-bibtex', {'for': ['pandoc', 'tex']}
 
   " Git
   Plug 'tpope/vim-fugitive'
@@ -197,6 +198,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Scala
   Plug 'derekwyatt/vim-scala', {'for': 'scala'}
+
+  " TypeScript
+  Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+  Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 
 call plug#end()
 

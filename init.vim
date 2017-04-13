@@ -32,6 +32,8 @@ let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
 let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+let g:haskellmode_completion_ghc = 0
+let g:necoghc_enable_detailed_browse = 1
 
 " Eclim settings
 let g:EclimCompletionMethod = 'omnifunc'
@@ -61,15 +63,17 @@ let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '➤'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-call airline#parts#define_function('ALE', 'ALEGetStatusLine')
-call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
-let g:airline_section_error = airline#section#create_right(['ALE'])
+"call airline#parts#define_function('ALE', 'ALEGetStatusLine')
+"call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+"let g:airline_section_error = airline#section#create_right(['ALE'])
+let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {'haskell': ['hdevtools', 'hlint']}
+let g:ale_warn_about_trailing_whitespace = 1
 
 
 augroup ale_colors
@@ -104,45 +108,6 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " Syntastic settings
 let g:syntastic_ocaml_checkers=['merlin','caml4po']
-
-" YouCompleteMe settings
-"let g:ycm_semantic_triggers =  {
-      "\   'c' : ['->', '.'],
-      "\   'objc' : ['->', '.'],
-      "\   'ocaml' : ['.', '#'],
-      "\   'cpp,objcpp' : ['->', '.', '::'],
-      "\   'perl' : ['->'],
-      "\   'php' : ['->', '::'],
-      "\   'cs,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-      "\   'java,jsp' : ['.'],
-      "\   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-      "\   'ruby' : ['.', '::'],
-      "\   'lua' : ['.', ':'],
-      "\   'erlang' : [':'],
-      "\   'tex': [
-      "\ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-      "\ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-      "\ 're!\\hyperref\[[^]]*',
-      "\ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-      "\ 're!\\(include(only)?|input){[^}]*',
-      "\ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
-      "\ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
-      "\ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
-      "\ ],
-      "\  'markdown': ['@'],
-      "\  'pandoc': ['@'],
-      "\  'haskell': ['.']
-      "\ }
-"let g:ycm_confirm_extra_conf = 0
-"let g:ycm_filetype_blacklist = {
-      "\ 'tagbar' : 1,
-      "\ 'qf' : 1,
-      "\ 'notes' : 1,
-      "\ 'unite' : 1,
-      "\ 'text' : 1,
-      "\ 'infolog' : 1,
-      "\ 'mail' : 1
-      "\}
 
 " VimFiler settings
 let g:vimfiler_as_default_explorer = 1
@@ -349,33 +314,6 @@ let g:deoplete#omni#input_patterns = {
       \    'ocaml': '[^ ,;\t\[()\]]',
       \}
 " YCM Semantic trigger regexes for use with deoplete if necessary
-"let g:ycm_semantic_triggers =  {
-      "\   'c' : ['->', '.'],
-      "\   'objc' : ['->', '.'],
-      "\   'ocaml' : ['.', '#'],
-      "\   'cpp,objcpp' : ['->', '.', '::'],
-      "\   'perl' : ['->'],
-      "\   'php' : ['->', '::'],
-      "\   'cs,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-      "\   'java,jsp' : ['.'],
-      "\   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-      "\   'ruby' : ['.', '::'],
-      "\   'lua' : ['.', ':'],
-      "\   'erlang' : [':'],
-      "\   'tex': [
-      "\ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-      "\ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-      "\ 're!\\hyperref\[[^]]*',
-      "\ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-      "\ 're!\\(include(only)?|input){[^}]*',
-      "\ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
-      "\ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
-      "\ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
-      "\ ],
-      "\  'markdown': ['@'],
-      "\  'pandoc': ['@'],
-      "\  'haskell': ['.']
-      "\ }
 "let g:ycm_semantic_triggers =  {
       "\   'c' : ['->', '.'],
       "\   'objc' : ['->', '.'],
