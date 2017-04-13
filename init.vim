@@ -109,46 +109,6 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 " Syntastic settings
 let g:syntastic_ocaml_checkers=['merlin','caml4po']
 
-" YouCompleteMe settings
-let g:ycm_semantic_triggers =  {
-      \   'c' : ['->', '.'],
-      \   'objc' : ['->', '.'],
-      \   'ocaml' : ['.', '#'],
-      \   'cpp,objcpp' : ['->', '.', '::'],
-      \   'perl' : ['->'],
-      \   'php' : ['->', '::'],
-      \   'cs,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-      \   'java,jsp' : ['.'],
-      \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-      \   'ruby' : ['.', '::'],
-      \   'lua' : ['.', ':'],
-      \   'erlang' : [':'],
-      \   'tex': [
-      \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-      \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-      \ 're!\\hyperref\[[^]]*',
-      \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-      \ 're!\\(include(only)?|input){[^}]*',
-      \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
-      \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
-      \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
-      \ ],
-      \  'markdown': ['@'],
-      \  'pandoc': ['@'],
-      \  'haskell': ['.'],
-      \ 'typescript': ['.']
-      \ }
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_filetype_blacklist = {
-      \ 'tagbar' : 1,
-      \ 'qf' : 1,
-      \ 'notes' : 1,
-      \ 'unite' : 1,
-      \ 'text' : 1,
-      \ 'infolog' : 1,
-      \ 'mail' : 1
-      \}
-
 " VimFiler settings
 let g:vimfiler_as_default_explorer = 1
 
@@ -346,6 +306,41 @@ let g:rooter_change_directory_for_non_project_files = 'current'
 let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
+
+" Deoplete settings
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 20
+let g:deoplete#omni#input_patterns = {
+      \    'ocaml': '[^ ,;\t\[()\]]',
+      \}
+" YCM Semantic trigger regexes for use with deoplete if necessary
+"let g:ycm_semantic_triggers =  {
+      "\   'c' : ['->', '.'],
+      "\   'objc' : ['->', '.'],
+      "\   'ocaml' : ['.', '#'],
+      "\   'cpp,objcpp' : ['->', '.', '::'],
+      "\   'perl' : ['->'],
+      "\   'php' : ['->', '::'],
+      "\   'cs,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+      "\   'java,jsp' : ['.'],
+      "\   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
+      "\   'ruby' : ['.', '::'],
+      "\   'lua' : ['.', ':'],
+      "\   'erlang' : [':'],
+      "\   'tex': [
+      "\ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+      "\ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+      "\ 're!\\hyperref\[[^]]*',
+      "\ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+      "\ 're!\\(include(only)?|input){[^}]*',
+      "\ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+      "\ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+      "\ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+      "\ ],
+      "\  'markdown': ['@'],
+      "\  'pandoc': ['@'],
+      "\  'haskell': ['.']
+      "\ }
 
 " BuildIt settings
 

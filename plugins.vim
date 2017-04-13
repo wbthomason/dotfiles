@@ -93,8 +93,12 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'rhysd/committia.vim'
 
   " Completion
-  Plug 'Valloric/YouCompleteMe'
-  Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+  "Plug 'Valloric/YouCompleteMe'
+  "Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/neoinclude.vim'
+  Plug 'Shougo/context_filetype.vim'
+  Plug 'ervandew/supertab'
 
   " Checkers
   Plug 'vim-syntastic/syntastic', {'for': 'clojure'}
@@ -107,9 +111,25 @@ call plug#begin('~/.local/share/nvim/plugged')
   
   " Python
   Plug 'fisadev/vim-isort', {'for': 'python'}
+  Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
   " Rust
   Plug 'rust-lang/rust.vim', {'for': 'rust'}
+  Plug 'racer-rust/vim-racer', {'for': 'rust'}
+
+  " C/C++
+  Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}
+
+  " Go
+  Plug 'zchee/deoplete-go', {'for': 'go'}
+
+  " C#
+  Plug 'dimixar/deoplete-omnisharp', {'for': 'cs'}
+  Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
+  Plug 'tpope/vim-dispatch'
+
+  " Java
+  Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
 
   " Clojure
   Plug 'venantius/vim-eastwood', {'for': 'clojure'}
@@ -119,6 +139,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
   Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
   Plug 'clojure-vim/acid.nvim', {'for': 'clojure'}
+  Plug 'SevereOverfl0w/async-clj-omni', {'for': 'clojure'}
 
   " Pandoc/Markdown
   Plug 'vim-pandoc/vim-pandoc', {'for': ['markdown', 'pandoc', 'markdown.pandoc']}
@@ -135,6 +156,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'marijnh/tern_for_vim', {'for': 'javascript'}
   Plug 'pangloss/vim-javascript', {'for': 'javascript'}
   Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
+  Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
 
   " Idris
   Plug 'idris-hackers/idris-vim', {'for': 'idris'}
@@ -165,6 +187,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " LaTeX
   Plug 'lervag/vimtex', {'for': 'tex'}
+  Plug 'poppyschmo/deoplete-latex', {'for': 'tex'}
 
   " Torch
   Plug 'jakezhaojb/vim-torch-snipmate', {'for': 'lua'}
