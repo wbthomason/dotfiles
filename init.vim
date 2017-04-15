@@ -344,5 +344,9 @@ let g:deoplete#omni#input_patterns = {
 
 " BuildIt settings
 
+" SuperTab
+let g:SuperTabMappingForward = '<s-tab>'
+let g:SuperTabMappingBackward = '<tab>'
+
 " General settings
 call ConfigInc('settings.vim')
