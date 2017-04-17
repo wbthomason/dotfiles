@@ -312,6 +312,8 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 20
 let g:deoplete#omni#input_patterns = {
       \    'ocaml': '[^ ,;\t\[()\]]',
+      \  'markdown': '@',
+      \  'pandoc': '@',
       \}
 " YCM Semantic trigger regexes for use with deoplete if necessary
 "let g:ycm_semantic_triggers =  {
