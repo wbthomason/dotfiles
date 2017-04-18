@@ -203,6 +203,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
   Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 
+  Plug 'wlangstroth/vim-racket', {'for': 'racket'}
+
 call plug#end()
 
 " Required:
