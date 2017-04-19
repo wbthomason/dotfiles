@@ -119,8 +119,11 @@ source /opt/ros/kinetic/setup.zsh
 
 [[ $- != *i* ]] && return
 PARENT=`ps -p $PPID -o comm=`
-if [[ -z "$TMUX" && ! $PARENT =~ emacs ]]; then
+if [[ -z "$TMUX" && ! $PARENT =~ emacs  && ! $PARENT =~ vim ]]; then
     exec tmux new-session -A -s sysadmin
+    # Edit with vim keybindings
+    bindkey -v
+    export KEYTIMEOUT=2
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -128,7 +131,3 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-
-# Edit with vim keybindings
-bindkey -v
-export KEYTIMEOUT=2
