@@ -121,6 +121,9 @@ source /opt/ros/kinetic/setup.zsh
 PARENT=`ps -p $PPID -o comm=`
 if [[ -z "$TMUX" && ! $PARENT =~ emacs  && ! $PARENT =~ vim ]]; then
     exec tmux new-session -A -s sysadmin
+fi
+
+if [[ ! $PARENT =~ emacs  && ! $PARENT =~ vim ]]; then
     # Edit with vim keybindings
     bindkey -v
     export KEYTIMEOUT=2
