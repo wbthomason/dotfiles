@@ -346,7 +346,7 @@ let g:deoplete#omni#input_patterns = {
 
 " BuildIt settings
 
-" SuperTab
+" SuperTab settings
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
