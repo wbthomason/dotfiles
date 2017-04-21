@@ -52,12 +52,6 @@ plugins=(gitfast archlinux cabal systemd coffee docker npm pip python svn tmux)
 
 # User configuration
 
-#export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/opt/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:/opt/anaconda/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-#export PATH="/usr/local/bin:/usr/local/sbin:$PATH:~/bin"
-
-source $ZSH/oh-my-zsh.sh
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -91,18 +85,8 @@ alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias em="emacsclient -nw"
 alias emd="emacs --daemon"
 # Powerline stuff
-#source /usr/share/zsh/site-contrib/powerline.zsh
 powerline-daemon -q
 . /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
-
-# OPAM configuration
-export MONO_GAC_PREFIX="/usr/local"
-source /usr/share/nvm/nvm.sh
-ulimit -n 1000
-
-# OPAM configuration
-. /home/wil/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-eval `opam config env`
 
 eval `keychain --quiet --eval ~/.ssh/id_rsa`
 eval "$(hub alias -s)"
@@ -110,11 +94,8 @@ fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 
 LS_COLORS=$LS_COLORS:'di=0;36:ex=0;32:' ; export LS_COLORS
-export RUST_SRC_PATH=/usr/src/rust/src
 
 export DISPLAY=:0.0
-
-source /opt/ros/kinetic/setup.zsh
 
 [[ $- != *i* ]] && return
 PARENT=`ps -p $PPID -o comm=`
@@ -128,7 +109,6 @@ if [[ ! $PARENT =~ emacs  && ! $PARENT =~ vim ]]; then
     export KEYTIMEOUT=2
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
