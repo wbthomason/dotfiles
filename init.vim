@@ -296,10 +296,10 @@ let g:startify_custom_header = []
 
 " Vim-rooter settings
 " Add language-builder patterns before source control for nested projects
-"let g:rooter_patterns = ['Cargo.toml', 'stack.yaml', '*.cabal', 'Makefile', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
+let g:rooter_patterns = ['Cargo.toml', 'stack.yaml', '*.cabal', 'Makefile', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 let g:rooter_resolve_links = 1
 let g:rooter_silent_chdir = 1
-let g:rooter_manual_only = 1
+"let g:rooter_manual_only = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 
 " NERDCommenter settings

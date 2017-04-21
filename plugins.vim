@@ -134,8 +134,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'venantius/vim-eastwood', {'for': 'clojure'}
   Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
   Plug 'guns/vim-clojure-static', {'for': 'clojure'}
-  Plug 'guns/vim-sexp', {'for': 'clojure'}
-  Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': 'clojure'}
+  Plug 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket']}
+  Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket']}
   Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
   Plug 'clojure-vim/acid.nvim', {'for': 'clojure'}
   Plug 'SevereOverfl0w/async-clj-omni', {'for': 'clojure'}
@@ -186,7 +186,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " LaTeX
   Plug 'lervag/vimtex', {'for': 'tex'}
-  Plug 'poppyschmo/deoplete-latex', {'for': 'tex'}
+  "Plug 'poppyschmo/deoplete-latex', {'for': 'tex'}
 
   " Torch
   Plug 'jakezhaojb/vim-torch-snipmate', {'for': 'lua'}
