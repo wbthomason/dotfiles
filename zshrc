@@ -42,13 +42,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 HIST_STAMPS="mm.dd.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=~/.oh-my-zsh-custom/
+#ZSH_CUSTOM=~/.oh-my-zsh-custom/
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast archlinux systemd zsh-autosuggestions)
+plugins=(gitfast archlinux systemd)
 
 # User configuration
 
@@ -113,5 +113,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+setopt auto_cd
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
