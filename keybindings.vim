@@ -51,7 +51,7 @@ nnoremap <leader>bi :BuildIt<CR>
 nnoremap <leader>bs :BuildItStatus<CR>
 
 " REPL and Terminal bindings
-tnoremap <Esc> <C-\><C-n>
+tnoremap <leader><Esc> <C-\><C-n>
 nnoremap <leader>r :IronRepl<CR>i
 
 " Misc bindings
