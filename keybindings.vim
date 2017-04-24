@@ -36,7 +36,7 @@ nnoremap <leader>ftt :Tags<CR>
 nnoremap <leader>ftb :BTags<CR>
 nnoremap <leader>fi :Ag<CR>
 nnoremap <leader>fl :Lines<CR>
-nnoremap <leader>fc :Colors<CR>
+nnoremap <leader>fc :Commands<CR>
 
 " Version control bindings
 nnoremap <leader>gg :Denite menu:git<CR>
