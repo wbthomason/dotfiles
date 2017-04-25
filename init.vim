@@ -87,6 +87,7 @@ augroup END
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#09AA08'
 let g:indentLine_char = '│'
+let g:indentLine_faster = 1
 
 " Pandoc settings
 let g:pandoc#syntax#conceal#use = 1
@@ -100,6 +101,7 @@ let g:pandoc#modules#disabled = ["folding"]
 
 " Vimtex settings
 let g:tex_flavor = "latex"
+let g:tex_conceal = ""
 
 " Ultisnips settings
 let g:UltiSnipsExpandTrigger = '<c-j>'

@@ -37,3 +37,4 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 set viminfo^=%
 set hidden
 set bg=dark
+set nofoldenable
