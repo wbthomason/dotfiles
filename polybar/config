@@ -167,7 +167,7 @@ format-prefix-foreground = #666
 
 [module/wifi]
 type = internal/network
-interface = wlp4s0
+interface = wlp58s0
 interval = 3.0
 ;udspeed-minwidth = 0
 
