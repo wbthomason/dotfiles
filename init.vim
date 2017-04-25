@@ -53,10 +53,16 @@ let g:dein#enable_notification = 1
 let g:dein#install_message_type = 'echo'
 
 " Opam/OCaml settings
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-execute "helptags " . g:opamshare . "/merlin/vim/doc"
-execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
+" These take time, so we only want to run them if we're editing OCaml
+function! Setup_Ocaml()
+  let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+  execute "set rtp+=" . g:opamshare . "/merlin/vim"
+  execute "helptags " . g:opamshare . "/merlin/vim/doc"
+  execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
+endfunction
+augroup OCaml_aucmds
+  au FileType ocaml call Setup_Ocaml()
+augroup END
 
 " Ale settings
 let g:ale_sign_error = '✖'
