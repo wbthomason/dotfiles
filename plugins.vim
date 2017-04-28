@@ -68,6 +68,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Project Management
   Plug 'airblade/vim-rooter'
+  Plug 'tpope/vim-projectionist'
 
   " REPL
   Plug 'hkupty/iron.nvim'
