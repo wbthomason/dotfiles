@@ -30,6 +30,7 @@ nnoremap <leader>o :so %<CR>
 " FzF bindings
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fg :GFiles<CR>
+nnoremap <leader>fh :Helptags<CR>
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>fr :FZFMru<CR>
 nnoremap <leader>ftt :Tags<CR>
