@@ -38,3 +38,4 @@ set viminfo^=%
 set hidden
 set bg=dark
 set nofoldenable
+set guicursor=n-v-c-sm:block-blinkon1,i-ci-ve:ver25-blinkon1,r-cr-o:hor20-blinkon1
