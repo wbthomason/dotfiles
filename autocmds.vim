@@ -17,5 +17,6 @@ augroup main_aucommands
   au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
   au FileType haskell setlocal omnifunc=necoghc#omnifunc
   au BufWritePost *.scala silent :EnTypeCheck
+  au FileType tex setlocal spell
 augroup END
 
