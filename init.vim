@@ -328,6 +328,7 @@ let g:deoplete#omni#input_patterns = {
       \ '\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
       \ '\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
       \ '\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ '\\',
       \ ],
       \  'scala': [
       \ '[^. *\t]\.\w*',       
