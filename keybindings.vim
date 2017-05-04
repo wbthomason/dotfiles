@@ -16,6 +16,7 @@ nnoremap <leader>ec :lclose<CR>
 " Navigation bindings
 nnoremap <leader>a :bp<CR>
 nnoremap <leader>s :bn<CR>
+nnoremap <leader>bl :b#<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>tf :VimFilerSplit<CR>
 
