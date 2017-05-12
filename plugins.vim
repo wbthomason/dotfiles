@@ -97,8 +97,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'rhysd/committia.vim'
 
   " Completion
-  "Plug 'Valloric/YouCompleteMe'
-  "Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
   Plug 'Shougo/deoplete.nvim'
   Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/context_filetype.vim'
