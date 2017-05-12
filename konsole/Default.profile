@@ -1,8 +1,11 @@
 [Appearance]
+BoldIntense=true
 ColorScheme=TomorrowNight
 Font=Fira Code,9,-1,5,53,0,0,0,0,0,Retina
+UseFontLineChararacters=false
 
 [General]
+Command=/bin/zsh
 Name=Default
 Parent=FALLBACK/
 ShowTerminalSizeHint=false
