@@ -109,6 +109,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Async building
   Plug 'wbthomason/buildit.nvim'
 
+  " Refactoring
+  Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
+
   " Languages
   
   " Python
