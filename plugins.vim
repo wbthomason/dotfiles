@@ -17,6 +17,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Movement
   Plug 'easymotion/vim-easymotion'
+  Plug 'rhysd/clever-f.vim'
 
   " Tmux and vim split navigation
   Plug 'christoomey/vim-tmux-navigator'
@@ -40,6 +41,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Searching
   Plug 'haya14busa/incsearch.vim'
+
+  " Yank highlighting
+  Plug 'machakann/vim-highlightedyank'
 
   " Prettification
   Plug 'junegunn/vim-easy-align'
@@ -204,7 +208,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
   Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
 
+  " Racket
   Plug 'wlangstroth/vim-racket', {'for': 'racket'}
+
+  " Pretty pretty symbols
+  Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
