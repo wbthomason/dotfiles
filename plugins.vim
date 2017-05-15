@@ -212,6 +212,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Racket
   Plug 'wlangstroth/vim-racket', {'for': 'racket'}
 
+  " Fish
+  Plug 'wilriker/vim-fish', {'for': 'fish'}
+
   " Pretty pretty symbols
   Plug 'ryanoasis/vim-devicons'
 
