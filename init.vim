@@ -314,7 +314,7 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Deoplete settings
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 20
+let g:deoplete#auto_complete_delay = 50
 let g:deoplete#omni#input_patterns = {
       \    'ocaml': '[^ ,;\t\[()\]]',
       \  'markdown': '@',
