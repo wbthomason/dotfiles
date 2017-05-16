@@ -57,7 +57,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'majutsushi/tagbar'
 
   " File opening/fuzzy finding
-  Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+  Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
 
   " Writing
