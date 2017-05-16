@@ -209,7 +209,7 @@ let g:goyo_width = 110
 
 " Colorscheme
 let base16colorspace=256
-colorscheme base16-tomorrow-night
+colorscheme base16-gruvbox-dark-soft
 " Highlighting tweaks
 augroup color_tweaks
   autocmd!
