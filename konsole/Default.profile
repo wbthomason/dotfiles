@@ -1,6 +1,6 @@
 [Appearance]
 BoldIntense=true
-ColorScheme=base16-gruvbox-dark-soft
+ColorScheme=base16-tomorrow-night
 Font=Fira Code,9,-1,5,53,0,0,0,0,0,Retina
 UseFontLineChararacters=false
 
