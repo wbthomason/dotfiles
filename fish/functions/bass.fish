@@ -1,0 +1,1 @@
+/home/wil/.config/fisherman/bass/functions/bass.fish

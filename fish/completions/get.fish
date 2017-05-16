@@ -1,0 +1,1 @@
+/home/wil/.config/fisherman/get/completions/get.fish

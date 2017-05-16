@@ -1,0 +1,1 @@
+/home/wil/.config/fisherman/getopts/getopts.fish
