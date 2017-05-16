@@ -1,6 +1,6 @@
 [Appearance]
 BoldIntense=true
-ColorScheme=TomorrowNight
+ColorScheme=base16-gruvbox-dark-soft
 Font=Fira Code,9,-1,5,53,0,0,0,0,0,Retina
 UseFontLineChararacters=false
 
