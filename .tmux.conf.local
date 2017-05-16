@@ -246,7 +246,7 @@ set -g @tpm_plugins '         \
 '
 set -g @resurrect-save 'S'
 set -g @resurrect-restore 'R'
-set -g @default-shell /usr/bin/zsh
+set -g @default-shell /usr/bin/fish
 set -g @resurrect-strategy-nvim 'session'
 set -g @resurrect-strategy-vim 'session'
 set -g repeat-time 200
