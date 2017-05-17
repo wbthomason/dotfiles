@@ -23,7 +23,8 @@ screenchange-reload = true
 margin-top = 0
 margin-bottom = 0
 
-[bar/top]
+[bar/left]
+monitor = DVI-I-1
 enable-ipc = true
 width = 100%
 height = 24
@@ -44,14 +45,97 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = dina:pixelsize=9.5;1
+font-0 = dina:pixelsize=9;1
 font-1 = "Wuncon Siji:pixelsize=10;1"
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-3 = FontAwesome:pixelsize=14;0
 
 modules-left = i3 
+modules-center = 
+modules-right = wired fs-root memory cpu temperature date redshift
+
+tray-position = 
+tray-padding = 4
+tray-maxsize = 16
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+# bar/module specific vars
+bspwm-focused-overline = ${colors.linecolor}
+bspwm-focused-underline = #cc333333
+
+[bar/center]
+monitor = DP-4
+enable-ipc = true
+width = 100%
+height = 24
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-color = ${colors.linecolor}
+underline-size = 1
+overline-size = 2
+
+border-bottom-size = 2
+border-bottom-color = ${colors.bordercolor}
+
+spacing = 0
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = dina:pixelsize=9;1
+font-1 = "Wuncon Siji:pixelsize=10;1"
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = FontAwesome:pixelsize=14;0
+
+modules-left = i3 
+modules-center = 
+modules-right = wired fs-root memory cpu temperature date redshift
+
+tray-position = 
+tray-padding = 4
+tray-maxsize = 16
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+# bar/module specific vars
+bspwm-focused-overline = ${colors.linecolor}
+bspwm-focused-underline = #cc333333
+
+[bar/right]
+monitor = DP-2
+enable-ipc = true
+width = 100%
+height = 24
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-color = ${colors.linecolor}
+underline-size = 1
+overline-size = 2
+
+border-bottom-size = 2
+border-bottom-color = ${colors.bordercolor}
+
+spacing = 0
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = dina:pixelsize=9;1
+font-1 = "Wuncon Siji:pixelsize=10;1"
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = FontAwesome:pixelsize=14;0
+font-4 = "Noto Sans Symbols:pixelsize=10;2"
+
+modules-left = i3 
 modules-center = music
-modules-right = weather xbacklight volume wifi battery_0 battery_1 date fs-root memory cpu temperature redshift
+modules-right = weather volume wired fs-root memory cpu temperature date redshift
 
 tray-position = right
 tray-padding = 4
@@ -192,7 +276,7 @@ ramp-signal-foreground = #666
 
 [module/wired]
 type = internal/network
-interface = enp0s31f6
+interface = enp9s0
 interval = 3.0
 
 label-connected = %local_ip%

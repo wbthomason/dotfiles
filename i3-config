@@ -38,6 +38,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id volnoti
 
+exec --no-startup-id xrandr --output DP-3 --off --output DVI-I-0 --off --output HDMI-0 --off --output DP-5 --off --output DP-4 --mode 1920x1080 --pos 1920x0 --rotate left --output DVI-I-1 --mode 1920x1080 --pos 0x672 --rotate normal --output DP-2 --mode 1920x1080 --pos 3000x256 --rotate normal --output DP-1 --off --output DP-0 --off
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
