@@ -1,8 +1,9 @@
 ! "Font to use" Set from: Default
 rofi.font:                           Iosevka 12
 rofi.color-enabled: true
-rofi.color-window: #273238, #273238, #1e2529
-rofi.color-normal: #273238, #c1c1c1, #273238, #394249, #ffffff
-rofi.color-active: #273238, #80cbc4, #273238, #394249, #80cbc4
-rofi.color-urgent: #273238, #ff1844, #273238, #394249, #ff1844
+rofi.color-window: #dd273238, #dd273238, #dd273238
+rofi.color-normal: #dd273238, #ddc1c1c1, #dd273238, #dd394249, #ddffffff
+rofi.color-active: #dd273238, #dd80cbc4, #dd273238, #dd394249, #dd80cbc4
+rofi.color-urgent: #dd273238, #ddff1844, #dd273238, #dd394249, #ddff1844
 rofi.terminal: konsole
+rofi.separator-style none

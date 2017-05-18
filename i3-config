@@ -37,6 +37,7 @@ exec --no-startup-id xbindkeys
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id volnoti
+exec --no-startup-id compton -b -c --no-fading-openclose
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -155,7 +156,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 gaps inner 5
-gaps outer 3
+gaps outer 7
 
 # screen locking
 bindsym $mod+Shift+x exec "dm-tool lock"
