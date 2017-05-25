@@ -28,7 +28,7 @@ map g/ <Plug>(incsearch-stay)
 " Configuration bindings
 nnoremap <leader>o :so %<CR>
 
-" FzF bindings
+" Search bindings
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fh :Helptags<CR>

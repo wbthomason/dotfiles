@@ -106,8 +106,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'vim-syntastic/syntastic', {'for': 'clojure'}
   Plug 'w0rp/ale'
 
-  " Async building
+  " Async building & commands
   Plug 'wbthomason/buildit.nvim'
+  Plug 'tpope/vim-dispatch'
 
   " Refactoring
   Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
@@ -131,7 +132,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " C#
   Plug 'dimixar/deoplete-omnisharp', {'for': 'cs'}
   Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
-  Plug 'tpope/vim-dispatch'
 
   " Java
   Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
