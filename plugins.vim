@@ -33,8 +33,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Wrapping/delimiters
   Plug 'tpope/vim-surround'
-  Plug 'jiangmiao/auto-pairs'
+  "Plug 'jiangmiao/auto-pairs'
   Plug 'luochen1990/rainbow'
+  Plug 'ozelentok/vim-closer'
+  Plug 'tpope/vim-endwise'
 
   " Undo/redo
   Plug 'mbbill/undotree'
@@ -101,6 +103,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/context_filetype.vim'
   Plug 'ervandew/supertab'
+  Plug 'Shougo/echodoc.vim'
 
   " Checkers
   Plug 'vim-syntastic/syntastic', {'for': 'clojure'}
