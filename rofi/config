@@ -1,5 +1,5 @@
 ! "Font to use" Set from: Default
-rofi.font:                           Iosevka 12
+rofi.font:                           Fira Code 11
 rofi.color-enabled: true
 rofi.color-window: #dd273238, #dd273238, #dd273238
 rofi.color-normal: #dd273238, #ddc1c1c1, #dd273238, #dd394249, #ddffffff
