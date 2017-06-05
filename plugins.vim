@@ -100,10 +100,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Completion
   Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/neco-syntax'
   Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/context_filetype.vim'
   Plug 'ervandew/supertab'
   Plug 'Shougo/echodoc.vim'
+  Plug 'autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'}
 
   " Checkers
   Plug 'vim-syntastic/syntastic', {'for': 'clojure'}
