@@ -84,12 +84,12 @@ alias eclimd="/usr/lib/eclipse/eclimd -b"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 alias em="emacsclient -nw"
 alias emd="emacs --daemon"
-# Powerline stuff
-powerline-daemon -q
-. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
+ #Powerline stuff
+#powerline-daemon -q
+#. /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
-eval `keychain --quiet --eval ~/.ssh/id_rsa`
-eval "$(hub alias -s)"
+#eval `keychain --quiet --eval ~/.ssh/id_rsa`
+#eval "$(hub alias -s)"
 fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
 
@@ -97,25 +97,25 @@ LS_COLORS=$LS_COLORS:'di=0;36:ex=0;32:' ; export LS_COLORS
 
 export DISPLAY=:0.0
 
-[[ $- != *i* ]] && return
-PARENT=`ps -p $PPID -o comm=`
-if [[ -z "$TMUX" && ! $PARENT =~ emacs  && ! $PARENT =~ vim ]]; then
-    exec tmux new-session -A -s sysadmin
-fi
+#[[ $- != *i* ]] && return
+#PARENT=`ps -p $PPID -o comm=`
+#if [[ -z "$TMUX" && ! $PARENT =~ emacs  && ! $PARENT =~ vim ]]; then
+    #exec tmux new-session -A -s sysadmin
+#fi
+#
+#if [[ ! $PARENT =~ emacs  && ! $PARENT =~ vim ]]; then
+    ## Edit with vim keybindings
+    #bindkey -v
+    #export KEYTIMEOUT=2
+#fi
 
-if [[ ! $PARENT =~ emacs  && ! $PARENT =~ vim ]]; then
-    # Edit with vim keybindings
-    bindkey -v
-    export KEYTIMEOUT=2
-fi
-
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+#BASE16_SHELL=$HOME/.config/base16-shell/
+#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 #export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 
 setopt auto_cd
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(fasd --init auto)"
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#eval "$(fasd --init auto)"

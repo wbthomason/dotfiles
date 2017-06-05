@@ -4,15 +4,15 @@ ZSH=/usr/share/oh-my-zsh/
 source $ZSH/oh-my-zsh.sh
 source /usr/share/nvm/nvm.sh
 source /opt/ros/kinetic/setup.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # OPAM configuration
 export MONO_GAC_PREFIX="/usr/local"
 ulimit -n 1000
 
 # OPAM configuration
-. /home/wil/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-eval `opam config env`
+#. /home/wil/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+#eval `opam config env`
 
 # Go config
-export PATH=$PATH:/home/wil/go/bin/
+#export PATH=$PATH:/home/wil/go/bin/
