@@ -14,7 +14,6 @@
   "mpl",
   "prompt_ret_code",
   "scrapy_tabcomplete",
-  "powerline",
   "prompt_vi_mode"
  ]
 }
