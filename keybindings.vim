@@ -9,7 +9,7 @@ nnoremap <leader>th :nohl<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>x :x<CR>
-nnoremap <leader>d :bd<CR>
+nnoremap <leader>d :Sayonara<CR>
 nnoremap <leader>eo :lopen<CR>
 nnoremap <leader>ec :lclose<CR>
 

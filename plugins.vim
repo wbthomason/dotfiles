@@ -4,6 +4,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Utilities
 
+  " Buffer management
+  Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
+
   " Startup screen
   Plug 'mhinz/vim-startify'
 
