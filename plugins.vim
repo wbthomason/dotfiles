@@ -4,6 +4,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Utilities
 
+  " Buffer management
+  Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
+
   " Startup screen
   Plug 'mhinz/vim-startify'
 
@@ -105,7 +108,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/context_filetype.vim'
   Plug 'ervandew/supertab'
   Plug 'Shougo/echodoc.vim'
-  Plug 'autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'}
+  "Plug 'autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'}
 
   " Checkers
   Plug 'vim-syntastic/syntastic', {'for': 'clojure'}
@@ -114,6 +117,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Async building & commands
   Plug 'wbthomason/buildit.nvim'
   Plug 'tpope/vim-dispatch'
+  Plug 'radenling/vim-dispatch-neovim'
 
   " Refactoring
   Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
