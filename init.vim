@@ -48,10 +48,6 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-" Dein settings
-let g:dein#enable_notification = 1
-let g:dein#install_message_type = 'echo'
-
 " Opam/OCaml settings
 " These take time, so we only want to run them if we're editing OCaml
 function! Setup_Ocaml()
@@ -74,13 +70,12 @@ let g:ale_lint_on_enter = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"call airline#parts#define_function('ALE', 'ALEGetStatusLine')
-"call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
-"let g:airline_section_error = airline#section#create_right(['ALE'])
+call airline#parts#define_function('ALE', 'ALEGetStatusLine')
+call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {'haskell': ['hdevtools', 'hlint']}
 let g:ale_warn_about_trailing_whitespace = 1
-
 
 augroup ale_colors
   au!
