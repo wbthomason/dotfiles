@@ -371,5 +371,8 @@ let g:deoplete#omni#input_patterns = {
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
+" LanguageClient settings
+
+
 " General settings
 call ConfigInc('settings.vim')
