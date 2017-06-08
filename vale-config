@@ -1,0 +1,10 @@
+# Core settings
+StylesPath = ~/.vale-styles
+MinAlertLevel = suggestion # suggestion, warning or error
+
+# Global settings (applied to every syntax)
+[*]
+# List of styles to load
+BasedOnStyles = vale, write-good, 18F, Middlebury, TheEconomist
+# Style.Rule = {YES, NO} to enable or disable a specific rule
+vale.Editorializing = YES
