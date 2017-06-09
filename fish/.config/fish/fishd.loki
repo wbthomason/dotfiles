@@ -14,4 +14,4 @@ SET fish_color_param:81a2be
 SET fish_color_quote:b5bd68
 SET fish_color_redirection:8abeb7
 SET fish_greeting:\x1d
-SET fisher_dependency_count:last_job_id\x1egetopts\x1eawait\x1eget\x1efzf\x1ebass\x1ehumanize_duration\x1edone\x1efasd
+SET fisher_dependency_count:last_job_id\x1egetopts\x1eawait\x1eget\x1efzf\x1ebass\x1efasd
