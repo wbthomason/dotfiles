@@ -1,0 +1,1 @@
+/home/wil/.config/fisherman/done/conf.d/done.fish
