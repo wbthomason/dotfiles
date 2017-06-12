@@ -121,6 +121,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Refactoring
   Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
+  Plug 'AndrewRadev/splitjoin.vim'
 
   " Languages
   

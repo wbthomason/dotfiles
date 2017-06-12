@@ -27,6 +27,7 @@ map g/ <Plug>(incsearch-stay)
 
 " Configuration bindings
 nnoremap <leader>o :so %<CR>
+nnoremap <leader>mc :e ~/.config/nvim/init.vim<CR>
 
 " Search bindings
 nnoremap <leader>ff :Files<CR>
