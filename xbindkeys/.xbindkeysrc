@@ -24,3 +24,12 @@
 
 "rofi -combi-modi window,run,ssh -mesg -show combi -modi combi"
   XF86Search
+
+"playerctl play-pause"
+  Control+Shift + space
+
+"playerctl previous"
+  Control+Shift + Left
+
+"playerctl next"
+  Control+Shift + Right
