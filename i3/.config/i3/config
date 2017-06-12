@@ -16,22 +16,8 @@ set $mod Mod4
 #font pango:monospace 8
 font pango:Arimo for Powerline 9
 
-# load fonts
-#exec --no-startup-id cbatticon -r 5 -l 10 -c "systemctl hibernate" -n
-#exec --no-startup-id nm-applet
-#exec --no-startup-id pasystray
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-
 # startup programs
+exec --no-startup-id /home/wil/.screenlayout/default.sh
 exec --no-startup-id /home/wil/bgscript.sh
 exec --no-startup-id xbindkeys
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
