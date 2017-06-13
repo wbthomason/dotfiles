@@ -4,6 +4,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Utilities
 
+  " Misc
+  Plug 'tpope/vim-repeat'
+
   " Buffer management
   Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 
@@ -121,6 +124,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Refactoring
   Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
   Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'machakann/vim-swap'
+  Plug 'zirrostig/vim-schlepp'
 
   " Languages
   

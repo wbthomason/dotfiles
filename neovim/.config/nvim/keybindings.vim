@@ -31,6 +31,7 @@ nnoremap <leader>mc :e ~/.config/nvim/init.vim<CR>
 
 " Search bindings
 nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fa :Files <C-r>=getcwd()<CR>
 nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fh :Helptags<CR>
 nnoremap <leader>bb :Buffers<CR>
@@ -101,3 +102,9 @@ nmap <LocalLeader>j  <Plug>VimwikiMakeDiaryNote
 nmap <LocalLeader>jt <Plug>VimwikiTabMakeDiaryNote
 nmap <LocalLeader>jy <Plug>VimwikiMakeYesterdayDiaryNote
 nmap <LocalLeader>jl <Plug>VimwikiDiaryGenerateLinks
+
+" Schlepp bindings
+vmap <unique> <up>    <Plug>SchleppUp
+vmap <unique> <down>  <Plug>SchleppDown
+vmap <unique> <left>  <Plug>SchleppLeft
+vmap <unique> <right> <Plug>SchleppRight
