@@ -7,6 +7,6 @@ killall -q polybar
 while pgrep -x polybar >/dev/null; do sleep 1; done
 
 # Launch bar
-polybar top &
+for i in $(polybar -m | awk -F: '{print $1}'); do MONITOR=$i polybar top & done
 
 echo "Bars launched..."
