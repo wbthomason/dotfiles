@@ -184,7 +184,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Haskell
   Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
-  " neco-ghc requires vimproc
+  " neco-ghc and ghcmod-vim require vimproc
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
   Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
