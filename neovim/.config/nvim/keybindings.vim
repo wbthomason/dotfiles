@@ -19,6 +19,7 @@ nnoremap <leader>s :bn<CR>
 nnoremap <leader>bl :b#<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>tf :VimFilerSplit<CR>
+nnoremap <leader>tu :UndotreeToggle<CR>
 
 " Incsearch bindings
 map /  <Plug>(incsearch-forward)
