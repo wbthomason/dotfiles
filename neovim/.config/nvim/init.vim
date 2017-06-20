@@ -367,8 +367,9 @@ let g:deoplete#omni#input_patterns = {
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
-" LanguageClient settings
-
+" Vim-qf settings
+let g:qf_auto_open_quickfix = 0
+let g:qf_auto_open_loclist = 0
 
 " General settings
 call ConfigInc('settings.vim')

@@ -7,6 +7,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Misc
   Plug 'tpope/vim-repeat'
 
+  " Quickfix
+  Plug 'romainl/vim-qf'
+  Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
+
   " Buffer management
   Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 
@@ -123,7 +127,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'radenling/vim-dispatch-neovim'
 
   " Refactoring
-  Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'machakann/vim-swap'
   Plug 'zirrostig/vim-schlepp'
