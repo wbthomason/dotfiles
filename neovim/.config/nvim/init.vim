@@ -103,6 +103,7 @@ let g:pandoc#modules#disabled = ["folding"]
 " Vimtex settings
 let g:tex_flavor = "latex"
 let g:tex_conceal = ""
+let g:vimtex_compiler_progname = "nvr"
 
 " Ultisnips settings
 let g:UltiSnipsExpandTrigger = '<c-j>'

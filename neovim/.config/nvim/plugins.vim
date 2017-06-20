@@ -102,6 +102,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'airblade/vim-gitgutter'
   Plug 'jreybert/vimagit'
   Plug 'rhysd/committia.vim'
+  Plug 'tpope/vim-git', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
 
   " Completion
   Plug 'Shougo/deoplete.nvim'
@@ -142,6 +143,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Go
   Plug 'zchee/deoplete-go', {'for': 'go'}
+  Plug 'fatih/vim-go', {'for': 'go'}
 
   " C#
   Plug 'dimixar/deoplete-omnisharp', {'for': 'cs'}
@@ -182,7 +184,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Haskell
   Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
-  " neco-gch requires vimproc
+  " neco-ghc and ghcmod-vim require vimproc
   Plug 'Shougo/vimproc.vim', {'do' : 'make'}
   Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
   Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
