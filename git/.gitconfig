@@ -1,6 +1,7 @@
 [user]
   name = Wil Thomason
   email = wil.thomason@gmail.com
+  signingkey = 8BEE5C508226C4516876B93449B3E4A714642E1D
 
 [credential]
   helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
@@ -39,3 +40,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2

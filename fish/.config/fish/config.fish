@@ -29,7 +29,8 @@ set -xg RUST_SRC_PATH '/usr/src/rust/src'
 # Keychain
 if status --is-interactive
     set -l IFS
-    eval (keychain --eval --quiet -Q id_rsa)
+    eval (keychain --agents ssh --eval --quiet -Q id_rsa)
+    eval (keychain --agents gpg --eval --quiet -Q 8BEE5C508226C4516876B93449B3E4A714642E1D)
 end
 
 # Aliases
