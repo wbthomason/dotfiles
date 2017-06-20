@@ -236,6 +236,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Pretty pretty symbols
   Plug 'ryanoasis/vim-devicons'
 
+  " Gui
+  Plug 'equalsraf/neovim-gui-shim'
+
 call plug#end()
 
 " Required:
