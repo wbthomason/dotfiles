@@ -118,7 +118,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   "Plug 'autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'}
 
   " Checkers
-  Plug 'vim-syntastic/syntastic', {'for': 'clojure'}
+  Plug 'vim-syntastic/syntastic', {'for': ['clojure', 'idris']}
   Plug 'w0rp/ale'
 
   " Async building & commands
