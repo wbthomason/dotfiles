@@ -7,16 +7,31 @@ augroup main_aucommands
     \ exe "normal! g`\"" |
     \ endif
   au BufWinEnter * checktime
-  "au BufWritePost * Neomake
-  "au BufRead * Neomake
   au CompleteDone * pclose
-  au BufNewFile,BufFilePre,BufRead,BufEnter *.md set filetype=pandoc
-  au BufNewFile,BufFilePre,BufRead,BufEnter *.pandoc set filetype=pandoc
-  au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
-  au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
-  au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
-  au FileType haskell setlocal omnifunc=necoghc#omnifunc
-  au BufWritePost *.scala silent :EnTypeCheck
-  au FileType tex setlocal spell
 augroup END
 
+augroup neomake_aucommands
+  "au BufWritePost * Neomake
+  "au BufRead * Neomake
+augroup END
+
+augroup markdown_aucommands
+  au BufNewFile,BufFilePre,BufRead,BufEnter *.md set filetype=pandoc
+  au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
+  au BufNewFile,BufFilePre,BufRead,BufEnter *.pandoc set filetype=pandoc
+augroup END
+
+augroup haskell_aucommands
+  au FileType haskell setlocal omnifunc=necoghc#omnifunc
+  au CursorHold,CursorHoldI *.hs :InteroType
+augroup END
+
+augroup tex_aucommands
+  au FileType tex setlocal spell
+  au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
+augroup END
+
+augroup misc_lang_aucommands
+  au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
+  au BufWritePost *.scala silent :EnTypeCheck
+augroup END
