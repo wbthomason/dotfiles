@@ -120,6 +120,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Checkers
   Plug 'vim-syntastic/syntastic', {'for': ['clojure', 'idris']}
   Plug 'w0rp/ale'
+  "Plug 'neomake/neomake', {'for': 'haskell'}
 
   " Async building & commands
   Plug 'wbthomason/buildit.nvim'

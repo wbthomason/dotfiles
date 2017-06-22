@@ -56,9 +56,6 @@ function! Setup_Ocaml()
   execute "helptags " . g:opamshare . "/merlin/vim/doc"
   execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
 endfunction
-augroup OCaml_aucmds
-  au FileType ocaml call Setup_Ocaml()
-augroup END
 
 " Ale settings
 let g:ale_sign_error = '✖'
@@ -76,13 +73,12 @@ let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {'haskell': ['hdevtools', 'hlint']}
 let g:ale_warn_about_trailing_whitespace = 1
+let g:ale_set_highlights = 1
 
-augroup ale_colors
-  au!
-  autocmd ColorScheme *
-        \ hi ALEErrorSign guifg=#ff727b |
-        \ hi ALEWarningSign guifg=#ebcb8b |
-augroup END
+" Neomake settings
+let g:neomake_cpp_clang_args = ['-std=c++14']
+let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'vulture']
+let g:neomake_open_list = 2
 
 " IndentLine settings
 let g:indentLine_color_term = 239
