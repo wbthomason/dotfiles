@@ -241,6 +241,12 @@ function! s:all_files()
         \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
         \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
 endfunction
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
 
 " Denite settings
 let s:menus = {}
