@@ -229,18 +229,6 @@ let g:fzf_colors =
 let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
-command! FZFMru call fzf#run({
-      \ 'source':  reverse(s:all_files()),
-      \ 'sink':    'edit',
-      \ 'options': '-m -x +s',
-      \ 'down':    '40%' })
-
-function! s:all_files()
-  return extend(
-        \ filter(copy(v:oldfiles),
-        \        "v:val !~ 'fugitive:\\|NERD_tree\\|^/tmp/\\|.git/'"),
-        \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
-endfunction
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
       \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,

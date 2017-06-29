@@ -36,10 +36,10 @@ nnoremap <leader>fa :Files <C-r>=getcwd()<CR>
 nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fh :Helptags<CR>
 nnoremap <leader>bb :Buffers<CR>
-nnoremap <leader>fr :FZFMru<CR>
+nnoremap <leader>fr :History<CR>
 nnoremap <leader>ftt :Tags<CR>
 nnoremap <leader>ftb :BTags<CR>
-nnoremap <leader>fi :Ag<CR>
+nnoremap <leader>fi :Rg<CR>
 nnoremap <leader>fl :Lines<CR>
 nnoremap <leader>fc :Commands<CR>
 
