@@ -39,7 +39,7 @@ nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>fr :History<CR>
 nnoremap <leader>ftt :Tags<CR>
 nnoremap <leader>ftb :BTags<CR>
-nnoremap <leader>fi :Rg
+nnoremap <leader>fi :Rg 
 nnoremap <leader>fc :Rg<CR>
 nnoremap <leader>fl :Lines<CR>
 
