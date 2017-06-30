@@ -305,17 +305,19 @@ let g:deoplete#omni#input_patterns = {
       \    'ocaml': '[^ ,;\t\[()\]]',
       \  'markdown': '@',
       \  'pandoc': '@',
-      \   'tex': [
-      \ '\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-      \ '\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-      \ '\\hyperref\[[^]]*',
-      \ '\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-      \ '\\(include(only)?|input){[^}]*',
-      \ '\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
-      \ '\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
-      \ '\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
-      \ '\\',
-      \ ],
+      \   'tex': '\\(?:'
+        \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
+        \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
+        \ . '|hyperref\s*\[[^]]*'
+        \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+        \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
+        \ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+        \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
+        \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
+        \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
+        \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
+        \ . '|\w*'
+        \ .')',
       \  'scala': [
       \ '[^. *\t]\.\w*',       
       \ '[:\[,] ?\w*',         
