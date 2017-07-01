@@ -220,8 +220,8 @@ tmux_conf_battery_vbar_palette='gradient'
 #tmux_conf_battery_vbar_palette='#d70000,#ff5f00,#5fff00'  # red, orange, green
 
 # symbols used to indicate whether battery is charging or discharging
-tmux_conf_battery_status_charging='⚡'     # U+26A1
-tmux_conf_battery_status_discharging='🔋'  # U+1F50B
+tmux_conf_battery_status_charging='↑'       # U+2191
+tmux_conf_battery_status_discharging='↓'    # U+2193
 
 # clock style
 tmux_conf_theme_clock_colour='#00afff'  # light blue
@@ -247,6 +247,12 @@ tmux_conf_copy_to_os_clipboard=true
 #set -g status-keys vi
 #set -g mode-keys vi
 
+ replace C-b by C-a instead of using both prefixes
+ set -gu prefix2
+ unbind C-a
+ unbind C-b
+ set -g prefix C-a
+ bind C-a send-prefix
 # move status line to top
 #set -g status-position top
 set -g @tpm_plugins '         \
