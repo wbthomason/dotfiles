@@ -71,9 +71,13 @@ call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:airline#extensions#ale#enabled = 1
-let g:ale_linters = {'haskell': ['hdevtools', 'hlint']}
+let g:ale_linters = {
+      \ 'haskell': ['hdevtools', 'hlint'],
+      \ 'cpp': ['cpplint']
+      \}
 let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_set_highlights = 1
+let g:ale_cpp_cpplint_options = '--linelength=100'
 
 " Neomake settings
 let g:neomake_cpp_clang_args = ['-std=c++14']
