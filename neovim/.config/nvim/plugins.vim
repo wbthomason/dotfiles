@@ -237,6 +237,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Fish
   Plug 'wilriker/vim-fish', {'for': 'fish'}
 
+  " Coq
+  Plug 'let-def/vimbufsync', {'for': 'coq'}
+  Plug 'the-lambda-church/coquille', {'for': 'coq'}
+
   " Pretty pretty symbols
   Plug 'ryanoasis/vim-devicons'
 
