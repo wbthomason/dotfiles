@@ -3,7 +3,7 @@ export RUST_SRC_PATH=/usr/src/rust/src
 ZSH=/usr/share/oh-my-zsh/
 source $ZSH/oh-my-zsh.sh
 source /usr/share/nvm/nvm.sh
-source /opt/ros/kinetic/setup.zsh
+source /opt/ros/lunar/setup.zsh
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # OPAM configuration

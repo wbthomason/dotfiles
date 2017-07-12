@@ -40,6 +40,9 @@ alias em 'emacsclient -nw'
 alias emd 'emacs --daemon'
 alias git 'hub'
 
+# ROS
+bass source /opt/ros/lunar/setup.bash
+
 # Tmux
 if not set -q TMUX
     exec tmux new-session -A -s sysadmin
