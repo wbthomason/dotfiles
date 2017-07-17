@@ -220,8 +220,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'jakezhaojb/vim-torch-snipmate', {'for': 'lua'}
 
   " Elixir
-  Plug 'elixir-lang/vim-elixir', {'for': 'elixir'}
-  Plug 'slashmili/alchemist.vim', { 'for': 'elixir'}
+  Plug 'elixir-lang/vim-elixir', {'for': ['elixir', 'eelixir']}
+  Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'eelixir']}
 
   " Scala
   Plug 'derekwyatt/vim-scala', {'for': 'scala'}
