@@ -131,8 +131,10 @@ bindsym $mod+Shift+9 move container to workspace 9:logistics
 bindsym $mod+Shift+0 move container to workspace 10:misc
 
 # move workspaces between displays
-bindsym $mod+Shift+period move workspace to output right
-bindsym $mod+Shift+comma move workspace to output left
+bindsym $mod+bracketright move workspace to output right
+bindsym $mod+bracketleft move workspace to output left
+bindsym $mod+Shift+bracketleft move workspace to output up
+bindsym $mod+Shift+bracketright move workspace to output down
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
