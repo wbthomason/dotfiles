@@ -197,7 +197,7 @@ highlight GitGutterAdd guifg = '#A3E28B'
 
 " Vimwiki settings
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
-let g:vimwiki_list = [{'path': '$HOME/journal', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '$HOME/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 
 " Goyo settings
