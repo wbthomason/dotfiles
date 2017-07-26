@@ -15,7 +15,7 @@ nnoremap <leader>ec :lclose<CR>
 
 " Navigation bindings
 nnoremap <leader>a :bp<CR>
-nnoremap <leader>s :bn<CR>
+nnoremap <leader>s :bn<CR> 
 nnoremap <leader>bl :b#<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>tf :VimFilerSplit<CR>
@@ -50,6 +50,7 @@ nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gl :Gpull<CR>
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gs :Gstatus<CR>
 
 " Compilation bindings
 nnoremap <leader>bi :BuildIt<CR>
@@ -95,7 +96,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Vimwiki bindings
-nmap <LocalLeader>ww <Plug>VimwikiIndex
+nmap <LocalLeader>wi <Plug>VimwikiIndex
 nmap <LocalLeader>wt <Plug>VimwikiTabIndex 
 nmap <LocalLeader>ws <Plug>VimwikiUISelect
 nmap <LocalLeader>ji <Plug>VimwikiDiaryIndex

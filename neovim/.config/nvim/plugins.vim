@@ -3,9 +3,12 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
   " Utilities
+  
+  " Paren matching
+  Plug 'itchyny/vim-parenmatch'
 
-  " Misc
-  Plug 'tpope/vim-repeat'
+  " Registers
+  Plug 'junegunn/vim-peekaboo' 
 
   " Quickfix
   Plug 'romainl/vim-qf'
@@ -26,8 +29,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'vim-airline/vim-airline-themes'
 
   " Movement
-  Plug 'easymotion/vim-easymotion'
+  Plug 'easymotion/vim-easymotion', {'on': '<Plug>(easymotion' }
   Plug 'rhysd/clever-f.vim'
+  Plug 'chaoren/vim-wordmotion'
 
   " Tmux and vim split navigation
   Plug 'christoomey/vim-tmux-navigator'
@@ -39,20 +43,21 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'yggdroot/indentLine'
 
   " Comments
-  Plug 'scrooloose/nerdcommenter'
+  "Plug 'scrooloose/nerdcommenter'
+  Plug 'tpope/vim-commentary'
 
   " Wrapping/delimiters
   Plug 'tpope/vim-surround'
-  "Plug 'jiangmiao/auto-pairs'
   Plug 'luochen1990/rainbow'
   Plug 'ozelentok/vim-closer'
   Plug 'tpope/vim-endwise'
 
   " Undo/redo
-  Plug 'mbbill/undotree'
+  Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 
   " Searching
   Plug 'haya14busa/incsearch.vim'
+  Plug 'pgdouyon/vim-evanesco'
 
   " Yank highlighting
   Plug 'machakann/vim-highlightedyank'
@@ -62,7 +67,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'sbdchd/neoformat'
 
   " Text objects
-  Plug 'wellle/targets.vim'
+  " Plug 'wellle/targets.vim'
 
   " Tags
   Plug 'ludovicchabant/vim-gutentags'
@@ -71,6 +76,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " File opening/fuzzy finding
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
   " Writing
   Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
@@ -90,22 +96,23 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'hkupty/iron.nvim'
 
   " Color schemes
-  Plug 'chriskempson/base16-vim'
+  Plug 'rafi/awesome-vim-colorschemes'
 
   " Journaling
   Plug 'vimwiki/vimwiki'
 
   " Denite and Unite
-  Plug 'Shougo/denite.nvim'
+  Plug 'Shougo/denite.nvim', {'on': 'Denite'}
   Plug 'Shougo/unite.vim'
   Plug 'Shougo/vimfiler.vim'
 
   " Git
   Plug 'tpope/vim-fugitive'
+  " Plug 'chemzqm/vim-easygit', {'on': ['Gadd', 'Gcd', 'Glcd', 'Gcommit', 'Gblame', 'Gstatus', 'Gdiff', 'Gbrowse']}
   Plug 'junegunn/gv.vim'
   Plug 'airblade/vim-gitgutter'
-  Plug 'jreybert/vimagit'
-  Plug 'rhysd/committia.vim'
+  Plug 'jreybert/vimagit', {'on': 'Magit'}
+  Plug 'rhysd/committia.vim', {'for': 'gitcommit'}
   Plug 'tpope/vim-git', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
 
   " Completion
@@ -115,12 +122,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/context_filetype.vim'
   Plug 'ervandew/supertab'
   Plug 'Shougo/echodoc.vim'
-  "Plug 'autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'}
 
   " Checkers
   Plug 'vim-syntastic/syntastic', {'for': ['clojure', 'idris']}
   Plug 'w0rp/ale'
-  "Plug 'neomake/neomake', {'for': 'haskell'}
 
   " Async building & commands
   Plug 'wbthomason/buildit.nvim'
@@ -246,6 +251,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Gui
   Plug 'equalsraf/neovim-gui-shim'
+
+  " Profiling
+  Plug 'tweekmonster/startuptime.vim'
 
 call plug#end()
 

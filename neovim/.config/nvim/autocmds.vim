@@ -8,6 +8,11 @@ augroup main_aucommands
     \ endif
   au BufWinEnter * checktime
   au CompleteDone * pclose
+  au InsertEnter * call deoplete#enable()
+  au VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 augroup END
 
 "augroup neomake_aucommands
@@ -65,3 +70,7 @@ augroup misc_lang_aucommands
   au BufWritePost *.scala silent :EnTypeCheck
 augroup END
 
+augroup cmake_aucommands
+  au!
+  au FileType cmake setlocal commentstring=#\ %s
+augroup END

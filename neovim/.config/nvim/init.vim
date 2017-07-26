@@ -11,6 +11,10 @@ function! ConfigInc(module)
   execute 'source ' . fnameescape(g:config_path) . fnameescape(a:module)
 endfunction
 
+" Set Python host program to speed up loading
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python'
+
 " Add in plugins
 call ConfigInc('plugins.vim')
 
@@ -204,8 +208,7 @@ let g:vimwiki_global_ext = 0
 let g:goyo_width = 110
 
 " Colorscheme
-let base16colorspace=256
-colorscheme base16-tomorrow-night
+colorscheme hybrid
 " Highlighting tweaks
 augroup color_tweaks
   autocmd!
@@ -240,43 +243,6 @@ command! -bang -nargs=* Rg
       \           : fzf#vim#with_preview('right:50%:hidden', '?'),
       \   <bang>0)
 
-" Denite settings
-let s:menus = {}
-let s:menus.git = {
-      \ 'description' : '            interface to vim-fugitive'
-      \}
-let s:menus.git.command_candidates = [
-      \['▷ tig                                                         gt',
-      \'normal ,gt'],
-      \['▷ git status       (Fugitive)                                 gs',
-      \'Gstatus'],
-      \['▷ git diff         (Fugitive)                                 gd',
-      \'Gdiff'],
-      \['▷ git commit       (Fugitive)                                 gc',
-      \'Gcommit'],
-      \['▷ git log          (Fugitive)                                 gl',
-      \'exe "silent Glog | Denite unite:quickfix"'],
-      \['▷ git blame        (Fugitive)                                 gb',
-      \'Gblame'],
-      \['▷ git stage        (Fugitive)                                 gw',
-      \'Gwrite'],
-      \['▷ git checkout     (Fugitive)                                 go',
-      \'Gread'],
-      \['▷ git rm           (Fugitive)                                 gr',
-      \'Gremove'],
-      \['▷ git mv           (Fugitive)                                 gm',
-      \'exe "Gmove " input("destination: ")'],
-      \['▷ git push         (Fugitive, buffer output)                   gp',
-      \'Git! push'],
-      \['▷ git pull         (Fugitive, buffer output)                   gP',
-      \'Git! pull'],
-      \['▷ git prompt       (Fugitive, buffer output)                   gi',
-      \'exe "Git! " input("command git: ")'],
-      \['▷ git cd           (Fugitive)',
-      \'Gcd'],
-      \]
-call denite#custom#var('menu', 'menus', s:menus)
-
 " Startify settings
 let g:startify_list_order = [
       \ ['Update'], 'commands', 
@@ -303,8 +269,37 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Deoplete settings
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 let g:deoplete#auto_complete_delay = 50
+let g:deoplete#enable_camel_case = 1
+let g:deoplete#skip_chars = ['(', ')', '<', '>']
+
+call deoplete#custom#set('omni',          'mark', '⌾')
+call deoplete#custom#set('ternjs',        'mark', '⌁')
+call deoplete#custom#set('jedi',          'mark', '⌁')
+call deoplete#custom#set('vim',           'mark', '⌁')
+call deoplete#custom#set('neosnippet',    'mark', '⌘')
+call deoplete#custom#set('tag',           'mark', '⌦')
+call deoplete#custom#set('around',        'mark', '↻')
+call deoplete#custom#set('buffer',        'mark', 'ℬ')
+call deoplete#custom#set('tmux-complete', 'mark', '⊶')
+call deoplete#custom#set('syntax',        'mark', '♯')
+
+call deoplete#custom#set('vim',           'rank', 630)
+call deoplete#custom#set('ternjs',        'rank', 620)
+call deoplete#custom#set('jedi',          'rank', 610)
+call deoplete#custom#set('omni',          'rank', 600)
+call deoplete#custom#set('neosnippet',    'rank', 510)
+call deoplete#custom#set('member',        'rank', 500)
+call deoplete#custom#set('file_include',  'rank', 420)
+call deoplete#custom#set('file',          'rank', 410)
+call deoplete#custom#set('tag',           'rank', 400)
+call deoplete#custom#set('around',        'rank', 330)
+call deoplete#custom#set('buffer',        'rank', 320)
+call deoplete#custom#set('dictionary',    'rank', 310)
+call deoplete#custom#set('tmux-complete', 'rank', 300)
+call deoplete#custom#set('syntax',        'rank', 200)
+
 let g:deoplete#omni#input_patterns = {
       \    'ocaml': '[^ ,;\t\[()\]]',
       \  'markdown': '@',
@@ -357,8 +352,6 @@ let g:deoplete#omni#input_patterns = {
 "\  'haskell': ['.']
 "\ }
 
-" BuildIt settings
-
 " SuperTab settings
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
@@ -366,6 +359,12 @@ let g:SuperTabMappingBackward = '<tab>'
 " Vim-qf settings
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
+
+" Parenmatch settings
+let g:loaded_matchparen = 1
+
+" Easygit settings
+let g:easygit_enable_command = 1
 
 " General settings
 call ConfigInc('settings.vim')
