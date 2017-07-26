@@ -66,3 +66,7 @@ augroup misc_lang_aucommands
   au BufWritePost *.scala silent :EnTypeCheck
 augroup END
 
+augroup cmake_aucommands
+  au!
+  au FileType cmake setlocal commentstring=#\ %s
+augroup END
