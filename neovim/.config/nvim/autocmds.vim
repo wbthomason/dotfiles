@@ -8,6 +8,7 @@ augroup main_aucommands
     \ endif
   au BufWinEnter * checktime
   au CompleteDone * pclose
+  au InsertEnter * call deoplete#enable()
 augroup END
 
 "augroup neomake_aucommands
