@@ -14,8 +14,8 @@ nnoremap <leader>eo :lopen<CR>
 nnoremap <leader>ec :lclose<CR>
 
 " Navigation bindings
-nnoremap <leader>a :WSPrev<CR>
-nnoremap <leader>s :WSNext<CR>
+nnoremap <leader>a :bp<CR>
+nnoremap <leader>s :bn<CR> 
 nnoremap <leader>bl :b#<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>tf :VimFilerSplit<CR>
