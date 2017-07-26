@@ -11,6 +11,10 @@ function! ConfigInc(module)
   execute 'source ' . fnameescape(g:config_path) . fnameescape(a:module)
 endfunction
 
+" Set Python host program to speed up loading
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python'
+
 " Add in plugins
 call ConfigInc('plugins.vim')
 
