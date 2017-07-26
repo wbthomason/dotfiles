@@ -107,8 +107,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/vimfiler.vim'
 
   " Git
-  Plug 'tpope/vim-fugitive', {'on':
-        \ ['Gwrite', 'Gcommit', 'Gblame', 'Gstatus', 'Gdiff', 'Gmove', 'Gdelete', 'Gedit', 'Gpush', 'Gpull']}
+  Plug 'tpope/vim-fugitive'
   " Plug 'chemzqm/vim-easygit', {'on': ['Gadd', 'Gcd', 'Glcd', 'Gcommit', 'Gblame', 'Gstatus', 'Gdiff', 'Gbrowse']}
   Plug 'junegunn/gv.vim'
   Plug 'airblade/vim-gitgutter'
