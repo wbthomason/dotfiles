@@ -4,9 +4,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Utilities
 
-  " Misc
-  Plug 'tpope/vim-repeat'
-
   " Quickfix
   Plug 'romainl/vim-qf'
   Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
@@ -106,7 +103,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'junegunn/gv.vim'
   Plug 'airblade/vim-gitgutter'
   Plug 'jreybert/vimagit'
-  Plug 'rhysd/committia.vim'
+  Plug 'rhysd/committia.vim', {'for': 'gitcommit'}
   Plug 'tpope/vim-git', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
 
   " Completion
@@ -116,12 +113,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/context_filetype.vim'
   Plug 'ervandew/supertab'
   Plug 'Shougo/echodoc.vim'
-  "Plug 'autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'}
 
   " Checkers
   Plug 'vim-syntastic/syntastic', {'for': ['clojure', 'idris']}
   Plug 'w0rp/ale'
-  "Plug 'neomake/neomake', {'for': 'haskell'}
 
   " Async building & commands
   Plug 'wbthomason/buildit.nvim'
