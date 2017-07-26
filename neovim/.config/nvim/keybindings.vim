@@ -14,8 +14,8 @@ nnoremap <leader>eo :lopen<CR>
 nnoremap <leader>ec :lclose<CR>
 
 " Navigation bindings
-nnoremap <leader>a :bp<CR>
-nnoremap <leader>s :bn<CR>
+nnoremap <leader>a :WSPrev<CR>
+nnoremap <leader>s :WSNext<CR>
 nnoremap <leader>bl :b#<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
 nnoremap <leader>tf :VimFilerSplit<CR>
@@ -45,7 +45,7 @@ nnoremap <leader>fl :Lines<CR>
 
 " Version control bindings
 nnoremap <leader>gg :Denite menu:git<CR>
-nnoremap <leader>gw :Gwrite<CR>
+nnoremap <leader>ga :Gadd<CR>
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gl :Gpull<CR>
 nnoremap <leader>gp :Gpush<CR>

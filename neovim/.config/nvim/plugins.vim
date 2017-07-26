@@ -27,7 +27,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Status line
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  " Plug 'bagrat/vim-workspace'
 
   " Movement
   Plug 'easymotion/vim-easymotion', {'on': '<Plug>(easymotion' }
@@ -109,7 +108,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Git
   " Plug 'tpope/vim-fugitive'
-  Plug 'chemzqm/vim-easygit', {'on': ['Gcd', 'Glcd', 'Gcommit', 'Gblame', 'Gstatus', 'Gdiff', 'Gbrowse']}
+  Plug 'chemzqm/vim-easygit', {'on': ['Gadd', 'Gcd', 'Glcd', 'Gcommit', 'Gblame', 'Gstatus', 'Gdiff', 'Gbrowse']}
   Plug 'junegunn/gv.vim'
   Plug 'airblade/vim-gitgutter'
   Plug 'jreybert/vimagit', {'on': 'Magit'}
