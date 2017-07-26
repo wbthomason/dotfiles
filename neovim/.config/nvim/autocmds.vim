@@ -9,6 +9,10 @@ augroup main_aucommands
   au BufWinEnter * checktime
   au CompleteDone * pclose
   au InsertEnter * call deoplete#enable()
+  au VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 augroup END
 
 "augroup neomake_aucommands
