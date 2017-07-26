@@ -95,7 +95,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Vimwiki bindings
-nmap <LocalLeader>ww <Plug>VimwikiIndex
+nmap <LocalLeader>wi <Plug>VimwikiIndex
 nmap <LocalLeader>wt <Plug>VimwikiTabIndex 
 nmap <LocalLeader>ws <Plug>VimwikiUISelect
 nmap <LocalLeader>ji <Plug>VimwikiDiaryIndex
