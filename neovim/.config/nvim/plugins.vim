@@ -28,6 +28,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Movement
   Plug 'easymotion/vim-easymotion'
   Plug 'rhysd/clever-f.vim'
+  Plug 'chaoren/vim-wordmotion'
 
   " Tmux and vim split navigation
   Plug 'christoomey/vim-tmux-navigator'
@@ -43,7 +44,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Wrapping/delimiters
   Plug 'tpope/vim-surround'
-  "Plug 'jiangmiao/auto-pairs'
   Plug 'luochen1990/rainbow'
   Plug 'ozelentok/vim-closer'
   Plug 'tpope/vim-endwise'
@@ -53,6 +53,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Searching
   Plug 'haya14busa/incsearch.vim'
+  Plug 'pgdouyon/vim-evanesco'
 
   " Yank highlighting
   Plug 'machakann/vim-highlightedyank'
