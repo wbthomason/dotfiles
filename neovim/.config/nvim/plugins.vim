@@ -58,6 +58,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Searching
   Plug 'haya14busa/incsearch.vim'
   Plug 'pgdouyon/vim-evanesco'
+  Plug 'brooth/far.vim'
 
   " Yank highlighting
   Plug 'machakann/vim-highlightedyank'

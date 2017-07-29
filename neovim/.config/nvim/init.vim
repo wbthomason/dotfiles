@@ -236,13 +236,6 @@ let g:fzf_colors =
 let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
-command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-      \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-      \   <bang>0)
-
 " Startify settings
 let g:startify_list_order = [
       \ ['Update'], 'commands', 
@@ -336,6 +329,9 @@ let g:loaded_matchparen = 1
 
 " Easygit settings
 let g:easygit_enable_command = 1
+
+" Custom commands
+call ConfigInc("commands.vim")
 
 " General settings
 call ConfigInc('settings.vim')
