@@ -133,7 +133,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'radenling/vim-dispatch-neovim'
 
   " Refactoring
-  Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'lgalke/splitjoin.vim'
   Plug 'machakann/vim-swap'
   Plug 'zirrostig/vim-schlepp'
 
