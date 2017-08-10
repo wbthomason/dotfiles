@@ -98,6 +98,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Color schemes
   Plug 'rafi/awesome-vim-colorschemes'
+  Plug 'jacoborus/tender.vim'
 
   " Journaling
   Plug 'vimwiki/vimwiki'
