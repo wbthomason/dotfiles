@@ -68,7 +68,7 @@ augroup misc_lang_aucommands
   au!
   au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
   au BufWritePost *.scala silent :EnTypeCheck
-  au BufNewFile,BufFilePre,BufRead,BufEnter *.launch set filetype=xml
+  au BufRead,BufNewFile *.launch set filetype=roslaunch
 augroup END
 
 augroup cmake_aucommands
