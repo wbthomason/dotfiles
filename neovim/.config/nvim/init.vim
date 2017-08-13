@@ -264,6 +264,8 @@ let g:deoplete#ignore_sources = {
   \ 'python': ['neoinclude']
   \}
 
+let g:deoplete#sources#jedi#server_timeout = 60
+
 let g:deoplete#omni#input_patterns = {
   \  'ocaml': '[^ ,;\t\[()\]]',
   \  'markdown': '@',
@@ -315,6 +317,49 @@ let g:deoplete#omni#input_patterns = {
 "\  'pandoc': ['@'],
 "\  'haskell': ['.']
 "\ }
+
+" LanguageClient Settings
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'python': ['pyls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ 'go': ['~/go/bin/go-langserver'],
+    \ }
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_diagnosticsDisplay = {
+    \ 1: {
+    \     "name": "Error",
+    \     "texthl": "ALEError",
+    \     "signText": "✖",
+    \     "signTexthl": "ALEErrorSign"
+    \ },
+    \ 2: {
+    \     "name": "Warning",
+    \     "texthl": "ALEWarning",
+    \     "signText": "➤",
+    \     "signTexthl": "ALEWarningSign"
+    \ },
+    \ 3: {
+    \     "name": "Information",
+    \     "texthl": "LanguageClientInformation",
+    \     "signText": "i",
+    \     "signTexthl": "SignInformation"
+    \ },
+    \ 4: {
+    \     "name": "Hint",
+    \     "texthl": "LanguageClientHint",
+    \     "signText": ".",
+    \     "signTexthl": "SignHint"
+    \ }
+  \ }
+
+let g:LanguageClient_signColumnAlwaysOn = 0
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " SuperTab settings
 let g:SuperTabMappingForward = '<s-tab>'

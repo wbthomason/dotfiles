@@ -141,9 +141,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Languages
   
+  " LSP
+  Plug 'autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'}
+  
   " Python
   Plug 'fisadev/vim-isort', {'for': 'python'}
-  Plug 'zchee/deoplete-jedi', {'for': 'python'}
+  " Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
   " Rust
   Plug 'rust-lang/rust.vim', {'for': 'rust'}
