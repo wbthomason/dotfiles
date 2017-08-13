@@ -1,0 +1,4 @@
+[pycodestyle]
+
+ignore = E111,E114
+max-line-length = 100
