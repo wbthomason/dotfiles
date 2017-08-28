@@ -326,6 +326,7 @@ let g:LanguageClient_serverCommands = {
     \ 'typescript': ['javascript-typescript-stdio'],
     \ 'ocaml': ['ocaml-language-server', '--stdio'],
     \ 'go': ['~/go/bin/go-langserver'],
+    \ 'haskell': ['hie', '--lsp'],
     \ }
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsDisplay = {
