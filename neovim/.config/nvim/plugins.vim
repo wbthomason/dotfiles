@@ -150,13 +150,13 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Rust
   Plug 'rust-lang/rust.vim', {'for': 'rust'}
-  Plug 'racer-rust/vim-racer', {'for': 'rust'}
+  " Plug 'racer-rust/vim-racer', {'for': 'rust'}
 
   " C/C++
   Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}
 
   " Go
-  Plug 'zchee/deoplete-go', {'for': 'go'}
+  " Plug 'zchee/deoplete-go', {'for': 'go'}
   Plug 'fatih/vim-go', {'for': 'go'}
 
   " C#
@@ -188,10 +188,10 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 
   " JS
-  Plug 'marijnh/tern_for_vim', {'for': 'javascript'}
-  Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-  Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
-  Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
+  " Plug 'marijnh/tern_for_vim', {'for': 'javascript'}
+  " Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+  " Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
+  " Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
 
   " Idris
   Plug 'idris-hackers/idris-vim', {'for': 'idris'}
@@ -199,9 +199,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Haskell
   Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
   " neco-ghc and ghcmod-vim require vimproc
-  Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-  Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
-  Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+  " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+  " Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+  " Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
   Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
 
   " Vimscript
