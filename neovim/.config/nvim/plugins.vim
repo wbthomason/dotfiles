@@ -92,6 +92,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Project Management
   Plug 'airblade/vim-rooter'
   Plug 'tpope/vim-projectionist'
+  Plug 'tpope/vim-obsession'
+  Plug 'dhruvasagar/vim-prosession'
 
   " REPL
   Plug 'hkupty/iron.nvim'
@@ -103,10 +105,13 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Journaling
   Plug 'vimwiki/vimwiki'
 
-  " Denite and Unite
+  " Denite
   Plug 'Shougo/denite.nvim', {'on': 'Denite'}
+
+  " File explorer
   Plug 'Shougo/unite.vim'
   Plug 'Shougo/vimfiler.vim'
+  Plug 'romgrk/vimfiler-prompt'
 
   " Git
   Plug 'tpope/vim-fugitive'

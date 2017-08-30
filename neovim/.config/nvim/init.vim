@@ -259,6 +259,8 @@ let g:rooter_change_directory_for_non_project_files = 'current'
 " Deoplete settings
 let g:deoplete#enable_at_startup = 0
 let g:deoplete#auto_complete_delay = 100
+let g:deoplete#max_abbr_width = 0
+let g:deoplete#max_menu_width = 0
 let g:deoplete#skip_chars = ['(', ')', '<', '>']
 let g:deoplete#ignore_sources = {
   \ 'python': ['neoinclude']
@@ -375,6 +377,10 @@ let g:loaded_matchparen = 1
 
 " Easygit settings
 let g:easygit_enable_command = 1
+
+" Prosession settings
+let g:prosession_tmux_title = 1
+let g:prosession_on_startup = 0
 
 " Custom commands
 call ConfigInc("commands.vim")

@@ -7,7 +7,7 @@ let maplocalleader = "\<cr>"
 " General editing bindings
 nnoremap <leader>th :nohl<CR>
 nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
+nnoremap <leader>q :qa<CR>
 nnoremap <leader>x :x<CR>
 nnoremap <leader>d :Sayonara<CR>
 nnoremap <leader>eo :lopen<CR>
@@ -35,6 +35,7 @@ nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fa :Files <C-r>=getcwd()<CR>
 nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fh :Helptags<CR>
+" nnoremap <leader>bb :Denite buffer<CR>
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>fr :History<CR>
 nnoremap <leader>ftt :Tags<CR>
