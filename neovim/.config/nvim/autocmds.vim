@@ -75,3 +75,8 @@ augroup cmake_aucommands
   au!
   au FileType cmake setlocal commentstring=#\ %s
 augroup END
+
+augroup vimfiler_aucommands
+  au!
+  au FileType vimfiler nmap <buffer> i :VimFilerPrompt<CR>
+augroup END
