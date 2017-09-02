@@ -368,6 +368,7 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 " SuperTab settings
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
+let g:SuperTabDefaultCompletionType = '<c-n>'
 
 " Vim-qf settings
 let g:qf_auto_open_quickfix = 0
@@ -382,6 +383,9 @@ let g:easygit_enable_command = 1
 " Prosession settings
 let g:prosession_tmux_title = 1
 let g:prosession_on_startup = 0
+
+" GoldenView settings
+let g:goldenview__enable_at_startup = 1
 
 " Custom commands
 call ConfigInc("commands.vim")

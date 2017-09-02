@@ -4,6 +4,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Utilities
   
+  " Mappings
+  Plug 'hecal3/vim-leader-guide'
+
+  " Windows
+  Plug 'zhaocai/GoldenView.Vim'
+  
   " Paren matching
   Plug 'itchyny/vim-parenmatch'
 
