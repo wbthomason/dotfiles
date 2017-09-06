@@ -227,6 +227,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Less
   Plug 'groenewege/vim-less', {'for': 'less'}
 
+  " Lua
+  Plug 'tbastos/vim-lua', {'for': 'lua'}
+
   " Elm
   Plug 'lambdatoast/elm.vim', {'for': 'elm'}
 
