@@ -1,51 +1,77 @@
-function fish_prompt --description 'Write out the prompt'
-    # User
-    set_color $fish_color_user
-    echo -n (whoami)
-    set_color normal
-
-    echo -n '@'
-
-    # Host
-    set_color $fish_color_host
-    echo -n (prompt_hostname)
-    set_color normal
-
-    echo -n ':'
-
-    # PWD
-    set_color $fish_color_cwd
-    echo -n (prompt_pwd)
-    set_color normal
-    
-    #echo -n ' '
-    # Do nothing if not in vi mode
-    if test "$fish_key_bindings" = "fish_vi_key_bindings"
-        or test "$fish_key_bindings" = "fish_hybrid_key_bindings"
-        switch $fish_bind_mode
-            case default
-                set_color --bold red 
-            case insert
-                set_color --bold green 
-            case replace-one
-                set_color --bold  blue 
-            case visual
-                set_color --bold  yellow 
-        end
-    end
-
-    echo -n ' '
-    set_color normal
-    echo -n ' '
+function _pwd_with_tilde
+  echo $PWD | sed 's|^'$HOME'\(.*\)$|~\1|'
 end
 
-function fish_right_prompt --description 'Write out the right prompt'
-	set -l last_status $status
-    git_prompt
-    __fish_hg_prompt
-    echo
+function _in_git_directory
+  git rev-parse --git-dir > /dev/null 2>&1
+end
 
-    if not test $last_status -eq 0
-        set_color $fish_color_error
+function _git_branch_name_or_revision
+  set -l branch (git symbolic-ref HEAD ^ /dev/null | sed -e 's|^refs/heads/||')
+  set -l revision (git rev-parse HEAD ^ /dev/null | cut -b 1-7)
+
+  if test (count $branch) -gt 0
+    echo $branch
+  else
+    echo $revision
+  end
+end
+
+function _git_upstream_configured
+  git rev-parse --abbrev-ref @"{u}" > /dev/null 2>&1
+end
+
+function _git_behind_upstream
+  test (git rev-list --right-only --count HEAD...@"{u}" ^ /dev/null) -gt 0
+end
+
+function _git_ahead_of_upstream
+  test (git rev-list --left-only --count HEAD...@"{u}" ^ /dev/null) -gt 0
+end
+
+function _git_upstream_status
+  set -l arrows
+
+  if _git_upstream_configured
+    if _git_behind_upstream
+      set arrows "$arrows⇣"
     end
+
+    if _git_ahead_of_upstream
+      set arrows "$arrows⇡"
+    end
+  end
+
+  echo $arrows
+end
+
+function _print_in_color
+  set -l string $argv[1]
+  set -l color  $argv[2]
+
+  set_color $color
+  printf $string
+  set_color normal
+end
+
+function _prompt_color_for_status
+  if test $argv[1] -eq 0
+    echo magenta
+  else
+    echo red
+  end
+end
+
+function fish_prompt
+  set -l last_status $status
+
+  _print_in_color (_pwd_with_tilde) blue
+
+  if _in_git_directory
+    _print_in_color " "(_git_branch_name_or_revision) green
+    _print_in_color " "(_git_upstream_status)" " cyan
+    git_prompt
+  end
+
+  _print_in_color "\n❯ " (_prompt_color_for_status $last_status)
 end

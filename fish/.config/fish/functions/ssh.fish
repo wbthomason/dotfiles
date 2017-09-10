@@ -1,0 +1,1 @@
+/home/wil/.config/fisherman/ssh/ssh.fish

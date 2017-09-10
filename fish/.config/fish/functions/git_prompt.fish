@@ -32,13 +32,11 @@ function git_prompt --description 'Write out a prompt indicating git repo status
         return
     end
 
-    echo -n ' '
-
     set -l index (git status --porcelain ^/dev/null|cut -c 1-2|sort -u)
 
     if test -z "$index"
         set_color $fish_color_git_clean
-        echo -n $branch' ✓'
+        echo -n '✓'
         set_color normal
         return
     end
@@ -75,7 +73,7 @@ function git_prompt --description 'Write out a prompt indicating git repo status
         set_color $fish_color_git_dirty
     end
 
-    echo -n $branch' δ'
+    echo -n 'δ'
 
     for i in $fish_prompt_git_status_order
         if contains $i in $gs
