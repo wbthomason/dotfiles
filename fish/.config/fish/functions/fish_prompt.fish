@@ -70,7 +70,7 @@ function fish_prompt
   if _in_git_directory
     _print_in_color " "(_git_branch_name_or_revision)" " green
     git_prompt
-    _print_in_color " "(_git_upstream_status)" " cyan
+    _print_in_color (_git_upstream_status)" " cyan
   end
 
   _print_in_color "\n❯ " (_prompt_color_for_status $last_status)

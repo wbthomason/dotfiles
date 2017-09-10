@@ -36,7 +36,7 @@ function git_prompt --description 'Write out a prompt indicating git repo status
 
     if test -z "$index"
         set_color $fish_color_git_clean
-        echo -n '✓'
+        echo -n '✓ '
         set_color normal
         return
     end
