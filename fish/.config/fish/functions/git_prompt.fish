@@ -75,7 +75,7 @@ function git_prompt --description 'Write out a prompt indicating git repo status
         set_color $fish_color_git_dirty
     end
 
-    echo -n $branch' ⚡'
+    echo -n $branch' δ'
 
     for i in $fish_prompt_git_status_order
         if contains $i in $gs
