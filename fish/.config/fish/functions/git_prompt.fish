@@ -11,13 +11,13 @@ set -g fish_color_git_deleted red
 set -g fish_color_git_untracked yellow
 set -g fish_color_git_unmerged red
 
-set -g fish_prompt_git_status_added ' ✚'
-set -g fish_prompt_git_status_modified ' *'
-set -g fish_prompt_git_status_renamed ' ➜'
-set -g fish_prompt_git_status_copied ' ⇒'
-set -g fish_prompt_git_status_deleted ' ✖'
-set -g fish_prompt_git_status_untracked ' ?'
-set -g fish_prompt_git_status_unmerged ' !'
+set -g fish_prompt_git_status_added '✚'
+set -g fish_prompt_git_status_modified '*'
+set -g fish_prompt_git_status_renamed '➜'
+set -g fish_prompt_git_status_copied '⇒'
+set -g fish_prompt_git_status_deleted '✖'
+set -g fish_prompt_git_status_untracked '?'
+set -g fish_prompt_git_status_unmerged '!'
 
 set -g fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
 
@@ -73,7 +73,7 @@ function git_prompt --description 'Write out a prompt indicating git repo status
         set_color $fish_color_git_dirty
     end
 
-    echo -n '⚡'
+    # echo -n 'δ'
 
     for i in $fish_prompt_git_status_order
         if contains $i in $gs
@@ -81,7 +81,7 @@ function git_prompt --description 'Write out a prompt indicating git repo status
             set -l status_name fish_prompt_git_status_$i
 
             set_color $$color_name
-            echo -n $$status_name
+            echo -n $$status_name" "
         end
     end
 
