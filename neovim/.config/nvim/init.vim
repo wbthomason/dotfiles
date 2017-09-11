@@ -243,7 +243,10 @@ let g:startify_list_order = [
       \ ['Recent Files'], 'files', 
       \ ['Bookmarks'], 'bookmarks', 
       \ ['Sessions'], 'sessions']
-let g:startify_commands = [{'u': ['Update plugins', ':PlugUpdate']}, {'g': ['Upgrade Plug.vim', ':PlugUpgrade']}]
+let g:startify_commands = [
+      \ {'u': ['Update plugins', ':PlugUpdate']},
+      \ {'g': ['Upgrade Plug.vim', ':PlugUpgrade']},
+      \ {'s': ['Start Prosession', ':Prosession .']}]
 let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_custom_header = []
