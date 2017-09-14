@@ -165,6 +165,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " C/C++
   Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}
+  
+  " Unreal Engine
+  Plug 'idbrii/vim-unreal'
 
   " Go
   " Plug 'zchee/deoplete-go', {'for': 'go'}
@@ -237,7 +240,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'rgrinberg/vim-ocaml', {'for': 'ocaml'}
 
   " LaTeX
-  Plug 'lervag/vimtex', {'for': 'tex'}
+  Plug 'lervag/vimtex'
   "Plug 'poppyschmo/deoplete-latex', {'for': 'tex'}
 
   " Torch

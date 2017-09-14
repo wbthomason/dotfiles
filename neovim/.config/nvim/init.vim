@@ -108,6 +108,8 @@ let g:pandoc#modules#disabled = ["folding"]
 let g:tex_flavor = "latex"
 let g:tex_conceal = ""
 let g:vimtex_compiler_progname = "nvr"
+let g:vimtex_complete_recursive_bib = 1
+let g:vimtex_complete_enabled = 1
 
 " Ultisnips settings
 let g:UltiSnipsExpandTrigger = '<c-j>'
@@ -275,25 +277,14 @@ let g:deoplete#omni#input_patterns = {
   \  'ocaml': '[^ ,;\t\[()\]]',
   \  'markdown': '@',
   \  'pandoc': '@',
-  \  'tex': '\\(?:'
-  \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
-  \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
-  \ . '|hyperref\s*\[[^]]*'
-  \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-  \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
-  \ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-  \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
-  \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
-  \ . '|usepackage(\s*\[[^]]*\])?\s*\{[^}]*'
-  \ . '|documentclass(\s*\[[^]]*\])?\s*\{[^}]*'
-  \ . '|\w*'
-  \ .')',
   \  'scala': [
   \ '[^. *\t]\.\w*',       
   \ '[:\[,] ?\w*',         
   \ '^import .*'           
   \] 
   \}
+
+let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 " YCM Semantic trigger regexes for use with deoplete if necessary
 "let g:ycm_semantic_triggers =  {
 "\   'c' : ['->', '.'],
@@ -386,6 +377,10 @@ let g:easygit_enable_command = 1
 " Prosession settings
 let g:prosession_tmux_title = 1
 let g:prosession_on_startup = 0
+
+" GoldenView settings
+let g:goldenview__enable_default_mapping = 0
+let g:goldenview__enable_at_startup = 0
 
 " Custom commands
 call ConfigInc("commands.vim")
