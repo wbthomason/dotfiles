@@ -203,7 +203,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " JS
   " Plug 'marijnh/tern_for_vim', {'for': 'javascript'}
-  " Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+  Plug 'pangloss/vim-javascript', {'for': 'javascript'}
   " Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
   " Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
 

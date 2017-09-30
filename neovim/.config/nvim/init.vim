@@ -1,10 +1,6 @@
-" Use full Vim features
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
+scriptencoding utf-8
 " Config file path
-let g:config_path = "~/.config/nvim/"
+let g:config_path = '~/.config/nvim/'
 
 " Function for sourcing config modules
 function! ConfigInc(module)
@@ -56,9 +52,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " These take time, so we only want to run them if we're editing OCaml
 function! Setup_Ocaml()
   let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-  execute "set rtp+=" . g:opamshare . "/merlin/vim"
-  execute "helptags " . g:opamshare . "/merlin/vim/doc"
-  execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
+  execute 'set rtp+=' . g:opamshare . '/merlin/vim'
+  execute 'helptags ' . g:opamshare . '/merlin/vim/doc'
+  execute 'set rtp^=' . g:opamshare . '/ocp-indent/vim'
 endfunction
 
 " Ale settings
@@ -83,11 +79,6 @@ let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_set_highlights = 1
 let g:ale_cpp_cpplint_options = '--linelength=100'
 
-" Neomake settings
-let g:neomake_cpp_clang_args = ['-std=c++14']
-let g:neomake_python_enabled_makers = ['flake8', 'pyflakes', 'vulture']
-let g:neomake_open_list = 2
-
 " IndentLine settings
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#09AA08'
@@ -102,14 +93,16 @@ let g:pandoc#formatting#textwidth = 100
 let g:pandoc#completion#bib#use_preview = 1
 let g:pandoc#command#autoexec_on_writes = 0
 let g:pandoc#command#autoexec_command = 'make'
-let g:pandoc#modules#disabled = ["folding"]
+let g:pandoc#modules#disabled = ['folding']
 
 " Vimtex settings
-let g:tex_flavor = "latex"
-let g:tex_conceal = ""
-let g:vimtex_compiler_progname = "nvr"
+let g:tex_flavor = 'latex'
+let g:tex_conceal = ''
+let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_complete_recursive_bib = 1
 let g:vimtex_complete_enabled = 1
+let g:vimtex_quickfix_method = 'pplatex'
+let g:vimtex_quickfix_mode = 0
 
 " Ultisnips settings
 let g:UltiSnipsExpandTrigger = '<c-j>'
@@ -123,7 +116,7 @@ let g:syntastic_ocaml_checkers=['merlin','caml4po']
 let g:vimfiler_as_default_explorer = 1
 
 " Undotree settings
-if has("persistent_undo")
+if has('persistent_undo')
   set undodir=~/.undodir/
   set undofile
 endif
@@ -193,7 +186,7 @@ let g:tagbar_type_elixir = {
       \ }
 
 " Racer settings
-let g:racer_cmd = "/usr/bin/racer"
+let g:racer_cmd = '/usr/bin/racer'
 
 " Gitgutter settings
 set updatetime=500
@@ -218,7 +211,7 @@ augroup color_tweaks
 augroup END
 
 " Slime settings
-let g:slime_target = "tmux"
+let g:slime_target = 'tmux'
 
 " FZF settings
 let g:fzf_colors =
@@ -240,10 +233,10 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 
 " Startify settings
 let g:startify_list_order = [
-      \ ['Update'], 'commands', 
-      \ ['Recent Files in Directory'], 'dir', 
-      \ ['Recent Files'], 'files', 
-      \ ['Bookmarks'], 'bookmarks', 
+      \ ['Update'], 'commands',
+      \ ['Recent Files in Directory'], 'dir',
+      \ ['Recent Files'], 'files',
+      \ ['Bookmarks'], 'bookmarks',
       \ ['Sessions'], 'sessions']
 let g:startify_commands = [
       \ {'u': ['Update plugins', ':PlugUpdate']},
@@ -268,21 +261,21 @@ let g:deoplete#max_abbr_width = 0
 let g:deoplete#max_menu_width = 0
 let g:deoplete#skip_chars = ['(', ')', '<', '>']
 let g:deoplete#ignore_sources = {
-  \ 'python': ['neoinclude']
-  \}
+      \ 'python': ['neoinclude']
+      \}
 
 let g:deoplete#sources#jedi#server_timeout = 60
 
 let g:deoplete#omni#input_patterns = {
-  \  'ocaml': '[^ ,;\t\[()\]]',
-  \  'markdown': '@',
-  \  'pandoc': '@',
-  \  'scala': [
-  \ '[^. *\t]\.\w*',       
-  \ '[:\[,] ?\w*',         
-  \ '^import .*'           
-  \] 
-  \}
+      \  'ocaml': '[^ ,;\t\[()\]]',
+      \  'markdown': '@',
+      \  'pandoc': '@',
+      \  'scala': [
+      \ '[^. *\t]\.\w*',
+      \ '[:\[,] ?\w*',
+      \ '^import .*'
+      \]
+      \}
 
 let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 " YCM Semantic trigger regexes for use with deoplete if necessary
@@ -316,41 +309,41 @@ let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
 " LanguageClient Settings
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ 'python': ['pyls'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'ocaml': ['ocaml-language-server', '--stdio'],
-    \ 'go': ['~/go/bin/go-langserver'],
-    \ 'haskell': ['hie', '--lsp'],
-    \ }
+      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+      \ 'python': ['pyls'],
+      \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'typescript': ['javascript-typescript-stdio'],
+      \ 'ocaml': ['ocaml-language-server', '--stdio'],
+      \ 'go': ['~/go/bin/go-langserver'],
+      \ 'haskell': ['hie', '--lsp'],
+      \ }
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsDisplay = {
-    \ 1: {
-    \     "name": "Error",
-    \     "texthl": "ALEError",
-    \     "signText": "✖",
-    \     "signTexthl": "ALEErrorSign"
-    \ },
-    \ 2: {
-    \     "name": "Warning",
-    \     "texthl": "ALEWarning",
-    \     "signText": "➤",
-    \     "signTexthl": "ALEWarningSign"
-    \ },
-    \ 3: {
-    \     "name": "Information",
-    \     "texthl": "LanguageClientInformation",
-    \     "signText": "i",
-    \     "signTexthl": "SignInformation"
-    \ },
-    \ 4: {
-    \     "name": "Hint",
-    \     "texthl": "LanguageClientHint",
-    \     "signText": ".",
-    \     "signTexthl": "SignHint"
-    \ }
-  \ }
+      \ 1: {
+      \     'name': 'Error',
+      \     'texthl': 'ALEError',
+      \     'signText': '✖',
+      \     'signTexthl': 'ALEErrorSign'
+      \ },
+      \ 2: {
+      \     'name': 'Warning',
+      \     'texthl': 'ALEWarning',
+      \     'signText': '➤',
+      \     'signTexthl': 'ALEWarningSign'
+      \ },
+      \ 3: {
+      \     'name': 'Information',
+      \     'texthl': 'LanguageClientInformation',
+      \     'signText': 'i',
+      \     'signTexthl': 'SignInformation'
+      \ },
+      \ 4: {
+      \     'name': 'Hint',
+      \     'texthl': 'LanguageClientHint',
+      \     'signText': '.',
+      \     'signTexthl': 'SignHint'
+      \ }
+      \ }
 
 let g:LanguageClient_signColumnAlwaysOn = 0
 let g:LanguageClient_diagnosticsEnable = 0
@@ -382,8 +375,16 @@ let g:prosession_on_startup = 0
 let g:goldenview__enable_default_mapping = 0
 let g:goldenview__enable_at_startup = 0
 
+" Neoformat settings
+let g:neoformat_python_yapf = {
+      \ 'exe': 'yapf',
+      \ 'stdin': 1,
+      \ 'args': ["--style='{based_on_style: chromium, indent_width: 2, column_limit: 100}'"]
+      \}
+let g:neoformat_basic_format_trim = 1
+
 " Custom commands
-call ConfigInc("commands.vim")
+call ConfigInc('commands.vim')
 
 " General settings
 call ConfigInc('settings.vim')
