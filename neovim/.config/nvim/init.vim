@@ -233,10 +233,10 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 
 " Startify settings
 let g:startify_list_order = [
-      \ ['Update'], 'commands', 
-      \ ['Recent Files in Directory'], 'dir', 
-      \ ['Recent Files'], 'files', 
-      \ ['Bookmarks'], 'bookmarks', 
+      \ ['Update'], 'commands',
+      \ ['Recent Files in Directory'], 'dir',
+      \ ['Recent Files'], 'files',
+      \ ['Bookmarks'], 'bookmarks',
       \ ['Sessions'], 'sessions']
 let g:startify_commands = [
       \ {'u': ['Update plugins', ':PlugUpdate']},
@@ -271,10 +271,10 @@ let g:deoplete#omni#input_patterns = {
       \  'markdown': '@',
       \  'pandoc': '@',
       \  'scala': [
-      \ '[^. *\t]\.\w*',       
-      \ '[:\[,] ?\w*',         
-      \ '^import .*'           
-      \] 
+      \ '[^. *\t]\.\w*',
+      \ '[:\[,] ?\w*',
+      \ '^import .*'
+      \]
       \}
 
 let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
@@ -374,6 +374,14 @@ let g:prosession_on_startup = 0
 " GoldenView settings
 let g:goldenview__enable_default_mapping = 0
 let g:goldenview__enable_at_startup = 0
+
+" Neoformat settings
+let g:neoformat_python_yapf = {
+      \ 'exe': 'yapf',
+      \ 'stdin': 1,
+      \ 'args': ["--style='{based_on_style: chromium, indent_width: 2, column_limit: 100}'"]
+      \}
+let g:neoformat_basic_format_trim = 1
 
 " Custom commands
 call ConfigInc('commands.vim')
