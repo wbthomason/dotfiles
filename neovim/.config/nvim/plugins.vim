@@ -112,7 +112,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'vimwiki/vimwiki'
 
   " Denite
-  Plug 'Shougo/denite.nvim', {'on': 'Denite'}
+  Plug 'Shougo/denite.nvim'
 
   " File explorer
   Plug 'Shougo/unite.vim'
