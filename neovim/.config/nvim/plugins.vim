@@ -49,7 +49,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'yggdroot/indentLine'
 
   " Comments
-  "Plug 'scrooloose/nerdcommenter'
   Plug 'tpope/vim-commentary'
 
   " Wrapping/delimiters
@@ -63,7 +62,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Searching
   Plug 'haya14busa/incsearch.vim'
-  Plug 'pgdouyon/vim-evanesco'
   Plug 'brooth/far.vim'
 
   " Yank highlighting
@@ -121,7 +119,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Git
   Plug 'tpope/vim-fugitive'
-  " Plug 'chemzqm/vim-easygit', {'on': ['Gadd', 'Gcd', 'Glcd', 'Gcommit', 'Gblame', 'Gstatus', 'Gdiff', 'Gbrowse']}
   Plug 'junegunn/gv.vim'
   Plug 'airblade/vim-gitgutter'
   Plug 'jreybert/vimagit', {'on': 'Magit'}
@@ -131,7 +128,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Completion
   Plug 'Shougo/deoplete.nvim'
   Plug 'Shougo/neco-syntax'
-  " Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/context_filetype.vim'
   Plug 'ervandew/supertab'
   Plug 'Shougo/echodoc.vim'
@@ -157,20 +153,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   
   " Python
   Plug 'fisadev/vim-isort', {'for': 'python'}
-  " Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
   " Rust
   Plug 'rust-lang/rust.vim', {'for': 'rust'}
-  " Plug 'racer-rust/vim-racer', {'for': 'rust'}
 
   " C/C++
   Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}
   
-  " Unreal Engine
-  Plug 'idbrii/vim-unreal'
-
   " Go
-  " Plug 'zchee/deoplete-go', {'for': 'go'}
   Plug 'fatih/vim-go', {'for': 'go'}
 
   " C#
@@ -202,20 +192,13 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 
   " JS
-  " Plug 'marijnh/tern_for_vim', {'for': 'javascript'}
   Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-  " Plug 'wookiehangover/jshint.vim', {'for': 'javascript'}
-  " Plug 'carlitux/deoplete-ternjs', {'for': 'javascript'}
 
   " Idris
   Plug 'idris-hackers/idris-vim', {'for': 'idris'}
 
   " Haskell
   Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
-  " neco-ghc and ghcmod-vim require vimproc
-  " Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-  " Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
-  " Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
   Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
 
   " Vimscript
@@ -241,7 +224,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " LaTeX
   Plug 'lervag/vimtex'
-  "Plug 'poppyschmo/deoplete-latex', {'for': 'tex'}
 
   " Torch
   Plug 'jakezhaojb/vim-torch-snipmate', {'for': 'lua'}

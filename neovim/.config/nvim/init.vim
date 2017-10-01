@@ -383,6 +383,9 @@ let g:neoformat_python_yapf = {
       \}
 let g:neoformat_basic_format_trim = 1
 
+" IncSearch settings
+let g:incsearch#auto_nohlsearch = 1
+
 " Custom commands
 call ConfigInc('commands.vim')
 

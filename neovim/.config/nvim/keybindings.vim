@@ -5,7 +5,6 @@ let mapleader = "\<space>"
 let maplocalleader = "\<cr>"
 
 " General editing bindings
-nnoremap <leader>th :nohl<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :qa<CR>
 nnoremap <leader>x :x<CR>
@@ -25,6 +24,12 @@ nnoremap <leader>tu :UndotreeToggle<CR>
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 
 " Configuration bindings
 nnoremap <leader>o :so %<CR>
