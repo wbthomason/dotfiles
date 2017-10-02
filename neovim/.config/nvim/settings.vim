@@ -37,7 +37,6 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set viminfo^=%
 set hidden
-" set bg=dark
 set nofoldenable
 set guicursor=n-v-c-sm:block-blinkon1,i-ci-ve:ver25-blinkon1,r-cr-o:hor20-blinkon1
 set guifont=Fura\ Code\ Retina\ Nerd\ Font\ Complete\ 7

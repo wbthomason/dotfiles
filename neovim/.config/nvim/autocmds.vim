@@ -15,17 +15,6 @@ augroup main_aucommands
   \| endif
 augroup END
 
-"augroup neomake_aucommands
-  "au!
-  "au BufWritePost * Neomake
-  "au BufRead * Neomake
-  "autocmd ColorScheme *
-    "\ hi NeomakeErrorSign guifg=#bf616a |
-    "\ hi NeomakeWarningSign guifg=#ebcb8b |
-    "\ hi NeomakeInfoSign guifg=#eceff4 |
-    "\ hi NeomakeMessageSign guifg=#88c0d0 |
-"augroup END
-
 augroup ale_colors
   au!
   autocmd ColorScheme *

@@ -204,12 +204,10 @@ let g:goyo_width = 110
 
 " Colorscheme
 colorscheme tender
+
 " Highlighting tweaks
 highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#D8DEE9 guibg=NONE | highlight LineNr guifg=#777777
-highlight Visual guifg=NONE ctermfg=NONE guibg=#747474 ctermbg=0 gui=NONE cterm=NONE 
-
-" Slime settings
-let g:slime_target = 'tmux'
+highlight Visual guifg=NONE ctermfg=NONE guibg=#747474 ctermbg=0 gui=NONE cterm=NONE
 
 " FZF settings
 let g:fzf_colors =
@@ -351,8 +349,6 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " SuperTab settings
-" let g:SuperTabMappingForward = '<s-tab>'
-" let g:SuperTabMappingBackward = '<tab>'
 let g:SuperTabDefaultCompletionType = '<c-n>'
 
 " Vim-qf settings
