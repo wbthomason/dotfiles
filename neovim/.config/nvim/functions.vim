@@ -14,3 +14,10 @@ function! Writer_checks_off()
   execute ":GrammarousReset"
   execute ":DittoOff"
 endfunction
+
+function! TrimGuideDisplay()
+  let g:leaderGuide#displayname =
+        \ substitute(g:leaderGuide#displayname, '\c<cr>$', '', '')
+  let g:leaderGuide#displayname = 
+        \ substitute(g:leaderGuide#displayname, '^<Plug>', '', '')
+endfunction

@@ -203,12 +203,10 @@ let g:vimwiki_global_ext = 0
 let g:goyo_width = 110
 
 " Colorscheme
-colorscheme hybrid
+colorscheme tender
 " Highlighting tweaks
-augroup color_tweaks
-  autocmd!
-  autocmd ColorScheme * highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#D8DEE9 guibg=NONE | highlight LineNr guifg=#777777
-augroup END
+highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#D8DEE9 guibg=NONE | highlight LineNr guifg=#777777
+highlight Visual guifg=NONE ctermfg=NONE guibg=#747474 ctermbg=0 gui=NONE cterm=NONE 
 
 " Slime settings
 let g:slime_target = 'tmux'
@@ -385,6 +383,9 @@ let g:neoformat_basic_format_trim = 1
 
 " IncSearch settings
 let g:incsearch#auto_nohlsearch = 1
+
+" Leader Guide settings
+let g:leaderGuide_displayfunc = [function('TrimGuideDisplay')]
 
 " Custom commands
 call ConfigInc('commands.vim')
