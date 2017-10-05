@@ -126,7 +126,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-git', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
 
   " Completion
-  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'Shougo/neco-syntax'
   Plug 'Shougo/context_filetype.vim'
   Plug 'ervandew/supertab'
