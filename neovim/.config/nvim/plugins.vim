@@ -75,7 +75,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Plug 'wellle/targets.vim'
 
   " Tags
-  Plug 'ludovicchabant/vim-gutentags'
+  " Slow to load, so we use an autocommand after Vim starts
+  Plug 'ludovicchabant/vim-gutentags', {'on': []}
   Plug 'majutsushi/tagbar'
 
   " File opening/fuzzy finding
@@ -101,10 +102,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " REPL
   Plug 'hkupty/iron.nvim'
+  Plug 'metakirby5/codi.vim'
 
   " Color schemes
   Plug 'rafi/awesome-vim-colorschemes'
-  Plug 'jacoborus/tender.vim'
 
   " Journaling
   Plug 'vimwiki/vimwiki'
@@ -153,6 +154,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   
   " Python
   Plug 'fisadev/vim-isort', {'for': 'python'}
+  Plug 'vim-scripts/python_match.vim', {'for': 'python'}
 
   " Rust
   Plug 'rust-lang/rust.vim', {'for': 'rust'}

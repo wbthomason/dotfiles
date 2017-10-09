@@ -13,6 +13,7 @@ augroup main_aucommands
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
   \| endif
+  \| call plug#load('vim-gutentags')
 augroup END
 
 augroup ale_colors
