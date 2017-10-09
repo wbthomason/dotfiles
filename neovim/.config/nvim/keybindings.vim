@@ -177,6 +177,9 @@ let g:allmaps[' '] = g:lmaps
 let g:allmaps[','] = g:llmaps
 let g:allmaps[',']['name'] = '<localleader>'
 
+" UltiSnips bindings
+inoremap <silent> <C-j> <C-r>=LoadUltiSnips()<cr>
+
 call leaderGuide#register_prefix_descriptions('', 'g:allmaps')
 call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
 nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>

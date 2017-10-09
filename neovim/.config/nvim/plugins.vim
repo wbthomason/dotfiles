@@ -27,7 +27,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'mhinz/vim-startify'
 
   " Snippets
-  Plug 'SirVer/ultisnips'
+  Plug 'SirVer/ultisnips', {'on':[]}
   Plug 'honza/vim-snippets'
 
   " Status line
