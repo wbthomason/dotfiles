@@ -98,8 +98,7 @@
                                       autothemer
                                       dash
                                       base16-theme
-                                      pretty-mode
-                                      frames-only-mode)
+                                      pretty-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -578,7 +577,6 @@
   (setq theming-modifications '((base16-tomorrow-night
                                         (font-latex-bold-face :weight bold)
                                         (font-latex-italic-face :slant italic))))
-  (frames-only-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
