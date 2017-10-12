@@ -35,7 +35,7 @@ let g:lmaps.b.b = ['Buffers', 'Select a buffer']
 
 " Configuration bindings
 let g:lmaps.c = {'name': 'Configuration'}
-nnoremap <leader>co :so %<CR>
+nnoremap <leader>cs :so %<CR>
 let g:lmaps.c.o = ['so %', 'Source current file']
 nnoremap <leader>cc :e ~/.config/nvim/init.vim<CR>
 let g:lmaps.c.c = ['e ~/.config/nvim/init.vim', 'Open Neovim config']
