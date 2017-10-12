@@ -34,6 +34,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 
+  " Settings
+  " Plug 'teto/nvim-palette'
+
   " Movement
   Plug 'easymotion/vim-easymotion', {'on': '<Plug>(easymotion' }
   Plug 'rhysd/clever-f.vim'
@@ -180,7 +183,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket']}
   Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
   Plug 'clojure-vim/acid.nvim', {'for': 'clojure'}
-  Plug 'SevereOverfl0w/async-clj-omni', {'for': 'clojure'}
+  Plug 'clojure-vim/async-clj-omni', {'for': 'clojure'}
 
   " Pandoc/Markdown
   Plug 'vim-pandoc/vim-pandoc', {'for': ['markdown', 'pandoc', 'markdown.pandoc']}
