@@ -109,6 +109,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Color schemes
   Plug 'rafi/awesome-vim-colorschemes'
+  Plug '~/projects/personal/dark-enough'
 
   " Journaling
   Plug 'vimwiki/vimwiki'
@@ -130,11 +131,14 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-git', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
 
   " Completion
-  Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
   Plug 'Shougo/neco-syntax'
   Plug 'Shougo/context_filetype.vim'
   Plug 'ervandew/supertab'
   Plug 'Shougo/echodoc.vim'
+  Plug 'roxma/nvim-completion-manager'
+
+  " Github
+  Plug 'roxma/ncm-github', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
 
   " Checkers
   Plug 'vim-syntastic/syntastic', {'for': ['clojure', 'idris']}
@@ -163,13 +167,13 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
   " C/C++
-  Plug 'tweekmonster/deoplete-clang2', {'for': ['c', 'cpp']}
+  Plug 'roxma/ncm-clang', {'for': ['c', 'cpp']}
   
   " Go
   Plug 'fatih/vim-go', {'for': 'go'}
 
   " C#
-  Plug 'dimixar/deoplete-omnisharp', {'for': 'cs'}
+  " Plug 'dimixar/deoplete-omnisharp', {'for': 'cs'}
   Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
 
   " Java
@@ -198,6 +202,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " JS
   Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+  Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 
   " Idris
   Plug 'idris-hackers/idris-vim', {'for': 'idris'}
@@ -218,14 +223,18 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Less
   Plug 'groenewege/vim-less', {'for': 'less'}
 
+  " CSS
+  Plug 'calebeby/ncm-css', {'for': 'css'}
+
   " Lua
   Plug 'tbastos/vim-lua', {'for': 'lua'}
 
   " Elm
   Plug 'lambdatoast/elm.vim', {'for': 'elm'}
+  Plug 'roxma/ncm-elm-oracle', {'for': 'elm'}
 
   " OCaml
-  Plug 'rgrinberg/vim-ocaml', {'for': 'ocaml'}
+  Plug 'rgrinberg/vim-ocaml', {'for': ['ocaml', 'jbuild']}
 
   " LaTeX
   Plug 'lervag/vimtex'

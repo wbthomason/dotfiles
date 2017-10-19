@@ -203,10 +203,13 @@ let g:vimwiki_global_ext = 0
 let g:goyo_width = 110
 
 " Colorscheme
+set termguicolors
+set background=dark
 colorscheme tender
 
+
 " Highlighting tweaks
-highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#D8DEE9 guibg=NONE | highlight LineNr guifg=#777777
+highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#B8BEC9 guibg=NONE | highlight LineNr guifg=#777777
 highlight Visual guifg=NONE ctermfg=NONE guibg=#747474 ctermbg=0 gui=NONE cterm=NONE
 
 " FZF settings
@@ -250,30 +253,17 @@ let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 
-" Deoplete settings
-let g:deoplete#enable_at_startup = 0
-let g:deoplete#auto_complete_delay = 100
-let g:deoplete#max_abbr_width = 0
-let g:deoplete#max_menu_width = 0
-let g:deoplete#skip_chars = ['(', ')', '<', '>']
-let g:deoplete#ignore_sources = {
-      \ 'python': ['neoinclude']
-      \}
+" let g:deoplete#omni#input_patterns = {
+"       \  'markdown': '@',
+"       \  'pandoc': '@',
+"       \  'scala': [
+"       \ '[^. *\t]\.\w*',
+"       \ '[:\[,] ?\w*',
+"       \ '^import .*'
+"       \]
+"       \}
 
-let g:deoplete#sources#jedi#server_timeout = 60
-
-let g:deoplete#omni#input_patterns = {
-      \  'ocaml': '[^ ,;\t\[()\]]',
-      \  'markdown': '@',
-      \  'pandoc': '@',
-      \  'scala': [
-      \ '[^. *\t]\.\w*',
-      \ '[:\[,] ?\w*',
-      \ '^import .*'
-      \]
-      \}
-
-let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
+" let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 " YCM Semantic trigger regexes for use with deoplete if necessary
 "let g:ycm_semantic_triggers =  {
 "\   'c' : ['->', '.'],
@@ -382,6 +372,9 @@ let g:incsearch#auto_nohlsearch = 1
 
 " Leader Guide settings
 let g:leaderGuide_displayfunc = [function('TrimGuideDisplay')]
+
+" Iron settings
+let g:iron_repl_open_cmd = 'vsplit'
 
 " Custom commands
 call ConfigInc('commands.vim')

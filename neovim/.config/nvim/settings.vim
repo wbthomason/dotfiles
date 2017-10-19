@@ -19,7 +19,6 @@ set noerrorbells
 set novisualbell
 set ignorecase
 set smartcase
-set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set tabstop=4
@@ -42,3 +41,4 @@ set guicursor=n-v-c-sm:block-blinkon1,i-ci-ve:ver25-blinkon1,r-cr-o:hor20-blinko
 set guifont=Fura\ Code\ Retina\ Nerd\ Font\ Complete\ 7
 set encoding=utf-8
 set ttyfast
+set shortmess+=c

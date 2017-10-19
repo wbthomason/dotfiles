@@ -8,7 +8,7 @@ augroup main_aucommands
     \ endif
   au BufWinEnter * checktime
   au CompleteDone * pclose
-  au InsertEnter * call deoplete#enable()
+  " au InsertEnter * call deoplete#enable()
   au VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
@@ -41,7 +41,7 @@ augroup END
 augroup haskell_aucommands
   au!
   au FileType haskell setlocal omnifunc=necoghc#omnifunc
-  au CursorHold,CursorHoldI *.hs :InteroType
+  " au CursorHold,CursorHoldI *.hs :InteroType
   au! BufWritePost *.hs InteroReload
 augroup END
 
@@ -70,4 +70,17 @@ augroup END
 augroup vimfiler_aucommands
   au!
   au FileType vimfiler nmap <buffer> i :VimFilerPrompt<CR>
+augroup END
+
+augroup ncm_aucommands
+  au!
+  au User CmSetup call cm#register_source({
+          \ 'name' : 'vimtex',
+          \ 'priority': 8,
+          \ 'scoping': 1,
+          \ 'scopes': ['tex'],
+          \ 'abbreviation': 'tex',
+          \ 'cm_refresh_patterns': g:vimtex#re#ncm,
+          \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
+          \ })
 augroup END
