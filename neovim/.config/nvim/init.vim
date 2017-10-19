@@ -302,6 +302,7 @@ let g:LanguageClient_serverCommands = {
       \ 'ocaml': ['ocaml-language-server', '--stdio'],
       \ 'go': ['~/go/bin/go-langserver'],
       \ 'haskell': ['hie', '--lsp'],
+      \ 'lua': ['lua-lsp'],
       \ }
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_diagnosticsDisplay = {
