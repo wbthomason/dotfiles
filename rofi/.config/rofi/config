@@ -1,9 +1,12 @@
 ! "Font to use" Set from: Default
 rofi.font:                           Fira Code 11
 rofi.color-enabled: true
-rofi.color-window: #dd273238, #dd273238, #dd273238
-rofi.color-normal: #dd273238, #ddc1c1c1, #dd273238, #dd394249, #ddffffff
-rofi.color-active: #dd273238, #dd80cbc4, #dd273238, #dd394249, #dd80cbc4
-rofi.color-urgent: #dd273238, #ddff1844, #dd273238, #dd394249, #ddff1844
+rofi.color-window: #cc32302f, #a89984, #a89984
+rofi.color-normal: #cc32302f, #ebdbb2, #3c3836, #665c54, #fbf1c7
+rofi.color-active: #ccd79921, #32302f, #d79921, #fabd2f, #32302f
+rofi.color-urgent: #cccc241d, #32302f, #cc241d, #fb4934, #32302f
 rofi.terminal: konsole
-rofi.separator-style none
+rofi.separator-style: none
+rofi.show-icons: true
+rofi.fake-transparency: true
+rofi.matching: fuzzy
