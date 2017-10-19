@@ -16,6 +16,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Registers
   Plug 'junegunn/vim-peekaboo' 
 
+  " Marks
+  Plug 'kshenoy/vim-signature'
+
   " Quickfix
   Plug 'romainl/vim-qf'
   Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
