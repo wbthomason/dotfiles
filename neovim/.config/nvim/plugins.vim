@@ -138,6 +138,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'Shougo/context_filetype.vim'
   Plug 'ervandew/supertab'
   Plug 'Shougo/echodoc.vim'
+  Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp']}
   Plug 'roxma/nvim-completion-manager'
 
   " Github
