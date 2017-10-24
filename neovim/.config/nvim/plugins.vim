@@ -111,8 +111,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'metakirby5/codi.vim'
 
   " Color schemes
-  Plug 'rafi/awesome-vim-colorschemes'
-  Plug '~/projects/personal/dark-enough'
+  " Plug 'rafi/awesome-vim-colorschemes'
+  Plug 'chriskempson/base16-vim'
 
   " Journaling
   Plug 'vimwiki/vimwiki'

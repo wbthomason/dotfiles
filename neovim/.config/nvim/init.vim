@@ -47,6 +47,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline_theme = 'tomorrow'
 
 " Opam/OCaml settings
 " These take time, so we only want to run them if we're editing OCaml
@@ -205,7 +206,7 @@ let g:goyo_width = 110
 " Colorscheme
 set termguicolors
 set background=dark
-colorscheme tender
+colorscheme base16-tomorrow-night
 
 
 " Highlighting tweaks
@@ -375,7 +376,7 @@ let g:incsearch#auto_nohlsearch = 1
 let g:leaderGuide_displayfunc = [function('TrimGuideDisplay')]
 
 " Iron settings
-let g:iron_repl_open_cmd = 'vsplit'
+" let g:iron_repl_open_cmd = 'vsplit'
 
 " Custom commands
 call ConfigInc('commands.vim')
