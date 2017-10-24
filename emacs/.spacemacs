@@ -78,7 +78,7 @@
      theming
      (auto-completion :variables auto-completion-enable-snippets-in-popup t)
      better-defaults
-     tabbar
+     ;; tabbar
      git
      (shell :variables
             shell-default-height 30
