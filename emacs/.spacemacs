@@ -510,56 +510,56 @@
   (defvaralias 'c-basic-offset 'default-tab-width)
   (defvaralias 'cperl-indent-level 'default-tab-width)
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-  ;; Tabbar settings
-  (set-face-attribute
-   'tabbar-default nil
-   :background "gray20"
-   :foreground "gray20"
-   :box '(:line-width 1 :color "gray20" :style nil))
-  (set-face-attribute
-   'tabbar-unselected nil
-   :background "gray30"
-   :foreground "white"
-   :box '(:line-width 5 :color "gray30" :style nil))
-  (set-face-attribute
-   'tabbar-selected nil
-   :background "gray75"
-   :foreground "black"
-   :box '(:line-width 5 :color "gray75" :style nil))
-  (set-face-attribute
-   'tabbar-highlight nil
-   :background "white"
-   :foreground "black"
-   :underline nil
-   :box '(:line-width 5 :color "white" :style nil))
-  (set-face-attribute
-   'tabbar-button nil
-   :box '(:line-width 1 :color "gray20" :style nil))
-  (set-face-attribute
-   'tabbar-separator nil
-   :background "gray20"
-   :height 0.6)
+ ;;  ;; Tabbar settings
+ ;;  (set-face-attribute
+ ;;   'tabbar-default nil
+ ;;   :background "gray20"
+ ;;   :foreground "gray20"
+ ;;   :box '(:line-width 1 :color "gray20" :style nil))
+ ;;  (set-face-attribute
+ ;;   'tabbar-unselected nil
+ ;;   :background "gray30"
+ ;;   :foreground "white"
+ ;;   :box '(:line-width 5 :color "gray30" :style nil))
+ ;;  (set-face-attribute
+ ;;   'tabbar-selected nil
+ ;;   :background "gray75"
+ ;;   :foreground "black"
+ ;;   :box '(:line-width 5 :color "gray75" :style nil))
+ ;;  (set-face-attribute
+ ;;   'tabbar-highlight nil
+ ;;   :background "white"
+ ;;   :foreground "black"
+ ;;   :underline nil
+ ;;   :box '(:line-width 5 :color "white" :style nil))
+ ;;  (set-face-attribute
+ ;;   'tabbar-button nil
+ ;;   :box '(:line-width 1 :color "gray20" :style nil))
+ ;;  (set-face-attribute
+ ;;   'tabbar-separator nil
+ ;;   :background "gray20"
+ ;;   :height 0.6)
 
-  ;; Change padding of the tabs
-  ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
-  (custom-set-variables
-   '(tabbar-separator (quote (0.5))))
-  ;; adding spaces
-  (defun tabbar-buffer-tab-label (tab)
-    "Return a label for TAB.
- That is, a string used to represent it on the tab bar."
-    (let ((label  (if tabbar--buffer-show-groups
-                      (format "[%s]  " (tabbar-tab-tabset tab))
-                    (format "%s  " (tabbar-tab-value tab)))))
-      ;; Unless the tab bar auto scrolls to keep the selected tab
-      ;; visible, shorten the tab label to keep as many tabs as possible
-      ;; in the visible area of the tab bar.
-      (if tabbar-auto-scroll-flag
-          label
-        (tabbar-shorten
-         label (max 1 (/ (window-width)
-                         (length (tabbar-view
-                                  (tabbar-current-tabset)))))))))
+ ;;  ;; Change padding of the tabs
+ ;;  ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
+ ;;  (custom-set-variables
+ ;;   '(tabbar-separator (quote (0.5))))
+ ;;  ;; adding spaces
+ ;;  (defun tabbar-buffer-tab-label (tab)
+ ;;    "Return a label for TAB.
+ ;; That is, a string used to represent it on the tab bar."
+ ;;    (let ((label  (if tabbar--buffer-show-groups
+ ;;                      (format "[%s]  " (tabbar-tab-tabset tab))
+ ;;                    (format "%s  " (tabbar-tab-value tab)))))
+ ;;      ;; Unless the tab bar auto scrolls to keep the selected tab
+ ;;      ;; visible, shorten the tab label to keep as many tabs as possible
+ ;;      ;; in the visible area of the tab bar.
+ ;;      (if tabbar-auto-scroll-flag
+ ;;          label
+ ;;        (tabbar-shorten
+ ;;         label (max 1 (/ (window-width)
+ ;;                         (length (tabbar-view
+ ;;                                  (tabbar-current-tabset)))))))))
 
   (defun find-git-dir (dir)
     "Search up the directory tree looking for a .git folder."
@@ -570,13 +570,13 @@
      ((file-exists-p (concat dir "/.git")) dir)
      (t (find-git-dir (directory-file-name (file-name-directory dir))))))
 
-  (defun git-tabbar-buffer-groups ()
-    "Groups tabs in tabbar-mode by the git repository they are in."
-    (list (find-git-dir (buffer-file-name (current-buffer)))))
-  (setq tabbar-buffer-groups-function 'git-tabbar-buffer-groups)
-  (setq theming-modifications '((base16-tomorrow-night
-                                        (font-latex-bold-face :weight bold)
-                                        (font-latex-italic-face :slant italic))))
+  ;; (defun git-tabbar-buffer-groups ()
+  ;;   "Groups tabs in tabbar-mode by the git repository they are in."
+  ;;   (list (find-git-dir (buffer-file-name (current-buffer)))))
+  ;; (setq tabbar-buffer-groups-function 'git-tabbar-buffer-groups)
+  ;; (setq theming-modifications '((base16-tomorrow-night
+  ;;                                       (font-latex-bold-face :weight bold)
+  ;;                                       (font-latex-italic-face :slant italic))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
