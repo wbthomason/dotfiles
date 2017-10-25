@@ -76,6 +76,7 @@
      typography
      colors
      theming
+     pdf-tools
      (auto-completion :variables auto-completion-enable-snippets-in-popup t)
      better-defaults
      ;; tabbar
@@ -97,7 +98,7 @@
    dotspacemacs-additional-packages '(keychain-environment
                                       autothemer
                                       dash
-                                      base16-theme
+                                      helm-ls-git
                                       pretty-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -170,7 +171,7 @@
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(base16-tomorrow-night)
+   dotspacemacs-themes '(sanityinc-tomorrow-night)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -351,6 +352,7 @@
   (pretty-activate-groups
    '(:sub-and-superscripts :greek :arithmetic-nary))
   (global-prettify-symbols-mode 1)
+  (add-hook 'pdf-tools-enabled-hook linum-mode)
   ;;; Fira code
   ;; This works when using emacs --daemon + emacsclient
   (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
@@ -390,7 +392,7 @@
               ("\\(->>\\)"                   #Xe115)
               ("\\(-<\\)"                    #Xe116)
               ("\\(-<<\\)"                   #Xe117)
-              ("\\(-~\\)"                    #Xe118)
+
               ("\\(#{\\)"                    #Xe119)
               ("\\(#\\[\\)"                  #Xe11a)
               ("\\(##\\)"                    #Xe11b)
@@ -483,7 +485,6 @@
 
   (add-hook 'prog-mode-hook
             #'add-fira-code-symbol-keywords)
-  (global-unset-key "\C-a")
   (setq-default fill-column 100)
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (defun turn-on-highlight-indentation-mode ()
@@ -493,8 +494,6 @@
   (define-globalized-minor-mode global-highlight-indentation-mode
     highlight-indentation-mode turn-on-highlight-indentation-mode)
 
-  ;; (global-highlight-indentation-mode 1)
-
   (defun turn-on-highlight-column-indentation-mode ()
     (interactive)
     (highlight-indentation-current-column-mode 1))
@@ -502,64 +501,12 @@
   (define-globalized-minor-mode global-highlight-indentation-current-column-mode
     highlight-indentation-current-column-mode turn-on-highlight-column-indentation-mode)
 
-  ;; (global-highlight-indentation-current-column-mode 1)
-
   (setq-default default-tab-width 2)
   (setq-default python-indent-offset 2)
   (setq-default tab-width 2)
   (defvaralias 'c-basic-offset 'default-tab-width)
   (defvaralias 'cperl-indent-level 'default-tab-width)
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
- ;;  ;; Tabbar settings
- ;;  (set-face-attribute
- ;;   'tabbar-default nil
- ;;   :background "gray20"
- ;;   :foreground "gray20"
- ;;   :box '(:line-width 1 :color "gray20" :style nil))
- ;;  (set-face-attribute
- ;;   'tabbar-unselected nil
- ;;   :background "gray30"
- ;;   :foreground "white"
- ;;   :box '(:line-width 5 :color "gray30" :style nil))
- ;;  (set-face-attribute
- ;;   'tabbar-selected nil
- ;;   :background "gray75"
- ;;   :foreground "black"
- ;;   :box '(:line-width 5 :color "gray75" :style nil))
- ;;  (set-face-attribute
- ;;   'tabbar-highlight nil
- ;;   :background "white"
- ;;   :foreground "black"
- ;;   :underline nil
- ;;   :box '(:line-width 5 :color "white" :style nil))
- ;;  (set-face-attribute
- ;;   'tabbar-button nil
- ;;   :box '(:line-width 1 :color "gray20" :style nil))
- ;;  (set-face-attribute
- ;;   'tabbar-separator nil
- ;;   :background "gray20"
- ;;   :height 0.6)
-
- ;;  ;; Change padding of the tabs
- ;;  ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
- ;;  (custom-set-variables
- ;;   '(tabbar-separator (quote (0.5))))
- ;;  ;; adding spaces
- ;;  (defun tabbar-buffer-tab-label (tab)
- ;;    "Return a label for TAB.
- ;; That is, a string used to represent it on the tab bar."
- ;;    (let ((label  (if tabbar--buffer-show-groups
- ;;                      (format "[%s]  " (tabbar-tab-tabset tab))
- ;;                    (format "%s  " (tabbar-tab-value tab)))))
- ;;      ;; Unless the tab bar auto scrolls to keep the selected tab
- ;;      ;; visible, shorten the tab label to keep as many tabs as possible
- ;;      ;; in the visible area of the tab bar.
- ;;      (if tabbar-auto-scroll-flag
- ;;          label
- ;;        (tabbar-shorten
- ;;         label (max 1 (/ (window-width)
- ;;                         (length (tabbar-view
- ;;                                  (tabbar-current-tabset)))))))))
 
   (defun find-git-dir (dir)
     "Search up the directory tree looking for a .git folder."
@@ -569,14 +516,6 @@
      ((string= dir "/") "no-git")
      ((file-exists-p (concat dir "/.git")) dir)
      (t (find-git-dir (directory-file-name (file-name-directory dir))))))
-
-  ;; (defun git-tabbar-buffer-groups ()
-  ;;   "Groups tabs in tabbar-mode by the git repository they are in."
-  ;;   (list (find-git-dir (buffer-file-name (current-buffer)))))
-  ;; (setq tabbar-buffer-groups-function 'git-tabbar-buffer-groups)
-  ;; (setq theming-modifications '((base16-tomorrow-night
-  ;;                                       (font-latex-bold-face :weight bold)
-  ;;                                       (font-latex-italic-face :slant italic))))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -586,8 +525,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-term-color-vector
-   [unspecified "#1d1f21" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#81a2be" "#c5c8c6"] t)
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
