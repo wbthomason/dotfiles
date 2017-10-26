@@ -214,6 +214,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Haskell
   Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
   Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
+  Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 
   " Vimscript
   Plug 'Shougo/neco-vim', {'for': 'vim'}
