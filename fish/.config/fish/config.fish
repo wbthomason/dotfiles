@@ -42,6 +42,8 @@ alias git 'hub'
 
 # ROS
 bass source /opt/ros/lunar/setup.bash
+set -xg ROS_HOSTNAME localhost
+set -xg ROS_MASTER_URI http://localhost:11311
 
 # Tmux
 if not set -q TMUX
