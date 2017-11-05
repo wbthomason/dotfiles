@@ -57,6 +57,7 @@ function! Setup_Ocaml()
   execute 'set rtp+=' . g:opamshare . '/merlin/vim'
   execute 'helptags ' . g:opamshare . '/merlin/vim/doc'
   execute 'set rtp^=' . g:opamshare . '/ocp-indent/vim'
+  execute 'set rtp+=' . g:opamshare . '/ocp-index/vim'
 endfunction
 
 " Ale settings
