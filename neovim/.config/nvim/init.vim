@@ -379,6 +379,9 @@ let g:leaderGuide_displayfunc = [function('TrimGuideDisplay')]
 " Iron settings
 " let g:iron_repl_open_cmd = 'vsplit'
 
+" Clever-F settings
+let g:clever_f_fix_key_direction = 1
+
 " Custom commands
 call ConfigInc('commands.vim')
 
