@@ -145,7 +145,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'roxma/ncm-github', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
 
   " Checkers
-  Plug 'vim-syntastic/syntastic', {'for': ['clojure', 'idris']}
+  Plug 'vim-syntastic/syntastic', {'for': 'clojure'}
   Plug 'w0rp/ale'
 
   " Async building & commands
