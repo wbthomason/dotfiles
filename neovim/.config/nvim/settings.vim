@@ -37,7 +37,6 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 set viminfo^=%
 set hidden
 set nofoldenable
-set guicursor=n-v-c-sm:block-blinkon1,i-ci-ve:ver25-blinkon1,r-cr-o:hor20-blinkon1
 set guifont=Fura\ Code\ Retina\ Nerd\ Font\ Complete\ 7
 set encoding=utf-8
 set ttyfast
