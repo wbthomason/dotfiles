@@ -14,6 +14,7 @@ augroup main_aucommands
   \|   PlugInstall --sync | q
   \| endif
   \| call plug#load('vim-gutentags')
+  au FileType qf setlocal wrap
 augroup END
 
 augroup ale_colors
