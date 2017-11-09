@@ -68,6 +68,11 @@ nnoremap <leader>fi :Rg
 let g:lmaps.f.i = ['Rg', 'Search for text in files in the current directory']
 nnoremap <leader>fl :Lines<CR>
 let g:lmaps.f.l = ['Lines', 'Search for text in currently open buffers']
+let g:lmaps.f.s = {'name': 'Symbols'}
+nnoremap <silent> <leader>fsb :call LanguageClient_textDocument_documentSymbol()<CR>
+let g:lmaps.f.s.b = ['call LanguageClient_textDocument_documentSymbol()', 'Search symbols in the current buffer']
+nnoremap <silent> <leader>fsp :call LanguageClient_workspace_symbol()<CR>
+let g:lmaps.f.s.p = ['call LanguageClient_workspace_symbol()', 'Search symbols in the current project']
 
 " Toggles
 let g:lmaps.t = {'name': 'Toggles'}
@@ -147,6 +152,15 @@ nnoremap <leader>hid :InteroGoToDef<CR>
 let g:lmaps.h.i.d = ['InteroGoToDef', 'Go to definition from Intero']
 nnoremap <leader>hiu :InteroUses<CR>
 let g:lmaps.h.i.u = ['InteroUses', 'Find uses with Intero']
+
+" LanguageClient bindings
+let g:lmaps.l = {'name': 'LSP'}
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <leader>ln :call LanguageClient_textDocument_rename()<CR>
+let g:lmaps.l.n = ['call LanguageClient_textDocument_rename()', 'Rename symbol']
+nnoremap <silent> <leader>lr :call LanguageClient_textDocument_references()<CR>
+let g:lmaps.l.r = ['call LanguageClient_textDocument_references()', 'Find symbol references']
 
 " Easy-Align bindings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
