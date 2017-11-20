@@ -39,7 +39,7 @@ client.urgent #cc3 #cc3 #fa3 #cc3
 
 
 # start a terminal
-bindsym $mod+t exec konsole
+bindsym $mod+t exec "kitty --session ~/fish.kitty-session"
 
 # kill focused window
 bindsym $mod+Shift+q kill
