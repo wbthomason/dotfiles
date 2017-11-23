@@ -4,6 +4,9 @@ DefaultProfile=Default.profile
 [Favorite Profiles]
 Favorites=Default.profile
 
+[KonsoleWindow]
+ShowMenuBarByDefault=false
+
 [MainWindow]
 Height 1920=1880
 MenuBar=Disabled
