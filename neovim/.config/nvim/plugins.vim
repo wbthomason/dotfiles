@@ -128,6 +128,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Git
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
   Plug 'junegunn/gv.vim'
   Plug 'airblade/vim-gitgutter'
   Plug 'jreybert/vimagit', {'on': 'Magit'}
