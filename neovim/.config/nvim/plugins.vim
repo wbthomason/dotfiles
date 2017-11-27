@@ -129,7 +129,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim'
   Plug 'airblade/vim-gitgutter'
-  Plug 'jreybert/vimagit', {'on': 'Magit'}
   Plug 'rhysd/committia.vim', {'for': 'gitcommit'}
   Plug 'tpope/vim-git', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
 
