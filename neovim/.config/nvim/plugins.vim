@@ -96,6 +96,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
   Plug 'dbmrq/vim-ditto', {'on': ['DittoOn', 'ToggleDitto']}
   Plug 'reedes/vim-wordy', {'on': 'Wordy'}
+  Plug 'reedes/vim-pencil', {'on': 'Pencil'}
 
   " Special symbols
   Plug 'chrisbra/unicode.vim'
@@ -127,6 +128,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Git
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
   Plug 'junegunn/gv.vim'
   Plug 'airblade/vim-gitgutter'
   Plug 'rhysd/committia.vim', {'for': 'gitcommit'}
