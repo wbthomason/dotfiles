@@ -50,16 +50,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_theme = 'tomorrow'
 
-" Opam/OCaml settings
-" These take time, so we only want to run them if we're editing OCaml
-function! Setup_Ocaml()
-  let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-  execute 'set rtp+=' . g:opamshare . '/merlin/vim'
-  execute 'helptags ' . g:opamshare . '/merlin/vim/doc'
-  execute 'set rtp^=' . g:opamshare . '/ocp-indent/vim'
-  execute 'set rtp+=' . g:opamshare . '/ocp-index/vim'
-endfunction
-
 " Ale settings
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '➤'
