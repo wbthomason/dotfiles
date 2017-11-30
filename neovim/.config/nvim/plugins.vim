@@ -280,7 +280,3 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tweekmonster/startuptime.vim'
 
 call plug#end()
-
-" Required:
-filetype plugin indent on
-syntax enable
