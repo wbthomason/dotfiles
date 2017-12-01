@@ -246,46 +246,6 @@ let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 
-" let g:deoplete#omni#input_patterns = {
-"       \  'markdown': '@',
-"       \  'pandoc': '@',
-"       \  'scala': [
-"       \ '[^. *\t]\.\w*',
-"       \ '[:\[,] ?\w*',
-"       \ '^import .*'
-"       \]
-"       \}
-
-" let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
-" YCM Semantic trigger regexes for use with deoplete if necessary
-"let g:ycm_semantic_triggers =  {
-"\   'c' : ['->', '.'],
-"\   'objc' : ['->', '.'],
-"\   'ocaml' : ['.', '#'],
-"\   'cpp,objcpp' : ['->', '.', '::'],
-"\   'perl' : ['->'],
-"\   'php' : ['->', '::'],
-"\   'cs,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-"\   'java,jsp' : ['.'],
-"\   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-"\   'ruby' : ['.', '::'],
-"\   'lua' : ['.', ':'],
-"\   'erlang' : [':'],
-"\   'tex': [
-"\ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-"\ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-"\ 're!\\hyperref\[[^]]*',
-"\ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-"\ 're!\\(include(only)?|input){[^}]*',
-"\ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
-"\ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
-"\ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
-"\ ],
-"\  'markdown': ['@'],
-"\  'pandoc': ['@'],
-"\  'haskell': ['.']
-"\ }
-
 " LanguageClient Settings
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
