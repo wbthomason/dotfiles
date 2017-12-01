@@ -23,15 +23,6 @@ function! TrimGuideDisplay()
 endfunction
 
 
-" These take time, so we only want to run them if we're editing OCaml
-function! Setup_Ocaml()
-  let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-  execute 'set rtp+=' . g:opamshare . '/merlin/vim'
-  execute 'helptags ' . g:opamshare . '/merlin/vim/doc'
-  execute 'set rtp^=' . g:opamshare . '/ocp-indent/vim'
-  execute 'set rtp+=' . g:opamshare . '/ocp-index/vim'
-endfunction
-
 " Stolen from https://github.com/saaguero/dotvim
 function! LoadUltiSnips()
   let l:curpos = getcurpos()

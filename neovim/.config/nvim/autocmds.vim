@@ -52,10 +52,6 @@ augroup tex_aucommands
   au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
 augroup END
 
-augroup ocaml_aucommands
-  au FileType ocaml call Setup_Ocaml()
-augroup END
-
 augroup misc_lang_aucommands
   au!
   au BufNewFile,BufFilePre,BufRead *.rs,Cargo.toml set makeprg=cargo\ build
