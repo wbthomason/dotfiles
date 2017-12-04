@@ -119,13 +119,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Journaling
   Plug 'vimwiki/vimwiki'
 
-  " Denite
-  Plug 'Shougo/denite.nvim'
-
   " File explorer
-  Plug 'Shougo/unite.vim'
-  Plug 'Shougo/vimfiler.vim'
-  Plug 'romgrk/vimfiler-prompt'
+  Plug 'justinmk/vim-dirvish'
 
   " Git
   Plug 'tpope/vim-fugitive'
