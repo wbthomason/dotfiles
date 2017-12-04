@@ -41,7 +41,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Plug 'teto/nvim-palette'
 
   " Movement
-  Plug 'easymotion/vim-easymotion', {'on': '<Plug>(easymotion' }
+  Plug 'yangmillstheory/vim-snipe'
   Plug 'rhysd/clever-f.vim'
   Plug 'chaoren/vim-wordmotion'
 
