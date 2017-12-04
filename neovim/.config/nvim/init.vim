@@ -198,7 +198,7 @@ let g:goyo_width = 110
 " Colorscheme
 set termguicolors
 set background=dark
-colorscheme base16-tomorrow-night
+colorscheme hybrid
 
 
 " Highlighting tweaks

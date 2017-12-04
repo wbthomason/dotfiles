@@ -113,7 +113,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Color schemes
   " Plug 'rafi/awesome-vim-colorschemes'
-  Plug 'chriskempson/base16-vim'
+  " Plug 'chriskempson/base16-vim'
+  Plug 'w0ng/vim-hybrid'
 
   " Journaling
   Plug 'vimwiki/vimwiki'
