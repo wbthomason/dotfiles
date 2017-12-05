@@ -315,6 +315,11 @@ let g:neoformat_python_yapf = {
       \ 'stdin': 1,
       \ 'args': ["--style='{based_on_style: chromium, indent_width: 2, column_limit: 100}'"]
       \}
+let g:neoformat_ocaml_ocamlformat = {
+        \ 'exe': 'ocamlformat',
+        \ 'args': ['--inplace', '-m 100'],
+        \ 'replace': 1,
+\ }
 let g:neoformat_basic_format_trim = 1
 
 " IncSearch settings
