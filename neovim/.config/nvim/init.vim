@@ -234,7 +234,7 @@ let g:goyo_width = 110
 " Colorscheme
 set termguicolors
 set background=dark
-colorscheme hybrid
+colorscheme base16-tomorrow-night
 
 " Highlighting tweaks
 highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#B8BEC9 guibg=NONE | highlight LineNr guifg=#777777
