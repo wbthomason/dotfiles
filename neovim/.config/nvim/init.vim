@@ -198,8 +198,7 @@ let g:goyo_width = 110
 " Colorscheme
 set termguicolors
 set background=dark
-colorscheme base16-tomorrow-night
-
+colorscheme hybrid
 
 " Highlighting tweaks
 highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#B8BEC9 guibg=NONE | highlight LineNr guifg=#777777
@@ -333,6 +332,9 @@ let g:leaderGuide_displayfunc = [function('TrimGuideDisplay')]
 
 " Clever-F settings
 let g:clever_f_fix_key_direction = 1
+
+" Echodoc settings
+let g:echodoc#enable_at_startup = 1
 
 " Custom commands
 call ConfigInc('commands.vim')

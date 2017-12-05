@@ -41,7 +41,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Plug 'teto/nvim-palette'
 
   " Movement
-  Plug 'easymotion/vim-easymotion', {'on': '<Plug>(easymotion' }
+  Plug 'yangmillstheory/vim-snipe'
   Plug 'rhysd/clever-f.vim'
   Plug 'chaoren/vim-wordmotion'
 
@@ -113,18 +113,14 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Color schemes
   " Plug 'rafi/awesome-vim-colorschemes'
-  Plug 'chriskempson/base16-vim'
+  " Plug 'chriskempson/base16-vim'
+  Plug 'w0ng/vim-hybrid'
 
   " Journaling
   Plug 'vimwiki/vimwiki'
 
-  " Denite
-  Plug 'Shougo/denite.nvim'
-
   " File explorer
-  Plug 'Shougo/unite.vim'
-  Plug 'Shougo/vimfiler.vim'
-  Plug 'romgrk/vimfiler-prompt'
+  Plug 'justinmk/vim-dirvish'
 
   " Git
   Plug 'tpope/vim-fugitive'
