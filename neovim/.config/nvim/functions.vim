@@ -29,15 +29,10 @@ function! LightlineReadonly()
 endfunction
 
 function! LightlineFilename()
-  let fname = expand('%:t')
-  return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
-        \ fname =~ '__Gundo\|NERD_tree' ? '' :
-        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ &ft == 'unite' ? unite#get_status_string() :
-        \ &ft == 'vimshell' ? vimshell#get_status_string() :
+  let l:fname = expand('%:t')
+  return l:fname == '__Tagbar__' ? g:lightline.fname :
         \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != l:fname ? l:fname : '[No Name]') .
         \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
 endfunction
 
@@ -58,9 +53,11 @@ function! LightlineFiletype()
 endfunction
 
 function! LightlineBuffers()
-   " return lightline#bufferline#buffers() . (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() : '')
    let l:bfs = lightline#bufferline#buffers()
    call map(l:bfs, {ind, val -> len(val) ? [fnamemodify(val[0], ':t') . ' ' . WebDevIconsGetFileTypeSymbol(val[0])] : []})
+   if l:bfs[1] == []
+    let l:bfs[1] = ['Startify ' . WebDevIconsGetFileTypeSymbol('startify')]
+   endif
    return l:bfs
 endfunction
 
