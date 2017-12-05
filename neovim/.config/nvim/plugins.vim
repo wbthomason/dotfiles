@@ -30,11 +30,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'honza/vim-snippets'
 
   " Status line
-  " Plug 'vim-airline/vim-airline'
-  " Plug 'vim-airline/vim-airline-themes'
-  Plug 'itchyny/lightline.vim'
-  Plug 'maximbaz/lightline-ale'
-  Plug 'mgee/lightline-bufferline'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 
   " Movement
   Plug 'yangmillstheory/vim-snipe'
@@ -106,8 +103,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Color schemes
   " Plug 'rafi/awesome-vim-colorschemes'
-  " Plug 'chriskempson/base16-vim'
-  Plug 'w0ng/vim-hybrid'
+  Plug 'chriskempson/base16-vim'
+  " Plug 'w0ng/vim-hybrid'
 
   " Journaling
   Plug 'vimwiki/vimwiki'
