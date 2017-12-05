@@ -7,9 +7,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Mappings
   Plug 'hecal3/vim-leader-guide'
 
-  " Windows
-  Plug 'zhaocai/GoldenView.Vim'
-  
   " Paren matching
   Plug 'itchyny/vim-parenmatch'
 
@@ -20,7 +17,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'kshenoy/vim-signature'
 
   " Quickfix
-  Plug 'romainl/vim-qf'
   Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
 
   " Buffer management
@@ -30,15 +26,15 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'mhinz/vim-startify'
 
   " Snippets
-  Plug 'SirVer/ultisnips', {'on':[]}
+  Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
 
   " Status line
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-
-  " Settings
-  " Plug 'teto/nvim-palette'
+  " Plug 'vim-airline/vim-airline'
+  " Plug 'vim-airline/vim-airline-themes'
+  Plug 'itchyny/lightline.vim'
+  Plug 'maximbaz/lightline-ale'
+  Plug 'mgee/lightline-bufferline'
 
   " Movement
   Plug 'yangmillstheory/vim-snipe'
@@ -78,7 +74,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'sbdchd/neoformat'
 
   " Text objects
-  " Plug 'wellle/targets.vim'
+  Plug 'wellle/targets.vim'
 
   " Tags
   " Slow to load, so we use an autocommand after Vim starts
@@ -93,9 +89,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Writing
   Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
   Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
-  Plug 'rhysd/vim-grammarous', {'on': 'GrammarousCheck'}
   Plug 'dbmrq/vim-ditto', {'on': ['DittoOn', 'ToggleDitto']}
-  Plug 'reedes/vim-wordy', {'on': 'Wordy'}
   Plug 'reedes/vim-pencil', {'on': 'Pencil'}
 
   " Special symbols
@@ -103,7 +97,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Project Management
   Plug 'airblade/vim-rooter'
-  Plug 'tpope/vim-projectionist'
   Plug 'tpope/vim-obsession'
   Plug 'dhruvasagar/vim-prosession'
 
@@ -142,7 +135,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'roxma/ncm-github', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
 
   " Checkers
-  Plug 'vim-syntastic/syntastic', {'for': 'clojure'}
   Plug 'w0rp/ale'
 
   " Async building & commands
@@ -165,28 +157,24 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'vim-scripts/python_match.vim', {'for': 'python'}
 
   " Rust
-  Plug 'rust-lang/rust.vim', {'for': 'rust'}
+  " Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
   " C/C++
   Plug 'roxma/ncm-clang', {'for': ['c', 'cpp']}
   
   " Go
-  Plug 'fatih/vim-go', {'for': 'go'}
+  " Plug 'fatih/vim-go', {'for': 'go'}
 
   " C#
-  " Plug 'dimixar/deoplete-omnisharp', {'for': 'cs'}
-  Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
+  " Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
 
   " Java
-  Plug 'artur-shaik/vim-javacomplete2', {'for': 'java'}
+  Plug 'sassanh/nvim-cm-eclim', {'for': 'java'}
 
   " Clojure
-  Plug 'venantius/vim-eastwood', {'for': 'clojure'}
   Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
-  Plug 'guns/vim-clojure-static', {'for': 'clojure'}
-  Plug 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket']}
-  Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket']}
-  Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
+  Plug 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
+  Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
   Plug 'clojure-vim/acid.nvim', {'for': 'clojure'}
   Plug 'clojure-vim/async-clj-omni', {'for': 'clojure'}
 
@@ -216,15 +204,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Vimscript
   Plug 'Shougo/neco-vim', {'for': 'vim'}
 
-  " Coffeescript
-  Plug 'kchmck/vim-coffee-script', {'for': 'coffeescript'}
-
-  " Jade
-  Plug 'digitaltoad/vim-jade', {'for': 'jade'}
-
-  " Less
-  Plug 'groenewege/vim-less', {'for': 'less'}
-
   " CSS
   Plug 'calebeby/ncm-css', {'for': 'css'}
 
@@ -241,15 +220,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   " LaTeX
   Plug 'lervag/vimtex'
 
-  " Torch
-  Plug 'jakezhaojb/vim-torch-snipmate', {'for': 'lua'}
-
   " Elixir
   Plug 'elixir-lang/vim-elixir', {'for': ['elixir', 'eelixir']}
   Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'eelixir']}
 
   " Scala
-  Plug 'derekwyatt/vim-scala', {'for': 'scala'}
   Plug 'ensime/ensime-vim', {'for': 'scala'}
 
   " TypeScript
@@ -268,9 +243,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Pretty pretty symbols
   Plug 'ryanoasis/vim-devicons'
-
-  " Gui
-  Plug 'equalsraf/neovim-gui-shim'
 
   " Profiling
   Plug 'tweekmonster/startuptime.vim'
