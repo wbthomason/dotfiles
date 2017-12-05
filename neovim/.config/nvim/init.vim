@@ -42,17 +42,11 @@ let g:EclimCompletionMethod = 'omnifunc'
 " Rainbow parens settings
 let g:rainbow_active = 1
 
-" Airline settings
-" let g:airline_powerline_fonts = 1
-" " Enable the list of buffers
-" let g:airline#extensions#tabline#enabled = 1
-" " Show just the filename
-" let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline_theme = 'tomorrow'
+" Lightline settings
 let g:lightline = {
       \ 'component': {
       \   'lineinfo': ' %3l:%-2v',
-      \   'tagbar': '%{tagbar#currenttag("[%s]", "", "f")}'
+      \   'tagbar': '%{tagbar#currenttag("[%s]", "", "fs")}'
       \ },
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
@@ -70,7 +64,7 @@ let g:lightline.component_function = {
       \ 'fileformat': 'LightlineFileformat',
       \ 'filetype': 'LightlineFiletype',
       \ 'readonly': 'LightlineReadonly'}
-let g:lightline.colorscheme = 'Tomorrow_Night'
+let g:lightline.colorscheme = 'Goodnight'
 let g:lightline.tabline = {'left': [['buffers']], 'right': []}
 let g:lightline.component_expand = {
       \  'linter_warnings': 'lightline#ale#warnings',
@@ -85,7 +79,7 @@ let g:lightline.component_type = {
       \ }
 let g:lightline#bufferline#unicode_symbols = 1
 let g:lightline#bufferline#unnamed = '[No Name]'
-let g:lightline#bufferline#shorten_path = 0
+let g:lightline#bufferline#shorten_path = 1
 " let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#ale#indicator_warnings = '⚠'
 let g:lightline#ale#indicator_errors = '⨉'
