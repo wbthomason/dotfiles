@@ -71,6 +71,7 @@ let g:ale_linters = {
 let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_set_highlights = 1
 let g:ale_cpp_cpplint_options = '--linelength=100'
+let g:ale_linter_aliases = {'pandoc': ['markdown']}
 
 " IndentLine settings
 let g:indentLine_color_term = 239
