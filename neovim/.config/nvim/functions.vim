@@ -56,7 +56,8 @@ function! LightlineBuffers()
    let l:bfs = lightline#bufferline#buffers()
    call map(l:bfs, {ind, val -> len(val) ? [fnamemodify(val[0], ':t') . ' ' . WebDevIconsGetFileTypeSymbol(val[0])] : []})
    if l:bfs[1] == []
-    let l:bfs[1] = ['Startify ' . WebDevIconsGetFileTypeSymbol('startify')]
+     let l:fname = (&filetype ==? 'startify') ? 'Startify' : ''
+     let l:bfs[1] = [l:fname . ' ' . WebDevIconsGetFileTypeSymbol(l:fname)]
    endif
    return l:bfs
 endfunction
