@@ -43,12 +43,53 @@ let g:EclimCompletionMethod = 'omnifunc'
 let g:rainbow_active = 1
 
 " Airline settings
-let g:airline_powerline_fonts = 1
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+" let g:airline_powerline_fonts = 1
+" " Enable the list of buffers
+" let g:airline#extensions#tabline#enabled = 1
+" " Show just the filename
+" let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline_theme = 'tomorrow'
+let g:lightline = {
+      \ 'component': {
+      \   'lineinfo': ' %3l:%-2v',
+      \   'tagbar': '%{tagbar#currenttag("[%s]", "", "f")}'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+let g:lightline.active = {
+      \ 'left': [['mode','paste'], ['fugitive', 'filename']],
+      \ 'right': [
+      \ [ 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \ ['lineinfo', 'percent'],
+      \ ['filetype'],
+      \ ['tagbar']]}
+let g:lightline.component_function = {
+      \ 'fugitive': 'LightlineFugitive',
+      \ 'filename': 'LightlineFilename',
+      \ 'fileformat': 'LightlineFileformat',
+      \ 'filetype': 'LightlineFiletype',
+      \ 'readonly': 'LightlineReadonly'}
+let g:lightline.colorscheme = 'Tomorrow_Night'
+let g:lightline.tabline = {'left': [['buffers']], 'right': []}
+let g:lightline.component_expand = {
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \  'buffers': 'LightlineBuffers',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'buffers': 'tabsel'
+      \ }
+let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#unnamed = '[No Name]'
+let g:lightline#bufferline#shorten_path = 0
+" let g:lightline#bufferline#filename_modifier = ':t'
+let g:lightline#ale#indicator_warnings = '⚠'
+let g:lightline#ale#indicator_errors = '⨉'
+let g:lightline#ale#indicator_ok = '⬥ ok'
 
 " Ale settings
 let g:ale_sign_error = '✖'
@@ -60,10 +101,10 @@ let g:ale_lint_on_enter = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-call airline#parts#define_function('ALE', 'ALEGetStatusLine')
-call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
-let g:airline_section_error = airline#section#create_right(['ALE'])
-let g:airline#extensions#ale#enabled = 1
+" call airline#parts#define_function('ALE', 'ALEGetStatusLine')
+" call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+" let g:airline_section_error = airline#section#create_right(['ALE'])
+" let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
       \ 'haskell': ['hdevtools', 'hlint'],
       \ 'cpp': ['clang', 'clangcheck', 'cppcheck', 'cpplint']
@@ -304,10 +345,6 @@ let g:easygit_enable_command = 1
 " Prosession settings
 let g:prosession_tmux_title = 1
 let g:prosession_on_startup = 0
-
-" GoldenView settings
-let g:goldenview__enable_default_mapping = 0
-let g:goldenview__enable_at_startup = 0
 
 " Neoformat settings
 let g:neoformat_python_yapf = {
