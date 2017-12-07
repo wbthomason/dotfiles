@@ -123,7 +123,7 @@ nnoremap <leader>ms :BuildItStatus<CR>
 let g:lmaps.m.s = ['BuildItStatus', 'Check the BuildIt status']
 
 " REPL and Terminal bindings
-tnoremap <LocalLeader><Esc> <C-\><C-n>
+tnoremap jj <C-\><C-n>
 nnoremap <leader>r :IronRepl<CR>
 let g:lmaps.r = ['IronRepl', 'Start the REPL for the current filetype']
 
