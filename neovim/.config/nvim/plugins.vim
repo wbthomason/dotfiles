@@ -17,6 +17,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'kshenoy/vim-signature'
 
   " Quickfix
+  Plug 'romainl/vim-qf'
   Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
 
   " Buffer management
