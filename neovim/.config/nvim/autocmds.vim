@@ -85,6 +85,15 @@ augroup ncm_aucommands
           \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
           \ })
   au User CmSetup call cm#register_source({
+          \ 'name' : 'pandoc',
+          \ 'priority': 8,
+          \ 'scoping': 1,
+          \ 'scopes': ['pandoc'],
+          \ 'abbreviation': 'pandoc',
+          \ 'cm_refresh_patterns': '@',
+          \ 'cm_refresh': {'omnifunc': 'pandoc#completion#Complete'},
+          \ })
+  au User CmSetup call cm#register_source({
           \ 'name' : 'neco-ghc',
           \ 'priority': 8,
           \ 'scoping': 1,
