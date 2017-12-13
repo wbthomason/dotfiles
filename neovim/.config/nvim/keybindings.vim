@@ -162,6 +162,10 @@ let g:lmaps.l.n = ['call LanguageClient_textDocument_rename()', 'Rename symbol']
 nnoremap <silent> <leader>lr :call LanguageClient_textDocument_references()<CR>
 let g:lmaps.l.r = ['call LanguageClient_textDocument_references()', 'Find symbol references']
 
+" Formatting Bindings
+nnoremap <leader> bf :Neoformat<CR>
+let g:lmaps.b.f = ['Neoformat', 'Format buffer with Neoformat']
+
 " Easy-Align bindings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
