@@ -41,6 +41,13 @@ let g:EclimCompletionMethod = 'omnifunc'
 
 " Rainbow parens settings
 let g:rainbow_active = 1
+let g:rainbow_conf = {
+      \	'separately': {
+      \		'ocaml': {
+      \			'parentheses': ['start=/(\*\@!/ end=/)/ fold contains=@colorableGroup'],
+      \		}
+      \	}
+      \}
 
 " Airline settings
 let g:airline_powerline_fonts = 1
