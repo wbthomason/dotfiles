@@ -4,6 +4,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Utilities
   
+  " Tweaks
+  Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-repeat'
+
   " Mappings
   Plug 'hecal3/vim-leader-guide'
 
@@ -27,7 +31,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'mhinz/vim-startify'
 
   " Snippets
-  Plug 'SirVer/ultisnips'
+  " Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
 
   " Status line
@@ -73,6 +77,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Text objects
   Plug 'wellle/targets.vim'
+  Plug 'vim-scripts/argtextobj.vim'
 
   " Tags
   " Slow to load, so we use an autocommand after Vim starts
@@ -107,8 +112,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'chriskempson/base16-vim'
   " Plug 'w0ng/vim-hybrid'
 
-  " Journaling
+  " Notes/Wiki
   Plug 'vimwiki/vimwiki'
+  Plug 'jceb/vim-orgmode'
+  Plug 'vim-scripts/SyntaxRange'
+  Plug 'dhruvasagar/vim-table-mode', {'for': ['markdown', 'pandoc', 'markdown.pandoc']}
 
   " File explorer
   Plug 'justinmk/vim-dirvish'
@@ -140,7 +148,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-dispatch'
   Plug 'radenling/vim-dispatch-neovim'
 
-  " Refactoring
+  " Block manipulation
+  Plug 'kana/vim-niceblock'
   Plug 'lgalke/splitjoin.vim'
   Plug 'machakann/vim-swap'
   Plug 'zirrostig/vim-schlepp'
@@ -236,8 +245,9 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'wilriker/vim-fish', {'for': 'fish'}
 
   " Coq
-  Plug 'let-def/vimbufsync', {'for': 'coq'}
-  Plug 'the-lambda-church/coquille', {'for': 'coq'}
+  Plug 'epdtry/neovim-coq', {'for': 'coq'}
+  " Plug 'let-def/vimbufsync', {'for': 'coq'}
+  " Plug 'the-lambda-church/coquille', {'for': 'coq'}
 
   " Pretty pretty symbols
   Plug 'ryanoasis/vim-devicons'

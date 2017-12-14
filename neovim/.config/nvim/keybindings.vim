@@ -4,6 +4,9 @@
 let mapleader = "\<space>"
 let maplocalleader = ","
 
+" More convenient ESC
+inoremap jj <ESC>
+
 " Setup descriptions
 let g:lmaps = {}
 let g:llmaps = {}

@@ -357,6 +357,10 @@ let g:clever_f_fix_key_direction = 1
 " Echodoc settings
 let g:echodoc#enable_at_startup = 1
 
+" Table-mode settings
+let g:table_mode_corner_corner = '+'
+let g:table_mode_header_fillchar = '='
+
 " Custom commands
 call ConfigInc('commands.vim')
 
