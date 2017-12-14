@@ -41,6 +41,13 @@ let g:EclimCompletionMethod = 'omnifunc'
 
 " Rainbow parens settings
 let g:rainbow_active = 1
+let g:rainbow_conf = {
+      \	'separately': {
+      \		'ocaml': {
+      \			'parentheses': ['start=/(\*\@!/ end=/)/ fold contains=@colorableGroup'],
+      \		}
+      \	}
+      \}
 
 " Airline settings
 let g:airline_powerline_fonts = 1
@@ -100,13 +107,11 @@ let g:indentLine_faster = 1
 
 " Pandoc settings
 let g:pandoc#syntax#conceal#use = 1
-let g:pandoc#after#modules#enabled = ['ultisnips', 'unite']
+let g:pandoc#after#modules#enabled = ['ultisnips', 'supertab']
 let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 100
 let g:pandoc#completion#bib#use_preview = 1
-let g:pandoc#command#autoexec_on_writes = 0
-let g:pandoc#command#autoexec_command = 'make'
-let g:pandoc#modules#disabled = ['folding']
+let g:pandoc#modules#disabled = ['folding', 'commands', 'templates', 'formatting']
 
 " Vimtex settings
 let g:tex_flavor = 'latex'
