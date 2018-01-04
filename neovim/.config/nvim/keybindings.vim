@@ -229,3 +229,12 @@ nmap <leader><leader>x <Plug>(snipe-f-x)
 nmap <leader><leader>X <Plug>(snipe-F-x)
 nmap <leader><leader>r <Plug>(snipe-f-r)
 nmap <leader><leader>R <Plug>(snipe-F-r)
+
+" Make Backspace and Enter more useful
+nnoremap <BS> {
+onoremap <BS> {
+vnoremap <BS> {
+
+nnoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
+onoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
+vnoremap <CR> }

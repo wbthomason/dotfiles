@@ -6,6 +6,7 @@ set autoread
 set autochdir
 set tw=100
 set formatoptions+=t
+set formatoptions+=j
 set so=7
 set wildignore=*.o,*~,*.pyc
 set backspace=eol,start,indent
