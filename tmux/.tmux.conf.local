@@ -96,8 +96,8 @@ tmux_conf_theme_status_attr='none'
 tmux_conf_theme_window_status_fg='#8a8a8a'              # light gray
 tmux_conf_theme_window_status_bg='#080808'              # dark gray
 tmux_conf_theme_window_status_attr='none'
-tmux_conf_theme_window_status_format='#I #W'
-#tmux_conf_theme_window_status_format='#{circled_window_index} #W'
+tmux_conf_theme_window_status_format=' #I | #W '
+# tmux_conf_theme_window_status_format='#{circled_window_index} #W'
 #tmux_conf_theme_window_status_format='#I #W#{?window_bell_flag,🔔,}#{?window_zoomed_flag,🔍,}'
 
 # window current status style
@@ -106,9 +106,9 @@ tmux_conf_theme_window_status_format='#I #W'
 tmux_conf_theme_window_status_current_fg='#000000'      # black
 tmux_conf_theme_window_status_current_bg='#81a1c1'      # light blue
 tmux_conf_theme_window_status_current_attr='bold'
-#tmux_conf_theme_window_status_current_format='#I #W'
+tmux_conf_theme_window_status_current_format='  #I | #W  '
 #tmux_conf_theme_window_status_current_format='#{circled_window_index} #W'
-tmux_conf_theme_window_status_current_format='#I #W#{?window_zoomed_flag,🔍,}'
+# tmux_conf_theme_window_status_current_format='#I #W#{?window_zoomed_flag,🔍,}'
 
 # window activity status style
 tmux_conf_theme_window_status_activity_fg='default'
@@ -125,11 +125,11 @@ tmux_conf_theme_window_status_last_fg='#00afff'         # light blue
 tmux_conf_theme_window_status_last_bg='default'
 tmux_conf_theme_window_status_last_attr='none'
 
-# status left/right sections separators
-tmux_conf_theme_left_separator_main=''
-tmux_conf_theme_left_separator_sub='|'
-tmux_conf_theme_right_separator_main=''
-tmux_conf_theme_right_separator_sub='|'
+# # status left/right sections separators
+# tmux_conf_theme_left_separator_main=''
+# tmux_conf_theme_left_separator_sub='|'
+# tmux_conf_theme_right_separator_main=''
+# tmux_conf_theme_right_separator_sub='|'
 tmux_conf_theme_left_separator_main=''  # /!\ you don't need to install powerline
 tmux_conf_theme_left_separator_sub=''   #   you only need fonts patched with
 tmux_conf_theme_right_separator_main='' #   powerline symbols or the standalone
@@ -158,7 +158,7 @@ tmux_conf_theme_right_separator_sub=''  #   PowerlineSymbols.otf font
 #tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
 #tmux_conf_theme_status_right='#{paired}#{?battery_hbar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
 #tmux_conf_theme_status_right='#{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
-tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
+tmux_conf_theme_status_left=' ❐ #S @ #{hostname} | ↑#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
 tmux_conf_theme_status_right='#{paired}#{?battery_hbar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} '
 
 # status left style
@@ -192,8 +192,8 @@ tmux_conf_theme_root_attr='bold,blink'
 # battery bar symbols
 tmux_conf_battery_bar_symbol_full='◼'
 tmux_conf_battery_bar_symbol_empty='◻'
-#tmux_conf_battery_bar_symbol_full='♥'
-#tmux_conf_battery_bar_symbol_empty='·'
+# tmux_conf_battery_bar_symbol_full='♥'
+# tmux_conf_battery_bar_symbol_empty='·'
 
 # battery bar length (in number of symbols), possible values are:
 #   - auto
@@ -273,6 +273,9 @@ bind-key -n C-] send-keys C-l
 
 set -g default-terminal "xterm-256color"
 set-option -ga terminal-overrides "xterm-256color:Tc"
+
+set -g status-justify centre
+setw -g window-status-separator ''
 
 # set -g default-terminal "tmux-256color"
 # set-option -ga terminal-overrides "tmux-256color:Tc"
