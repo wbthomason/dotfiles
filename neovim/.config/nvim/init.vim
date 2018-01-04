@@ -51,14 +51,21 @@ let g:rainbow_conf = {
 
 " Airline settings
 let g:airline_powerline_fonts = 1
+let g:airline_highlighting_cache = 1
 " " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#alt_sep = 1
 " " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+" " ALE integration config
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:airline#extensions#ale#enabled = 1
+" " Explicitly disable some extensions
+let g:airline#extensions#unite#enabled = 0
+let g:airline#extensions#denite#enabled = 0
+let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#bufferline#enabled = 0
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#csv#enabled = 0
@@ -77,7 +84,7 @@ let g:airline#extensions#po#enabled = 0
 let g:airline#extensions#neomake#enabled = 0
 
 " Ale settings
-let g:ale_sign_error = '✖'
+let g:ale_sign_error = '🗙'
 let g:ale_sign_warning = '➤'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:ale_lint_on_save = 1
@@ -208,7 +215,7 @@ let g:racer_cmd = '/usr/bin/racer'
 
 " Gitgutter settings
 set updatetime=500
-let g:gitgutter_sign_modified = '•'
+let g:gitgutter_sign_modified = '＊'
 let g:gitgutter_sign_added = '＋'
 highlight GitGutterAdd guifg = '#A3E28B'
 
@@ -286,7 +293,7 @@ let g:LanguageClient_diagnosticsDisplay = {
       \ 1: {
       \     'name': 'Error',
       \     'texthl': 'ALEError',
-      \     'signText': '✖',
+      \     'signText': '🗙',
       \     'signTexthl': 'ALEErrorSign'
       \ },
       \ 2: {
