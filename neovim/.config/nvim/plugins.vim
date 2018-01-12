@@ -22,21 +22,21 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " Quickfix
   Plug 'romainl/vim-qf'
-  Plug 'Olical/vim-enmasse', {'on': 'EnMasse'}
 
   " Buffer management
-  Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
+  Plug 'mhinz/vim-sayonara'
+  Plug 'danro/rename.vim'
 
   " Startup screen
   Plug 'mhinz/vim-startify'
 
   " Snippets
-  " Plug 'SirVer/ultisnips'
+  Plug 'SirVer/ultisnips', {'on': []}
   Plug 'honza/vim-snippets'
 
   " Status line
-  Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-airline/vim-airline'
 
   " Movement
   Plug 'yangmillstheory/vim-snipe'
@@ -47,7 +47,7 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'christoomey/vim-tmux-navigator'
 
   " Color visualization
-  Plug 'chrisbra/Colorizer', {'on': ['ColorHighlight', 'ColorClear', 'RGB2Term', 'HSL2RGB', 'Term2RGB', 'ColorContrast', 'ColorSwapFgBg', 'ColorToggle']}
+  Plug 'chrisbra/Colorizer'
 
   " Indentation tracking
   Plug 'yggdroot/indentLine'
@@ -56,17 +56,18 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'tpope/vim-commentary'
 
   " Wrapping/delimiters
-  Plug 'tpope/vim-surround'
+  " Plug 'tpope/vim-surround'
+  Plug 'machakann/vim-sandwich'
   Plug 'luochen1990/rainbow'
   Plug 'ozelentok/vim-closer'
   Plug 'tpope/vim-endwise'
 
   " Undo/redo
-  Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
+  Plug 'mbbill/undotree'
 
   " Searching
   Plug 'haya14busa/incsearch.vim'
-  Plug 'brooth/far.vim'
+  " Plug 'pelodelfuego/vim-swoop'
 
   " Yank highlighting
   Plug 'machakann/vim-highlightedyank'
@@ -90,10 +91,8 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
 
   " Writing
-  Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
-  Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
-  Plug 'dbmrq/vim-ditto', {'on': ['DittoOn', 'ToggleDitto']}
-  Plug 'reedes/vim-pencil', {'on': 'Pencil'}
+  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/limelight.vim'
 
   " Special symbols
   Plug 'chrisbra/unicode.vim'
@@ -105,21 +104,37 @@ call plug#begin('~/.local/share/nvim/plugged')
 
   " REPL
   Plug 'hkupty/iron.nvim'
-  Plug 'metakirby5/codi.vim'
 
   " Color schemes
   " Plug 'rafi/awesome-vim-colorschemes'
-  Plug 'chriskempson/base16-vim'
-  " Plug 'w0ng/vim-hybrid'
+  " Plug 'chriskempson/base16-vim'
+  Plug 'w0ng/vim-hybrid'
 
   " Notes/Wiki
   Plug 'vimwiki/vimwiki'
-  Plug 'jceb/vim-orgmode'
   Plug 'vim-scripts/SyntaxRange'
   Plug 'dhruvasagar/vim-table-mode', {'for': ['markdown', 'pandoc', 'markdown.pandoc']}
+  function! BuildComposer(info)
+    if a:info.status != 'unchanged' || a:info.force
+      if has('nvim')
+        !cargo build --release
+      else
+        !cargo build --release --no-default-features --features json-rpc
+      endif
+    endif
+  endfunction
+
+  Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
   " File explorer
-  Plug 'justinmk/vim-dirvish'
+  " Plug 'justinmk/vim-dirvish'
+  Plug 'cocopon/vaffle.vim'
+  " Plug 'Shougo/unite.vim'
+  " Plug 'Shougo/vimfiler.vim'
+  " Plug 'romgrk/vimfiler-prompt'
+
+  " Directory creation
+  Plug 'duggiefresh/vim-easydir'
 
   " Git
   Plug 'tpope/vim-fugitive'
@@ -132,7 +147,6 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Completion
   Plug 'Shougo/neco-syntax'
   Plug 'Shougo/context_filetype.vim'
-  Plug 'ervandew/supertab'
   Plug 'Shougo/echodoc.vim'
   Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp']}
   Plug 'roxma/nvim-completion-manager'
@@ -160,14 +174,11 @@ call plug#begin('~/.local/share/nvim/plugged')
   Plug 'autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'}
   
   " Python
-  Plug 'fisadev/vim-isort', {'for': 'python'}
-  Plug 'vim-scripts/python_match.vim', {'for': 'python'}
-
-  " Rust
-  " Plug 'rust-lang/rust.vim', {'for': 'rust'}
+  Plug 'fisadev/vim-isort'
+  Plug 'vim-scripts/python_match.vim'
 
   " C/C++
-  Plug 'roxma/ncm-clang', {'for': ['c', 'cpp']}
+  Plug 'roxma/ncm-clang'
   
   " Go
   " Plug 'fatih/vim-go', {'for': 'go'}
@@ -176,76 +187,76 @@ call plug#begin('~/.local/share/nvim/plugged')
   " Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
 
   " Java
-  Plug 'sassanh/nvim-cm-eclim', {'for': 'java'}
+  Plug 'sassanh/nvim-cm-eclim'
 
   " Clojure
-  Plug 'venantius/vim-cljfmt', {'for': 'clojure'}
+  Plug 'venantius/vim-cljfmt'
   Plug 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
   Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
-  Plug 'clojure-vim/acid.nvim', {'for': 'clojure'}
-  Plug 'clojure-vim/async-clj-omni', {'for': 'clojure'}
+  " Plug 'clojure-vim/acid.nvim'
+  Plug 'clojure-vim/async-clj-omni'
 
   " Pandoc/Markdown
-  Plug 'vim-pandoc/vim-pandoc', {'for': ['markdown', 'pandoc', 'markdown.pandoc']}
-  Plug 'vim-pandoc/vim-pandoc-syntax', {'for': ['markdown', 'pandoc', 'markdown.pandoc']}
-  Plug 'vim-pandoc/vim-pandoc-after', {'for': ['markdown', 'pandoc', 'markdown.pandoc']}
+  Plug 'vim-pandoc/vim-pandoc'
+  Plug 'vim-pandoc/vim-pandoc-syntax'
+  Plug 'vim-pandoc/vim-pandoc-after'
 
   " TOML
-  Plug 'cespare/vim-toml', {'for': 'toml'}
+  Plug 'cespare/vim-toml'
 
   " Yaml
-  Plug 'stephpy/vim-yaml', {'for': 'yaml'}
+  Plug 'stephpy/vim-yaml'
 
   " JS
-  Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+  Plug 'pangloss/vim-javascript'
   Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 
   " Idris
-  Plug 'idris-hackers/idris-vim', {'for': 'idris'}
+  Plug 'idris-hackers/idris-vim'
 
   " Haskell
-  Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
-  Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
-  Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+  Plug 'neovimhaskell/haskell-vim'
+  Plug 'parsonsmatt/intero-neovim'
+  Plug 'eagletmt/neco-ghc'
 
   " Vimscript
-  Plug 'Shougo/neco-vim', {'for': 'vim'}
+  Plug 'Shougo/neco-vim'
 
   " CSS
-  Plug 'calebeby/ncm-css', {'for': 'css'}
+  Plug 'calebeby/ncm-css'
 
   " Lua
-  Plug 'tbastos/vim-lua', {'for': 'lua'}
+  Plug 'tbastos/vim-lua'
 
   " Elm
-  Plug 'lambdatoast/elm.vim', {'for': 'elm'}
-  Plug 'roxma/ncm-elm-oracle', {'for': 'elm'}
+  Plug 'lambdatoast/elm.vim'
+  Plug 'roxma/ncm-elm-oracle'
 
   " OCaml
-  Plug 'rgrinberg/vim-ocaml', {'for': ['ocaml', 'jbuild']}
+  Plug 'rgrinberg/vim-ocaml'
 
   " LaTeX
   Plug 'lervag/vimtex'
 
   " Elixir
-  Plug 'elixir-lang/vim-elixir', {'for': ['elixir', 'eelixir']}
-  Plug 'slashmili/alchemist.vim', { 'for': ['elixir', 'eelixir']}
+  Plug 'elixir-lang/vim-elixir'
+  Plug 'slashmili/alchemist.vim'
 
   " Scala
   Plug 'ensime/ensime-vim', {'for': 'scala'}
 
   " TypeScript
-  Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
-  Plug 'leafgarland/typescript-vim', {'for': 'typescript'}
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'leafgarland/typescript-vim'
 
   " Racket
-  Plug 'wlangstroth/vim-racket', {'for': 'racket'}
+  Plug 'wlangstroth/vim-racket'
 
   " Fish
-  Plug 'wilriker/vim-fish', {'for': 'fish'}
+  Plug 'wilriker/vim-fish'
 
   " Coq
-  Plug 'epdtry/neovim-coq', {'for': 'coq'}
+  Plug 'epdtry/neovim-coq'
   " Plug 'let-def/vimbufsync', {'for': 'coq'}
   " Plug 'the-lambda-church/coquille', {'for': 'coq'}
 
