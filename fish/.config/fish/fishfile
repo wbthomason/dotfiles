@@ -1,4 +1,3 @@
-oh-my-fish/plugin-archlinux
 fisherman/await
 edc/bass
 fishgretel/fasd
@@ -6,7 +5,3 @@ fisherman/fzf
 fisherman/get
 fisherman/getopts
 fisherman/last_job_id
-oh-my-fish/plugin-localhost
-oh-my-fish/plugin-python
-oh-my-fish/plugin-ssh
-oh-my-fish/plugin-tmux
