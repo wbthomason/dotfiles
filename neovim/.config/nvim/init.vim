@@ -24,7 +24,14 @@ call ConfigInc('autocmds.vim')
 " Keybindings
 call ConfigInc('keybindings.vim')
 
-" Haskell settings
+" Colorscheme
+set termguicolors
+set background=dark
+colorscheme hybrid
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+
+" Haskell 
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -36,10 +43,10 @@ let g:haskellmode_completion_ghc = 0
 let g:necoghc_enable_detailed_browse = 1
 let g:necoghc_use_stack = 1
 
-" Eclim settings
+" Eclim 
 let g:EclimCompletionMethod = 'omnifunc'
 
-" Rainbow parens settings
+" Rainbow parens 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
       \	'separately': {
@@ -49,12 +56,13 @@ let g:rainbow_conf = {
       \	}
       \}
 
-" Airline settings
+" Airline 
+let g:airline_theme = 'hybrid'
 let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 1
 " " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#alt_sep = 1
+let g:airline#extensions#tabline#alt_sep = 0
 " " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 " " ALE integration config
@@ -83,7 +91,7 @@ let g:airline#extensions#ycm#enabled = 0
 let g:airline#extensions#po#enabled = 0
 let g:airline#extensions#neomake#enabled = 0
 
-" Ale settings
+" Ale 
 let g:ale_sign_error = '🗙'
 let g:ale_sign_warning = '➤'
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
@@ -106,21 +114,21 @@ let g:ale_set_highlights = 1
 let g:ale_cpp_cpplint_options = '--linelength=100'
 let g:ale_linter_aliases = {'pandoc': ['markdown']}
 
-" IndentLine settings
+" IndentLine 
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#09AA08'
 let g:indentLine_char = '│'
 let g:indentLine_faster = 1
 
-" Pandoc settings
+" Pandoc 
 let g:pandoc#syntax#conceal#use = 1
-let g:pandoc#after#modules#enabled = ['ultisnips', 'supertab']
+let g:pandoc#after#modules#enabled = ['ultisnips']
 let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 100
 let g:pandoc#completion#bib#use_preview = 1
 let g:pandoc#modules#disabled = ['folding', 'commands', 'templates', 'formatting']
 
-" Vimtex settings
+" Vimtex 
 let g:tex_flavor = 'latex'
 let g:tex_conceal = ''
 let g:vimtex_compiler_progname = 'nvr'
@@ -129,24 +137,24 @@ let g:vimtex_complete_enabled = 1
 let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_quickfix_mode = 0
 
-" Ultisnips settings
+" Ultisnips 
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
-" Syntastic settings
+" Syntastic 
 let g:syntastic_ocaml_checkers=['merlin','caml4po']
 
-" VimFiler settings
+" VimFiler 
 let g:vimfiler_as_default_explorer = 1
 
-" Undotree settings
+" Undotree 
 if has('persistent_undo')
   set undodir=~/.undodir/
   set undofile
 endif
 
-" Tagbar settings
+" Tagbar 
 let g:tagbar_type_haskell = {
       \ 'ctagsbin'  : 'hasktags',
       \ 'ctagsargs' : '-x -c -o-',
@@ -210,33 +218,27 @@ let g:tagbar_type_elixir = {
       \ ]
       \ }
 
-" Racer settings
+" Racer 
 let g:racer_cmd = '/usr/bin/racer'
 
-" Gitgutter settings
+" Gitgutter 
 set updatetime=500
 let g:gitgutter_sign_modified = '＊'
 let g:gitgutter_sign_added = '＋'
 highlight GitGutterAdd guifg = '#A3E28B'
 
-" Vimwiki settings
-let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+" Vimwiki 
 let g:vimwiki_list = [{'path': '$HOME/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 
-" Goyo settings
+" Goyo 
 let g:goyo_width = 110
-
-" Colorscheme
-set termguicolors
-set background=dark
-colorscheme base16-tomorrow-night
 
 " Highlighting tweaks
 highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#B8BEC9 guibg=NONE | highlight LineNr guifg=#777777
 highlight Visual guifg=NONE ctermfg=NONE guibg=#747474 ctermbg=0 gui=NONE cterm=NONE
 
-" FZF settings
+" FZF 
 let g:fzf_colors =
       \ { 'fg':      ['fg', 'Normal'],
       \ 'bg':      ['bg', 'Normal'],
@@ -254,7 +256,7 @@ let g:fzf_colors =
 let g:fzf_buffers_jump = 1
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
-" Startify settings
+" Startify 
 let g:startify_list_order = [
       \ ['Update'], 'commands',
       \ ['Recent Files in Directory'], 'dir',
@@ -269,7 +271,7 @@ let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_custom_header = []
 
-" Vim-rooter settings
+" Vim-rooter 
 " Add language-builder patterns before source control for nested projects
 let g:rooter_patterns = ['.catkin_workspace', 'Cargo.toml', 'stack.yaml', '*.cabal', 'Makefile', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 let g:rooter_resolve_links = 1
@@ -277,7 +279,7 @@ let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 
-" LanguageClient Settings
+" LanguageClient 
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
       \ 'python': ['pyls'],
@@ -319,24 +321,21 @@ let g:LanguageClient_diagnosticsDisplay = {
 let g:LanguageClient_signColumnAlwaysOn = 0
 let g:LanguageClient_diagnosticsEnable = 0
 
-" SuperTab settings
-let g:SuperTabDefaultCompletionType = '<c-n>'
-
-" Vim-qf settings
+" Vim-qf 
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
 
-" Parenmatch settings
+" Parenmatch 
 let g:loaded_matchparen = 1
 
-" Easygit settings
+" Easygit 
 let g:easygit_enable_command = 1
 
-" Prosession settings
+" Prosession 
 let g:prosession_tmux_title = 1
 let g:prosession_on_startup = 0
 
-" Neoformat settings
+" Neoformat 
 let g:neoformat_python_yapf = {
       \ 'exe': 'yapf',
       \ 'stdin': 1,
@@ -349,24 +348,31 @@ let g:neoformat_ocaml_ocamlformat = {
 \ }
 let g:neoformat_basic_format_trim = 1
 
-" IncSearch settings
+" IncSearch 
 let g:incsearch#auto_nohlsearch = 1
 
-" Leader Guide settings
+" Leader Guide 
 let g:leaderGuide_displayfunc = [function('TrimGuideDisplay')]
 
-" Iron settings
+" Iron 
 " let g:iron_repl_open_cmd = 'vsplit'
 
-" Clever-F settings
+" Clever-F 
 let g:clever_f_fix_key_direction = 1
 
-" Echodoc settings
+" Echodoc 
 let g:echodoc#enable_at_startup = 1
 
-" Table-mode settings
+" Table-mode 
 let g:table_mode_corner_corner = '+'
 let g:table_mode_header_fillchar = '='
+
+" Markdown Composer 
+let g:markdown_composer_autostart = 0
+
+" Vaffle 
+let g:vaffle_show_hidden_files = 1
+let g:vaffle_force_delete = 1
 
 " Custom commands
 call ConfigInc('commands.vim')
