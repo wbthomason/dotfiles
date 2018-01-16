@@ -32,6 +32,7 @@ augroup markdown_aucommands
   au Syntax vimwiki set syntax=pandoc
   au FileType pandoc set syntax=pandoc
   au FileType pandoc silent :ALEDisable
+  au BufNewFile,BufFilePre,BufRead,BufEnter *.md call cm#disable_for_buffer()
 augroup END
 
 augroup haskell_aucommands
