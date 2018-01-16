@@ -4,10 +4,10 @@ set title
 set wildmenu
 set autoread
 set autochdir
-set tw=100
+set textwidth=100
 set formatoptions+=t
 set formatoptions+=j
-set so=7
+set scrolloff=7
 set wildignore=*.o,*~,*.pyc
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -29,8 +29,8 @@ set shiftwidth=2
 set smarttab
 set number
 set relativenumber
-set ai
-set si
+set autoindent
+set smartindent
 set wrap
 set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -43,5 +43,6 @@ set encoding=utf-8
 set ttyfast
 set shortmess+=c
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+set completeopt+=preview
 filetype plugin indent on
 syntax enable
