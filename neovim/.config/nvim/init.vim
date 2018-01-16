@@ -35,9 +35,12 @@ call ConfigInc('keybindings.vim')
 " Colorscheme
 set termguicolors
 set background=dark
-colorscheme hybrid
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+" let g:hybrid_custom_term_colors = 1
+" let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+" colorscheme hybrid
+colorscheme happy_hacking
+" let g:two_firewatch_italics = 1
+" colorscheme two-firewatch
 
 " Haskell 
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`

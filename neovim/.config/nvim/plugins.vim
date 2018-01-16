@@ -104,9 +104,11 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " REPL
   call dein#add('hkupty/iron.nvim')
+  call dein#add('bfredl/nvim-ipy')
 
   " Color schemes
-  call dein#add('w0ng/vim-hybrid')
+  " call dein#add('w0ng/vim-hybrid')
+  call dein#add('https://gitlab.com/yorickpeterse/happy_hacking.vim')
 
   " Notes/Wiki
   call dein#add('vimwiki/vimwiki')
