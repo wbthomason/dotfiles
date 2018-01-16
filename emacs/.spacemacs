@@ -33,7 +33,7 @@
    '(
      racket
      common-lisp
-     coq
+     ;; coq
      shell-scripts
      html
      yaml
