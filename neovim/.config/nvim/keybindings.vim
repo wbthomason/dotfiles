@@ -198,9 +198,6 @@ let g:allmaps[' '] = g:lmaps
 let g:allmaps[','] = g:llmaps
 let g:allmaps[',']['name'] = '<localleader>'
 
-" UltiSnips bindings
-inoremap <silent> <C-j> <C-r>=LoadUltiSnips()<cr>
-
 call leaderGuide#register_prefix_descriptions('', 'g:allmaps')
 call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
 nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
@@ -238,3 +235,9 @@ vnoremap <BS> {
 nnoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
 onoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
 vnoremap <CR> }
+
+" NCM bindings
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <CR>  pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>"
+" inoremap <expr> <Plug>(expand_or_nl) cm#completed_is_snippet() ? "\<C-U>":"\<CR>"
