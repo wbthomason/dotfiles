@@ -34,9 +34,10 @@ augroup END
 
 augroup markdown_aucommands
   au!
-  au BufNewFile,BufFilePre,BufRead,BufEnter *.md set filetype=pandoc
-  au BufNewFile,BufFilePre,BufRead *.md set makeprg=make\ %:t:r
-  au BufNewFile,BufFilePre,BufRead,BufEnter *.pandoc set filetype=pandoc
+  au FileType vimwiki set filetype=pandoc
+  au Syntax vimwiki set syntax=pandoc
+  au FileType pandoc set syntax=pandoc
+  au FileType pandoc silent :ALEDisable
 augroup END
 
 augroup haskell_aucommands
