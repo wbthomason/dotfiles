@@ -1,6 +1,7 @@
 scriptencoding utf-8
 " Config file path
 let g:config_path = '~/.config/nvim/'
+set runtimepath+=/home/wil/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Function for sourcing config modules
 function! ConfigInc(module)
@@ -10,6 +11,9 @@ endfunction
 " Set Python host program to speed up loading
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python'
+
+" Dein config
+let g:dein#install_process_timeout = 600
 
 " Add in plugins
 call ConfigInc('plugins.vim')
@@ -264,8 +268,9 @@ let g:startify_list_order = [
       \ ['Bookmarks'], 'bookmarks',
       \ ['Sessions'], 'sessions']
 let g:startify_commands = [
-      \ {'u': ['Update plugins', ':PlugUpdate']},
-      \ {'g': ['Upgrade Plug.vim', ':PlugUpgrade']},
+      \ {'u': ['Update plugins', ':Dein update']},
+      \ {'c': ['Clean plugins', ':Dein clean']},
+      \ {'t': ['Time startup', ':StartupTime']},
       \ {'s': ['Start Prosession', ':Prosession .']}]
 let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1
@@ -379,3 +384,7 @@ call ConfigInc('commands.vim')
 
 " General settings
 call ConfigInc('settings.vim')
+
+if dein#check_install()
+  call dein#install()
+endif

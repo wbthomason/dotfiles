@@ -1,269 +1,251 @@
 " Plugin installation
 
-call plug#begin('~/.local/share/nvim/plugged')
-
+if dein#load_state('/home/wil/.cache/dein')
+  call dein#begin('/home/wil/.cache/dein')
+  call dein#add('/home/wil/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('haya14busa/dein-command.vim')
   " Utilities
-  
+
   " Tweaks
-  Plug 'tpope/vim-unimpaired'
-  Plug 'tpope/vim-repeat'
+  call dein#add('tpope/vim-unimpaired')
+  call dein#add('tpope/vim-repeat')
 
   " Mappings
-  Plug 'hecal3/vim-leader-guide'
+  call dein#add('hecal3/vim-leader-guide')
 
   " Paren matching
-  Plug 'itchyny/vim-parenmatch'
+  call dein#add('itchyny/vim-parenmatch')
 
   " Registers
-  Plug 'junegunn/vim-peekaboo' 
+  call dein#add('junegunn/vim-peekaboo')
 
   " Marks
-  Plug 'kshenoy/vim-signature'
+  call dein#add('kshenoy/vim-signature')
 
   " Quickfix
-  Plug 'romainl/vim-qf'
+  call dein#add('romainl/vim-qf')
 
   " Buffer management
-  Plug 'mhinz/vim-sayonara'
-  Plug 'danro/rename.vim'
+  call dein#add('mhinz/vim-sayonara')
+  call dein#add('danro/rename.vim')
 
   " Startup screen
-  Plug 'mhinz/vim-startify'
+  call dein#add('mhinz/vim-startify')
 
   " Snippets
-  Plug 'SirVer/ultisnips', {'on': []}
-  Plug 'honza/vim-snippets'
+  call dein#add('SirVer/ultisnips')
+  call dein#add('honza/vim-snippets')
 
   " Status line
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'vim-airline/vim-airline'
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('vim-airline/vim-airline')
 
   " Movement
-  Plug 'yangmillstheory/vim-snipe'
-  Plug 'rhysd/clever-f.vim'
-  Plug 'chaoren/vim-wordmotion'
+  call dein#add('yangmillstheory/vim-snipe')
+  call dein#add('rhysd/clever-f.vim')
+  call dein#add('chaoren/vim-wordmotion')
 
   " Tmux and vim split navigation
-  Plug 'christoomey/vim-tmux-navigator'
+  call dein#add('christoomey/vim-tmux-navigator')
 
   " Color visualization
-  Plug 'chrisbra/Colorizer'
+  call dein#add('chrisbra/Colorizer')
 
   " Indentation tracking
-  Plug 'yggdroot/indentLine'
+  call dein#add('yggdroot/indentLine')
 
   " Comments
-  Plug 'tpope/vim-commentary'
+  call dein#add('tpope/vim-commentary')
 
   " Wrapping/delimiters
-  " Plug 'tpope/vim-surround'
-  Plug 'machakann/vim-sandwich'
-  Plug 'luochen1990/rainbow'
-  Plug 'ozelentok/vim-closer'
-  Plug 'tpope/vim-endwise'
+  call dein#add('machakann/vim-sandwich')
+  call dein#add('luochen1990/rainbow')
+  call dein#add('ozelentok/vim-closer')
+  call dein#add('tpope/vim-endwise')
 
   " Undo/redo
-  Plug 'mbbill/undotree'
+  call dein#add('mbbill/undotree')
 
   " Searching
-  Plug 'haya14busa/incsearch.vim'
-  " Plug 'pelodelfuego/vim-swoop'
+  call dein#add('haya14busa/incsearch.vim')
 
   " Yank highlighting
-  Plug 'machakann/vim-highlightedyank'
+  call dein#add('machakann/vim-highlightedyank')
 
   " Prettification
-  Plug 'junegunn/vim-easy-align'
-  Plug 'sbdchd/neoformat'
+  call dein#add('junegunn/vim-easy-align')
+  call dein#add('sbdchd/neoformat')
 
   " Text objects
-  Plug 'wellle/targets.vim'
-  Plug 'vim-scripts/argtextobj.vim'
+  call dein#add('wellle/targets.vim')
+  call dein#add('vim-scripts/argtextobj.vim')
 
   " Tags
   " Slow to load, so we use an autocommand after Vim starts
-  Plug 'ludovicchabant/vim-gutentags', {'on': []}
-  Plug 'majutsushi/tagbar'
+  call dein#add('ludovicchabant/vim-gutentags')
+  call dein#add('majutsushi/tagbar')
 
   " File opening/fuzzy finding
-  Plug 'junegunn/fzf'
-  Plug 'junegunn/fzf.vim'
-  Plug 'fszymanski/fzf-gitignore', {'do': ':UpdateRemotePlugins'}
+  call dein#add('junegunn/fzf', {'merged': 0})
+  call dein#add('junegunn/fzf.vim', {'depends': 'fzf', 'lazy': 0})
+  call dein#add('fszymanski/fzf-gitignore')
 
   " Writing
-  Plug 'junegunn/goyo.vim'
-  Plug 'junegunn/limelight.vim'
+  call dein#add('junegunn/goyo.vim')
+  call dein#add('junegunn/limelight.vim')
 
   " Special symbols
-  Plug 'chrisbra/unicode.vim'
+  call dein#add('chrisbra/unicode.vim')
 
   " Project Management
-  Plug 'airblade/vim-rooter'
-  Plug 'tpope/vim-obsession'
-  Plug 'dhruvasagar/vim-prosession'
+  call dein#add('airblade/vim-rooter')
+  call dein#add('tpope/vim-obsession')
+  call dein#add('dhruvasagar/vim-prosession')
 
   " REPL
-  Plug 'hkupty/iron.nvim'
+  call dein#add('hkupty/iron.nvim')
 
   " Color schemes
-  " Plug 'rafi/awesome-vim-colorschemes'
-  " Plug 'chriskempson/base16-vim'
-  Plug 'w0ng/vim-hybrid'
+  call dein#add('w0ng/vim-hybrid')
 
   " Notes/Wiki
-  Plug 'vimwiki/vimwiki'
-  Plug 'vim-scripts/SyntaxRange'
-  Plug 'dhruvasagar/vim-table-mode', {'for': ['markdown', 'pandoc', 'markdown.pandoc']}
-  function! BuildComposer(info)
-    if a:info.status != 'unchanged' || a:info.force
-      if has('nvim')
-        !cargo build --release
-      else
-        !cargo build --release --no-default-features --features json-rpc
-      endif
-    endif
-  endfunction
+  call dein#add('vimwiki/vimwiki')
+  call dein#add('vim-scripts/SyntaxRange')
+  call dein#add('dhruvasagar/vim-table-mode',
+        \ {'on_ft': ['markdown', 'pandoc', 'markdown.pandoc']})
 
-  Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+  call dein#add('euclio/vim-markdown-composer', {'build': 'cargo build --release', 'on_ft': ['markdown', 'pandoc', 'markdown.pandoc']})
 
   " File explorer
-  " Plug 'justinmk/vim-dirvish'
-  Plug 'cocopon/vaffle.vim'
-  " Plug 'Shougo/unite.vim'
-  " Plug 'Shougo/vimfiler.vim'
-  " Plug 'romgrk/vimfiler-prompt'
+  call dein#add('cocopon/vaffle.vim')
 
   " Directory creation
-  Plug 'duggiefresh/vim-easydir'
+  call dein#add('duggiefresh/vim-easydir')
 
   " Git
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
-  Plug 'junegunn/gv.vim'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'rhysd/committia.vim', {'for': 'gitcommit'}
-  Plug 'tpope/vim-git', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('tpope/vim-rhubarb')
+  call dein#add('junegunn/gv.vim')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('rhysd/committia.vim', {'on_ft': 'gitcommit'})
+  call dein#add('tpope/vim-git',
+        \ {'on_ft': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']})
 
   " Completion
-  Plug 'Shougo/neco-syntax'
-  Plug 'Shougo/context_filetype.vim'
-  Plug 'Shougo/echodoc.vim'
-  Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp']}
-  Plug 'roxma/nvim-completion-manager'
+  call dein#add('Shougo/neco-syntax')
+  call dein#add('Shougo/context_filetype.vim')
+  call dein#add('Shougo/echodoc.vim')
+  call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp']})
+  call dein#add('roxma/nvim-completion-manager')
 
   " Github
-  Plug 'roxma/ncm-github', {'for': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']}
+  call dein#add('roxma/ncm-github',
+        \ {'on_ft': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']})
 
   " Checkers
-  Plug 'w0rp/ale'
+  call dein#add('w0rp/ale')
 
   " Async building & commands
-  Plug 'wbthomason/buildit.nvim'
-  Plug 'tpope/vim-dispatch'
-  Plug 'radenling/vim-dispatch-neovim'
+  call dein#add('wbthomason/buildit.nvim')
+  call dein#add('tpope/vim-dispatch')
+  call dein#add('radenling/vim-dispatch-neovim')
 
   " Block manipulation
-  Plug 'kana/vim-niceblock'
-  Plug 'lgalke/splitjoin.vim'
-  Plug 'machakann/vim-swap'
-  Plug 'zirrostig/vim-schlepp'
+  call dein#add('kana/vim-niceblock')
+  call dein#add('lgalke/splitjoin.vim')
+  call dein#add('machakann/vim-swap')
+  call dein#add('zirrostig/vim-schlepp')
 
   " Languages
-  
+
   " LSP
-  Plug 'autozimu/LanguageClient-neovim', {'do': ':UpdateRemotePlugins'}
-  
+  call dein#add('autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
+    \ })
+
   " Python
-  Plug 'fisadev/vim-isort'
-  Plug 'vim-scripts/python_match.vim'
+  call dein#add('fisadev/vim-isort')
+  call dein#add('vim-scripts/python_match.vim')
 
   " C/C++
-  Plug 'roxma/ncm-clang'
-  
-  " Go
-  " Plug 'fatih/vim-go', {'for': 'go'}
-
-  " C#
-  " Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
+  call dein#add('roxma/ncm-clang')
 
   " Java
-  Plug 'sassanh/nvim-cm-eclim'
+  call dein#add('sassanh/nvim-cm-eclim')
 
   " Clojure
-  Plug 'venantius/vim-cljfmt'
-  Plug 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
-  Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
-  " Plug 'clojure-vim/acid.nvim'
-  Plug 'clojure-vim/async-clj-omni'
+  call dein#add('venantius/vim-cljfmt')
+  call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
+  call dein#add('tpope/vim-sexp-mappings-for-regular-people', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
+  call dein#add('clojure-vim/async-clj-omni')
 
   " Pandoc/Markdown
-  Plug 'vim-pandoc/vim-pandoc'
-  Plug 'vim-pandoc/vim-pandoc-syntax'
-  Plug 'vim-pandoc/vim-pandoc-after'
+  call dein#add('vim-pandoc/vim-pandoc', {'depends': ['vim-pandoc-syntax', 'vim-pandoc-after']})
+  call dein#add('vim-pandoc/vim-pandoc-syntax')
+  call dein#add('vim-pandoc/vim-pandoc-after')
 
   " TOML
-  Plug 'cespare/vim-toml'
+  call dein#add('cespare/vim-toml')
 
   " Yaml
-  Plug 'stephpy/vim-yaml'
+  call dein#add('stephpy/vim-yaml')
 
   " JS
-  Plug 'pangloss/vim-javascript'
-  Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('roxma/nvim-cm-tern',  {'build': 'npm install'})
 
   " Idris
-  Plug 'idris-hackers/idris-vim'
+  call dein#add('idris-hackers/idris-vim')
 
   " Haskell
-  Plug 'neovimhaskell/haskell-vim'
-  Plug 'parsonsmatt/intero-neovim'
-  Plug 'eagletmt/neco-ghc'
+  call dein#add('neovimhaskell/haskell-vim')
+  call dein#add('parsonsmatt/intero-neovim')
+  call dein#add('eagletmt/neco-ghc')
 
   " Vimscript
-  Plug 'Shougo/neco-vim'
+  call dein#add('Shougo/neco-vim')
 
   " CSS
-  Plug 'calebeby/ncm-css'
+  call dein#add('calebeby/ncm-css')
 
   " Lua
-  Plug 'tbastos/vim-lua'
+  call dein#add('tbastos/vim-lua')
 
   " Elm
-  Plug 'lambdatoast/elm.vim'
-  Plug 'roxma/ncm-elm-oracle'
+  call dein#add('lambdatoast/elm.vim')
+  call dein#add('roxma/ncm-elm-oracle')
 
   " OCaml
-  Plug 'rgrinberg/vim-ocaml'
+  call dein#add('rgrinberg/vim-ocaml')
 
   " LaTeX
-  Plug 'lervag/vimtex'
+  call dein#add('lervag/vimtex')
 
   " Elixir
-  Plug 'elixir-lang/vim-elixir'
-  Plug 'slashmili/alchemist.vim'
-
-  " Scala
-  Plug 'ensime/ensime-vim', {'for': 'scala'}
+  call dein#add('elixir-lang/vim-elixir')
+  call dein#add('slashmili/alchemist.vim')
 
   " TypeScript
-  Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'leafgarland/typescript-vim'
+  call dein#add('HerringtonDarkholme/yats.vim')
+  call dein#add('leafgarland/typescript-vim')
 
   " Racket
-  Plug 'wlangstroth/vim-racket'
+  call dein#add('wlangstroth/vim-racket')
 
   " Fish
-  Plug 'wilriker/vim-fish'
+  call dein#add('wilriker/vim-fish')
 
   " Coq
-  Plug 'epdtry/neovim-coq'
-  " Plug 'let-def/vimbufsync', {'for': 'coq'}
-  " Plug 'the-lambda-church/coquille', {'for': 'coq'}
+  call dein#add('epdtry/neovim-coq')
 
   " Pretty pretty symbols
-  Plug 'ryanoasis/vim-devicons'
+  call dein#add('ryanoasis/vim-devicons')
 
   " Profiling
-  Plug 'tweekmonster/startuptime.vim'
+  call dein#add('tweekmonster/startuptime.vim')
 
-call plug#end()
+  call dein#end()
+  call dein#save_state()
+endif
+call dein#remote_plugins()

@@ -8,12 +8,6 @@ augroup main_aucommands
     \ endif
   au BufWinEnter * checktime
   au CompleteDone * pclose
-  " au InsertEnter * call deoplete#enable()
-  au VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \| endif
-  \| call plug#load('vim-gutentags')
   au FileType qf setlocal wrap
 augroup END
 
