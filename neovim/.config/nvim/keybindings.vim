@@ -38,8 +38,11 @@ let g:lmaps.b.b = ['Buffers', 'Select a buffer']
 
 " Configuration bindings
 let g:lmaps.c = {'name': 'Configuration'}
-nnoremap <leader>cs :so %<CR>
-let g:lmaps.c.o = ['so %', 'Source current file']
+let g:lmaps.c.s = {'name': 'Sourcing'}
+nnoremap <leader>cst :so %<CR>
+let g:lmaps.c.s.t = ['so %', 'Source this file']
+nnoremap <leader>csc :so ~/.config/nvim/init.vim<CR>
+let g:lmaps.c.s.c = ['so ~/.config/nvim/init.vim', 'Source config file']
 nnoremap <leader>cc :e ~/.config/nvim/init.vim<CR>
 let g:lmaps.c.c = ['e ~/.config/nvim/init.vim', 'Open Neovim config']
 
@@ -76,6 +79,8 @@ nnoremap <silent> <leader>fsb :call LanguageClient_textDocument_documentSymbol()
 let g:lmaps.f.s.b = ['call LanguageClient_textDocument_documentSymbol()', 'Search symbols in the current buffer']
 nnoremap <silent> <leader>fsp :call LanguageClient_workspace_symbol()<CR>
 let g:lmaps.f.s.p = ['call LanguageClient_workspace_symbol()', 'Search symbols in the current project']
+nnoremap <leader>fd :Vaffle<CR>
+let g:lmaps.f.d = ['Vaffle', 'Open Vaffle']
 
 " Toggles
 let g:lmaps.t = {'name': 'Toggles'}
@@ -83,8 +88,6 @@ nnoremap <leader>th :nohls<CR>
 let g:lmaps.t.h = ['nohls', 'Reset search highlights']
 nnoremap <leader>tt :TagbarToggle<CR>
 let g:lmaps.t.t = ['TagbarToggle', 'Toggle Tagbar split']
-nnoremap <leader>tf :VimFilerSplit<CR>
-let g:lmaps.t.f = ['VimFilerSplit', 'Toggle VimFiler split']
 nnoremap <leader>tu :UndotreeToggle<CR>
 let g:lmaps.t.u = ['UndotreeToggle', 'Toggle Undotree split']
 nnoremap <leader>tw :call Toggle_writer_mode()<CR>
