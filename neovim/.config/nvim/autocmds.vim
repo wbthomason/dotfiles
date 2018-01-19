@@ -30,8 +30,7 @@ augroup markdown_aucommands
   au!
   au FileType vimwiki set filetype=pandoc
   au Syntax vimwiki set syntax=pandoc
-  au FileType pandoc set syntax=pandoc
-  au FileType pandoc silent :ALEDisable
+  au FileType pandoc set syntax=pandoc | silent :ALEDisable
   au BufNewFile,BufFilePre,BufRead,BufEnter *.md call cm#disable_for_buffer()
 augroup END
 
@@ -56,7 +55,7 @@ augroup misc_lang_aucommands
 augroup END
 
 augroup python_aucommands
-  au FileType python setl nosmartindent
+  au FileType python setl nosmartindent | let g:cm_sources_override.neoinclude = {'enable': 0}
 augroup END
 
 augroup cmake_aucommands

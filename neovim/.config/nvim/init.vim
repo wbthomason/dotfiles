@@ -386,6 +386,9 @@ let g:markdown_composer_autostart = 0
 let g:vaffle_show_hidden_files = 1
 let g:vaffle_force_delete = 1
 
+" NCM
+let g:cm_sources_override = {}
+
 " Custom commands
 call ConfigInc('commands.vim')
 
