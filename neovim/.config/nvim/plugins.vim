@@ -114,15 +114,14 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('vimwiki/vimwiki')
   call dein#add('vim-scripts/SyntaxRange')
   call dein#add('dhruvasagar/vim-table-mode',
-        \ {'on_ft': ['markdown', 'pandoc', 'markdown.pandoc']})
+        \ {'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
 
-  call dein#add('euclio/vim-markdown-composer', {'build': 'cargo build --release', 'on_ft': ['markdown', 'pandoc', 'markdown.pandoc']})
+  call dein#add('euclio/vim-markdown-composer',
+        \ {'build': 'cargo build --release',
+        \ 'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
 
   " File explorer
   call dein#add('cocopon/vaffle.vim')
-
-  " Directory creation
-  call dein#add('duggiefresh/vim-easydir')
 
   " Git
   call dein#add('tpope/vim-fugitive')
