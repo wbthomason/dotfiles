@@ -163,7 +163,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " LSP
   call dein#add('autozimu/LanguageClient-neovim', {
     \ 'rev': 'next',
-    \ 'build': 'bash install.sh',
+    \ 'build': 'bash -c "install.sh && chmod +x bin/languageclient"',
     \ })
 
   " Python
