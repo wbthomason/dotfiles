@@ -240,6 +240,9 @@ if dein#load_state('/home/wil/.cache/dein')
   " Coq
   call dein#add('epdtry/neovim-coq')
 
+  " C#
+  call dein#add('cyansprite/omnisharp.nvim', {'build': './install.sh'})
+
   " Pretty pretty symbols
   call dein#add('ryanoasis/vim-devicons')
 

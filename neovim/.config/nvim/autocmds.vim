@@ -37,7 +37,6 @@ augroup END
 augroup haskell_aucommands
   au!
   au FileType haskell setlocal omnifunc=necoghc#omnifunc
-  " au CursorHold,CursorHoldI *.hs :InteroType
   au! BufWritePost *.hs InteroReload
 augroup END
 

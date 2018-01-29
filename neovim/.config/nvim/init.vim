@@ -26,7 +26,6 @@ call ConfigInc('plugins.vim')
 call ConfigInc('functions.vim')
 
 " Autocommands
-" Main Autocommands
 call ConfigInc('autocmds.vim')
 
 " Keybindings
