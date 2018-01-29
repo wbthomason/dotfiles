@@ -4,10 +4,6 @@ set -xg fish_term24bit 1
 #     eval sh /home/wil/.config/base16-shell/scripts/base16-tomorrow-night.sh
 # end
 
-if [ $TERM = "konsole.*" ]
-    set -xg FZF_DEFAULT_OPTS "--color fg+:5,hl+:6 $FZF_DEFAULT_OPTS"
-end
-
 # Key bindings
 fish_hybrid_key_bindings
 
