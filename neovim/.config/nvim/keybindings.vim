@@ -84,13 +84,13 @@ let g:lmaps.f.d = ['Vaffle', 'Open Vaffle']
 
 " Toggles
 let g:lmaps.t = {'name': 'Toggles'}
-nnoremap <leader>th :nohls<CR>
+nnoremap <silent> <leader>th :nohls<CR>
 let g:lmaps.t.h = ['nohls', 'Reset search highlights']
-nnoremap <leader>tt :TagbarToggle<CR>
+nnoremap <silent> <leader>tt :TagbarToggle<CR>
 let g:lmaps.t.t = ['TagbarToggle', 'Toggle Tagbar split']
-nnoremap <leader>tu :UndotreeToggle<CR>
+nnoremap <silent> <leader>tu :UndotreeToggle<CR>
 let g:lmaps.t.u = ['UndotreeToggle', 'Toggle Undotree split']
-nnoremap <leader>tw :call Toggle_writer_mode()<CR>
+nnoremap <silent> <leader>tw :call Toggle_writer_mode()<CR>
 let g:lmaps.t.w = ['call Toggle_writer_mode()', 'Toggle writer mode']
 
 " Incsearch bindings
