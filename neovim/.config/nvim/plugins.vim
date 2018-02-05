@@ -243,6 +243,9 @@ if dein#load_state('/home/wil/.cache/dein')
   " C#
   call dein#add('cyansprite/omnisharp.nvim', {'build': './install.sh'})
 
+  " Meson
+  call dein#add('stfl/meson.vim')
+
   " Pretty pretty symbols
   call dein#add('ryanoasis/vim-devicons')
 
