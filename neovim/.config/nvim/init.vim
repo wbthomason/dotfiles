@@ -111,10 +111,6 @@ let g:ale_lint_on_enter = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" call airline#parts#define_function('ALE', 'ALEGetStatusLine')
-" call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
-" let g:airline_section_error = airline#section#create_right(['ALE'])
-" let g:airline#extensions#ale#enabled = 1
 let g:ale_linters = {
       \ 'haskell': ['hdevtools', 'hlint'],
       \ 'cpp': ['clang', 'clangcheck', 'cppcheck', 'cpplint']

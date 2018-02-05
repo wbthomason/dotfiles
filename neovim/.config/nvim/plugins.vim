@@ -153,7 +153,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Block manipulation
   call dein#add('kana/vim-niceblock')
-  call dein#add('lgalke/splitjoin.vim')
+  call dein#add('AndrewRadev/splitjoin.vim')
   call dein#add('machakann/vim-swap')
   call dein#add('zirrostig/vim-schlepp')
 
