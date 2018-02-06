@@ -55,7 +55,8 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('yggdroot/indentLine')
 
   " Comments
-  call dein#add('tpope/vim-commentary')
+  " call dein#add('tpope/vim-commentary')
+  call dein#add('tomtom/tcomment_vim')
 
   " Wrapping/delimiters
   call dein#add('machakann/vim-sandwich')
