@@ -169,7 +169,7 @@ nnoremap <silent> <leader>lr :call LanguageClient_textDocument_references()<CR>
 let g:lmaps.l.r = ['call LanguageClient_textDocument_references()', 'Find symbol references']
 
 " Formatting Bindings
-nnoremap <leader> bf :Neoformat<CR>
+nnoremap <silent> <leader>bf :Neoformat<CR>
 let g:lmaps.b.f = ['Neoformat', 'Format buffer with Neoformat']
 
 " Easy-Align bindings
