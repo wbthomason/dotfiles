@@ -113,6 +113,10 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Notes/Wiki
   call dein#add('vimwiki/vimwiki')
+  call dein#add('akstrfn/vim-orgmode')
+  call dein#add('tpope/vim-speeddating')
+  call dein#add('vim-scripts/utl.vim')
+  call dein#add('mattn/calendar-vim')
   call dein#add('vim-scripts/SyntaxRange')
   call dein#add('dhruvasagar/vim-table-mode',
         \ {'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
@@ -127,6 +131,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " Git
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-rhubarb')
+  " call dein#add('lambdalisue/gina.vim')
   call dein#add('junegunn/gv.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('rhysd/committia.vim', {'on_ft': 'gitcommit'})
