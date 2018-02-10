@@ -113,11 +113,12 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
       \ 'haskell': ['hdevtools', 'hlint'],
-      \ 'cpp': ['clang', 'clangcheck', 'cppcheck', 'cpplint']
+      \ 'cpp': ['clang', 'clangcheck', 'clangtidy', 'cppcheck', 'cpplint']
       \}
 let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_set_highlights = 1
 let g:ale_cpp_cpplint_options = '--linelength=100'
+let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_linter_aliases = {'pandoc': ['markdown']}
 
 " IndentLine 
@@ -301,8 +302,10 @@ let g:LanguageClient_serverCommands = {
       \ 'go': ['~/go/bin/go-langserver'],
       \ 'haskell': ['hie', '--lsp'],
       \ 'lua': ['lua-lsp'],
+      \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log']
       \ }
 let g:LanguageClient_autoStart = 1
+let g:LanguageClient_loadSettings = 1
 let g:LanguageClient_diagnosticsDisplay = {
       \ 1: {
       \     'name': 'Error',
@@ -357,6 +360,11 @@ let g:neoformat_ocaml_ocamlformat = {
         \ 'exe': 'ocamlformat',
         \ 'args': ['--inplace', '-m 100'],
         \ 'replace': 1,
+\ }
+let g:neoformat_cpp_clangformat = {
+        \ 'exe': 'clang-format',
+        \ 'stdin': 1,
+        \ 'args': ['--style=file'],
 \ }
 
 let g:neoformat_basic_format_trim = 1

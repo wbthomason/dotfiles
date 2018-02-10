@@ -167,6 +167,8 @@ nnoremap <silent> <leader>ln :call LanguageClient_textDocument_rename()<CR>
 let g:lmaps.l.n = ['call LanguageClient_textDocument_rename()', 'Rename symbol']
 nnoremap <silent> <leader>lr :call LanguageClient_textDocument_references()<CR>
 let g:lmaps.l.r = ['call LanguageClient_textDocument_references()', 'Find symbol references']
+nnoremap <silent> <leader>lh :call LanguageClient_textDocument_hover()<CR>
+let g:lmaps.l.h = ['call LanguageClient_textDocument_hover()', 'Hover on symbol']
 
 " Formatting Bindings
 nnoremap <silent> <leader>bf :Neoformat<CR>
