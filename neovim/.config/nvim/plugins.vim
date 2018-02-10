@@ -91,6 +91,9 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('junegunn/fzf.vim', {'depends': 'fzf', 'lazy': 0})
   call dein#add('fszymanski/fzf-gitignore')
 
+  " Denite
+  call dein#add('Shougo/denite.nvim')
+
   " Writing
   call dein#add('junegunn/goyo.vim')
   call dein#add('junegunn/limelight.vim')
@@ -127,11 +130,12 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " File explorer
   call dein#add('cocopon/vaffle.vim')
+  " call dein#add('Shougo/defx.nvim')
 
   " Git
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-rhubarb')
-  " call dein#add('lambdalisue/gina.vim')
+  call dein#add('jreybert/vimagit')
   call dein#add('junegunn/gv.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('rhysd/committia.vim', {'on_ft': 'gitcommit'})
