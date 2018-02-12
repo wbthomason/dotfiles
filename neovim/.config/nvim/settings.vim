@@ -42,6 +42,7 @@ set guifont=Fura\ Code\ Retina\ Nerd\ Font\ Complete\ 7
 set encoding=utf-8
 set ttyfast
 set shortmess+=c
+set nojoinspaces
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 set completeopt+=preview
 filetype plugin indent on
