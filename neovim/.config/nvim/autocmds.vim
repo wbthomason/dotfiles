@@ -82,8 +82,9 @@ augroup ncm_aucommands
           \ 'name' : 'pandoc',
           \ 'priority': 8,
           \ 'scoping': 1,
-          \ 'scopes': ['pandoc'],
+          \ 'scopes': ['pandoc', 'markdown', 'pandoc.markdown'],
           \ 'abbreviation': 'pandoc',
+          \ 'word_pattern': '[\w\-]+',
           \ 'cm_refresh_patterns': '@',
           \ 'cm_refresh': {'omnifunc': 'pandoc#completion#Complete'},
           \ })
