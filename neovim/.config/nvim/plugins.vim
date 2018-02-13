@@ -93,6 +93,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Denite
   call dein#add('Shougo/denite.nvim')
+  call dein#add('chemzqm/denite-extra')
 
   " Writing
   call dein#add('junegunn/goyo.vim')
