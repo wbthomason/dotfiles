@@ -97,8 +97,8 @@ augroup ncm_aucommands
           \ 'cm_refresh': {'omnifunc': 'necoghc#omnifunc'},
           \ })
 augroup END
-augroup denite_aucommands
-  au!
-  au VimResized,VimEnter * call denite#custom#option('default',
-        \'winheight', winheight(0) / 4)
-augroup end
+" augroup denite_aucommands
+"   au!
+"   au VimResized,VimEnter * call denite#custom#option('default',
+"         \'winheight', winheight(0) / 4)
+" augroup end
