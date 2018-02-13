@@ -80,9 +80,9 @@ call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#denite#enabled = 1
 " " Explicitly disable some extensions
 let g:airline#extensions#unite#enabled = 0
-let g:airline#extensions#denite#enabled = 0
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#bufferline#enabled = 0
 let g:airline#extensions#syntastic#enabled = 0
@@ -399,27 +399,29 @@ let g:vaffle_force_delete = 1
 let g:cm_sources_override = {}
 
 " Denite
-" reset 50% winheight on window resize
-augroup deniteresize
-  autocmd!
-  autocmd VimResized,VimEnter * call denite#custom#option('default',
-        \'winheight', winheight(0) / 4)
-augroup end
 call denite#custom#option('default', {
-      \ 'prompt': '❯'
+      \ 'prompt': '❯',
+      \ 'updatetime': 1,
+      \ 'reversed': 1
       \ })
 
 call denite#custom#var('file_rec', 'command',
       \ ['rg', '--files', '--glob', '!.git'])
+call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
+call denite#custom#source('file_rec', 'matchers', ['matcher_cpsm'])
+
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'default_opts',
-      \ ['--hidden', '--vimgrep', '--no-heading', '-S'])
+      \ ['--vimgrep', '--no-heading'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
-hi link deniteMatchedChar Special
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+	call denite#custom#var('file_rec/git', 'command',
+\ ['git', 'ls-files', '-co', '--exclude-standard'])
+
 
 " Custom commands
 call ConfigInc('commands.vim')

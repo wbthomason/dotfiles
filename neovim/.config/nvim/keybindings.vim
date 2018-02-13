@@ -57,12 +57,12 @@ let g:lmaps.e.c = ['lclose', 'Close error list']
 let g:lmaps.f = {'name': 'Find'}
 nnoremap <leader>ff :Denite file_rec<CR>
 let g:lmaps.f.f = ['Denite file_rec', 'Search for files in the current directory']
-nnoremap <leader>fa :Files <C-r>=getcwd()<CR>
-let g:lmaps.f.a = ['Files <C-r>=getcwd()', 'Search for files in an arbitrary directory']
-nnoremap <leader>fg :GFiles<CR>
-let g:lmaps.f.g = ['GFiles', 'Search for files in the current Git repo']
-nnoremap <leader>fh :Helptags<CR>
-let g:lmaps.f.h = ['Helptags', 'Search in help tags']
+nnoremap <leader>fa :Denite file_rec:<C-r>=getcwd()<CR>
+let g:lmaps.f.a = ['Denite file_rec:<C-r>=getcwd()', 'Search for files in an arbitrary directory']
+nnoremap <leader>fg :Denite file_rec/git<CR>
+let g:lmaps.f.g = ['Denite file_rec/git', 'Search for files in the current Git repo']
+nnoremap <leader>fh :Denite help<CR>
+let g:lmaps.f.h = ['Denite help', 'Search in help tags']
 nnoremap <leader>fr :Denite file_old<CR>
 let g:lmaps.f.r = ['Denite file_old', 'Search for recently edited files']
 let g:lmaps.f.t = {'name': 'Tags'}

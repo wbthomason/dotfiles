@@ -87,13 +87,14 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('majutsushi/tagbar')
 
   " File opening/fuzzy finding
-  call dein#add('junegunn/fzf', {'merged': 0})
-  call dein#add('junegunn/fzf.vim', {'depends': 'fzf', 'lazy': 0})
-  call dein#add('fszymanski/fzf-gitignore')
+  " call dein#add('junegunn/fzf', {'merged': 0})
+  " call dein#add('junegunn/fzf.vim', {'depends': 'fzf', 'lazy': 0})
+  " call dein#add('fszymanski/fzf-gitignore')
 
   " Denite
   call dein#add('Shougo/denite.nvim')
   call dein#add('chemzqm/denite-extra')
+  call dein#add('nixprime/cpsm', {'build': 'env PY3=ON ./install.sh'})
 
   " Writing
   call dein#add('junegunn/goyo.vim')
