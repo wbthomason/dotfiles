@@ -238,11 +238,6 @@ highlight GitGutterAdd guifg = '#A3E28B'
 let g:vimwiki_list = [{'path': '$HOME/wiki', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 
-" Orgmode
-let g:org_aggressive_conceal = 1
-let g:org_indent = 1
-let g:org_heading_shade_leading_stars = 0
-
 " Goyo 
 let g:goyo_width = 110
 
@@ -422,6 +417,18 @@ call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 	call denite#custom#var('file_rec/git', 'command',
 \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
+call denite#custom#map(
+	      \ 'insert',
+	      \ '<Down>',
+	      \ '<denite:move_to_next_line>',
+	      \ 'noremap'
+	      \)
+	call denite#custom#map(
+	      \ 'insert',
+	      \ '<Up>',
+	      \ '<denite:move_to_previous_line>',
+	      \ 'noremap'
+\)
 
 " Custom commands
 call ConfigInc('commands.vim')
