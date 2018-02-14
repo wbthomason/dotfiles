@@ -187,6 +187,25 @@ vmap <unique> <down>  <Plug>SchleppDown
 vmap <unique> <left>  <Plug>SchleppLeft
 vmap <unique> <right> <Plug>SchleppRight
 
+" Journal and note bindings
+let g:lmaps.j = {'name': 'Journal'}
+nnoremap <silent> <leader>jt :e ~/wiki/journal/<c-r>=strftime("%Y-%m-%d")<cr>.md<cr>
+let g:lmaps.j.t = ['e ~/wiki/journal/<c-r>=strftime("%Y-%m-%d")<cr>.md', 'Edit journal entry for today']
+nnoremap <silent> <leader>js :Denite file_rec:~/wiki/journal grep:~/wiki/journal:'':'^.+$'<cr>
+let g:lmaps.j.s = ["Denite file_rec:~/wiki/journal grep:~/wiki/journal:'':'^.+$'", 'Search in journal entries']
+
+let g:lmaps.n = {'name': 'Notes'}
+nnoremap <silent> <leader>nn :Pad new<cr>
+let g:lmaps.n.n = ['Pad new', 'Make a new note']
+nnoremap <silent> <leader>nl :Pad ls<cr>
+let g:lmaps.n.l = ['Pad ls', 'List notes']
+nnoremap <silent> <leader>ns :Denite file_rec:~/wiki/notes grep:~/wiki/notes:'':'^.+$'<cr>
+let g:lmaps.n.s = ["Denite file_rec:~/wiki/notes grep:~/wiki/notes:'':'^.+$'", 'Search notes']
+
+let g:lmaps.p = {'name': 'Plans/Plan notes'}
+nnoremap <silent> <leader>ps :Denite file_rec:~/wiki grep:~/wiki:'':'^.+$'<cr>
+let g:lmaps.p.s = ["Denite file_rec:~/wiki/notes grep:~/wiki/notes:'':'^.+$'", 'Search plans/notes']
+
 " Leader guide bindings and settings
 let g:allmaps = {}
 let g:allmaps[' '] = g:lmaps
