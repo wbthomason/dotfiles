@@ -205,6 +205,8 @@ let g:lmaps.n.s = ["Denite file_rec:~/wiki/notes grep:~/wiki/notes:'':'^.+$'", '
 let g:lmaps.p = {'name': 'Plans/Plan notes'}
 nnoremap <silent> <leader>ps :Denite file_rec:~/wiki grep:~/wiki:'':'^.+$'<cr>
 let g:lmaps.p.s = ["Denite file_rec:~/wiki/notes grep:~/wiki/notes:'':'^.+$'", 'Search plans/notes']
+nnoremap <silent> <leader>pi :e ~/wiki/index.md<cr>
+let g:lmaps.p.i = ['e ~/wiki/index.md', 'Go to plan index']
 
 " Leader guide bindings and settings
 let g:allmaps = {}
