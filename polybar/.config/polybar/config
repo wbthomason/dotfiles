@@ -310,7 +310,7 @@ animation-charging-framerate = 750
 
 [module/weather]
 type = custom/script
-interval = 10
+interval = 600
 format = <label>
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
