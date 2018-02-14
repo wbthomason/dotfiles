@@ -240,6 +240,9 @@ if dein#load_state('/home/wil/.cache/dein')
   " Racket
   call dein#add('wlangstroth/vim-racket')
 
+  " Lisp
+  call dein#add('kovisoft/slimv')
+
   " Fish
   call dein#add('wilriker/vim-fish')
 
