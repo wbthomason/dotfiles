@@ -396,7 +396,8 @@ let g:cm_sources_override = {}
 call denite#custom#option('default', {
       \ 'prompt': '❯',
       \ 'updatetime': 1,
-      \ 'reversed': 1
+      \ 'reversed': 1,
+      \ 'sorters': 'sorter_sublime'
       \ })
 
 call denite#custom#var('file_rec', 'command',
@@ -413,8 +414,7 @@ call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-	call denite#custom#var('file_rec/git', 'command',
-\ ['git', 'ls-files', '-co', '--exclude-standard'])
+call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
 
 call denite#custom#map(
 	      \ 'insert',
@@ -422,6 +422,7 @@ call denite#custom#map(
 	      \ '<denite:move_to_next_line>',
 	      \ 'noremap'
 	      \)
+
 	call denite#custom#map(
 	      \ 'insert',
 	      \ '<Up>',
