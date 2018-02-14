@@ -242,6 +242,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Lisp
   call dein#add('kovisoft/slimv')
+  call dein#add('bhurlow/vim-parinfer', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
 
   " Fish
   call dein#add('wilriker/vim-fish')

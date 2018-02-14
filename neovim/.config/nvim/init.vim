@@ -296,7 +296,8 @@ let g:LanguageClient_serverCommands = {
       \ 'go': ['~/go/bin/go-langserver'],
       \ 'haskell': ['hie', '--lsp'],
       \ 'lua': ['lua-lsp'],
-      \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log']
+      \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log'],
+      \ 'lisp': ['cl-lsp']
       \ }
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loadSettings = 1
@@ -435,7 +436,7 @@ let g:pad#dir = '~/wiki/notes'
 let g:pad#default_format = 'pandoc'
 let g:pad#open_in_split = 0
 let g:pad#search_backend = 'rg'
-
+let g:pad#set_mappings = 0
 
 " Custom commands
 call ConfigInc('commands.vim')
