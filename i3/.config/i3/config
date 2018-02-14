@@ -21,9 +21,9 @@ exec --no-startup-id /home/wil/.screenlayout/default.sh
 exec --no-startup-id /home/wil/bgscript.sh
 exec --no-startup-id xbindkeys
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id nm-applet
+exec_always --no-startup-id nm-applet
 exec --no-startup-id volnoti
-exec --no-startup-id caffeine
+exec_always --no-startup-id caffeine
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
