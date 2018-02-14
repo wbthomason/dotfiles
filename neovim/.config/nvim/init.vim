@@ -133,7 +133,7 @@ let g:pandoc#after#modules#enabled = ['ultisnips']
 let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 100
 let g:pandoc#modules#disabled = ['folding', 'commands', 'templates', 'formatting']
-let g:pandoc#completion#bib#use_preview = 1
+let g:pandoc#completion#bib#use_preview = 0
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#mode = 'citeproc'
 
@@ -150,9 +150,6 @@ let g:vimtex_quickfix_mode = 0
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-
-" Syntastic 
-let g:syntastic_ocaml_checkers=['merlin','caml4po']
 
 " VimFiler 
 let g:vimfiler_as_default_explorer = 1

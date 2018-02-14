@@ -81,10 +81,9 @@ augroup ncm_aucommands
   au User CmSetup call cm#register_source({
           \ 'name' : 'pandoc',
           \ 'priority': 8,
-          \ 'scoping': 1,
-          \ 'scopes': ['pandoc', 'markdown', 'pandoc.markdown'],
+          \ 'scoping': 0,
+          \ 'scopes': ['pandoc'],
           \ 'abbreviation': 'pandoc',
-          \ 'word_pattern': '[\w\-]+',
           \ 'cm_refresh_patterns': '@',
           \ 'cm_refresh': {'omnifunc': 'pandoc#completion#Complete'},
           \ })
