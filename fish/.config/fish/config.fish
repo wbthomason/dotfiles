@@ -9,7 +9,7 @@ fish_hybrid_key_bindings
 
 # Environment variables
 set -xg EDITOR 'vim'
-set -xg PATH $PATH '/home/wil/.local/bin' '/home/wil/.cargo/bin' '/home/wil/.luarocks/bin'
+set -xg PATH $PATH '/home/wil/.local/bin' '/home/wil/.cargo/bin' '/home/wil/.luarocks/bin' '/home/wil/.roswell/bin'
 set -x fish_color_user 'b8bb26'
 set -x fish_color_host '98bdc3'
 # This is because we still want zsh as the "default" shell, but we want to override it for
