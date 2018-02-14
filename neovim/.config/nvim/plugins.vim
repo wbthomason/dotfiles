@@ -55,7 +55,6 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('yggdroot/indentLine')
 
   " Comments
-  " call dein#add('tpope/vim-commentary')
   call dein#add('tomtom/tcomment_vim')
 
   " Wrapping/delimiters
@@ -113,7 +112,6 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('bfredl/nvim-ipy')
 
   " Color schemes
-  " call dein#add('w0ng/vim-hybrid')
   call dein#add('https://gitlab.com/yorickpeterse/happy_hacking.vim')
 
   " Notes/Wiki
@@ -134,7 +132,6 @@ if dein#load_state('/home/wil/.cache/dein')
   " Git
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-rhubarb')
-  call dein#add('jreybert/vimagit')
   call dein#add('junegunn/gv.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('rhysd/committia.vim', {'on_ft': 'gitcommit'})
