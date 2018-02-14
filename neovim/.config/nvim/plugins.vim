@@ -117,12 +117,9 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('https://gitlab.com/yorickpeterse/happy_hacking.vim')
 
   " Notes/Wiki
-  call dein#add('vimwiki/vimwiki')
-  " call dein#add('akstrfn/vim-orgmode')
-  " call dein#add('tpope/vim-speeddating')
-  " call dein#add('vim-scripts/utl.vim')
-  " call dein#add('mattn/calendar-vim')
-  " call dein#add('vim-scripts/SyntaxRange')
+  call dein#add('fmoralesc/vim-pad')
+  call dein#add('tpope/vim-speeddating')
+  call dein#add('mattn/calendar-vim')
   call dein#add('dhruvasagar/vim-table-mode',
         \ {'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
 

@@ -233,9 +233,9 @@ let g:gitgutter_sign_modified = '＊'
 let g:gitgutter_sign_added = '＋'
 highlight GitGutterAdd guifg = '#A3E28B'
 
-" Vimwiki 
-let g:vimwiki_list = [{'path': '$HOME/wiki', 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_global_ext = 0
+" " Vimwiki 
+" let g:vimwiki_list = [{'path': '$HOME/wiki', 'syntax': 'markdown', 'ext': '.md'}]
+" let g:vimwiki_global_ext = 0
 
 " Goyo 
 let g:goyo_width = 110
@@ -428,6 +428,13 @@ call denite#custom#map(
 	      \ '<denite:move_to_previous_line>',
 	      \ 'noremap'
 \)
+
+" Vim-pad
+let g:pad#dir = '~/wiki/notes'
+let g:pad#default_format = 'pandoc'
+let g:pad#open_in_split = 0
+let g:pad#search_backend = 'rg'
+
 
 " Custom commands
 call ConfigInc('commands.vim')

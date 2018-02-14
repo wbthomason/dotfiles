@@ -181,16 +181,6 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Vimwiki bindings
-nmap <LocalLeader>wi <Plug>VimwikiIndex
-nmap <LocalLeader>wt <Plug>VimwikiTabIndex 
-nmap <LocalLeader>ws <Plug>VimwikiUISelect
-nmap <LocalLeader>ji <Plug>VimwikiDiaryIndex
-nmap <LocalLeader>j  <Plug>VimwikiMakeDiaryNote
-nmap <LocalLeader>jt <Plug>VimwikiTabMakeDiaryNote
-nmap <LocalLeader>jy <Plug>VimwikiMakeYesterdayDiaryNote
-nmap <LocalLeader>jl <Plug>VimwikiDiaryGenerateLinks
-
 " Schlepp bindings
 vmap <unique> <up>    <Plug>SchleppUp
 vmap <unique> <down>  <Plug>SchleppDown

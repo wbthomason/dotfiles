@@ -28,8 +28,8 @@ augroup END
 
 augroup markdown_aucommands
   au!
-  au FileType vimwiki set filetype=pandoc
-  au Syntax vimwiki set syntax=pandoc
+  " au FileType vimwiki set filetype=pandoc
+  " au Syntax vimwiki set syntax=pandoc
   au FileType pandoc set syntax=pandoc | silent :ALEDisable
 augroup END
 
