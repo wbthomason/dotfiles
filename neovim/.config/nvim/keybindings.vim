@@ -162,7 +162,7 @@ let g:lmaps.h.i.u = ['InteroUses', 'Find uses with Intero']
 " LanguageClient bindings
 let g:lmaps.l = {'name': 'LSP'}
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> gD :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <leader>ln :call LanguageClient_textDocument_rename()<CR>
 let g:lmaps.l.n = ['call LanguageClient_textDocument_rename()', 'Rename symbol']
 nnoremap <silent> <leader>lr :Denite references<CR>
