@@ -7,7 +7,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " Utilities
 
   " Tweaks
-  call dein#add('tpope/vim-unimpaired')
+  " call dein#add('tpope/vim-unimpaired')
   call dein#add('tpope/vim-repeat')
 
   " Mappings
@@ -23,11 +23,10 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('kshenoy/vim-signature')
 
   " Quickfix
-  call dein#add('romainl/vim-qf')
+  " call dein#add('romainl/vim-qf')
 
   " Buffer management
   call dein#add('mhinz/vim-sayonara')
-  call dein#add('danro/rename.vim')
 
   " Startup screen
   call dein#add('mhinz/vim-startify')
@@ -37,11 +36,12 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('honza/vim-snippets')
 
   " Status line
+  call dein#add('bling/vim-bufferline')
   call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline', {'depends': ['bufferline']})
 
   " Movement
-  call dein#add('yangmillstheory/vim-snipe')
+  " call dein#add('yangmillstheory/vim-snipe')
   call dein#add('rhysd/clever-f.vim')
   call dein#add('chaoren/vim-wordmotion')
 
@@ -64,7 +64,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('tpope/vim-endwise')
 
   " Undo/redo
-  call dein#add('mbbill/undotree')
+  " call dein#add('mbbill/undotree')
 
   " Searching
   call dein#add('haya14busa/incsearch.vim')
@@ -78,7 +78,6 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Text objects
   call dein#add('wellle/targets.vim')
-  call dein#add('vim-scripts/argtextobj.vim')
 
   " Tags
   " Slow to load, so we use an autocommand after Vim starts
@@ -109,7 +108,6 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " REPL
   call dein#add('hkupty/iron.nvim')
-  call dein#add('bfredl/nvim-ipy')
 
   " Color schemes
   call dein#add('https://gitlab.com/yorickpeterse/happy_hacking.vim')
@@ -131,23 +129,17 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Git
   call dein#add('tpope/vim-fugitive')
-  call dein#add('tpope/vim-rhubarb')
-  call dein#add('junegunn/gv.vim')
+  " call dein#add('tpope/vim-rhubarb')
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('rhysd/committia.vim', {'on_ft': 'gitcommit'})
-  call dein#add('tpope/vim-git',
-        \ {'on_ft': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']})
+  call dein#add('rhysd/committia.vim')
+  call dein#add('tpope/vim-git')
 
   " Completion
   call dein#add('Shougo/neco-syntax')
   call dein#add('Shougo/context_filetype.vim')
-  call dein#add('Shougo/echodoc.vim')
+  " call dein#add('Shougo/echodoc.vim')
   call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp']})
   call dein#add('roxma/nvim-completion-manager')
-
-  " Github
-  call dein#add('roxma/ncm-github',
-        \ {'on_ft': ['git', 'gitcommit', 'gitconfig', 'gitrebase', 'gitsendemail']})
 
   " Checkers
   call dein#add('w0rp/ale')
@@ -172,7 +164,7 @@ if dein#load_state('/home/wil/.cache/dein')
     \ })
 
   " Python
-  call dein#add('fisadev/vim-isort')
+  " call dein#add('fisadev/vim-isort')
   call dein#add('vim-scripts/python_match.vim')
 
   " C/C++
@@ -181,11 +173,13 @@ if dein#load_state('/home/wil/.cache/dein')
   " Java
   call dein#add('sassanh/nvim-cm-eclim')
 
-  " Clojure
-  call dein#add('venantius/vim-cljfmt')
+  " Clojure/Lisps/Scheme
   call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
   call dein#add('tpope/vim-sexp-mappings-for-regular-people', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
   call dein#add('clojure-vim/async-clj-omni')
+  call dein#add('wlangstroth/vim-racket')
+  call dein#add('kovisoft/slimv')
+  " call dein#add('bhurlow/vim-parinfer', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
 
   " Pandoc/Markdown
   call dein#add('vim-pandoc/vim-pandoc', {'depends': ['vim-pandoc-syntax', 'vim-pandoc-after']})
@@ -236,13 +230,6 @@ if dein#load_state('/home/wil/.cache/dein')
   " TypeScript
   call dein#add('HerringtonDarkholme/yats.vim')
   call dein#add('leafgarland/typescript-vim')
-
-  " Racket
-  call dein#add('wlangstroth/vim-racket')
-
-  " Lisp
-  call dein#add('kovisoft/slimv')
-  call dein#add('bhurlow/vim-parinfer', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
 
   " Fish
   call dein#add('wilriker/vim-fish')
