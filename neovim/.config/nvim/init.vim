@@ -66,40 +66,22 @@ let g:rainbow_conf = {
       \	}
       \}
 
+" Bufferline
+let g:bufferline_echo = 0
+let g:bufferline_show_bufnr = 0
+let g:bufferline_rotate = 2
+let g:bufferline_pathshorten = 1
+
 " Airline 
-let g:airline_theme = 'hybrid'
+let g:airline_theme = 'minimalist'
 let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 1
-" " Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#alt_sep = 0
-" " Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
 " " ALE integration config
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#denite#enabled = 1
-" " Explicitly disable some extensions
-let g:airline#extensions#unite#enabled = 0
-let g:airline#extensions#tagbar#enabled = 0
-let g:airline#extensions#bufferline#enabled = 0
-let g:airline#extensions#syntastic#enabled = 0
-let g:airline#extensions#csv#enabled = 0
-let g:airline#extensions#vimagit#enabled = 0
-let g:airline#extensions#virtualenv#enabled = 0
-let g:airline#extensions#eclim#enabled = 0
-let g:airline#extensions#nrrwrgn#enabled = 0
-let g:airline#extensions#capslock#enabled = 0
-let g:airline#extensions#xkblayout#enabled = 0
-let g:airline#extensions#keymap#enabled = 0
-let g:airline#extensions#windowswap#enabled = 0
-let g:airline#extensions#taboo#enabled = 0
-let g:airline#extensions#ctrlspace#enabled = 0
-let g:airline#extensions#ycm#enabled = 0
-let g:airline#extensions#po#enabled = 0
-let g:airline#extensions#neomake#enabled = 0
+let g:airline_extensions = ['ale', 'denite', 'bufferline']
+let g:airline#extensions#bufferline#overwrite_variables = 1
 
 " Ale 
 let g:ale_sign_error = '🗙'
@@ -403,7 +385,6 @@ call denite#custom#option('default', {
 
 call denite#custom#var('file_rec', 'command',
       \ ['rg', '--files', '--glob', '!.git'])
-call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
 call denite#custom#source('file_rec', 'matchers', ['matcher_cpsm'])
 
 call denite#custom#var('grep', 'command', ['rg'])
