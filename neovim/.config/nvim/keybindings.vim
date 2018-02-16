@@ -5,7 +5,7 @@ let mapleader = "\<space>"
 let maplocalleader = ","
 
 " More convenient ESC
-inoremap jj <ESC>
+inoremap <silent> jj <ESC>
 
 " Setup descriptions
 let g:lmaps = {}
@@ -16,70 +16,70 @@ augroup local_filetype_guides
 augroup END
 
 " Exiting
-nnoremap <leader>q :qa<CR>
+nnoremap <silent> <leader>q :qa<CR>
 let g:lmaps.q = ['q', 'Quit']
-nnoremap <leader>x :x<CR>
+nnoremap <silent> <leader>x :x<CR>
 let g:lmaps.x = ['x', 'Write and quit']
 
 " Buffer bindings
 let g:lmaps.b = {'name': 'Buffers'}
-nnoremap <leader>w :w<CR>
+nnoremap <silent> <leader>w :w<CR>
 let g:lmaps.w = ['w', 'Write buffer']
-nnoremap <leader>d :Sayonara<CR>
+nnoremap <silent> <leader>d :Sayonara<CR>
 let g:lmaps.d = ['Sayonara', 'Close buffer']
-nnoremap <leader>a :bp<CR>
+nnoremap <silent> <leader>a :bp<CR>
 let g:lmaps.a = ['bp', 'Go to previous buffer']
-nnoremap <leader>s :bn<CR> 
+nnoremap <silent> <leader>s :bn<CR> 
 let g:lmaps.s = ['bn', 'Go to next buffer']
-nnoremap <leader>bl :b#<CR>
+nnoremap <silent> <leader>bl :b#<CR>
 let g:lmaps.b.l = ['b#', 'Go to last used buffer']
-nnoremap <leader>bb :Denite buffer<CR>
+nnoremap <silent> <leader>bb :Denite buffer<CR>
 let g:lmaps.b.b = ['Denite buffer', 'Select a buffer']
 
 " Configuration bindings
 let g:lmaps.c = {'name': 'Configuration'}
 let g:lmaps.c.s = {'name': 'Sourcing'}
-nnoremap <leader>cst :so %<CR>
+nnoremap <silent> <leader>cst :so %<CR>
 let g:lmaps.c.s.t = ['so %', 'Source this file']
-nnoremap <leader>csc :so ~/.config/nvim/init.vim<CR>
+nnoremap <silent> <leader>csc :so ~/.config/nvim/init.vim<CR>
 let g:lmaps.c.s.c = ['so ~/.config/nvim/init.vim', 'Source config file']
-nnoremap <leader>cc :e ~/.config/nvim/init.vim<CR>
+nnoremap <silent> <leader>cc :e ~/.config/nvim/init.vim<CR>
 let g:lmaps.c.c = ['e ~/.config/nvim/init.vim', 'Open Neovim config']
 
 " Error bindings
 let g:lmaps.e = {'name': 'Errors'}
-nnoremap <leader>eo :lopen<CR>
+nnoremap <silent> <leader>eo :lopen<CR>
 let g:lmaps.e.c = ['lopen', 'Open error list']
-nnoremap <leader>ec :lclose<CR>
+nnoremap <silent> <leader>ec :lclose<CR>
 let g:lmaps.e.c = ['lclose', 'Close error list']
 
 " Finder bindings
 let g:lmaps.f = {'name': 'Find'}
-nnoremap <leader>ff :Denite file_rec<CR>
+nnoremap <silent> <leader>ff :Denite file_rec<CR>
 let g:lmaps.f.f = ['Denite file_rec', 'Search for files in the current directory']
-nnoremap <leader>fa :Denite file_rec:<C-r>=getcwd()<CR>
+nnoremap <silent> <leader>fa :Denite file_rec:<C-r>=getcwd()<CR>
 let g:lmaps.f.a = ['Denite file_rec:<C-r>=getcwd()', 'Search for files in an arbitrary directory']
-nnoremap <leader>fg :DeniteProjectDir file_rec/git<CR>
+nnoremap <silent> <leader>fg :DeniteProjectDir file_rec/git<CR>
 let g:lmaps.f.g = ['DeniteProjectDir file_rec/git', 'Search for files in the current Git repo']
-nnoremap <leader>fh :Denite help<CR>
+nnoremap <silent> <leader>fh :Denite help<CR>
 let g:lmaps.f.h = ['Denite help', 'Search in help tags']
-nnoremap <leader>fr :Denite file_old<CR>
+nnoremap <silent> <leader>fr :Denite file_old<CR>
 let g:lmaps.f.r = ['Denite file_old', 'Search for recently edited files']
 let g:lmaps.f.t = {'name': 'Tags'}
-nnoremap <leader>ftt :Denite tag<CR>
+nnoremap <silent> <leader>ftt :Denite tag<CR>
 let g:lmaps.f.t.t = ['Denite tag', 'Search in tags for the current directory']
-nnoremap <leader>ftb :BTags<CR>
+nnoremap <silent> <leader>ftb :BTags<CR>
 let g:lmaps.f.t.b = ['BTags', 'Search in tags for the current buffer']
-nnoremap <leader>fi :Denite grep<CR>
+nnoremap <silent> <leader>fi :Denite grep<CR>
 let g:lmaps.f.i = ['Denite grep', 'Search for text in files in the current directory']
-nnoremap <leader>fl :Denite line<CR>
+nnoremap <silent> <leader>fl :Denite line<CR>
 let g:lmaps.f.l = ['Denite line', 'Search for text in currently open buffers']
 let g:lmaps.f.s = {'name': 'Symbols'}
 nnoremap <silent> <leader>fsb :Denite documentSymbol<CR>
 let g:lmaps.f.s.b = ['Denite documentSymbol', 'Search symbols in the current buffer']
 nnoremap <silent> <leader>fsp :Denite workspaceSymbol<CR>
 let g:lmaps.f.s.p = ['Denite workspaceSymbol', 'Search symbols in the current project']
-nnoremap <leader>fd :Vaffle<CR>
+nnoremap <silent> <leader>fd :Vaffle<CR>
 let g:lmaps.f.d = ['Vaffle', 'Open Vaffle']
 
 " Toggles
@@ -224,24 +224,24 @@ vnoremap <localleader> :<c-u>LeaderGuideVisual  ','<CR>
 map <localleader>. <Plug>leaderguide-buffer
 
 " vim-snipe bindings
-map <leader><leader>F <Plug>(snipe-F)
-map <leader><leader>f <Plug>(snipe-f)
-map <leader><leader>T <Plug>(snipe-T)
-map <leader><leader>t <Plug>(snipe-t)
-map <leader><leader>w <Plug>(snipe-w)
-map <leader><leader>W <Plug>(snipe-W)
-map <leader><leader>e <Plug>(snipe-e)
-map <leader><leader>E <Plug>(snipe-E)
-map <leader><leader>b <Plug>(snipe-b)
-map <leader><leader>B <Plug>(snipe-B)
-map <leader><leader>ge <Plug>(snipe-ge)
-map <leader><leader>gE <Plug>(snipe-gE)
-nmap <leader><leader>] <Plug>(snipe-f-xp)
-nmap <leader><leader>[ <Plug>(snipe-f-xp)
-nmap <leader><leader>x <Plug>(snipe-f-x)
-nmap <leader><leader>X <Plug>(snipe-F-x)
-nmap <leader><leader>r <Plug>(snipe-f-r)
-nmap <leader><leader>R <Plug>(snipe-F-r)
+" map <leader><leader>F <Plug>(snipe-F)
+" map <leader><leader>f <Plug>(snipe-f)
+" map <leader><leader>T <Plug>(snipe-T)
+" map <leader><leader>t <Plug>(snipe-t)
+" map <leader><leader>w <Plug>(snipe-w)
+" map <leader><leader>W <Plug>(snipe-W)
+" map <leader><leader>e <Plug>(snipe-e)
+" map <leader><leader>E <Plug>(snipe-E)
+" map <leader><leader>b <Plug>(snipe-b)
+" map <leader><leader>B <Plug>(snipe-B)
+" map <leader><leader>ge <Plug>(snipe-ge)
+" map <leader><leader>gE <Plug>(snipe-gE)
+" nmap <leader><leader>] <Plug>(snipe-f-xp)
+" nmap <leader><leader>[ <Plug>(snipe-f-xp)
+" nmap <leader><leader>x <Plug>(snipe-f-x)
+" nmap <leader><leader>X <Plug>(snipe-F-x)
+" nmap <leader><leader>r <Plug>(snipe-f-r)
+" nmap <leader><leader>R <Plug>(snipe-F-r)
 
 " Make Backspace and Enter more useful
 nnoremap <BS> {
