@@ -238,7 +238,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('epdtry/neovim-coq')
 
   " C#
-  call dein#add('cyansprite/omnisharp.nvim', {'build': './install.sh'})
+  call dein#add('cyansprite/omnisharp.nvim', {'build': './install.sh', 'on_ft': 'cs'})
 
   " Meson
   call dein#add('stfl/meson.vim')
