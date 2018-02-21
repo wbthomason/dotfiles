@@ -29,7 +29,7 @@ augroup END
 augroup markdown_aucommands
   au!
   au FileType pandoc set syntax=pandoc | 
-        \ silent :ALEDisable | 
+        \ silent :ALEDisableBuffer | 
         \ call cm#disable_for_buffer()
 augroup END
 
