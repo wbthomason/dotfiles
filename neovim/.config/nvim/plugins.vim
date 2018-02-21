@@ -101,7 +101,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " Special symbols
   call dein#add('chrisbra/unicode.vim')
 
-  " Project Management
+  " Project Management/Sessions
   call dein#add('airblade/vim-rooter')
   call dein#add('tpope/vim-obsession')
   call dein#add('dhruvasagar/vim-prosession')
@@ -109,7 +109,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " REPL
   call dein#add('hkupty/iron.nvim')
 
-  " Color schemes
+  " Color scheme
   call dein#add('https://gitlab.com/yorickpeterse/happy_hacking.vim')
 
   " Notes/Wiki
@@ -128,10 +128,12 @@ if dein#load_state('/home/wil/.cache/dein')
   " call dein#add('Shougo/defx.nvim')
 
   " Git
-  call dein#add('tpope/vim-fugitive')
+  " call dein#add('tpope/vim-fugitive')
   " call dein#add('tpope/vim-rhubarb')
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('rhysd/committia.vim')
+  " call dein#add('airblade/vim-gitgutter')
+  " call dein#add('rhysd/committia.vim')
+  call dein#add('mhinz/vim-signify')
+  call dein#add('lambdalisue/gina.vim')
   call dein#add('tpope/vim-git')
 
   " Completion

@@ -80,8 +80,13 @@ let g:airline_highlighting_cache = 1
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
-let g:airline_extensions = ['ale', 'denite', 'bufferline']
+let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#bufferline#overwrite_variables = 1
+call airline#parts#define_function('gina', 'GinaStatus')
+call airline#parts#define_minwidth('gina', 50)
+call airline#parts#define_condition('gina', 'gina#component#repo#name() != ""')
+let g:airline_extensions = ['denite', 'bufferline', 'hunks']
+let g:airline_section_b = airline#section#create(['gina', ' ', 'hunks'])
 
 " Ale 
 let g:ale_sign_error = '🗙'
@@ -210,10 +215,33 @@ let g:tagbar_type_elixir = {
 let g:racer_cmd = '/usr/bin/racer'
 
 " Gitgutter 
-set updatetime=500
-let g:gitgutter_sign_modified = '＊'
-let g:gitgutter_sign_added = '＋'
-highlight GitGutterAdd guifg = '#A3E28B'
+" set updatetime=500
+" let g:gitgutter_sign_modified = '＊'
+" let g:gitgutter_sign_added = '＋'
+" highlight GitGutterAdd guifg = '#A3E28B'
+
+" Signify
+let g:signify_vcs_list = ['git']
+let g:signify_sign_change = '＊'
+let g:signify_sign_add = '＋'
+let g:signify_sign_delete = '～'
+let g:signify_sign_delete_first_line = g:signify_sign_delete
+let g:signify_sign_show_count = 0
+
+" Gina
+call gina#custom#execute(
+      \ '/\%(status\|branch\|ls\|grep\|changes\|tag\)',
+      \ 'setlocal winfixheight',
+      \)
+call gina#custom#mapping#nmap(
+      \ '/\%(commit\|status\|branch\|ls\|grep\|changes\|tag\)',
+      \ 'q', ':<C-u> bd<CR>', {'noremap': 1, 'silent': 1},
+      \)
+call gina#custom#command#option(
+	      \ '/\%(pull\|push\|status\|commit\)',
+	      \ '--opener', 'topleft split'
+\)
+
 
 " " Vimwiki 
 " let g:vimwiki_list = [{'path': '$HOME/wiki', 'syntax': 'markdown', 'ext': '.md'}]
