@@ -32,8 +32,8 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('mhinz/vim-startify')
 
   " Snippets
-  call dein#add('SirVer/ultisnips')
-  call dein#add('honza/vim-snippets')
+  " call dein#add('SirVer/ultisnips')
+  " call dein#add('honza/vim-snippets')
 
   " Status line
   call dein#add('bling/vim-bufferline')
@@ -64,7 +64,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('tpope/vim-endwise')
 
   " Undo/redo
-  " call dein#add('mbbill/undotree')
+  call dein#add('mbbill/undotree')
 
   " Searching
   call dein#add('haya14busa/incsearch.vim')
@@ -173,7 +173,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('roxma/ncm-clang')
 
   " Java
-  call dein#add('sassanh/nvim-cm-eclim')
+  " call dein#add('sassanh/nvim-cm-eclim')
 
   " Clojure/Lisps/Scheme
   call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
@@ -195,11 +195,11 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('stephpy/vim-yaml')
 
   " JS
-  call dein#add('pangloss/vim-javascript')
-  call dein#add('roxma/nvim-cm-tern',  {'build': 'npm install'})
+  " call dein#add('pangloss/vim-javascript')
+  " call dein#add('roxma/nvim-cm-tern',  {'build': 'npm install'})
 
   " Idris
-  call dein#add('idris-hackers/idris-vim')
+  " call dein#add('idris-hackers/idris-vim')
 
   " Haskell
   call dein#add('neovimhaskell/haskell-vim')
@@ -216,8 +216,8 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('tbastos/vim-lua')
 
   " Elm
-  call dein#add('lambdatoast/elm.vim')
-  call dein#add('roxma/ncm-elm-oracle')
+  " call dein#add('lambdatoast/elm.vim')
+  " call dein#add('roxma/ncm-elm-oracle')
 
   " OCaml
   call dein#add('rgrinberg/vim-ocaml')
@@ -226,21 +226,21 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('lervag/vimtex')
 
   " Elixir
-  call dein#add('elixir-lang/vim-elixir')
-  call dein#add('slashmili/alchemist.vim')
+  " call dein#add('elixir-lang/vim-elixir')
+  " call dein#add('slashmili/alchemist.vim')
 
   " TypeScript
-  call dein#add('HerringtonDarkholme/yats.vim')
-  call dein#add('leafgarland/typescript-vim')
+  " call dein#add('HerringtonDarkholme/yats.vim')
+  " call dein#add('leafgarland/typescript-vim')
 
   " Fish
   call dein#add('wilriker/vim-fish')
 
   " Coq
-  call dein#add('epdtry/neovim-coq')
+  " call dein#add('epdtry/neovim-coq')
 
   " C#
-  call dein#add('cyansprite/omnisharp.nvim', {'build': './install.sh', 'on_ft': 'cs'})
+  " call dein#add('cyansprite/omnisharp.nvim', {'build': './install.sh', 'on_ft': 'cs'})
 
   " Meson
   call dein#add('stfl/meson.vim')
