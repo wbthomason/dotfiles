@@ -116,12 +116,6 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('fmoralesc/vim-pad')
   call dein#add('tpope/vim-speeddating')
   call dein#add('mattn/calendar-vim')
-  call dein#add('dhruvasagar/vim-table-mode',
-        \ {'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
-
-  call dein#add('euclio/vim-markdown-composer',
-        \ {'build': 'cargo build --release',
-        \ 'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
 
   " File explorer
   call dein#add('cocopon/vaffle.vim')
@@ -187,6 +181,13 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('vim-pandoc/vim-pandoc', {'depends': ['vim-pandoc-syntax', 'vim-pandoc-after']})
   call dein#add('vim-pandoc/vim-pandoc-syntax')
   call dein#add('vim-pandoc/vim-pandoc-after')
+  call dein#add('dhruvasagar/vim-table-mode',
+        \ {'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
+
+  call dein#add('euclio/vim-markdown-composer',
+        \ {'build': 'cargo build --release',
+        \ 'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
+  call dein#add('wbthomason/vim-madoko')
 
   " TOML
   call dein#add('cespare/vim-toml')
