@@ -86,7 +86,7 @@ call airline#parts#define_function('gina', 'GinaStatus')
 call airline#parts#define_minwidth('gina', 50)
 call airline#parts#define_condition('gina', 'gina#component#repo#name() != ""')
 let g:airline_extensions = ['denite', 'bufferline', 'hunks']
-let g:airline_section_b = airline#section#create(['gina', ' ', 'hunks'])
+let g:airline_section_b = airline#section#create(['gina'])
 
 " Ale 
 let g:ale_sign_error = '🗙'
