@@ -114,7 +114,7 @@ let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#after#modules#enabled = ['ultisnips', 'vim-table-mode']
 let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 100
-let g:pandoc#modules#disabled = ['folding', 'commands', 'templates', 'formatting']
+let g:pandoc#modules#disabled = [ 'commands', 'templates', 'formatting']
 let g:pandoc#completion#bib#use_preview = 0
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#mode = 'citeproc'
@@ -132,9 +132,6 @@ let g:vimtex_quickfix_mode = 0
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-
-" VimFiler 
-let g:vimfiler_as_default_explorer = 1
 
 " Undotree 
 if has('persistent_undo')
@@ -225,24 +222,6 @@ let g:goyo_width = 110
 " Highlighting tweaks
 highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#B8BEC9 guibg=NONE | highlight LineNr guifg=#777777
 highlight Visual guifg=NONE ctermfg=NONE guibg=#747474 ctermbg=0 gui=NONE cterm=NONE
-
-" FZF 
-let g:fzf_colors =
-      \ { 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
-
-let g:fzf_buffers_jump = 1
-let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 
 " Startify 
 let g:startify_list_order = [
