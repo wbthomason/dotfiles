@@ -133,6 +133,9 @@ let g:vimtex_complete_enabled = 1
 let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_quickfix_mode = 0
 
+" Matchup
+let g:matchup_override_vimtex = 1
+
 " Ultisnips 
 let g:UltiSnipsExpandTrigger = '<c-j>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
@@ -325,7 +328,7 @@ let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist = 0
 
 " Parenmatch 
-let g:loaded_matchparen = 1
+" let g:loaded_matchparen = 1
 
 " Easygit 
 let g:easygit_enable_command = 1
