@@ -30,3 +30,13 @@
 --langdef=bib
 --langmap=bib:.bib
 --regex-bib=/^@[A-Za-z]+\{([^,]*)/\1/b,bib/
+
+--langdef=bibtex
+--langmap=bibtex:.bib
+--regex-bibtex=/@string\{([^ "#%')(,=}{]+)/\1/s,BibTeX-Strings/i
+--regex-bibtex=/@(article|book|booklet|inbook|incollection|inproceedings|manual|masterthesis|misc|phdthesis|proceedings|techreport|unpublished)\{([^,]+),/\2/e,BibTeX-Entries/i
+--regex-bibtex=/[[:space:]]*author[[:space:]]*=[[:space:]]*("([^"]+)"|\{([^\}]+)\})[[:space:]]*,?[[:space:]]*$/\2\3/a,BibTeX-Authors/i
+
+--langdef=tex2
+--langmap=tex2:.tex
+--regex-tex2=/\\label[ \t]*\*?\{[ \t]*([^}]*)\}/\1/l,label/
