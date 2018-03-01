@@ -14,8 +14,8 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('hecal3/vim-leader-guide')
 
   " Paren matching
-  " call dein#add('itchyny/vim-parenmatch')
-  call dein#add('andymass/vim-matchup')
+  call dein#add('itchyny/vim-parenmatch')
+  " call dein#add('andymass/vim-matchup')
 
   " Registers
   call dein#add('junegunn/vim-peekaboo')
