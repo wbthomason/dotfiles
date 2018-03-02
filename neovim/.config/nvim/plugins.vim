@@ -143,8 +143,8 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Async building & commands
   call dein#add('wbthomason/buildit.nvim')
-  call dein#add('tpope/vim-dispatch')
-  call dein#add('radenling/vim-dispatch-neovim')
+  " call dein#add('tpope/vim-dispatch')
+  " call dein#add('radenling/vim-dispatch-neovim')
 
   " Block manipulation
   call dein#add('kana/vim-niceblock')
