@@ -77,8 +77,7 @@ let g:airline_theme = 'minimalist'
 let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 1
 " " ALE integration config
-call airline#parts#define_function('ALE', 'ALEGetStatusLine')
-call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+call airline#parts#define_function('ALE', 'LinterStatus')
 let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#bufferline#overwrite_variables = 1
@@ -91,7 +90,6 @@ let g:airline_section_b = airline#section#create(['gina'])
 " Ale 
 let g:ale_sign_error = '🗙'
 let g:ale_sign_warning = '➤'
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 1
