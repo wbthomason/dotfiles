@@ -236,9 +236,14 @@ call gina#custom#mapping#nmap(
       \ 'q', ':<C-u> bd<CR>', {'noremap': 1, 'silent': 1},
       \)
 call gina#custom#command#option(
-	      \ '/\%(pull\|push\|status\|commit\)',
-	      \ '--opener', 'topleft split'
-\)
+      \ '/\%(pull\|push\|status\|commit\)',
+      \ '--opener', 'topleft split'
+      \)
+
+call gina#custom#command#option(
+      \ '/\%(commit\)',
+      \ '--restore'
+      \)
 
 
 " " Vimwiki 
