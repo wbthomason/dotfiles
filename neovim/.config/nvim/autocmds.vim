@@ -41,8 +41,9 @@ augroup END
 
 augroup tex_aucommands
   au!
-  au FileType tex setlocal spell
-  au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
+  au FileType tex setlocal spell |
+        \ silent :ALEDisableBuffer
+  " au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
 augroup END
 
 augroup misc_lang_aucommands
