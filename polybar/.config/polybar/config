@@ -44,8 +44,8 @@ font-4 = Font Awesome 5 Free:pixelsize=9;3
 font-5 = Font Awesome 5 Free Solid:pixelsize=9;3
 font-6 = Font Awesome 5 Brands:pixelsize=9;3
 
-modules-left = i3
-modules-center = xwindow
+modules-left = i3 mpd
+modules-center = 
 modules-right = xbacklight volume wifi battery_0 date fs-root memory cpu temperature
 
 tray-position = right
@@ -255,3 +255,43 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+[module/mpd]
+type = internal/mpd
+
+format-online = <label-time>  <bar-progress>  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+;format-online-background = #ee333333
+format-online-underline = #cc333333
+format-online-padding = 3
+
+format-offline = <label-offline>
+;format-offline-foreground = #777
+
+label-offline = mpd is off
+
+label-song-maxlen = 45
+label-song-ellipsis = true
+
+label-time-foreground = #777
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground = ${colors.accent}
+toggle-off-foreground = #777
+
+;bar-progress-width = 10
+;bar-progress-indicator = 
+;bar-progress-indicator-foreground = #bb
+;bar-progress-fill = ─
+;bar-progress-fill-foreground = #bb
+;bar-progress-fill-font = 3
+;bar-progress-empty = ─
+;bar-progress-empty-foreground = #44
+;bar-progress-empty-font = 3
