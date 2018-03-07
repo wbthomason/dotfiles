@@ -9,15 +9,6 @@ secondary = #e60053
 
 [settings]
 screenchange-reload = true
-;throttle-output-for = 10
-;throttle-output = 5
-;throttle-input-for = 40
-
-;compositing-background = over
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-foreground = source
-;compositing-border = over
 
 [global/wm]
 margin-top = 0
@@ -48,11 +39,14 @@ module-margin-right = 2
 font-0 = dina:pixelsize=9.5;1
 font-1 = "Wuncon Siji:pixelsize=10;1"
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-3 = FontAwesome:pixelsize=14;0
+font-3 = "Font Awesome 5 Free:pixelsize=14;0"
+font-4 = Font Awesome 5 Free:pixelsize=9;3
+font-5 = Font Awesome 5 Free Solid:pixelsize=9;3
+font-6 = Font Awesome 5 Brands:pixelsize=9;3
 
-modules-left = i3 
-modules-center = music
-modules-right = weather xbacklight volume wifi battery_0 battery_1 date fs-root memory cpu temperature redshift
+modules-left = i3
+modules-center = xwindow
+modules-right = xbacklight volume wifi battery_0 date fs-root memory cpu temperature
 
 tray-position = right
 tray-padding = 4
@@ -60,97 +54,60 @@ tray-maxsize = 16
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
-# bar/module specific vars
-bspwm-focused-overline = ${colors.linecolor}
-bspwm-focused-underline = #cc333333
+i3-focused-overline = ${colors.linecolor}
+i3-focused-underline = #cc333333
 
 [module/fs-root]
 type = internal/fs
 mount-0 = /
 label-mounted = %{F#e60053}%percentage_used%%%{F-} used of %mountpoint%
 
-[module/bspwm]
-type = internal/bspwm
-
-enable-scroll = false
-
-format = <label-state> <label-mode>
-
-ws-icon-default = x
-
-inline-mode = true
-
-label-focused = o
-label-focused-background = #383838
-label-focused-foreground = #fff
-label-focused-overline = ${root.bspwm-focused-overline}
-label-focused-underline = ${root.bspwm-focused-underline}
-label-focused-padding = 2
-
-label-occupied = %{O-1}⏺%{O-1}
-label-occupied-padding = 2
-
-label-urgent = !
-label-urgent-background = #bd2c40
-label-urgent-padding = 2
-
-label-empty = x
-label-empty-foreground = #444
-label-empty-padding = 2
-
-label-monocle = 
-label-monocle-padding = 2
-label-monocle-background = #171717
-label-monocle-foreground = ${colors.accent}
-
-label-floating = 
-label-floating-padding = 2
-label-floating-background = #171717
-label-floating-foreground = ${colors.accent}
-
-label-locked = locked
-label-locked-padding = 1
-label-sticky = sticky
-label-sticky-padding = 1
-label-private = private
-label-private-padding = 1
-
-label-dimmed-background = ${root.background}
-label-dimmed-overline = ${root.background}
-label-dimmed-underline = ${root.background}
-label-dimmed-active-foreground = #f00
+[module/xwindow]
+type = internal/xwindow
+label-font = 0
 
 [module/i3]
 type = internal/i3
 index-sort = true
 pin-workspaces = true
 wrapping-scroll = true
-;reverse-scroll = false
 enable-scroll = true
 strip-wsnumbers = true
 
 format = <label-state> <label-mode>
 
+ws-icon-0 = 3:web;
+ws-icon-1 = 1:admin;
+ws-icon-2 = 2:work;
+ws-icon-3 = 7:music;
+ws-icon-4 = 5:comms;
+ws-icon-5 = 8:notes;
+ws-icon-6 = 10:misc;
+ws-icon-7 = 9:logistics;
+ws-icon-8 = 4:files;
+ws-icon-9 = 6:email;
+ws-icon-default = 
+
 label-mode = %mode%
 label-mode-padding = 2
 label-mode-background = ${colors.accent}
 
-label-focused = %name%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-foreground = ${module/bspwm.label-focused-foreground}
-label-focused-overline= ${module/bspwm.label-focused-overline}
-label-focused-underline= ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused = %name% %icon%
+label-focused-background = #383838
+label-focused-foreground = #fff
+label-focused-overline= ${root.i3-focused-overline}
+label-focused-underline= ${root.i3-focused-underline}
+label-focused-padding = 2
 
-label-unfocused = %name%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused = %name% %icon%
+label-unfocused-padding = 2
 
-label-urgent = %name%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent = %name% %icon%
+label-urgent-background = #bd2c40
+label-urgent-padding = 2
 
-label-visible = %name%
-label-visible-padding = ${module/bspwm.label-empty-padding}
+label-visible = %name% %icon%
+label-visible-padding = 2
 
 [module/cpu]
 type = internal/cpu
@@ -280,42 +237,6 @@ animation-charging-2 = 
 animation-charging-foreground = #666
 animation-charging-framerate = 750
 
-[module/battery_1]
-type = internal/battery
-battery = BAT1
-adapter = AC
-full-at = 98
-time-format = %H:%M
-
-format-charging = <animation-charging> <label-charging>
-label-charging = %percentage%% %time%
-
-format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = %percentage%% %time%
-
-format-full = <label-full>
-format-full-prefix = " "
-format-full-prefix-foreground = #666
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = #666
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = #666
-animation-charging-framerate = 750
-
-[module/weather]
-type = custom/script
-interval = 600
-format = <label>
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-exec = ~/.config/polybar/weather
-
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
@@ -334,16 +255,3 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
-
-/*[module/redshift]*/
-/*type = custom/script*/
-/*interval = 5*/
-
-/*exec = ~/.config/polybar/redshift.sh*/
-
-[module/music]
-type = custom/script
-interval = 2
-
-label = %output:0:45:...%
-exec = ~/.config/polybar/mpris.sh
