@@ -39,10 +39,9 @@ module-margin-right = 2
 font-0 = dina:pixelsize=9.5;1
 font-1 = "Wuncon Siji:pixelsize=10;1"
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-3 = "Font Awesome 5 Free:pixelsize=14;0"
-font-4 = Font Awesome 5 Free:pixelsize=9;3
-font-5 = Font Awesome 5 Free Solid:pixelsize=9;3
-font-6 = Font Awesome 5 Brands:pixelsize=9;3
+font-3 = Font Awesome 5 Free:pixelsize=9;3
+font-4 = Font Awesome 5 Free Solid:pixelsize=9;3
+font-5 = Font Awesome 5 Brands:pixelsize=9;3
 
 modules-left = i3 mpd
 modules-center = 
