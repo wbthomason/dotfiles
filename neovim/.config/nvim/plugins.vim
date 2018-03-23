@@ -69,6 +69,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Searching
   call dein#add('haya14busa/incsearch.vim')
+  " call dein#add('xtal8/traces.vim') " Needs 0.2.3+
 
   " Yank highlighting
   call dein#add('machakann/vim-highlightedyank')
