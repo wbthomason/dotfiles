@@ -87,15 +87,15 @@ augroup ncm_aucommands
           \ 'cm_refresh_patterns': '@',
           \ 'cm_refresh': {'omnifunc': 'pandoc#completion#Complete'},
           \ })
-  au User CmSetup call cm#register_source({
-          \ 'name' : 'neco-ghc',
-          \ 'priority': 8,
-          \ 'scoping': 1,
-          \ 'scopes': ['haskell'],
-          \ 'abbreviation': 'hs',
-          \ 'cm_refresh_patterns': 'import\s+',
-          \ 'cm_refresh': {'omnifunc': 'necoghc#omnifunc'},
-          \ })
+  " au User CmSetup call cm#register_source({
+  "         \ 'name' : 'neco-ghc',
+  "         \ 'priority': 8,
+  "         \ 'scoping': 1,
+  "         \ 'scopes': ['haskell'],
+  "         \ 'abbreviation': 'hs',
+  "         \ 'cm_refresh_patterns': 'import\s+',
+  "         \ 'cm_refresh': {'omnifunc': 'necoghc#omnifunc'},
+  "         \ })
 augroup END
 " augroup denite_aucommands
 "   au!

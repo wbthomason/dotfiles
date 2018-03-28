@@ -209,7 +209,6 @@ if dein#load_state('/home/wil/.cache/dein')
   " Haskell
   call dein#add('neovimhaskell/haskell-vim')
   call dein#add('parsonsmatt/intero-neovim')
-  call dein#add('eagletmt/neco-ghc')
 
   " Vimscript
   call dein#add('Shougo/neco-vim')
