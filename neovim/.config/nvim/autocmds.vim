@@ -57,6 +57,11 @@ augroup python_aucommands
   au FileType python setl nosmartindent | let g:cm_sources_override.neoinclude = {'enable': 0}
 augroup END
 
+augroup lisp_aucommands
+  " Also Racket, Scheme, etc
+  autocmd filetype lisp,scheme,racket setlocal equalprg=scmindent
+augroup END
+
 augroup cmake_aucommands
   au!
   au FileType cmake setlocal commentstring=#\ %s
