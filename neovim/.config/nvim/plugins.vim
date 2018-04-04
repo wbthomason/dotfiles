@@ -128,10 +128,6 @@ if dein#load_state('/home/wil/.cache/dein')
   " call dein#add('Shougo/defx.nvim')
 
   " Git
-  " call dein#add('tpope/vim-fugitive')
-  " call dein#add('tpope/vim-rhubarb')
-  " call dein#add('airblade/vim-gitgutter')
-  " call dein#add('rhysd/committia.vim')
   call dein#add('mhinz/vim-signify')
   call dein#add('lambdalisue/gina.vim')
   call dein#add('tpope/vim-git')
@@ -139,7 +135,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " Completion
   call dein#add('Shougo/neco-syntax')
   call dein#add('Shougo/context_filetype.vim')
-  " call dein#add('Shougo/echodoc.vim')
+  call dein#add('Shougo/echodoc.vim')
   call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp']})
   call dein#add('roxma/nvim-completion-manager')
 

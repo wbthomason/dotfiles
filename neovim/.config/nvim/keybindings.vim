@@ -219,26 +219,6 @@ nnoremap <localleader> :<c-u>LeaderGuide  ','<CR>
 vnoremap <localleader> :<c-u>LeaderGuideVisual  ','<CR>
 map <localleader>. <Plug>leaderguide-buffer
 
-" vim-snipe bindings
-" map <leader><leader>F <Plug>(snipe-F)
-" map <leader><leader>f <Plug>(snipe-f)
-" map <leader><leader>T <Plug>(snipe-T)
-" map <leader><leader>t <Plug>(snipe-t)
-" map <leader><leader>w <Plug>(snipe-w)
-" map <leader><leader>W <Plug>(snipe-W)
-" map <leader><leader>e <Plug>(snipe-e)
-" map <leader><leader>E <Plug>(snipe-E)
-" map <leader><leader>b <Plug>(snipe-b)
-" map <leader><leader>B <Plug>(snipe-B)
-" map <leader><leader>ge <Plug>(snipe-ge)
-" map <leader><leader>gE <Plug>(snipe-gE)
-" nmap <leader><leader>] <Plug>(snipe-f-xp)
-" nmap <leader><leader>[ <Plug>(snipe-f-xp)
-" nmap <leader><leader>x <Plug>(snipe-f-x)
-" nmap <leader><leader>X <Plug>(snipe-F-x)
-" nmap <leader><leader>r <Plug>(snipe-f-r)
-" nmap <leader><leader>R <Plug>(snipe-F-r)
-
 " Make Backspace and Enter more useful
 nnoremap <BS> {
 onoremap <BS> {
@@ -251,5 +231,3 @@ vnoremap <CR> }
 " NCM bindings
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <CR>  pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>"
-" inoremap <expr> <Plug>(expand_or_nl) cm#completed_is_snippet() ? "\<C-U>":"\<CR>"
