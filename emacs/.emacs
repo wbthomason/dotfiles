@@ -28,11 +28,15 @@
   (with-eval-after-load 'company
     (define-key company-active-map (kbd "C-/") 'helm-company)))
 
-(use-package helm-ag :ensure t :defer t)
+(use-package helm-ag :ensure t :defer t
+  :config
+  (setq helm-ag-base-command "rg --no-heading"))
+
 (use-package helm-flx :ensure t)
 (use-package helm-projectile :ensure t)
 (use-package helm-make :ensure t)
 (use-package helm-gitignore :ensure t)
+(use-package helm-bibtex :ensure t :defer t)
 
 ;;; Undotree
 (use-package undo-tree :ensure t
@@ -74,6 +78,8 @@
   (add-hook 'scheme-mode-hook #'smartparens-mode)
   (add-hook 'lisp-mode-hook #'smartparens-mode))
 
+(sp-local-pair 'tuareg-mode "'" nil :actions nil)
+(sp-local-pair 'tuareg-mode "`" nil :actions nil)
 (sp-with-modes 'emacs-lisp-mode
   ;; disable ', it's the quote character!
   (sp-local-pair "'" nil :actions nil)
@@ -303,6 +309,33 @@
   (define-key company-active-map [tab] 'company-select-next)
   (define-key company-active-map [S-tab] 'company-select-previous))
 
+;;; LSP
+(use-package lsp-mode :ensure t)
+(use-package lsp-ui :ensure t
+  :init
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package lsp-python :ensure t
+  :init
+  (add-hook 'python-mode-hook #'lsp-python-enable))
+
+(use-package lsp-haskell :ensure t
+  :init
+  (add-hook 'haskell-mode-hook #'lsp-haskell-enable))
+
+(setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+(use-package lsp-rust :ensure t
+  :init
+  (add-hook 'rust-mode-hook #'lsp-rust-enable))
+
+(use-package lsp-ocaml :ensure t
+  :init
+  (add-hook 'tuareg-mode-hook #'lsp-ocaml-enable))
+
+(use-package company-lsp :ensure t
+  :init
+  (push 'company-lsp company-backends))
+
 (use-package company-quickhelp :ensure t
   :config
   (company-quickhelp-mode))
@@ -321,18 +354,30 @@
 (use-package ocp-indent :defer t :ensure t
   :load-path (lambda () ( concat ( opam-share ) "/emacs/site-lisp")))
 
-
 ;;;; Tuareg
 (use-package tuareg :defer t :ensure t
   :config
   (add-hook 'tuareg-mode-hook
             (lambda () (setq indent-line-function 'ocp-indent-line))))
 
+;;;; Merlin
+(use-package merlin :ensure t :defer t
+  :init
+  (add-hook 'tuareg-mode-hook 'merlin-mode)
+  (setq merlin-completion-with-doc t))
+
+;;;; Utop
+(use-package utop :ensure t :defer t
+  :init
+  (add-hook 'tuareg-mode-hook 'utop-minor-mode)
+  (setq utop-command "opam config exec -- utop -emacs"))
+
 ;;; Python
 (use-package python-mode :defer t :ensure t)
 
 ;;; Markdown
 (use-package markdown-mode :defer t :ensure t)
+(use-package markdown-toc :defer t :ensure t)
 
 ;;; LaTeX
 (use-package auctex :defer t :ensure t
@@ -341,6 +386,48 @@
         TeX-auto-save  t
         TeX-parse-self t)
   (setq-default TeX-master nil))
+
+(use-package auctex-latexmk :ensure t :defer t)
+(use-package company-auctex :ensure t :defer t)
+(use-package reftex :defer t
+  :init
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (setq reftex-plug-into-AUCTeX '(nil nil t t t)
+        reftex-use-fonts t))
+
+;;; YAML
+(use-package yaml-mode :ensure t :defer t)
+
+;;; Fish
+(use-package fish-mode :ensure t :defer t)
+
+;;; Bash
+(use-package sh-script :defer t)
+
+;;; Scheme
+(use-package geiser :ensure t :defer t)
+
+;;; Scala
+(use-package scala-mode :ensure t :defer t)
+
+;;; Rust
+(use-package cargo :ensure t :defer t)
+
+;;; Racket
+(use-package racket-mode :ensure t :defer t)
+
+;;; C++
+(use-package cc-mode :ensure t :defer t)
+(use-package clang-format :ensure t :defer t)
+(use-package company-c-headers :ensure t :defer t)
+
+;;; Org
+(use-package org :ensure t :defer t)
+(use-package org-ref :ensure t :defer t)
+
+;;; Bibtex
+(use-package biblio :ensure t :defer t)
+(use-package biblio-core :ensure t :defer t)
 
 ;; Theming and Interface
 
@@ -424,6 +511,7 @@
   "ff" 'helm-find-files
   "fr" 'helm-recentf
   "fh" 'helm-apropos
+  "gf" 'helm-projectile
   "gi" 'helm-gitignore
   "gs" 'magit-status
   "gc" 'magit-commit
