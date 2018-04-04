@@ -56,7 +56,8 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('yggdroot/indentLine')
 
   " Comments
-  call dein#add('tomtom/tcomment_vim')
+  " call dein#add('tomtom/tcomment_vim')
+  call dein#add('tpope/vim-commentary')
 
   " Wrapping/delimiters
   call dein#add('machakann/vim-sandwich')
@@ -178,7 +179,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
   call dein#add('tpope/vim-sexp-mappings-for-regular-people', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
   call dein#add('clojure-vim/async-clj-omni', {'on_ft': 'clojure'})
-  call dein#add('wlangstroth/vim-racket', {'on_ft': 'racket'})
+  call dein#add('wlangstroth/vim-racket')
   call dein#add('kovisoft/slimv', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket']})
   " call dein#add('bhurlow/vim-parinfer', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
 
@@ -190,8 +191,7 @@ if dein#load_state('/home/wil/.cache/dein')
         \ {'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
 
   call dein#add('euclio/vim-markdown-composer',
-        \ {'build': 'cargo build --release',
-        \ 'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
+        \ {'build': 'cargo build --release'})
   call dein#add('wbthomason/vim-madoko')
 
   " TOML
