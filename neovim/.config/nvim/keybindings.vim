@@ -17,9 +17,9 @@ augroup END
 
 " Exiting
 nnoremap <silent> <leader>q :qa<CR>
-let g:lmaps.q = ['q', 'Quit']
-nnoremap <silent> <leader>x :x<CR>
-let g:lmaps.x = ['x', 'Write and quit']
+let g:lmaps.q = ['qa', 'Quit']
+nnoremap <silent> <leader>x :x!<CR>
+let g:lmaps.x = ['x!', 'Write and quit']
 
 " Buffer bindings
 let g:lmaps.b = {'name': 'Buffers'}

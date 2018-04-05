@@ -42,7 +42,8 @@ augroup END
 augroup tex_aucommands
   au!
   au FileType tex setlocal spell |
-        \ silent :ALEDisableBuffer
+        \ silent :ALEDisableBuffer |
+        \ nnoremap <leader>lc :VimtexCompile<cr>
   " au BufNewFile,BufFilePre,BufRead *.tex set makeprg=make
 augroup END
 
