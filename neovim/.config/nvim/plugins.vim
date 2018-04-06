@@ -15,7 +15,6 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Paren matching
   call dein#add('itchyny/vim-parenmatch')
-  " call dein#add('andymass/vim-matchup')
 
   " Registers
   call dein#add('junegunn/vim-peekaboo')
@@ -83,18 +82,11 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('wellle/targets.vim')
 
   " Tags
-  " Slow to load, so we use an autocommand after Vim starts
   call dein#add('ludovicchabant/vim-gutentags')
   call dein#add('majutsushi/tagbar')
 
-  " File opening/fuzzy finding
-  " call dein#add('junegunn/fzf', {'merged': 0})
-  " call dein#add('junegunn/fzf.vim', {'depends': 'fzf', 'lazy': 0})
-  " call dein#add('fszymanski/fzf-gitignore')
-
   " Denite
   call dein#add('Shougo/denite.nvim')
-  call dein#add('chemzqm/denite-extra')
   call dein#add('nixprime/cpsm', {'build': 'env PY3=ON ./install.sh'})
 
   " Writing
@@ -120,8 +112,8 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Notes/Wiki
   call dein#add('fmoralesc/vim-pad')
-  call dein#add('tpope/vim-speeddating')
-  call dein#add('mattn/calendar-vim')
+  " call dein#add('tpope/vim-speeddating')
+  " call dein#add('mattn/calendar-vim')
 
   " File explorer
   call dein#add('cocopon/vaffle.vim')
@@ -187,7 +179,6 @@ if dein#load_state('/home/wil/.cache/dein')
 
   call dein#add('euclio/vim-markdown-composer',
         \ {'build': 'cargo build --release'})
-  call dein#add('wbthomason/vim-madoko')
 
   " TOML
   call dein#add('cespare/vim-toml')
