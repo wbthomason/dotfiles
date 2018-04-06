@@ -234,20 +234,16 @@ call gina#custom#execute(
       \ '/\%(status\|branch\|ls\|grep\|changes\|tag\)',
       \ 'setlocal winfixheight',
       \)
+
 call gina#custom#mapping#nmap(
       \ '/\%(commit\|status\|branch\|ls\|grep\|changes\|tag\)',
       \ 'q', ':<C-u> bd<CR>', {'noremap': 1, 'silent': 1},
       \)
-call gina#custom#command#option(
-      \ '/\%(pull\|push\|status\|commit\)',
-      \ '--opener', 'topleft split'
-      \)
 
-call gina#custom#command#option(
-      \ '/\%(commit\)',
-      \ '--restore'
-      \)
-
+" call gina#custom#command#option(
+"       \ '/\%(pull\|push\|status\)',
+"       \ '--opener', 'topleft split'
+"       \)
 
 " " Vimwiki 
 " let g:vimwiki_list = [{'path': '$HOME/wiki', 'syntax': 'markdown', 'ext': '.md'}]
@@ -413,6 +409,7 @@ call denite#custom#var('grep', 'final_opts', [])
 
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+call denite#custom#source('file_rec/git', 'matchers', ['matcher_cpsm'])
 
 call denite#custom#map(
 	      \ 'insert',
