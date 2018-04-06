@@ -106,16 +106,16 @@ map g# <Plug>(incsearch-nohl-g#)
 
 " Version control bindings
 let g:lmaps.g = {'name': 'Git'}
-nnoremap <leader>gc :Gina commit<CR>
-let g:lmaps.g.c = ['Gina commit', 'Create a git commit']
-nnoremap <leader>gl :Gina pull<CR>
-let g:lmaps.g.l = ['Gina pull', 'Run git pull']
-nnoremap <leader>gp :Gina push<CR>
-let g:lmaps.g.p = ['Gina push', 'Run git push']
-nnoremap <leader>gd :Gina diff<CR>
-let g:lmaps.g.d = ['Gina diff', 'Display git diff']
-nnoremap <leader>gs :Gina status<CR>
-let g:lmaps.g.s = ['Gina status', 'Display git status']
+nnoremap <leader>gc :Gcommit<CR>
+let g:lmaps.g.c = ['Gcommit', 'Create a git commit']
+nnoremap <leader>gl :Gpull<CR>
+let g:lmaps.g.l = ['Gpull', 'Run git pull']
+nnoremap <leader>gp :Gpush<CR>
+let g:lmaps.g.p = ['Gpush', 'Run git push']
+nnoremap <leader>gd :Gdiff<CR>
+let g:lmaps.g.d = ['Gdiff', 'Display git diff']
+nnoremap <leader>gs :Gstatus<CR>
+let g:lmaps.g.s = ['Gstatus', 'Display git status']
 
 " Compilation bindings
 let g:lmaps.m = {'name': 'Build/Make'}

@@ -129,8 +129,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Git
   call dein#add('mhinz/vim-signify')
-  call dein#add('lambdalisue/gina.vim')
-  call dein#add('tpope/vim-git')
+  call dein#add('tpope/vim-fugitive')
 
   " Completion
   call dein#add('Shougo/neco-syntax')
@@ -144,8 +143,8 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Async building & commands
   call dein#add('wbthomason/buildit.nvim')
-  " call dein#add('tpope/vim-dispatch')
-  " call dein#add('radenling/vim-dispatch-neovim')
+  call dein#add('tpope/vim-dispatch')
+  call dein#add('radenling/vim-dispatch-neovim')
 
   " Block manipulation
   call dein#add('kana/vim-niceblock')
