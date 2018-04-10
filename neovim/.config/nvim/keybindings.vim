@@ -116,6 +116,8 @@ nnoremap <leader>gd :Gdiff<CR>
 let g:lmaps.g.d = ['Gdiff', 'Display git diff']
 nnoremap <leader>gs :Gstatus<CR>
 let g:lmaps.g.s = ['Gstatus', 'Display git status']
+nnoremap <leader>gw :Gwrite<CR>
+let g:lmaps.g.w = ['Gwrite', 'Write and stage the file']
 
 " Compilation bindings
 let g:lmaps.m = {'name': 'Build/Make'}
