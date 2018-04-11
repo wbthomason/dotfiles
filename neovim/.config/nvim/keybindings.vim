@@ -15,6 +15,10 @@ augroup local_filetype_guides
   au FileType tex let g:llmaps.l = { 'name' : 'vimtex' }
 augroup END
 
+" Re-run commands
+nnoremap <silent> <localleader>r @:
+let g:llmaps.r = ['@:', 'Rerun last colon command']
+
 " Exiting
 nnoremap <silent> <leader>q :qa<CR>
 let g:lmaps.q = ['qa', 'Quit']
