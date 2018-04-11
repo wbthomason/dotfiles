@@ -58,7 +58,11 @@ augroup END
 
 augroup lisp_aucommands
   " Also Racket, Scheme, etc
-  autocmd filetype lisp,scheme,racket setlocal equalprg=scmindent
+  au filetype lisp,scheme,racket setlocal equalprg=scmindent
+augroup END
+
+augroup scribble_aucommands
+  au BufNewFile,BufFilePre,BufRead *.scrbl set filetype=scribble
 augroup END
 
 augroup cmake_aucommands

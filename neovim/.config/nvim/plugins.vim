@@ -167,6 +167,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('tpope/vim-sexp-mappings-for-regular-people', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
   call dein#add('clojure-vim/async-clj-omni', {'on_ft': 'clojure'})
   call dein#add('wlangstroth/vim-racket')
+  call dein#add('vim-scripts/scribble.vim')
   call dein#add('kovisoft/slimv', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket']})
   " call dein#add('bhurlow/vim-parinfer', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
 
