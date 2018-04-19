@@ -373,6 +373,7 @@ endif
 let g:deoplete#omni#ignore_sources.python = ['neoinclude']
 let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 let g:deoplete#num_processes = 0
+let g:deoplete#auto_complete_delay = 100
 
 " Denite
 call denite#custom#option('default', {

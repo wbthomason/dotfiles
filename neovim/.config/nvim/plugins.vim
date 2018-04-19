@@ -145,6 +145,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " Python
   " call dein#add('fisadev/vim-isort')
   " call dein#add('vim-scripts/python_match.vim')
+  call dein#add('zchee/deoplete-jedi')
 
   " C/C++
   " call dein#add('roxma/ncm-clang')
