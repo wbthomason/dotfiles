@@ -129,7 +129,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('Shougo/echodoc.vim')
   call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp']})
   " call dein#add('roxma/nvim-completion-manager')
-  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('Shougo/deoplete.nvim', )
 
   " Checkers
   call dein#add('w0rp/ale')
@@ -159,6 +159,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " C/C++
   " call dein#add('roxma/ncm-clang')
+  call dein#add('tweekmonster/deoplete-clang2')
 
   " Java
   " call dein#add('sassanh/nvim-cm-eclim')
@@ -198,6 +199,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " Haskell
   call dein#add('neovimhaskell/haskell-vim')
   call dein#add('parsonsmatt/intero-neovim')
+  call dein#add('eagletmt/neco-ghc')
 
   " Vimscript
   call dein#add('Shougo/neco-vim')
@@ -246,5 +248,5 @@ if dein#load_state('/home/wil/.cache/dein')
 
   call dein#end()
   call dein#save_state()
+  call dein#remote_plugins()
 endif
-call dein#remote_plugins()
