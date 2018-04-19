@@ -53,7 +53,7 @@ augroup misc_lang_aucommands
 augroup END
 
 augroup python_aucommands
-  au FileType python setl nosmartindent | let g:cm_sources_override.neoinclude = {'enable': 0}
+  au FileType python setl nosmartindent "| let g:cm_sources_override.neoinclude = {'enable': 0}
 augroup END
 
 augroup lisp_aucommands
@@ -75,36 +75,36 @@ augroup vimfiler_aucommands
   au FileType vimfiler nmap <buffer> i :VimFilerPrompt<CR>
 augroup END
 
-augroup ncm_aucommands
-  au!
-  au User CmSetup call cm#register_source({
-          \ 'name' : 'vimtex',
-          \ 'priority': 8,
-          \ 'scoping': 1,
-          \ 'scopes': ['tex'],
-          \ 'abbreviation': 'tex',
-          \ 'cm_refresh_patterns': g:vimtex#re#ncm,
-          \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
-          \ })
-  au User CmSetup call cm#register_source({
-          \ 'name' : 'pandoc',
-          \ 'priority': 8,
-          \ 'scoping': 0,
-          \ 'scopes': ['pandoc'],
-          \ 'abbreviation': 'pandoc',
-          \ 'cm_refresh_patterns': '@',
-          \ 'cm_refresh': {'omnifunc': 'pandoc#completion#Complete'},
-          \ })
-  " au User CmSetup call cm#register_source({
-  "         \ 'name' : 'neco-ghc',
-  "         \ 'priority': 8,
-  "         \ 'scoping': 1,
-  "         \ 'scopes': ['haskell'],
-  "         \ 'abbreviation': 'hs',
-  "         \ 'cm_refresh_patterns': 'import\s+',
-  "         \ 'cm_refresh': {'omnifunc': 'necoghc#omnifunc'},
-  "         \ })
-augroup END
+" augroup ncm_aucommands
+"   au!
+"   au User CmSetup call cm#register_source({
+"           \ 'name' : 'vimtex',
+"           \ 'priority': 8,
+"           \ 'scoping': 1,
+"           \ 'scopes': ['tex'],
+"           \ 'abbreviation': 'tex',
+"           \ 'cm_refresh_patterns': g:vimtex#re#ncm,
+"           \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
+"           \ })
+"   au User CmSetup call cm#register_source({
+"           \ 'name' : 'pandoc',
+"           \ 'priority': 8,
+"           \ 'scoping': 0,
+"           \ 'scopes': ['pandoc'],
+"           \ 'abbreviation': 'pandoc',
+"           \ 'cm_refresh_patterns': '@',
+"           \ 'cm_refresh': {'omnifunc': 'pandoc#completion#Complete'},
+"           \ })
+"   " au User CmSetup call cm#register_source({
+"   "         \ 'name' : 'neco-ghc',
+"   "         \ 'priority': 8,
+"   "         \ 'scoping': 1,
+"   "         \ 'scopes': ['haskell'],
+"   "         \ 'abbreviation': 'hs',
+"   "         \ 'cm_refresh_patterns': 'import\s+',
+"   "         \ 'cm_refresh': {'omnifunc': 'necoghc#omnifunc'},
+"   "         \ })
+" augroup END
 " augroup denite_aucommands
 "   au!
 "   au VimResized,VimEnter * call denite#custom#option('default',

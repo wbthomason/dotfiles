@@ -361,7 +361,18 @@ let g:vaffle_show_hidden_files = 1
 let g:vaffle_force_delete = 1
 
 " NCM
-let g:cm_sources_override = {}
+" let g:cm_sources_override = {}
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+if !exists('g:deoplete#omni#input_patterns')
+    let g:deoplete#omni#input_patterns = {}
+endif
+if !exists('g:deoplete#omni#ignore_sources')
+    let g:deoplete#omni#ignore_sources = {}
+endif
+let g:deoplete#omni#ignore_sources.python = ['neoinclude']
+let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
+let g:deoplete#num_processes = 0
 
 " Denite
 call denite#custom#option('default', {

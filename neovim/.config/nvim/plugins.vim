@@ -128,7 +128,8 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('Shougo/context_filetype.vim')
   call dein#add('Shougo/echodoc.vim')
   call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp']})
-  call dein#add('roxma/nvim-completion-manager')
+  " call dein#add('roxma/nvim-completion-manager')
+  call dein#add('Shougo/deoplete.nvim')
 
   " Checkers
   call dein#add('w0rp/ale')
@@ -157,7 +158,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('vim-scripts/python_match.vim')
 
   " C/C++
-  call dein#add('roxma/ncm-clang')
+  " call dein#add('roxma/ncm-clang')
 
   " Java
   " call dein#add('sassanh/nvim-cm-eclim')
@@ -202,7 +203,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('Shougo/neco-vim')
 
   " CSS
-  call dein#add('calebeby/ncm-css')
+  " call dein#add('calebeby/ncm-css')
 
   " Lua
   call dein#add('tbastos/vim-lua')
