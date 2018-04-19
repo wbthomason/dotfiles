@@ -363,7 +363,7 @@ let g:vaffle_force_delete = 1
 " NCM
 " let g:cm_sources_override = {}
 " Deoplete
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
 endif

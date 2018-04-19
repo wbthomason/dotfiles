@@ -75,6 +75,11 @@ augroup vimfiler_aucommands
   au FileType vimfiler nmap <buffer> i :VimFilerPrompt<CR>
 augroup END
 
+augroup deoplete_aucommands
+  au!
+  au InsertEnter * call deoplete#enable()
+augroup END
+
 " augroup ncm_aucommands
 "   au!
 "   au User CmSetup call cm#register_source({
