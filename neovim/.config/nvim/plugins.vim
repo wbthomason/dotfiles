@@ -1,5 +1,4 @@
 " Plugin installation
-
 if dein#load_state('/home/wil/.cache/dein')
   call dein#begin('/home/wil/.cache/dein')
   call dein#add('/home/wil/.cache/dein/repos/github.com/Shougo/dein.vim')
@@ -8,7 +7,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Tweaks
   " call dein#add('tpope/vim-unimpaired')
-  call dein#add('tpope/vim-repeat')
+  " call dein#add('tpope/vim-repeat')
 
   " Mappings
   call dein#add('hecal3/vim-leader-guide')
@@ -22,18 +21,11 @@ if dein#load_state('/home/wil/.cache/dein')
   " Marks
   call dein#add('kshenoy/vim-signature')
 
-  " Quickfix
-  " call dein#add('romainl/vim-qf')
-
   " Buffer management
   call dein#add('mhinz/vim-sayonara')
 
   " Startup screen
   call dein#add('mhinz/vim-startify')
-
-  " Snippets
-  " call dein#add('SirVer/ultisnips')
-  " call dein#add('honza/vim-snippets')
 
   " Status line
   call dein#add('bling/vim-bufferline')
@@ -41,7 +33,6 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('vim-airline/vim-airline', {'depends': ['bufferline']})
 
   " Movement
-  " call dein#add('yangmillstheory/vim-snipe')
   call dein#add('rhysd/clever-f.vim')
   call dein#add('chaoren/vim-wordmotion')
 
@@ -55,8 +46,8 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('yggdroot/indentLine')
 
   " Comments
-  " call dein#add('tomtom/tcomment_vim')
-  call dein#add('tpope/vim-commentary')
+  call dein#add('tomtom/tcomment_vim')
+  " call dein#add('tpope/vim-commentary')
 
   " Wrapping/delimiters
   call dein#add('machakann/vim-sandwich')
@@ -65,7 +56,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('tpope/vim-endwise')
 
   " Undo/redo
-  call dein#add('mbbill/undotree')
+  " call dein#add('mbbill/undotree')
 
   " Searching
   call dein#add('haya14busa/incsearch.vim')
@@ -86,8 +77,8 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('majutsushi/tagbar')
 
   " Denite
-  call dein#add('Shougo/denite.nvim')
   call dein#add('nixprime/cpsm', {'build': 'env PY3=ON ./install.sh'})
+  call dein#add('Shougo/denite.nvim')
 
   " Writing
   call dein#add('junegunn/goyo.vim')
@@ -105,15 +96,13 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('hkupty/iron.nvim')
 
   " Jupyter
-  call dein#add('vyzyv/vimpyter')
+  " call dein#add('vyzyv/vimpyter')
 
   " Color scheme
   call dein#add('https://gitlab.com/yorickpeterse/happy_hacking.vim')
 
   " Notes/Wiki
   call dein#add('fmoralesc/vim-pad')
-  " call dein#add('tpope/vim-speeddating')
-  " call dein#add('mattn/calendar-vim')
 
   " File explorer
   call dein#add('cocopon/vaffle.vim')
@@ -141,7 +130,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Block manipulation
   call dein#add('kana/vim-niceblock')
-  call dein#add('AndrewRadev/splitjoin.vim')
+  " call dein#add('AndrewRadev/splitjoin.vim')
   call dein#add('machakann/vim-swap')
   call dein#add('zirrostig/vim-schlepp')
 
@@ -155,7 +144,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Python
   " call dein#add('fisadev/vim-isort')
-  call dein#add('vim-scripts/python_match.vim')
+  " call dein#add('vim-scripts/python_match.vim')
 
   " C/C++
   " call dein#add('roxma/ncm-clang')
@@ -167,7 +156,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " Clojure/Lisps/Scheme
   call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
   call dein#add('tpope/vim-sexp-mappings-for-regular-people', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
-  call dein#add('clojure-vim/async-clj-omni', {'on_ft': 'clojure'})
+  " call dein#add('clojure-vim/async-clj-omni', {'on_ft': 'clojure'})
   call dein#add('wlangstroth/vim-racket')
   call dein#add('vim-scripts/scribble.vim')
   call dein#add('kovisoft/slimv', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket']})
@@ -177,8 +166,8 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('vim-pandoc/vim-pandoc', {'depends': ['vim-pandoc-syntax', 'vim-pandoc-after']})
   call dein#add('vim-pandoc/vim-pandoc-syntax')
   call dein#add('vim-pandoc/vim-pandoc-after')
-  call dein#add('dhruvasagar/vim-table-mode',
-        \ {'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
+  " call dein#add('dhruvasagar/vim-table-mode',
+  "       \ {'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
 
   call dein#add('euclio/vim-markdown-composer',
         \ {'build': 'cargo build --release'})
@@ -248,5 +237,6 @@ if dein#load_state('/home/wil/.cache/dein')
 
   call dein#end()
   call dein#save_state()
-  call dein#remote_plugins()
 endif
+
+call dein#remote_plugins()
