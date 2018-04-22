@@ -16,6 +16,24 @@ endfunction
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python'
 
+let g:loaded_2html_plugin      = 1
+let g:loaded_logiPat           = 1
+let g:loaded_getscriptPlugin   = 1
+let g:loaded_gzip              = 1
+let g:loaded_man               = 1
+let g:loaded_matchit           = 1
+let g:loaded_matchparen        = 1
+let g:loaded_netrwFileHandlers = 1
+let g:loaded_netrwPlugin       = 1
+let g:loaded_netrwSettings     = 1
+let g:loaded_rrhelper          = 1
+let g:loaded_shada_plugin      = 1
+let g:loaded_spellfile_plugin  = 1
+let g:loaded_tarPlugin         = 1
+let g:loaded_tutor_mode_plugin = 1
+let g:loaded_vimballPlugin     = 1
+let g:loaded_zipPlugin = 1
+
 " Dein config
 let g:dein#install_process_timeout = 600
 
@@ -34,12 +52,7 @@ call ConfigInc('keybindings.vim')
 " Colorscheme
 set termguicolors
 set background=dark
-" let g:hybrid_custom_term_colors = 1
-" let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-" colorscheme hybrid
 colorscheme happy_hacking
-" let g:two_firewatch_italics = 1
-" colorscheme two-firewatch
 
 " Haskell 
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -55,9 +68,6 @@ let g:haskellmode_completion_ghc = 0
 
 " Intero
 let g:intero_type_on_hover = 1
-
-" Eclim 
-let g:EclimCompletionMethod = 'omnifunc'
 
 " Rainbow parens 
 let g:rainbow_active = 1
@@ -130,19 +140,11 @@ let g:vimtex_complete_enabled = 1
 let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_quickfix_mode = 0
 
-" Matchup
-" let g:matchup_override_vimtex = 1
-
-" Ultisnips 
-let g:UltiSnipsExpandTrigger = '<c-j>'
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-
 " Undotree 
-if has('persistent_undo')
-  set undodir=~/.undodir/
-  set undofile
-endif
+" if has('persistent_undo')
+"   set undodir=~/.undodir/
+"   set undofile
+" endif
 
 " Tagbar 
 let g:tagbar_type_haskell = {
@@ -209,7 +211,7 @@ let g:tagbar_type_elixir = {
       \ }
 
 " Racer 
-let g:racer_cmd = '/usr/bin/racer'
+" let g:racer_cmd = '/usr/bin/racer'
 
 " Gitgutter 
 " set updatetime=500
@@ -229,8 +231,8 @@ let g:signify_sign_show_count = 0
 let g:goyo_width = 110
 
 " Highlighting tweaks
-highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#B8BEC9 guibg=NONE | highlight LineNr guifg=#777777
-highlight Visual guifg=NONE ctermfg=NONE guibg=#747474 ctermbg=0 gui=NONE cterm=NONE
+" highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#B8BEC9 guibg=NONE | highlight LineNr guifg=#777777
+" highlight Visual guifg=NONE ctermfg=NONE guibg=#747474 ctermbg=0 gui=NONE cterm=NONE
 
 " Startify 
 let g:startify_list_order = [
@@ -301,15 +303,8 @@ let g:LanguageClient_diagnosticsDisplay = {
 let g:LanguageClient_signColumnAlwaysOn = 0
 let g:LanguageClient_diagnosticsEnable = 0
 
-" Vim-qf 
-let g:qf_auto_open_quickfix = 0
-let g:qf_auto_open_loclist = 0
-
 " Parenmatch 
 let g:loaded_matchparen = 1
-
-" Easygit 
-let g:easygit_enable_command = 1
 
 " Prosession 
 let g:prosession_tmux_title = 1
@@ -348,10 +343,6 @@ let g:clever_f_fix_key_direction = 1
 
 " Echodoc 
 let g:echodoc#enable_at_startup = 1
-
-" Table-mode 
-let g:table_mode_corner_corner = '+'
-let g:table_mode_header_fillchar = '='
 
 " Markdown Composer 
 let g:markdown_composer_autostart = 0
