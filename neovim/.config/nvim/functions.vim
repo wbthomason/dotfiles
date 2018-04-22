@@ -46,8 +46,3 @@ function! LinterStatus() abort
         \ printf('⚠ %d', l:warnings) . (l:errors == 0 ? '' :
         \ printf(' ⨉ %d', l:errors))
 endfunction
-
-function! s:check_back_space() abort "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
