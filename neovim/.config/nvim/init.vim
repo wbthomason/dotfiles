@@ -365,6 +365,7 @@ call deoplete#custom#var('omni', 'input_patterns', {
       \ 'tex' : g:vimtex#re#deoplete,
       \})
 call deoplete#custom#option('num_processes', 0)
+" cpsm is faster, but seems to break the omni source?
 " call deoplete#custom#source('_', 'matchers', ['matcher_cpsm'])
 " call deoplete#custom#source('_', 'sorters', [])
 call deoplete#custom#source('_', 'min_pattern_length', 2)
@@ -381,21 +382,26 @@ call denite#custom#option('default', {
       \ 'sorters': 'sorter_sublime'
       \ })
 
-call denite#custom#var('file_rec', 'command',
+call denite#custom#var('file/rec', 'command',
       \ ['rg', '--files', '--glob', '!.git'])
-call denite#custom#source('file_rec', 'matchers', ['matcher_cpsm'])
+call denite#custom#source('file/rec', 'matchers', ['matcher/cpsm'])
+call denite#custom#source('file/rec', 'sorters', ['sorter/rank'])
+
+call denite#custom#source('file/old', 'matchers', ['matcher/hide_hidden_files', 'matcher/cpsm'])
+call denite#custom#source('file/old', 'sorters', ['sorter/rank'])
 
 call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default_opts',
+call denite#custom#var('grep', 'default/opts',
       \ ['--vimgrep', '--no-heading'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'recursive/opts', [])
+call denite#custom#var('grep', 'pattern/opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
+call denite#custom#var('grep', 'final/opts', [])
 
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-call denite#custom#source('file_rec/git', 'matchers', ['matcher_cpsm'])
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+call denite#custom#source('file/rec/git', 'matchers', ['matcher/cpsm'])
+call denite#custom#source('file/rec/git', 'sorters', ['sorter/rank'])
 
 call denite#custom#map(
 	      \ 'insert',

@@ -59,16 +59,16 @@ let g:lmaps.e.c = ['lclose', 'Close error list']
 
 " Finder bindings
 let g:lmaps.f = {'name': 'Find'}
-nnoremap <silent> <leader>ff :Denite file_rec<CR>
-let g:lmaps.f.f = ['Denite file_rec', 'Search for files in the current directory']
-nnoremap <silent> <leader>fa :Denite file_rec:<C-r>=getcwd()<CR>
-let g:lmaps.f.a = ['Denite file_rec:<C-r>=getcwd()', 'Search for files in an arbitrary directory']
-nnoremap <silent> <leader>fg :DeniteProjectDir file_rec/git<CR>
-let g:lmaps.f.g = ['DeniteProjectDir file_rec/git', 'Search for files in the current Git repo']
+nnoremap <silent> <leader>ff :Denite file/rec<CR>
+let g:lmaps.f.f = ['Denite file/rec', 'Search for files in the current directory']
+nnoremap <silent> <leader>fa :Denite file/rec:<C-r>=getcwd()<CR>
+let g:lmaps.f.a = ['Denite file/rec:<C-r>=getcwd()', 'Search for files in an arbitrary directory']
+nnoremap <silent> <leader>fg :DeniteProjectDir file/rec/git<CR>
+let g:lmaps.f.g = ['DeniteProjectDir file/rec/git', 'Search for files in the current Git repo']
 nnoremap <silent> <leader>fh :Denite help<CR>
 let g:lmaps.f.h = ['Denite help', 'Search in help tags']
-nnoremap <silent> <leader>fr :Denite file_old<CR>
-let g:lmaps.f.r = ['Denite file_old', 'Search for recently edited files']
+nnoremap <silent> <leader>fr :Denite file/old<CR>
+let g:lmaps.f.r = ['Denite file/old', 'Search for recently edited files']
 let g:lmaps.f.t = {'name': 'Tags'}
 nnoremap <silent> <leader>ftt :Denite tag<CR>
 let g:lmaps.f.t.t = ['Denite tag', 'Search in tags for the current directory']
