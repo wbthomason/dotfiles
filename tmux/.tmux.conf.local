@@ -260,7 +260,8 @@ bind C-a send-prefix
 set -g @tpm_plugins '         \
   tmux-plugins/tpm            \
   tmux-plugins/tmux-resurrect \
-  # christoomey/vim-tmux-navigator \
+  wfxr/tmux-fzf-url\
+  christoomey/vim-tmux-navigator \
 '
 # Smart pane switching with awareness of Vim splits.
 # See: https://github.com/christoomey/vim-tmux-navigator
