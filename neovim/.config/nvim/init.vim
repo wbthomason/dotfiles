@@ -360,7 +360,7 @@ call deoplete#custom#option('keyword_patterns', {
       \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
       \ })
 call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
-call deoplete#custom#option('ignore_sources', {'tex': ['tag'], 'python': ['neoinclude']})
+call deoplete#custom#option('ignore_sources', {'_': ['tag'], 'python': ['neoinclude']})
 call deoplete#custom#var('omni', 'input_patterns', {
       \ 'tex' : g:vimtex#re#deoplete,
       \})
