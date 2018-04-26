@@ -43,7 +43,7 @@ font-3 = Font Awesome 5 Free:pixelsize=9;3
 font-4 = Font Awesome 5 Free Solid:pixelsize=9;3
 font-5 = Font Awesome 5 Brands:pixelsize=9;3
 
-modules-left = i3 mpd
+modules-left = i3 mpris
 modules-center = 
 modules-right = xbacklight volume wifi battery_0 date fs-root memory cpu temperature
 
@@ -254,6 +254,11 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+[module/mpris]
+type = custom/script
+exec = ~/.config/polybar/player-mpris-tail.py
+tail = true
 
 [module/mpd]
 type = internal/mpd
