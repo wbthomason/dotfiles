@@ -385,10 +385,10 @@ call denite#custom#option('default', {
 call denite#custom#var('file/rec', 'command',
       \ ['rg', '--files', '--glob', '!.git'])
 call denite#custom#source('file/rec', 'matchers', ['matcher/cpsm'])
-call denite#custom#source('file/rec', 'sorters', ['sorter/rank'])
+call denite#custom#source('file/rec', 'sorters', ['sorter/sublime'])
 
 call denite#custom#source('file/old', 'matchers', ['matcher/hide_hidden_files', 'matcher/cpsm'])
-call denite#custom#source('file/old', 'sorters', ['sorter/rank'])
+call denite#custom#source('file/old', 'sorters', ['sorter/sublime'])
 
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'default/opts',
@@ -401,7 +401,7 @@ call denite#custom#var('grep', 'final/opts', [])
 call denite#custom#alias('source', 'file/rec/git', 'file/rec')
 call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
 call denite#custom#source('file/rec/git', 'matchers', ['matcher/cpsm'])
-call denite#custom#source('file/rec/git', 'sorters', ['sorter/rank'])
+call denite#custom#source('file/rec/git', 'sorters', ['sorter/sublime'])
 
 call denite#custom#map(
 	      \ 'insert',
