@@ -30,7 +30,6 @@ augroup markdown_aucommands
   au!
   au FileType pandoc set syntax=pandoc | 
         \ silent :ALEDisableBuffer | 
-        \ call cm#disable_for_buffer()
 augroup END
 
 augroup haskell_aucommands
@@ -53,7 +52,7 @@ augroup misc_lang_aucommands
 augroup END
 
 augroup python_aucommands
-  au FileType python setl nosmartindent "| let g:cm_sources_override.neoinclude = {'enable': 0}
+  au FileType python setl nosmartindent
 augroup END
 
 augroup lisp_aucommands
@@ -79,39 +78,3 @@ augroup deoplete_aucommands
   au!
   au InsertEnter * call deoplete#enable()
 augroup END
-
-" augroup ncm_aucommands
-"   au!
-"   au User CmSetup call cm#register_source({
-"           \ 'name' : 'vimtex',
-"           \ 'priority': 8,
-"           \ 'scoping': 1,
-"           \ 'scopes': ['tex'],
-"           \ 'abbreviation': 'tex',
-"           \ 'cm_refresh_patterns': g:vimtex#re#ncm,
-"           \ 'cm_refresh': {'omnifunc': 'vimtex#complete#omnifunc'},
-"           \ })
-"   au User CmSetup call cm#register_source({
-"           \ 'name' : 'pandoc',
-"           \ 'priority': 8,
-"           \ 'scoping': 0,
-"           \ 'scopes': ['pandoc'],
-"           \ 'abbreviation': 'pandoc',
-"           \ 'cm_refresh_patterns': '@',
-"           \ 'cm_refresh': {'omnifunc': 'pandoc#completion#Complete'},
-"           \ })
-"   " au User CmSetup call cm#register_source({
-"   "         \ 'name' : 'neco-ghc',
-"   "         \ 'priority': 8,
-"   "         \ 'scoping': 1,
-"   "         \ 'scopes': ['haskell'],
-"   "         \ 'abbreviation': 'hs',
-"   "         \ 'cm_refresh_patterns': 'import\s+',
-"   "         \ 'cm_refresh': {'omnifunc': 'necoghc#omnifunc'},
-"   "         \ })
-" augroup END
-" augroup denite_aucommands
-"   au!
-"   au VimResized,VimEnter * call denite#custom#option('default',
-"         \'winheight', winheight(0) / 4)
-" augroup end

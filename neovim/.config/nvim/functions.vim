@@ -33,10 +33,6 @@ function! StartifyEntryFormat()
   return 'WebDevIconsGetFileTypeSymbol(absolute_path) ." ". entry_path'
 endfunction
 
-function! GinaStatus()
-  return g:airline_symbols.branch.' '.gina#component#repo#branch()
-endfunction
-
 function! LinterStatus() abort
   let l:counts = ale#statusline#Count(bufnr(''))
 
