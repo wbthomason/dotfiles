@@ -232,6 +232,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Pretty pretty symbols
   call dein#add('ryanoasis/vim-devicons')
+  call dein#add('calebsmith/vim-lambdify')
 
   " Profiling
   call dein#add('tweekmonster/startuptime.vim')
