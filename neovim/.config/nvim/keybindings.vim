@@ -210,6 +210,9 @@ let g:lmaps.p.s = ["Denite file_rec:~/wiki/notes grep:~/wiki/notes:'':'^.+$'", '
 nnoremap <silent> <leader>pi :e ~/wiki/index.md<cr>
 let g:lmaps.p.i = ['e ~/wiki/index.md', 'Go to plan index']
 
+" Docs bindings
+let g:lmaps.z = ['Zeavim', 'Search Zeal docs']
+
 " Leader guide bindings and settings
 let g:allmaps = {}
 let g:allmaps[' '] = g:lmaps

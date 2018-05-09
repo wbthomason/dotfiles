@@ -123,6 +123,9 @@ if dein#load_state('/home/wil/.cache/dein')
   " Checkers
   call dein#add('w0rp/ale')
 
+  " Docs
+  call dein#add('KabbAmine/zeavim.vim')
+
   " Async building & commands
   call dein#add('wbthomason/buildit.nvim')
   call dein#add('tpope/vim-dispatch')
@@ -135,6 +138,9 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('zirrostig/vim-schlepp')
 
   " Languages
+  
+  " Path changing
+  call dein#add('tpope/vim-apathy')
 
   " LSP
   call dein#add('autozimu/LanguageClient-neovim', {
