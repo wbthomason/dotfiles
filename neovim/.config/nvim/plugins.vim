@@ -236,6 +236,9 @@ if dein#load_state('/home/wil/.cache/dein')
   " Meson
   call dein#add('stfl/meson.vim')
 
+  " PDDL
+  call dein#add('PontusPersson/pddl.vim')
+
   " Pretty pretty symbols
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('calebsmith/vim-lambdify')
