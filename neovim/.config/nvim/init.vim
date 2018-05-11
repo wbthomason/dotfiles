@@ -424,6 +424,9 @@ let g:pad#open_in_split = 0
 let g:pad#search_backend = 'rg'
 let g:pad#set_mappings = 0
 
+" Vlime
+let g:vlime_cl_use_terminal = v:true
+
 " Custom commands
 call ConfigInc('commands.vim')
 
