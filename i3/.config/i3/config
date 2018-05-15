@@ -48,6 +48,9 @@ bindsym $mod+Shift+q kill
 # rofi
 bindsym $mod+d exec "rofi -combi-modi run,window,ssh -mesg -show combi -modi combi"
 
+# zzzfoo
+bindsym $mod+Shift+f "zzzfoo -o xdg-open"
+
 # suspending
 bindsym $mod+b exec systemctl suspend
 # start dmenu (a program launcher)
