@@ -22,12 +22,13 @@ eval (opam config env)
 # Rust
 set -xg RUST_SRC_PATH '/usr/src/rust/src'
 
-# Keychain
-# if status --is-interactive
-#     set -l IFS
-#     eval (keychain --agents ssh --eval --quiet id_rsa)
-#     eval (keychain --agents gpg --eval --quiet 8BEE5C508226C4516876B93449B3E4A714642E1D)
-# end
+# gnome-keyring
+if test -n "$DESKTOP_SESSION"
+    # set -l IFS
+    # eval (keychain --agents ssh --eval --quiet id_rsa)
+    # eval (keychain --agents gpg --eval --quiet 8BEE5C508226C4516876B93449B3E4A714642E1D)
+    set -xg SSH_AUTH_SOCK (gnome-keyring-daemon --start --components=gpg,ssh,secrets | awk -F= '{print  $2}')
+end
 
 # Aliases
 alias svn 'colorsvn'
