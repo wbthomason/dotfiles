@@ -23,11 +23,11 @@ eval (opam config env)
 set -xg RUST_SRC_PATH '/usr/src/rust/src'
 
 # Keychain
-if status --is-interactive
-    set -l IFS
-    eval (keychain --agents ssh --eval --quiet id_rsa)
-    eval (keychain --agents gpg --eval --quiet 8BEE5C508226C4516876B93449B3E4A714642E1D)
-end
+# if status --is-interactive
+#     set -l IFS
+#     eval (keychain --agents ssh --eval --quiet id_rsa)
+#     eval (keychain --agents gpg --eval --quiet 8BEE5C508226C4516876B93449B3E4A714642E1D)
+# end
 
 # Aliases
 alias svn 'colorsvn'
