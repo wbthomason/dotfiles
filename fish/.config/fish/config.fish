@@ -1,3 +1,6 @@
+# pkg-config tweaks
+set -xg PKG_CONFIG_PATH $PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+
 # Colors
 set -xg fish_term24bit 1
 # if status --is-interactive
