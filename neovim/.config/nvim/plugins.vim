@@ -9,6 +9,9 @@ if dein#load_state('/home/wil/.cache/dein')
   " call dein#add('tpope/vim-unimpaired')
   " call dein#add('tpope/vim-repeat')
 
+  " Split resizing
+  call dein#add('roman/golden-ratio')
+
   " Mappings
   call dein#add('hecal3/vim-leader-guide')
 
@@ -123,9 +126,6 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Checkers
   call dein#add('w0rp/ale')
-
-  " Docs
-  call dein#add('KabbAmine/zeavim.vim')
 
   " Async building & commands
   call dein#add('wbthomason/buildit.nvim')
