@@ -377,20 +377,20 @@ call deoplete#custom#option('refresh_always', v:true)
 call deoplete#custom#option('auto_complete_delay', 5)
 
 " Denite
-call denite#custom#option('default', {
+call denite#custom#option('_', {
       \ 'prompt': '❯',
       \ 'updatetime': 1,
       \ 'reversed': 1,
-      \ 'sorters': 'sorter_sublime'
+      \ 'sorters': 'sorter/sublime'
       \ })
+
+call denite#custom#source('buffer', 'sorters', ['sorter/sublime', 'sorter/reverse'])
 
 call denite#custom#var('file/rec', 'command',
       \ ['rg', '--files', '--glob', '!.git'])
 call denite#custom#source('file/rec', 'matchers', ['matcher/cpsm'])
-call denite#custom#source('file/rec', 'sorters', ['sorter/sublime'])
 
 call denite#custom#source('file/old', 'matchers', ['matcher/hide_hidden_files', 'matcher/cpsm'])
-call denite#custom#source('file/old', 'sorters', ['sorter/sublime'])
 
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'default/opts',
@@ -403,21 +403,20 @@ call denite#custom#var('grep', 'final/opts', [])
 call denite#custom#alias('source', 'file/rec/git', 'file/rec')
 call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
 call denite#custom#source('file/rec/git', 'matchers', ['matcher/cpsm'])
-call denite#custom#source('file/rec/git', 'sorters', ['sorter/sublime'])
 
 call denite#custom#map(
-	      \ 'insert',
-	      \ '<Down>',
-	      \ '<denite:move_to_next_line>',
-	      \ 'noremap'
-	      \)
+      \ 'insert',
+      \ '<Down>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
 
-	call denite#custom#map(
-	      \ 'insert',
-	      \ '<Up>',
-	      \ '<denite:move_to_previous_line>',
-	      \ 'noremap'
-\)
+call denite#custom#map(
+      \ 'insert',
+      \ '<Up>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
 
 " Vim-pad
 let g:pad#dir = '~/wiki/notes'
