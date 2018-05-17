@@ -3,3 +3,4 @@ fish/.config/fish/fishd.*
 neovim/.config/nvim/spell/
 konsole/.config/konsolerc
 konsole/.local/share/konsole/bookmarks.xml*
+emacs/.emacs.d

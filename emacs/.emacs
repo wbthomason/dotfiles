@@ -18,7 +18,13 @@
 
 ;; General Packages
 ;;; Helm
-(use-package helm :ensure t)
+(use-package helm :ensure t
+  :init
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-z") 'helm-select-action)
+    (define-key helm-map (kbd "ESC") 'helm-exit-minibuffer)))
 (use-package helm-ls-git :ensure t)
 (use-package helm-descbinds :ensure t
   :config (helm-descbinds-mode))
@@ -32,7 +38,9 @@
   :config
   (setq helm-ag-base-command "rg --no-heading"))
 
-(use-package helm-flx :ensure t)
+(use-package helm-flx :ensure t
+  :init
+  (setq helm-flx-for-helm-locate t))
 (use-package helm-projectile :ensure t)
 (use-package helm-make :ensure t)
 (use-package helm-gitignore :ensure t)
@@ -305,28 +313,20 @@
         company-dabbrev-ignore-case nil
         company-dabbrev-downcase nil)
   (setq company-selection-wrap-around t)
-  (define-key company-active-map [?\r] 'company-complete)
+  ;; (define-key company-active-map [?\r] 'company-complete)
   (define-key company-active-map [tab] 'company-select-next)
   (define-key company-active-map [S-tab] 'company-select-previous))
 
 ;;; LSP
-(use-package lsp-mode :ensure t)
-(use-package lsp-ui :ensure t
+;; Rust, Python, Javascript, Bash, and PHP work out of the box
+(use-package eglot :ensure t
   :init
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
-(use-package lsp-python :ensure t
-  :init
-  (add-hook 'python-mode-hook #'lsp-python-enable))
-
-(use-package lsp-haskell :ensure t
-  :init
-  (add-hook 'haskell-mode-hook #'lsp-haskell-enable))
-
-(setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-(use-package lsp-rust :ensure t
-  :init
-  (add-hook 'rust-mode-hook #'lsp-rust-enable))
+  (add-to-list 'eglot-server-programs
+               '(c-mode . ("cquery" "--language-server"))
+               '(c++-mode . ("cquery" "--language-server"))
+               '(tuareg-mode . ("ocaml-language-server" "--stdio"))
+               '(haskell-mode . ("hie" "--lsp"))
+               '(common-lisp-mode . ("cl-lsp"))))
 
 (use-package lsp-ocaml :ensure t
   :init
@@ -417,9 +417,16 @@
 (use-package racket-mode :ensure t :defer t)
 
 ;;; C++
-(use-package cc-mode :ensure t :defer t)
+(use-package cc-mode :ensure t :defer t
+  :initig
+  (push 'company-clang company-backends)
+  (define-key c-mode-map (kbd "<tab>") 'company-complete)
+  (define-key c++-mode-map (kbd "<tab>") 'company-complete))
 (use-package clang-format :ensure t :defer t)
-(use-package company-c-headers :ensure t :defer t)
+(use-package company-c-headers :ensure t :defer t
+  :init
+  (add-to-list 'company-c-headers-path-system "/usr/include/c++/8.1.0")
+  (push 'company-c-headers company-backends))
 
 ;;; Org
 (use-package org :ensure t :defer t)
@@ -474,7 +481,7 @@
 ;; Misc behavior settings
 (setq
  vc-follow-symlinks t
- x-select-enable-clipboard t
+ select-enable-clipboard t
  ;; make-backup-files nil
  coding-system-for-read 'utf-8
  coding-system-for-write 'utf-8)
@@ -496,6 +503,51 @@
       evil-replace-state-cursor '("#859900" hbar) ;; green
       evil-emacs-state-cursor   '("#d33682" box)) ;; magenta
 
+;; Minibuffer quitting with a single ESC
+(defun minibuffer-keyboard-quit ()
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(global-set-key [escape] 'evil-exit-emacs-state)
+
+;; Toggle split direction
+(defun window-toggle-split-direction ()
+  "Switch window split from horizontally to vertically, or vice versa.
+
+i.e. change right window to bottom, or change bottom window to right."
+  (interactive)
+  (require 'windmove)
+  (let ((done))
+    (dolist (dirs '((right . down) (down . right)))
+      (unless done
+        (let* ((win (selected-window))
+               (nextdir (car dirs))
+               (neighbour-dir (cdr dirs))
+               (next-win (windmove-find-other-window nextdir win))
+               (neighbour1 (windmove-find-other-window neighbour-dir win))
+               (neighbour2 (if next-win (with-selected-window next-win
+                                          (windmove-find-other-window neighbour-dir next-win)))))
+          ;;(message "win: %s\nnext-win: %s\nneighbour1: %s\nneighbour2:%s" win next-win neighbour1 neighbour2)
+          (setq done (and (eq neighbour1 neighbour2)
+                          (not (eq (minibuffer-window) next-win))))
+          (if done
+              (let* ((other-buf (window-buffer next-win)))
+                (delete-window next-win)
+                (if (eq nextdir 'right)
+                    (split-window-vertically)
+                  (split-window-horizontally))
+                (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
+
 ;; Keybindings
 (evil-leader/set-key
   "q"  'kill-emacs
@@ -507,6 +559,8 @@
   "k"  'delete-window
   "z=" 'flyspell-auto-correct-word
   "bb" 'helm-buffers-list
+  "eo" 'flycheck-list-errors
+  "ec" 'close-flycheck
   "bl" 'last-buffer
   "ff" 'helm-find-files
   "fr" 'helm-recentf
@@ -517,8 +571,7 @@
   "gc" 'magit-commit
   "gp" 'magit-push
   "gl" 'magit-pull
-  "eo" 'flycheck-list-errors
-  "ec" 'close-flycheck)
+  "ts" 'window-toggle-split-direction)
 
 ;; Start the server
 (server-start)
