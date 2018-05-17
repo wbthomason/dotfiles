@@ -30,7 +30,9 @@ let g:lmaps.b = {'name': 'Buffers'}
 nnoremap <silent> <leader>w :w<CR>
 let g:lmaps.w = ['w', 'Write buffer']
 nnoremap <silent> <leader>d :Sayonara<CR>
-let g:lmaps.d = ['Sayonara', 'Close buffer']
+let g:lmaps.d = ['Sayonara', 'Close buffer and window']
+nnoremap <silent> <leader>k :Sayonara!<CR>
+let g:lmaps.k = ['Sayonara!', 'Close buffer, not window']
 nnoremap <silent> <leader>a :bp<CR>
 let g:lmaps.a = ['bp', 'Go to previous buffer']
 nnoremap <silent> <leader>s :bn<CR> 
@@ -209,9 +211,6 @@ nnoremap <silent> <leader>ps :Denite file_rec:~/wiki grep:~/wiki:'':'^.+$'<cr>
 let g:lmaps.p.s = ["Denite file_rec:~/wiki/notes grep:~/wiki/notes:'':'^.+$'", 'Search plans/notes']
 nnoremap <silent> <leader>pi :e ~/wiki/index.md<cr>
 let g:lmaps.p.i = ['e ~/wiki/index.md', 'Go to plan index']
-
-" Docs bindings
-let g:lmaps.z = ['Zeavim', 'Search Zeal docs']
 
 " Leader guide bindings and settings
 let g:allmaps = {}
