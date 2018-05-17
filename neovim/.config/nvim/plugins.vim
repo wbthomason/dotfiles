@@ -99,7 +99,8 @@ if dein#load_state('/home/wil/.cache/dein')
   " call dein#add('vyzyv/vimpyter')
 
   " Color scheme
-  call dein#add('https://gitlab.com/yorickpeterse/happy_hacking.vim')
+  " call dein#add('https://gitlab.com/yorickpeterse/happy_hacking.vim')
+  call dein#add('morhetz/gruvbox')
 
   " Notes/Wiki
   call dein#add('fmoralesc/vim-pad')

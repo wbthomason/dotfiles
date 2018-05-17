@@ -52,7 +52,9 @@ call ConfigInc('keybindings.vim')
 " Colorscheme
 set termguicolors
 set background=dark
-colorscheme happy_hacking
+" colorscheme happy_hacking
+colorscheme gruvbox
+let g:gruvbox_italic = 1
 
 " Haskell 
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
