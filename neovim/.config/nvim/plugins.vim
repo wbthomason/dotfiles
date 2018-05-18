@@ -7,16 +7,12 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Tweaks
   " call dein#add('tpope/vim-unimpaired')
-  " call dein#add('tpope/vim-repeat')
 
   " Split resizing
   call dein#add('roman/golden-ratio')
 
   " Mappings
   call dein#add('hecal3/vim-leader-guide')
-
-  " Paren matching
-  call dein#add('itchyny/vim-parenmatch')
 
   " Registers
   call dein#add('junegunn/vim-peekaboo')
@@ -57,6 +53,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('luochen1990/rainbow')
   call dein#add('ozelentok/vim-closer')
   call dein#add('tpope/vim-endwise')
+  call dein#add('itchyny/vim-parenmatch')
 
   " Undo/redo
   " call dein#add('mbbill/undotree')
@@ -77,7 +74,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Tags
   call dein#add('ludovicchabant/vim-gutentags')
-  call dein#add('majutsushi/tagbar')
+  " call dein#add('majutsushi/tagbar')
 
   " Denite
   call dein#add('nixprime/cpsm', {'build': 'env PY3=ON ./install.sh'})
@@ -121,7 +118,6 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('Shougo/context_filetype.vim')
   call dein#add('Shougo/echodoc.vim')
   call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp']})
-  " call dein#add('roxma/nvim-completion-manager')
   call dein#add('Shougo/deoplete.nvim', )
 
   " Checkers
@@ -155,6 +151,8 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " C/C++
   call dein#add('tweekmonster/deoplete-clang2')
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
 
   " Clojure/Lisps/Scheme
   call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})

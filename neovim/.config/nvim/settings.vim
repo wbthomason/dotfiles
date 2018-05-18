@@ -47,3 +47,5 @@ set completeopt+=preview
 set updatetime=1000
 filetype plugin indent on
 syntax enable
+set conceallevel=2
+set concealcursor=niv
