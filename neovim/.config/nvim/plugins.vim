@@ -150,16 +150,11 @@ if dein#load_state('/home/wil/.cache/dein')
     \ })
 
   " Python
-  " call dein#add('fisadev/vim-isort')
   " call dein#add('vim-scripts/python_match.vim')
   call dein#add('zchee/deoplete-jedi')
 
   " C/C++
-  " call dein#add('roxma/ncm-clang')
   call dein#add('tweekmonster/deoplete-clang2')
-
-  " Java
-  " call dein#add('sassanh/nvim-cm-eclim')
 
   " Clojure/Lisps/Scheme
   call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
@@ -175,11 +170,6 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('vim-pandoc/vim-pandoc', {'depends': ['vim-pandoc-syntax', 'vim-pandoc-after']})
   call dein#add('vim-pandoc/vim-pandoc-syntax')
   call dein#add('vim-pandoc/vim-pandoc-after')
-  " call dein#add('dhruvasagar/vim-table-mode',
-  "       \ {'on_ft': ['vimwiki', 'markdown', 'pandoc', 'markdown.pandoc']})
-
-  call dein#add('euclio/vim-markdown-composer',
-        \ {'build': 'cargo build --release'})
 
   " TOML
   call dein#add('cespare/vim-toml')
@@ -189,7 +179,6 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " JS
   " call dein#add('pangloss/vim-javascript')
-  " call dein#add('roxma/nvim-cm-tern',  {'build': 'npm install'})
 
   " Idris
   " call dein#add('idris-hackers/idris-vim')
@@ -202,15 +191,11 @@ if dein#load_state('/home/wil/.cache/dein')
   " Vimscript
   call dein#add('Shougo/neco-vim')
 
-  " CSS
-  " call dein#add('calebeby/ncm-css')
-
   " Lua
   call dein#add('tbastos/vim-lua')
 
   " Elm
   " call dein#add('lambdatoast/elm.vim')
-  " call dein#add('roxma/ncm-elm-oracle')
 
   " OCaml
   call dein#add('rgrinberg/vim-ocaml')
