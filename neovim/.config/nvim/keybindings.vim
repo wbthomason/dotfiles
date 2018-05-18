@@ -237,6 +237,9 @@ onoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
 vnoremap <CR> }
 
 " Deoplete bindings
+" imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>") 
+" imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 "  <TAB>: completion.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -258,3 +261,7 @@ inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 " <C-l>: redraw candidates
 inoremap <expr><C-g>       deoplete#refresh()
 inoremap <silent><expr><C-l> deoplete#complete_common_string()
+
+imap <C-x> <Plug>(neosnippet_expand_or_jump)
+smap <C-x> <Plug>(neosnippet_expand_or_jump)
+xmap <C-x> <Plug>(neosnippet_expand_target)

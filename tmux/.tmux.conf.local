@@ -257,10 +257,10 @@ set -g prefix C-a
 bind C-a send-prefix
 # move status line to top
 #set -g status-position top
-set -g @tpm_plugins '         \
-  tmux-plugins/tpm            \
-  tmux-plugins/tmux-resurrect \
-  wfxr/tmux-fzf-url\
+set -g @tpm_plugins '              \
+  tmux-plugins/tpm                 \
+  tmux-plugins/tmux-resurrect      \
+  tmux-plugins/tmux-continuum      \
   # christoomey/vim-tmux-navigator \
 '
 # Smart pane switching with awareness of Vim splits.
@@ -298,6 +298,9 @@ setw -g window-status-separator ''
 set -g default-terminal "xterm-256color"
 set-option -ga terminal-overrides "xterm-256color:Tc"
 set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
+
+
+set -g @continuum-restore 'on'
 
 
 

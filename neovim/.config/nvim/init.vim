@@ -381,10 +381,9 @@ call denite#custom#option('_', {
       \ 'prompt': '❯',
       \ 'updatetime': 1,
       \ 'reversed': 1,
-      \ 'sorters': 'sorter/sublime'
       \ })
 
-call denite#custom#source('buffer', 'sorters', ['sorter/sublime', 'sorter/reverse'])
+call denite#custom#source('_', 'sorters', ['sorter/sublime'])
 
 call denite#custom#var('file/rec', 'command',
       \ ['rg', '--files', '--glob', '!.git'])
