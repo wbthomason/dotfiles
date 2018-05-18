@@ -300,5 +300,8 @@ set-option -ga terminal-overrides "xterm-256color:Tc"
 set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
 
 
+set -g @continuum-restore 'on'
+
+
 
 run '~/.tmux/plugins/tpm/tpm'
