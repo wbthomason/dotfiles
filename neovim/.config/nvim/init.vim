@@ -109,7 +109,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
       \ 'haskell': ['hdevtools', 'hlint'],
-      \ 'cpp': ['clang', 'clangcheck', 'clangtidy', 'cppcheck', 'cpplint']
+      \ 'cpp': ['clang', 'clangcheck', 'clangtidy', 'cppcheck', 'cpplint', 'flawfinder']
       \}
 let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_set_highlights = 1
