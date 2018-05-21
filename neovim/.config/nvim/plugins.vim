@@ -153,14 +153,13 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('tweekmonster/deoplete-clang2')
 
   " Clojure/Lisps/Scheme
-  call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
-  call dein#add('tpope/vim-sexp-mappings-for-regular-people', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
+  " call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
+  " call dein#add('tpope/vim-sexp-mappings-for-regular-people', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
   " call dein#add('clojure-vim/async-clj-omni', {'on_ft': 'clojure'})
   call dein#add('wlangstroth/vim-racket')
   call dein#add('vim-scripts/scribble.vim')
   call dein#add('kovisoft/slimv', {'on_ft': ['clojure', 'scheme', 'racket']})
   call dein#add('l04m33/vlime', {'rtp': 'vim/', 'on_ft': 'lisp'})
-  " call dein#add('bhurlow/vim-parinfer', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
 
   " Pandoc/Markdown
   call dein#add('vim-pandoc/vim-pandoc', {'depends': ['vim-pandoc-syntax', 'vim-pandoc-after']})

@@ -232,9 +232,9 @@ nnoremap <BS> {
 onoremap <BS> {
 vnoremap <BS> {
 
-nnoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
-onoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
-vnoremap <CR> }
+" nnoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
+" onoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
+" vnoremap <CR> }
 
 " Deoplete bindings
 " imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>") 
