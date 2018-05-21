@@ -46,9 +46,6 @@ call ConfigInc('functions.vim')
 " Autocommands
 call ConfigInc('autocmds.vim')
 
-" Keybindings
-call ConfigInc('keybindings.vim')
-
 " Colorscheme
 set termguicolors
 set background=dark
@@ -427,8 +424,8 @@ let g:pad#set_mappings = 0
 " Vlime
 let g:vlime_cl_use_terminal = v:true
 
-" Custom commands
-call ConfigInc('commands.vim')
+" Keybindings
+call ConfigInc('keybindings.vim')
 
 " General settings
 call ConfigInc('settings.vim')
