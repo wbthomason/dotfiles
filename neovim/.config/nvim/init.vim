@@ -258,6 +258,7 @@ let g:rooter_manual_only = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 
 " LanguageClient 
+let g:LanguageClient_hasSnippetSupport = 0
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
       \ 'python': ['pyls'],

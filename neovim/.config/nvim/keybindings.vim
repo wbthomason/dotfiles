@@ -245,6 +245,7 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ deoplete#manual_complete()
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
@@ -261,7 +262,3 @@ inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 " <C-l>: redraw candidates
 inoremap <expr><C-g>       deoplete#refresh()
 inoremap <silent><expr><C-l> deoplete#complete_common_string()
-
-imap <C-x> <Plug>(neosnippet_expand_or_jump)
-smap <C-x> <Plug>(neosnippet_expand_or_jump)
-xmap <C-x> <Plug>(neosnippet_expand_target)
