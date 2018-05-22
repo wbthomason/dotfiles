@@ -151,6 +151,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " C/C++
   call dein#add('tweekmonster/deoplete-clang2')
+  call dein#add('bfrg/vim-cpp-modern')
 
   " Clojure/Lisps/Scheme
   " call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
