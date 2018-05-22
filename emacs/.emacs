@@ -262,7 +262,7 @@
 (use-package restart-emacs :ensure t)
 
 ;;; Relative linum
-(use-package linum-relative :ensure t :init
+(use-package linum-relative :ensure t
   :config
   (setq linum-relative-format "%3s ")
   (setq linum-relative-current-symbol ""))
@@ -277,7 +277,15 @@
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
 
 ;;; Projectile
-(use-package projectile :ensure t)
+(use-package projectile :ensure t
+  :init
+  (setq-default
+   projectile-mode-line
+   '(:eval
+     (if (file-remote-p default-directory)
+         " Pr"
+       (format " Pr[%s]" (projectile-project-name))))))
+(projectile-mode)
 
 ;;; Drag-stuff
 (use-package drag-stuff :ensure t
@@ -319,22 +327,22 @@
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
-; (use-package eglot :ensure t
-;   :init
-;   (add-to-list 'eglot-server-programs
-;                '(c-mode . ("cquery" "--language-server"))
-;                '(c++-mode . ("cquery" "--language-server"))
-;                '(tuareg-mode . ("ocaml-language-server" "--stdio"))
-;                '(haskell-mode . ("hie" "--lsp"))
-;                '(common-lisp-mode . ("cl-lsp"))))
+                                        ; (use-package eglot :ensure t
+                                        ;   :init
+                                        ;   (add-to-list 'eglot-server-programs
+                                        ;                '(c-mode . ("cquery" "--language-server"))
+                                        ;                '(c++-mode . ("cquery" "--language-server"))
+                                        ;                '(tuareg-mode . ("ocaml-language-server" "--stdio"))
+                                        ;                '(haskell-mode . ("hie" "--lsp"))
+                                        ;                '(common-lisp-mode . ("cl-lsp"))))
 
-; (use-package company-lsp :ensure t
-;   :init
-;   (push 'company-lsp company-backends))
-;
-; (use-package company-quickhelp :ensure t
-;   :config
-;   (company-quickhelp-mode))
+                                        ; (use-package company-lsp :ensure t
+                                        ;   :init
+                                        ;   (push 'company-lsp company-backends))
+                                        ;
+                                        ; (use-package company-quickhelp :ensure t
+                                        ;   :config
+                                        ;   (company-quickhelp-mode))
 
 (use-package fuzzy :ensure t :defer t)
 
@@ -370,6 +378,26 @@
 
 ;;; Python
 (use-package python-mode :defer t :ensure t)
+(use-package company-jedi :defer t :ensure t
+             :init
+             (add-hook 'python-mode-hook
+                       (lambda ()
+                         (add-to-list 'company-backends 'company-jedi)
+                         (add-hook 'python-mode-hook 'jedi:setup)))
+             :config
+             (setq jedi:complete-on-dot t))
+
+(use-package py-yapf :defer t :ensure t
+             :init
+             (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
+
+(use-package ein :defer t :ensure t
+             :init
+             (setq ein:use-auto-complete-superpack t))
+
+(use-package py-isort :defer t :ensure t
+             :config
+             (add-hook 'before-save-hook 'py-isort-before-save))
 
 ;;; Markdown
 (use-package markdown-mode :defer t :ensure t)
@@ -413,11 +441,26 @@
 (use-package racket-mode :ensure t :defer t)
 
 ;;; C++
-(use-package cc-mode :ensure t :defer t
-  :init
-  (push 'company-clang company-backends)
-  (define-key c-mode-map (kbd "<tab>") 'company-complete)
-  (define-key c++-mode-map (kbd "<tab>") 'company-complete))
+(use-package company-irony :ensure t :defer t
+             :config
+             (setq company-irony-ignore-case 'smart))
+
+(use-package company-irony-c-headers :ensure t :defer t
+             :init
+             (add-hook 'c++-mode-hook (lambda ()
+                                        (add-to-list
+                                         'company-backends
+                                         '(company-irony-c-headers company-irony))))
+             (add-hook 'c-mode-hook (lambda ()
+                                      (add-to-list
+                                       'company-backends
+                                       '(company-irony-c-headers company-irony)))))
+
+(use-package flycheck-irony :ensure t :defer t
+             :init
+             (with-eval-after-load 'flycheck
+               '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+
 (use-package clang-format :ensure t :defer t)
 
 ;;; Org
@@ -574,7 +617,7 @@ i.e. change right window to bottom, or change bottom window to right."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-quickhelp company zoom which-key use-package tuareg restart-emacs rainbow-delimiters python-mode projectile powerline-evil popup-kill-ring parinfer ocp-indent markdown-mode linum-relative ialign highlight-indent-guides helm-ls-git helm-descbinds general focus evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args drag-stuff auctex airline-themes))))
+    (rosemacs-config py-isort ein company-jedi company-quickhelp company zoom which-key use-package tuareg restart-emacs rainbow-delimiters python-mode projectile powerline-evil popup-kill-ring parinfer ocp-indent markdown-mode linum-relative ialign highlight-indent-guides helm-ls-git helm-descbinds general focus evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args drag-stuff auctex airline-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
