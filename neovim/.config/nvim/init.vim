@@ -50,8 +50,9 @@ call ConfigInc('autocmds.vim')
 set termguicolors
 set background=dark
 " colorscheme happy_hacking
-colorscheme gruvbox
-let g:gruvbox_italic = 1
+" colorscheme gruvbox
+" let g:gruvbox_italic = 1
+colorscheme base16-tomorrow-night
 
 " Haskell 
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
