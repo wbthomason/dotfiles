@@ -319,26 +319,22 @@
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
-(use-package eglot :ensure t
-  :init
-  (add-to-list 'eglot-server-programs
-               '(c-mode . ("cquery" "--language-server"))
-               '(c++-mode . ("cquery" "--language-server"))
-               '(tuareg-mode . ("ocaml-language-server" "--stdio"))
-               '(haskell-mode . ("hie" "--lsp"))
-               '(common-lisp-mode . ("cl-lsp"))))
+; (use-package eglot :ensure t
+;   :init
+;   (add-to-list 'eglot-server-programs
+;                '(c-mode . ("cquery" "--language-server"))
+;                '(c++-mode . ("cquery" "--language-server"))
+;                '(tuareg-mode . ("ocaml-language-server" "--stdio"))
+;                '(haskell-mode . ("hie" "--lsp"))
+;                '(common-lisp-mode . ("cl-lsp"))))
 
-(use-package lsp-ocaml :ensure t
-  :init
-  (add-hook 'tuareg-mode-hook #'lsp-ocaml-enable))
-
-(use-package company-lsp :ensure t
-  :init
-  (push 'company-lsp company-backends))
-
-(use-package company-quickhelp :ensure t
-  :config
-  (company-quickhelp-mode))
+; (use-package company-lsp :ensure t
+;   :init
+;   (push 'company-lsp company-backends))
+;
+; (use-package company-quickhelp :ensure t
+;   :config
+;   (company-quickhelp-mode))
 
 (use-package fuzzy :ensure t :defer t)
 
@@ -418,15 +414,11 @@
 
 ;;; C++
 (use-package cc-mode :ensure t :defer t
-  :initig
+  :init
   (push 'company-clang company-backends)
   (define-key c-mode-map (kbd "<tab>") 'company-complete)
   (define-key c++-mode-map (kbd "<tab>") 'company-complete))
 (use-package clang-format :ensure t :defer t)
-(use-package company-c-headers :ensure t :defer t
-  :init
-  (add-to-list 'company-c-headers-path-system "/usr/include/c++/8.1.0")
-  (push 'company-c-headers company-backends))
 
 ;;; Org
 (use-package org :ensure t :defer t)
