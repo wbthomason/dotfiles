@@ -47,14 +47,15 @@ call ConfigInc('functions.vim')
 call ConfigInc('autocmds.vim')
 
 " Colorscheme
-set termguicolors
+" set termguicolors
 set background=dark
 " colorscheme happy_hacking
-" colorscheme gruvbox
-" let g:gruvbox_italic = 1
-colorscheme base16-tomorrow-night
+let g:gruvbox_italic = 1
+let g:gruvbox_improved_warnings = 1
+colorscheme gruvbox
+" colorscheme custom
 
-" Haskell 
+" Haskell
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -69,7 +70,7 @@ let g:haskellmode_completion_ghc = 0
 " Intero
 let g:intero_type_on_hover = 1
 
-" Rainbow parens 
+" Rainbow parens
 let g:rainbow_active = 1
 let g:rainbow_conf = {
       \	'separately': {
@@ -85,7 +86,7 @@ let g:bufferline_show_bufnr = 0
 let g:bufferline_rotate = 2
 let g:bufferline_pathshorten = 1
 
-" Airline 
+" Airline
 let g:airline_theme = 'minimalist'
 let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache = 1
@@ -96,7 +97,7 @@ let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#bufferline#overwrite_variables = 1
 let g:airline_extensions = ['denite', 'bufferline', 'hunks', 'branch']
 
-" Ale 
+" Ale
 let g:ale_sign_error = '🗙'
 let g:ale_sign_warning = '➤'
 let g:ale_lint_on_save = 1
@@ -116,13 +117,13 @@ let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_linter_aliases = {'pandoc': ['markdown']}
 let g:ale_cpp_clangtidy_checks = ['*', '-fuchsia-default-arguments']
 
-" IndentLine 
+" IndentLine
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#09AA08'
 let g:indentLine_char = '│'
 let g:indentLine_faster = 1
 
-" Pandoc 
+" Pandoc
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#after#modules#enabled = ['vim-table-mode']
 let g:pandoc#formatting#mode = 'haA'
@@ -132,7 +133,7 @@ let g:pandoc#completion#bib#use_preview = 0
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#mode = 'citeproc'
 
-" Vimtex 
+" Vimtex
 let g:tex_flavor = 'latex'
 let g:tex_conceal = ''
 let g:vimtex_compiler_progname = 'nvr'
@@ -141,13 +142,13 @@ let g:vimtex_complete_enabled = 1
 let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_quickfix_mode = 0
 
-" Undotree 
+" Undotree
 " if has('persistent_undo')
 "   set undodir=~/.undodir/
 "   set undofile
 " endif
 
-" Tagbar 
+" Tagbar
 let g:tagbar_type_haskell = {
       \ 'ctagsbin'  : 'hasktags',
       \ 'ctagsargs' : '-x -c -o-',
@@ -211,10 +212,10 @@ let g:tagbar_type_elixir = {
       \ ]
       \ }
 
-" Racer 
+" Racer
 " let g:racer_cmd = '/usr/bin/racer'
 
-" Gitgutter 
+" Gitgutter
 " set updatetime=500
 " let g:gitgutter_sign_modified = '＊'
 " let g:gitgutter_sign_added = '＋'
@@ -228,14 +229,14 @@ let g:signify_sign_delete = '～'
 let g:signify_sign_delete_first_line = g:signify_sign_delete
 let g:signify_sign_show_count = 0
 
-" Goyo 
+" Goyo
 let g:goyo_width = 110
 
 " Highlighting tweaks
 " highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#B8BEC9 guibg=NONE | highlight LineNr guifg=#777777
 " highlight Visual guifg=NONE ctermfg=NONE guibg=#747474 ctermbg=0 gui=NONE cterm=NONE
 
-" Startify 
+" Startify
 let g:startify_list_order = [
       \ ['Update'], 'commands',
       \ ['Recent Files in Directory'], 'dir',
@@ -251,7 +252,7 @@ let g:startify_session_persistence = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_custom_header = []
 
-" Vim-rooter 
+" Vim-rooter
 " Add language-builder patterns before source control for nested projects
 let g:rooter_patterns = ['.catkin_workspace', 'Cargo.toml', 'stack.yaml', '*.cabal', 'Makefile', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
 let g:rooter_resolve_links = 1
@@ -259,7 +260,7 @@ let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 
-" LanguageClient 
+" LanguageClient
 let g:LanguageClient_hasSnippetSupport = 0
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
@@ -270,7 +271,7 @@ let g:LanguageClient_serverCommands = {
       \ 'go': ['~/go/bin/go-langserver'],
       \ 'haskell': ['hie', '--lsp'],
       \ 'lua': ['lua-lsp'],
-      \ 'cpp': ['cquery', '--language-server', '--log-file=/tmp/cq.log'],
+      \ 'cpp': ['cquery'],
       \ 'lisp': ['cl-lsp']
       \ }
 let g:LanguageClient_autoStart = 1
@@ -305,14 +306,14 @@ let g:LanguageClient_diagnosticsDisplay = {
 let g:LanguageClient_signColumnAlwaysOn = 0
 let g:LanguageClient_diagnosticsEnable = 0
 
-" Parenmatch 
+" Parenmatch
 let g:loaded_matchparen = 1
 
-" Prosession 
+" Prosession
 let g:prosession_tmux_title = 1
 let g:prosession_on_startup = 0
 
-" Neoformat 
+" Neoformat
 let g:neoformat_python_yapf = {
       \ 'exe': 'yapf',
       \ 'stdin': 1,
@@ -331,25 +332,25 @@ let g:neoformat_cpp_clangformat = {
 
 let g:neoformat_basic_format_trim = 1
 
-" IncSearch 
+" IncSearch
 let g:incsearch#auto_nohlsearch = 1
 
-" Leader Guide 
+" Leader Guide
 let g:leaderGuide_displayfunc = [function('TrimGuideDisplay')]
 
-" Iron 
+" Iron
 " let g:iron_repl_open_cmd = 'vsplit'
 
-" Clever-F 
+" Clever-F
 let g:clever_f_fix_key_direction = 1
 
-" Echodoc 
+" Echodoc
 let g:echodoc#enable_at_startup = 1
 
-" Markdown Composer 
+" Markdown Composer
 let g:markdown_composer_autostart = 0
 
-" Vaffle 
+" Vaffle
 let g:vaffle_show_hidden_files = 1
 let g:vaffle_force_delete = 1
 
@@ -368,12 +369,12 @@ call deoplete#custom#var('omni', 'input_patterns', {
       \})
 call deoplete#custom#option('num_processes', 0)
 " cpsm is faster, but seems to break the omni source?
-call deoplete#custom#source('_', 'matchers', ['matcher_cpsm'])
+call deoplete#custom#source('_', 'matchers', ['matcher_head'])
 " call deoplete#custom#source('_', 'sorters', [])
 call deoplete#custom#source('_', 'min_pattern_length', 2)
 call deoplete#custom#option('smart_case', v:true)
 call deoplete#custom#option('max_list', 150)
-" call deoplete#custom#option('refresh_always', v:true)
+call deoplete#custom#option('refresh_always', v:true)
 call deoplete#custom#option('auto_complete_delay', 5)
 
 " Denite
@@ -426,6 +427,9 @@ let g:pad#set_mappings = 0
 
 " Vlime
 let g:vlime_cl_use_terminal = v:true
+
+" Golden Ratio
+let g:golden_ratio_exclude_nonmodifiable = 1
 
 " Keybindings
 call ConfigInc('keybindings.vim')

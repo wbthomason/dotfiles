@@ -43,9 +43,10 @@ set ttyfast
 set shortmess+=c
 set nojoinspaces
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-set completeopt+=preview
+set completeopt-=preview
 set updatetime=1000
 filetype plugin indent on
 syntax enable
 set conceallevel=2
 set concealcursor=niv
+set previewheight=5

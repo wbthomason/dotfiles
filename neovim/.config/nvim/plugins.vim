@@ -100,8 +100,7 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Color scheme
   " call dein#add('https://gitlab.com/yorickpeterse/happy_hacking.vim')
-  " call dein#add('morhetz/gruvbox')
-  call dein#add('chriskempson/base16-vim')
+  call dein#add('morhetz/gruvbox')
 
   " Notes/Wiki
   call dein#add('fmoralesc/vim-pad')
@@ -151,7 +150,7 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('zchee/deoplete-jedi')
 
   " C/C++
-  call dein#add('tweekmonster/deoplete-clang2')
+  call dein#add('Shougo/deoplete-clangx')
   call dein#add('bfrg/vim-cpp-modern')
 
   " Clojure/Lisps/Scheme
