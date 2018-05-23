@@ -482,8 +482,11 @@
   :config (load-theme 'airline-distinguished t))
 
 ;;; Theme
+(use-package base16-theme :ensure t
+  :config
+  (load-theme 'base16-tomorrow-night t))
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'happy-hacking t)
+;; (load-theme 'happy-hacking t)
 
 ;;; Rainbow delimiters
 (use-package rainbow-delimiters :ensure t
@@ -617,7 +620,8 @@ i.e. change right window to bottom, or change bottom window to right."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rosemacs-config py-isort ein company-jedi company-quickhelp company zoom which-key use-package tuareg restart-emacs rainbow-delimiters python-mode projectile powerline-evil popup-kill-ring parinfer ocp-indent markdown-mode linum-relative ialign highlight-indent-guides helm-ls-git helm-descbinds general focus evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args drag-stuff auctex airline-themes))))
+    (base16-theme rosemacs-config py-isort ein company-jedi company-quickhelp company zoom which-key use-package tuareg restart-emacs rainbow-delimiters python-mode projectile powerline-evil popup-kill-ring parinfer ocp-indent markdown-mode linum-relative ialign highlight-indent-guides helm-ls-git helm-descbinds general focus evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args drag-stuff auctex airline-themes)))
+ '(projectile-mode t nil (projectile)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
