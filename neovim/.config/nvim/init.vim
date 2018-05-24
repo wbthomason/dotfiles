@@ -40,20 +40,17 @@ let g:dein#install_process_timeout = 600
 " Add in plugins
 call ConfigInc('plugins.vim')
 
+" Update plugins
+if dein#check_install()
+  call dein#install()
+endif
+
+
 " Functions
 call ConfigInc('functions.vim')
 
 " Autocommands
 call ConfigInc('autocmds.vim')
-
-" Colorscheme
-" set termguicolors
-set background=dark
-" colorscheme happy_hacking
-let g:gruvbox_italic = 1
-let g:gruvbox_improved_warnings = 1
-colorscheme gruvbox
-" colorscheme custom
 
 " Haskell
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -73,6 +70,7 @@ let g:intero_type_on_hover = 1
 " Rainbow parens
 let g:rainbow_active = 1
 let g:rainbow_conf = {
+      \	'guifgs': ['#f7f7f7', '#b9b9b9', 'a0a0a0', '8e8e8e'],
       \	'separately': {
       \		'ocaml': {
       \			'parentheses': ['start=/(\*\@!/ end=/)/ fold contains=@colorableGroup'],
@@ -118,8 +116,8 @@ let g:ale_linter_aliases = {'pandoc': ['markdown']}
 let g:ale_cpp_clangtidy_checks = ['*', '-fuchsia-default-arguments']
 
 " IndentLine
-let g:indentLine_color_term = 239
-let g:indentLine_color_gui = '#09AA08'
+" let g:indentLine_color_term = 239
+" let g:indentLine_color_gui = '#09AA08'
 let g:indentLine_char = '│'
 let g:indentLine_faster = 1
 
@@ -437,6 +435,28 @@ call ConfigInc('keybindings.vim')
 " General settings
 call ConfigInc('settings.vim')
 
-if dein#check_install()
-  call dein#install()
-endif
+" Colorscheme
+set termguicolors
+set background=dark
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
+colorscheme yin
+hi ALEError guifg=#cc241d ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
+hi ALEWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
+hi ALEInfo guifg=#83a598 ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl
+
+hi RedSign guifg=#cc241d ctermfg=124 guibg=#262626 ctermbg=235 gui=NONE cterm=NONE
+hi YellowSign guifg=#fabd2f ctermfg=214 guibg=#262626 ctermbg=235 gui=NONE cterm=NONE
+hi GreenSign guifg=#b8bb26 ctermfg=142 guibg=#262626 ctermbg=235 gui=NONE cterm=NONE
+hi BlueSign guifg=#83a598 ctermfg=109 guibg=#262626 ctermbg=235 gui=NONE cterm=NONE
+hi AquaSign guifg=#8ec07c ctermfg=108 guibg=#262626 ctermbg=235 gui=NONE cterm=NONE
+
+hi Todo guifg=#eeeeee ctermfg=255 guibg=NONE ctermbg=NONE gui=bold cterm=bold
+
+hi! link ALEErrorSign RedSign
+hi! link ALEWarningSign YellowSign
+hi! link ALEInfoSign BlueSign
+
+hi! link SignifySignAdd GreenSign
+hi! link SignifySignChange AquaSign
+hi! link SignifySignDelete RedSign

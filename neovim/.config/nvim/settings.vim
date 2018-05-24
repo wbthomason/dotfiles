@@ -50,3 +50,4 @@ syntax enable
 set conceallevel=2
 set concealcursor=niv
 set previewheight=5
+set undofile
