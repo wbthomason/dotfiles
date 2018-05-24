@@ -481,8 +481,9 @@
   :config (load-theme 'airline-distinguished t))
 
 ;;; Theme
-(use-package gruvbox-theme :ensure t)
-(load-theme 'gruvbox-dark-medium t)
+(use-package base16-theme :ensure t
+  :config
+  (load-theme 'base16-tomorrow-night t))
 
 ;;; Rainbow delimiters
 (use-package rainbow-delimiters :ensure t
@@ -633,7 +634,12 @@ i.e. change right window to bottom, or change bottom window to right."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
+<<<<<<< HEAD
     (ivy-bibtex counsel-projectile zoom yaml-mode which-key utop use-package tuareg scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc linum-relative irony-eldoc ialign highlight-indent-guides helm-projectile helm-make helm-ls-git helm-gitignore helm-flx helm-descbinds helm-company helm-ag gruvbox-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-pos-tip flycheck-irony fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein drag-stuff company-jedi company-irony-c-headers company-irony company-auctex clang-format cargo auto-dictionary auctex-latexmk atom-one-dark-theme airline-themes))))
+=======
+    (base16-theme rosemacs-config py-isort ein company-jedi company-quickhelp company zoom which-key use-package tuareg restart-emacs rainbow-delimiters python-mode projectile powerline-evil popup-kill-ring parinfer ocp-indent markdown-mode linum-relative ialign highlight-indent-guides helm-ls-git helm-descbinds general focus evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args drag-stuff auctex airline-themes)))
+ '(projectile-mode t nil (projectile)))
+>>>>>>> ebf10736a46e3dbdb3dd4c4712c16da223007ac1
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
