@@ -17,34 +17,20 @@
 (add-to-list 'load-path "~/.emacs.d/local")
 
 ;; General Packages
-;;; Helm
-(use-package helm :ensure t
+;;; Ivy
+(use-package ivy :ensure t
+  :diminish ivy-mode
   :init
-  (with-eval-after-load 'helm
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-    (define-key helm-map (kbd "C-z") 'helm-select-action)
-    (define-key helm-map (kbd "ESC") 'helm-exit-minibuffer)))
-(use-package helm-ls-git :ensure t)
-(use-package helm-descbinds :ensure t
-  :config (helm-descbinds-mode))
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t)
+  (with-eval-after-load 'ivy
+    (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
+    (define-key ivy-minibuffer-map (kbd "C-a") 'ivy-read-action)
+    (define-key ivy-minibuffer-map (kbd "C-f") 'ivy-toggle-fuzzy)))
 
-(use-package helm-company :ensure t :defer t
-  :init
-  (with-eval-after-load 'company
-    (define-key company-active-map (kbd "C-/") 'helm-company)))
-
-(use-package helm-ag :ensure t :defer t
-  :config
-  (setq helm-ag-base-command "rg --no-heading"))
-
-(use-package helm-flx :ensure t
-  :init
-  (setq helm-flx-for-helm-locate t))
-(use-package helm-projectile :ensure t)
-(use-package helm-make :ensure t)
-(use-package helm-gitignore :ensure t)
-(use-package helm-bibtex :ensure t :defer t)
+(use-package counsel-projectile :ensure t :defer t)
+(use-package ivy-bibtex :ensure t :defer t)
 
 ;;; Undotree
 (use-package undo-tree :ensure t
@@ -185,7 +171,7 @@
   :config
   (evil-commentary-mode))
 
-(use-package evil-tmux-navigator)
+(use-package navigate :ensure t)
 
 (evil-mode 1)
 
@@ -315,6 +301,7 @@
   :ensure t
   :config
   (global-company-mode)
+  (setq company-backends (delete 'company-semantic company-backends))
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 2
         company-require-match nil
@@ -441,25 +428,37 @@
 (use-package racket-mode :ensure t :defer t)
 
 ;;; C++
+(use-package modern-cpp-font-lock
+  :ensure t)
+
 (use-package company-irony :ensure t :defer t
-             :config
-             (setq company-irony-ignore-case 'smart))
+  :config
+  (setq company-irony-ignore-case 'smart)
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'objc-mode-hook 'irony-mode)
+
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
 (use-package company-irony-c-headers :ensure t :defer t
-             :init
-             (add-hook 'c++-mode-hook (lambda ()
-                                        (add-to-list
-                                         'company-backends
-                                         '(company-irony-c-headers company-irony))))
-             (add-hook 'c-mode-hook (lambda ()
-                                      (add-to-list
-                                       'company-backends
-                                       '(company-irony-c-headers company-irony)))))
+  :init
+  (add-hook 'c++-mode-hook (lambda ()
+                             (add-to-list
+                              'company-backends
+                              '(company-irony-c-headers company-irony))))
+  (add-hook 'c-mode-hook (lambda ()
+                           (add-to-list
+                            'company-backends
+                            '(company-irony-c-headers company-irony)))))
 
 (use-package flycheck-irony :ensure t :defer t
-             :init
-             (with-eval-after-load 'flycheck
-               '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+  :init
+  (with-eval-after-load 'flycheck
+    '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+
+(use-package irony-eldoc :ensure t :defer t
+  :init
+  (add-hook 'irony-mode-hook #'irony-eldoc))
 
 (use-package clang-format :ensure t :defer t)
 
@@ -482,8 +481,8 @@
   :config (load-theme 'airline-distinguished t))
 
 ;;; Theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'happy-hacking t)
+(use-package gruvbox-theme :ensure t)
+(load-theme 'gruvbox-dark-medium t)
 
 ;;; Rainbow delimiters
 (use-package rainbow-delimiters :ensure t
@@ -517,7 +516,7 @@
 (setq
  vc-follow-symlinks t
  select-enable-clipboard t
- ;; make-backup-files nil
+ make-backup-files nil
  coding-system-for-read 'utf-8
  coding-system-for-write 'utf-8)
 (save-place-mode 1)
@@ -525,11 +524,18 @@
 ;; Defaults
 (setq-default
  show-trailing-whitespace t
- indent-tabs-mode nil)
+ indent-tabs-mode nil
+ c-default-style "bsd"
+ tab-width 2
+ c-basic-offset 2
+ cperl-indent-level 2)
 
-(setq tab-width 2)
+(setq c-default-style "bsd")
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
+(use-package dtrt-indent :ensure t
+  :init
+  (dtrt-indent-mode))
 
 ;; Evil settings
 (setq evil-insert-state-cursor  '("#268bd2" bar)  ;; blue
@@ -583,6 +589,13 @@ i.e. change right window to bottom, or change bottom window to right."
                   (split-window-horizontally))
                 (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
 
+(defun format-buffer ()
+  "Call the appropriate formatter for the current major mode."
+  (interactive)
+  (cond ((eq major-mode 'c++-mode) (clang-format-buffer))
+        ((eq major-mode 'c-mode) (clang-format-buffer))
+        ((eq major-mode 'python-mode) (py-yapf-buffer))))
+
 ;; Keybindings
 (evil-leader/set-key
   "q"  'kill-emacs
@@ -593,15 +606,18 @@ i.e. change right window to bottom, or change bottom window to right."
   "s"  'next-buffer
   "k"  'delete-window
   "z=" 'flyspell-auto-correct-word
-  "bb" 'helm-buffers-list
+  "bb" 'ivy-switch-buffer
   "eo" 'flycheck-list-errors
   "ec" 'close-flycheck
   "bl" 'last-buffer
-  "ff" 'helm-find-files
-  "fr" 'helm-recentf
-  "fh" 'helm-apropos
-  "gf" 'helm-projectile
-  "gi" 'helm-gitignore
+  "bf" 'format-buffer
+  "ff" 'counsel-find-file
+  "fr" 'counsel-recentf
+  "fh" 'counsel-apropos
+  "fi" 'counsel-ag
+  "fl" 'counsel-locate
+  "fp" 'counsel-projectile-switch-project
+  "gf" 'counsel-git
   "gs" 'magit-status
   "gc" 'magit-commit
   "gp" 'magit-push
@@ -617,7 +633,7 @@ i.e. change right window to bottom, or change bottom window to right."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rosemacs-config py-isort ein company-jedi company-quickhelp company zoom which-key use-package tuareg restart-emacs rainbow-delimiters python-mode projectile powerline-evil popup-kill-ring parinfer ocp-indent markdown-mode linum-relative ialign highlight-indent-guides helm-ls-git helm-descbinds general focus evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args drag-stuff auctex airline-themes))))
+    (ivy-bibtex counsel-projectile zoom yaml-mode which-key utop use-package tuareg scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc linum-relative irony-eldoc ialign highlight-indent-guides helm-projectile helm-make helm-ls-git helm-gitignore helm-flx helm-descbinds helm-company helm-ag gruvbox-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-pos-tip flycheck-irony fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein drag-stuff company-jedi company-irony-c-headers company-irony company-auctex clang-format cargo auto-dictionary auctex-latexmk atom-one-dark-theme airline-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
