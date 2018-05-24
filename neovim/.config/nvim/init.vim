@@ -70,7 +70,8 @@ let g:intero_type_on_hover = 1
 " Rainbow parens
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-      \	'guifgs': ['#f7f7f7', '#b9b9b9', 'a0a0a0', '8e8e8e'],
+      \	'guifgs': ['#eeeeee', '#c6c6c6', '#666666', '#4e4e4e'],
+      \	'ctermfgs': ['255', '251', '242', '239'],
       \	'separately': {
       \		'ocaml': {
       \			'parentheses': ['start=/(\*\@!/ end=/)/ fold contains=@colorableGroup'],
