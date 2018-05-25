@@ -9,6 +9,10 @@ augroup main_aucommands
   au BufWinEnter * checktime
   au CompleteDone * pclose
   au FileType qf setlocal wrap
+  autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 augroup END
 
 augroup ale_colors

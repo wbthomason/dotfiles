@@ -1,7 +1,6 @@
 scriptencoding utf-8
 " Config file path
 let g:config_path = '~/.config/nvim/'
-set runtimepath+=/home/wil/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Function for sourcing config modules
 function! ConfigInc(module)
@@ -34,17 +33,8 @@ let g:loaded_tutor_mode_plugin = 1
 let g:loaded_vimballPlugin     = 1
 let g:loaded_zipPlugin = 1
 
-" Dein config
-let g:dein#install_process_timeout = 600
-
 " Add in plugins
 call ConfigInc('plugins.vim')
-
-" Update plugins
-if dein#check_install()
-  call dein#install()
-endif
-
 
 " Functions
 call ConfigInc('functions.vim')
@@ -234,10 +224,6 @@ let g:signify_sign_show_count = 0
 " Goyo
 let g:goyo_width = 110
 
-" Highlighting tweaks
-" highlight Todo cterm=bold ctermfg=0 ctermbg=3 gui=bold guifg=#3B4252 guibg=#EBCB8B | highlight Comment cterm=bold ctermfg=8 ctermbg=NONE gui=bold guifg=#B8BEC9 guibg=NONE | highlight LineNr guifg=#777777
-" highlight Visual guifg=NONE ctermfg=NONE guibg=#747474 ctermbg=0 gui=NONE cterm=NONE
-
 " Startify
 let g:startify_list_order = [
       \ ['Update'], 'commands',
@@ -246,8 +232,9 @@ let g:startify_list_order = [
       \ ['Bookmarks'], 'bookmarks',
       \ ['Sessions'], 'sessions']
 let g:startify_commands = [
-      \ {'u': ['Update plugins', ':Dein update']},
-      \ {'c': ['Clean plugins', ':Dein clean']},
+      \ {'u': ['Update plugins', ':PlugUpdate']},
+      \ {'g': ['Upgrade Plug', ':PlugUpgrade']},
+      \ {'c': ['Clean plugins', ':PlugClean']},
       \ {'t': ['Time startup', ':StartupTime']},
       \ {'s': ['Start Prosession', ':Prosession .']}]
 let g:startify_session_persistence = 1
