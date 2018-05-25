@@ -46,7 +46,7 @@ bindsym $mod+t exec "kitty --session ~/fish.kitty-session"
 bindsym $mod+Shift+q kill
 
 # rofi
-bindsym $mod+d exec "rofi -combi-modi run,window,ssh -mesg -show combi -modi combi"
+bindsym $mod+d exec "rofi -combi-modi drun,run,window,ssh -mesg -show combi -modi combi"
 
 # suspending
 bindsym $mod+b exec systemctl suspend

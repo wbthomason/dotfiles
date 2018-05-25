@@ -9,4 +9,5 @@ rofi.terminal: konsole
 rofi.separator-style: none
 rofi.show-icons: true
 rofi.fake-transparency: true
-rofi.matching: fuzzy
+rofi.matching: glob
+rofi.levenshtein-sort: true
