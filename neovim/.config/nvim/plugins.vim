@@ -6,7 +6,8 @@ if dein#load_state('/home/wil/.cache/dein')
   " Utilities
 
   " Tweaks
-  " call dein#add('tpope/vim-unimpaired')
+  call dein#add('tpope/vim-unimpaired')
+  call dein#add('vim-scripts/LargeFile')
 
   " Split resizing
   call dein#add('roman/golden-ratio')

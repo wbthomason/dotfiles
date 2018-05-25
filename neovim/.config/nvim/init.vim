@@ -376,7 +376,7 @@ call deoplete#custom#source('_', 'matchers', ['matcher_head'])
 call deoplete#custom#source('_', 'min_pattern_length', 2)
 call deoplete#custom#option('smart_case', v:true)
 call deoplete#custom#option('max_list', 150)
-call deoplete#custom#option('refresh_always', v:true)
+" call deoplete#custom#option('refresh_always', v:true)
 call deoplete#custom#option('auto_complete_delay', 5)
 
 " FZF
