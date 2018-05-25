@@ -136,6 +136,8 @@ nnoremap <leader>mi :BuildIt<CR>
 let g:lmaps.m.i = ['BuildIt', 'Run BuildIt for the current buffer']
 nnoremap <leader>ms :BuildItStatus<CR>
 let g:lmaps.m.s = ['BuildItStatus', 'Check the BuildIt status']
+nnoremap <localleader>\, <silent> :Dispatch
+let g:llmaps[','] = ['Dispatch', 'Run Dispatch']
 
 " REPL and Terminal bindings
 tnoremap jj <C-\><C-n>
@@ -236,20 +238,7 @@ nnoremap <localleader> :<c-u>LeaderGuide  ','<CR>
 vnoremap <localleader> :<c-u>LeaderGuideVisual  ','<CR>
 map <localleader>. <Plug>leaderguide-buffer
 
-" Make Backspace and Enter more useful
-nnoremap <BS> {
-onoremap <BS> {
-vnoremap <BS> {
-
-" nnoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
-" onoremap <expr> <CR> empty(&buftype) ? '}' : '<CR>'
-" vnoremap <CR> }
-
 " Deoplete bindings
-" imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>") 
-" imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-" imap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
-"  <TAB>: completion.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
