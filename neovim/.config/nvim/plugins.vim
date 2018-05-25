@@ -76,9 +76,9 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('ludovicchabant/vim-gutentags')
   " call dein#add('majutsushi/tagbar')
 
-  " Denite
-  call dein#add('nixprime/cpsm', {'build': 'env PY3=ON ./install.sh'})
-  call dein#add('Shougo/denite.nvim')
+  " FZF
+  call dein#add('junegunn/fzf.vim')
+  call dein#add('fszymanski/fzf-gitignore')
 
   " Writing
   call dein#add('junegunn/goyo.vim')
@@ -100,7 +100,8 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Color scheme
   " call dein#add('https://gitlab.com/yorickpeterse/happy_hacking.vim')
-  call dein#add('pgdouyon/vim-yin-yang')
+  " call dein#add('pgdouyon/vim-yin-yang')
+  call dein#add('wbthomason/vim-yin-yang')
 
   " Notes/Wiki
   call dein#add('fmoralesc/vim-pad')
@@ -119,6 +120,10 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('Shougo/echodoc.vim')
   call dein#add('Shougo/neoinclude.vim', {'on_ft': ['c', 'cpp']})
   call dein#add('Shougo/deoplete.nvim', )
+
+  " Snippets
+  call dein#add('SirVer/ultisnips')
+  call dein#add('honza/vim-snippets')
 
   " Checkers
   call dein#add('w0rp/ale')

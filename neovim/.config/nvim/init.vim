@@ -94,7 +94,7 @@ call airline#parts#define_function('ALE', 'LinterStatus')
 let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#bufferline#overwrite_variables = 1
-let g:airline_extensions = ['denite', 'bufferline', 'hunks', 'branch']
+let g:airline_extensions = ['bufferline', 'hunks', 'branch']
 
 " Ale
 let g:ale_sign_error = '🗙'
@@ -376,46 +376,28 @@ call deoplete#custom#option('max_list', 150)
 call deoplete#custom#option('refresh_always', v:true)
 call deoplete#custom#option('auto_complete_delay', 5)
 
-" Denite
-call denite#custom#option('_', {
-      \ 'prompt': '❯',
-      \ 'updatetime': 1,
-      \ 'reversed': 1,
-      \ })
+" FZF
+let g:fzf_gitignore_no_maps = 1
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
-call denite#custom#source('_', 'sorters', ['sorter/sublime'])
 
-call denite#custom#var('file/rec', 'command',
-      \ ['rg', '--files', '--glob', '!.git'])
-call denite#custom#source('file/rec', 'matchers', ['matcher/cpsm'])
-
-call denite#custom#source('file/old', 'matchers', ['matcher/hide_hidden_files', 'matcher/cpsm'])
-
-call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default/opts',
-      \ ['--vimgrep', '--no-heading'])
-call denite#custom#var('grep', 'recursive/opts', [])
-call denite#custom#var('grep', 'pattern/opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final/opts', [])
-
-call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-call denite#custom#source('file/rec/git', 'matchers', ['matcher/cpsm'])
-
-call denite#custom#map(
-      \ 'insert',
-      \ '<Down>',
-      \ '<denite:move_to_next_line>',
-      \ 'noremap'
-      \)
-
-call denite#custom#map(
-      \ 'insert',
-      \ '<Up>',
-      \ '<denite:move_to_previous_line>',
-      \ 'noremap'
-      \)
+" Snippets
+let g:UltiSnipsExpandTrigger       = '<c-x>'
+let g:UltiSnipsJumpForwardTrigger  = '<c-c>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
 
 " Vim-pad
 let g:pad#dir = '~/wiki/notes'
@@ -429,6 +411,9 @@ let g:vlime_cl_use_terminal = v:true
 
 " Golden Ratio
 let g:golden_ratio_exclude_nonmodifiable = 1
+
+" Commands
+call ConfigInc('commands.vim')
 
 " Keybindings
 call ConfigInc('keybindings.vim')
@@ -446,13 +431,21 @@ hi ALEError guifg=#cc241d ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cte
 hi ALEWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
 hi ALEInfo guifg=#83a598 ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl
 
-hi RedSign guifg=#cc241d ctermfg=124 guibg=#262626 ctermbg=235 gui=NONE cterm=NONE
-hi YellowSign guifg=#fabd2f ctermfg=214 guibg=#262626 ctermbg=235 gui=NONE cterm=NONE
-hi GreenSign guifg=#b8bb26 ctermfg=142 guibg=#262626 ctermbg=235 gui=NONE cterm=NONE
-hi BlueSign guifg=#83a598 ctermfg=109 guibg=#262626 ctermbg=235 gui=NONE cterm=NONE
-hi AquaSign guifg=#8ec07c ctermfg=108 guibg=#262626 ctermbg=235 gui=NONE cterm=NONE
+hi RedSign guifg=#cc241d ctermfg=124 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
+hi YellowSign guifg=#fabd2f ctermfg=214 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
+hi GreenSign guifg=#b8bb26 ctermfg=142 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
+hi BlueSign guifg=#83a598 ctermfg=109 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
+hi AquaSign guifg=#8ec07c ctermfg=108 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
 
 hi Todo guifg=#eeeeee ctermfg=255 guibg=NONE ctermbg=NONE gui=bold cterm=bold
+
+hi ShadyFg3 guifg=#bdae93 ctermfg=248 guibg=NONE ctermbg=NONE
+hi ShadyFg1 guifg=#ebdbb2 ctermfg=223 guibg=NONE ctermbg=NONE
+hi ShadyBg2 guifg=#504945 ctermfg=239 guibg=NONE ctermbg=NONE
+hi ShadyBlue guifg=#83a598 ctermfg=109 guibg=NONE ctermbg=NONE
+hi ShadyGray guifg=#928374 ctermfg=245 guibg=NONE ctermbg=NONE
+hi ShadyYellow guifg=#fabd2f ctermfg=214 guibg=NONE ctermbg=NONE
+hi ShadyOrange guifg=#fe8019 ctermfg=208 guibg=NONE ctermbg=NONE
 
 hi! link ALEErrorSign RedSign
 hi! link ALEWarningSign YellowSign
@@ -461,3 +454,13 @@ hi! link ALEInfoSign BlueSign
 hi! link SignifySignAdd GreenSign
 hi! link SignifySignChange AquaSign
 hi! link SignifySignDelete RedSign
+
+hi! link StartifyBracket ShadyFg3
+hi! link StartifyFile ShadyFg1
+hi! link StartifyNumber ShadyBlue
+hi! link StartifyPath ShadyGray
+hi! link StartifySlash ShadyGray
+hi! link StartifySection ShadyYellow
+hi! link StartifySpecial ShadyBg2
+hi! link StartifyHeader ShadyOrange
+hi! link StartifyFooter ShadyBg2
