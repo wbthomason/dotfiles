@@ -141,8 +141,11 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " Languages
   
+  " Multipack
+  call dein#add('sheerun/vim-polyglot')
+
   " Path changing
-  call dein#add('tpope/vim-apathy')
+  " call dein#add('tpope/vim-apathy')
 
   " LSP
   call dein#add('autozimu/LanguageClient-neovim', {
@@ -156,13 +159,13 @@ if dein#load_state('/home/wil/.cache/dein')
 
   " C/C++
   call dein#add('Shougo/deoplete-clangx')
-  call dein#add('bfrg/vim-cpp-modern')
+  " call dein#add('bfrg/vim-cpp-modern')
 
   " Clojure/Lisps/Scheme
   " call dein#add('guns/vim-sexp', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
   " call dein#add('tpope/vim-sexp-mappings-for-regular-people', {'on_ft': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']})
   " call dein#add('clojure-vim/async-clj-omni', {'on_ft': 'clojure'})
-  call dein#add('wlangstroth/vim-racket')
+  " call dein#add('wlangstroth/vim-racket')
   call dein#add('vim-scripts/scribble.vim')
   call dein#add('kovisoft/slimv', {'on_ft': ['clojure', 'scheme', 'racket']})
   call dein#add('l04m33/vlime', {'rtp': 'vim/', 'on_ft': 'lisp'})
@@ -173,10 +176,10 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('vim-pandoc/vim-pandoc-after')
 
   " TOML
-  call dein#add('cespare/vim-toml')
+  " call dein#add('cespare/vim-toml')
 
   " Yaml
-  call dein#add('stephpy/vim-yaml')
+  " call dein#add('stephpy/vim-yaml')
 
   " JS
   " call dein#add('pangloss/vim-javascript')
@@ -185,7 +188,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " call dein#add('idris-hackers/idris-vim')
 
   " Haskell
-  call dein#add('neovimhaskell/haskell-vim')
+  " call dein#add('neovimhaskell/haskell-vim')
   call dein#add('parsonsmatt/intero-neovim')
   call dein#add('eagletmt/neco-ghc')
 
@@ -193,13 +196,13 @@ if dein#load_state('/home/wil/.cache/dein')
   call dein#add('Shougo/neco-vim')
 
   " Lua
-  call dein#add('tbastos/vim-lua')
+  " call dein#add('tbastos/vim-lua')
 
   " Elm
   " call dein#add('lambdatoast/elm.vim')
 
   " OCaml
-  call dein#add('rgrinberg/vim-ocaml')
+  " call dein#add('rgrinberg/vim-ocaml')
 
   " LaTeX
   call dein#add('lervag/vimtex')
@@ -213,7 +216,7 @@ if dein#load_state('/home/wil/.cache/dein')
   " call dein#add('leafgarland/typescript-vim')
 
   " Fish
-  call dein#add('wilriker/vim-fish')
+  " call dein#add('wilriker/vim-fish')
 
   " Coq
   " call dein#add('epdtry/neovim-coq')
