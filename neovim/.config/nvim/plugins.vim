@@ -6,8 +6,6 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.local/share/nvim/plugs')
-  Plug '/home/wil/.cache/dein/repos/github.com/Shougo/dein.vim'
-  Plug 'haya14busa/dein-command.vim'
   " Utilities
 
   " Tweaks

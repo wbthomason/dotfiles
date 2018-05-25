@@ -398,9 +398,6 @@ let g:pad#set_mappings = 0
 " Vlime
 let g:vlime_cl_use_terminal = v:true
 
-" Golden Ratio
-let g:golden_ratio_exclude_nonmodifiable = 1
-
 " Commands
 call ConfigInc('commands.vim')
 
