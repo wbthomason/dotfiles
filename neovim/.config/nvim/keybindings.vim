@@ -40,7 +40,7 @@ let g:lmaps.s = ['bn', 'Go to next buffer']
 nnoremap <silent> <leader>bl :b#<CR>
 let g:lmaps.b.l = ['b#', 'Go to last used buffer']
 nnoremap <silent> <leader>bb :Buffers<CR>
-nnoremap <silent> \ :Buffers<CR>
+nnoremap <silent> <cr> :Buffers<CR>
 let g:lmaps.b.b = ['Buffers', 'Select a buffer']
 
 " Configuration bindings
@@ -236,29 +236,6 @@ nnoremap <localleader> :<c-u>LeaderGuide  ','<CR>
 vnoremap <localleader> :<c-u>LeaderGuideVisual  ','<CR>
 map <localleader>. <Plug>leaderguide-buffer
 
-" Deoplete bindings
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ deoplete#manual_complete()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-" <S-TAB>: completion back.
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
-
-" inoremap <expr><C-g> deoplete#undo_completion()
-" <C-l>: redraw candidates
-inoremap <expr><C-g>       deoplete#refresh()
-inoremap <silent><expr><C-l> deoplete#complete_common_string()
-
 " 2-character Sneak (default)
 nmap z <Plug>Sneak_s
 nmap Z <Plug>Sneak_S
@@ -298,3 +275,27 @@ xmap T <Plug>Sneak_T
 " operator-pending-mode
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
+
+" Deoplete bindings
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#manual_complete()
+
+function! s:check_back_space() abort
+  let l:col = col('.') - 1
+  return !l:col || getline('.')[l:col - 1]  =~? '\s'
+endfunction
+
+" <S-TAB>: completion back.
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+
+" inoremap <expr><C-g> deoplete#undo_completion()
+" <C-l>: redraw candidates
+inoremap <expr><C-g>       deoplete#refresh()
+inoremap <silent><expr><C-l> deoplete#complete_common_string()

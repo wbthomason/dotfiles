@@ -360,6 +360,7 @@ let g:pad#set_mappings = 0
 
 " Vlime
 let g:vlime_cl_use_terminal = v:true
+let g:vlime_force_default_keys = v:true
 
 " Airline
 let g:airline_theme = 'minimalist'
@@ -371,6 +372,7 @@ let g:airline_extensions = ['bufferline', 'hunks', 'branch']
 
 " Sneak
 let g:sneak#s_next = 1
+let g:sneak#label = 1
 
 " Commands
 call ConfigInc('commands.vim')
@@ -381,7 +383,7 @@ call ConfigInc('keybindings.vim')
 " Add in plugins
 call ConfigInc('plugins.vim')
 
-"Leader guide
+" Leader guide
 
 call leaderGuide#register_prefix_descriptions('', 'g:allmaps')
 call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')

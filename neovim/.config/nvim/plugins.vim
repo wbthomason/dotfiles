@@ -129,15 +129,7 @@ Plug 'wbthomason/buildit.nvim'
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 
-" Block manipulation
-Plug 'kana/vim-niceblock'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'machakann/vim-swap'
-Plug 'zirrostig/vim-schlepp'
-
-" Languages
-
-" Multipack
+" Language multipack
 Plug 'sheerun/vim-polyglot'
 
 " Path changing
