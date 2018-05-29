@@ -1,8 +1,8 @@
 " Keybindings
 
 " Set the leader keys
-let mapleader = "\<space>"
-let maplocalleader = ","
+let g:mapleader = "\<space>"
+let g:maplocalleader = ','
 
 " More convenient ESC
 inoremap <silent> jj <ESC>
@@ -40,7 +40,7 @@ let g:lmaps.s = ['bn', 'Go to next buffer']
 nnoremap <silent> <leader>bl :b#<CR>
 let g:lmaps.b.l = ['b#', 'Go to last used buffer']
 nnoremap <silent> <leader>bb :Buffers<CR>
-nnoremap <silent> ; :Buffers<CR>
+nnoremap <silent> \ :Buffers<CR>
 let g:lmaps.b.b = ['Buffers', 'Select a buffer']
 
 " Configuration bindings
@@ -229,8 +229,6 @@ let g:allmaps[' '] = g:lmaps
 let g:allmaps[','] = g:llmaps
 let g:allmaps[',']['name'] = '<localleader>'
 
-call leaderGuide#register_prefix_descriptions('', 'g:allmaps')
-call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
 nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
 map <leader>. <Plug>leaderguide-global
@@ -260,3 +258,43 @@ inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 " <C-l>: redraw candidates
 inoremap <expr><C-g>       deoplete#refresh()
 inoremap <silent><expr><C-l> deoplete#complete_common_string()
+
+" 2-character Sneak (default)
+nmap z <Plug>Sneak_s
+nmap Z <Plug>Sneak_S
+
+" visual-mode
+xmap z <Plug>Sneak_s
+xmap Z <Plug>Sneak_S
+
+" operator-pending-mode
+omap z <Plug>Sneak_s
+omap Z <Plug>Sneak_S
+
+" repeat motion
+map ; <Plug>Sneak_;
+map \ <Plug>Sneak_,
+
+" 1-character enhanced 'f'
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+
+" visual-mode
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+
+" operator-pending-mode
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+
+" 1-character enhanced 't'
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+
+" visual-mode
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+
+" operator-pending-mode
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
