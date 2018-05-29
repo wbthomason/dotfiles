@@ -33,9 +33,6 @@ let g:loaded_tutor_mode_plugin = 1
 let g:loaded_vimballPlugin     = 1
 let g:loaded_zipPlugin = 1
 
-" Add in plugins
-call ConfigInc('plugins.vim')
-
 " Functions
 call ConfigInc('functions.vim')
 
@@ -76,17 +73,6 @@ let g:bufferline_echo = 0
 let g:bufferline_show_bufnr = 0
 let g:bufferline_rotate = 2
 let g:bufferline_pathshorten = 1
-
-" Airline
-let g:airline_theme = 'minimalist'
-let g:airline_powerline_fonts = 1
-let g:airline_highlighting_cache = 1
-" " ALE integration config
-call airline#parts#define_function('ALE', 'LinterStatus')
-let g:airline_section_error = airline#section#create_right(['ALE'])
-let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#bufferline#overwrite_variables = 1
-let g:airline_extensions = ['bufferline', 'hunks', 'branch']
 
 " Ale
 let g:ale_sign_error = '🗙'
@@ -342,29 +328,6 @@ let g:markdown_composer_autostart = 0
 let g:vaffle_show_hidden_files = 1
 let g:vaffle_force_delete = 1
 
-" NCM
-" let g:cm_sources_override = {}
-" Deoplete
-let g:deoplete#enable_at_startup = 0
-call deoplete#custom#option('keyword_patterns', {
-      \ '_': '[a-zA-Z_]\k*\(?',
-      \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
-      \ })
-call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
-call deoplete#custom#option('ignore_sources', {'_': ['tag'], 'python': ['tag', 'neoinclude']})
-call deoplete#custom#var('omni', 'input_patterns', {
-      \ 'tex' : g:vimtex#re#deoplete,
-      \})
-call deoplete#custom#option('num_processes', 0)
-" cpsm is faster, but seems to break the omni source?
-call deoplete#custom#source('_', 'matchers', ['matcher_head'])
-" call deoplete#custom#source('_', 'sorters', [])
-call deoplete#custom#source('_', 'min_pattern_length', 2)
-call deoplete#custom#option('smart_case', v:true)
-call deoplete#custom#option('max_list', 150)
-" call deoplete#custom#option('refresh_always', v:true)
-call deoplete#custom#option('auto_complete_delay', 5)
-
 " FZF
 let g:fzf_gitignore_no_maps = 1
 let g:fzf_colors =
@@ -398,11 +361,55 @@ let g:pad#set_mappings = 0
 " Vlime
 let g:vlime_cl_use_terminal = v:true
 
+" Airline
+let g:airline_theme = 'minimalist'
+let g:airline_powerline_fonts = 1
+let g:airline_highlighting_cache = 1
+let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline#extensions#bufferline#overwrite_variables = 1
+let g:airline_extensions = ['bufferline', 'hunks', 'branch']
+
+" Sneak
+let g:sneak#s_next = 1
+
 " Commands
 call ConfigInc('commands.vim')
 
 " Keybindings
 call ConfigInc('keybindings.vim')
+
+" Add in plugins
+call ConfigInc('plugins.vim')
+
+"Leader guide
+
+call leaderGuide#register_prefix_descriptions('', 'g:allmaps')
+call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
+
+" ALE integration config
+call airline#parts#define_function('ALE', 'LinterStatus')
+let g:airline_section_error = airline#section#create_right(['ALE'])
+
+" Deoplete
+let g:deoplete#enable_at_startup = 0
+call deoplete#custom#option('keyword_patterns', {
+      \ '_': '[a-zA-Z_]\k*\(?',
+      \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
+      \ })
+call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
+call deoplete#custom#option('ignore_sources', {'_': ['tag'], 'python': ['tag', 'neoinclude']})
+call deoplete#custom#var('omni', 'input_patterns', {
+      \ 'tex' : g:vimtex#re#deoplete,
+      \})
+call deoplete#custom#option('num_processes', 0)
+" cpsm is faster, but seems to break the omni source?
+call deoplete#custom#source('_', 'matchers', ['matcher_head'])
+" call deoplete#custom#source('_', 'sorters', [])
+call deoplete#custom#source('_', 'min_pattern_length', 2)
+call deoplete#custom#option('smart_case', v:true)
+call deoplete#custom#option('max_list', 150)
+" call deoplete#custom#option('refresh_always', v:true)
+call deoplete#custom#option('auto_complete_delay', 5)
 
 " General settings
 call ConfigInc('settings.vim')
@@ -429,6 +436,7 @@ hi ShadyFg3 guifg=#bdae93 ctermfg=248 guibg=NONE ctermbg=NONE
 hi ShadyFg1 guifg=#ebdbb2 ctermfg=223 guibg=NONE ctermbg=NONE
 hi ShadyBg2 guifg=#504945 ctermfg=239 guibg=NONE ctermbg=NONE
 hi ShadyBlue guifg=#83a598 ctermfg=109 guibg=NONE ctermbg=NONE
+hi ShadyBrightBlue guifg=#a5c7ff ctermfg=109 guibg=NONE ctermbg=NONE
 hi ShadyGray guifg=#928374 ctermfg=245 guibg=NONE ctermbg=NONE
 hi ShadyYellow guifg=#fabd2f ctermfg=214 guibg=NONE ctermbg=NONE
 hi ShadyOrange guifg=#fe8019 ctermfg=208 guibg=NONE ctermbg=NONE
@@ -450,3 +458,5 @@ hi! link StartifySection ShadyYellow
 hi! link StartifySpecial ShadyBg2
 hi! link StartifyHeader ShadyOrange
 hi! link StartifyFooter ShadyBg2
+
+hi! link Sneak ShadyBrightBlue
