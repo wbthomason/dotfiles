@@ -1,3 +1,10 @@
+;;; TODO: https://github.com/bling/fzf.el
+;;; https://brainlessdeveloper.com/2017/12/27/making-emacs-work-like-my-vim-setup/
+;;; Fira Code?
+;;; Flymake?
+;;; Faster start due to 26 feature?
+;;; https://tvraman.github.io/emacspeak/blog/emacs-start-speed-up.html
+
 (eval-when-compile (require 'cl))
 (require 'package)
 (setq package-archives
@@ -38,21 +45,16 @@
 
 ;;; Git gutter
 (use-package git-gutter :ensure t
-  :commands (global-git-gutter-mode git-gutter-mode)
   :init
-  (progn
-    (global-git-gutter-mode t)
-    (git-gutter:linum-setup)
-    (setq git-gutter:update-interval 2
-          git-gutter:modified-sign " "
-          git-gutter:added-sign "+"
-          git-gutter:deleted-sign "-"
-          git-gutter:diff-option "-w"
-          git-gutter:hide-gutter t
-          git-gutter:ask-p nil
-          git-gutter:verbosity 0
-          git-gutter:handled-backends '(git hg bzr svn)
-          git-gutter:hide-gutter t)))
+  (global-git-gutter-mode t)
+  (setq git-gutter:modified-sign "＊"
+        git-gutter:added-sign "+"
+        git-gutter:deleted-sign "～"
+        git-gutter:window-width 2
+        git-gutter:handled-backends '(git hg bzr svn))
+  (set-face-foreground 'git-gutter:modified "#8ec07c") ;; background color
+  (set-face-foreground 'git-gutter:added "#b8bb26")
+  (set-face-foreground 'git-gutter:deleted "cc241d"))
 
 ;;; Rainbow mode
 (use-package rainbow-mode :ensure t :defer t)
@@ -171,6 +173,15 @@
   :config
   (evil-commentary-mode))
 
+(use-package evil-snipe :ensure t
+  :init
+  (setq evil-snipe-scope 'buffer
+        evil-snipe-repeat-scope 'whole-buffer)
+  :config
+  (evil-snipe-mode t)
+  (evil-snipe-override-mode t)
+  (add-hook 'magit-mode-hook 'turn-off-evil-snipe-override-mode))
+
 (use-package navigate :ensure t)
 
 (evil-mode 1)
@@ -251,9 +262,8 @@
 (use-package linum-relative :ensure t
   :config
   (setq linum-relative-format "%3s ")
-  (setq linum-relative-current-symbol ""))
-;;; Once Emacs 26 is out
-;;; (setq linum-relative-backend 'display-line-numbers-mode)
+  (setq linum-relative-current-symbol "")
+  (setq linum-relative-backend 'display-line-numbers-mode))
 
 ;;; Indentation guides
 (use-package highlight-indent-guides :ensure t
@@ -314,22 +324,17 @@
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
-                                        ; (use-package eglot :ensure t
-                                        ;   :init
-                                        ;   (add-to-list 'eglot-server-programs
-                                        ;                '(c-mode . ("cquery" "--language-server"))
-                                        ;                '(c++-mode . ("cquery" "--language-server"))
-                                        ;                '(tuareg-mode . ("ocaml-language-server" "--stdio"))
-                                        ;                '(haskell-mode . ("hie" "--lsp"))
-                                        ;                '(common-lisp-mode . ("cl-lsp"))))
+(use-package eglot :ensure t
+  :config
+  (add-to-list 'eglot-server-programs '(c-mode . ("cquery" "--language-server")))
+  (add-to-list 'eglot-server-programs '(c++-mode . ("cquery" "--language-server")))
+  (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(haskell-mode . ("hie" "--lsp")))
+  (add-to-list 'eglot-server-programs '(common-lisp-mode . ("cl-lsp"))))
 
-                                        ; (use-package company-lsp :ensure t
-                                        ;   :init
-                                        ;   (push 'company-lsp company-backends))
-                                        ;
-                                        ; (use-package company-quickhelp :ensure t
-                                        ;   :config
-                                        ;   (company-quickhelp-mode))
+(use-package company-quickhelp :ensure t
+  :config
+  (company-quickhelp-mode))
 
 (use-package fuzzy :ensure t :defer t)
 
@@ -366,25 +371,25 @@
 ;;; Python
 (use-package python-mode :defer t :ensure t)
 (use-package company-jedi :defer t :ensure t
-             :init
-             (add-hook 'python-mode-hook
-                       (lambda ()
-                         (add-to-list 'company-backends 'company-jedi)
-                         (add-hook 'python-mode-hook 'jedi:setup)))
-             :config
-             (setq jedi:complete-on-dot t))
+  :init
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (add-to-list 'company-backends 'company-jedi)
+              (add-hook 'python-mode-hook 'jedi:setup)))
+  :config
+  (setq jedi:complete-on-dot t))
 
 (use-package py-yapf :defer t :ensure t
-             :init
-             (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
+  :init
+  (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
 
 (use-package ein :defer t :ensure t
-             :init
-             (setq ein:use-auto-complete-superpack t))
+  :init
+  (setq ein:use-auto-complete-superpack t))
 
 (use-package py-isort :defer t :ensure t
-             :config
-             (add-hook 'before-save-hook 'py-isort-before-save))
+  :config
+  (add-hook 'before-save-hook 'py-isort-before-save))
 
 ;;; Markdown
 (use-package markdown-mode :defer t :ensure t)
@@ -481,9 +486,9 @@
   :config (load-theme 'airline-distinguished t))
 
 ;;; Theme
-(use-package base16-theme :ensure t
+(use-package grayscale-theme :ensure t
   :config
-  (load-theme 'base16-tomorrow-night t))
+  (load-theme 'grayscale t))
 
 ;;; Rainbow delimiters
 (use-package rainbow-delimiters :ensure t
@@ -615,7 +620,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
   "fh" 'counsel-apropos
-  "fi" 'counsel-ag
+  "fi" 'counsel-rg
   "fl" 'counsel-locate
   "fp" 'counsel-projectile-switch-project
   "gf" 'counsel-git
@@ -634,7 +639,7 @@ i.e. change right window to bottom, or change bottom window to right."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dtrt-indent golden-ratio focus rainbow-delimiters base16-theme airline-themes powerline-evil powerline org-ref clang-format irony-eldoc flycheck-irony company-irony-c-headers company-irony modern-cpp-font-lock racket-mode cargo scala-mode geiser fish-mode yaml-mode company-auctex auctex-latexmk auctex markdown-toc markdown-mode py-isort ein py-yapf company-jedi python-mode utop merlin tuareg ocp-indent fuzzy company which-key zoom drag-stuff highlight-indent-guides linum-relative restart-emacs auto-dictionary flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck navigate evil-commentary evil-cleverparens evil-terminal-cursor-changer evil-magit evil-escape evil-visualstar evil-args evil-visual-mark-mode evil-matchit evil-surround evil-collection evil-leader evil parinfer smartparens popup-kill-ring ialign rainbow-mode git-gutter undo-tree ivy-bibtex counsel-projectile ivy use-package))))
+    (company-quickhelp company-lsp evil-snipe dtrt-indent golden-ratio focus rainbow-delimiters base16-theme airline-themes powerline-evil powerline org-ref clang-format irony-eldoc flycheck-irony company-irony-c-headers company-irony modern-cpp-font-lock racket-mode cargo scala-mode geiser fish-mode yaml-mode company-auctex auctex-latexmk auctex markdown-toc markdown-mode py-isort ein py-yapf company-jedi python-mode utop merlin tuareg ocp-indent fuzzy company which-key zoom drag-stuff highlight-indent-guides linum-relative restart-emacs auto-dictionary flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck navigate evil-commentary evil-cleverparens evil-terminal-cursor-changer evil-magit evil-escape evil-visualstar evil-args evil-visual-mark-mode evil-matchit evil-surround evil-collection evil-leader evil parinfer smartparens popup-kill-ring ialign rainbow-mode git-gutter undo-tree ivy-bibtex counsel-projectile ivy use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
