@@ -299,3 +299,5 @@ inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 " <C-l>: redraw candidates
 inoremap <expr><C-g>       deoplete#refresh()
 inoremap <silent><expr><C-l> deoplete#complete_common_string()
+
+inoremap <silent> <c-t> :Snippets<CR>

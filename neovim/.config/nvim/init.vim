@@ -363,16 +363,18 @@ let g:vlime_cl_use_terminal = v:true
 let g:vlime_force_default_keys = v:true
 
 " Airline
-let g:airline_theme = 'minimalist'
-let g:airline_powerline_fonts = 1
-let g:airline_highlighting_cache = 1
-let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#bufferline#overwrite_variables = 1
-let g:airline_extensions = ['bufferline', 'hunks', 'branch']
+if !exists('g:gui_oni')
+  let g:airline_theme = 'minimalist'
+  let g:airline_powerline_fonts = 1
+  let g:airline_highlighting_cache = 1
+  let g:airline#extensions#hunks#non_zero_only = 1
+  let g:airline#extensions#bufferline#overwrite_variables = 1
+  let g:airline_extensions = ['bufferline', 'hunks', 'branch']
+endif
 
 " Sneak
 let g:sneak#s_next = 1
-let g:sneak#label = 1
+" let g:sneak#label = 1
 
 " Commands
 call ConfigInc('commands.vim')
@@ -389,8 +391,10 @@ call leaderGuide#register_prefix_descriptions('', 'g:allmaps')
 call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
 
 " ALE integration config
-call airline#parts#define_function('ALE', 'LinterStatus')
-let g:airline_section_error = airline#section#create_right(['ALE'])
+if !exists('g:gui_oni')
+  call airline#parts#define_function('ALE', 'LinterStatus')
+  let g:airline_section_error = airline#section#create_right(['ALE'])
+endif
 
 " Deoplete
 let g:deoplete#enable_at_startup = 0
@@ -462,3 +466,5 @@ hi! link StartifyHeader ShadyOrange
 hi! link StartifyFooter ShadyBg2
 
 hi! link Sneak ShadyBrightBlue
+hi! link SneakLabel ShadyBrightBlue
+hi! link SneakScope ShadyBrightBlue

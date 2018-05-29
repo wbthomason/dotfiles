@@ -29,12 +29,15 @@ Plug 'mhinz/vim-sayonara'
 Plug 'mhinz/vim-startify'
 
 " Status line
-Plug 'bling/vim-bufferline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-airline/vim-airline'
+if !exists('g:gui_oni')
+  Plug 'bling/vim-bufferline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-airline/vim-airline'
+endif
 
 " Movement
 Plug 'chaoren/vim-wordmotion'
+Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
 
 " Tmux and vim split navigation
@@ -59,7 +62,7 @@ Plug 'itchyny/vim-parenmatch'
 
 " Searching
 Plug 'haya14busa/incsearch.vim'
-" Plug 'xtal8/traces.vim' " Needs 0.2.3+
+" Plug 'markonm/traces.vim'
 
 " Yank highlighting
 Plug 'machakann/vim-highlightedyank'
