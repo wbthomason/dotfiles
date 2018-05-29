@@ -6,6 +6,7 @@
 ;;; https://tvraman.github.io/emacspeak/blog/emacs-start-speed-up.html
 
 (eval-when-compile (require 'cl))
+
 (require 'package)
 (setq package-archives
       '(("org"       . "http://orgmode.org/elpa/")
@@ -274,14 +275,15 @@
 
 ;;; Projectile
 (use-package projectile :ensure t
-  :init
+  :config
+  (projectile-mode t)
+  (setq projectile-enable-caching t)
   (setq-default
    projectile-mode-line
    '(:eval
      (if (file-remote-p default-directory)
          " Pr"
        (format " Pr[%s]" (projectile-project-name))))))
-(projectile-mode)
 
 ;;; Drag-stuff
 (use-package drag-stuff :ensure t
@@ -324,10 +326,8 @@
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
-(use-package eglot :ensure t
+(use-package eglot :ensure t :defer t
   :config
-  (add-to-list 'eglot-server-programs '(c-mode . ("cquery" "--language-server")))
-  (add-to-list 'eglot-server-programs '(c++-mode . ("cquery" "--language-server")))
   (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(haskell-mode . ("hie" "--lsp")))
   (add-to-list 'eglot-server-programs '(common-lisp-mode . ("cl-lsp"))))
@@ -490,6 +490,37 @@
   :config
   (load-theme 'grayscale t))
 
+;;; Font
+(when (window-system)
+  (set-frame-font "Fira Code"))
+(let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
+               (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
+               (36 . ".\\(?:>\\)")
+               (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
+               (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
+               (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
+               (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
+               (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
+               (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
+               (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
+               (48 . ".\\(?:x[a-zA-Z]\\)")
+               (58 . ".\\(?:::\\|[:=]\\)")
+               (59 . ".\\(?:;;\\|;\\)")
+               (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
+               (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
+               (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
+               (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
+               (91 . ".\\(?:]\\)")
+               (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
+               (94 . ".\\(?:=\\)")
+               (119 . ".\\(?:ww\\)")
+               (123 . ".\\(?:-\\)")
+               (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
+               (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)"))))
+  (dolist (char-regexp alist)
+    (set-char-table-range composition-function-table (car char-regexp)
+                          `([,(cdr char-regexp) 0 font-shape-gstring]))))
+
 ;;; Rainbow delimiters
 (use-package rainbow-delimiters :ensure t
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
@@ -569,9 +600,9 @@
 
 ;; Toggle split direction
 (defun window-toggle-split-direction ()
-  "Switch window split from horizontally to vertically, or vice versa.
-
-i.e. change right window to bottom, or change bottom window to right."
+  "Switch window split from horizontally to vertically, or vice
+versa. i.e. change right window to bottom, or change bottom window to
+right."
   (interactive)
   (require 'windmove)
   (let ((done))
@@ -602,6 +633,11 @@ i.e. change right window to bottom, or change bottom window to right."
         ((eq major-mode 'c-mode) (clang-format-buffer))
         ((eq major-mode 'python-mode) (py-yapf-buffer))))
 
+(defun switch-to-last-buffer ()
+  "Switch to the previously used buffer."
+       (interactive)
+       (switch-to-buffer (other-buffer (current-buffer) 1)))
+
 ;; Keybindings
 (evil-leader/set-key
   "q"  'kill-emacs
@@ -615,7 +651,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "bb" 'ivy-switch-buffer
   "eo" 'flycheck-list-errors
   "ec" 'close-flycheck
-  "bl" 'last-buffer
+  "bl" 'switch-to-last-buffer
   "bf" 'format-buffer
   "ff" 'counsel-find-file
   "fr" 'counsel-recentf
@@ -632,17 +668,3 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;; Start the server
 (server-start)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (company-quickhelp company-lsp evil-snipe dtrt-indent golden-ratio focus rainbow-delimiters base16-theme airline-themes powerline-evil powerline org-ref clang-format irony-eldoc flycheck-irony company-irony-c-headers company-irony modern-cpp-font-lock racket-mode cargo scala-mode geiser fish-mode yaml-mode company-auctex auctex-latexmk auctex markdown-toc markdown-mode py-isort ein py-yapf company-jedi python-mode utop merlin tuareg ocp-indent fuzzy company which-key zoom drag-stuff highlight-indent-guides linum-relative restart-emacs auto-dictionary flyspell-correct-helm flyspell-correct flycheck-pos-tip flycheck navigate evil-commentary evil-cleverparens evil-terminal-cursor-changer evil-magit evil-escape evil-visualstar evil-args evil-visual-mark-mode evil-matchit evil-surround evil-collection evil-leader evil parinfer smartparens popup-kill-ring ialign rainbow-mode git-gutter undo-tree ivy-bibtex counsel-projectile ivy use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
