@@ -261,17 +261,17 @@ set -g @tpm_plugins '              \
   tmux-plugins/tpm                 \
   tmux-plugins/tmux-resurrect      \
   tmux-plugins/tmux-continuum      \
-  # christoomey/vim-tmux-navigator \
 '
+
 # Smart pane switching with awareness of Vim splits.
 # See: https://github.com/christoomey/vim-tmux-navigator
 is_editor="ps -o state= -o comm= -t '#{pane_tty}' \
     | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$|emacs.*$'"
-bind-key -n M-h if-shell "$is_editor" "send-keys C-h"  "select-pane -L"
-bind-key -n M-j if-shell "$is_editor" "send-keys C-j"  "select-pane -D"
-bind-key -n M-k if-shell "$is_editor" "send-keys C-k"  "select-pane -U"
-bind-key -n M-l if-shell "$is_editor" "send-keys C-l"  "select-pane -R"
-bind-key -n M-\ if-shell "$is_editor" "send-keys C-\\" "select-pane -l"
+bind-key -n C-h if-shell "$is_editor" "send-keys C-h"  "select-pane -L"
+bind-key -n C-j if-shell "$is_editor" "send-keys C-j"  "select-pane -D"
+bind-key -n C-k if-shell "$is_editor" "send-keys C-k"  "select-pane -U"
+bind-key -n C-l if-shell "$is_editor" "send-keys C-l"  "select-pane -R"
+bind-key -n C-\ if-shell "$is_editor" "send-keys C-\\" "select-pane -l"
 bind-key -T copy-mode-vi M-h select-pane -L
 bind-key -T copy-mode-vi M-j select-pane -D
 bind-key -T copy-mode-vi M-k select-pane -U
@@ -296,8 +296,9 @@ setw -g window-status-separator ''
 # set -g default-terminal "tmux-256color"
 # set-option -ga terminal-overrides "tmux-256color:Tc"
 set -g default-terminal "xterm-256color"
-set-option -ga terminal-overrides "xterm-256color:Tc"
-set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
+# set -ga terminal-overrides ",xterm-256color:Tc"
+set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
+# set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
 
 
 set -g @continuum-restore 'on'
