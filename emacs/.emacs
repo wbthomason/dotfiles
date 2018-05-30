@@ -314,7 +314,7 @@
   :init (add-hook 'after-init-hook 'global-company-mode)
   :config
   (setq company-backends (delete 'company-semantic company-backends))
-  (push 'company-capf 'company-backends)
+  (push 'company-capf company-backends)
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 2
         company-require-match nil
@@ -452,8 +452,8 @@
 
 (use-package company-c-headers :ensure t :defer t
   :init
-  (add-hook 'c++-mode-hook (lambda () (push 'company-c-headers 'company-backends)))
-  (add-hook 'c-mode-hook (lambda () (push 'company-c-headers 'company-backends))))
+  (add-hook 'c++-mode-hook (lambda () (push 'company-c-headers company-backends)))
+  (add-hook 'c-mode-hook (lambda () (push 'company-c-headers company-backends))))
 
 (use-package flycheck-irony :ensure t :defer t
   :init
@@ -466,8 +466,16 @@
 
 (use-package clang-format :ensure t :defer t)
 
-(use-package rtags :ensure t :defer t)
-(use-package company-rtags :ensure t :defer t)
+(use-package rtags :ensure t :defer t
+  :config
+  (add-hook 'kill-emacs-hook 'rtags-quit-rdm))
+
+(use-package company-rtags :ensure t :defer t
+  :config
+  (setq rtags-autostart-diagnostics t)
+  (rtags-diagnostics)
+  (setq rtags-completions-enabled t)
+  (push 'company-rtags company-backends))
 
 ;;; Org
 (use-package org :ensure t :defer t)
