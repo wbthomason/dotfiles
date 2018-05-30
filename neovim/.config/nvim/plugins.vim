@@ -100,7 +100,7 @@ Plug 'hkupty/iron.nvim'
 " Plug 'vyzyv/vimpyter'
 
 " Color scheme
-Plug 'wbthomason/vim-yin-yang'
+Plug 'wbthomason/vim-nazgul'
 
 " Notes/Wiki
 Plug 'fmoralesc/vim-pad', {'branch': 'devel'}

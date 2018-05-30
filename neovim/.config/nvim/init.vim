@@ -425,46 +425,4 @@ set termguicolors
 set background=dark
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
-colorscheme yin
-hi ALEError guifg=#cc241d ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
-hi ALEWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
-hi ALEInfo guifg=#83a598 ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl
-
-hi RedSign guifg=#cc241d ctermfg=124 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
-hi YellowSign guifg=#fabd2f ctermfg=214 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
-hi GreenSign guifg=#b8bb26 ctermfg=142 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
-hi BlueSign guifg=#83a598 ctermfg=109 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
-hi AquaSign guifg=#8ec07c ctermfg=108 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
-
-hi Todo guifg=#eeeeee ctermfg=255 guibg=NONE ctermbg=NONE gui=bold cterm=bold
-
-hi ShadyFg3 guifg=#bdae93 ctermfg=248 guibg=NONE ctermbg=NONE
-hi ShadyFg1 guifg=#ebdbb2 ctermfg=223 guibg=NONE ctermbg=NONE
-hi ShadyBg2 guifg=#504945 ctermfg=239 guibg=NONE ctermbg=NONE
-hi ShadyBlue guifg=#83a598 ctermfg=109 guibg=NONE ctermbg=NONE
-hi ShadyBrightBlue guifg=#a5c7ff ctermfg=109 guibg=NONE ctermbg=NONE
-hi ShadyGray guifg=#928374 ctermfg=245 guibg=NONE ctermbg=NONE
-hi ShadyYellow guifg=#fabd2f ctermfg=214 guibg=NONE ctermbg=NONE
-hi ShadyOrange guifg=#fe8019 ctermfg=208 guibg=NONE ctermbg=NONE
-
-hi! link ALEErrorSign RedSign
-hi! link ALEWarningSign YellowSign
-hi! link ALEInfoSign BlueSign
-
-hi! link SignifySignAdd GreenSign
-hi! link SignifySignChange AquaSign
-hi! link SignifySignDelete RedSign
-
-hi! link StartifyBracket ShadyFg3
-hi! link StartifyFile ShadyFg1
-hi! link StartifyNumber ShadyBlue
-hi! link StartifyPath ShadyGray
-hi! link StartifySlash ShadyGray
-hi! link StartifySection ShadyYellow
-hi! link StartifySpecial ShadyBg2
-hi! link StartifyHeader ShadyOrange
-hi! link StartifyFooter ShadyBg2
-
-hi! link Sneak ShadyBrightBlue
-hi! link SneakLabel ShadyBrightBlue
-hi! link SneakScope ShadyBrightBlue
+colorscheme nazgul
