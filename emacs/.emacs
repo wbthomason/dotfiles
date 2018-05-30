@@ -335,6 +335,8 @@
   (add-to-list 'eglot-server-programs '(haskell-mode . ("hie" "--lsp")))
   (add-to-list 'eglot-server-programs '(common-lisp-mode . ("cl-lsp"))))
 
+(use-package company-lsp :ensure t :defer t)
+
 (use-package company-quickhelp :ensure t
   :config
   (company-quickhelp-mode))
@@ -463,6 +465,9 @@
   (add-hook 'irony-mode-hook #'irony-eldoc))
 
 (use-package clang-format :ensure t :defer t)
+
+(use-package rtags :ensure t :defer t)
+(use-package company-rtags :ensure t :defer t)
 
 ;;; Org
 (use-package org :ensure t :defer t)
