@@ -93,6 +93,9 @@ let g:ale_cpp_cpplint_options = '--linelength=100'
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_linter_aliases = {'pandoc': ['markdown']}
 let g:ale_cpp_clangtidy_checks = ['*', '-fuchsia-default-arguments']
+let g:ale_max_signs = -1
+let g:ale_set_signs = 1
+let g:ale_set_balloons = 1
 
 " IndentLine
 " let g:indentLine_color_term = 239
