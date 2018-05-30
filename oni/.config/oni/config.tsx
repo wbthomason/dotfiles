@@ -24,7 +24,7 @@ export const configuration = {
   "editor.fontSize": "12px",
   "editor.fontFamily": "Fira Code Retina",
   "tabs.mode": "buffers",
-  "language.cpp.languageServer.command": "cquery",
+  // "language.cpp.languageServer.command": "cquery",
   "language.cpp.languageServer.rootFiles": ["compile_commands.json"],
-  "language.c.languageServer.command": "cquery",
+  // "language.c.languageServer.command": "cquery",
 }
