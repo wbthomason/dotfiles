@@ -278,7 +278,7 @@ let g:LanguageClient_diagnosticsDisplay = {
       \ }
 
 let g:LanguageClient_signColumnAlwaysOn = 0
-let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_diagnosticsEnable = 1
 
 " Parenmatch
 let g:loaded_matchparen = 1
