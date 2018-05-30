@@ -174,6 +174,7 @@ Plug 'lervag/vimtex'
 
 " Meson
 Plug 'stfl/meson.vim'
+Plug 'igankevich/mesonic'
 
 " PDDL
 Plug 'PontusPersson/pddl.vim'
