@@ -105,7 +105,7 @@ let g:indentLine_faster = 1
 
 " Pandoc
 let g:pandoc#syntax#conceal#use = 1
-let g:pandoc#after#modules#enabled = ['vim-table-mode']
+let g:pandoc#after#modules#enabled = []
 let g:pandoc#formatting#mode = 'haA'
 let g:pandoc#formatting#textwidth = 100
 let g:pandoc#modules#disabled = [ 'commands', 'templates', 'formatting']
