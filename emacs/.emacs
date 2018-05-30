@@ -311,15 +311,18 @@
 ;;; Company
 (use-package company
   :ensure t
+  :init (add-hook 'after-init-hook 'global-company-mode)
   :config
-  (global-company-mode)
   (setq company-backends (delete 'company-semantic company-backends))
+  (push 'company-capf 'company-backends)
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 2
         company-require-match nil
+        company-show-numbers            t
+        company-tooltip-limit 20
+        company-selection-wrap-around t
         company-dabbrev-ignore-case nil
         company-dabbrev-downcase nil)
-  (setq company-selection-wrap-around t)
   ;; (define-key company-active-map [?\r] 'company-complete)
   (define-key company-active-map [tab] 'company-select-next)
   (define-key company-active-map [S-tab] 'company-select-previous))
@@ -433,28 +436,22 @@
 (use-package racket-mode :ensure t :defer t)
 
 ;;; C++
-(use-package modern-cpp-font-lock
-  :ensure t)
+(use-package modern-cpp-font-lock :ensure t)
 
 (use-package company-irony :ensure t :defer t
   :config
+  (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
   (setq company-irony-ignore-case 'smart)
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'c-mode-hook 'irony-mode)
   (add-hook 'objc-mode-hook 'irony-mode)
-
+  (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete))
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(use-package company-irony-c-headers :ensure t :defer t
+(use-package company-c-headers :ensure t :defer t
   :init
-  (add-hook 'c++-mode-hook (lambda ()
-                             (add-to-list
-                              'company-backends
-                              '(company-irony-c-headers company-irony))))
-  (add-hook 'c-mode-hook (lambda ()
-                           (add-to-list
-                            'company-backends
-                            '(company-irony-c-headers company-irony)))))
+  (add-hook 'c++-mode-hook (lambda () (push 'company-c-headers 'company-backends)))
+  (add-hook 'c-mode-hook (lambda () (push 'company-c-headers 'company-backends))))
 
 (use-package flycheck-irony :ensure t :defer t
   :init
@@ -668,3 +665,17 @@ right."
 
 ;; Start the server
 (server-start)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (company-c-headers zoom yaml-mode which-key utop use-package tuareg scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc linum-relative ivy-bibtex irony-eldoc ialign highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-pos-tip flycheck-irony fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff counsel-projectile company-quickhelp company-lsp company-jedi company-irony-c-headers company-irony company-auctex clang-format cargo base16-theme auto-dictionary auctex-latexmk airline-themes))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
