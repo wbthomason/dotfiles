@@ -311,31 +311,48 @@
 ;;; Company
 (use-package company
   :ensure t
-  :init (add-hook 'after-init-hook 'global-company-mode)
   :config
-  (setq company-backends (delete 'company-semantic company-backends))
+  (add-hook 'after-init-hook 'global-company-mode)
   (push 'company-capf company-backends)
+  (define-key company-active-map [tab] 'company-select-next)
+  (define-key company-active-map [S-tab] 'company-select-previous)
+  (setq company-backends (delete 'company-semantic company-backends))
+  :init
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 2
         company-require-match nil
+        company-tooltip-align-annotations t
         company-show-numbers            t
         company-tooltip-limit 20
         company-selection-wrap-around t
         company-dabbrev-ignore-case nil
-        company-dabbrev-downcase nil)
-  ;; (define-key company-active-map [?\r] 'company-complete)
-  (define-key company-active-map [tab] 'company-select-next)
-  (define-key company-active-map [S-tab] 'company-select-previous))
+        company-dabbrev-downcase nil))
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
-(use-package eglot :ensure t :defer t
-  :config
-  (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(haskell-mode . ("hie" "--lsp")))
-  (add-to-list 'eglot-server-programs '(common-lisp-mode . ("cl-lsp"))))
+;; (use-package eglot :ensure t :defer t
+;;   :config
+;;   (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
+;;   (add-to-list 'eglot-server-programs '(haskell-mode . ("hie" "--lsp")))
+;;   (add-to-list 'eglot-server-programs '(common-lisp-mode . ("cl-lsp"))))
 
-(use-package company-lsp :ensure t :defer t)
+(use-package lsp-mode :ensure t :defer t
+  :config
+  (defun my-set-projectile-root ()
+    (when lsp--cur-workspace
+      (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
+  (add-hook 'lsp-before-open-hook #'my-set-projectile-root))
+
+(use-package lsp-ui :ensure t :defer t
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(use-package company-lsp :ensure t :defer t
+  :init
+  (setq company-lsp-async t
+        company-lsp-enable-recompletion t)
+  :config
+  (push 'company-lsp company-backends))
 
 (use-package company-quickhelp :ensure t
   :config
@@ -373,6 +390,49 @@
   (add-hook 'tuareg-mode-hook 'utop-minor-mode)
   (setq utop-command "opam config exec -- utop -emacs"))
 
+(use-package lsp-ocaml :ensure t :defer t
+  :config
+  (add-hook 'tuareg-mode-hook #'lsp-ocaml-enable)
+  (add-hook 'caml-mode-hook #'lsp-ocaml-enable)
+  (add-hook 'reason-mode-hook #'lsp-ocaml-enable))
+
+;;; Haskell
+
+(use-package haskell-mode :ensure t :defer t)
+
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+
+(use-package intero :ensure t :defer t
+  :config
+  (add-hook 'haskell-mode-hook 'intero-mode))
+
+(use-package hindent :ensure t :defer t
+  :config
+  (add-hook 'haskell-mode-hook #'hindent-mode))
+
+(use-package lsp-haskell :ensure t :defer t
+  :config
+  (add-hook 'haskell-mode-hook #'lsp-haskell-enable))
+
+(use-package company-cabal :ensure t :defer t
+  :config
+  (add-to-list 'company-backends 'company-cabal))
+
+(use-package company-ghci :ensure t :defer t
+  :config
+  (push 'company-ghci company-backends))
+
+(use-package company-ghc :ensure t :defer t
+  :config
+  (add-to-list 'company-backends 'company-ghc))
+
+(use-package flycheck-haskell :ensure t :defer t
+  :config
+  (eval-after-load 'flycheck
+    '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
+
 ;;; Python
 (use-package python-mode :defer t :ensure t)
 (use-package company-jedi :defer t :ensure t
@@ -395,6 +455,10 @@
 (use-package py-isort :defer t :ensure t
   :config
   (add-hook 'before-save-hook 'py-isort-before-save))
+
+(use-package lsp-python :ensure t :defer t
+  :config
+  (add-hook 'python-mode-hook #'lsp-python-enable))
 
 ;;; Markdown
 (use-package markdown-mode :defer t :ensure t)
@@ -419,6 +483,12 @@
 ;;; YAML
 (use-package yaml-mode :ensure t :defer t)
 
+;;; Meson
+(use-package meson-mode :ensure t :defer t :config)
+
+;;; TOML
+(use-package toml-mode :ensure t :defer t)
+
 ;;; Fish
 (use-package fish-mode :ensure t :defer t)
 
@@ -432,7 +502,23 @@
 (use-package scala-mode :ensure t :defer t)
 
 ;;; Rust
+(use-package rust-mode :ensure t :defer t)
 (use-package cargo :ensure t :defer t)
+(use-package lsp-rust :ensure t :defer t
+  :init
+  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  :config
+  (add-hook 'rust-mode-hook #'lsp-rust-enable))
+
+(use-package racer :ensure t :defer t
+  :config
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode))
+
+(use-package flycheck-rust :ensure t :defer t
+  :config
+  (with-eval-after-load 'rust-mode
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
 ;;; Racket
 (use-package racket-mode :ensure t :defer t)
@@ -477,6 +563,17 @@
   (setq rtags-completions-enabled t)
   (push 'company-rtags company-backends))
 
+(use-package cquery :ensure t :defer t
+  :commands lsp-cquery-enable
+  :config
+  (setq cquery-executable "/usr/bin/cquery")
+  :init
+  (defun cquery//enable ()
+    (condition-case nil
+        (lsp-cquery-enable)
+      (user-error nil)))
+  (add-hook 'c-mode-common-hook #'cquery//enable))
+
 ;;; Org
 (use-package org :ensure t :defer t)
 (use-package org-ref :ensure t :defer t)
@@ -501,35 +598,140 @@
   (load-theme 'grayscale t))
 
 ;;; Font
-(when (window-system)
-  (set-frame-font "Fira Code"))
-(let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
-               (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
-               (36 . ".\\(?:>\\)")
-               (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
-               (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
-               (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
-               (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
-               (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
-               (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
-               (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
-               (48 . ".\\(?:x[a-zA-Z]\\)")
-               (58 . ".\\(?:::\\|[:=]\\)")
-               (59 . ".\\(?:;;\\|;\\)")
-               (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
-               (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
-               (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
-               (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
-               (91 . ".\\(?:]\\)")
-               (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
-               (94 . ".\\(?:=\\)")
-               (119 . ".\\(?:ww\\)")
-               (123 . ".\\(?:-\\)")
-               (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
-               (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)"))))
-  (dolist (char-regexp alist)
-    (set-char-table-range composition-function-table (car char-regexp)
-                          `([,(cdr char-regexp) 0 font-shape-gstring]))))
+;;; Fira code
+;; This works when using emacs --daemon + emacsclient
+(add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
+;; This works when using emacs without server/client
+(set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
+;; I haven't found one statement that makes both of the above situations work, so I use both for now
+
+(defconst fira-code-font-lock-keywords-alist
+  (mapcar (lambda (regex-char-pair)
+            `(,(car regex-char-pair)
+              (0 (prog1 ()
+                   (compose-region (match-beginning 1)
+                                   (match-end 1)
+                                   ;; The first argument to concat is a string containing a literal tab
+                                   ,(concat "	" (list (decode-char 'ucs (cadr regex-char-pair)))))))))
+          '(("\\(www\\)"                   #Xe100)
+            ("[^/]\\(\\*\\*\\)[^/]"        #Xe101)
+            ("\\(\\*\\*\\*\\)"             #Xe102)
+            ("\\(\\*\\*/\\)"               #Xe103)
+            ("\\(\\*>\\)"                  #Xe104)
+            ("[^*]\\(\\*/\\)"              #Xe105)
+            ("\\(\\\\\\\\\\)"              #Xe106)
+            ("\\(\\\\\\\\\\\\\\)"          #Xe107)
+            ("\\({-\\)"                    #Xe108)
+            ("\\(\\[\\]\\)"                #Xe109)
+            ("\\(::\\)"                    #Xe10a)
+            ("\\(:::\\)"                   #Xe10b)
+            ("[^=]\\(:=\\)"                #Xe10c)
+            ("\\(!!\\)"                    #Xe10d)
+            ("\\(!=\\)"                    #Xe10e)
+            ("\\(!==\\)"                   #Xe10f)
+            ("\\(-}\\)"                    #Xe110)
+            ("\\(--\\)"                    #Xe111)
+            ("\\(---\\)"                   #Xe112)
+            ("\\(-->\\)"                   #Xe113)
+            ("[^-]\\(->\\)"                #Xe114)
+            ("\\(->>\\)"                   #Xe115)
+            ("\\(-<\\)"                    #Xe116)
+            ("\\(-<<\\)"                   #Xe117)
+            ("\\(-~\\)"                    #Xe118)
+            ("\\(#{\\)"                    #Xe119)
+            ("\\(#\\[\\)"                  #Xe11a)
+            ("\\(##\\)"                    #Xe11b)
+            ("\\(###\\)"                   #Xe11c)
+            ("\\(####\\)"                  #Xe11d)
+            ("\\(#(\\)"                    #Xe11e)
+            ("\\(#\\?\\)"                  #Xe11f)
+            ("\\(#_\\)"                    #Xe120)
+            ("\\(#_(\\)"                   #Xe121)
+            ("\\(\\.-\\)"                  #Xe122)
+            ("\\(\\.=\\)"                  #Xe123)
+            ("\\(\\.\\.\\)"                #Xe124)
+            ("\\(\\.\\.<\\)"               #Xe125)
+            ("\\(\\.\\.\\.\\)"             #Xe126)
+            ("\\(\\?=\\)"                  #Xe127)
+            ("\\(\\?\\?\\)"                #Xe128)
+            ("\\(;;\\)"                    #Xe129)
+            ("\\(/\\*\\)"                  #Xe12a)
+            ("\\(/\\*\\*\\)"               #Xe12b)
+            ("\\(/=\\)"                    #Xe12c)
+            ("\\(/==\\)"                   #Xe12d)
+            ("\\(/>\\)"                    #Xe12e)
+            ("\\(//\\)"                    #Xe12f)
+            ("\\(///\\)"                   #Xe130)
+            ("\\(&&\\)"                    #Xe131)
+            ("\\(||\\)"                    #Xe132)
+            ("\\(||=\\)"                   #Xe133)
+            ("[^|]\\(|=\\)"                #Xe134)
+            ("\\(|>\\)"                    #Xe135)
+            ("\\(\\^=\\)"                  #Xe136)
+            ("\\(\\$>\\)"                  #Xe137)
+            ("\\(\\+\\+\\)"                #Xe138)
+            ("\\(\\+\\+\\+\\)"             #Xe139)
+            ("\\(\\+>\\)"                  #Xe13a)
+            ("\\(=:=\\)"                   #Xe13b)
+            ("[^!/]\\(==\\)[^>]"           #Xe13c)
+            ("\\(===\\)"                   #Xe13d)
+            ("\\(==>\\)"                   #Xe13e)
+            ("[^=]\\(=>\\)"                #Xe13f)
+            ("\\(=>>\\)"                   #Xe140)
+            ("\\(<=\\)"                    #Xe141)
+            ("\\(=<<\\)"                   #Xe142)
+            ("\\(=/=\\)"                   #Xe143)
+            ("\\(>-\\)"                    #Xe144)
+            ("\\(>=\\)"                    #Xe145)
+            ("\\(>=>\\)"                   #Xe146)
+            ("[^-=]\\(>>\\)"               #Xe147)
+            ("\\(>>-\\)"                   #Xe148)
+            ("\\(>>=\\)"                   #Xe149)
+            ("\\(>>>\\)"                   #Xe14a)
+            ("\\(<\\*\\)"                  #Xe14b)
+            ("\\(<\\*>\\)"                 #Xe14c)
+            ("\\(<|\\)"                    #Xe14d)
+            ("\\(<|>\\)"                   #Xe14e)
+            ("\\(<\\$\\)"                  #Xe14f)
+            ("\\(<\\$>\\)"                 #Xe150)
+            ("\\(<!--\\)"                  #Xe151)
+            ("\\(<-\\)"                    #Xe152)
+            ("\\(<--\\)"                   #Xe153)
+            ("\\(<->\\)"                   #Xe154)
+            ("\\(<\\+\\)"                  #Xe155)
+            ("\\(<\\+>\\)"                 #Xe156)
+            ("\\(<=\\)"                    #Xe157)
+            ("\\(<==\\)"                   #Xe158)
+            ("\\(<=>\\)"                   #Xe159)
+            ("\\(<=<\\)"                   #Xe15a)
+            ("\\(<>\\)"                    #Xe15b)
+            ("[^-=]\\(<<\\)"               #Xe15c)
+            ("\\(<<-\\)"                   #Xe15d)
+            ("\\(<<=\\)"                   #Xe15e)
+            ("\\(<<<\\)"                   #Xe15f)
+            ("\\(<~\\)"                    #Xe160)
+            ("\\(<~~\\)"                   #Xe161)
+            ("\\(</\\)"                    #Xe162)
+            ("\\(</>\\)"                   #Xe163)
+            ("\\(~@\\)"                    #Xe164)
+            ("\\(~-\\)"                    #Xe165)
+            ("\\(~=\\)"                    #Xe166)
+            ("\\(~>\\)"                    #Xe167)
+            ("[^<]\\(~~\\)"                #Xe168)
+            ("\\(~~>\\)"                   #Xe169)
+            ("\\(%%\\)"                    #Xe16a)
+           ;; ("\\(x\\)"                   #Xe16b) This ended up being hard to do properly so i'm leaving it out.
+            ("[^:=]\\(:\\)[^:=]"           #Xe16c)
+            ("[^\\+<>]\\(\\+\\)[^\\+<>]"   #Xe16d)
+            ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
+
+(defun add-fira-code-symbol-keywords ()
+  (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
+
+(add-hook 'prog-mode-hook
+          #'add-fira-code-symbol-keywords)
+(set-frame-font "Fira Code") ;;; set default font
+(setq default-frame-alist '((font . "Fira Code-10")))
 
 ;;; Rainbow delimiters
 (use-package rainbow-delimiters :ensure t
@@ -645,8 +847,8 @@ right."
 
 (defun switch-to-last-buffer ()
   "Switch to the previously used buffer."
-       (interactive)
-       (switch-to-buffer (other-buffer (current-buffer) 1)))
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
 
 ;; Keybindings
 (evil-leader/set-key
@@ -675,9 +877,6 @@ right."
   "gp" 'magit-push
   "gl" 'magit-pull
   "ts" 'window-toggle-split-direction)
-
-;; Start the server
-(server-start)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -685,7 +884,7 @@ right."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-c-headers zoom yaml-mode which-key utop use-package tuareg scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc linum-relative ivy-bibtex irony-eldoc ialign highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-pos-tip flycheck-irony fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff counsel-projectile company-quickhelp company-lsp company-jedi company-irony-c-headers company-irony company-auctex clang-format cargo base16-theme auto-dictionary auctex-latexmk airline-themes))))
+    (meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
