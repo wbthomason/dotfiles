@@ -324,9 +324,7 @@
         company-tooltip-align-annotations t
         company-show-numbers            t
         company-tooltip-limit 20
-        company-selection-wrap-around t
-        company-dabbrev-ignore-case nil
-        company-dabbrev-downcase nil))
+        company-selection-wrap-around t))
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
@@ -350,6 +348,7 @@
 (use-package company-lsp :ensure t :defer t
   :init
   (setq company-lsp-async t
+        company-lsp-cache-candidates t
         company-lsp-enable-recompletion t)
   :config
   (push 'company-lsp company-backends))
@@ -732,7 +731,7 @@
 (when (window-system)
   (add-hook 'prog-mode-hook
             #'add-fira-code-symbol-keywords)
-  (set-frame-font "Fira Code") ;;; set default font
+  (set-frame-font "Fira Code-10") ;;; set default font
   (setq default-frame-alist '((font . "Fira Code-10"))))
 
 ;;; Rainbow delimiters
@@ -873,7 +872,7 @@ right."
   "fi" 'counsel-rg
   "fl" 'counsel-locate
   "fp" 'counsel-projectile-switch-project
-  "gf" 'counsel-git
+  "fg" 'counsel-git
   "gs" 'magit-status
   "gc" 'magit-commit
   "gp" 'magit-push
