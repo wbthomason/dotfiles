@@ -599,9 +599,9 @@
 
 ;;; Font
 ;;; Fira code
+;; This works when using emacs --daemon + emacsclient
+(add-hook 'after-make-frame-functions (lambda (frame) (when (window-system) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol"))))
 (when (window-system)
-  ;; This works when using emacs --daemon + emacsclient
-  (add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
   ;; This works when using emacs without server/client
   (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol"))
 ;; I haven't found one statement that makes both of the above situations work, so I use both for now
