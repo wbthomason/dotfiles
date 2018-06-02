@@ -1,5 +1,8 @@
 # pkg-config tweaks
-set -xg PKG_CONFIG_PATH $PKG_CONFIG_PATH /usr/local/lib/pkgconfig
+set -xg PKG_CONFIG_PATH "$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig"
+
+# LD_LIBRARY_PATH tweaks
+set -xg LD_LIBRARY_PATH "/usr/local/lib:$LD_LIBRARY_PATH"
 
 # Colors
 set -xg fish_term24bit 1
@@ -41,7 +44,7 @@ alias emd 'emacs --daemon'
 alias git 'hub'
 
 # ROS
-bass source /opt/ros/lunar/setup.bash
+bass source /opt/ros/melodic/setup.bash
 set -xg ROS_HOSTNAME localhost
 set -xg ROS_MASTER_URI http://localhost:11311
 
