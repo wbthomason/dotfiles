@@ -1,8 +1,8 @@
 # pkg-config tweaks
-set -xg PKG_CONFIG_PATH "$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig"
+set -xg PKG_CONFIG_PATH "$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig"
 
 # LD_LIBRARY_PATH tweaks
-set -xg LD_LIBRARY_PATH "/usr/local/lib:$LD_LIBRARY_PATH"
+set -xg LD_LIBRARY_PATH "$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/lib64"
 
 # Colors
 set -xg fish_term24bit 1
