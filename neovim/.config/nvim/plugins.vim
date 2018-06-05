@@ -74,6 +74,10 @@ Plug 'sbdchd/neoformat'
 " Text objects
 Plug 'wellle/targets.vim'
 
+" Block manipulation
+Plug 'machakann/vim-swap'
+Plug 'zirrostig/vim-schlepp'
+
 " Tags
 Plug 'ludovicchabant/vim-gutentags'
 
