@@ -407,7 +407,7 @@ call deoplete#custom#option('keyword_patterns', {
       \ '_': '[a-zA-Z_]\k*\(?',
       \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
       \ })
-call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
+call deoplete#custom#source('tag,omni,around,buffer,dictionary,member', 'disabled_syntaxes', ['Comment', 'String'])
 call deoplete#custom#option('ignore_sources', {'_': ['tag'], 'python': ['tag', 'neoinclude']})
 call deoplete#custom#var('omni', 'input_patterns', {
       \ 'tex' : g:vimtex#re#deoplete,
