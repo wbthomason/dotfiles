@@ -37,8 +37,8 @@
     (define-key ivy-minibuffer-map (kbd "C-a") 'ivy-read-action)
     (define-key ivy-minibuffer-map (kbd "C-f") 'ivy-toggle-fuzzy)))
 
-(use-package counsel-projectile :ensure t )
-(use-package ivy-bibtex :ensure t )
+(use-package counsel-projectile :ensure t)
+(use-package ivy-bibtex :ensure t)
 
 ;;; Undotree
 (use-package undo-tree :ensure t
@@ -58,10 +58,10 @@
   (set-face-foreground 'git-gutter:deleted "cc241d"))
 
 ;;; Rainbow mode
-(use-package rainbow-mode :ensure t )
+(use-package rainbow-mode :ensure t)
 
 ;;; Interactive align
-(use-package ialign :ensure t )
+(use-package ialign :ensure t)
 
 ;;; Popup kill ring
 (use-package popup-kill-ring :ensure t)
@@ -317,7 +317,7 @@
   :diminish company-mode
   :config
   (add-hook 'after-init-hook 'global-company-mode)
-  (push 'company-capf company-backends)
+  (add-to-list 'company-backends 'company-capf)
   (define-key company-active-map [tab] 'company-select-next)
   (define-key company-active-map [S-tab] 'company-select-previous)
   (setq company-backends (delete 'company-semantic company-backends))
@@ -332,8 +332,14 @@
 
 ;;; Snippets
 (use-package yasnippet :ensure t
-  :config (yas-global-mode 1)
-  (push 'company-yasnippet company-backends))
+  :config (setq company-backends
+                (mapcar
+                 (lambda (backend)
+                   (if (and (listp backend) (member 'company-yasnippet backend))
+                       backend
+                     (append
+                      (if (consp backend) backend (list backend))
+                      '(:with company-yasnippet)))) company-backends)))
 (use-package yasnippet-snippets :ensure t)
 
 ;;; LSP
@@ -367,7 +373,7 @@
   :config
   (company-quickhelp-mode))
 
-(use-package fuzzy :ensure t )
+(use-package fuzzy :ensure t)
 
 ;; Languages
 ;;; OCaml
@@ -407,7 +413,7 @@
 
 ;;; Haskell
 
-(use-package haskell-mode :ensure t )
+(use-package haskell-mode :ensure t)
 
 (autoload 'ghc-init "ghc" nil t)
 (autoload 'ghc-debug "ghc" nil t)
@@ -481,8 +487,8 @@
         TeX-parse-self t)
   (setq-default TeX-master nil))
 
-(use-package auctex-latexmk :ensure t )
-(use-package company-auctex :ensure t )
+(use-package auctex-latexmk :ensure t)
+(use-package company-auctex :ensure t)
 (use-package reftex
   :init
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
@@ -490,7 +496,7 @@
         reftex-use-fonts t))
 
 ;;; YAML
-(use-package yaml-mode :ensure t )
+(use-package yaml-mode :ensure t)
 
 ;;; Meson
 (use-package meson-mode :ensure t  :config)
@@ -512,20 +518,20 @@
   (add-hook 'lua-mode (push 'company-lua company-backends)))
 
 ;;; Fish
-(use-package fish-mode :ensure t )
+(use-package fish-mode :ensure t)
 
 ;;; Bash
-(use-package sh-script )
+(use-package sh-script)
 
 ;;; Scheme
-(use-package geiser :ensure t )
+(use-package geiser :ensure t)
 
 ;;; Scala
-(use-package scala-mode :ensure t )
+(use-package scala-mode :ensure t)
 
 ;;; Rust
-(use-package rust-mode :ensure t )
-(use-package cargo :ensure t )
+(use-package rust-mode :ensure t)
+(use-package cargo :ensure t)
 (use-package lsp-rust :ensure t
   :init
   (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
@@ -543,7 +549,7 @@
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
 ;;; Racket
-(use-package racket-mode :ensure t )
+(use-package racket-mode :ensure t)
 
 ;;; C++
 (use-package modern-cpp-font-lock :ensure t)
@@ -572,7 +578,7 @@
   :init
   (add-hook 'irony-mode-hook #'irony-eldoc))
 
-(use-package clang-format :ensure t )
+(use-package clang-format :ensure t)
 
 (use-package rtags :ensure t
   :config
@@ -597,12 +603,12 @@
   (add-hook 'c-mode-common-hook #'cquery//enable))
 
 ;;; Org
-(use-package org :ensure t )
-(use-package org-ref :ensure t )
+(use-package org :ensure t)
+(use-package org-ref :ensure t)
 
 ;;; Bibtex
-(use-package biblio :ensure t )
-(use-package biblio-core :ensure t )
+(use-package biblio :ensure t)
+(use-package biblio-core :ensure t)
 
 ;; Theming and Interface
 
@@ -792,6 +798,7 @@
  coding-system-for-read 'utf-8
  coding-system-for-write 'utf-8)
 (save-place-mode 1)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Defaults
 (setq-default
@@ -909,9 +916,9 @@ right."
  '(package-selected-packages
    (quote
     (yasnippet-snippets company-lua lua-mode meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
-(custom-set-faces
+(custom-set-faces)
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ 
