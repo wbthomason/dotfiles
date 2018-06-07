@@ -175,6 +175,7 @@
   (evil-commentary-mode))
 
 (use-package evil-snipe :ensure t
+  :diminish evil-snipe-mode
   :init
   (setq evil-snipe-scope 'buffer
         evil-snipe-repeat-scope 'whole-buffer)
@@ -230,13 +231,13 @@
     (-if-let (window (flycheck-get-error-list-window))
         (quit-window nil window) ())))
 
-(use-package flycheck-pos-tip :ensure t 
+(use-package flycheck-pos-tip :ensure t
   :init
   (with-eval-after-load 'flycheck
     (flycheck-pos-tip-mode)))
 
 ;;; Spell checking
-(use-package flyspell :ensure t 
+(use-package flyspell :ensure t
   :init
   (add-hook 'prog-mode-hook 'flyspell-prog-mode)
   (add-hook 'text-mode-hook 'flyspell-mode)
@@ -251,7 +252,7 @@
   :init
   (setq flyspell-correct-interface #'flyspell-correct-helm))
 
-(use-package auto-dictionary :ensure t 
+(use-package auto-dictionary :ensure t
   :init
   (add-hook 'flyspell-mode-hook 'auto-dictionary-mode))
 
@@ -313,6 +314,7 @@
 ;;; Company
 (use-package company
   :ensure t
+  :diminish company-mode
   :config
   (add-hook 'after-init-hook 'global-company-mode)
   (push 'company-capf company-backends)
@@ -328,26 +330,32 @@
         company-tooltip-limit 20
         company-selection-wrap-around t))
 
+;;; Snippets
+(use-package yasnippet :ensure t
+  :config (yas-global-mode 1)
+  (push 'company-yasnippet company-backends))
+(use-package yasnippet-snippets :ensure t)
+
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
-;; (use-package eglot :ensure t 
+;; (use-package eglot :ensure t
 ;;   :config
 ;;   (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
 ;;   (add-to-list 'eglot-server-programs '(haskell-mode . ("hie" "--lsp")))
 ;;   (add-to-list 'eglot-server-programs '(common-lisp-mode . ("cl-lsp"))))
 
-(use-package lsp-mode :ensure t 
+(use-package lsp-mode :ensure t
   :config
   (defun my-set-projectile-root ()
     (when lsp--cur-workspace
       (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
   (add-hook 'lsp-before-open-hook #'my-set-projectile-root))
 
-(use-package lsp-ui :ensure t 
+(use-package lsp-ui :ensure t
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-(use-package company-lsp :ensure t 
+(use-package company-lsp :ensure t
   :init
   (setq company-lsp-async t
         company-lsp-cache-candidates t
@@ -380,18 +388,18 @@
             (lambda () (setq indent-line-function 'ocp-indent-line))))
 
 ;;;; Merlin
-(use-package merlin :ensure t 
+(use-package merlin :ensure t
   :init
   (add-hook 'tuareg-mode-hook 'merlin-mode)
   (setq merlin-completion-with-doc t))
 
 ;;;; Utop
-(use-package utop :ensure t 
+(use-package utop :ensure t
   :init
   (add-hook 'tuareg-mode-hook 'utop-minor-mode)
   (setq utop-command "opam config exec -- utop -emacs"))
 
-(use-package lsp-ocaml :ensure t 
+(use-package lsp-ocaml :ensure t
   :config
   (add-hook 'tuareg-mode-hook #'lsp-ocaml-enable)
   (add-hook 'caml-mode-hook #'lsp-ocaml-enable)
@@ -405,31 +413,31 @@
 (autoload 'ghc-debug "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
-(use-package intero :ensure t 
+(use-package intero :ensure t
   :config
   (add-hook 'haskell-mode-hook 'intero-mode))
 
-(use-package hindent :ensure t 
+(use-package hindent :ensure t
   :config
   (add-hook 'haskell-mode-hook #'hindent-mode))
 
-(use-package lsp-haskell :ensure t 
+(use-package lsp-haskell :ensure t
   :config
   (add-hook 'haskell-mode-hook #'lsp-haskell-enable))
 
-(use-package company-cabal :ensure t 
+(use-package company-cabal :ensure t
   :config
   (add-to-list 'company-backends 'company-cabal))
 
-(use-package company-ghci :ensure t 
+(use-package company-ghci :ensure t
   :config
   (push 'company-ghci company-backends))
 
-(use-package company-ghc :ensure t 
+(use-package company-ghc :ensure t
   :config
   (add-to-list 'company-backends 'company-ghc))
 
-(use-package flycheck-haskell :ensure t 
+(use-package flycheck-haskell :ensure t
   :config
   (eval-after-load 'flycheck
     '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
@@ -457,7 +465,7 @@
   :config
   (add-hook 'before-save-hook 'py-isort-before-save))
 
-(use-package lsp-python :ensure t 
+(use-package lsp-python :ensure t
   :config
   (add-hook 'python-mode-hook #'lsp-python-enable))
 
@@ -475,7 +483,7 @@
 
 (use-package auctex-latexmk :ensure t )
 (use-package company-auctex :ensure t )
-(use-package reftex 
+(use-package reftex
   :init
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (setq reftex-plug-into-AUCTeX '(nil nil t t t)
@@ -518,18 +526,18 @@
 ;;; Rust
 (use-package rust-mode :ensure t )
 (use-package cargo :ensure t )
-(use-package lsp-rust :ensure t 
+(use-package lsp-rust :ensure t
   :init
   (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
   :config
   (add-hook 'rust-mode-hook #'lsp-rust-enable))
 
-(use-package racer :ensure t 
+(use-package racer :ensure t
   :config
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode))
 
-(use-package flycheck-rust :ensure t 
+(use-package flycheck-rust :ensure t
   :config
   (with-eval-after-load 'rust-mode
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
@@ -540,7 +548,7 @@
 ;;; C++
 (use-package modern-cpp-font-lock :ensure t)
 
-(use-package company-irony :ensure t 
+(use-package company-irony :ensure t
   :config
   (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
   (setq company-irony-ignore-case 'smart)
@@ -550,34 +558,34 @@
   (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete))
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(use-package company-c-headers :ensure t 
+(use-package company-c-headers :ensure t
   :init
   (add-hook 'c++-mode-hook (lambda () (push 'company-c-headers company-backends)))
   (add-hook 'c-mode-hook (lambda () (push 'company-c-headers company-backends))))
 
-(use-package flycheck-irony :ensure t 
+(use-package flycheck-irony :ensure t
   :init
   (with-eval-after-load 'flycheck
     '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 
-(use-package irony-eldoc :ensure t 
+(use-package irony-eldoc :ensure t
   :init
   (add-hook 'irony-mode-hook #'irony-eldoc))
 
 (use-package clang-format :ensure t )
 
-(use-package rtags :ensure t 
+(use-package rtags :ensure t
   :config
   (add-hook 'kill-emacs-hook 'rtags-quit-rdm))
 
-(use-package company-rtags :ensure t 
+(use-package company-rtags :ensure t
   :config
   (setq rtags-autostart-diagnostics t)
   (rtags-diagnostics)
   (setq rtags-completions-enabled t)
   (push 'company-rtags company-backends))
 
-(use-package cquery :ensure t 
+(use-package cquery :ensure t
   :commands lsp-cquery-enable
   :config
   (setq cquery-executable "/usr/bin/cquery")
@@ -756,6 +764,7 @@
 
 ;;; Golden ratio
 (use-package golden-ratio :ensure t
+  :diminish golden-ratio-mode
   :init
   (golden-ratio-mode 1)
   (add-to-list 'golden-ratio-extra-commands 'tmux-nav-left)
@@ -899,7 +908,7 @@ right."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-lua lua-mode meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
+    (yasnippet-snippets company-lua lua-mode meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
