@@ -37,8 +37,8 @@
     (define-key ivy-minibuffer-map (kbd "C-a") 'ivy-read-action)
     (define-key ivy-minibuffer-map (kbd "C-f") 'ivy-toggle-fuzzy)))
 
-(use-package counsel-projectile :ensure t :defer t)
-(use-package ivy-bibtex :ensure t :defer t)
+(use-package counsel-projectile :ensure t )
+(use-package ivy-bibtex :ensure t )
 
 ;;; Undotree
 (use-package undo-tree :ensure t
@@ -58,10 +58,10 @@
   (set-face-foreground 'git-gutter:deleted "cc241d"))
 
 ;;; Rainbow mode
-(use-package rainbow-mode :ensure t :defer t)
+(use-package rainbow-mode :ensure t )
 
 ;;; Interactive align
-(use-package ialign :ensure t :defer t)
+(use-package ialign :ensure t )
 
 ;;; Popup kill ring
 (use-package popup-kill-ring :ensure t)
@@ -230,13 +230,13 @@
     (-if-let (window (flycheck-get-error-list-window))
         (quit-window nil window) ())))
 
-(use-package flycheck-pos-tip :ensure t :defer t
+(use-package flycheck-pos-tip :ensure t 
   :init
   (with-eval-after-load 'flycheck
     (flycheck-pos-tip-mode)))
 
 ;;; Spell checking
-(use-package flyspell :ensure t :defer t
+(use-package flyspell :ensure t 
   :init
   (add-hook 'prog-mode-hook 'flyspell-prog-mode)
   (add-hook 'text-mode-hook 'flyspell-mode)
@@ -251,7 +251,7 @@
   :init
   (setq flyspell-correct-interface #'flyspell-correct-helm))
 
-(use-package auto-dictionary :ensure t :defer t
+(use-package auto-dictionary :ensure t 
   :init
   (add-hook 'flyspell-mode-hook 'auto-dictionary-mode))
 
@@ -328,24 +328,24 @@
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
-;; (use-package eglot :ensure t :defer t
+;; (use-package eglot :ensure t 
 ;;   :config
 ;;   (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
 ;;   (add-to-list 'eglot-server-programs '(haskell-mode . ("hie" "--lsp")))
 ;;   (add-to-list 'eglot-server-programs '(common-lisp-mode . ("cl-lsp"))))
 
-(use-package lsp-mode :ensure t :defer t
+(use-package lsp-mode :ensure t 
   :config
   (defun my-set-projectile-root ()
     (when lsp--cur-workspace
       (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
   (add-hook 'lsp-before-open-hook #'my-set-projectile-root))
 
-(use-package lsp-ui :ensure t :defer t
+(use-package lsp-ui :ensure t 
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-(use-package company-lsp :ensure t :defer t
+(use-package company-lsp :ensure t 
   :init
   (setq company-lsp-async t
         company-lsp-cache-candidates t
@@ -357,7 +357,7 @@
   :config
   (company-quickhelp-mode))
 
-(use-package fuzzy :ensure t :defer t)
+(use-package fuzzy :ensure t )
 
 ;; Languages
 ;;; OCaml
@@ -368,28 +368,28 @@
      (shell-command-to-string "opam config var share 2> /dev/null")
      0 -1)))
 
-(use-package ocp-indent :defer t :ensure t
+(use-package ocp-indent  :ensure t
   :load-path (lambda () ( concat ( opam-share ) "/emacs/site-lisp")))
 
 ;;;; Tuareg
-(use-package tuareg :defer t :ensure t
+(use-package tuareg  :ensure t
   :config
   (add-hook 'tuareg-mode-hook
             (lambda () (setq indent-line-function 'ocp-indent-line))))
 
 ;;;; Merlin
-(use-package merlin :ensure t :defer t
+(use-package merlin :ensure t 
   :init
   (add-hook 'tuareg-mode-hook 'merlin-mode)
   (setq merlin-completion-with-doc t))
 
 ;;;; Utop
-(use-package utop :ensure t :defer t
+(use-package utop :ensure t 
   :init
   (add-hook 'tuareg-mode-hook 'utop-minor-mode)
   (setq utop-command "opam config exec -- utop -emacs"))
 
-(use-package lsp-ocaml :ensure t :defer t
+(use-package lsp-ocaml :ensure t 
   :config
   (add-hook 'tuareg-mode-hook #'lsp-ocaml-enable)
   (add-hook 'caml-mode-hook #'lsp-ocaml-enable)
@@ -397,44 +397,44 @@
 
 ;;; Haskell
 
-(use-package haskell-mode :ensure t :defer t)
+(use-package haskell-mode :ensure t )
 
 (autoload 'ghc-init "ghc" nil t)
 (autoload 'ghc-debug "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
-(use-package intero :ensure t :defer t
+(use-package intero :ensure t 
   :config
   (add-hook 'haskell-mode-hook 'intero-mode))
 
-(use-package hindent :ensure t :defer t
+(use-package hindent :ensure t 
   :config
   (add-hook 'haskell-mode-hook #'hindent-mode))
 
-(use-package lsp-haskell :ensure t :defer t
+(use-package lsp-haskell :ensure t 
   :config
   (add-hook 'haskell-mode-hook #'lsp-haskell-enable))
 
-(use-package company-cabal :ensure t :defer t
+(use-package company-cabal :ensure t 
   :config
   (add-to-list 'company-backends 'company-cabal))
 
-(use-package company-ghci :ensure t :defer t
+(use-package company-ghci :ensure t 
   :config
   (push 'company-ghci company-backends))
 
-(use-package company-ghc :ensure t :defer t
+(use-package company-ghc :ensure t 
   :config
   (add-to-list 'company-backends 'company-ghc))
 
-(use-package flycheck-haskell :ensure t :defer t
+(use-package flycheck-haskell :ensure t 
   :config
   (eval-after-load 'flycheck
     '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
 
 ;;; Python
-(use-package python-mode :defer t :ensure t)
-(use-package company-jedi :defer t :ensure t
+(use-package python-mode  :ensure t)
+(use-package company-jedi  :ensure t
   :init
   (add-hook 'python-mode-hook
             (lambda ()
@@ -443,89 +443,89 @@
   :config
   (setq jedi:complete-on-dot t))
 
-(use-package py-yapf :defer t :ensure t
+(use-package py-yapf  :ensure t
   :init
   (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
 
-(use-package ein :defer t :ensure t
+(use-package ein  :ensure t
   :init
   (setq ein:use-auto-complete-superpack t))
 
-(use-package py-isort :defer t :ensure t
+(use-package py-isort  :ensure t
   :config
   (add-hook 'before-save-hook 'py-isort-before-save))
 
-(use-package lsp-python :ensure t :defer t
+(use-package lsp-python :ensure t 
   :config
   (add-hook 'python-mode-hook #'lsp-python-enable))
 
 ;;; Markdown
-(use-package markdown-mode :defer t :ensure t)
-(use-package markdown-toc :defer t :ensure t)
+(use-package markdown-mode  :ensure t)
+(use-package markdown-toc  :ensure t)
 
 ;;; LaTeX
-(use-package auctex :defer t :ensure t
+(use-package auctex  :ensure t
   :config
   (setq TeX-PDF-mode   t
         TeX-auto-save  t
         TeX-parse-self t)
   (setq-default TeX-master nil))
 
-(use-package auctex-latexmk :ensure t :defer t)
-(use-package company-auctex :ensure t :defer t)
-(use-package reftex :defer t
+(use-package auctex-latexmk :ensure t )
+(use-package company-auctex :ensure t )
+(use-package reftex 
   :init
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (setq reftex-plug-into-AUCTeX '(nil nil t t t)
         reftex-use-fonts t))
 
 ;;; YAML
-(use-package yaml-mode :ensure t :defer t)
+(use-package yaml-mode :ensure t )
 
 ;;; Meson
-(use-package meson-mode :ensure t :defer t :config)
+(use-package meson-mode :ensure t  :config)
 
 ;;; TOML
-(use-package toml-mode :ensure t :defer t)
+(use-package toml-mode :ensure t )
 
 ;;; Fish
-(use-package fish-mode :ensure t :defer t)
+(use-package fish-mode :ensure t )
 
 ;;; Bash
-(use-package sh-script :defer t)
+(use-package sh-script )
 
 ;;; Scheme
-(use-package geiser :ensure t :defer t)
+(use-package geiser :ensure t )
 
 ;;; Scala
-(use-package scala-mode :ensure t :defer t)
+(use-package scala-mode :ensure t )
 
 ;;; Rust
-(use-package rust-mode :ensure t :defer t)
-(use-package cargo :ensure t :defer t)
-(use-package lsp-rust :ensure t :defer t
+(use-package rust-mode :ensure t )
+(use-package cargo :ensure t )
+(use-package lsp-rust :ensure t 
   :init
   (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
   :config
   (add-hook 'rust-mode-hook #'lsp-rust-enable))
 
-(use-package racer :ensure t :defer t
+(use-package racer :ensure t 
   :config
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode))
 
-(use-package flycheck-rust :ensure t :defer t
+(use-package flycheck-rust :ensure t 
   :config
   (with-eval-after-load 'rust-mode
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
 ;;; Racket
-(use-package racket-mode :ensure t :defer t)
+(use-package racket-mode :ensure t )
 
 ;;; C++
 (use-package modern-cpp-font-lock :ensure t)
 
-(use-package company-irony :ensure t :defer t
+(use-package company-irony :ensure t 
   :config
   (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
   (setq company-irony-ignore-case 'smart)
@@ -535,34 +535,34 @@
   (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete))
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(use-package company-c-headers :ensure t :defer t
+(use-package company-c-headers :ensure t 
   :init
   (add-hook 'c++-mode-hook (lambda () (push 'company-c-headers company-backends)))
   (add-hook 'c-mode-hook (lambda () (push 'company-c-headers company-backends))))
 
-(use-package flycheck-irony :ensure t :defer t
+(use-package flycheck-irony :ensure t 
   :init
   (with-eval-after-load 'flycheck
     '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 
-(use-package irony-eldoc :ensure t :defer t
+(use-package irony-eldoc :ensure t 
   :init
   (add-hook 'irony-mode-hook #'irony-eldoc))
 
-(use-package clang-format :ensure t :defer t)
+(use-package clang-format :ensure t )
 
-(use-package rtags :ensure t :defer t
+(use-package rtags :ensure t 
   :config
   (add-hook 'kill-emacs-hook 'rtags-quit-rdm))
 
-(use-package company-rtags :ensure t :defer t
+(use-package company-rtags :ensure t 
   :config
   (setq rtags-autostart-diagnostics t)
   (rtags-diagnostics)
   (setq rtags-completions-enabled t)
   (push 'company-rtags company-backends))
 
-(use-package cquery :ensure t :defer t
+(use-package cquery :ensure t 
   :commands lsp-cquery-enable
   :config
   (setq cquery-executable "/usr/bin/cquery")
@@ -574,12 +574,12 @@
   (add-hook 'c-mode-common-hook #'cquery//enable))
 
 ;;; Org
-(use-package org :ensure t :defer t)
-(use-package org-ref :ensure t :defer t)
+(use-package org :ensure t )
+(use-package org-ref :ensure t )
 
 ;;; Bibtex
-(use-package biblio :ensure t :defer t)
-(use-package biblio-core :ensure t :defer t)
+(use-package biblio :ensure t )
+(use-package biblio-core :ensure t )
 
 ;; Theming and Interface
 
@@ -599,10 +599,9 @@
 ;;; Font
 ;;; Fira code
 ;; This works when using emacs --daemon + emacsclient
-(add-hook 'after-make-frame-functions (lambda (frame) (when (window-system) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol"))))
-(when (window-system)
-  ;; This works when using emacs without server/client
-  (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol"))
+(add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
+;; This works when using emacs without server/client
+(set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
 ;; I haven't found one statement that makes both of the above situations work, so I use both for now
 
 (defconst fira-code-font-lock-keywords-alist
@@ -728,11 +727,10 @@
 (defun add-fira-code-symbol-keywords ()
   (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
 
-(when (window-system)
-  (add-hook 'prog-mode-hook
-            #'add-fira-code-symbol-keywords)
-  (set-frame-font "Fira Code-10") ;;; set default font
-  (setq default-frame-alist '((font . "Fira Code-10"))))
+(add-hook 'prog-mode-hook
+          #'add-fira-code-symbol-keywords)
+(set-frame-font "Fira Code-10") ;;; set default font
+(setq default-frame-alist '((font . "Fira Code-10")))
 
 ;;; Rainbow delimiters
 (use-package rainbow-delimiters :ensure t
