@@ -283,7 +283,9 @@
    '(:eval
      (if (file-remote-p default-directory)
          " Pr"
-       (format " Pr[%s]" (projectile-project-name))))))
+       (format " Pr[%s]" (projectile-project-name)))))
+  (push "meson.build" projectile-project-root-files)
+  (push "meson.build" projectile-project-root-files-bottom-up))
 
 ;;; Drag-stuff
 (use-package drag-stuff :ensure t
@@ -486,7 +488,20 @@
 (use-package meson-mode :ensure t  :config)
 
 ;;; TOML
-(use-package toml-mode :ensure t )
+(use-package toml-mode :ensure t)
+
+;;; Lua
+(use-package lua-mode :ensure t)
+(lsp-define-stdio-client
+ lsp-lua-mode
+ "lua"
+ (lambda () default-directory)
+ '("/home/wil/.luarocks/bin/lua-lsp"))
+(add-hook 'lua-mode #'lsp-lua-mode-enable)
+
+(use-package company-lua :ensure t
+  :config
+  (add-hook 'lua-mode (push 'company-lua company-backends)))
 
 ;;; Fish
 (use-package fish-mode :ensure t )
@@ -884,7 +899,7 @@ right."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
+    (company-lua lua-mode meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
