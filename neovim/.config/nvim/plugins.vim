@@ -79,7 +79,7 @@ Plug 'machakann/vim-swap'
 Plug 'zirrostig/vim-schlepp'
 
 " Tags
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 
 " FZF
 Plug 'junegunn/fzf.vim'
