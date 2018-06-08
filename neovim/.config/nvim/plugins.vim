@@ -116,6 +116,7 @@ Plug 'cocopon/vaffle.vim'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
 
 " Completion
 Plug 'Shougo/neco-syntax'
