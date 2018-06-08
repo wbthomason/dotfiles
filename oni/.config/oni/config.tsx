@@ -27,4 +27,5 @@ export const configuration = {
   // "language.cpp.languageServer.command": "cquery",
   "language.cpp.languageServer.rootFiles": ["compile_commands.json"],
   // "language.c.languageServer.command": "cquery",
+  "sidebar.enabled": false,
 }
