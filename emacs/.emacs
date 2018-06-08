@@ -1,7 +1,5 @@
 ;;; TODO: https://github.com/bling/fzf.el
 ;;; https://brainlessdeveloper.com/2017/12/27/making-emacs-work-like-my-vim-setup/
-;;; Fira Code?
-;;; Flymake?
 ;;; Faster start due to 26 feature?
 ;;; https://tvraman.github.io/emacspeak/blog/emacs-start-speed-up.html
 
@@ -23,6 +21,13 @@
 (require 'use-package)
 
 (add-to-list 'load-path "~/.emacs.d/local")
+
+;; Auto Package Update
+(use-package auto-package-update :ensure t
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
 
 ;; General Packages
 ;;; Ivy
@@ -620,15 +625,12 @@
 (use-package airline-themes :ensure t
   :config (load-theme 'airline-distinguished t))
 
-;;; Theme
-(use-package grayscale-theme :ensure t
-  :config
-  (load-theme 'grayscale t))
-
 ;;; Font
 ;;; Fira code
 ;; This works when using emacs --daemon + emacsclient
-(add-hook 'after-make-frame-functions (lambda (frame) (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
 ;; This works when using emacs without server/client
 (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
 ;; I haven't found one statement that makes both of the above situations work, so I use both for now
@@ -748,7 +750,7 @@
             ("[^<]\\(~~\\)"                #Xe168)
             ("\\(~~>\\)"                   #Xe169)
             ("\\(%%\\)"                    #Xe16a)
-            ;; ("\\(x\\)"                   #Xe16b) This ended up being hard to do properly so i'm leaving it out.
+            ;; ("\\(x\\)"                   #Xe16b) This ended up being hard to do properly so I'm leaving it out.
             ("[^:=]\\(:\\)[^:=]"           #Xe16c)
             ("[^\\+<>]\\(\\+\\)[^\\+<>]"   #Xe16d)
             ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
@@ -758,8 +760,21 @@
 
 (add-hook 'prog-mode-hook
           #'add-fira-code-symbol-keywords)
-(set-frame-font "Fira Code-10") ;;; set default font
-(setq default-frame-alist '((font . "Fira Code-10")))
+(set-frame-font "Fira Code-9") ;;; set default font
+(setq default-frame-alist '((font . "Fira Code-9")))
+(set-face-font 'font-lock-comment-face "-pyrs-RobotoMono Nerd Font-normal-italic-normal-*-*-*-*-*-*-0-iso10646-1")
+
+;;; Theme
+;; (use-package grayscale-theme :ensure t
+;;   :config
+;;   (load-theme 'grayscale t))
+(add-to-list 'custom-theme-load-path "~/projects/personal/emacs-nazgul-theme/")
+(load-theme 'nazgul t)
+
+;;; TODO Highlight
+(use-package hl-todo :ensure t
+  :config
+  (global-hl-todo-mode))
 
 ;;; Rainbow delimiters
 (use-package rainbow-delimiters :ensure t
@@ -807,7 +822,10 @@
  c-default-style "bsd"
  tab-width 2
  c-basic-offset 2
- cperl-indent-level 2)
+ cperl-indent-level 2
+ fill-column 100
+ auto-fill-function 'do-auto-fill
+ sentence-end-double-space nil)
 
 (setq c-default-style "bsd")
 (defvaralias 'c-basic-offset 'tab-width)
@@ -906,19 +924,47 @@ right."
   "gc" 'magit-commit
   "gp" 'magit-push
   "gl" 'magit-pull
-  "ts" 'window-toggle-split-direction)
+  "ts" 'window-toggle-split-direction
+  "c"  'projectile-compile-project)
 (define-key evil-normal-state-map [backspace] 'ivy-switch-buffer)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(hl-todo-keyword-faces
+   (quote
+    (("HOLD" . "#e6e6e6")
+     ("TODO" . "#e6e6e6")
+     ("NEXT" . "#e6e6e6")
+     ("THEM" . "#e6e6e6")
+     ("PROG" . "#e6e6e6")
+     ("OKAY" . "#e6e6e6")
+     ("DONT" . "#e6e6e6")
+     ("FAIL" . "#e6e6e6")
+     ("DONE" . "#e6e6e6")
+     ("NOTE" . "#e6e6e6")
+     ("KLUDGE" . "#e6e6e6")
+     ("HACK" . "#e6e6e6")
+     ("FIXME" . "#e6e6e6")
+     ("XXX" . "#e6e6e6")
+     ("XXXX" . "#e6e6e6")
+     ("???" . "#e6e6e6"))))
+ '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (yasnippet-snippets company-lua lua-mode meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
-(custom-set-faces)
+    (hl-todo auto-package-update yasnippet-snippets company-lua lua-mode meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
+(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- 
+ '(cquery-code-lens-face ((t (:inherit shadow :background "dim gray"))))
+ '(hl-todo ((t (:foreground "white" :weight bold))))
+ '(lsp-ui-sideline-symbol ((t (:background "dim gray" :foreground "grey" :box (:line-width -1 :color "grey") :height 0.99))))
+ '(lsp-ui-sideline-symbol-info ((t (:background "gray0" :slant italic :height 0.99)))))
+;; custom-set-faces was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
+
