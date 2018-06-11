@@ -102,17 +102,6 @@ let g:lmaps.t.u = ['UndotreeToggle', 'Toggle Undotree split']
 nnoremap <silent> <leader>tw :call Toggle_writer_mode()<CR>
 let g:lmaps.t.w = ['call Toggle_writer_mode()', 'Toggle writer mode']
 
-" Incsearch bindings
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-
 " Version control bindings
 let g:lmaps.g = {'name': 'Git'}
 nnoremap <silent> <leader>gc :Gcommit<CR>

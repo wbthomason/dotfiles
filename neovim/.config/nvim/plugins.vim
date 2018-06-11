@@ -61,8 +61,8 @@ Plug 'tpope/vim-endwise'
 Plug 'itchyny/vim-parenmatch'
 
 " Searching
-Plug 'haya14busa/incsearch.vim'
-" Plug 'markonm/traces.vim'
+" Plug 'haya14busa/incsearch.vim'
+Plug 'markonm/traces.vim'
 
 " Yank highlighting
 Plug 'machakann/vim-highlightedyank'
