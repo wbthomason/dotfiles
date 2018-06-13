@@ -12,7 +12,7 @@ set wildignore=*.o,*~,*.pyc
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 set incsearch
-set inccommand=nosplit
+" set inccommand=nosplit
 set lazyredraw
 set magic
 set showmatch
@@ -44,7 +44,7 @@ set shortmess+=c
 set nojoinspaces
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 set completeopt-=preview
-set updatetime=1000
+set updatetime=2000
 filetype plugin indent on
 syntax enable
 set conceallevel=2
