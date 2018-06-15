@@ -352,25 +352,13 @@
   (define-key company-active-map [S-tab] 'company-select-previous)
   (setq company-backends (delete 'company-semantic company-backends))
   :init
-  (setq company-idle-delay 0.2
+  (setq company-idle-delay 0.5
         company-minimum-prefix-length 2
         company-require-match nil
         company-tooltip-align-annotations t
         company-show-numbers            t
         company-tooltip-limit 20
         company-selection-wrap-around t))
-
-;;; Snippets
-(use-package yasnippet :ensure t
-  :config (setq company-backends
-                (mapcar
-                 (lambda (backend)
-                   (if (and (listp backend) (member 'company-yasnippet backend))
-                       backend
-                     (append
-                      (if (consp backend) backend (list backend))
-                      '(:with company-yasnippet)))) company-backends)))
-(use-package yasnippet-snippets :ensure t)
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
@@ -627,8 +615,19 @@
 (use-package biblio :ensure t)
 (use-package biblio-core :ensure t)
 
-;; Theming and Interface
+;;; Snippets
+(use-package yasnippet :ensure t
+  :config (setq company-backends
+                (mapcar
+                 (lambda (backend)
+                   (if (and (listp backend) (member 'company-yasnippet backend))
+                       backend
+                     (append
+                      (if (consp backend) backend (list backend))
+                      '(:with company-yasnippet)))) company-backends)))
+(use-package yasnippet-snippets :ensure t)
 
+;; Theming and Interface
 
 
 
