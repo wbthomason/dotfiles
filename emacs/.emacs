@@ -324,12 +324,6 @@
   (push "meson.build" projectile-project-root-files)
   (push "meson.build" projectile-project-root-files-bottom-up))
 
-;;; Drag-stuff
-(use-package drag-stuff :ensure t
-  :config
-  (drag-stuff-global-mode t)
-  (drag-stuff-define-keys))
-
 ;;; Zoom
 (use-package zoom :ensure t)
 
@@ -614,19 +608,6 @@
   :init
   (add-hook 'irony-mode-hook #'irony-eldoc))
 
-(use-package clang-format :ensure t)
-
-(use-package rtags :ensure t
-  :config
-  (add-hook 'kill-emacs-hook 'rtags-quit-rdm))
-
-(use-package company-rtags :ensure t
-  :config
-  (setq rtags-autostart-diagnostics t)
-  (rtags-diagnostics)
-  (setq rtags-completions-enabled t)
-  (push 'company-rtags company-backends))
-
 (use-package cquery :ensure t
   :commands lsp-cquery-enable
   :config
@@ -648,13 +629,8 @@
 
 ;; Theming and Interface
 
-;;; Powerline
-(use-package powerline :ensure t)
 
-(use-package powerline-evil :ensure t)
 
-(use-package airline-themes :ensure t
-  :config (load-theme 'airline-distinguished t))
 
 ;;; Font
 ;;; Fira code
