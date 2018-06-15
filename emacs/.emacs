@@ -825,6 +825,9 @@
 (use-package rainbow-delimiters :ensure t
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
+;;; Formatters
+(use-package format-all :ensure t)
+
 ;;; Highlight parens
 (use-package highlight-parentheses :ensure t
   :config
@@ -940,40 +943,46 @@ right."
                   (split-window-horizontally))
                 (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
 
-(defun switch-to-last-buffer ()
-  "Switch to the previously used buffer."
-  (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
-
 ;; Keybindings
 (evil-leader/set-key
-  "q"  'kill-emacs
-  "w"  'save-buffer
-  "d"  'kill-buffer-and-window
-  "x"  'save-buffers-kill-terminal
-  "a"  'previous-buffer
-  "s"  'next-buffer
-  "k"  'delete-window
-  "z=" 'flyspell-auto-correct-word
-  "bb" 'ivy-switch-buffer
-  "eo" 'flycheck-list-errors
-  "ec" 'close-flycheck
-  "bl" 'switch-to-last-buffer
-  "bf" 'format-buffer
-  "ff" 'counsel-find-file
-  "fr" 'counsel-recentf
-  "fh" 'counsel-apropos
-  "fi" 'counsel-rg
-  "fl" 'counsel-locate
-  "fp" 'counsel-projectile-switch-project
-  "fg" 'counsel-git
-  "gs" 'magit-status
-  "gc" 'magit-commit
-  "gp" 'magit-push
-  "gl" 'magit-pull
-  "ts" 'window-toggle-split-direction
-  "c"  'projectile-compile-project)
-(define-key evil-normal-state-map [backspace] 'ivy-switch-buffer)
+  "q"  #'kill-emacs
+  "w"  #'save-buffer
+  "d"  #'kill-buffer-and-window
+  "x"  #'save-buffers-kill-terminal
+  "a"  #'previous-buffer
+  "s"  #'next-buffer
+  "k"  #'delete-window
+  "z=" #'flyspell-auto-correct-word
+
+  "bb" #'ivy-switch-buffer
+  "bf" #'format-all-buffer
+
+  "eo" #'flycheck-list-errors
+  "ec" #'close-flycheck
+
+  "ff" #'counsel-find-file
+  "fr" #'counsel-recentf
+  "fh" #'counsel-apropos
+  "fi" #'counsel-rg
+  "fl" #'counsel-locate
+  "fp" #'counsel-projectile-switch-project
+  "pf" #'counsel-projectile-find-file
+  "fg" #'counsel-git
+
+  "gs" #'magit-status
+  "gc" #'magit-commit
+  "gp" #'magit-push
+  "gl" #'magit-pull
+
+  "ts" #'window-toggle-split-direction
+
+  "c"  #'projectile-compile-project
+  "lr" #'xref-find-references
+  "ln" #'lsp-rename)
+(define-key evil-normal-state-map [tab] 'ivy-switch-buffer)
+(define-key evil-insert-state-map [C-tab] 'company-complete)
+(add-hook 'server-done-hook 'kill-buffer)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -982,7 +991,7 @@ right."
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (hl-todo auto-package-update yasnippet-snippets company-lua lua-mode meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
+    (dtrt-indent golden-ratio focus highlight-parentheses format-all rainbow-delimiters hl-todo linum-relative base16-theme telephone-line yasnippet-snippets org-ref cquery irony-eldoc flycheck-irony company-c-headers company-irony modern-cpp-font-lock racket-mode flycheck-rust racer lsp-rust cargo rust-mode scala-mode geiser fish-mode company-lua lua-mode toml-mode meson-mode cmake-font-lock cmake-mode yaml-mode company-auctex auctex-latexmk auctex markdown-toc lsp-python py-isort ein yapfify company-jedi python-mode flycheck-haskell company-ghc company-ghci company-cabal lsp-haskell hindent intero haskell-mode lsp-ocaml utop merlin tuareg ocp-indent slime-company slime fuzzy company-quickhelp company-lsp lsp-ui lsp-mode which-key zoom highlight-indent-guides restart-emacs auto-dictionary flyspell-correct flycheck-pos-tip flycheck navigate evil-goggles evil-lion evil-snipe evil-commentary evil-cleverparens evil-terminal-cursor-changer evil-magit evil-escape evil-visualstar evil-args evil-visual-mark-mode evil-matchit evil-surround evil-collection evil-leader evil parinfer smartparens popup-kill-ring ialign rainbow-mode git-gutter undo-tree esh-autosuggest ivy-bibtex counsel-projectile ivy-xref ivy-rich ivy auto-package-update use-package)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
