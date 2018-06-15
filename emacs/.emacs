@@ -289,7 +289,6 @@
 ;;; Spell checking
 (use-package flyspell :ensure t
   :init
-  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
   (add-hook 'text-mode-hook 'flyspell-mode)
   (setq flyspell-issue-message-flag nil))
 
@@ -297,25 +296,12 @@
   :commands (flyspell-correct-word-generic
              flyspell-correct-previous-word-generic))
 
-(use-package flyspell-correct-helm :ensure t
-  :commands (flyspell-correct-helm)
-  :init
-  (setq flyspell-correct-interface #'flyspell-correct-helm))
-
 (use-package auto-dictionary :ensure t
   :init
   (add-hook 'flyspell-mode-hook 'auto-dictionary-mode))
 
-
 ;;; Restart Emacs
 (use-package restart-emacs :ensure t)
-
-;;; Relative linum
-(use-package linum-relative :ensure t
-  :config
-  (setq linum-relative-format "%3s ")
-  (setq linum-relative-current-symbol "")
-  (setq linum-relative-backend 'display-line-numbers-mode))
 
 ;;; Indentation guides
 (use-package highlight-indent-guides :ensure t
