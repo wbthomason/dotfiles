@@ -394,6 +394,14 @@
 (use-package fuzzy :ensure t)
 
 ;; Languages
+;; Common Lisp
+(use-package slime :ensure t
+  :config
+  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (setq slime-contribs '(slime-fancy slime-company)))
+
+(use-package slime-company :ensure t)
+
 ;;; OCaml
 ;;;; OCP-indent
 (eval-and-compile
@@ -477,20 +485,21 @@
   :config
   (setq jedi:complete-on-dot t))
 
-(use-package py-yapf  :ensure t
-  :init
-  (add-hook 'python-mode-hook 'py-yapf-enable-on-save))
+(use-package yapfify :ensure t
+  :config (add-hook 'python-mode-hook 'yapf-mode))
 
 (use-package ein  :ensure t
   :init
-  (setq ein:use-auto-complete-superpack t))
+  (setq ein:use-auto-complete-superpack t)
+  :commands (ein:notebooklist-open))
 
 (use-package py-isort  :ensure t
   :config
   (add-hook 'before-save-hook 'py-isort-before-save))
 
 (use-package lsp-python :ensure t
-  :config
+  :commands lsp-python-enable
+  :init
   (add-hook 'python-mode-hook #'lsp-python-enable))
 
 ;;; Markdown
@@ -498,7 +507,7 @@
 (use-package markdown-toc  :ensure t)
 
 ;;; LaTeX
-(use-package auctex  :ensure t
+(use-package tex :ensure auctex
   :config
   (setq TeX-PDF-mode   t
         TeX-auto-save  t
@@ -516,8 +525,19 @@
 ;;; YAML
 (use-package yaml-mode :ensure t)
 
+;;; CMake
+(use-package cmake-mode :ensure t)
+(use-package cmake-font-lock :ensure t
+  :config
+  (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
+  (add-hook 'cmake-mode-hook 'cmake-font-lock-activate))
+
+;;; ROS
+(projectile-register-project-type 'ros '(".catkin_tools" ".catkin_workspace")
+                                  :compile "catkin build")
+
 ;;; Meson
-(use-package meson-mode :ensure t  :config)
+(use-package meson-mode :ensure t)
 
 ;;; TOML
 (use-package toml-mode :ensure t)
@@ -525,15 +545,15 @@
 ;;; Lua
 (use-package lua-mode :ensure t)
 (lsp-define-stdio-client
- lsp-lua-mode
+ lsp-lua
  "lua"
  (lambda () default-directory)
- '("/home/wil/.luarocks/bin/lua-lsp"))
-(add-hook 'lua-mode #'lsp-lua-mode-enable)
+ '("lua-lsp"))
+(add-hook 'lua-mode-hook #'lsp-lua-enable)
 
 (use-package company-lua :ensure t
   :config
-  (add-hook 'lua-mode (push 'company-lua company-backends)))
+  (add-hook 'lua-mode-hook (push 'company-lua company-backends)))
 
 ;;; Fish
 (use-package fish-mode :ensure t)
@@ -551,6 +571,7 @@
 (use-package rust-mode :ensure t)
 (use-package cargo :ensure t)
 (use-package lsp-rust :ensure t
+  :commands lsp-rust-enable
   :init
   (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
   :config
