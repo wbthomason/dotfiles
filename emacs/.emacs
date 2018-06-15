@@ -3,6 +3,8 @@
 ;;; Faster start due to 26 feature?
 ;;; https://tvraman.github.io/emacspeak/blog/emacs-start-speed-up.html
 
+;;; Code:
+
 (eval-when-compile (require 'cl))
 
 (require 'package)
@@ -33,21 +35,45 @@
 ;;; Ivy
 (use-package ivy :ensure t
   :diminish ivy-mode
-  :init
+  :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
+  (setq ivy-display-style 'fancy)
+  (setq ivy-format-function 'ivy-format-function-line)
   (with-eval-after-load 'ivy
     (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
     (define-key ivy-minibuffer-map (kbd "C-a") 'ivy-read-action)
     (define-key ivy-minibuffer-map (kbd "C-f") 'ivy-toggle-fuzzy)))
 
+(use-package ivy-rich :ensure t
+  :config
+  (setq ivy-virtual-abbreviate 'full
+        ivy-rich-switch-buffer-align-virtual-buffer t)
+  (setq ivy-rich-path-style 'abbrev)
+  (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer))
+
+(use-package ivy-xref :ensure t
+  :init (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
+
 (use-package counsel-projectile :ensure t)
 (use-package ivy-bibtex :ensure t)
+
+;;; Eshell
+(use-package esh-autosuggest :ensure t
+  :hook (eshell-mode . esh-autosuggest-mode))
 
 ;;; Undotree
 (use-package undo-tree :ensure t
   :init (setq undo-tree-auto-save-history t))
+
+;;; PDF
+; (use-package pdf-tools
+;  :config
+;  (pdf-tools-install)
+;  (setq-default pdf-view-display-size 'fit-page)
+;  (setq pdf-annot-activate-created-annotations t)
+;  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
 
 ;;; Git gutter
 (use-package git-gutter :ensure t
@@ -118,32 +144,41 @@
 
 (use-package evil-leader
   :ensure t
+  :after evil
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>"))
 
-(use-package evil-collection :ensure t
+(use-package evil-collection
+  :ensure t
   :after evil
   :config
   (evil-collection-init))
 
 (use-package evil-surround
   :ensure t
+  :after evil
   :config
   (global-evil-surround-mode t))
 
 (use-package evil-matchit
   :ensure t
+  :after evil
   :config
   (global-evil-matchit-mode t))
 
 (use-package evil-visual-mark-mode
   :ensure t
+  :after evil
   :config
   (evil-visual-mark-mode))
 
 (use-package evil-args
-  :ensure t)
+  :ensure t
+  :after evil
+  :config
+  (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+  (define-key evil-outer-text-objects-map "a" 'evil-outer-arg))
 
 (use-package evil-visualstar
   :ensure t
@@ -188,6 +223,15 @@
   (evil-snipe-mode t)
   (evil-snipe-override-mode t)
   (add-hook 'magit-mode-hook 'turn-off-evil-snipe-override-mode))
+
+(use-package evil-lion :ensure t
+  :config
+  (evil-lion-mode))
+
+(use-package evil-goggles :ensure t
+  :config
+  (evil-goggles-mode)
+  (evil-goggles-use-diff-faces))
 
 (use-package navigate :ensure t)
 
@@ -817,9 +861,12 @@
 
 ;; Defaults
 (setq-default
- show-trailing-whitespace t
+ show-trailing-whitespace nil
  indent-tabs-mode nil
  c-default-style "bsd"
+ python-indent 2
+ lua-indent-level 2
+ python-indent-offset 2
  tab-width 2
  c-basic-offset 2
  cperl-indent-level 2
@@ -828,6 +875,7 @@
  sentence-end-double-space nil)
 
 (setq c-default-style "bsd")
+(setq auto-window-vscroll nil)
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
 (use-package dtrt-indent :ensure t
@@ -954,6 +1002,7 @@ right."
  '(package-selected-packages
    (quote
     (hl-todo auto-package-update yasnippet-snippets company-lua lua-mode meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
+ '(projectile-completion-system (quote ivy)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -963,8 +1012,23 @@ right."
  '(hl-todo ((t (:foreground "white" :weight bold))))
  '(lsp-ui-sideline-symbol ((t (:background "dim gray" :foreground "grey" :box (:line-width -1 :color "grey") :height 0.99))))
  '(lsp-ui-sideline-symbol-info ((t (:background "gray0" :slant italic :height 0.99)))))
+ '(evil-goggles-change-face ((t (:inherit diff-removed))))
+ '(evil-goggles-delete-face ((t (:inherit diff-removed))))
+ '(evil-goggles-paste-face ((t (:inherit diff-added))))
+ '(evil-goggles-undo-redo-add-face ((t (:inherit diff-added))))
+ '(evil-goggles-undo-redo-change-face ((t (:inherit diff-changed))))
+ '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-removed))))
+ '(evil-goggles-yank-face ((t (:inherit diff-changed))))
+ '(ivy-confirm-face ((t (:inherit minibuffer-prompt :foreground "lemon chiffon"))))
+ '(ivy-current-match ((t (:background "dim gray" :foreground "white smoke"))))
+ '(telephone-line-evil-emacs ((t (:inherit telephone-line-evil :background "#dc8cc3"))))
+ '(telephone-line-evil-insert ((t (:inherit telephone-line-evil :background "#8fb28f"))))
+ '(telephone-line-evil-motion ((t (:inherit telephone-line-evil :background "#005fa7"))))
+ '(telephone-line-evil-normal ((t (:inherit telephone-line-evil :background "#bc5353"))))
+ '(telephone-line-evil-visual ((t (:inherit telephone-line-evil :background "#ffbf8f")))))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
 ;; Your init file should contain only one such instance.
 ;; If there is more than one, they won't work right.
-
+(provide '.emacs)
+;;; .emacs ends here
