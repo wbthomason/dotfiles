@@ -650,7 +650,19 @@
 
 ;; Theming and Interface
 
+;;; Prettify
+(global-prettify-symbols-mode t)
 
+;;; Telephone Line
+(use-package telephone-line
+  :ensure t
+  :config
+  (setq telephone-line-primary-left-separator 'telephone-line-cubed-left
+        telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
+        telephone-line-primary-right-separator 'telephone-line-cubed-right
+        telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
+  (setq telephone-line-height 15)
+  (telephone-line-mode t))
 
 ;;; Font
 ;;; Fira code
@@ -787,16 +799,22 @@
 
 (add-hook 'prog-mode-hook
           #'add-fira-code-symbol-keywords)
-(set-frame-font "Fira Code-9") ;;; set default font
-(setq default-frame-alist '((font . "Fira Code-9")))
+(set-frame-font "-*-fira code retina-medium-*-*-*-12-*-*-*-*-0-iso10646-1") ;;; set default font
+(setq default-frame-alist '((font . "-*-fira code retina-medium-*-*-*-12-*-*-*-*-0-iso10646-1")))
 (set-face-font 'font-lock-comment-face "-pyrs-RobotoMono Nerd Font-normal-italic-normal-*-*-*-*-*-*-0-iso10646-1")
 
 ;;; Theme
-;; (use-package grayscale-theme :ensure t
-;;   :config
-;;   (load-theme 'grayscale t))
+(use-package base16-theme :ensure t)
+
 (add-to-list 'custom-theme-load-path "~/projects/personal/emacs-nazgul-theme/")
 (load-theme 'nazgul t)
+
+;;; Relative linum
+(use-package linum-relative :ensure t
+  :config
+  (setq linum-relative-format "%4s ")
+  (setq linum-relative-current-symbol "")
+  (setq linum-relative-backend 'display-line-numbers-mode))
 
 ;;; TODO Highlight
 (use-package hl-todo :ensure t
@@ -922,13 +940,6 @@ right."
                   (split-window-horizontally))
                 (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
 
-(defun format-buffer ()
-  "Call the appropriate formatter for the current major mode."
-  (interactive)
-  (cond ((eq major-mode 'c++-mode) (clang-format-buffer))
-        ((eq major-mode 'c-mode) (clang-format-buffer))
-        ((eq major-mode 'python-mode) (py-yapf-buffer))))
-
 (defun switch-to-last-buffer ()
   "Switch to the previously used buffer."
   (interactive)
@@ -968,38 +979,21 @@ right."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(hl-todo-keyword-faces
-   (quote
-    (("HOLD" . "#e6e6e6")
-     ("TODO" . "#e6e6e6")
-     ("NEXT" . "#e6e6e6")
-     ("THEM" . "#e6e6e6")
-     ("PROG" . "#e6e6e6")
-     ("OKAY" . "#e6e6e6")
-     ("DONT" . "#e6e6e6")
-     ("FAIL" . "#e6e6e6")
-     ("DONE" . "#e6e6e6")
-     ("NOTE" . "#e6e6e6")
-     ("KLUDGE" . "#e6e6e6")
-     ("HACK" . "#e6e6e6")
-     ("FIXME" . "#e6e6e6")
-     ("XXX" . "#e6e6e6")
-     ("XXXX" . "#e6e6e6")
-     ("???" . "#e6e6e6"))))
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
     (hl-todo auto-package-update yasnippet-snippets company-lua lua-mode meson-mode zoom yaml-mode which-key utop use-package tuareg toml-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-yapf py-isort powerline-evil popup-kill-ring parinfer org-ref ocp-indent navigate modern-cpp-font-lock merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-bibtex irony-eldoc intero ialign hindent highlight-indent-guides grayscale-theme golden-ratio git-gutter geiser fuzzy focus flyspell-correct-helm flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-visual-mark-mode evil-terminal-cursor-changer evil-surround evil-snipe evil-matchit evil-magit evil-leader evil-escape evil-commentary evil-collection evil-cleverparens evil-args ein eglot dtrt-indent drag-stuff cquery counsel-projectile company-rtags company-quickhelp company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex clang-format cargo auto-dictionary auctex-latexmk airline-themes))))
  '(projectile-completion-system (quote ivy)))
+;; custom-set-faces was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(cquery-code-lens-face ((t (:inherit shadow :background "dim gray"))))
- '(hl-todo ((t (:foreground "white" :weight bold))))
- '(lsp-ui-sideline-symbol ((t (:background "dim gray" :foreground "grey" :box (:line-width -1 :color "grey") :height 0.99))))
- '(lsp-ui-sideline-symbol-info ((t (:background "gray0" :slant italic :height 0.99)))))
  '(evil-goggles-change-face ((t (:inherit diff-removed))))
  '(evil-goggles-delete-face ((t (:inherit diff-removed))))
  '(evil-goggles-paste-face ((t (:inherit diff-added))))
