@@ -104,16 +104,17 @@
   (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
   (add-hook 'common-lisp-mode-hook #'smartparens-mode)
   (add-hook 'scheme-mode-hook #'smartparens-mode)
-  (add-hook 'lisp-mode-hook #'smartparens-mode))
-
-(sp-local-pair 'tuareg-mode "'" nil :actions nil)
-(sp-local-pair 'tuareg-mode "`" nil :actions nil)
-(sp-with-modes 'emacs-lisp-mode
-  ;; disable ', it's the quote character!
-  (sp-local-pair "'" nil :actions nil)
-  ;; also only use the pseudo-quote inside strings where it
-  ;; serves as hyperlink.
-  (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p)))
+  (add-hook 'lisp-mode-hook #'smartparens-mode)
+  (add-hook 'c++-mode-hook #'smartparens-mode)
+  :config
+  (sp-local-pair 'tuareg-mode "'" nil :actions nil)
+  (sp-local-pair 'tuareg-mode "`" nil :actions nil)
+  (sp-with-modes 'emacs-lisp-mode
+    ;; disable ', it's the quote character!
+    (sp-local-pair "'" nil :actions nil)
+    ;; also only use the pseudo-quote inside strings where it
+    ;; serves as hyperlink.
+    (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))))
 
 ;;; Parinfer
 (use-package parinfer
@@ -823,6 +824,11 @@
 ;;; Rainbow delimiters
 (use-package rainbow-delimiters :ensure t
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
+;;; Highlight parens
+(use-package highlight-parentheses :ensure t
+  :config
+  (global-highlight-parentheses-mode t))
 
 ;;; Focus
 (use-package focus :ensure t)
