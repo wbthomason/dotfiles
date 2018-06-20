@@ -429,7 +429,9 @@ call ConfigInc('settings.vim')
 
 " Colorscheme
 set termguicolors
-set background=dark
+" set background=dark
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
-colorscheme nazgul
+" colorscheme nazgul
+set background=light
+colorscheme inkstained

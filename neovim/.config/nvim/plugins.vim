@@ -105,6 +105,7 @@ Plug 'hkupty/iron.nvim'
 
 " Color scheme
 Plug 'wbthomason/vim-nazgul'
+Plug 'yuttie/inkstained-vim'
 
 " Notes/Wiki
 Plug 'fmoralesc/vim-pad', {'branch': 'devel'}
