@@ -22,6 +22,16 @@
 
 (require 'use-package)
 
+;; Byte-compile
+(setq load-prefer-newer t)
+(package-initialize)
+(use-package auto-compile
+  :ensure t
+  :config
+  (auto-compile-on-load-mode)
+  (auto-compile-on-save-mode))
+
+;; Local packages
 (add-to-list 'load-path "~/.emacs.d/local")
 
 ;; Auto Package Update
@@ -30,6 +40,9 @@
   (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
+
+;; Profile startup
+(use-package esup :ensure t :defer t)
 
 ;; General Packages
 ;;; Ivy
@@ -63,22 +76,17 @@
 (use-package esh-autosuggest :ensure t
   :hook (eshell-mode . esh-autosuggest-mode))
 
-;;; Undotree
-(use-package undo-tree :ensure t
-  :init (setq undo-tree-auto-save-history t))
-
 ;;; PDF
-; (use-package pdf-tools
-;  :config
-;  (pdf-tools-install)
-;  (setq-default pdf-view-display-size 'fit-page)
-;  (setq pdf-annot-activate-created-annotations t)
-;  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
+(use-package pdf-tools
+  :config
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-page)
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+  (add-hook 'pdf-view-mode-hook (lambda () (linum-mode nil))))
 
 ;;; Git gutter
 (use-package git-gutter :ensure t
-  :init
-  (global-git-gutter-mode t)
+  :config
   (setq git-gutter:modified-sign "＊"
         git-gutter:added-sign "+"
         git-gutter:deleted-sign "～"
@@ -134,6 +142,10 @@
     :config
     (setq parinfer-auto-switch-indent-mode t)))
 
+;;; Undo-Tree
+(use-package undo-tree :ensure t
+  :config (global-undo-tree-mode))
+
 ;;; Evil!
 (use-package evil
   :ensure t
@@ -149,6 +161,8 @@
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>"))
+
+;; (use-package evil-mc :ensure t)
 
 (use-package evil-collection
   :ensure t
@@ -168,11 +182,11 @@
   :config
   (global-evil-matchit-mode t))
 
-(use-package evil-visual-mark-mode
+(use-package evil-fringe-mark
   :ensure t
   :after evil
   :config
-  (evil-visual-mark-mode))
+  (global-evil-fringe-mark-mode))
 
 (use-package evil-args
   :ensure t
@@ -185,6 +199,11 @@
   :ensure t
   :config
   (global-evil-visualstar-mode t))
+
+(use-package evil-embrace
+  :ensure t
+  :config
+  (evil-embrace-enable-evil-surround-integration))
 
 (use-package evil-escape
   :ensure t
@@ -232,7 +251,7 @@
 (use-package evil-goggles :ensure t
   :config
   (evil-goggles-mode)
-  (evil-goggles-use-diff-faces))
+  (evil-goggles-use-diff-refine-faces))
 
 (use-package navigate :ensure t)
 
@@ -240,7 +259,8 @@
 
 ;;; Flycheck
 (use-package flycheck :ensure t
-  :init
+  :config
+  (setq flycheck-check-syntax-automatically '(save idle-change))
   (global-flycheck-mode)
   (when (fboundp 'define-fringe-bitmap)
     (define-fringe-bitmap 'cust-flycheck-bitmap
@@ -282,14 +302,18 @@
         (quit-window nil window) ())))
 
 (use-package flycheck-pos-tip :ensure t
-  :init
+  :config
   (with-eval-after-load 'flycheck
     (flycheck-pos-tip-mode)))
 
 ;;; Spell checking
-(use-package flyspell :ensure t
+(use-package flyspell
+  :ensure t
+  :defer t
   :init
   (add-hook 'text-mode-hook 'flyspell-mode)
+
+  :config
   (setq flyspell-issue-message-flag nil))
 
 (use-package flyspell-correct :ensure t
@@ -345,19 +369,19 @@
 (use-package company
   :ensure t
   :diminish company-mode
-  :config
+  :init
   (add-hook 'after-init-hook 'global-company-mode)
+
+  :config
   (add-to-list 'company-backends 'company-capf)
   (define-key company-active-map [tab] 'company-select-next)
   (define-key company-active-map [S-tab] 'company-select-previous)
   (setq company-backends (delete 'company-semantic company-backends))
-  :init
   (setq company-idle-delay 0.5
         company-minimum-prefix-length 2
         company-require-match nil
         company-tooltip-align-annotations t
         company-show-numbers            t
-        company-tooltip-limit 20
         company-selection-wrap-around t))
 
 ;;; LSP
@@ -507,20 +531,44 @@
 (use-package markdown-toc  :ensure t)
 
 ;;; LaTeX
+;; For biber
+(setenv "PATH" (concat (getenv "PATH") ":/usr/bin/vendor_perl/"))
+(add-to-list 'exec-path "/usr/bin/vendor_perl/")
+
 (use-package tex :ensure auctex
   :config
   (setq TeX-PDF-mode   t
         TeX-auto-save  t
         TeX-parse-self t)
+  (add-to-list 'TeX-view-program-list
+               '("Zathura"
+                 ("zathura %o"
+                  (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
+                 "zathura"))
   (setq-default TeX-master nil))
 
-(use-package auctex-latexmk :ensure t)
-(use-package company-auctex :ensure t)
+(use-package auctex-latexmk
+  :ensure t
+  :config
+  (setq auctex-latexmk-inherit-TeX-PDF-mode t
+        TeX-command-default "LatexMk")
+  (auctex-latexmk-setup))
+
+(use-package company-auctex
+  :ensure t
+  :config
+  (company-auctex-init))
+
 (use-package reftex
   :init
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (setq reftex-plug-into-AUCTeX '(nil nil t t t)
         reftex-use-fonts t))
+
+(use-package company-math
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-math-symbols-latex))
 
 ;;; YAML
 (use-package yaml-mode :ensure t)
@@ -629,8 +677,84 @@
   (add-hook 'c-mode-common-hook #'cquery//enable))
 
 ;;; Org
-(use-package org :ensure t)
-(use-package org-ref :ensure t)
+(use-package org :ensure org-plus-contrib
+  :init
+  (add-hook 'org-mode-hook (lambda ()
+                             (setq buffer-face-mode-face '(:family "ETBembo" :height 120))
+                             (buffer-face-mode)
+                             (linum-relative-mode -1)))
+  :config
+  (setq org-startup-folded nil
+        org-startup-indented t
+        org-ellipsis "  "
+        org-pretty-entities t
+        org-hide-emphasis-markers t
+        org-fontify-whole-heading-line t
+        org-fontify-done-headline t
+        org-directory (expand-file-name "~/Dropbox/notes")
+        org-default-notes-file (concat org-directory "/notes.org")
+        org-agenda-files (concat org-directory "/agenda.org")
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t
+        org-fontify-quote-and-verse-blocks t
+        org-todo-keywords '((sequence "☛ TODO(t)" "|" "✔ DONE(d)") (sequence "⚑ WAITING(w)" "|") (sequence "|" "✘ CANCELED(c)"))
+        org-pretty-entities-include-sub-superscripts t))
+
+(use-package org-autolist
+  :ensure t
+  :init
+  (add-hook 'org-mode-hook #'org-autolist-mode))
+
+(use-package org-variable-pitch
+  :ensure t
+  :init
+  (add-hook 'org-mode-hook 'org-variable-pitch-minor-mode))
+
+(use-package org-bullets
+  :ensure t
+  :after org
+  :defer t
+  :init
+  (setq org-bullets-bullet-list '("◉" "⚫" "○" "►" "◇"))
+
+  (add-hook 'org-mode-hook #'org-bullets-mode))
+
+(use-package writeroom-mode
+  :ensure t
+  :after org
+  :defer t
+  :init
+  (add-hook 'org-mode-hook #'writeroom-mode)
+  :config
+  (setq writeroom-width 150
+        writeroom-fringes-outside-margins nil
+        writeroom-fullscreen-effect nil))
+
+(use-package org-evil :ensure t :after (evil org))
+
+(use-package org-make-toc :ensure t :commands org-make-toc)
+
+(use-package org-noter :ensure t :after org)
+
+(defun org-ref-open-pdf-at-point ()
+  "Open the pdf for bibtex key under point if it exists."
+  (interactive)
+  (let* ((results (org-ref-get-bibtex-key-and-file))
+         (key (car results))
+         (pdf-file (car (bibtex-completion-find-pdf key)))
+         (if (file-exists-p pdf-file)))
+    (org-open-file pdf-file
+                   (message "No PDF found for %s" key))))
+
+(use-package org-ref :ensure t :after org
+  :init
+  (setq bibtex-completion-pdf-field "file"
+        org-ref-completion-library 'org-ref-ivy-cite)
+
+  :config
+  (setq bibtex-dialect 'biblatex
+        org-ref-open-pdf-function 'org-ref-open-pdf-at-point
+        org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f")))
 
 ;;; Bibtex
 (use-package biblio :ensure t)
@@ -804,10 +928,12 @@
 (set-face-font 'font-lock-comment-face "-pyrs-RobotoMono Nerd Font-normal-italic-normal-*-*-*-*-*-*-0-iso10646-1")
 
 ;;; Theme
-(use-package base16-theme :ensure t)
+(use-package spacemacs-common :ensure spacemacs-theme
+  :config
+  (add-hook 'after-init-hook (lambda () (load-theme 'spacemacs-light t))))
 
 (add-to-list 'custom-theme-load-path "~/projects/personal/emacs-nazgul-theme/")
-(load-theme 'nazgul t)
+;; (load-theme 'nazgul t)
 
 ;;; Relative linum
 (use-package linum-relative :ensure t
@@ -860,11 +986,19 @@
 
 ;; Misc behavior settings
 (setq
+ tramp-default-method "ssh"
  vc-follow-symlinks t
  select-enable-clipboard t
  make-backup-files nil
  coding-system-for-read 'utf-8
- coding-system-for-write 'utf-8)
+ coding-system-for-write 'utf-8
+ locale-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(when (display-graphic-p)
+  (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 (save-place-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -988,30 +1122,39 @@ right."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#bcbcbc" "#d70008" "#5faf00" "#875f00" "#268bd2" "#800080" "#008080" "#5f5f87"])
+ '(custom-safe-themes
+   (quote
+    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8f137ccf060af657fbc0c1f7c3d406646ad04ebb8b3e025febc8ef432e958b02" default)))
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (dtrt-indent golden-ratio focus highlight-parentheses format-all rainbow-delimiters hl-todo linum-relative base16-theme telephone-line yasnippet-snippets org-ref cquery irony-eldoc flycheck-irony company-c-headers company-irony modern-cpp-font-lock racket-mode flycheck-rust racer lsp-rust cargo rust-mode scala-mode geiser fish-mode company-lua lua-mode toml-mode meson-mode cmake-font-lock cmake-mode yaml-mode company-auctex auctex-latexmk auctex markdown-toc lsp-python py-isort ein yapfify company-jedi python-mode flycheck-haskell company-ghc company-ghci company-cabal lsp-haskell hindent intero haskell-mode lsp-ocaml utop merlin tuareg ocp-indent slime-company slime fuzzy company-quickhelp company-lsp lsp-ui lsp-mode which-key zoom highlight-indent-guides restart-emacs auto-dictionary flyspell-correct flycheck-pos-tip flycheck navigate evil-goggles evil-lion evil-snipe evil-commentary evil-cleverparens evil-terminal-cursor-changer evil-magit evil-escape evil-visualstar evil-args evil-visual-mark-mode evil-matchit evil-surround evil-collection evil-leader evil parinfer smartparens popup-kill-ring ialign rainbow-mode git-gutter undo-tree esh-autosuggest ivy-bibtex counsel-projectile ivy-xref ivy-rich ivy auto-package-update use-package)))
+    (company-math org-variable-pitch org-autolist org-ref zoom yasnippet-snippets yapfify yaml-mode writeroom-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring pdf-tools parinfer org-plus-contrib org-noter org-make-toc org-evil org-bullets ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative key-chord ivy-xref ivy-rich ivy-bibtex irony-eldoc intero ialign hydra htmlize hl-todo hindent highlight-parentheses highlight-indent-guides helm-bibtex golden-ratio git-gutter geiser fuzzy format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-cleverparens evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
+ '(pdf-misc-print-programm-args (quote ("-d Avenu" "-o sides=two-sided-long-edge")))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
 ;; Your init file should contain only one such instance.
 ;; If there is more than one, they won't work right.
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(evil-goggles-change-face ((t (:inherit diff-removed))))
- '(evil-goggles-delete-face ((t (:inherit diff-removed))))
- '(evil-goggles-paste-face ((t (:inherit diff-added))))
- '(evil-goggles-undo-redo-add-face ((t (:inherit diff-added))))
- '(evil-goggles-undo-redo-change-face ((t (:inherit diff-changed))))
- '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-removed))))
- '(evil-goggles-yank-face ((t (:inherit diff-changed))))
+ '(evil-goggles-change-face ((t (:inherit diff-refine-removed))))
+ '(evil-goggles-delete-face ((t (:inherit diff-refine-removed))))
+ '(evil-goggles-paste-face ((t (:inherit diff-refine-added))))
+ '(evil-goggles-undo-redo-add-face ((t (:inherit diff-refine-added))))
+ '(evil-goggles-undo-redo-change-face ((t (:inherit diff-refine-changed))))
+ '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-refine-removed))))
+ '(evil-goggles-yank-face ((t (:inherit diff-refine-changed))))
+ '(italic ((t (:underline nil :slant italic :family "ETBembo"))))
  '(ivy-confirm-face ((t (:inherit minibuffer-prompt :foreground "lemon chiffon"))))
  '(ivy-current-match ((t (:background "dim gray" :foreground "white smoke"))))
+ '(lsp-face-highlight-read ((t (:background "#bc5353" :foreground "#efefef"))))
+ '(lsp-face-highlight-textual ((t (:background "#ffff8d"))))
+ '(lsp-face-highlight-write ((t (:background "#8fb28f" :foreground "#efefef"))))
  '(telephone-line-evil-emacs ((t (:inherit telephone-line-evil :background "#dc8cc3"))))
  '(telephone-line-evil-insert ((t (:inherit telephone-line-evil :background "#8fb28f"))))
  '(telephone-line-evil-motion ((t (:inherit telephone-line-evil :background "#005fa7"))))
