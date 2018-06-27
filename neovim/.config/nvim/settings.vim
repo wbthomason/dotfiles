@@ -52,6 +52,7 @@ set concealcursor=niv
 set previewheight=5
 set undofile
 set synmaxcol=200
+set display=msgsep
 
 if exists('g:gui_oni')
   set noshowmode

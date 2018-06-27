@@ -103,9 +103,13 @@ Plug 'hkupty/iron.nvim'
 " Jupyter
 " Plug 'vyzyv/vimpyter'
 
+" Undo tree
+Plug 'simnalamburt/vim-mundo'
+
 " Color scheme
 Plug 'wbthomason/vim-nazgul'
-Plug 'yuttie/inkstained-vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'logico-dev/typewriter'
 
 " Notes/Wiki
 Plug 'fmoralesc/vim-pad', {'branch': 'devel'}

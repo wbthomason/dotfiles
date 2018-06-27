@@ -59,14 +59,12 @@ let g:intero_type_on_hover = 1
 
 " Rainbow parens
 let g:rainbow_active = 1
-let g:rainbow_conf = {
-      \	'guifgs': ['#eeeeee', '#c6c6c6', '#aaaaaa', '#888888'],
-      \	'separately': {
+let g:rainbow_conf = { 'separately': {
       \		'ocaml': {
       \			'parentheses': ['start=/(\*\@!/ end=/)/ fold contains=@colorableGroup'],
       \		}
       \	}
-      \}
+      \ }
 
 " Bufferline
 let g:bufferline_echo = 0
@@ -301,15 +299,15 @@ let g:neoformat_python_yapf = {
       \ 'args': ["--style='{based_on_style: chromium, indent_width: 2, column_limit: 100}'"]
       \}
 let g:neoformat_ocaml_ocamlformat = {
-        \ 'exe': 'ocamlformat',
-        \ 'args': ['--inplace', '-m 100'],
-        \ 'replace': 1,
-\ }
+      \ 'exe': 'ocamlformat',
+      \ 'args': ['--inplace', '-m 100'],
+      \ 'replace': 1,
+      \ }
 let g:neoformat_cpp_clangformat = {
-        \ 'exe': 'clang-format',
-        \ 'stdin': 1,
-        \ 'args': ['--style=file'],
-\ }
+      \ 'exe': 'clang-format',
+      \ 'stdin': 1,
+      \ 'args': ['--style=file'],
+      \ }
 
 let g:neoformat_basic_format_trim = 1
 
@@ -338,19 +336,19 @@ let g:vaffle_force_delete = 1
 " FZF
 let g:fzf_gitignore_no_maps = 1
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+      \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
 
 " Snippets
@@ -381,7 +379,7 @@ endif
 
 " Sneak
 let g:sneak#s_next = 1
-" let g:sneak#label = 1
+let g:sneak#label = 1
 
 " Commands
 call ConfigInc('commands.vim')
@@ -429,9 +427,17 @@ call ConfigInc('settings.vim')
 
 " Colorscheme
 set termguicolors
-" set background=dark
+set background=dark
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
-" colorscheme nazgul
-set background=light
-colorscheme inkstained
+colorscheme nazgul
+" set background=light
+" colorscheme solarized8_flat
+
+hi ShadyAqua guibg=#8ec07c ctermbg=108
+hi! link Sneak ShadyAqua
+
+if &background ==# 'dark'
+  let g:rainbow_conf.guifgs = ['#eeeeee', '#c6c6c6', '#aaaaaa', '#888888']
+endif
+
