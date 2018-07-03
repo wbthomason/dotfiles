@@ -367,17 +367,27 @@
   (define-key company-active-map [S-tab] 'company-select-previous)
   (setq company-backends (delete 'company-semantic company-backends))
   (setq company-idle-delay 0.5
-        ;; company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
+        company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
         company-minimum-prefix-length 2
         company-require-match nil
-        ;; company-tooltip-align-annotations t
+        company-tooltip-align-annotations t
         company-show-numbers t
         company-selection-wrap-around t))
 
-(use-package company-box
-  :ensure t
-  :hook (company-mode . company-box-mode))
+;;; NOTE: This package breaks company and the icons are too large. Maybe revisit in the future (7/3/2018)
+;; (use-package company-box
+;;   :ensure t
+;;   :hook (company-mode . company-box-mode))
 
+;;; All-the-icons
+(use-package all-the-icons-ivy
+  :ensure t
+  :after ivy
+  :config (all-the-icons-ivy-setup))
+
+(use-package all-the-icons-dired
+  :ensure t
+  :hook (dired-mode . all-the-icons-dired-mode))
 ;;; Prescient
 (use-package prescient :ensure t)
 
@@ -1134,7 +1144,7 @@ right."
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (company-prescient ivy-prescient prescient company-box company-math org-variable-pitch org-autolist org-ref zoom yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-plus-contrib org-noter org-make-toc org-evil org-bullets ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative key-chord ivy-xref ivy-rich ivy-bibtex irony-eldoc intero ialign hydra htmlize hl-todo hindent highlight-parentheses highlight-indent-guides helm-bibtex golden-ratio git-gutter geiser fuzzy format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-cleverparens evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
+    (all-the-icons-dired all-the-icons-ivy zoom yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser fuzzy format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-cleverparens evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
