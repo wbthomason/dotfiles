@@ -1,9 +1,23 @@
 ;;; TODO: https://github.com/bling/fzf.el
+;;; TODO: More consistently use :after
 ;;; https://brainlessdeveloper.com/2017/12/27/making-emacs-work-like-my-vim-setup/
-;;; Faster start due to 26 feature?
 ;;; https://tvraman.github.io/emacspeak/blog/emacs-start-speed-up.html
 
 ;;; Code:
+
+;; From https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
+(setq gc-cons-threshold-original gc-cons-threshold)
+(setq gc-cons-threshold (* 1024 1024 100))
+(setq file-name-handler-alist-original file-name-handler-alist)
+(setq file-name-handler-alist nil)
+(run-with-idle-timer
+ 5 nil
+ (lambda ()
+   (setq gc-cons-threshold gc-cons-threshold-original)
+   (setq file-name-handler-alist file-name-handler-alist-original)
+   (makunbound 'gc-cons-threshold-original)
+   (makunbound 'file-name-handler-alist-original)
+   (message "gc-cons-threshold and file-name-handler-alist restored")))
 
 (eval-when-compile (require 'cl))
 
@@ -70,19 +84,11 @@
   :init (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
 (use-package counsel-projectile :ensure t)
-(use-package ivy-bibtex :ensure t)
+;; (use-package ivy-bibtex :ensure t)
 
 ;;; Eshell
 (use-package esh-autosuggest :ensure t
   :hook (eshell-mode . esh-autosuggest-mode))
-
-;;; PDF
-(use-package pdf-tools
-  :config
-  (pdf-tools-install)
-  (setq-default pdf-view-display-size 'fit-page)
-  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
-  (add-hook 'pdf-view-mode-hook (lambda () (linum-mode nil))))
 
 ;;; Git gutter
 (use-package git-gutter :ensure t
@@ -107,13 +113,7 @@
 
 ;;; Smartparens
 (use-package smartparens :ensure t
-  :init
-  (add-hook 'clojure-mode-hook #'smartparens-mode)
-  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-  (add-hook 'common-lisp-mode-hook #'smartparens-mode)
-  (add-hook 'scheme-mode-hook #'smartparens-mode)
-  (add-hook 'lisp-mode-hook #'smartparens-mode)
-  (add-hook 'c++-mode-hook #'smartparens-mode)
+  :hook ((clojure-mode emacs-lisp-mode common-lisp-mode scheme-mode lisp-mode c++-mode) . smartparens-mode)
   :config
   (sp-local-pair 'tuareg-mode "'" nil :actions nil)
   (sp-local-pair 'tuareg-mode "`" nil :actions nil)
@@ -127,19 +127,14 @@
 ;;; Parinfer
 (use-package parinfer
   :ensure t
-  :init
+  :hook ((clojure-mode emacs-lisp-mode common-lisp-mode scheme-mode lisp-mode) . parinfer-mode)
+  :config
   (progn
     (setq parinfer-extensions
           '(defaults       ; should be included.
              evil           ; If you use Evil.
              smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
              smart-yank))   ; Yank behavior depend on mode.
-    (add-hook 'clojure-mode-hook #'parinfer-mode)
-    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
-    (add-hook 'common-lisp-mode-hook #'parinfer-mode)
-    (add-hook 'scheme-mode-hook #'parinfer-mode)
-    (add-hook 'lisp-mode-hook #'parinfer-mode)
-    :config
     (setq parinfer-auto-switch-indent-mode t)))
 
 ;;; Undo-Tree
@@ -222,13 +217,8 @@
   :config (evil-terminal-cursor-changer-activate))
 
 (use-package evil-cleverparens :ensure t
-  :init
-  (add-hook 'emacs-lisp-mode-hook       #'evil-cleverparens-mode)
-  (add-hook 'eval-expression-minibuffer-setup-hook #'evil-cleverparens-mode)
-  (add-hook 'ielm-mode-hook             #'evil-cleverparens-mode)
-  (add-hook 'lisp-mode-hook             #'evil-cleverparens-mode)
-  (add-hook 'lisp-interaction-mode-hook #'evil-cleverparens-mode)
-  (add-hook 'scheme-mode-hook           #'evil-cleverparens-mode))
+  :hook ((emacs-lisp-mode eval-expression-minibuffer-setup ielm-mode lisp-mode lisp-interaction-mode
+                          scheme-mode) . evil-cleverparens-mode))
 
 (use-package evil-commentary :ensure t
   :config
@@ -301,7 +291,8 @@
     (-if-let (window (flycheck-get-error-list-window))
         (quit-window nil window) ())))
 
-(use-package flycheck-pos-tip :ensure t
+(use-package flycheck-pos-tip
+  :ensure t
   :config
   (with-eval-after-load 'flycheck
     (flycheck-pos-tip-mode)))
@@ -309,30 +300,29 @@
 ;;; Spell checking
 (use-package flyspell
   :ensure t
-  :defer t
-  :init
-  (add-hook 'text-mode-hook 'flyspell-mode)
+  :hook (text-mode . flyspell-mode)
 
   :config
   (setq flyspell-issue-message-flag nil))
 
-(use-package flyspell-correct :ensure t
+(use-package flyspell-correct
+  :ensure t
   :commands (flyspell-correct-word-generic
              flyspell-correct-previous-word-generic))
 
-(use-package auto-dictionary :ensure t
-  :init
-  (add-hook 'flyspell-mode-hook 'auto-dictionary-mode))
+(use-package auto-dictionary
+  :ensure t
+  :hook (flyspell-mode . auto-dictionary-mode))
 
 ;;; Restart Emacs
 (use-package restart-emacs :ensure t)
 
 ;;; Indentation guides
-(use-package highlight-indent-guides :ensure t
-  :init
+(use-package highlight-indent-guides
+  :ensure t
+  :hook (prog-mode . highlight-indent-guides-mode)
   :config
-  (setq highlight-indent-guides-method 'character)
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+  (setq highlight-indent-guides-method 'character))
 
 ;;; Projectile
 (use-package projectile :ensure t
@@ -369,8 +359,7 @@
 (use-package company
   :ensure t
   :diminish company-mode
-  :init
-  (add-hook 'after-init-hook 'global-company-mode)
+  :hook (after-init . global-company-mode)
 
   :config
   (add-to-list 'company-backends 'company-capf)
@@ -378,11 +367,29 @@
   (define-key company-active-map [S-tab] 'company-select-previous)
   (setq company-backends (delete 'company-semantic company-backends))
   (setq company-idle-delay 0.5
+        ;; company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
         company-minimum-prefix-length 2
         company-require-match nil
-        company-tooltip-align-annotations t
-        company-show-numbers            t
+        ;; company-tooltip-align-annotations t
+        company-show-numbers t
         company-selection-wrap-around t))
+
+(use-package company-box
+  :ensure t
+  :hook (company-mode . company-box-mode))
+
+;;; Prescient
+(use-package prescient :ensure t)
+
+(use-package ivy-prescient
+  :ensure t
+  :after ivy
+  :config (ivy-prescient-mode))
+
+(use-package company-prescient
+  :ensure t
+  :after company
+  :config (company-prescient-mode))
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
@@ -392,16 +399,17 @@
 ;;   (add-to-list 'eglot-server-programs '(haskell-mode . ("hie" "--lsp")))
 ;;   (add-to-list 'eglot-server-programs '(common-lisp-mode . ("cl-lsp"))))
 
-(use-package lsp-mode :ensure t
+(use-package lsp-mode
+  :ensure t
   :config
   (defun my-set-projectile-root ()
     (when lsp--cur-workspace
       (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
   (add-hook 'lsp-before-open-hook #'my-set-projectile-root))
 
-(use-package lsp-ui :ensure t
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+(use-package lsp-ui
+  :ensure t
+  :hook (lsp-mode . lsp-ui-mode))
 
 (use-package company-lsp :ensure t
   :init
@@ -415,11 +423,10 @@
   :config
   (company-quickhelp-mode))
 
-(use-package fuzzy :ensure t)
-
 ;; Languages
 ;; Common Lisp
-(use-package slime :ensure t
+(use-package slime
+  :ensure t
   :config
   (setq inferior-lisp-program "/usr/bin/sbcl")
   (setq slime-contribs '(slime-fancy slime-company)))
@@ -434,32 +441,31 @@
      (shell-command-to-string "opam config var share 2> /dev/null")
      0 -1)))
 
-(use-package ocp-indent  :ensure t
-  :load-path (lambda () ( concat ( opam-share ) "/emacs/site-lisp")))
+(use-package ocp-indent
+  :ensure t
+  :hook (tuareg-mode . (lambda () (setq indent-line-function 'ocp-indent-line)))
+  :load-path (lambda () (concat (opam-share) "/emacs/site-lisp")))
 
 ;;;; Tuareg
-(use-package tuareg  :ensure t
-  :config
-  (add-hook 'tuareg-mode-hook
-            (lambda () (setq indent-line-function 'ocp-indent-line))))
+(use-package tuareg :ensure t)
 
 ;;;; Merlin
-(use-package merlin :ensure t
-  :init
-  (add-hook 'tuareg-mode-hook 'merlin-mode)
+(use-package merlin
+  :ensure t
+  :hook (tuareg-mode . merlin-mode)
+  :config
   (setq merlin-completion-with-doc t))
 
 ;;;; Utop
-(use-package utop :ensure t
-  :init
-  (add-hook 'tuareg-mode-hook 'utop-minor-mode)
+(use-package utop
+  :ensure t
+  :hook (tuareg-mode . utop-minor-mode)
+  :config
   (setq utop-command "opam config exec -- utop -emacs"))
 
-(use-package lsp-ocaml :ensure t
-  :config
-  (add-hook 'tuareg-mode-hook #'lsp-ocaml-enable)
-  (add-hook 'caml-mode-hook #'lsp-ocaml-enable)
-  (add-hook 'reason-mode-hook #'lsp-ocaml-enable))
+(use-package lsp-ocaml
+  :ensure t
+  :hook ((tuareg-mode caml-mode reason-mode) . lsp-ocaml-enable))
 
 ;;; Haskell
 
@@ -469,86 +475,94 @@
 (autoload 'ghc-debug "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
-(use-package intero :ensure t
-  :config
-  (add-hook 'haskell-mode-hook 'intero-mode))
+(use-package intero
+  :ensure t
+  :hook (haskell-mode . intero-mode))
 
-(use-package hindent :ensure t
-  :config
-  (add-hook 'haskell-mode-hook #'hindent-mode))
+(use-package hindent
+  :ensure t
+  :hook (haskell-mode . hindent-mode))
 
-(use-package lsp-haskell :ensure t
-  :config
-  (add-hook 'haskell-mode-hook #'lsp-haskell-enable))
+(use-package lsp-haskell
+  :ensure t
+  :hook (haskell-mode . lsp-haskell-enable))
 
-(use-package company-cabal :ensure t
+(use-package company-cabal
+  :ensure t
   :config
   (add-to-list 'company-backends 'company-cabal))
 
-(use-package company-ghci :ensure t
+(use-package company-ghci
+  :ensure t
   :config
   (push 'company-ghci company-backends))
 
-(use-package company-ghc :ensure t
+(use-package company-ghc
+  :ensure t
   :config
   (add-to-list 'company-backends 'company-ghc))
 
-(use-package flycheck-haskell :ensure t
-  :config
-  (eval-after-load 'flycheck
-    '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
+(use-package flycheck-haskell
+  :ensure t
+  :after flycheck
+  :hook (flycheck-mode . flycheck-haskell-setup))
 
 ;;; Python
 (use-package python-mode  :ensure t)
 (use-package company-jedi  :ensure t
-  :init
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (add-to-list 'company-backends 'company-jedi)
-              (add-hook 'python-mode-hook 'jedi:setup)))
+  :hook (python-mode . (lambda ()
+                         (add-to-list 'company-backends 'company-jedi)
+                         (add-hook 'python-mode-hook 'jedi:setup)))
   :config
   (setq jedi:complete-on-dot t))
 
-(use-package yapfify :ensure t
-  :config (add-hook 'python-mode-hook 'yapf-mode))
+(use-package yapfify
+  :ensure t
+  :hook (python-mode . yapf-mode))
 
-(use-package ein  :ensure t
-  :init
-  (setq ein:use-auto-complete-superpack t)
+(use-package ein
+  :ensure t
+  :init (setq ein:use-auto-complete-superpack t)
   :commands (ein:notebooklist-open))
 
-(use-package py-isort  :ensure t
-  :config
-  (add-hook 'before-save-hook 'py-isort-before-save))
+(use-package py-isort
+  :ensure t
+  :hook (before-save . py-isort-before-save))
 
-(use-package lsp-python :ensure t
+(use-package lsp-python
+  :ensure t
   :commands lsp-python-enable
-  :init
-  (add-hook 'python-mode-hook #'lsp-python-enable))
+  :hook (python-mode . lsp-python-enable))
 
 ;;; Markdown
-(use-package markdown-mode  :ensure t)
-(use-package markdown-toc  :ensure t)
+(use-package markdown-mode :ensure t)
+(use-package markdown-toc :ensure t)
 
 ;;; LaTeX
 ;; For biber
 (setenv "PATH" (concat (getenv "PATH") ":/usr/bin/vendor_perl/"))
 (add-to-list 'exec-path "/usr/bin/vendor_perl/")
 
-(use-package tex :ensure auctex
+(use-package tex
+  :ensure auctex
+  :hook (doc-view-mode . auto-revert-mode)
   :config
-  (setq TeX-PDF-mode   t
-        TeX-auto-save  t
-        TeX-parse-self t)
   (add-to-list 'TeX-view-program-list
                '("Zathura"
                  ("zathura %o"
                   (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
                  "zathura"))
+  (setq TeX-PDF-mode   t
+        TeX-auto-save  t
+        TeX-parse-self t
+        TeX-engine 'xetex
+        TeX-source-correlate-mode t
+        TeX-view-program-selection '((output-pdf "Zathura")))
   (setq-default TeX-master nil))
 
 (use-package auctex-latexmk
   :ensure t
+  :after tex
   :config
   (setq auctex-latexmk-inherit-TeX-PDF-mode t
         TeX-command-default "LatexMk")
@@ -556,17 +570,20 @@
 
 (use-package company-auctex
   :ensure t
+  :after tex
   :config
   (company-auctex-init))
 
 (use-package reftex
-  :init
-  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  :ensure t
+  :hook (LaTeX-mode . turn-on-reftex)
+  :config
   (setq reftex-plug-into-AUCTeX '(nil nil t t t)
         reftex-use-fonts t))
 
 (use-package company-math
   :ensure t
+  :after company
   :config
   (add-to-list 'company-backends 'company-math-symbols-latex))
 
@@ -575,10 +592,11 @@
 
 ;;; CMake
 (use-package cmake-mode :ensure t)
-(use-package cmake-font-lock :ensure t
+(use-package cmake-font-lock
+  :ensure t
+  :hook (cmake-mode . cmake-font-lock-activate)
   :config
-  (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
-  (add-hook 'cmake-mode-hook 'cmake-font-lock-activate))
+  (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t))
 
 ;;; ROS
 (projectile-register-project-type 'ros '(".catkin_tools" ".catkin_workspace")
@@ -599,9 +617,9 @@
  '("lua-lsp"))
 (add-hook 'lua-mode-hook #'lsp-lua-enable)
 
-(use-package company-lua :ensure t
-  :config
-  (add-hook 'lua-mode-hook (push 'company-lua company-backends)))
+(use-package company-lua
+  :ensure t
+  :hook (lua-mode . (lambda () (push 'company-lua company-backends))))
 
 ;;; Fish
 (use-package fish-mode :ensure t)
@@ -620,20 +638,19 @@
 (use-package cargo :ensure t)
 (use-package lsp-rust :ensure t
   :commands lsp-rust-enable
+  :hook (rust-mode . lsp-rust-enable)
   :init
-  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-  :config
-  (add-hook 'rust-mode-hook #'lsp-rust-enable))
+  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls")))
 
-(use-package racer :ensure t
-  :config
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook #'eldoc-mode))
+(use-package racer
+  :ensure t
+  :hook ((rust-mode . racer-mode)
+         (racer-mode . eldoc-mode)))
 
-(use-package flycheck-rust :ensure t
-  :config
-  (with-eval-after-load 'rust-mode
-    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+(use-package flycheck-rust
+  :ensure t
+  :after (rust flycheck)
+  :hook (flycheck-mode . flycheck-rust-setup))
 
 ;;; Racket
 (use-package racket-mode :ensure t)
@@ -641,54 +658,53 @@
 ;;; C++
 (use-package modern-cpp-font-lock :ensure t)
 
-(use-package company-irony :ensure t
+(use-package company-irony
+  :ensure t
+  :hook ((irony-mode . company-irony-setup-begin-commands)
+         (irony-mode . irony-cdb-autosetup-compile-options)
+         ((c++mode c-mode objc-mode) . irony-mode))
   :config
-  (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
   (setq company-irony-ignore-case 'smart)
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'objc-mode-hook 'irony-mode)
-  (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete))
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+  (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete)))
 
-(use-package company-c-headers :ensure t
-  :init
-  (add-hook 'c++-mode-hook (lambda () (push 'company-c-headers company-backends)))
-  (add-hook 'c-mode-hook (lambda () (push 'company-c-headers company-backends))))
+(use-package company-c-headers
+  :ensure t
+  :hook ((c++-mode c-mode) . (lambda () (push 'company-c-headers company-backends))))
 
-(use-package flycheck-irony :ensure t
-  :init
-  (with-eval-after-load 'flycheck
-    '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+(use-package flycheck-irony
+  :ensure t
+  :after flycheck
+  :hook (flycheck-mode . flycheck-irony-setup))
 
-(use-package irony-eldoc :ensure t
-  :init
-  (add-hook 'irony-mode-hook #'irony-eldoc))
+(use-package irony-eldoc
+  :ensure t
+  :hook (irony-mode . irony-eldoc))
 
-(use-package cquery :ensure t
+(use-package cquery
+  :ensure t
   :commands lsp-cquery-enable
+  :hook (c-mode-common . cquery//enable)
   :config
   (setq cquery-executable "/usr/bin/cquery")
   :init
   (defun cquery//enable ()
     (condition-case nil
         (lsp-cquery-enable)
-      (user-error nil)))
-  (add-hook 'c-mode-common-hook #'cquery//enable))
+      (user-error nil))))
 
 ;;; Org
 (use-package org :ensure org-plus-contrib
-  :init
-  (add-hook 'org-mode-hook (lambda ()
-                             (setq buffer-face-mode-face '(:family "ETBembo" :height 120))
-                             (buffer-face-mode)
-                             (linum-relative-mode -1)))
+  :hook (org-mode . (lambda ()
+                      (setq buffer-face-mode-face '(:family "ETBembo" :height 120))
+                      (buffer-face-mode)
+                      (linum-relative-mode -1)))
   :config
   (setq org-startup-folded nil
         org-startup-indented t
         org-ellipsis "  "
         org-pretty-entities t
         org-hide-emphasis-markers t
+        org-log-done 'time
         org-fontify-whole-heading-line t
         org-fontify-done-headline t
         org-directory (expand-file-name "~/Dropbox/notes")
@@ -700,65 +716,52 @@
         org-todo-keywords '((sequence "☛ TODO(t)" "|" "✔ DONE(d)") (sequence "⚑ WAITING(w)" "|") (sequence "|" "✘ CANCELED(c)"))
         org-pretty-entities-include-sub-superscripts t))
 
+(define-key global-map "\C-cc" 'org-capture)
+
 (use-package org-autolist
   :ensure t
-  :init
-  (add-hook 'org-mode-hook #'org-autolist-mode))
+  :after org
+  :hook (org-mode . org-autolist-mode))
 
 (use-package org-variable-pitch
   :ensure t
-  :init
-  (add-hook 'org-mode-hook 'org-variable-pitch-minor-mode))
+  :after org
+  :hook (org-mode . org-variable-pitch-minor-mode))
 
 (use-package org-bullets
   :ensure t
   :after org
-  :defer t
-  :init
-  (setq org-bullets-bullet-list '("◉" "⚫" "○" "►" "◇"))
-
-  (add-hook 'org-mode-hook #'org-bullets-mode))
-
-(use-package writeroom-mode
-  :ensure t
-  :after org
-  :defer t
-  :init
-  (add-hook 'org-mode-hook #'writeroom-mode)
+  :hook (org-mode . org-bullets-mode)
   :config
-  (setq writeroom-width 150
-        writeroom-fringes-outside-margins nil
-        writeroom-fullscreen-effect nil))
+  (setq org-bullets-bullet-list '("◉" "⚫" "○" "►" "◇")))
 
 (use-package org-evil :ensure t :after (evil org))
 
-(use-package org-make-toc :ensure t :commands org-make-toc)
-
 (use-package org-noter :ensure t :after org)
 
-(defun org-ref-open-pdf-at-point ()
-  "Open the pdf for bibtex key under point if it exists."
-  (interactive)
-  (let* ((results (org-ref-get-bibtex-key-and-file))
-         (key (car results))
-         (pdf-file (car (bibtex-completion-find-pdf key)))
-         (if (file-exists-p pdf-file)))
-    (org-open-file pdf-file
-                   (message "No PDF found for %s" key))))
+;; (defun org-ref-open-pdf-at-point ()
+;;   "Open the pdf for bibtex key under point if it exists."
+;;   (interactive)
+;;   (let* ((results (org-ref-get-bibtex-key-and-file))
+;;          (key (car results))
+;;          (pdf-file (car (bibtex-completion-find-pdf key)))
+;;          (if (file-exists-p pdf-file)))
+;;     (org-open-file pdf-file
+;;                    (message "No PDF found for %s" key))))
 
-(use-package org-ref :ensure t :after org
-  :init
-  (setq bibtex-completion-pdf-field "file"
-        org-ref-completion-library 'org-ref-ivy-cite)
+;; (use-package org-ref :ensure t :after org
+;;   :init
+;;   (setq bibtex-completion-pdf-field "file"
+;;         org-ref-completion-library 'org-ref-ivy-cite)
 
-  :config
-  (setq bibtex-dialect 'biblatex
-        org-ref-open-pdf-function 'org-ref-open-pdf-at-point
-        org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f")))
+;;   :config
+;;   (setq org-ref-open-pdf-function 'org-ref-open-pdf-at-point
+;;         org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f")))
 
 ;;; Bibtex
 (use-package biblio :ensure t)
 (use-package biblio-core :ensure t)
+(setq bibtex-dialect 'biblatex)
 
 ;;; Snippets
 (use-package yasnippet :ensure t
@@ -928,12 +931,12 @@
 (set-face-font 'font-lock-comment-face "-pyrs-RobotoMono Nerd Font-normal-italic-normal-*-*-*-*-*-*-0-iso10646-1")
 
 ;;; Theme
-(use-package spacemacs-common :ensure spacemacs-theme
-  :config
-  (add-hook 'after-init-hook (lambda () (load-theme 'spacemacs-light t))))
+;; (use-package spacemacs-common :ensure spacemacs-theme
+;;   :config
+;;   (add-hook 'after-init-hook (lambda () (load-theme 'spacemacs-light t))))
 
 (add-to-list 'custom-theme-load-path "~/projects/personal/emacs-nazgul-theme/")
-;; (load-theme 'nazgul t)
+(load-theme 'nazgul t)
 
 ;;; Relative linum
 (use-package linum-relative :ensure t
@@ -1016,6 +1019,7 @@
  fill-column 100
  auto-fill-function 'do-auto-fill
  sentence-end-double-space nil)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 (setq c-default-style "bsd")
 (setq auto-window-vscroll nil)
@@ -1130,8 +1134,7 @@ right."
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (company-math org-variable-pitch org-autolist org-ref zoom yasnippet-snippets yapfify yaml-mode writeroom-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring pdf-tools parinfer org-plus-contrib org-noter org-make-toc org-evil org-bullets ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative key-chord ivy-xref ivy-rich ivy-bibtex irony-eldoc intero ialign hydra htmlize hl-todo hindent highlight-parentheses highlight-indent-guides helm-bibtex golden-ratio git-gutter geiser fuzzy format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-cleverparens evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
- '(pdf-misc-print-programm-args (quote ("-d Avenu" "-o sides=two-sided-long-edge")))
+    (company-prescient ivy-prescient prescient company-box company-math org-variable-pitch org-autolist org-ref zoom yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-plus-contrib org-noter org-make-toc org-evil org-bullets ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative key-chord ivy-xref ivy-rich ivy-bibtex irony-eldoc intero ialign hydra htmlize hl-todo hindent highlight-parentheses highlight-indent-guides helm-bibtex golden-ratio git-gutter geiser fuzzy format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-cleverparens evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
