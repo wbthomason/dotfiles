@@ -526,6 +526,7 @@
   :hook (flycheck-mode . flycheck-haskell-setup))
 
 ;;; Python
+(setenv "PYTHONPATH" "/opt/ros/melodic/lib/python2.7/site-packages")
 (use-package python-mode  :ensure t)
 (use-package company-jedi  :ensure t
   :hook (python-mode . (lambda ()
