@@ -73,6 +73,7 @@ Plug 'sbdchd/neoformat'
 
 " Text objects
 Plug 'wellle/targets.vim'
+Plug 'tommcdo/vim-exchange'
 
 " Block manipulation
 Plug 'machakann/vim-swap'
@@ -109,7 +110,6 @@ Plug 'simnalamburt/vim-mundo'
 " Color scheme
 Plug 'wbthomason/vim-nazgul'
 Plug 'lifepillar/vim-solarized8'
-Plug 'logico-dev/typewriter'
 
 " Notes/Wiki
 Plug 'fmoralesc/vim-pad', {'branch': 'devel'}
