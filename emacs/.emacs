@@ -13,7 +13,7 @@
 (run-with-idle-timer
  5 nil
  (lambda ()
-   (setq gc-cons-threshold gc-cons-threshold-original)
+   (setq gc-cons-threshold (* 2 gc-cons-threshold-original))
    (setq file-name-handler-alist file-name-handler-alist-original)
    (makunbound 'gc-cons-threshold-original)
    (makunbound 'file-name-handler-alist-original)
@@ -64,10 +64,11 @@
   :diminish ivy-mode
   :config
   (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-display-style 'fancy)
-  (setq ivy-format-function 'ivy-format-function-line)
+  (setq ivy-use-virtual-buffers t
+        enable-recursive-minibuffers t
+        ivy-re-builders-alist '((t . ivy--regex-fuzzy))
+        ivy-display-style 'fancy
+        ivy-format-function 'ivy-format-function-line)
   (with-eval-after-load 'ivy
     (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
     (define-key ivy-minibuffer-map (kbd "C-a") 'ivy-read-action)
@@ -145,10 +146,15 @@
 (use-package evil
   :ensure t
   :init
-  (setq evil-want-integration nil)
-  (setq evil-want-fine-undo t)
-  (setq evil-want-C-i-jump nil)
-  (setq evil-move-beyond-eol t))
+  (setq evil-want-integration nil
+        evil-ex-visual-char-range t
+        evil-want-fine-undo t
+        evil-want-C-i-jump nil
+        evil-move-beyond-eol t))
+
+(use-package evil-expat
+  :ensure t
+  :after evil)
 
 (use-package evil-leader
   :ensure t
@@ -367,7 +373,7 @@
   (define-key company-active-map [S-tab] 'company-select-previous)
   (setq company-backends (delete 'company-semantic company-backends))
   (setq company-idle-delay 0.5
-        company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
+        ;; company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
         company-minimum-prefix-length 2
         company-require-match nil
         company-tooltip-align-annotations t
@@ -437,9 +443,10 @@
 ;; Common Lisp
 (use-package slime
   :ensure t
-  :config
+  :hook (slime-mode . (lambda () (unless (slime-connected-p) (save-excursion (slime)))))
+  :init
   (setq inferior-lisp-program "/usr/bin/sbcl")
-  (setq slime-contribs '(slime-fancy slime-company)))
+  (setq slime-contribs '(slime-fancy slime-company slime-asdf)))
 
 (use-package slime-company :ensure t)
 
@@ -590,6 +597,12 @@
   :config
   (setq reftex-plug-into-AUCTeX '(nil nil t t t)
         reftex-use-fonts t))
+
+(use-package company-reftex
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-reftex-labels)
+  (add-to-list 'company-backends 'company-reftex-citations))
 
 (use-package company-math
   :ensure t
@@ -1126,7 +1139,9 @@ right."
 
   "c"  #'projectile-compile-project
   "lr" #'xref-find-references
-  "ln" #'lsp-rename)
+  "ln" #'lsp-rename
+  "SPC" #'execute-extended-command)
+
 (define-key evil-normal-state-map [tab] 'ivy-switch-buffer)
 (define-key evil-insert-state-map [C-tab] 'company-complete)
 (add-hook 'server-done-hook 'kill-buffer)
@@ -1138,13 +1153,15 @@ right."
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#bcbcbc" "#d70008" "#5faf00" "#875f00" "#268bd2" "#800080" "#008080" "#5f5f87"])
+ '(ansi-term-color-vector
+   [unspecified "#282828" "#bc5353" "#7f9f7f" "#fddf8d" "#005fa7" "#dc8cc3" "#8cd0d3" nil])
  '(custom-safe-themes
    (quote
-    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8f137ccf060af657fbc0c1f7c3d406646ad04ebb8b3e025febc8ef432e958b02" default)))
+    ("ef03b74835e14db281cc489faf0d011e1c9255b747ba9c203426c56ed3331197" "058721e6836dfe4d18abbd35820eba7850427f59b9ac7c9c37a5e76f3a405749" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8f137ccf060af657fbc0c1f7c3d406646ad04ebb8b3e025febc8ef432e958b02" default)))
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (all-the-icons-dired all-the-icons-ivy zoom yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser fuzzy format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-cleverparens evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
+    (company-reftex evil-expat biblio all-the-icons-dired all-the-icons-ivy zoom yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-cleverparens evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
@@ -1162,11 +1179,13 @@ right."
  '(evil-goggles-undo-redo-change-face ((t (:inherit diff-refine-changed))))
  '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-refine-removed))))
  '(evil-goggles-yank-face ((t (:inherit diff-refine-changed))))
+ '(font-latex-italic-face ((t (:inherit italic :foreground "OliveDrab" :family "Roboto Mono Italic"))))
+ '(font-latex-sectioning-5-face ((t (:inherit bold :weight bold))))
  '(italic ((t (:underline nil :slant italic :family "ETBembo"))))
  '(ivy-confirm-face ((t (:inherit minibuffer-prompt :foreground "lemon chiffon"))))
  '(ivy-current-match ((t (:background "dim gray" :foreground "white smoke"))))
  '(lsp-face-highlight-read ((t (:background "#bc5353" :foreground "#efefef"))))
- '(lsp-face-highlight-textual ((t (:background "#ffff8d"))))
+ '(lsp-face-highlight-textual ((t (:background "#bbbb8d" :foreground "black"))))
  '(lsp-face-highlight-write ((t (:background "#8fb28f" :foreground "#efefef"))))
  '(telephone-line-evil-emacs ((t (:inherit telephone-line-evil :background "#dc8cc3"))))
  '(telephone-line-evil-insert ((t (:inherit telephone-line-evil :background "#8fb28f"))))
