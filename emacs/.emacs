@@ -623,7 +623,9 @@
   (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t))
 
 ;;; ROS
-(projectile-register-project-type 'ros '(".catkin_tools" ".catkin_workspace")
+(projectile-register-project-type 'ros-workspace '(".catkin_tools" ".catkin_workspace")
+                                  :compile "catkin build")
+(projectile-register-project-type 'ros-package '("package.xml")
                                   :compile "catkin build")
 
 ;;; Meson
@@ -952,7 +954,6 @@
           #'add-fira-code-symbol-keywords)
 (set-frame-font "-*-fira code retina-medium-*-*-*-12-*-*-*-*-0-iso10646-1") ;;; set default font
 (setq default-frame-alist '((font . "-*-fira code retina-medium-*-*-*-12-*-*-*-*-0-iso10646-1")))
-(set-face-font 'font-lock-comment-face "-pyrs-RobotoMono Nerd Font-normal-italic-normal-*-*-*-*-*-*-0-iso10646-1")
 
 ;;; Theme
 ;; (use-package spacemacs-common :ensure spacemacs-theme
