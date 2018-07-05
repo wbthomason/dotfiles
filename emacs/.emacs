@@ -1179,7 +1179,7 @@ right."
  '(evil-goggles-undo-redo-change-face ((t (:inherit diff-refine-changed))))
  '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-refine-removed))))
  '(evil-goggles-yank-face ((t (:inherit diff-refine-changed))))
- '(font-latex-italic-face ((t (:inherit italic :foreground "OliveDrab" :family "Roboto Mono Italic"))))
+ '(font-latex-italic-face ((t (:foreground "OliveDrab" :slant italic :family "RobotoMono Nerd Font"))))
  '(font-latex-sectioning-5-face ((t (:inherit bold :weight bold))))
  '(italic ((t (:underline nil :slant italic :family "ETBembo"))))
  '(ivy-confirm-face ((t (:inherit minibuffer-prompt :foreground "lemon chiffon"))))
