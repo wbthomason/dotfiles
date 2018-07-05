@@ -64,12 +64,13 @@
   :diminish ivy-mode
   :config
   (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t
-        enable-recursive-minibuffers t
-        ivy-re-builders-alist '((t . ivy--regex-fuzzy))
-        ivy-display-style 'fancy
-        ivy-format-function 'ivy-format-function-line)
+  
   (with-eval-after-load 'ivy
+    (setq ivy-use-virtual-buffers t
+          enable-recursive-minibuffers t
+          ivy-re-builders-alist '((t . ivy--regex-fuzzy))
+          ivy-display-style 'fancy
+          ivy-format-function 'ivy-format-function-line)
     (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
     (define-key ivy-minibuffer-map (kbd "C-a") 'ivy-read-action)
     (define-key ivy-minibuffer-map (kbd "C-f") 'ivy-toggle-fuzzy)))
