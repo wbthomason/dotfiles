@@ -117,6 +117,7 @@
   :ensure t
   :after evil
   :config
+  (eyebrowse-mode t)
   (eyebrowse-setup-opinionated-keys))
 
 ;;; Rainbow mode
@@ -294,7 +295,16 @@
   (evil-goggles-mode)
   (evil-goggles-use-diff-refine-faces))
 
+;;; Tmux navigator
 (use-package navigate :ensure t)
+(defun tmux-nav-left () (interactive) (tmux-navigate "left"))
+(defun tmux-nav-right () (interactive) (tmux-navigate "right"))
+(defun tmux-nav-up () (interactive) (tmux-navigate "up"))
+(defun tmux-nav-down () (interactive) (tmux-navigate "down"))
+(define-key evil-normal-state-map (kbd "C-h") #'tmux-nav-left)
+(define-key evil-normal-state-map (kbd "C-j") #'tmux-nav-down)
+(define-key evil-normal-state-map (kbd "C-k") #'tmux-nav-up)
+(define-key evil-normal-state-map (kbd "C-l") #'tmux-nav-right)
 
 (evil-mode 1)
 
@@ -841,6 +851,7 @@
                      (append
                       (if (consp backend) backend (list backend))
                       '(:with company-yasnippet)))) company-backends)))
+
 (use-package yasnippet-snippets :ensure t)
 
 ;; Theming and Interface
@@ -1035,12 +1046,16 @@
 ;;; Focus
 (use-package focus :ensure t)
 
+;;; Browse kill ring
+(use-package browse-kill-ring :ensure t)
+
 ;;; Golden ratio
 (use-package golden-ratio
   :ensure t
-  :diminish golden-ratio-mode
   :config
-  (golden-ratio-mode 1)
+  (golden-ratio-mode t)
+  (add-to-list 'golden-ratio-exclude-modes 'which-key-mode)
+  (add-to-list 'golden-ratio-inhibit-functions (lambda () (<= (count-lines (point-min) (point-max)) 20)))
   (add-to-list 'golden-ratio-extra-commands 'tmux-nav-left)
   (add-to-list 'golden-ratio-extra-commands 'tmux-nav-right)
   (add-to-list 'golden-ratio-extra-commands 'tmux-nav-up)
