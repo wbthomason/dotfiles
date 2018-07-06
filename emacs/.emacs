@@ -129,17 +129,40 @@
 (use-package popup-kill-ring :ensure t)
 
 ;;; Smartparens
-(use-package smartparens :ensure t
-  :hook ((clojure-mode emacs-lisp-mode common-lisp-mode scheme-mode lisp-mode c++-mode) . smartparens-mode)
+;; (use-package smartparens :ensure t
+;;   :hook ((clojure-mode emacs-lisp-mode common-lisp-mode scheme-mode lisp-mode c++-mode) . smartparens-mode)
+;;   :config
+;;   (sp-local-pair 'tuareg-mode "'" nil :actions nil)
+;;   (sp-local-pair 'tuareg-mode "`" nil :actions nil)
+;;   (sp-with-modes 'c++-mode
+;;     (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET"))))
+;;   (sp-local-pair 'c++-mode "/*" "*/" :post-handlers '((" | " "SPC")
+;;                                                       ("* ||\n[i]" "RET")))
+;;   (sp-with-modes '(clojure-mode emacs-lisp-mode common-lisp-mode scheme-mode lisp-mode)
+;;     ;; disable ', it's the quote character!
+;;     (sp-local-pair "'" nil :actions nil)
+;;     ;; also only use the pseudo-quote inside strings where it
+;;     ;; serves as hyperlink.
+;;     (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))))
+
+;;; Lispy
+(use-package lispy
+  :ensure t
+  :hook ((emacs-lisp-mode clojure-mode common-lisp-mode scheme-mode lisp-mode racket-mode) . lispy-mode))
+
+;;; Lispyville
+(use-package lispyville
+  :ensure t
+  :hook (lispy-mode . lispyville-mode)
   :config
-  (sp-local-pair 'tuareg-mode "'" nil :actions nil)
-  (sp-local-pair 'tuareg-mode "`" nil :actions nil)
-  (sp-with-modes 'lisp-mode
-    ;; disable ', it's the quote character!
-    (sp-local-pair "'" nil :actions nil)
-    ;; also only use the pseudo-quote inside strings where it
-    ;; serves as hyperlink.
-    (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))))
+  (lispyville-set-key-theme '(operators
+                              prettify
+                              text-objects
+                              atom-movement
+                              additional-movement
+                              slurp/barf-cp
+                              additional
+                              escape)))
 
 ;;; Parinfer
 (use-package parinfer
@@ -238,9 +261,15 @@
   :unless (display-graphic-p)
   :config (evil-terminal-cursor-changer-activate))
 
-(use-package evil-cleverparens :ensure t
-  :hook ((emacs-lisp-mode eval-expression-minibuffer-setup ielm-mode lisp-mode lisp-interaction-mode
-                          scheme-mode) . evil-cleverparens-mode))
+;; (use-package evil-cleverparens :ensure t
+;;   :hook ((emacs-lisp-mode
+;;           eval-expression-minibuffer-setup
+;;           ielm-mode
+;;           lisp-mode
+;;           lisp-interaction-mode
+;;           scheme-mode) . evil-cleverparens-mode)
+;;   :config
+;;   (require 'evil-cleverparens-text-objects))
 
 (use-package evil-commentary :ensure t
   :config
@@ -1179,7 +1208,7 @@
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (eyebrowse company-reftex evil-expat biblio all-the-icons-dired all-the-icons-ivy zoom yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-cleverparens evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
+    (lispyville lispy browse-kill-ring eyebrowse company-reftex evil-expat biblio all-the-icons-dired all-the-icons-ivy yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
