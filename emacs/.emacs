@@ -1,6 +1,7 @@
 ;;; TODO: https://github.com/bling/fzf.el
 ;;; TODO: More consistently use :after
 ;;; TODO: Put keybindings with relevant packages
+;;; TODO: Split into separate files
 
 ;;; Code:
 
@@ -969,7 +970,8 @@
 (load-theme 'nazgul t)
 
 ;;; Relative linum
-(use-package linum-relative :ensure t
+(use-package linum-relative
+  :ensure t
   :config
   (setq linum-relative-format "%4s ")
   (setq linum-relative-current-symbol "")
@@ -981,14 +983,16 @@
   (global-hl-todo-mode))
 
 ;;; Rainbow delimiters
-(use-package rainbow-delimiters :ensure t
+(use-package rainbow-delimiters
+  :ensure t
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 ;;; Formatters
 (use-package format-all :ensure t)
 
 ;;; Highlight parens
-(use-package highlight-parentheses :ensure t
+(use-package highlight-parentheses
+  :ensure t
   :config
   (global-highlight-parentheses-mode t))
 
@@ -996,9 +1000,10 @@
 (use-package focus :ensure t)
 
 ;;; Golden ratio
-(use-package golden-ratio :ensure t
+(use-package golden-ratio
+  :ensure t
   :diminish golden-ratio-mode
-  :init
+  :config
   (golden-ratio-mode 1)
   (add-to-list 'golden-ratio-extra-commands 'tmux-nav-left)
   (add-to-list 'golden-ratio-extra-commands 'tmux-nav-right)
