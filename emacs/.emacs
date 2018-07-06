@@ -106,7 +106,7 @@
   :ensure t
   :after evil
   :config
-  (eyebrowse-setup-evil-keys))
+  (eyebrowse-setup-opinionated-keys))
 
 ;;; Rainbow mode
 (use-package rainbow-mode :ensure t)
