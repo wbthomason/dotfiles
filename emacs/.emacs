@@ -123,7 +123,7 @@
   :config
   (sp-local-pair 'tuareg-mode "'" nil :actions nil)
   (sp-local-pair 'tuareg-mode "`" nil :actions nil)
-  (sp-with-modes 'emacs-lisp-mode
+  (sp-with-modes 'lisp-mode
     ;; disable ', it's the quote character!
     (sp-local-pair "'" nil :actions nil)
     ;; also only use the pseudo-quote inside strings where it
