@@ -48,8 +48,15 @@
 ;; Local packages
 (add-to-list 'load-path "~/.emacs.d/local")
 
+;; Path-ish settings
+(setenv "PKG_CONFIG_PATH" (concat "/opt/ros/melodic/lib/pkgconfig" ":/usr/local/lib/pkgconfig" ":/usr/local/lib64/pkgconfig/"(getenv "PKG_CONFIG_PATH")))
+(setenv "LD_LIBRARY_PATH" (concat "/opt/ros/melodic/lib" ":/usr/local/lib" ":/usr/local/lib64" (getenv "LD_LIBRARY_PATH")))
+(setenv "PATH" (concat "/home/wil/.local/bin" ":/home/wil/.cargo/bin" ":/home/wil/.luarocks/bin"
+                       ":/home/wil/.roswell/bin" (getenv "PATH")))
+
 ;; Auto Package Update
-(use-package auto-package-update :ensure t
+(use-package auto-package-update
+  :ensure t
   :config
   (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
@@ -57,7 +64,8 @@
 
 ;; General Packages
 ;;; Ivy
-(use-package ivy :ensure t
+(use-package ivy
+  :ensure t
   :diminish ivy-mode
   :config
   (ivy-mode 1)
@@ -79,14 +87,17 @@
   (setq ivy-rich-path-style 'abbrev)
   (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer))
 
-(use-package ivy-xref :ensure t
+(use-package ivy-xref
+  :ensure t
   :init (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
-(use-package counsel-projectile :ensure t)
+(use-package counsel-projectile
+  :ensure t)
 ;; (use-package ivy-bibtex :ensure t)
 
 ;;; Eshell
-(use-package esh-autosuggest :ensure t
+(use-package esh-autosuggest
+  :ensure t
   :hook (eshell-mode . esh-autosuggest-mode))
 
 ;;; Git gutter
@@ -349,9 +360,6 @@
        (format " Pr[%s]" (projectile-project-name)))))
   (push "meson.build" projectile-project-root-files)
   (push "meson.build" projectile-project-root-files-bottom-up))
-
-;;; Zoom
-(use-package zoom :ensure t)
 
 ;;; Magit
 (use-package magit :ensure t)
@@ -1060,7 +1068,8 @@
 (setq auto-window-vscroll nil)
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
-(use-package dtrt-indent :ensure t
+(use-package dtrt-indent
+  :ensure t
   :init
   (dtrt-indent-mode))
 
@@ -1090,9 +1099,7 @@
 
 ;; Toggle split direction
 (defun window-toggle-split-direction ()
-  "Switch window split from horizontally to vertically, or vice
-versa. i.e. change right window to bottom, or change bottom window to
-right."
+  "Switch window split from horizontally to vertically, or vice versa. i.e. change right window to bottom, or change bottom window to right."
   (interactive)
   (require 'windmove)
   (let ((done))
