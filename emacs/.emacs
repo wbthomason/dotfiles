@@ -1,7 +1,6 @@
 ;;; TODO: https://github.com/bling/fzf.el
 ;;; TODO: More consistently use :after
-;;; https://brainlessdeveloper.com/2017/12/27/making-emacs-work-like-my-vim-setup/
-;;; https://tvraman.github.io/emacspeak/blog/emacs-start-speed-up.html
+;;; TODO: Put keybindings with relevant packages
 
 ;;; Code:
 
@@ -55,9 +54,6 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-;; Profile startup
-(use-package esup :ensure t :defer t)
-
 ;; General Packages
 ;;; Ivy
 (use-package ivy :ensure t
@@ -93,7 +89,8 @@
   :hook (eshell-mode . esh-autosuggest-mode))
 
 ;;; Git gutter
-(use-package git-gutter :ensure t
+(use-package git-gutter
+  :ensure t
   :config
   (setq git-gutter:modified-sign "＊"
         git-gutter:added-sign "+"
@@ -103,6 +100,13 @@
   (set-face-foreground 'git-gutter:modified "#8ec07c") ;; background color
   (set-face-foreground 'git-gutter:added "#b8bb26")
   (set-face-foreground 'git-gutter:deleted "cc241d"))
+
+;;; Eyebrowse
+(use-package eyebrowse
+  :ensure t
+  :after evil
+  :config
+  (eyebrowse-setup-evil-keys))
 
 ;;; Rainbow mode
 (use-package rainbow-mode :ensure t)
@@ -1157,14 +1161,14 @@ right."
  '(ansi-color-names-vector
    ["#bcbcbc" "#d70008" "#5faf00" "#875f00" "#268bd2" "#800080" "#008080" "#5f5f87"])
  '(ansi-term-color-vector
-   [unspecified "#282828" "#bc5353" "#7f9f7f" "#fddf8d" "#005fa7" "#dc8cc3" "#8cd0d3" nil])
+   [unspecified "#282828" "#bc5353" "#7f9f7f" "#fddf8d" "#005fa7" "#dc8cc3" "#8cd0d3" nil] t)
  '(custom-safe-themes
    (quote
     ("ef03b74835e14db281cc489faf0d011e1c9255b747ba9c203426c56ed3331197" "058721e6836dfe4d18abbd35820eba7850427f59b9ac7c9c37a5e76f3a405749" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8f137ccf060af657fbc0c1f7c3d406646ad04ebb8b3e025febc8ef432e958b02" default)))
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (company-reftex evil-expat biblio all-the-icons-dired all-the-icons-ivy zoom yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-cleverparens evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
+    (eyebrowse company-reftex evil-expat biblio all-the-icons-dired all-the-icons-ivy zoom yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-cleverparens evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
