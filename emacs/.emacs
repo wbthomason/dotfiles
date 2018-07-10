@@ -94,6 +94,8 @@
   :ensure t)
 ;; (use-package ivy-bibtex :ensure t)
 
+(use-package wgrep :ensure t)
+
 ;;; Eshell
 (use-package esh-autosuggest
   :ensure t
@@ -376,21 +378,21 @@
     (flycheck-pos-tip-mode)))
 
 ;;; Spell checking
-(use-package flyspell
-  :ensure t
-  :hook (text-mode . flyspell-mode)
+;; (use-package flyspell
+;;   :ensure t
+;;   :hook (text-mode . flyspell-mode)
 
-  :config
-  (setq flyspell-issue-message-flag nil))
+;;   :config
+;;   (setq flyspell-issue-message-flag nil))
 
-(use-package flyspell-correct
-  :ensure t
-  :commands (flyspell-correct-word-generic
-             flyspell-correct-previous-word-generic))
+;; (use-package flyspell-correct
+;;   :ensure t
+;;   :commands (flyspell-correct-word-generic
+;;              flyspell-correct-previous-word-generic))
 
-(use-package auto-dictionary
-  :ensure t
-  :hook (flyspell-mode . auto-dictionary-mode))
+;; (use-package auto-dictionary
+;;   :ensure t
+;;   :hook (flyspell-mode . auto-dictionary-mode))
 
 ;;; Restart Emacs
 (use-package restart-emacs :ensure t)
@@ -690,8 +692,19 @@
 (use-package yaml-mode :ensure t)
 
 ;;; HTML/Web
-
 (use-package mhtml-mode :ensure t)
+(use-package lsp-html
+  :ensure t
+  :hook (html-mode . lsp-html-enable))
+
+;; (use-package lsp-css
+;;   :ensure t
+;;   :hook (css-mode . (lambda () (when (eq major-mode 'css-mode) (lsp-css-enable)))))
+
+;;; Javascript
+(use-package lsp-javascript-typescript
+  :ensure t
+  :hook ((js-mode typescript-mode js3-mode rjsx-mode) . lsp-javascript-typescript-enable))
 
 ;;; CMake
 (use-package cmake-mode :ensure t)
@@ -719,7 +732,7 @@
  lsp-lua
  "lua"
  (lambda () default-directory)
- '("lua-lsp"))
+ '("/home/wil/.luarocks/bin/lua-lsp"))
 (add-hook 'lua-mode-hook #'lsp-lua-enable)
 
 (use-package company-lua
@@ -730,13 +743,21 @@
 (use-package fish-mode :ensure t)
 
 ;;; Bash
-(use-package sh-script)
+(use-package sh-script :ensure t)
+;; (use-package lsp-sh
+;;   :ensure t
+;;   :hook (sh-mode . lsp-sh-enable))
 
 ;;; Scheme
 (use-package geiser :ensure t)
 
 ;;; Scala
 (use-package scala-mode :ensure t)
+
+;;; Go
+(use-package lsp-go
+  :ensure t
+  :hook (go-mode . lsp-go-enable))
 
 ;;; Rust
 (use-package rust-mode :ensure t)
@@ -761,6 +782,9 @@
 (use-package racket-mode :ensure t)
 
 ;;; C++
+(add-hook 'c++-mode-hook #'electric-pair-mode)
+(use-package cc-mode :ensure t)
+  
 (use-package modern-cpp-font-lock :ensure t)
 
 (use-package company-irony
@@ -796,6 +820,12 @@
     (condition-case nil
         (lsp-cquery-enable)
       (user-error nil))))
+
+;; (use-package ccls
+;;   :ensure t
+;;   :hook (c-mode-common . lsp-ccls-enable)
+;;   :config
+;;   (setq ccls-executable "/usr/bin/ccls"))
 
 ;;; Org
 (use-package org :ensure org-plus-contrib
@@ -1250,7 +1280,7 @@
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (haskell-snippets flycheck-ghcmod lispyville lispy browse-kill-ring eyebrowse company-reftex evil-expat biblio all-the-icons-dired all-the-icons-ivy yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
+    (ccls lsp-go lsp-css lsp-html lsp-javascript-typescript lsp-sh wgrep haskell-snippets flycheck-ghcmod lispyville lispy browse-kill-ring eyebrowse company-reftex evil-expat biblio all-the-icons-dired all-the-icons-ivy yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
