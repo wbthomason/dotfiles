@@ -190,7 +190,11 @@
         evil-ex-visual-char-range t
         evil-want-fine-undo t
         evil-want-C-i-jump nil
-        evil-move-beyond-eol t))
+        evil-move-beyond-eol t)
+  :config
+  (evil-mode t))
+
+;; (use-package targets :ensure t)
 
 (use-package evil-expat
   :ensure t
@@ -238,16 +242,19 @@
 
 (use-package evil-visualstar
   :ensure t
+  :after evil
   :config
   (global-evil-visualstar-mode t))
 
 (use-package evil-embrace
   :ensure t
+  :after evil
   :config
   (evil-embrace-enable-evil-surround-integration))
 
 (use-package evil-escape
   :ensure t
+  :after evil
   :diminish
   (evil-escape-mode)
   :config
@@ -258,7 +265,9 @@
 
 (use-package evil-magit :ensure t)
 
-(use-package evil-terminal-cursor-changer :ensure t
+(use-package evil-terminal-cursor-changer
+  :ensure t
+  :after evil
   :unless (display-graphic-p)
   :config (evil-terminal-cursor-changer-activate))
 
@@ -272,12 +281,16 @@
 ;;   :config
 ;;   (require 'evil-cleverparens-text-objects))
 
-(use-package evil-commentary :ensure t
+(use-package evil-commentary
+  :ensure t
+  :after evil
   :config
   (evil-commentary-mode))
 
-(use-package evil-snipe :ensure t
+(use-package evil-snipe
+  :ensure t
   :diminish evil-snipe-mode
+  :after evil
   :init
   (setq evil-snipe-scope 'buffer
         evil-snipe-repeat-scope 'whole-buffer)
@@ -286,11 +299,15 @@
   (evil-snipe-override-mode t)
   (add-hook 'magit-mode-hook 'turn-off-evil-snipe-override-mode))
 
-(use-package evil-lion :ensure t
+(use-package evil-lion
+  :ensure t
+  :after evil
   :config
   (evil-lion-mode))
 
-(use-package evil-goggles :ensure t
+(use-package evil-goggles
+  :ensure t
+  :after evil
   :config
   (evil-goggles-mode)
   (evil-goggles-use-diff-refine-faces))
@@ -306,7 +323,7 @@
 (define-key evil-normal-state-map (kbd "C-k") #'tmux-nav-up)
 (define-key evil-normal-state-map (kbd "C-l") #'tmux-nav-right)
 
-(evil-mode 1)
+;; (evil-mode 1)
 
 ;;; Flycheck
 (use-package flycheck :ensure t
@@ -540,9 +557,9 @@
 
 (use-package haskell-mode :ensure t)
 
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+(use-package ghc
+  :ensure t
+  :hook (haskell-mode . (lambda () (ghc-init))))
 
 (use-package intero
   :ensure t
@@ -551,6 +568,8 @@
 (use-package hindent
   :ensure t
   :hook (haskell-mode . hindent-mode))
+
+(use-package haskell-snippets :ensure t)
 
 (use-package lsp-haskell
   :ensure t
@@ -575,6 +594,10 @@
   :ensure t
   :after flycheck
   :hook (flycheck-mode . flycheck-haskell-setup))
+
+(use-package flycheck-ghcmod
+  :ensure t
+  :after flycheck)
 
 ;;; Python
 (setenv "PYTHONPATH" "/opt/ros/melodic/lib/python2.7/site-packages")
@@ -665,6 +688,10 @@
 
 ;;; YAML
 (use-package yaml-mode :ensure t)
+
+;;; HTML/Web
+
+(use-package mhtml-mode :ensure t)
 
 ;;; CMake
 (use-package cmake-mode :ensure t)
@@ -1219,11 +1246,11 @@
    [unspecified "#282828" "#bc5353" "#7f9f7f" "#fddf8d" "#005fa7" "#dc8cc3" "#8cd0d3" nil] t)
  '(custom-safe-themes
    (quote
-    ("ef03b74835e14db281cc489faf0d011e1c9255b747ba9c203426c56ed3331197" "058721e6836dfe4d18abbd35820eba7850427f59b9ac7c9c37a5e76f3a405749" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8f137ccf060af657fbc0c1f7c3d406646ad04ebb8b3e025febc8ef432e958b02" default)))
+    ("02956c6f9fc15711d3652ec42ddb43d4ae442da98dba72c7bdd9603525ce82aa" "ef03b74835e14db281cc489faf0d011e1c9255b747ba9c203426c56ed3331197" "058721e6836dfe4d18abbd35820eba7850427f59b9ac7c9c37a5e76f3a405749" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8f137ccf060af657fbc0c1f7c3d406646ad04ebb8b3e025febc8ef432e958b02" default)))
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (lispyville lispy browse-kill-ring eyebrowse company-reftex evil-expat biblio all-the-icons-dired all-the-icons-ivy yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
+    (haskell-snippets flycheck-ghcmod lispyville lispy browse-kill-ring eyebrowse company-reftex evil-expat biblio all-the-icons-dired all-the-icons-ivy yasnippet-snippets yapfify yaml-mode which-key utop use-package tuareg toml-mode telephone-line spacemacs-theme slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-ref org-plus-contrib org-noter org-make-toc org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-haskell linum-relative ivy-xref ivy-rich ivy-prescient ivy-bibtex irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell fish-mode evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-escape evil-embrace evil-commentary evil-collection evil-args esup esh-autosuggest ein dtrt-indent diff-hl cquery counsel-projectile company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock cargo auto-package-update auto-dictionary auto-compile auctex-latexmk)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
