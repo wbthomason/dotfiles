@@ -800,6 +800,8 @@
 ;;; Racket
 (use-package racket-mode :ensure t)
 
+(use-package scribble-mode :ensure t)
+
 ;;; C++
 (add-hook 'c++-mode-hook #'electric-pair-mode)
 (use-package cc-mode :ensure t)
