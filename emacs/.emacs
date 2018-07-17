@@ -685,7 +685,7 @@
 
 (use-package company-auctex
   :ensure t
-  :after tex
+  :after (auctex company)
   :config
   (company-auctex-init))
 
