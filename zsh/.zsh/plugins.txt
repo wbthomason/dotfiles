@@ -1,0 +1,11 @@
+robbyrussell/oh-my-zsh
+robbyrussell/oh-my-zsh folder:plugins/git
+robbyrussell/oh-my-zsh folder:plugins/pip
+robbyrussell/oh-my-zsh folder:plugins/sudo
+robbyrussell/oh-my-zsh folder:plugins/tmux
+robbyrussell/oh-my-zsh folder:plugins/vi-mode
+
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+zdharma/fast-syntax-highlighting
+changyuheng/zsh-interactive-cd

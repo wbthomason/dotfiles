@@ -280,7 +280,7 @@ bind-key -T copy-mode-vi M-\ select-pane -l
 
 set -g @resurrect-save 'S'
 set -g @resurrect-restore 'R'
-set -g @default-shell /usr/bin/fish
+# set -g @default-shell /usr/bin/fish
 set -g @resurrect-strategy-nvim 'session'
 set -g @resurrect-strategy-vim 'session'
 set -g repeat-time 200
@@ -296,6 +296,7 @@ setw -g window-status-separator ''
 # set -g default-terminal "tmux-256color"
 # set-option -ga terminal-overrides "tmux-256color:Tc"
 set -g default-terminal "xterm-256color"
+
 # set -ga terminal-overrides ",xterm-256color:Tc"
 set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
 # set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
