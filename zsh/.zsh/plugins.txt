@@ -5,7 +5,10 @@ robbyrussell/oh-my-zsh folder:plugins/sudo
 robbyrussell/oh-my-zsh folder:plugins/tmux
 robbyrussell/oh-my-zsh folder:plugins/vi-mode
 
-zsh-users/zsh-autosuggestions
+zsh-users/zsh-autosuggestions branch:develop
 zsh-users/zsh-history-substring-search
 zdharma/fast-syntax-highlighting
 changyuheng/zsh-interactive-cd
+
+mafredri/zsh-async
+zsh-users/zsh-completions
