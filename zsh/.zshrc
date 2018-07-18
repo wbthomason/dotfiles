@@ -34,6 +34,9 @@ eval "$(hub alias -s)"
 fpath=(~/.zsh/completions $fpath) 
 autoload -U compinit && compinit
 
+# Thefuck
+eval $(thefuck --alias)
+
 # gnome-keyring
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start --components=gpg,ssh,secrets)
