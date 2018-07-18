@@ -124,11 +124,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
 
 " Completion
-Plug 'Shougo/neco-syntax'
-Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/neoinclude.vim', {'for': ['c', 'cpp']}
-Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-tagprefix'
+Plug 'jsfaint/ncm2-syntax' | Plug 'Shougo/neco-syntax'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -154,11 +157,14 @@ Plug 'autozimu/LanguageClient-neovim', {
 	  \ 'do': 'bash install.sh',
 	  \ }
 
+" CSS
+Plug 'ncm2/ncm2-cssomni'
+
 " Python
-Plug 'zchee/deoplete-jedi'
+Plug 'ncm2/ncm2-jedi'
 
 " C/C++
-Plug 'Shougo/deoplete-clangx'
+Plug 'ncm2/ncm2-pyclang'
 
 " Clojure/Lisps/Scheme
 " Plug 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
@@ -176,8 +182,11 @@ Plug 'vim-pandoc/vim-pandoc-after'
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'
 
+" Rust
+Plug 'ncm2/ncm2-racer'
+
 " Vimscript
-Plug 'Shougo/neco-vim'
+Plug 'jsfaint/ncm2-vim' | Plug 'Shougo/neco-vim'
 
 " LaTeX
 Plug 'lervag/vimtex'

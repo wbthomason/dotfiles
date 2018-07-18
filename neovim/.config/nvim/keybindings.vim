@@ -276,28 +276,32 @@ xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 
-" Deoplete bindings
+" " Deoplete bindings
+"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ deoplete#manual_complete()
+"
+" function! s:check_back_space() abort
+"   let l:col = col('.') - 1
+"   return !l:col || getline('.')[l:col - 1]  =~? '\s'
+" endfunction
+"
+" " <S-TAB>: completion back.
+" inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+"
+" " <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+"
+" " inoremap <expr><C-g> deoplete#undo_completion()
+" " <C-l>: redraw candidates
+" inoremap <expr><C-g>       deoplete#refresh()
+" inoremap <silent><expr><C-l> deoplete#complete_common_string()
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ deoplete#manual_complete()
-
-function! s:check_back_space() abort
-  let l:col = col('.') - 1
-  return !l:col || getline('.')[l:col - 1]  =~? '\s'
-endfunction
-
-" <S-TAB>: completion back.
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
-
-" inoremap <expr><C-g> deoplete#undo_completion()
-" <C-l>: redraw candidates
-inoremap <expr><C-g>       deoplete#refresh()
-inoremap <silent><expr><C-l> deoplete#complete_common_string()
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <c-u> <Plug>(ultisnips_expand)
 
 inoremap <silent> <c-t> :Snippets<CR>
