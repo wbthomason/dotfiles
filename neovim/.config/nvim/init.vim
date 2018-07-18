@@ -248,6 +248,7 @@ let g:LanguageClient_serverCommands = {
       \ 'haskell': ['hie', '--lsp'],
       \ 'lua': ['lua-lsp'],
       \ 'cpp': ['cquery'],
+      \ 'c': ['cquery'],
       \ 'lisp': ['cl-lsp']
       \ }
 let g:LanguageClient_autoStart = 1
