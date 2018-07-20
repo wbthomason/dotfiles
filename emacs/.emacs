@@ -23,10 +23,9 @@
 
 (require 'package)
 (setq package-archives
-      '(("org"       . "http://orgmode.org/elpa/")
+      '(("org"       . "https://orgmode.org/elpa/")
         ("melpa"     . "https://melpa.org/packages/")
-        ("gnu"       . "http://elpa.gnu.org/packages/")
-        ("marmalade" . "http://marmalade-repo.org/packages/")))
+        ("gnu"       . "https://elpa.gnu.org/packages/")))
 (setq package-enable-at-startup nil)
 (package-initialize)
 
@@ -54,14 +53,6 @@
 (setenv "PATH" (concat "/home/wil/.local/bin" ":/home/wil/.cargo/bin" ":/home/wil/.luarocks/bin"
                        ":/home/wil/.roswell/bin" (getenv "PATH")))
 
-;; Auto Package Update
-(use-package auto-package-update
-  :ensure t
-  :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
-  (auto-package-update-maybe))
-
 ;; General Packages
 ;;; Ivy
 (use-package ivy
@@ -78,6 +69,8 @@
   (define-key ivy-minibuffer-map (kbd "C-a") 'ivy-read-action)
   (define-key ivy-minibuffer-map (kbd "C-f") 'ivy-toggle-fuzzy))
 
+(use-package swiper :ensure t)
+
 (use-package ivy-rich
   :ensure t
   :config
@@ -90,8 +83,9 @@
   :ensure t
   :init (setq xref-show-xrefs-function #'ivy-xref-show-xrefs))
 
-(use-package counsel-projectile
-  :ensure t)
+(use-package counsel :ensure t)
+
+(use-package counsel-projectile :ensure t)
 ;; (use-package ivy-bibtex :ensure t)
 
 (use-package wgrep :ensure t)
@@ -650,7 +644,11 @@
   :hook (flycheck-mode . flycheck-pycheckers-setup))
 
 ;;; Markdown
-(use-package markdown-mode :ensure t)
+(use-package markdown-mode
+  :ensure t
+  :init
+  (setq markdown-command "pandoc"))
+
 (use-package markdown-toc :ensure t)
 
 ;;; LaTeX
@@ -840,7 +838,7 @@
   :init
   (defun cquery//enable ()
     (condition-case nil
-        (lsp-cquery-enable)
+      (lsp-cquery-enable)
       (user-error nil))))
 
 ;; (use-package ccls
@@ -1309,7 +1307,7 @@
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (deft yasnippet-snippets yasnippet company-ocp-index magit-todos flycheck-pycheckers yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esup esh-autosuggest elpy ein dtrt-indent cquery counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-package-update auto-dictionary auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
+    (deft scribble-mode yasnippet-snippets yasnippet company-ocp-index magit-todos flycheck-pycheckers yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esup esh-autosuggest elpy ein dtrt-indent cquery counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-package-update auto-dictionary auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
