@@ -27,7 +27,8 @@ export ROS_MASTER_URI=http://localhost:11311
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # Hub
 eval "$(hub alias -s)"
