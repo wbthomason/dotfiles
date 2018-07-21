@@ -131,7 +131,7 @@ Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-tagprefix'
-Plug 'jsfaint/ncm2-syntax' | Plug 'Shougo/neco-syntax'
+Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -186,7 +186,7 @@ Plug 'eagletmt/neco-ghc'
 Plug 'ncm2/ncm2-racer'
 
 " Vimscript
-Plug 'jsfaint/ncm2-vim' | Plug 'Shougo/neco-vim'
+Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
 
 " LaTeX
 Plug 'lervag/vimtex'
