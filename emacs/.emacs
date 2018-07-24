@@ -1073,8 +1073,8 @@
 
 (add-hook 'prog-mode-hook
           #'add-fira-code-symbol-keywords)
-(set-frame-font "-*-fira code retina-medium-*-*-*-12-*-*-*-*-0-iso10646-1") ;;; set default font
-(setq default-frame-alist '((font . "-*-fira code retina-medium-*-*-*-12-*-*-*-*-0-iso10646-1")))
+(set-frame-font "Fira Code Retina-10") ;;; set default font
+(setq default-frame-alist '((font . "Fira Code Retina-10")))
 
 ;;; Theme
 ;; (use-package spacemacs-common :ensure spacemacs-theme
@@ -1294,7 +1294,7 @@
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (deft scribble-mode yasnippet-snippets yasnippet company-ocp-index magit-todos flycheck-pycheckers yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esup esh-autosuggest elpy ein dtrt-indent cquery counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-package-update auto-dictionary auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
+    (pddl-mode deft scribble-mode yasnippet-snippets yasnippet company-ocp-index magit-todos flycheck-pycheckers yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer python-mode py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent navigate modern-cpp-font-lock meson-mode merlin markdown-toc lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esup esh-autosuggest elpy ein dtrt-indent cquery counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-package-update auto-dictionary auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
