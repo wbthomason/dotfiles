@@ -606,7 +606,7 @@
   :ensure t
   :diminish anaconda-mode
   :hook ((python-mode . anaconda-mode)
-         (python-mode . anaconda-eldoc-mode))) 
+         (python-mode . anaconda-eldoc-mode)))
 
 (use-package company-anaconda
   :ensure t
@@ -804,7 +804,7 @@
 ;;; C++
 (add-hook 'c++-mode-hook #'electric-pair-mode)
 (use-package cc-mode :ensure t)
-  
+
 (use-package modern-cpp-font-lock :ensure t)
 
 (use-package company-irony
@@ -838,7 +838,7 @@
   :init
   (defun cquery//enable ()
     (condition-case nil
-      (lsp-cquery-enable)
+        (lsp-cquery-enable)
       (user-error nil))))
 
 ;; (use-package ccls
@@ -853,7 +853,7 @@
   :commands (deft)
   :config
   (setq deft-directory "~/wiki/notes"
-                deft-extensions '("md" "org")))
+        deft-extensions '("md" "org")))
 
 ;;; Org
 (use-package org :ensure org-plus-contrib
@@ -901,25 +901,6 @@
 (use-package org-evil :ensure t :after (evil org))
 
 (use-package org-noter :ensure t :after org)
-
-;; (defun org-ref-open-pdf-at-point ()
-;;   "Open the pdf for bibtex key under point if it exists."
-;;   (interactive)
-;;   (let* ((results (org-ref-get-bibtex-key-and-file))
-;;          (key (car results))
-;;          (pdf-file (car (bibtex-completion-find-pdf key)))
-;;          (if (file-exists-p pdf-file)))
-;;     (org-open-file pdf-file
-;;                    (message "No PDF found for %s" key))))
-
-;; (use-package org-ref :ensure t :after org
-;;   :init
-;;   (setq bibtex-completion-pdf-field "file"
-;;         org-ref-completion-library 'org-ref-ivy-cite)
-
-;;   :config
-;;   (setq org-ref-open-pdf-function 'org-ref-open-pdf-at-point
-;;         org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f")))
 
 ;;; Bibtex
 (use-package biblio :ensure t)
@@ -1190,6 +1171,7 @@
  sentence-end-double-space nil)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+(add-hook 'prog-mode-hook (lambda () (setq-local comment-auto-fill-only-comments t) (auto-fill-mode t)))
 (setq c-default-style "bsd")
 (setq auto-window-vscroll nil)
 (defvaralias 'c-basic-offset 'tab-width)
