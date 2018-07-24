@@ -738,6 +738,11 @@
 (projectile-register-project-type 'ros-package '("package.xml")
                                   :compile "catkin build")
 
+
+;;; PDDL
+(use-package pddl-mode)
+(add-to-list 'auto-mode-alist '("\\.pddl\\'" . PDDL-mode))
+
 ;;; Meson
 (use-package meson-mode :ensure t)
 
