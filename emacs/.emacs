@@ -1240,7 +1240,7 @@
 (evil-leader/set-key
   "q"  #'kill-emacs
   "w"  #'save-buffer
-  "d"  #'kill-buffer-and-window
+  "d"  (lambda () (interactive) (kill-buffer nil))
   "x"  #'save-buffers-kill-terminal
   "a"  #'previous-buffer
   "s"  #'next-buffer
