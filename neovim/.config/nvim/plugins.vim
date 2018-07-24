@@ -6,8 +6,8 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.local/share/nvim/plugs')
+
 " Tweaks
-Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/LargeFile'
 
 " Split resizing
