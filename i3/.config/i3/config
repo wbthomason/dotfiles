@@ -19,12 +19,29 @@ font pango:Arimo for Powerline 9
 # startup programs
 exec --no-startup-id /home/wil/.screenlayout/default.sh
 exec --no-startup-id /home/wil/bgscript.sh
-exec --no-startup-id xbindkeys
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id nm-applet
-exec --no-startup-id volnoti
-exec_always --no-startup-id caffeine
+# exec --no-startup-id xcompmgr -Ccf -I-.015 -O-.03 -D4 -t-5 -l-5 -r4.2 -o.75 &
+# exec --no-startup-id xbindkeys
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# exec_always --no-startup-id nm-applet
+# exec --no-startup-id volnoti
+# exec_always --no-startup-id caffeine
 
+# Plasma fun
+exec --no-startup-id wmctrl -c Plasma
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+## Avoid tiling popups, dropdown windows from plasma
+# for the first time, manually resize them, i3 will remember the setting for floating windows
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [class="latte-dock"] floating enable; border none
+for_window [class="lattedock"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+no_focus [class="plasmashell"]
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -144,7 +161,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-gaps inner 5
+gaps inner 7
 gaps outer 3
 
 # screen locking
