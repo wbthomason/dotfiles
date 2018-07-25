@@ -20,6 +20,7 @@ font pango:Arimo for Powerline 9
 exec --no-startup-id /home/wil/.screenlayout/default.sh
 exec --no-startup-id /home/wil/bgscript.sh
 # exec --no-startup-id xcompmgr -Ccf -I-.015 -O-.03 -D4 -t-5 -l-5 -r4.2 -o.75 &
+exec --no-startup-id compton -CGb
 # exec --no-startup-id xbindkeys
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # exec_always --no-startup-id nm-applet
