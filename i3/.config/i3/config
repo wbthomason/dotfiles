@@ -125,28 +125,28 @@ bindsym $mod+a focus parent
 bindsym $mod+c focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1:admin
-bindsym $mod+2 workspace 2:work
-bindsym $mod+3 workspace 3:web
-bindsym $mod+4 workspace 4:files
-bindsym $mod+5 workspace 5:comms
-bindsym $mod+6 workspace 6:email
-bindsym $mod+7 workspace 7:music
-bindsym $mod+8 workspace 8:notes
-bindsym $mod+9 workspace 9:logistics
-bindsym $mod+0 workspace 10:misc
+bindsym $mod+1 workspace admin
+bindsym $mod+2 workspace work
+bindsym $mod+3 workspace web
+bindsym $mod+4 workspace files
+bindsym $mod+5 workspace comms
+bindsym $mod+6 workspace email
+bindsym $mod+7 workspace music
+bindsym $mod+8 workspace notes
+bindsym $mod+9 workspace logistics
+bindsym $mod+0 workspace misc
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1:admin
-bindsym $mod+Shift+2 move container to workspace 2:work
-bindsym $mod+Shift+3 move container to workspace 3:web
-bindsym $mod+Shift+4 move container to workspace 4:files
-bindsym $mod+Shift+5 move container to workspace 5:comms
-bindsym $mod+Shift+6 move container to workspace 6:email
-bindsym $mod+Shift+7 move container to workspace 7:music
-bindsym $mod+Shift+8 move container to workspace 8:notes
-bindsym $mod+Shift+9 move container to workspace 9:logistics
-bindsym $mod+Shift+0 move container to workspace 10:misc
+bindsym $mod+Shift+1 move container to workspace admin
+bindsym $mod+Shift+2 move container to workspace work
+bindsym $mod+Shift+3 move container to workspace web
+bindsym $mod+Shift+4 move container to workspace files
+bindsym $mod+Shift+5 move container to workspace comms
+bindsym $mod+Shift+6 move container to workspace email
+bindsym $mod+Shift+7 move container to workspace music
+bindsym $mod+Shift+8 move container to workspace notes
+bindsym $mod+Shift+9 move container to workspace logistics
+bindsym $mod+Shift+0 move container to workspace misc
 
 # move workspaces between displays
 bindsym $mod+bracketright move workspace to output right
