@@ -33,8 +33,6 @@ for_window [title="Desktop — Plasma"] kill; floating enable; border none
 # for the first time, manually resize them, i3 will remember the setting for floating windows
 for_window [class="plasmashell"] floating enable;
 for_window [class="Plasma"] floating enable; border none
-for_window [class="latte-dock"] floating enable; border none
-for_window [class="lattedock"] floating enable; border none
 for_window [title="plasma-desktop"] floating enable; border none
 for_window [title="win7"] floating enable; border none
 for_window [class="krunner"] floating enable; border none
