@@ -14,18 +14,6 @@
   XF86MonBrightnessUp
 
 "playerctl play-pause"
-  XF86AudioPlay
-
-"playerctl previous"
-  XF86AudioPrev
-
-"playerctl next"
-  XF86AudioNext
-
-"rofi -combi-modi window,run,ssh -mesg -show combi -modi combi"
-  XF86Search
-
-"playerctl play-pause"
   Control+Shift + space
 
 "playerctl previous"
