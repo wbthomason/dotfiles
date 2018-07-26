@@ -2,9 +2,6 @@
 export ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
 source ~/.zsh/load_plugins.zsh
 
-# Find-the-command
-source /usr/share/doc/find-the-command/ftc.zsh
-
 # pkg-config tweaks
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig
 
