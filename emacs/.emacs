@@ -322,11 +322,10 @@
 
 ;; (evil-mode 1)
 
-;;; Flycheck
+;; Flycheck
 (use-package flycheck :ensure t
   :config
-  (setq flycheck-check-syntax-automatically '(save idle-change))
-  (global-flycheck-mode)
+  ;; (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
   (when (fboundp 'define-fringe-bitmap)
     (define-fringe-bitmap 'cust-flycheck-bitmap
       (vector #b00000000
@@ -346,6 +345,7 @@
               #b00000000
               #b00000000
               #b00000000)))
+  (global-flycheck-mode)
   (flycheck-define-error-level 'error
     :severity 2
     :overlay-category 'flycheck-error-overlay
@@ -801,22 +801,30 @@
   :after (rust flycheck)
   :hook (flycheck-mode . flycheck-rust-setup))
 
-;;; Racket
+;; Racket
 (use-package racket-mode :ensure t)
 
 (use-package scribble-mode :ensure t)
 
-;;; C++
+;; C++
 (add-hook 'c++-mode-hook #'electric-pair-mode)
 (use-package cc-mode :ensure t)
 
+(use-package google-c-style
+  :ensure t
+  :hook (c-mode-common-hook . google-set-c-style))
+
 (use-package modern-cpp-font-lock :ensure t)
+
+(use-package irony
+  :ensure t
+  :hook (((c++-mode c-mode objc-mode) . irony-mode)
+         (irony-mode . irony-cdb-autosetup-compile-options)))
 
 (use-package company-irony
   :ensure t
   :hook ((irony-mode . company-irony-setup-begin-commands)
-         (irony-mode . irony-cdb-autosetup-compile-options)
-         ((c++mode c-mode objc-mode) . irony-mode))
+         )
   :config
   (setq company-irony-ignore-case 'smart)
   (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete)))
@@ -836,9 +844,22 @@
   :hook (flycheck-mode . flycheck-clang-analyzer-setup))
 
 (use-package flycheck-clang-tidy
-  :ensure t
+  ;; :ensure t
   :after flycheck
   :hook (flycheck-mode . flycheck-clang-tidy-setup))
+
+;; Note that I currently just have a local version of this
+(use-package flycheck-google-cpplint
+  :after flycheck
+  :config (setq flycheck-c/c++-googlelint-executable "/usr/bin/cpplint")
+  :hook (flycheck-mode . (lambda ()
+                           (flycheck-add-next-checker 'c/c++-cppcheck '(warning . c/c++-googlelint)))))
+
+(use-package flycheck-clangcheck
+  :ensure t
+  :after flycheck
+  :config (setq flycheck-c/c++-clangcheck-executable "/usr/bin/clang-check")
+  :hook (flycheck-mode . (lambda () (add-to-list 'flycheck-checkers 'c/c++-clangcheck))))
 
 (use-package irony-eldoc
   :ensure t
@@ -863,6 +884,13 @@
 ;;   (setq ccls-executable "/usr/bin/ccls"))
 
 ;;; Deft
+;; Set a chain of C++ checkers
+(add-hook 'c-mode-common-hook (lambda ()
+				                        (flycheck-add-next-checker 'lsp-ui 'irony)
+				                        (flycheck-add-next-checker 'irony 'c/c++-clang-tidy)
+				                        (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-clangcheck)
+				                        (flycheck-add-next-checker 'c/c++-clangcheck 'c/c++-cppcheck)
+				                        (flycheck-add-next-checker 'c/c++-googlelint 'clang-analyzer)))
 (use-package deft
   :ensure t
   :commands (deft)
