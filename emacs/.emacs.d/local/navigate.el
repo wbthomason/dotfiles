@@ -78,4 +78,4 @@
   (define-key evil-evilified-state-map-original (kbd "C-k") #'tmux-nav-up)
   (define-key evil-evilified-state-map-original (kbd "C-l") #'tmux-nav-right))
 
-(provide 'evil-tmux-navigator)
+(provide 'navigate)
