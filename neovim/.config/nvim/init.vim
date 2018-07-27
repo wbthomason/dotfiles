@@ -334,23 +334,26 @@ let g:markdown_composer_autostart = 0
 let g:vaffle_show_hidden_files = 1
 let g:vaffle_force_delete = 1
 
-" FZF
-let g:fzf_gitignore_no_maps = 1
-let g:fzf_colors =
-      \ { 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'border':  ['fg', 'Ignore'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
+" " FZF
+" let g:fzf_gitignore_no_maps = 1
+" let g:fzf_colors =
+"       \ { 'fg':      ['fg', 'Normal'],
+"       \ 'bg':      ['bg', 'Normal'],
+"       \ 'hl':      ['fg', 'Comment'],
+"       \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"       \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"       \ 'hl+':     ['fg', 'Statement'],
+"       \ 'info':    ['fg', 'PreProc'],
+"       \ 'border':  ['fg', 'Ignore'],
+"       \ 'prompt':  ['fg', 'Conditional'],
+"       \ 'pointer': ['fg', 'Exception'],
+"       \ 'marker':  ['fg', 'Keyword'],
+"       \ 'spinner': ['fg', 'Label'],
+"       \ 'header':  ['fg', 'Comment'] }
 
+" Projectile
+let g:projectile#enable_devicons = 1
+let g:projectile#search_prog = "rg"
 
 " Snippets
 let g:UltiSnipsExpandTrigger       = "<Plug>(ultisnips_expand)"
@@ -391,6 +394,50 @@ call ConfigInc('keybindings.vim')
 
 " Add in plugins
 call ConfigInc('plugins.vim')
+
+" Denite
+let g:denite_source_session_path = '~/.vim/session'
+call denite#custom#option('_', {
+      \ 'prompt': '❯',
+      \ 'updatetime': 1,
+      \ 'reversed': 1,
+      \ })
+
+" call denite#custom#source('_', 'sorters', ['sorter/sublime'])
+
+call denite#custom#var('file/rec', 'command',
+      \ ['rg', '--files', '--glob', '!.git'])
+" call denite#custom#var('file/rec', 'command',
+" 	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#source('file/rec', 'matchers', ['matcher/cpsm'])
+
+call denite#custom#source('file/old', 'matchers', ['matcher/hide_hidden_files', 'matcher/cpsm'])
+
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'default/opts',
+      \ ['--vimgrep', '--no-heading'])
+call denite#custom#var('grep', 'recursive/opts', [])
+call denite#custom#var('grep', 'pattern/opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final/opts', [])
+
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+call denite#custom#source('file/rec/git', 'matchers', ['matcher/cpsm'])
+
+call denite#custom#map(
+      \ 'insert',
+      \ '<Down>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'insert',
+      \ '<Up>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
 
 " Leader guide
 
