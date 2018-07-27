@@ -310,7 +310,7 @@
   (evil-goggles-use-diff-refine-faces))
 
 ;;; Tmux navigator
-(use-package navigate :ensure t)
+(use-package navigate)
 (defun tmux-nav-left () (interactive) (tmux-navigate "left"))
 (defun tmux-nav-right () (interactive) (tmux-navigate "right"))
 (defun tmux-nav-up () (interactive) (tmux-navigate "up"))
@@ -322,7 +322,7 @@
 
 ;; (evil-mode 1)
 
-;; Flycheck
+;;; Flycheck
 (use-package flycheck :ensure t
   :config
   ;; (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
@@ -886,7 +886,6 @@
 ;;; Deft
 ;; Set a chain of C++ checkers
 (add-hook 'c-mode-common-hook (lambda ()
-				                        (flycheck-add-next-checker 'lsp-ui 'irony)
 				                        (flycheck-add-next-checker 'irony 'c/c++-clang-tidy)
 				                        (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-clangcheck)
 				                        (flycheck-add-next-checker 'c/c++-clangcheck 'c/c++-cppcheck)
