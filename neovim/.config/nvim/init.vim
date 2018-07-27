@@ -353,10 +353,10 @@ let g:vaffle_force_delete = 1
 
 " Projectile
 let g:projectile#enable_devicons = 1
-let g:projectile#search_prog = "rg"
+let g:projectile#search_prog = 'rg'
 
 " Snippets
-let g:UltiSnipsExpandTrigger       = "<Plug>(ultisnips_expand)"
+let g:UltiSnipsExpandTrigger       = '<Plug>(ultisnips_expand)'
 let g:UltiSnipsJumpForwardTrigger  = '<c-c>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
 let g:UltiSnipsRemoveSelectModeMappings = 0
