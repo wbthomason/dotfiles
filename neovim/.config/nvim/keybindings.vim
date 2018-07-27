@@ -124,8 +124,8 @@ nnoremap <silent> <leader>gs :Gstatus<CR>
 let g:lmaps.g.s = ['Gstatus', 'Display git status']
 nnoremap <silent> <leader>gw :Gwrite<CR>
 let g:lmaps.g.w = ['Gwrite', 'Write and stage the file']
-nnoremap <silent> <leader>gi <Plug>(fzf-gitignore)<CR>
-let g:lmaps.g.w = ['<Plug>(fzf-gitignore)', 'Write and stage the file']
+nnoremap <silent> <leader>gi :Denite gitignore<CR>
+let g:lmaps.g.w = [':Denite gitignore', 'Write and stage the file']
 
 " Compilation bindings
 let g:lmaps.m = {'name': 'Build/Make'}
