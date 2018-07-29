@@ -21,25 +21,11 @@ exec --no-startup-id /home/wil/.screenlayout/default.sh
 exec --no-startup-id /home/wil/bgscript.sh
 exec --no-startup-id compton -CGb
 exec --no-startup-id xbindkeys
+exec --no-startup-id xmodmap ~/.Xmodmap
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # exec_always --no-startup-id nm-applet
 exec --no-startup-id volnoti
 # exec_always --no-startup-id caffeine
-
-# Plasma fun
-exec --no-startup-id wmctrl -c Plasma
-for_window [title="Desktop — Plasma"] kill; floating enable; border none
-## Avoid tiling popups, dropdown windows from plasma
-# for the first time, manually resize them, i3 will remember the setting for floating windows
-for_window [class="plasmashell"] floating enable;
-for_window [class="Plasma"] floating enable; border none
-for_window [title="plasma-desktop"] floating enable; border none
-for_window [title="win7"] floating enable; border none
-for_window [class="krunner"] floating enable; border none
-for_window [class="Kmix"] floating enable; border none
-for_window [class="Klipper"] floating enable; border none
-for_window [class="Plasmoidviewer"] floating enable; border none
-no_focus [class="plasmashell"]
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -62,6 +48,9 @@ bindsym $mod+Shift+q kill
 
 # rofi
 bindsym $mod+d exec "rofi -combi-modi drun,run,window,ssh -mesg -show combi -modi combi"
+
+# runner
+bindsym $mod+Shift+d exec lxqt-runner
 
 # suspending
 bindsym $mod+b exec systemctl suspend
@@ -189,25 +178,3 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#        position top
-#        status_command i3status
-#        strip_workspace_numbers yes
-#        #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh +1080+408 :0.0
-#}
-
-#bar {
-        #status_command py3status
-        #i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh 1080x+0+0 :0.0
-#}
-#bar {
-#       status_command    python ~/.config/i3/i3pystatus_config.py
-#       position          top
-#       workspace_buttons yes
-#       strip_workspace_numbers yes
-#}
-
-for_window [title="Localization"] floating enable
