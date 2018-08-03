@@ -1,4 +1,3 @@
-;;; TODO: https://github.com/bling/fzf.el
 ;;; TODO: More consistently use :after
 ;;; TODO: Put keybindings with relevant packages
 ;;; TODO: Split into separate files
