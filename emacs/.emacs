@@ -1316,7 +1316,7 @@
   "on" #'deft)
 
 (define-key evil-normal-state-map [tab] #'ivy-switch-buffer)
-;; Redefine the tab key specifically for Magit
+;; Redefine the tab key specifically for Magit to fix the overriding of the above keybinding
 (define-key magit-mode-map [tab] #'magit-section-toggle)
 (define-key evil-insert-state-map [C-tab] #'company-complete)
 (add-hook 'server-done-hook 'kill-buffer)
