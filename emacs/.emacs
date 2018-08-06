@@ -911,6 +911,8 @@
         org-pretty-entities t
         org-hide-emphasis-markers t
         org-log-done 'time
+        org-log-redeadline 'time
+        org-log-reschedule 'time
         org-fontify-whole-heading-line t
         org-fontify-done-headline t
         org-directory (expand-file-name "~/Dropbox/notes")
@@ -918,9 +920,12 @@
         org-agenda-files (mapcar (apply-partially #'concat org-directory) '("/tasks.org" "/research.org" "/work.org" "/misc.org"))
         org-src-fontify-natively t
         org-src-tab-acts-natively t
+        org-agenda-text-search-extra-files '(agenda-archives)
+        org-blank-before-new-entry (quote ((heading) (plain-list-item)))
         org-fontify-quote-and-verse-blocks t
-        org-todo-keywords '((sequence "☛ TODO(t)" "|" "✔ DONE(d)") (sequence "⚑ WAITING(w)" "|") (sequence "|" "✘ CANCELED(c)"))
-        org-pretty-entities-include-sub-superscripts t))
+        org-todo-keywords '((sequence "☛ TODO(t)" "➡ IN-PROGRESS(i)" "⚑ WAITING(w)" "|" "✔ DONE(d)" "✘ CANCELED(c)"))
+        org-pretty-entities-include-sub-superscripts t
+        org-capture-templates '(("t" "Task Entry" entry (file "tasks.org") "* TODO (%t) %?"))))
 
 (use-package org-autolist
   :ensure t
