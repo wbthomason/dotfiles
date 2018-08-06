@@ -441,7 +441,7 @@
   (define-key company-active-map [S-tab] 'company-select-previous)
   (define-key company-active-map [C-return] #'company-complete-selection)
   (setq company-backends (delete 'company-semantic company-backends))
-  (setq company-idle-delay 0.2
+  (setq company-idle-delay 0
         ;; company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
         company-minimum-prefix-length 2
         company-require-match nil
