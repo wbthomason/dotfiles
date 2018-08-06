@@ -869,34 +869,39 @@
 (use-package cquery
   :ensure t
   :commands lsp-cquery-enable
-  :hook (c-mode-common . cquery//enable)
+  :hook (c-mode-common . lsp-cquery-enable)
   :config
-  (setq cquery-executable "/usr/bin/cquery")
-  :init
-  (defun cquery//enable ()
-    (condition-case nil
-        (lsp-cquery-enable)
-      (user-error nil))))
+  (setq cquery-executable "/usr/bin/cquery"
+        cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack")))
 
 ;; (use-package ccls
 ;;   :ensure t
 ;;   :hook (c-mode-common . lsp-ccls-enable)
 ;;   :config
-;;   (setq ccls-executable "/usr/bin/ccls"))
+;;   (setq ccls-executable "/usr/local/bin/ccls"))
 
-;;; Deft
 ;; Set a chain of C++ checkers
 (add-hook 'c-mode-common-hook (lambda ()
 				                        (flycheck-add-next-checker 'irony 'c/c++-clang-tidy)
 				                        (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-clangcheck)
 				                        (flycheck-add-next-checker 'c/c++-clangcheck 'c/c++-cppcheck)
 				                        (flycheck-add-next-checker 'c/c++-googlelint 'clang-analyzer)))
+;;; Deft
 (use-package deft
   :ensure t
   :commands (deft)
-  :config
+  :init
   (setq deft-directory "~/wiki/notes"
-        deft-extensions '("md" "org")))
+        deft-extensions '("org" "md")
+        deft-text-mode 'org-mode
+        deft-recursive t
+        deft-use-filename-as-title nil
+        deft-use-filter-string-for-filename t
+        deft-file-naming-rules '((noslash . "-")
+                                 (nospace . "_")
+                                 (case-fn . downcase))
+        deft-markdown-mode-title-level 1
+        deft-org-mode-title-prefix t))
 
 ;;; Org
 (use-package org :ensure org-plus-contrib
