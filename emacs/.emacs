@@ -928,7 +928,7 @@
         org-agenda-text-search-extra-files '(agenda-archives)
         org-blank-before-new-entry (quote ((heading) (plain-list-item)))
         org-fontify-quote-and-verse-blocks t
-        org-todo-keywords '((sequence "☛ TODO(t)" "➡ IN-PROGRESS(i)" "⚑ WAITING(w)" "|" "✔ DONE(d)" "✘ CANCELED(c)"))
+        org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
         org-pretty-entities-include-sub-superscripts t
         org-capture-templates '(("t" "Task Entry" entry (file "tasks.org") "* TODO (%t) %?"))))
 
