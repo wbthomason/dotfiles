@@ -124,23 +124,6 @@
 ;;; Popup kill ring
 (use-package popup-kill-ring :ensure t)
 
-;;; Smartparens
-;; (use-package smartparens :ensure t
-;;   :hook ((clojure-mode emacs-lisp-mode common-lisp-mode scheme-mode lisp-mode c++-mode) . smartparens-mode)
-;;   :config
-;;   (sp-local-pair 'tuareg-mode "'" nil :actions nil)
-;;   (sp-local-pair 'tuareg-mode "`" nil :actions nil)
-;;   (sp-with-modes 'c++-mode
-;;     (sp-local-pair "{" nil :post-handlers '(("||\n[i]" "RET"))))
-;;   (sp-local-pair 'c++-mode "/*" "*/" :post-handlers '((" | " "SPC")
-;;                                                       ("* ||\n[i]" "RET")))
-;;   (sp-with-modes '(clojure-mode emacs-lisp-mode common-lisp-mode scheme-mode lisp-mode)
-;;     ;; disable ', it's the quote character!
-;;     (sp-local-pair "'" nil :actions nil)
-;;     ;; also only use the pseudo-quote inside strings where it
-;;     ;; serves as hyperlink.
-;;     (sp-local-pair "`" "'" :when '(sp-in-string-p sp-in-comment-p))))
-
 ;;; Lispy
 (use-package lispy
   :ensure t
@@ -163,7 +146,7 @@
 ;;; Parinfer
 (use-package parinfer
   :ensure t
-  :hook ((clojure-mode emacs-lisp-mode common-lisp-mode scheme-mode lisp-mode) . parinfer-mode)
+  :hook ((clojure-mode emacs-lisp-mode common-lisp-mode scheme-mode racket-mode lisp-mode) . parinfer-mode)
   :config
   (progn
     (setq parinfer-extensions
@@ -267,16 +250,6 @@
   :after evil
   :unless (display-graphic-p)
   :config (evil-terminal-cursor-changer-activate))
-
-;; (use-package evil-cleverparens :ensure t
-;;   :hook ((emacs-lisp-mode
-;;           eval-expression-minibuffer-setup
-;;           ielm-mode
-;;           lisp-mode
-;;           lisp-interaction-mode
-;;           scheme-mode) . evil-cleverparens-mode)
-;;   :config
-;;   (require 'evil-cleverparens-text-objects))
 
 (use-package evil-commentary
   :ensure t
@@ -953,6 +926,8 @@
 
 (use-package org-noter :ensure t :after org)
 
+(use-package ox-pandoc :ensure t)
+
 ;;; Bibtex
 (use-package biblio :ensure t)
 (use-package biblio-core :ensure t)
@@ -1345,7 +1320,7 @@
  '(lsp-ui-sideline-delay 2.0)
  '(package-selected-packages
    (quote
-    (racket-mode counsel-etags cquery auto-dictionary flyspell-correct yasnippet-snippets yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racer py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent modern-cpp-font-lock meson-mode merlin markdown-toc magit-todos lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eziam-theme eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein dtrt-indent deft counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
+    (ox-pandoc racket-mode counsel-etags cquery auto-dictionary flyspell-correct yasnippet-snippets yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racer py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent modern-cpp-font-lock meson-mode merlin markdown-toc magit-todos lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eziam-theme eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein dtrt-indent deft counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
