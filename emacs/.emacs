@@ -84,7 +84,7 @@
 
 (use-package counsel :ensure t)
 
-(use-package counsel-projectile :ensure t)
+;; (use-package counsel-projectile :ensure t)
 ;; (use-package ivy-bibtex :ensure t)
 (use-package counsel-etags :ensure t)
 (use-package wgrep :ensure t)
@@ -895,7 +895,7 @@
         org-fontify-done-headline t
         org-directory (expand-file-name "~/Dropbox/notes")
         org-default-notes-file (concat org-directory "/notes.org")
-        org-agenda-files (mapcar (apply-partially #'concat org-directory) '("/tasks.org" "/research.org" "/work.org" "/misc.org"))
+        org-agenda-files (mapcar (apply-partially #'concat org-directory) '("/tasks.org" "/research.org" "/work.org"))
         org-src-fontify-natively t
         org-src-tab-acts-natively t
         org-agenda-text-search-extra-files '(agenda-archives)
@@ -903,7 +903,13 @@
         org-fontify-quote-and-verse-blocks t
         org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
         org-pretty-entities-include-sub-superscripts t
-        org-capture-templates '(("t" "Task Entry" entry (file "tasks.org") "* TODO (%t) %?"))))
+        org-capture-templates '(
+                                ("t" "Task Entry" entry (file "tasks.org") "* TODO %?
+CREATED: %t")
+                                ("r" "Research Task" entry (file "research.org") "* TODO %?
+CREATED: %t")
+                                ("w" "Work Task" entry (file "work.org") "* TODO %?
+CREATED: %t"))))
 
 (use-package org-autolist
   :ensure t
