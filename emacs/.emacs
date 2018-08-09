@@ -84,7 +84,10 @@
 
 (use-package counsel :ensure t)
 
-;; (use-package counsel-projectile :ensure t)
+(use-package counsel-projectile
+  :ensure t
+  :disabled t)
+
 ;; (use-package ivy-bibtex :ensure t)
 (use-package counsel-etags :ensure t)
 (use-package wgrep :ensure t)
@@ -347,21 +350,21 @@
     (flycheck-pos-tip-mode)))
 
 ;;; Spell checking
-; (use-package flyspell
-;   :ensure t
-;   :hook (text-mode . flyspell-mode)
-;
-;   :config
-;   (setq flyspell-issue-message-flag nil))
-;
-; (use-package flyspell-correct
-;   :ensure t
-;   :commands (flyspell-correct-word-generic
-;              flyspell-correct-previous-word-generic))
-;
-; (use-package auto-dictionary
-;   :ensure t
-;   :hook (flyspell-mode . auto-dictionary-mode))
+                                        ; (use-package flyspell
+                                        ;   :ensure t
+                                        ;   :hook (text-mode . flyspell-mode)
+                                        ;
+                                        ;   :config
+                                        ;   (setq flyspell-issue-message-flag nil))
+                                        ;
+                                        ; (use-package flyspell-correct
+                                        ;   :ensure t
+                                        ;   :commands (flyspell-correct-word-generic
+                                        ;              flyspell-correct-previous-word-generic))
+                                        ;
+                                        ; (use-package auto-dictionary
+                                        ;   :ensure t
+                                        ;   :hook (flyspell-mode . auto-dictionary-mode))
 
 ;;; Restart Emacs
 (use-package restart-emacs :ensure t)
@@ -878,11 +881,12 @@
 
 ;;; Org
 (use-package org :ensure org-plus-contrib
-  :hook (org-mode . (lambda ()
-                      (setq buffer-face-mode-face '(:family "ETBembo" :height 120))
-                      (buffer-face-mode)
-                      (linum-relative-mode -1)))
+  :hook (org-mode . (lambda () (linum-relative-mode -1)))
+  (org-mode . visual-line-mode)
   :config
+  (font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
   (setq org-startup-folded nil
         org-startup-indented t
         org-ellipsis "  "
@@ -924,9 +928,8 @@ CREATED: %t"))))
 (use-package org-bullets
   :ensure t
   :after org
-  :hook (org-mode . org-bullets-mode)
-  :config
-  (setq org-bullets-bullet-list '("◉" "⚫" "○" "►" "◇")))
+  :hook (org-mode . org-bullets-mode))
+;; (setq org-bullets-bullet-list '("◉" "⚫" "○" "►" "◇"))
 
 (use-package org-evil :ensure t :after (evil org))
 
@@ -1283,8 +1286,10 @@ CREATED: %t"))))
   "fh" #'counsel-apropos
   "fi" #'counsel-rg
   "fl" #'counsel-locate
-  "fp" #'counsel-projectile-switch-project
-  "pf" #'counsel-projectile-find-file
+  ;; "fp" #'counsel-projectile-switch-project
+  ;; "pf" #'counsel-projectile-find-file
+  "fp" #'projectile-switch-project
+  "pf" #'projectile-find-file
   "fg" #'counsel-git
 
   "gs" #'magit-status
@@ -1324,6 +1329,7 @@ CREATED: %t"))))
  '(flycheck-pycheckers-max-line-length 100)
  '(ivy-prescient-mode t)
  '(lsp-ui-sideline-delay 2.0)
+ '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
     (ox-pandoc racket-mode counsel-etags cquery auto-dictionary flyspell-correct yasnippet-snippets yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racer py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent modern-cpp-font-lock meson-mode merlin markdown-toc magit-todos lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eziam-theme eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein dtrt-indent deft counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
@@ -1352,11 +1358,20 @@ CREATED: %t"))))
  '(lsp-face-highlight-read ((t (:background "#bc5353" :foreground "#efefef"))))
  '(lsp-face-highlight-textual ((t (:background "#bbbb8d" :foreground "black"))))
  '(lsp-face-highlight-write ((t (:background "#8fb28f" :foreground "#efefef"))))
+ '(org-level-1 ((t (:inherit outline-1 :weight bold :height 1.75 :family "Source Sans Pro"))))
+ '(org-level-2 ((t (:inherit outline-2 :weight bold :height 1.5 :family "Source Sans Pro"))))
+ '(org-level-3 ((t (:inherit outline-3 :weight bold :height 1.25 :family "Source Sans Pro"))))
+ '(org-level-4 ((t (:inherit outline-4 :weight bold :height 1.1 :family "Source Sans Pro"))))
+ '(org-level-5 ((t (:inherit outline-5 :weight bold :family "Source Sans Pro"))))
+ '(org-level-6 ((t (:inherit outline-6 :weight bold :family "Source Sans Pro"))))
+ '(org-level-7 ((t (:inherit outline-7 :weight bold :family "Source Sans Pro"))))
+ '(org-level-8 ((t (:inherit outline-8 :weight bold :family "Source Sans Pro"))))
  '(telephone-line-evil-emacs ((t (:inherit telephone-line-evil :background "#dc8cc3"))))
  '(telephone-line-evil-insert ((t (:inherit telephone-line-evil :background "#8fb28f"))))
  '(telephone-line-evil-motion ((t (:inherit telephone-line-evil :background "#005fa7"))))
  '(telephone-line-evil-normal ((t (:inherit telephone-line-evil :background "#bc5353"))))
- '(telephone-line-evil-visual ((t (:inherit telephone-line-evil :background "#ffbf8f")))))
+ '(telephone-line-evil-visual ((t (:inherit telephone-line-evil :background "#ffbf8f"))))
+ '(variable-pitch ((t (:family "Linux Libertine" :height 135)))))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
 ;; Your init file should contain only one such instance.
