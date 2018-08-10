@@ -170,6 +170,7 @@
   (setq evil-want-integration nil
         evil-ex-visual-char-range t
         evil-want-fine-undo t
+        evil-respect-visual-line-mode t
         evil-want-C-i-jump nil
         evil-move-beyond-eol t)
   :config
@@ -881,7 +882,10 @@
 
 ;;; Org
 (use-package org :ensure org-plus-contrib
-  :hook (org-mode . (lambda () (linum-relative-mode -1)))
+  :hook (org-mode . (lambda ()
+                      (linum-relative-mode -1)
+                      (auto-fill-mode -1)
+                      (set (make-local-variable 'company-backends) '(company-capf company-math-symbols-latex company-files))))
   (org-mode . visual-line-mode)
   :config
   (font-lock-add-keywords 'org-mode
@@ -899,7 +903,7 @@
         org-fontify-done-headline t
         org-directory (expand-file-name "~/Dropbox/notes")
         org-default-notes-file (concat org-directory "/notes.org")
-        org-agenda-files (mapcar (apply-partially #'concat org-directory) '("/tasks.org" "/research.org" "/work.org"))
+        org-agenda-files (mapcar (apply-partially #'concat org-directory) '("/tasks.org"))
         org-src-fontify-natively t
         org-src-tab-acts-natively t
         org-agenda-text-search-extra-files '(agenda-archives)
@@ -907,13 +911,7 @@
         org-fontify-quote-and-verse-blocks t
         org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
         org-pretty-entities-include-sub-superscripts t
-        org-capture-templates '(
-                                ("t" "Task Entry" entry (file "tasks.org") "* TODO %?
-CREATED: %t")
-                                ("r" "Research Task" entry (file "research.org") "* TODO %?
-CREATED: %t")
-                                ("w" "Work Task" entry (file "work.org") "* TODO %?
-CREATED: %t"))))
+        org-capture-templates '(("t" "Task Entry" entry (file "tasks.org") "* TODO %? CREATED: %t"))))
 
 (use-package org-autolist
   :ensure t
@@ -933,7 +931,19 @@ CREATED: %t"))))
 
 (use-package org-evil :ensure t :after (evil org))
 
-(use-package org-noter :ensure t :after org)
+(use-package org-noter
+  :ensure t
+  :after org)
+
+(use-package org-journal
+  :ensure t
+  :after org
+  :config
+  (setq org-journal-dir "~/wiki/journal/"))
+
+(use-package wc-mode
+  :ensure t
+  :hook org-mode)
 
 (use-package ox-pandoc :ensure t)
 
@@ -1332,7 +1342,7 @@ CREATED: %t"))))
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (ox-pandoc racket-mode counsel-etags cquery auto-dictionary flyspell-correct yasnippet-snippets yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racer py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent modern-cpp-font-lock meson-mode merlin markdown-toc magit-todos lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eziam-theme eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein dtrt-indent deft counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
+    (wc-mode org-journal ox-pandoc racket-mode counsel-etags cquery auto-dictionary flyspell-correct yasnippet-snippets yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racer py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent modern-cpp-font-lock meson-mode merlin markdown-toc magit-todos lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eziam-theme eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein dtrt-indent deft counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
