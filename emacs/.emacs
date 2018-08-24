@@ -84,13 +84,17 @@
 
 (use-package counsel :ensure t)
 
-(use-package counsel-projectile
-  :ensure t
-  :disabled t)
+(use-package counsel-projectile :ensure t)
 
 ;; (use-package ivy-bibtex :ensure t)
 (use-package counsel-etags :ensure t)
 (use-package wgrep :ensure t)
+
+(use-package amx
+  :ensure t
+  :config
+  (amx-mode))
+        
 
 ;;; Eshell
 (use-package esh-autosuggest
