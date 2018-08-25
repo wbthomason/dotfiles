@@ -1,9 +1,15 @@
+;;; .emacs --- wbthomason's Emacs config
+
+;;; Commentary:
+;; Basic Emacs config, split up into separate packages for easier maintenance
+
 ;;; TODO: More consistently use :after
 ;;; TODO: Put keybindings with relevant packages
 ;;; TODO: Split into separate files
 
 ;;; Code:
 
+;; Prereqs and startup speedup
 ;; From https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
 (setq gc-cons-threshold-original gc-cons-threshold)
 (setq gc-cons-threshold (* 1024 1024 100))
@@ -20,11 +26,12 @@
 
 (eval-when-compile (require 'cl))
 
+;; Package management
 (require 'package)
 (setq package-archives
-      '(("org"       . "https://orgmode.org/elpa/")
-        ("melpa"     . "https://melpa.org/packages/")
-        ("gnu"       . "https://elpa.gnu.org/packages/")))
+      '(("org" . "https://orgmode.org/elpa/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("gnu" . "https://elpa.gnu.org/packages/")))
 (setq package-enable-at-startup nil)
 (package-initialize)
 
@@ -46,8 +53,11 @@
 ;; Local packages
 (add-to-list 'load-path "~/.emacs.d/local")
 
+;; Configuration modules
+(add-to-list 'load-path "~/.emacs.d/modules")
+
 ;; Path-ish settings
-(setenv "PKG_CONFIG_PATH" (concat "/opt/ros/melodic/lib/pkgconfig" ":/usr/local/lib/pkgconfig" ":/usr/local/lib64/pkgconfig/"(getenv "PKG_CONFIG_PATH")))
+(setenv "PKG_CONFIG_PATH" (concat "/opt/ros/melodic/lib/pkgconfig" ":/usr/local/lib/pkgconfig" ":/usr/local/lib64/pkgconfig/" (getenv "PKG_CONFIG_PATH")))
 (setenv "LD_LIBRARY_PATH" (concat "/opt/ros/melodic/lib" ":/usr/local/lib" ":/usr/local/lib64" (getenv "LD_LIBRARY_PATH")))
 (setenv "PATH" (concat "/home/wil/.local/bin" ":/home/wil/.cargo/bin" ":/home/wil/.luarocks/bin"
                        ":/home/wil/.roswell/bin" (getenv "PATH")))
@@ -157,10 +167,10 @@
   :config
   (progn
     (setq parinfer-extensions
-          '(defaults       ; should be included.
-             evil           ; If you use Evil.
-             smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
-             smart-yank))   ; Yank behavior depend on mode.
+          '(defaults                    ; should be included.
+             evil                       ; If you use Evil.
+             smart-tab                  ; C-b & C-f jump positions and smart shift with tab & S-tab.
+             smart-yank))               ; Yank behavior depend on mode.
     (setq parinfer-auto-switch-indent-mode t)))
 
 ;;; Undo-Tree
@@ -287,7 +297,7 @@
   :ensure t
   :after evil
   :config
-  (setq evil-goggles-duration 0.050)
+  (setq evil-goggles-duration 0.05)
   (evil-goggles-mode)
   (evil-goggles-use-diff-refine-faces))
 
@@ -310,23 +320,23 @@
   ;; (setq flycheck-check-syntax-automatically '(save idle-change mode-enabled))
   (when (fboundp 'define-fringe-bitmap)
     (define-fringe-bitmap 'cust-flycheck-bitmap
-      (vector #b00000000
-              #b00000000
-              #b00000000
-              #b00000000
-              #b00000000
-              #b00000000
-              #b00000000
-              #b00011100
-              #b00111110
-              #b00111110
-              #b00111110
-              #b00011100
-              #b00000000
-              #b00000000
-              #b00000000
-              #b00000000
-              #b00000000)))
+      (vector 0
+              0
+              0
+              0
+              0
+              0
+              0
+              28
+              62
+              62
+              62
+              28
+              0
+              0
+              0
+              0
+              0)))
   (global-flycheck-mode)
   (flycheck-define-error-level 'error
     :severity 2
@@ -446,10 +456,10 @@
 ;;; Prescient
 (use-package prescient :ensure t)
 
-(use-package ivy-prescient
-  :ensure t
-  :after ivy
-  :config (ivy-prescient-mode))
+;; (use-package ivy-prescient
+;;   :ensure t
+;;   :after ivy
+;;   :config (ivy-prescient-mode))
 
 (use-package company-prescient
   :ensure t
@@ -595,7 +605,7 @@
   :after (company anaconda-mode)
   :hook (python-mode . (lambda () (add-to-list 'company-backends 'company-anaconda))))
 
-(use-package company-jedi  :ensure t
+(use-package company-jedi :ensure t
   :hook (python-mode . (lambda ()
                          (add-to-list 'company-backends 'company-jedi)
                          (add-hook 'python-mode-hook 'jedi:setup)))
@@ -640,15 +650,21 @@
 
 (use-package tex
   :ensure auctex
-  :hook (doc-view-mode . auto-revert-mode)
+  :hook
+  (doc-view-mode . auto-revert-mode)
+  (LaTeX-mode . (lambda ()
+                  (auto-fill-mode -1)
+                  (visual-line-mode)
+                  (variable-pitch-mode)))
+
   :config
   (add-to-list 'TeX-view-program-list
                '("Zathura"
                  ("zathura %o"
                   (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
                  "zathura"))
-  (setq TeX-PDF-mode   t
-        TeX-auto-save  t
+  (setq TeX-PDF-mode t
+        TeX-auto-save t
         TeX-parse-self t
         TeX-engine 'xetex
         TeX-source-correlate-mode t
@@ -665,7 +681,7 @@
 
 (use-package company-auctex
   :ensure t
-  :after (auctex company)
+  :after (tex company)
   :config
   (company-auctex-init))
 
@@ -805,8 +821,7 @@
 
 (use-package company-irony
   :ensure t
-  :hook ((irony-mode . company-irony-setup-begin-commands)
-         )
+  :hook ((irony-mode . company-irony-setup-begin-commands))
   :config
   (setq company-irony-ignore-case 'smart)
   (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete)))
@@ -848,6 +863,7 @@
   :hook (irony-mode . irony-eldoc))
 
 (use-package cquery
+  :disable t
   :ensure t
   :commands lsp-cquery-enable
   :hook (c-mode-common . lsp-cquery-enable)
@@ -855,18 +871,18 @@
   (setq cquery-executable "/usr/bin/cquery"
         cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack")))
 
-;; (use-package ccls
-;;   :ensure t
-;;   :hook (c-mode-common . lsp-ccls-enable)
-;;   :config
-;;   (setq ccls-executable "/usr/local/bin/ccls"))
+(use-package ccls
+  :ensure t
+  :hook (c-mode-common . lsp-ccls-enable)
+  :config
+  (setq ccls-extra-init-params '(:completion (:detailedLabel t) :cacheFormat "binary")))
 
 ;; Set a chain of C++ checkers
 (add-hook 'c-mode-common-hook (lambda ()
-				                        (flycheck-add-next-checker 'irony 'c/c++-clang-tidy)
-				                        (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-clangcheck)
-				                        (flycheck-add-next-checker 'c/c++-clangcheck 'c/c++-cppcheck)
-				                        (flycheck-add-next-checker 'c/c++-googlelint 'clang-analyzer)))
+                                (flycheck-add-next-checker 'irony 'c/c++-clang-tidy)
+                                (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-clangcheck)
+                                (flycheck-add-next-checker 'c/c++-clangcheck 'c/c++-cppcheck)
+                                (flycheck-add-next-checker 'c/c++-googlelint 'clang-analyzer)))
 ;;; Deft
 (use-package deft
   :ensure t
@@ -943,7 +959,8 @@
   :ensure t
   :after org
   :config
-  (setq org-journal-dir "~/wiki/journal/"))
+  (setq org-journal-dir "~/wiki/journal/"
+        org-journal-find-file #'find-file))
 
 (use-package wc-mode
   :ensure t
@@ -975,6 +992,7 @@
 (use-package telephone-line
   :ensure t
   :hook (after-init . telephone-line-mode)
+  :disabled t
   :config
   (setq telephone-line-primary-left-separator 'telephone-line-cubed-left
         telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
@@ -982,14 +1000,21 @@
         telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
   (setq telephone-line-height 15))
 
+(use-package doom-modeline
+  :ensure t
+  :defer t
+  :hook (after-init . doom-modeline-init)
+  :config (setq doom-modeline-height 15
+                doom-modeline-enable-word-count t))
+
 ;;; Font
 ;;; Fira code
 ;; This works when using emacs --daemon + emacsclient
 (add-hook 'after-make-frame-functions
           (lambda (frame)
-            (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")))
+            (set-fontset-font t '(57600 . 57711) "Fira Code Symbol")))
 ;; This works when using emacs without server/client
-(set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
+(set-fontset-font t '(57600 . 57711) "Fira Code Symbol")
 ;; I haven't found one statement that makes both of the above situations work, so I use both for now
 
 (defconst fira-code-font-lock-keywords-alist
@@ -1000,117 +1025,117 @@
                                    (match-end 1)
                                    ;; The first argument to concat is a string containing a literal tab
                                    ,(concat "	" (list (decode-char 'ucs (cadr regex-char-pair)))))))))
-          '(("\\(www\\)"                   #Xe100)
-            ("[^/]\\(\\*\\*\\)[^/]"        #Xe101)
-            ("\\(\\*\\*\\*\\)"             #Xe102)
-            ("\\(\\*\\*/\\)"               #Xe103)
-            ("\\(\\*>\\)"                  #Xe104)
-            ("[^*]\\(\\*/\\)"              #Xe105)
-            ("\\(\\\\\\\\\\)"              #Xe106)
-            ("\\(\\\\\\\\\\\\\\)"          #Xe107)
-            ("\\({-\\)"                    #Xe108)
+          '(("\\(www\\)" 57600)
+            ("[^/]\\(\\*\\*\\)[^/]" 57601)
+            ("\\(\\*\\*\\*\\)" 57602)
+            ("\\(\\*\\*/\\)" 57603)
+            ("\\(\\*>\\)" 57604)
+            ("[^*]\\(\\*/\\)" 57605)
+            ("\\(\\\\\\\\\\)" 57606)
+            ("\\(\\\\\\\\\\\\\\)" 57607)
+            ("\\({-\\)" 57608)
             ;; ("\\(\\[\\]\\)"                #Xe109)
-            ("\\(::\\)"                    #Xe10a)
-            ("\\(:::\\)"                   #Xe10b)
-            ("[^=]\\(:=\\)"                #Xe10c)
-            ("\\(!!\\)"                    #Xe10d)
-            ("\\(!=\\)"                    #Xe10e)
-            ("\\(!==\\)"                   #Xe10f)
-            ("\\(-}\\)"                    #Xe110)
-            ("\\(--\\)"                    #Xe111)
-            ("\\(---\\)"                   #Xe112)
-            ("\\(-->\\)"                   #Xe113)
-            ("[^-]\\(->\\)"                #Xe114)
-            ("\\(->>\\)"                   #Xe115)
-            ("\\(-<\\)"                    #Xe116)
-            ("\\(-<<\\)"                   #Xe117)
-            ("\\(-~\\)"                    #Xe118)
-            ("\\(#{\\)"                    #Xe119)
-            ("\\(#\\[\\)"                  #Xe11a)
-            ("\\(##\\)"                    #Xe11b)
-            ("\\(###\\)"                   #Xe11c)
-            ("\\(####\\)"                  #Xe11d)
-            ("\\(#(\\)"                    #Xe11e)
-            ("\\(#\\?\\)"                  #Xe11f)
-            ("\\(#_\\)"                    #Xe120)
-            ("\\(#_(\\)"                   #Xe121)
-            ("\\(\\.-\\)"                  #Xe122)
-            ("\\(\\.=\\)"                  #Xe123)
-            ("\\(\\.\\.\\)"                #Xe124)
-            ("\\(\\.\\.<\\)"               #Xe125)
-            ("\\(\\.\\.\\.\\)"             #Xe126)
-            ("\\(\\?=\\)"                  #Xe127)
-            ("\\(\\?\\?\\)"                #Xe128)
-            ("\\(;;\\)"                    #Xe129)
-            ("\\(/\\*\\)"                  #Xe12a)
-            ("\\(/\\*\\*\\)"               #Xe12b)
-            ("\\(/=\\)"                    #Xe12c)
-            ("\\(/==\\)"                   #Xe12d)
-            ("\\(/>\\)"                    #Xe12e)
-            ("\\(//\\)"                    #Xe12f)
-            ("\\(///\\)"                   #Xe130)
-            ("\\(&&\\)"                    #Xe131)
-            ("\\(||\\)"                    #Xe132)
-            ("\\(||=\\)"                   #Xe133)
-            ("[^|]\\(|=\\)"                #Xe134)
-            ("\\(|>\\)"                    #Xe135)
-            ("\\(\\^=\\)"                  #Xe136)
-            ("\\(\\$>\\)"                  #Xe137)
-            ("\\(\\+\\+\\)"                #Xe138)
-            ("\\(\\+\\+\\+\\)"             #Xe139)
-            ("\\(\\+>\\)"                  #Xe13a)
-            ("\\(=:=\\)"                   #Xe13b)
-            ("[^!/]\\(==\\)[^>]"           #Xe13c)
-            ("\\(===\\)"                   #Xe13d)
-            ("\\(==>\\)"                   #Xe13e)
-            ("[^=]\\(=>\\)"                #Xe13f)
-            ("\\(=>>\\)"                   #Xe140)
-            ("\\(<=\\)"                    #Xe141)
-            ("\\(=<<\\)"                   #Xe142)
-            ("\\(=/=\\)"                   #Xe143)
-            ("\\(>-\\)"                    #Xe144)
-            ("\\(>=\\)"                    #Xe145)
-            ("\\(>=>\\)"                   #Xe146)
-            ("[^-=]\\(>>\\)"               #Xe147)
-            ("\\(>>-\\)"                   #Xe148)
-            ("\\(>>=\\)"                   #Xe149)
-            ("\\(>>>\\)"                   #Xe14a)
-            ("\\(<\\*\\)"                  #Xe14b)
-            ("\\(<\\*>\\)"                 #Xe14c)
-            ("\\(<|\\)"                    #Xe14d)
-            ("\\(<|>\\)"                   #Xe14e)
-            ("\\(<\\$\\)"                  #Xe14f)
-            ("\\(<\\$>\\)"                 #Xe150)
-            ("\\(<!--\\)"                  #Xe151)
-            ("\\(<-\\)"                    #Xe152)
-            ("\\(<--\\)"                   #Xe153)
-            ("\\(<->\\)"                   #Xe154)
-            ("\\(<\\+\\)"                  #Xe155)
-            ("\\(<\\+>\\)"                 #Xe156)
-            ("\\(<=\\)"                    #Xe157)
-            ("\\(<==\\)"                   #Xe158)
-            ("\\(<=>\\)"                   #Xe159)
-            ("\\(<=<\\)"                   #Xe15a)
-            ("\\(<>\\)"                    #Xe15b)
-            ("[^-=]\\(<<\\)"               #Xe15c)
-            ("\\(<<-\\)"                   #Xe15d)
-            ("\\(<<=\\)"                   #Xe15e)
-            ("\\(<<<\\)"                   #Xe15f)
-            ("\\(<~\\)"                    #Xe160)
-            ("\\(<~~\\)"                   #Xe161)
-            ("\\(</\\)"                    #Xe162)
-            ("\\(</>\\)"                   #Xe163)
-            ("\\(~@\\)"                    #Xe164)
-            ("\\(~-\\)"                    #Xe165)
-            ("\\(~=\\)"                    #Xe166)
-            ("\\(~>\\)"                    #Xe167)
-            ("[^<]\\(~~\\)"                #Xe168)
-            ("\\(~~>\\)"                   #Xe169)
-            ("\\(%%\\)"                    #Xe16a)
+            ("\\(::\\)" 57610)
+            ("\\(:::\\)" 57611)
+            ("[^=]\\(:=\\)" 57612)
+            ("\\(!!\\)" 57613)
+            ("\\(!=\\)" 57614)
+            ("\\(!==\\)" 57615)
+            ("\\(-}\\)" 57616)
+            ("\\(--\\)" 57617)
+            ("\\(---\\)" 57618)
+            ("\\(-->\\)" 57619)
+            ("[^-]\\(->\\)" 57620)
+            ("\\(->>\\)" 57621)
+            ("\\(-<\\)" 57622)
+            ("\\(-<<\\)" 57623)
+            ("\\(-~\\)" 57624)
+            ("\\(#{\\)" 57625)
+            ("\\(#\\[\\)" 57626)
+            ("\\(##\\)" 57627)
+            ("\\(###\\)" 57628)
+            ("\\(####\\)" 57629)
+            ("\\(#(\\)" 57630)
+            ("\\(#\\?\\)" 57631)
+            ("\\(#_\\)" 57632)
+            ("\\((ly-raw clojure-reader-comment (\\))" 57633)
+            ("\\(\\.-\\)" 57634)
+            ("\\(\\.=\\)" 57635)
+            ("\\(\\.\\.\\)" 57636)
+            ("\\(\\.\\.<\\)" 57637)
+            ("\\(\\.\\.\\.\\)" 57638)
+            ("\\(\\?=\\)" 57639)
+            ("\\(\\?\\?\\)" 57640)
+            ("\\(;;\\)" 57641)
+            ("\\(/\\*\\)" 57642)
+            ("\\(/\\*\\*\\)" 57643)
+            ("\\(/=\\)" 57644)
+            ("\\(/==\\)" 57645)
+            ("\\(/>\\)" 57646)
+            ("\\(//\\)" 57647)
+            ("\\(///\\)" 57648)
+            ("\\(&&\\)" 57649)
+            ("\\(||\\)" 57650)
+            ("\\(||=\\)" 57651)
+            ("[^|]\\(|=\\)" 57652)
+            ("\\(|>\\)" 57653)
+            ("\\(\\^=\\)" 57654)
+            ("\\(\\$>\\)" 57655)
+            ("\\(\\+\\+\\)" 57656)
+            ("\\(\\+\\+\\+\\)" 57657)
+            ("\\(\\+>\\)" 57658)
+            ("\\(=:=\\)" 57659)
+            ("[^!/]\\(==\\)[^>]" 57660)
+            ("\\(===\\)" 57661)
+            ("\\(==>\\)" 57662)
+            ("[^=]\\(=>\\)" 57663)
+            ("\\(=>>\\)" 57664)
+            ("\\(<=\\)" 57665)
+            ("\\(=<<\\)" 57666)
+            ("\\(=/=\\)" 57667)
+            ("\\(>-\\)" 57668)
+            ("\\(>=\\)" 57669)
+            ("\\(>=>\\)" 57670)
+            ("[^-=]\\(>>\\)" 57671)
+            ("\\(>>-\\)" 57672)
+            ("\\(>>=\\)" 57673)
+            ("\\(>>>\\)" 57674)
+            ("\\(<\\*\\)" 57675)
+            ("\\(<\\*>\\)" 57676)
+            ("\\(<|\\)" 57677)
+            ("\\(<|>\\)" 57678)
+            ("\\(<\\$\\)" 57679)
+            ("\\(<\\$>\\)" 57680)
+            ("\\(<!--\\)" 57681)
+            ("\\(<-\\)" 57682)
+            ("\\(<--\\)" 57683)
+            ("\\(<->\\)" 57684)
+            ("\\(<\\+\\)" 57685)
+            ("\\(<\\+>\\)" 57686)
+            ("\\(<=\\)" 57687)
+            ("\\(<==\\)" 57688)
+            ("\\(<=>\\)" 57689)
+            ("\\(<=<\\)" 57690)
+            ("\\(<>\\)" 57691)
+            ("[^-=]\\(<<\\)" 57692)
+            ("\\(<<-\\)" 57693)
+            ("\\(<<=\\)" 57694)
+            ("\\(<<<\\)" 57695)
+            ("\\(<~\\)" 57696)
+            ("\\(<~~\\)" 57697)
+            ("\\(</\\)" 57698)
+            ("\\(</>\\)" 57699)
+            ("\\(~@\\)" 57700)
+            ("\\(~-\\)" 57701)
+            ("\\(~=\\)" 57702)
+            ("\\(~>\\)" 57703)
+            ("[^<]\\(~~\\)" 57704)
+            ("\\(~~>\\)" 57705)
+            ("\\(%%\\)" 57706)
             ;; ("\\(x\\)"                   #Xe16b) This ended up being hard to do properly so I'm leaving it out.
-            ("[^:=]\\(:\\)[^:=]"           #Xe16c)
-            ("[^\\+<>]\\(\\+\\)[^\\+<>]"   #Xe16d)
-            ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
+            ("[^:=]\\(:\\)[^:=]" 57708)
+            ("[^\\+<>]\\(\\+\\)[^\\+<>]" 57709)
+            ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" 57711))))
 
 (defun add-fira-code-symbol-keywords ()
   (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
@@ -1125,6 +1150,7 @@
 ;; (use-package eziam-dark-theme :ensure eziam-theme)
 
 (load-theme 'nazgul t)
+;; (load-theme 'tango t)
 
 ;;; Relative linum
 (use-package linum-relative
@@ -1229,17 +1255,17 @@
   (dtrt-indent-mode))
 
 ;; Evil settings
-(setq evil-insert-state-cursor  '("#268bd2" bar)  ;; blue
-      evil-normal-state-cursor  '("#b58900" box)  ;; blue
-      evil-visual-state-cursor  '("#cb4b16" box)  ;; orange
+(setq evil-insert-state-cursor '("#268bd2" bar) ;; blue
+      evil-normal-state-cursor '("#b58900" box) ;; blue
+      evil-visual-state-cursor '("#cb4b16" box) ;; orange
       evil-replace-state-cursor '("#859900" hbar) ;; green
-      evil-emacs-state-cursor   '("#d33682" box)) ;; magenta
+      evil-emacs-state-cursor '("#d33682" box)) ;; magenta
 
 ;; Minibuffer quitting with a single ESC
 (defun minibuffer-keyboard-quit ()
   (interactive)
   (if (and delete-selection-mode transient-mark-mode mark-active)
-      (setq deactivate-mark  t)
+      (setq deactivate-mark t)
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
 
@@ -1280,13 +1306,13 @@
 
 ;; Keybindings
 (evil-leader/set-key
-  "q"  #'kill-emacs
-  "w"  #'save-buffer
-  "d"  (lambda () (interactive) (kill-buffer nil))
-  "x"  #'save-buffers-kill-terminal
-  "a"  #'previous-buffer
-  "s"  #'next-buffer
-  "k"  #'delete-window
+  "q" #'kill-emacs
+  "w" #'save-buffer
+  "d" (lambda () (interactive) (kill-buffer nil))
+  "x" #'save-buffers-kill-terminal
+  "a" #'previous-buffer
+  "s" #'next-buffer
+  "k" #'delete-window
   "z=" #'flyspell-auto-correct-word
 
   "bb" #'ivy-switch-buffer
@@ -1300,10 +1326,8 @@
   "fh" #'counsel-apropos
   "fi" #'counsel-rg
   "fl" #'counsel-locate
-  ;; "fp" #'counsel-projectile-switch-project
-  ;; "pf" #'counsel-projectile-find-file
-  "fp" #'projectile-switch-project
-  "pf" #'projectile-find-file
+  "fp" #'counsel-projectile-switch-project
+  "pf" #'counsel-projectile-find-file
   "fg" #'counsel-git
 
   "gs" #'magit-status
@@ -1313,7 +1337,7 @@
 
   "ts" #'window-toggle-split-direction
 
-  "c"  #'projectile-compile-project
+  "c" #'projectile-compile-project
   "lr" #'xref-find-references
   "ln" #'lsp-rename
   "SPC" #'execute-extended-command
@@ -1346,7 +1370,7 @@
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (wc-mode org-journal ox-pandoc racket-mode counsel-etags cquery auto-dictionary flyspell-correct yasnippet-snippets yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racer py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent modern-cpp-font-lock meson-mode merlin markdown-toc magit-todos lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eziam-theme eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein dtrt-indent deft counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
+    (ccls amx doom-modeline wc-mode org-journal ox-pandoc racket-mode counsel-etags cquery auto-dictionary flyspell-correct yasnippet-snippets yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racer py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent modern-cpp-font-lock meson-mode merlin markdown-toc magit-todos lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eziam-theme eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein dtrt-indent deft counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
