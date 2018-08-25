@@ -355,21 +355,21 @@
     (flycheck-pos-tip-mode)))
 
 ;;; Spell checking
-                                        ; (use-package flyspell
-                                        ;   :ensure t
-                                        ;   :hook (text-mode . flyspell-mode)
-                                        ;
-                                        ;   :config
-                                        ;   (setq flyspell-issue-message-flag nil))
-                                        ;
-                                        ; (use-package flyspell-correct
-                                        ;   :ensure t
-                                        ;   :commands (flyspell-correct-word-generic
-                                        ;              flyspell-correct-previous-word-generic))
-                                        ;
-                                        ; (use-package auto-dictionary
-                                        ;   :ensure t
-                                        ;   :hook (flyspell-mode . auto-dictionary-mode))
+(use-package flyspell
+  :ensure t
+  :hook ((org-mode LaTeX-mode markdown-mode) . flyspell-mode)
+
+  :config
+  (setq flyspell-issue-message-flag nil))
+
+(use-package flyspell-correct
+  :ensure t
+  :commands (flyspell-correct-word-generic
+             flyspell-correct-previous-word-generic))
+
+(use-package auto-dictionary
+  :ensure t
+  :hook (flyspell-mode . auto-dictionary-mode))
 
 ;;; Restart Emacs
 (use-package restart-emacs :ensure t)
