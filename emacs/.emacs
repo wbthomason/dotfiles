@@ -96,7 +96,12 @@
 (use-package counsel-projectile :ensure t)
 
 ;; (use-package ivy-bibtex :ensure t)
-(use-package counsel-etags :ensure t)
+(use-package counsel-etags
+  :ensure t
+  :config
+  (add-to-list 'counsel-etags-ignore-directories ".cquery_cached_index")
+  (add-to-list 'counsel-etags-ignore-directories "lib"))
+
 (use-package wgrep :ensure t)
 
 (use-package amx
@@ -279,8 +284,7 @@
 
 (use-package evil-magit
   :ensure t
-  :after (evil magit)
-  :hook magit-mode)
+  :after (evil magit))
 
 (use-package evil-terminal-cursor-changer
   :ensure t
@@ -428,7 +432,7 @@
 ;;; Magit
 (use-package magit
   :ensure t
-  :commands (magit-status magit-commit magit-push magit-pull)
+  :defer 5
   :config
   ;; Redefine the tab key specifically for Magit to fix the overriding of the above keybinding
   (define-key magit-mode-map [tab] #'magit-section-toggle))
@@ -1020,7 +1024,14 @@
 
 (use-package ox-pandoc
   :ensure t
-  :hook (org-mode . (lambda () (require 'ox-pandoc))))
+  :defer 5)
+
+(use-package org-projectile
+  :ensure t
+  :after (org projectile)
+  :config
+  (org-projectile-per-project)
+  (setq org-projectile-per-project-filepath "TODO.org"))
 
 ;;; Bibtex
 (use-package biblio :ensure t)
@@ -1372,6 +1383,7 @@
   "fp" #'counsel-projectile-switch-project
   "pf" #'counsel-projectile-find-file
   "fg" #'counsel-git
+  "ft" #'counsel-etags-find-tag-at-point
 
   "gs" #'magit-status
   "gc" #'magit-commit
@@ -1389,6 +1401,7 @@
   "oc" #'org-capture
   "oa" #'org-agenda
   "os" #'org-schedule
+  "op" #'org-projectile-project-todo-completing-read
   "on" #'deft)
 
 (define-key evil-normal-state-map [tab] #'ivy-switch-buffer)
@@ -1412,7 +1425,7 @@
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (cquery dtrt-indent golden-ratio browse-kill-ring focus highlight-parentheses format-all rainbow-delimiters hl-todo linum-relative doom-modeline yasnippet-snippets biblio ox-pandoc wc-mode org-journal org-noter org-evil org-bullets org-variable-pitch org-autolist org-plus-contrib deft ccls irony-eldoc flycheck-clangcheck flycheck-clang-analyzer flycheck-irony company-c-headers company-irony irony modern-cpp-font-lock google-c-style scribble-mode racket-mode flycheck-rust racer lsp-rust cargo rust-mode lsp-go scala-mode geiser fish-mode company-lua lua-mode toml-mode meson-mode cmake-font-lock cmake-mode lsp-javascript-typescript lsp-html yaml-mode company-math company-reftex company-auctex auctex-latexmk auctex markdown-toc flycheck-pycheckers lsp-python py-isort ein yapfify company-jedi company-anaconda anaconda-mode flycheck-ghcmod flycheck-haskell company-ghc company-ghci company-cabal lsp-haskell hindent intero ghc haskell-mode lsp-ocaml utop merlin tuareg ocp-indent slime-company company-lsp lsp-ui lsp-mode company-prescient prescient all-the-icons-dired all-the-icons-ivy company-posframe which-key highlight-indent-guides restart-emacs auto-dictionary flyspell-correct flycheck-pos-tip flycheck evil-goggles evil-lion evil-snipe evil-commentary evil-terminal-cursor-changer evil-magit evil-escape evil-embrace evil-visualstar evil-args evil-fringe-mark evil-matchit evil-surround evil-collection evil-leader evil-expat evil undo-tree parinfer lispyville lispy popup-kill-ring ialign rainbow-mode eyebrowse git-gutter esh-autosuggest ivy-posframe amx wgrep counsel-etags counsel-projectile counsel ivy-xref ivy-rich swiper ivy auto-compile use-package)))
+    (org-projectile cquery dtrt-indent golden-ratio browse-kill-ring focus highlight-parentheses format-all rainbow-delimiters hl-todo linum-relative doom-modeline yasnippet-snippets biblio ox-pandoc wc-mode org-journal org-noter org-evil org-bullets org-variable-pitch org-autolist org-plus-contrib deft ccls irony-eldoc flycheck-clangcheck flycheck-clang-analyzer flycheck-irony company-c-headers company-irony irony modern-cpp-font-lock google-c-style scribble-mode racket-mode flycheck-rust racer lsp-rust cargo rust-mode lsp-go scala-mode geiser fish-mode company-lua lua-mode toml-mode meson-mode cmake-font-lock cmake-mode lsp-javascript-typescript lsp-html yaml-mode company-math company-reftex company-auctex auctex-latexmk auctex markdown-toc flycheck-pycheckers lsp-python py-isort ein yapfify company-jedi company-anaconda anaconda-mode flycheck-ghcmod flycheck-haskell company-ghc company-ghci company-cabal lsp-haskell hindent intero ghc haskell-mode lsp-ocaml utop merlin tuareg ocp-indent slime-company company-lsp lsp-ui lsp-mode company-prescient prescient all-the-icons-dired all-the-icons-ivy company-posframe which-key highlight-indent-guides restart-emacs auto-dictionary flyspell-correct flycheck-pos-tip flycheck evil-goggles evil-lion evil-snipe evil-commentary evil-terminal-cursor-changer evil-magit evil-escape evil-embrace evil-visualstar evil-args evil-fringe-mark evil-matchit evil-surround evil-collection evil-leader evil-expat evil undo-tree parinfer lispyville lispy popup-kill-ring ialign rainbow-mode eyebrowse git-gutter esh-autosuggest ivy-posframe amx wgrep counsel-etags counsel-projectile counsel ivy-xref ivy-rich swiper ivy auto-compile use-package)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
