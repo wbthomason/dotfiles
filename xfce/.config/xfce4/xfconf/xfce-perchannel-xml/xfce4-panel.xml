@@ -33,6 +33,7 @@
     </property>
     <property name="plugin-6" type="string" value="systray">
       <property name="names-visible" type="array">
+        <value type="string" value="vlc"/>
         <value type="string" value="networkmanager applet"/>
         <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="chromium"/>
@@ -43,6 +44,7 @@
     <property name="plugin-7" type="string" value="power-manager-plugin"/>
     <property name="plugin-8" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="mpris-players" type="string" value="vlc"/>
     </property>
     <property name="plugin-10" type="string" value="systemload"/>
     <property name="plugin-11" type="string" value="whiskermenu"/>
