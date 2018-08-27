@@ -666,8 +666,13 @@
   (setq TeX-PDF-mode t
         TeX-auto-save t
         TeX-parse-self t
-        TeX-engine 'xetex
+        TeX-electric-sub-and-superscript t
+        TeX-electric-math '("\\(" "\\)")
+        TeX-quote-after-quote t
+        TeX-clean-confirm nil
         TeX-source-correlate-mode t
+        TeX-source-correlate-method 'synctex
+        TeX-engine 'xetex
         TeX-view-program-selection '((output-pdf "Zathura")))
   (setq-default TeX-master nil))
 
@@ -863,7 +868,7 @@
   :hook (irony-mode . irony-eldoc))
 
 (use-package cquery
-  :disable t
+  :disabled t
   :ensure t
   :commands lsp-cquery-enable
   :hook (c-mode-common . lsp-cquery-enable)
@@ -917,6 +922,7 @@
         org-pretty-entities t
         org-hide-emphasis-markers t
         org-log-done 'time
+        org-export-with-smart-quotes t
         org-log-redeadline 'time
         org-log-reschedule 'time
         org-fontify-whole-heading-line t
