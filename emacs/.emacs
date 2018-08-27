@@ -914,16 +914,16 @@
   :hook (irony-mode . irony-eldoc))
 
 (use-package cquery
-  :disabled t
   :ensure t
   :commands lsp-cquery-enable
   :hook (c-mode-common . lsp-cquery-enable)
   :config
   (setq cquery-executable "/usr/bin/cquery"
-        cquery-extra-init-params '(:index (:comments 2) :cacheFormat "msgpack")))
+        cquery-extra-init-params '(:index (:comments 2) :completion (:detailedLabel t) :cacheFormat "msgpack")))
 
 (use-package ccls
   :ensure t
+  :disabled t
   :hook (c-mode-common . lsp-ccls-enable)
   :config
   (setq ccls-extra-init-params '(:completion (:detailedLabel t) :cacheFormat "binary")))
@@ -1412,7 +1412,7 @@
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (dtrt-indent golden-ratio browse-kill-ring focus highlight-parentheses format-all rainbow-delimiters hl-todo linum-relative doom-modeline yasnippet-snippets biblio ox-pandoc wc-mode org-journal org-noter org-evil org-bullets org-variable-pitch org-autolist org-plus-contrib deft ccls irony-eldoc flycheck-clangcheck flycheck-clang-analyzer flycheck-irony company-c-headers company-irony irony modern-cpp-font-lock google-c-style scribble-mode racket-mode flycheck-rust racer lsp-rust cargo rust-mode lsp-go scala-mode geiser fish-mode company-lua lua-mode toml-mode meson-mode cmake-font-lock cmake-mode lsp-javascript-typescript lsp-html yaml-mode company-math company-reftex company-auctex auctex-latexmk auctex markdown-toc flycheck-pycheckers lsp-python py-isort ein yapfify company-jedi company-anaconda anaconda-mode flycheck-ghcmod flycheck-haskell company-ghc company-ghci company-cabal lsp-haskell hindent intero ghc haskell-mode lsp-ocaml utop merlin tuareg ocp-indent slime-company company-lsp lsp-ui lsp-mode company-prescient prescient all-the-icons-dired all-the-icons-ivy company-posframe which-key highlight-indent-guides restart-emacs auto-dictionary flyspell-correct flycheck-pos-tip flycheck evil-goggles evil-lion evil-snipe evil-commentary evil-terminal-cursor-changer evil-magit evil-escape evil-embrace evil-visualstar evil-args evil-fringe-mark evil-matchit evil-surround evil-collection evil-leader evil-expat evil undo-tree parinfer lispyville lispy popup-kill-ring ialign rainbow-mode eyebrowse git-gutter esh-autosuggest ivy-posframe amx wgrep counsel-etags counsel-projectile counsel ivy-xref ivy-rich swiper ivy auto-compile use-package)))
+    (cquery dtrt-indent golden-ratio browse-kill-ring focus highlight-parentheses format-all rainbow-delimiters hl-todo linum-relative doom-modeline yasnippet-snippets biblio ox-pandoc wc-mode org-journal org-noter org-evil org-bullets org-variable-pitch org-autolist org-plus-contrib deft ccls irony-eldoc flycheck-clangcheck flycheck-clang-analyzer flycheck-irony company-c-headers company-irony irony modern-cpp-font-lock google-c-style scribble-mode racket-mode flycheck-rust racer lsp-rust cargo rust-mode lsp-go scala-mode geiser fish-mode company-lua lua-mode toml-mode meson-mode cmake-font-lock cmake-mode lsp-javascript-typescript lsp-html yaml-mode company-math company-reftex company-auctex auctex-latexmk auctex markdown-toc flycheck-pycheckers lsp-python py-isort ein yapfify company-jedi company-anaconda anaconda-mode flycheck-ghcmod flycheck-haskell company-ghc company-ghci company-cabal lsp-haskell hindent intero ghc haskell-mode lsp-ocaml utop merlin tuareg ocp-indent slime-company company-lsp lsp-ui lsp-mode company-prescient prescient all-the-icons-dired all-the-icons-ivy company-posframe which-key highlight-indent-guides restart-emacs auto-dictionary flyspell-correct flycheck-pos-tip flycheck evil-goggles evil-lion evil-snipe evil-commentary evil-terminal-cursor-changer evil-magit evil-escape evil-embrace evil-visualstar evil-args evil-fringe-mark evil-matchit evil-surround evil-collection evil-leader evil-expat evil undo-tree parinfer lispyville lispy popup-kill-ring ialign rainbow-mode eyebrowse git-gutter esh-autosuggest ivy-posframe amx wgrep counsel-etags counsel-projectile counsel ivy-xref ivy-rich swiper ivy auto-compile use-package)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
@@ -1430,7 +1430,7 @@
  '(evil-goggles-undo-redo-change-face ((t (:inherit diff-refine-changed))))
  '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-refine-removed))))
  '(evil-goggles-yank-face ((t (:inherit diff-refine-changed))))
- '(font-latex-italic-face ((t (:foreground "OliveDrab" :slant italic :family "RobotoMono Nerd Font" :height 110))))
+ '(font-latex-italic-face ((t (:foreground "OliveDrab" :slant italic :family "RobotoMono Nerd Font"))))
  '(font-latex-math-face ((t (:foreground "burlywood" :height 110 :family "Fira Code Retina"))))
  '(font-latex-sectioning-5-face ((t (:inherit bold :weight bold))))
  '(font-latex-sedate-face ((t (:foreground "LightGray" :height 110 :family "Fira Code Retina"))))
