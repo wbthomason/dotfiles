@@ -529,6 +529,7 @@
   :init
   (setq company-lsp-async t
         company-lsp-cache-candidates t
+        company-lsp-enable-snippet t
         company-lsp-enable-recompletion t)
   :config
   (push 'company-lsp company-backends))
