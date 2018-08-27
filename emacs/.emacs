@@ -100,7 +100,11 @@
   :ensure t
   :config
   (add-to-list 'counsel-etags-ignore-directories ".cquery_cached_index")
-  (add-to-list 'counsel-etags-ignore-directories "lib"))
+  (add-to-list 'counsel-etags-ignore-directories "lib")
+  (setq tags-revert-without-query t)
+  (add-hook 'prog-mode-hook
+            (lambda ()
+              (add-hook 'after-save-hook 'counsel-etags-virtual-update-tags 'append 'local))))
 
 (use-package wgrep :ensure t)
 
