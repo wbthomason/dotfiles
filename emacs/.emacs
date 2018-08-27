@@ -10,15 +10,19 @@
 ;;; Code:
 
 ;; Prereqs and startup speedup
-;; From https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/
-(setq gc-cons-threshold-original gc-cons-threshold)
-(setq gc-cons-threshold (* 1024 1024 100))
-(setq file-name-handler-alist-original file-name-handler-alist)
+;; From
+;; https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/ and https://github.com/hlissner/doom-emacs/wiki/FAQ#how-is-dooms-startup-so-fast
+;; -*- lexical-binding: t; -*-
+(defvar gc-cons-threshold-original gc-cons-threshold)
+(setq gc-cons-threshold 402653184
+      gc-cons-percentage 0.6)
+(defvar file-name-handler-alist-original file-name-handler-alist)
 (setq file-name-handler-alist nil)
 (run-with-idle-timer
  5 nil
  (lambda ()
-   (setq gc-cons-threshold (* 2 gc-cons-threshold-original))
+   (setq gc-cons-threshold (* 2 gc-cons-threshold-original)
+         gc-cons-percentage 0.1)
    (setq file-name-handler-alist file-name-handler-alist-original)
    (makunbound 'gc-cons-threshold-original)
    (makunbound 'file-name-handler-alist-original)
@@ -43,7 +47,6 @@
 
 ;; Byte-compile
 (setq load-prefer-newer t)
-(package-initialize)
 (use-package auto-compile
   :ensure t
   :config
@@ -52,9 +55,6 @@
 
 ;; Local packages
 (add-to-list 'load-path "~/.emacs.d/local")
-
-;; Configuration modules
-(add-to-list 'load-path "~/.emacs.d/modules")
 
 ;; Path-ish settings
 (setenv "PKG_CONFIG_PATH" (concat "/opt/ros/melodic/lib/pkgconfig" ":/usr/local/lib/pkgconfig" ":/usr/local/lib64/pkgconfig/" (getenv "PKG_CONFIG_PATH")))
@@ -71,7 +71,7 @@
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
         enable-recursive-minibuffers t
-        ivy-re-builders-alist '((t . ivy--regex-fuzzy))
+        ;; ivy-re-builders-alist '((t . ivy--regex-fuzzy))
         ivy-display-style 'fancy
         ivy-format-function 'ivy-format-function-line)
   (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
@@ -84,8 +84,7 @@
   :ensure t
   :config
   (setq ivy-virtual-abbreviate 'full
-        ivy-rich-switch-buffer-align-virtual-buffer t)
-  (setq ivy-rich-path-style 'abbrev)
+        ivy-rich-path-style 'abbrev)
   (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer))
 
 (use-package ivy-xref
@@ -104,7 +103,24 @@
   :ensure t
   :config
   (amx-mode))
-        
+
+(use-package ivy-posframe
+  :after ivy
+  :ensure t
+  :config
+  (defun ivy-posframe-center-dynamic-size (str)
+    "Simple wrapper to dynamically set the width and height for the posframe."
+    (setq ivy-posframe-height (floor (* 1.2 ivy-height))
+          ivy-posframe-width (floor (/ (window-width) 1.2)))
+    (ivy-posframe--display str #'posframe-poshandler-frame-center))
+  (setq ivy-display-function #'ivy-posframe-center-dynamic-size)
+  (push
+   `(ivy-posframe-center-dynamic-size
+     :cleanup
+     (lambda () (when
+               (ivy-posframe-workable-p)
+             (posframe-hide ivy-posframe-buffer))))
+   ivy-display-functions-props))
 
 ;;; Eshell
 (use-package esh-autosuggest
@@ -261,7 +277,10 @@
                 evil-escape-delay 0.2)
   (setq evil-escape-unordered-key-sequence t))
 
-(use-package evil-magit :ensure t)
+(use-package evil-magit
+  :ensure t
+  :after (evil magit)
+  :hook magit-mode)
 
 (use-package evil-terminal-cursor-changer
   :ensure t
@@ -392,7 +411,8 @@
   (setq highlight-indent-guides-method 'character))
 
 ;;; Projectile
-(use-package projectile :ensure t
+(use-package projectile
+  :ensure t
   :config
   (projectile-mode t)
   (setq projectile-enable-caching t)
@@ -406,8 +426,12 @@
   (push "meson.build" projectile-project-root-files-bottom-up))
 
 ;;; Magit
-(use-package magit :ensure t)
-(use-package magit-todos :ensure t)
+(use-package magit
+  :ensure t
+  :commands (magit-status magit-commit magit-push magit-pull)
+  :config
+  ;; Redefine the tab key specifically for Magit to fix the overriding of the above keybinding
+  (define-key magit-mode-map [tab] #'magit-section-toggle))
 
 ;;; which-key
 (use-package which-key
@@ -443,6 +467,13 @@
 ;; (use-package company-box
 ;;   :ensure t
 ;;   :hook (company-mode . company-box-mode))
+
+(use-package company-posframe
+  :after (company desktop)
+  :ensure t
+  :config
+  (push '(company-posframe-mode . nil) desktop-minor-mode-table)
+  (company-posframe-mode 1))
 
 ;;; All-the-icons
 (use-package all-the-icons-ivy
@@ -495,18 +526,24 @@
   (push 'company-lsp company-backends))
 
 (use-package company-quickhelp :ensure t
+  :disabled t
   :config
   (company-quickhelp-mode))
 
 ;; Languages
 ;; Common Lisp
-(use-package slime-company :ensure t)
+(use-package slime-company
+  :ensure t
+  :hook slime-mode)
+
 (use-package slime
   :ensure t
-  :hook (slime-mode . (lambda () (unless (slime-connected-p) (save-excursion (slime)))))
+  :hook (common-lisp-mode lisp-mode)
   :init
   (setq inferior-lisp-program "/usr/bin/sbcl")
-  (setq slime-contribs '(slime-fancy slime-company slime-asdf)))
+  (setq slime-contribs '(slime-fancy slime-company slime-asdf))
+  :config
+  (add-hook 'slime-mode-hook (lambda () (unless (slime-connected-p) (save-excursion (slime))))))
 
 
 ;;; OCaml
@@ -593,7 +630,11 @@
 ;;; Python
 (setenv "PYTHONPATH" "/opt/ros/melodic/lib/python2.7/site-packages")
 
-(use-package python :ensure t)
+(use-package python
+  :ensure t
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode))
+
 (use-package anaconda-mode
   :ensure t
   :diminish anaconda-mode
@@ -713,7 +754,10 @@
 (use-package yaml-mode :ensure t)
 
 ;;; HTML/Web
-(use-package mhtml-mode :ensure t)
+(use-package mhtml-mode
+  :ensure t
+  :mode "\\.html\\'")
+
 (use-package lsp-html
   :ensure t
   :hook (html-mode . lsp-html-enable))
@@ -805,7 +849,9 @@
   :hook (flycheck-mode . flycheck-rust-setup))
 
 ;; Racket
-(use-package racket-mode :ensure t)
+(use-package racket-mode
+  :ensure t
+  :mode "\\.rkt\\'")
 
 (use-package scribble-mode :ensure t)
 
@@ -972,7 +1018,9 @@
   :ensure t
   :hook org-mode)
 
-(use-package ox-pandoc :ensure t)
+(use-package ox-pandoc
+  :ensure t
+  :hook (org-mode . (lambda () (require 'ox-pandoc))))
 
 ;;; Bibtex
 (use-package biblio :ensure t)
@@ -994,18 +1042,7 @@
 ;;; Prettify
 (global-prettify-symbols-mode t)
 
-;;; Telephone Line
-(use-package telephone-line
-  :ensure t
-  :hook (after-init . telephone-line-mode)
-  :disabled t
-  :config
-  (setq telephone-line-primary-left-separator 'telephone-line-cubed-left
-        telephone-line-secondary-left-separator 'telephone-line-cubed-hollow-left
-        telephone-line-primary-right-separator 'telephone-line-cubed-right
-        telephone-line-secondary-right-separator 'telephone-line-cubed-hollow-right)
-  (setq telephone-line-height 15))
-
+;; Modeline
 (use-package doom-modeline
   :ensure t
   :defer t
@@ -1355,8 +1392,6 @@
   "on" #'deft)
 
 (define-key evil-normal-state-map [tab] #'ivy-switch-buffer)
-;; Redefine the tab key specifically for Magit to fix the overriding of the above keybinding
-(define-key magit-mode-map [tab] #'magit-section-toggle)
 (define-key evil-insert-state-map [C-tab] #'company-complete)
 (add-hook 'server-done-hook 'kill-buffer)
 
@@ -1371,12 +1406,13 @@
    (quote
     ("9b35c097a5025d5da1c97dba45fed027e4fb92faecbd2f89c2a79d2d80975181" "57f95012730e3a03ebddb7f2925861ade87f53d5bbb255398357731a7b1ac0e0" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "075351c6aeaddd2343155cbcd4168da14f54284453b2f1c11d051b2687d6dc48" "e4fe3efbe5098392724aa0be119af539406553f58ef236d1514c8a80ec7ff557" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "242527ce24b140d304381952aa7a081179a9848d734446d913ca8ef0af3cef21" "44247f2a14c661d96d2bff302f1dbf37ebe7616935e4682102b68c0b6cc80095" "c9ddf33b383e74dac7690255dd2c3dfa1961a8e8a1d20e401c6572febef61045" "02956c6f9fc15711d3652ec42ddb43d4ae442da98dba72c7bdd9603525ce82aa" "ef03b74835e14db281cc489faf0d011e1c9255b747ba9c203426c56ed3331197" "058721e6836dfe4d18abbd35820eba7850427f59b9ac7c9c37a5e76f3a405749" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8f137ccf060af657fbc0c1f7c3d406646ad04ebb8b3e025febc8ef432e958b02" default)))
  '(flycheck-pycheckers-max-line-length 100)
+ '(font-latex-fontify-script nil)
  '(ivy-prescient-mode t)
  '(lsp-ui-sideline-delay 2.0)
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (ccls amx doom-modeline wc-mode org-journal ox-pandoc racket-mode counsel-etags cquery auto-dictionary flyspell-correct yasnippet-snippets yapfify yaml-mode which-key wgrep utop use-package tuareg toml-mode telephone-line slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racer py-isort popup-kill-ring parinfer org-variable-pitch org-plus-contrib org-noter org-evil org-bullets org-autolist ocp-indent modern-cpp-font-lock meson-mode merlin markdown-toc magit-todos lsp-ui lsp-rust lsp-python lsp-ocaml lsp-javascript-typescript lsp-html lsp-haskell lsp-go lispyville linum-relative ivy-xref ivy-rich ivy-prescient irony-eldoc intero ialign hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eziam-theme eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein dtrt-indent deft counsel-projectile company-reftex company-quickhelp company-prescient company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock cargo browse-kill-ring biblio auto-compile auctex-latexmk all-the-icons-ivy all-the-icons-dired)))
+    (dtrt-indent golden-ratio browse-kill-ring focus highlight-parentheses format-all rainbow-delimiters hl-todo linum-relative doom-modeline yasnippet-snippets biblio ox-pandoc wc-mode org-journal org-noter org-evil org-bullets org-variable-pitch org-autolist org-plus-contrib deft ccls irony-eldoc flycheck-clangcheck flycheck-clang-analyzer flycheck-irony company-c-headers company-irony irony modern-cpp-font-lock google-c-style scribble-mode racket-mode flycheck-rust racer lsp-rust cargo rust-mode lsp-go scala-mode geiser fish-mode company-lua lua-mode toml-mode meson-mode cmake-font-lock cmake-mode lsp-javascript-typescript lsp-html yaml-mode company-math company-reftex company-auctex auctex-latexmk auctex markdown-toc flycheck-pycheckers lsp-python py-isort ein yapfify company-jedi company-anaconda anaconda-mode flycheck-ghcmod flycheck-haskell company-ghc company-ghci company-cabal lsp-haskell hindent intero ghc haskell-mode lsp-ocaml utop merlin tuareg ocp-indent slime-company company-lsp lsp-ui lsp-mode company-prescient prescient all-the-icons-dired all-the-icons-ivy company-posframe which-key highlight-indent-guides restart-emacs auto-dictionary flyspell-correct flycheck-pos-tip flycheck evil-goggles evil-lion evil-snipe evil-commentary evil-terminal-cursor-changer evil-magit evil-escape evil-embrace evil-visualstar evil-args evil-fringe-mark evil-matchit evil-surround evil-collection evil-leader evil-expat evil undo-tree parinfer lispyville lispy popup-kill-ring ialign rainbow-mode eyebrowse git-gutter esh-autosuggest ivy-posframe amx wgrep counsel-etags counsel-projectile counsel ivy-xref ivy-rich swiper ivy auto-compile use-package)))
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
 ;; If you edit it by hand, you could mess it up, so be careful.
@@ -1394,8 +1430,10 @@
  '(evil-goggles-undo-redo-change-face ((t (:inherit diff-refine-changed))))
  '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-refine-removed))))
  '(evil-goggles-yank-face ((t (:inherit diff-refine-changed))))
- '(font-latex-italic-face ((t (:foreground "OliveDrab" :slant italic :family "RobotoMono Nerd Font"))))
+ '(font-latex-italic-face ((t (:foreground "OliveDrab" :slant italic :family "RobotoMono Nerd Font" :height 110))))
+ '(font-latex-math-face ((t (:foreground "burlywood" :height 110 :family "Fira Code Retina"))))
  '(font-latex-sectioning-5-face ((t (:inherit bold :weight bold))))
+ '(font-latex-sedate-face ((t (:foreground "LightGray" :height 110 :family "Fira Code Retina"))))
  '(italic ((t (:underline nil :slant italic :family "ETBembo"))))
  '(ivy-confirm-face ((t (:inherit minibuffer-prompt :foreground "lemon chiffon"))))
  '(ivy-current-match ((t (:background "dim gray" :foreground "white smoke"))))
