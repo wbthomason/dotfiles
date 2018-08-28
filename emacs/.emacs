@@ -462,9 +462,12 @@
   (define-key company-active-map [tab] 'company-select-next)
   (define-key company-active-map [S-tab] 'company-select-previous)
   (define-key company-active-map [C-return] #'company-complete-selection)
+  (define-key company-active-map [return] #'company-complete-selection)
   (setq company-backends (delete 'company-semantic company-backends))
+  (setq company-backends (delete 'company-dabbrev company-backends))
+  (setq company-backends (delete 'company-oddmuse company-backends))
   (setq company-idle-delay 0
-        ;; company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
+        company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
         company-minimum-prefix-length 2
         company-require-match nil
         company-tooltip-align-annotations t
@@ -614,18 +617,15 @@
 
 (use-package company-cabal
   :ensure t
-  :config
-  (add-to-list 'company-backends 'company-cabal))
+  :hook (haskell-mode . (lambda () (push 'company-cabal company-backends))))
 
 (use-package company-ghci
   :ensure t
-  :config
-  (push 'company-ghci company-backends))
+  :hook (haskell-mode . (lambda () (push 'company-ghci company-backends))))
 
 (use-package company-ghc
   :ensure t
-  :config
-  (add-to-list 'company-backends 'company-ghc))
+  :hook (haskell-mode . (lambda () (push 'company-ghc company-backends))))
 
 (use-package flycheck-haskell
   :ensure t
@@ -653,11 +653,11 @@
 (use-package company-anaconda
   :ensure t
   :after (company anaconda-mode)
-  :hook (python-mode . (lambda () (add-to-list 'company-backends 'company-anaconda))))
+  :hook (python-mode . (lambda () (push 'company-anaconda company-backends))))
 
 (use-package company-jedi :ensure t
   :hook (python-mode . (lambda ()
-                         (add-to-list 'company-backends 'company-jedi)
+                         (push 'company-jedi company-backends)
                          (add-hook 'python-mode-hook 'jedi:setup)))
   :config
   (setq jedi:complete-on-dot t))
@@ -737,8 +737,7 @@
 (use-package company-auctex
   :ensure t
   :after (tex company)
-  :config
-  (company-auctex-init))
+  :hook (LaTeX-mode . company-auctex-init))
 
 (use-package reftex
   :ensure t
@@ -749,9 +748,9 @@
 
 (use-package company-reftex
   :ensure t
-  :config
-  (add-to-list 'company-backends 'company-reftex-labels)
-  (add-to-list 'company-backends 'company-reftex-citations))
+  :hook (LaTeX-mode . (lambda ()
+                        (push 'company-reftex-labels company-backends)
+                        (push 'company-reftex-citations company-backends))))
 
 (use-package company-math
   :ensure t
@@ -881,7 +880,7 @@
 
 (use-package company-irony
   :ensure t
-  :hook ((irony-mode . company-irony-setup-begin-commands))
+  :hook (irony-mode . company-irony-setup-begin-commands)
   :config
   (setq company-irony-ignore-case 'smart)
   (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete)))
