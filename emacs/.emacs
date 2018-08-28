@@ -459,7 +459,6 @@
   :hook (after-init . global-company-mode)
 
   :config
-  (add-to-list 'company-backends 'company-capf)
   (define-key company-active-map [tab] 'company-select-next)
   (define-key company-active-map [S-tab] 'company-select-previous)
   (define-key company-active-map [C-return] #'company-complete-selection)
@@ -520,7 +519,8 @@
   (defun my-set-projectile-root ()
     (when lsp--cur-workspace
       (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
-  (add-hook 'lsp-before-open-hook #'my-set-projectile-root))
+  (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
+  (setq lsp-enable-completion-at-point nil))
 
 (use-package lsp-ui
   :ensure t
