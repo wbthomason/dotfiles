@@ -909,11 +909,13 @@
 
 (use-package irony
   :ensure t
+  :disabled t
   :hook (((c++-mode c-mode objc-mode) . irony-mode)
          (irony-mode . irony-cdb-autosetup-compile-options)))
 
 (use-package company-irony
   :ensure t
+  :disabled t
   :hook (irony-mode . company-irony-setup-begin-commands)
   :config
   (setq company-irony-ignore-case 'smart)
@@ -953,10 +955,12 @@
 
 (use-package irony-eldoc
   :ensure t
+  :disabled t
   :hook (irony-mode . irony-eldoc))
 
 (use-package cquery
   :ensure t
+  :disabled t
   :commands lsp-cquery-enable
   :hook (c-mode-common . lsp-cquery-enable)
   :config
@@ -965,7 +969,6 @@
 
 (use-package ccls
   :ensure t
-  :disabled t
   :hook (c-mode-common . lsp-ccls-enable)
   :config
   (setq ccls-extra-init-params '(:completion (:detailedLabel t) :cacheFormat "binary")))
