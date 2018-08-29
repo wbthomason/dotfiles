@@ -50,6 +50,9 @@
   :config
   (define-key paradox-menu-mode-map (kbd "C-f") #'hydra-paradox-filter/body)
   (paradox-enable))
+
+(use-package no-littering :ensure t)
+
 ;; Byte-compile
 (setq load-prefer-newer t)
 (use-package auto-compile
