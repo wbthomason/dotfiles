@@ -711,14 +711,16 @@
 (setenv "PATH" (concat (getenv "PATH") ":/usr/bin/vendor_perl/"))
 (add-to-list 'exec-path "/usr/bin/vendor_perl/")
 
-(use-package tex
+(use-package latex
   :ensure auctex
+  :mode ("\\.tex\\'" . latex-mode)
   :hook
-  (doc-view-mode . auto-revert-mode)
   (LaTeX-mode . (lambda ()
+                  (prettify-symbols-mode)
+                  (LaTeX-math-mode)
                   (auto-fill-mode -1)
-                  (visual-line-mode)
-                  (variable-pitch-mode)))
+                  ;; (variable-pitch-mode)
+                  (visual-line-mode)))
 
   :config
   (add-to-list 'TeX-view-program-list
@@ -726,22 +728,26 @@
                  ("zathura %o"
                   (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
                  "zathura"))
-  (setq TeX-PDF-mode t
-        TeX-auto-save t
-        TeX-parse-self t
-        TeX-electric-sub-and-superscript t
-        TeX-electric-math '("\\(" "\\)")
-        TeX-quote-after-quote t
-        TeX-clean-confirm nil
-        TeX-source-correlate-mode t
-        TeX-source-correlate-method 'synctex
-        TeX-engine 'xetex
-        TeX-view-program-selection '((output-pdf "Zathura")))
-  (setq-default TeX-master nil))
+  (setq-default TeX-master nil)
+  (setq TeX-parse-self t)
+  (setq
+   TeX-PDF-mode t
+   TeX-auto-save t
+   TeX-save-query nil
+   TeX-electric-sub-and-superscript t
+   TeX-electric-math '("\\(" "\\)")
+   ;; TeX-electric-escape t
+   TeX-quote-after-quote t
+   TeX-clean-confirm nil
+   TeX-source-correlate-mode t
+   TeX-source-correlate-method 'synctex
+   TeX-source-correlate-start-server t
+   TeX-engine 'xetex
+   TeX-view-program-selection '((output-pdf "Zathura"))))
 
 (use-package auctex-latexmk
   :ensure t
-  :after tex
+  :after latex
   :config
   (setq auctex-latexmk-inherit-TeX-PDF-mode t
         TeX-command-default "LatexMk")
@@ -749,15 +755,29 @@
 
 (use-package company-auctex
   :ensure t
-  :after (tex company)
+  :after (latex company)
   :hook (LaTeX-mode . company-auctex-init))
 
 (use-package reftex
   :ensure t
   :hook (LaTeX-mode . turn-on-reftex)
   :config
-  (setq reftex-plug-into-AUCTeX '(nil nil t t t)
-        reftex-use-fonts t))
+  (setq reftex-plug-into-AUCTeX t
+        reftex-use-fonts t)
+  (TeX-add-style-hook
+   "cleveref"
+   (lambda ()
+     (if (boundp 'reftex-ref-style-alist)
+         (add-to-list
+          'reftex-ref-style-alist
+          '("Cleveref" "cleveref"
+            (("\\cref" ?c) ("\\Cref" ?C) ("\\cpageref" ?d) ("\\Cpageref" ?D))))
+       (reftex-ref-style-activate "Cleveref"))
+     (TeX-add-symbols
+      '("cref" TeX-arg-ref)
+      '("Cref" TeX-arg-ref)
+      '("cpageref" TeX-arg-ref)
+      '("Cpageref" TeX-arg-ref)))))
 
 (use-package company-reftex
   :ensure t
@@ -769,7 +789,8 @@
   :ensure t
   :after company
   :config
-  (add-to-list 'company-backends 'company-math-symbols-latex))
+  (push 'company-math-symbols-latex company-backends)
+  (push 'company-latex-commands company-backends))
 
 ;;; YAML
 (use-package yaml-mode :ensure t)
