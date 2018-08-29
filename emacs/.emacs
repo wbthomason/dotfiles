@@ -45,6 +45,11 @@
 
 (require 'use-package)
 
+(use-package paradox
+  :ensure t
+  :config
+  (define-key paradox-menu-mode-map (kbd "C-f") #'hydra-paradox-filter/body)
+  (paradox-enable))
 ;; Byte-compile
 (setq load-prefer-newer t)
 (use-package auto-compile
