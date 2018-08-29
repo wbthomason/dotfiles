@@ -443,7 +443,11 @@
          " Pr"
        (format " Pr[%s]" (projectile-project-name)))))
   (push "meson.build" projectile-project-root-files)
-  (push "meson.build" projectile-project-root-files-bottom-up))
+  (push "meson.build" projectile-project-root-files-bottom-up)
+  (push "latexmkrc" projectile-project-root-files)
+  (push "latexmkrc" projectile-project-root-files-bottom-up))
+  
+  
 
 ;;; Magit
 (use-package magit
@@ -1459,10 +1463,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(LaTeX-item-indent 0)
+ '(TeX-newline-function (quote newline-and-indent))
  '(ansi-term-color-vector
    [unspecified "#282828" "#bc5353" "#7f9f7f" "#fddf8d" "#005fa7" "#dc8cc3" "#8cd0d3" nil] t)
  '(company-reftex-citations-regexp
-   "\\\\\\(?:foot\\)?cite\\(?:t\\)?[^[{]*\\(?:\\[[^]]*\\]\\)*{\\(?:[^},]*,\\)*\\([^},]*\\)")
+   "\\\\\\(?:foot\\|auto\\|smart\\|text\\)?cite\\(?:t\\)?[^[{]*\\(?:\\[[^]]*\\]\\)*{\\(?:[^},]*,\\)*\\([^},]*\\)")
  '(company-reftex-labels-regexp "\\\\\\(?:eq\\|auto\\|c\\)?ref{\\([^}]*\\)\\=")
  '(custom-safe-themes
    (quote
