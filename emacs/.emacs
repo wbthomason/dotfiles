@@ -479,19 +479,20 @@
   (setq company-backends (delete 'company-dabbrev company-backends))
   (setq company-backends (delete 'company-oddmuse company-backends))
   (setq company-idle-delay 0
+        company-echo-delay 0
         company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
         company-minimum-prefix-length 2
         company-require-match nil
         company-tooltip-align-annotations t
         company-selection-wrap-around t))
 
-;;; NOTE: This package breaks company and the icons are too large. Maybe revisit in the future (7/3/2018)
-;; (use-package company-box
-;;   :ensure t
-;;   :hook (company-mode . company-box-mode))
+;;; NOTE: This package is slow and buggy. Maybe revisit in the future (8/29/2018)
+(use-package company-box
+  :disabled t
+  :ensure t
+  :hook (company-mode . company-box-mode))
 
 (use-package company-posframe
-  :disabled t
   :after (company desktop)
   :ensure t
   :config
