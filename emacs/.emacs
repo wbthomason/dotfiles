@@ -1030,12 +1030,17 @@
         org-pretty-entities-include-sub-superscripts t
         org-capture-templates '(("t" "Task Entry" entry (file "tasks.org") "* TODO %? CREATED: %t"))))
 
+(use-package mixed-pitch
+  :ensure t
+  :hook (text-mode . mixed-pitch-mode))
+
 (use-package org-autolist
   :ensure t
   :after org
   :hook (org-mode . org-autolist-mode))
 
 (use-package org-variable-pitch
+  :disabled t
   :ensure t
   :after org
   :hook (org-mode . org-variable-pitch-minor-mode))
