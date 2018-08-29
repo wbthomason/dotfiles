@@ -179,6 +179,10 @@
   :ensure t
   :hook ((emacs-lisp-mode clojure-mode common-lisp-mode scheme-mode lisp-mode racket-mode) . lispy-mode))
 
+(use-package lisp-extra-font-lock
+  :ensure t
+  :config (lisp-extra-font-lock-global-mode 1))
+
 ;;; Lispyville
 (use-package lispyville
   :ensure t
