@@ -135,8 +135,8 @@
    `(ivy-posframe-center-dynamic-size
      :cleanup
      (lambda () (when
-               (ivy-posframe-workable-p)
-             (posframe-hide ivy-posframe-buffer))))
+                    (ivy-posframe-workable-p)
+                  (posframe-hide ivy-posframe-buffer))))
    ivy-display-functions-props))
 
 ;;; Eshell
@@ -1461,17 +1461,31 @@
  ;; If there is more than one, they won't work right.
  '(ansi-term-color-vector
    [unspecified "#282828" "#bc5353" "#7f9f7f" "#fddf8d" "#005fa7" "#dc8cc3" "#8cd0d3" nil] t)
+ '(company-reftex-citations-regexp
+   "\\\\\\(?:foot\\)?cite\\(?:t\\)?[^[{]*\\(?:\\[[^]]*\\]\\)*{\\(?:[^},]*,\\)*\\([^},]*\\)")
+ '(company-reftex-labels-regexp "\\\\\\(?:eq\\|auto\\|c\\)?ref{\\([^}]*\\)\\=")
  '(custom-safe-themes
    (quote
     ("9b35c097a5025d5da1c97dba45fed027e4fb92faecbd2f89c2a79d2d80975181" "57f95012730e3a03ebddb7f2925861ade87f53d5bbb255398357731a7b1ac0e0" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "075351c6aeaddd2343155cbcd4168da14f54284453b2f1c11d051b2687d6dc48" "e4fe3efbe5098392724aa0be119af539406553f58ef236d1514c8a80ec7ff557" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "242527ce24b140d304381952aa7a081179a9848d734446d913ca8ef0af3cef21" "44247f2a14c661d96d2bff302f1dbf37ebe7616935e4682102b68c0b6cc80095" "c9ddf33b383e74dac7690255dd2c3dfa1961a8e8a1d20e401c6572febef61045" "02956c6f9fc15711d3652ec42ddb43d4ae442da98dba72c7bdd9603525ce82aa" "ef03b74835e14db281cc489faf0d011e1c9255b747ba9c203426c56ed3331197" "058721e6836dfe4d18abbd35820eba7850427f59b9ac7c9c37a5e76f3a405749" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8f137ccf060af657fbc0c1f7c3d406646ad04ebb8b3e025febc8ef432e958b02" default)))
  '(flycheck-pycheckers-max-line-length 100)
  '(font-latex-fontify-script nil)
+ '(font-latex-user-keyword-classes
+   (quote
+    (("NoteCmds"
+      ("wtnote" "wttodo" "rknote")
+      font-lock-constant-face command)
+     ("RefCmds"
+      ("secref" "appref" "tblref" "figref" "listingref" "linref" "defref" "lemref" "thmref" "eqnref" "algoref" "bftt" "kw")
+      font-lock-constant-face command))))
  '(ivy-prescient-mode t)
  '(lsp-ui-sideline-delay 2.0)
+ '(mixed-pitch-fixed-pitch-faces
+   (quote
+    (diff-added diff-context diff-file-header diff-function diff-header diff-hunk-header diff-removed font-latex-math-face font-latex-sedate-face font-latex-warning-face font-latex-sectioning-5-face font-lock-builtin-face font-lock-comment-delimiter-face font-lock-constant-face font-lock-function-name-face font-lock-keyword-face font-lock-negation-char-face font-lock-preprocessor-face font-lock-regexp-grouping-backslash font-lock-regexp-grouping-construct font-lock-string-face font-lock-type-face font-lock-variable-name-face markdown-code-face markdown-gfm-checkbox-face markdown-inline-code-face markdown-language-info-face markdown-language-keyword-face markdown-math-face message-header-name message-header-to message-header-cc message-header-newsgroups message-header-xheader message-header-subject message-header-other mu4e-header-key-face mu4e-header-value-face mu4e-link-face mu4e-contact-face mu4e-compose-separator-face mu4e-compose-header-face org-block org-block-begin-line org-block-end-line org-document-info-keyword org-code org-latex-and-related org-checkbox org-meta-line org-table org-verbatim)))
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (company-quickhelp org-projectile cquery dtrt-indent golden-ratio browse-kill-ring focus highlight-parentheses format-all rainbow-delimiters hl-todo linum-relative doom-modeline yasnippet-snippets biblio ox-pandoc wc-mode org-journal org-noter org-evil org-bullets org-variable-pitch org-autolist org-plus-contrib deft ccls irony-eldoc flycheck-clangcheck flycheck-clang-analyzer flycheck-irony company-c-headers company-irony irony modern-cpp-font-lock google-c-style scribble-mode racket-mode flycheck-rust racer lsp-rust cargo rust-mode lsp-go scala-mode geiser fish-mode company-lua lua-mode toml-mode meson-mode cmake-font-lock cmake-mode lsp-javascript-typescript lsp-html yaml-mode company-math company-reftex company-auctex auctex-latexmk auctex markdown-toc flycheck-pycheckers lsp-python py-isort ein yapfify company-jedi company-anaconda anaconda-mode flycheck-ghcmod flycheck-haskell company-ghc company-ghci company-cabal lsp-haskell hindent intero ghc haskell-mode lsp-ocaml utop merlin tuareg ocp-indent slime-company company-lsp lsp-ui lsp-mode company-prescient prescient all-the-icons-dired all-the-icons-ivy company-posframe which-key highlight-indent-guides restart-emacs auto-dictionary flyspell-correct flycheck-pos-tip flycheck evil-goggles evil-lion evil-snipe evil-commentary evil-terminal-cursor-changer evil-magit evil-escape evil-embrace evil-visualstar evil-args evil-fringe-mark evil-matchit evil-surround evil-collection evil-leader evil-expat evil undo-tree parinfer lispyville lispy popup-kill-ring ialign rainbow-mode eyebrowse git-gutter esh-autosuggest ivy-posframe amx wgrep counsel-etags counsel-projectile counsel ivy-xref ivy-rich swiper ivy auto-compile use-package)))
+    (company-box mixed-pitch lisp-extra-font-lock no-littering paradox company-quickhelp org-projectile cquery dtrt-indent golden-ratio browse-kill-ring focus highlight-parentheses format-all rainbow-delimiters hl-todo linum-relative doom-modeline yasnippet-snippets biblio ox-pandoc wc-mode org-journal org-noter org-evil org-bullets org-variable-pitch org-autolist org-plus-contrib deft ccls irony-eldoc flycheck-clangcheck flycheck-clang-analyzer flycheck-irony company-c-headers company-irony irony modern-cpp-font-lock google-c-style scribble-mode racket-mode flycheck-rust racer lsp-rust cargo rust-mode lsp-go scala-mode geiser fish-mode company-lua lua-mode toml-mode meson-mode cmake-font-lock cmake-mode lsp-javascript-typescript lsp-html yaml-mode company-math company-reftex company-auctex auctex-latexmk auctex markdown-toc flycheck-pycheckers lsp-python py-isort ein yapfify company-jedi company-anaconda anaconda-mode flycheck-ghcmod flycheck-haskell company-ghc company-ghci company-cabal lsp-haskell hindent intero ghc haskell-mode lsp-ocaml utop merlin tuareg ocp-indent slime-company company-lsp lsp-ui lsp-mode company-prescient prescient all-the-icons-dired all-the-icons-ivy company-posframe which-key highlight-indent-guides restart-emacs auto-dictionary flyspell-correct flycheck-pos-tip flycheck evil-goggles evil-lion evil-snipe evil-commentary evil-terminal-cursor-changer evil-magit evil-escape evil-embrace evil-visualstar evil-args evil-fringe-mark evil-matchit evil-surround evil-collection evil-leader evil-expat evil undo-tree parinfer lispyville lispy popup-kill-ring ialign rainbow-mode eyebrowse git-gutter esh-autosuggest ivy-posframe amx wgrep counsel-etags counsel-projectile counsel ivy-xref ivy-rich swiper ivy auto-compile use-package)))
  '(paradox-github-token t)
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
@@ -1483,6 +1497,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#282828" :foreground "#b6b6b6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "CTDB" :family "Fira Code Retina"))))
  '(evil-goggles-change-face ((t (:inherit diff-refine-removed))))
  '(evil-goggles-delete-face ((t (:inherit diff-refine-removed))))
  '(evil-goggles-paste-face ((t (:inherit diff-refine-added))))
@@ -1490,11 +1505,12 @@
  '(evil-goggles-undo-redo-change-face ((t (:inherit diff-refine-changed))))
  '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-refine-removed))))
  '(evil-goggles-yank-face ((t (:inherit diff-refine-changed))))
- '(font-latex-italic-face ((t (:foreground "OliveDrab" :slant italic :family "RobotoMono Nerd Font"))))
- '(font-latex-math-face ((t (:foreground "burlywood" :height 110 :family "Fira Code Retina"))))
+ '(fixed-pitch ((t (:family "Fira Code Retina" :height 110))))
+ '(font-latex-bold-face ((t (:inherit bold))))
+ '(font-latex-italic-face ((t (:foreground "OliveDrab" :slant italic :height 110 :family "RobotoMono Nerd Font"))))
+ '(font-latex-math-face ((t (:foreground "burlywood"))))
  '(font-latex-sectioning-5-face ((t (:inherit bold :weight bold))))
- '(font-latex-sedate-face ((t (:foreground "LightGray" :height 110 :family "Fira Code Retina"))))
- '(italic ((t (:underline nil :slant italic :family "ETBembo"))))
+ '(font-latex-sedate-face ((t (:foreground "LightGray"))))
  '(ivy-confirm-face ((t (:inherit minibuffer-prompt :foreground "lemon chiffon"))))
  '(ivy-current-match ((t (:background "dim gray" :foreground "white smoke"))))
  '(lsp-face-highlight-read ((t (:background "#bc5353" :foreground "#efefef"))))
