@@ -48,7 +48,7 @@
 (use-package paradox
   :ensure t
   :config
-  (define-key paradox-menu-mode-map (kbd "C-f") #'hydra-paradox-filter/body)
+  (define-key paradox-menu-mode-map (kbd "M-f") #'hydra-paradox-filter/body)
   (paradox-enable))
 
 (use-package no-littering :ensure t)
