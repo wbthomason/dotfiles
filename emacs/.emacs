@@ -764,6 +764,7 @@
 
 (use-package reftex
   :ensure t
+  :after latex
   :hook (LaTeX-mode . turn-on-reftex)
   :config
   (setq reftex-plug-into-AUCTeX t
