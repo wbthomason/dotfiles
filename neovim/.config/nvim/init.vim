@@ -247,8 +247,8 @@ let g:LanguageClient_serverCommands = {
       \ 'go': ['~/go/bin/go-langserver'],
       \ 'haskell': ['hie', '--lsp'],
       \ 'lua': ['lua-lsp'],
-      \ 'cpp': ['cquery'],
-      \ 'c': ['cquery'],
+      \ 'cpp': ['ccls'],
+      \ 'c': ['ccls'],
       \ 'lisp': ['cl-lsp']
       \ }
 let g:LanguageClient_autoStart = 1
