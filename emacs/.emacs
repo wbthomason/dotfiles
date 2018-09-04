@@ -81,6 +81,7 @@
         enable-recursive-minibuffers t
         ;; ivy-re-builders-alist '((t . ivy--regex-fuzzy))
         ivy-display-style 'fancy
+        ivy-height 200
         ivy-format-function 'ivy-format-function-line)
   (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
   (define-key ivy-minibuffer-map (kbd "C-a") 'ivy-read-action)
@@ -127,8 +128,9 @@
   :config
   (defun ivy-posframe-center-dynamic-size (str)
     "Simple wrapper to dynamically set the width and height for the posframe."
-    (setq ivy-posframe-height (floor (* 1.2 ivy-height))
-          ivy-posframe-width (floor (/ (window-width) 1.2)))
+    (setq ivy-height (min 200 (length ivy--all-candidates)))
+    (setq ivy-posframe-height (min (floor (* 0.85 ivy-height)) (frame-height))
+          ivy-posframe-width (floor (/ (frame-width) 1.2)))
     (ivy-posframe--display str #'posframe-poshandler-frame-center))
   (setq ivy-display-function #'ivy-posframe-center-dynamic-size)
   (push
@@ -487,6 +489,7 @@
         company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
         company-minimum-prefix-length 2
         company-require-match nil
+        company-tooltip-limit 20
         company-tooltip-align-annotations t
         company-selection-wrap-around t))
 
@@ -546,7 +549,8 @@
   :ensure t
   :hook (lsp-mode . lsp-ui-mode))
 
-(use-package company-lsp :ensure t
+(use-package company-lsp
+  :ensure t
   :init
   (setq company-lsp-async t
         company-lsp-cache-candidates t
@@ -556,6 +560,7 @@
   (push 'company-lsp company-backends))
 
 (use-package company-quickhelp :ensure t
+  :disabled t
   :config
   (company-quickhelp-mode))
 
@@ -669,10 +674,11 @@
 
 (use-package company-anaconda
   :ensure t
-  :after (company anaconda-mode)
   :hook (python-mode . (lambda () (push 'company-anaconda company-backends))))
 
-(use-package company-jedi :ensure t
+(use-package company-jedi
+  :ensure t
+  :disabled t
   :hook (python-mode . (lambda ()
                          (push 'company-jedi company-backends)
                          (add-hook 'python-mode-hook 'jedi:setup)))
@@ -740,7 +746,7 @@
    TeX-auto-save t
    TeX-save-query nil
    TeX-electric-sub-and-superscript t
-   TeX-electric-math '("\\(" "\\)")
+   ;; TeX-electric-math '("\\(" "\\)")
    ;; TeX-electric-escape t
    TeX-quote-after-quote t
    TeX-clean-confirm nil
@@ -1091,11 +1097,14 @@
 
 ;;; Snippets
 (use-package yasnippet
+  :after company
   :ensure t
   :config
   (yas-global-mode t)
   (advice-add 'company-complete-common :before (lambda () (setq my-company-point (point))))
-  (advice-add 'company-complete-common :after (lambda () (when (equal my-company-point (point)) (yas-expand)))))
+  (advice-add 'company-complete-common :after (lambda () (when (equal my-company-point (point)) (yas-expand))))
+  (add-to-list 'company-backends 'company-yasnippet t)
+  )
 
 (use-package yasnippet-snippets :ensure t)
 
