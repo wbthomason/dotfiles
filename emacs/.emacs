@@ -129,7 +129,7 @@
   (defun ivy-posframe-center-dynamic-size (str)
     "Simple wrapper to dynamically set the width and height for the posframe."
     (setq ivy-height (min 200 (length ivy--all-candidates)))
-    (setq ivy-posframe-height (min (floor (* 0.85 ivy-height)) (frame-height))
+    (setq ivy-posframe-height (min ivy-height (floor (* 0.85 (frame-height))))
           ivy-posframe-width (floor (/ (frame-width) 1.2)))
     (ivy-posframe--display str #'posframe-poshandler-frame-center))
   (setq ivy-display-function #'ivy-posframe-center-dynamic-size)
