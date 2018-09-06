@@ -511,7 +511,7 @@
   (setq company-backends (delete 'company-oddmuse company-backends))
   (setq company-idle-delay 0
         company-echo-delay 0
-        company-frontends '(company-preview-frontend company-echo-metadata-frontend)
+        company-frontends '(company-posframe-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
         company-minimum-prefix-length 2
         company-require-match nil
         company-dabbrev-downcase nil
