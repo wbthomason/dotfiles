@@ -59,6 +59,8 @@
 (use-package auto-compile
   :ensure t
   :config
+  (setq auto-compile-display-buffer nil
+        auto-compile-mode-line-counter t)
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
@@ -72,7 +74,6 @@
                        ":/home/wil/.roswell/bin" (getenv "PATH")))
 
 ;; General Packages
-;;; Ivy
 (use-package ivy
   :ensure t
   :diminish ivy-mode
@@ -562,21 +563,11 @@
 (use-package eglot
   :ensure t
   :config
-  (defclass eglot-ccls (eglot-lsp-server) ()
-    :documentation "Ccls's C/C++ langserver.")
-
-  (cl-defmethod eglot-initialization-options ((server eglot-ccls))
-    "Passes through required ccls initialization options"
-    (let* ((root (car (project-roots (eglot--project server))))
-           (cache (expand-file-name ".ccls-cache/" root)))
-      (list :cacheDirectory (file-name-as-directory cache)
-            :progressReportFrequencyMs -1)))
-
-  (setq eglot-server-programs (delete '(c++-mode c-mode) eglot-server-programs))
   (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '((c-mode c++-mode) . (eglot-ccls "ccls")))
   (add-to-list 'eglot-server-programs '(lua-mode . ("/home/wil/.luarocks/bin/lua-lsp")))
   (add-hook 'c-mode-common-hook 'eglot-ensure)
+  (add-hook 'c-mode-hook 'eglot-ensure)
+  (add-hook 'c++-mode-hook 'eglot-ensure)
   (add-hook 'tuareg-mode-hook 'eglot-ensure)
   (add-hook 'javascript-mode-hook 'eglot-ensure)
   (add-hook 'rust-mode-hook 'eglot-ensure)
@@ -584,28 +575,28 @@
   (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'haskell-mode-hook 'eglot-ensure))
 
-(use-package lsp-mode
-  :ensure t
-  :config
-  (defun my-set-projectile-root ()
-    (when lsp--cur-workspace
-      (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
-  (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
-  (setq lsp-enable-completion-at-point nil))
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :config
+;;   (defun my-set-projectile-root ()
+;;     (when lsp--cur-workspace
+;;       (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
+;;   (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
+;;   (setq lsp-enable-completion-at-point nil))
 
-(use-package lsp-ui
-  :ensure t
-  :hook (lsp-mode . lsp-ui-mode))
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :hook (lsp-mode . lsp-ui-mode))
 
-(use-package company-lsp
-  :ensure t
-  :init
-  (setq company-lsp-async t
-        company-lsp-cache-candidates t
-        company-lsp-enable-snippet t
-        company-lsp-enable-recompletion t)
-  :config
-  (push 'company-lsp company-backends))
+;; (use-package company-lsp
+;;   :ensure t
+;;   :init
+;;   (setq company-lsp-async t
+;;         company-lsp-cache-candidates t
+;;         company-lsp-enable-snippet t
+;;         company-lsp-enable-recompletion t)
+;;   :config
+;;   (push 'company-lsp company-backends))
 
 ;; (use-package company-quickhelp :ensure t
 ;;   :disabled t
@@ -658,9 +649,9 @@
   :config
   (setq utop-command "opam config exec -- utop -emacs"))
 
-(use-package lsp-ocaml
-  :ensure t
-  :hook ((tuareg-mode caml-mode reason-mode) . lsp-ocaml-enable))
+;; (use-package lsp-ocaml
+;;   :ensure t
+;;   :hook ((tuareg-mode caml-mode reason-mode) . lsp-ocaml-enable))
 
 
 ;;; Haskell
@@ -681,9 +672,9 @@
 
 ;; (use-package haskell-snippets :ensure t)
 
-(use-package lsp-haskell
-  :ensure t
-  :hook (haskell-mode . lsp-haskell-enable))
+;; (use-package lsp-haskell
+;;   :ensure t
+;;   :hook (haskell-mode . lsp-haskell-enable))
 
 (use-package company-cabal
   :ensure t
@@ -748,10 +739,10 @@
   :ensure t
   :hook (python-mode . (lambda () (add-hook 'before-save-hook #'py-isort-before-save))))
 
-(use-package lsp-python
-  :ensure t
-  :commands lsp-python-enable
-  :hook (python-mode . lsp-python-enable))
+;; (use-package lsp-python
+;;   :ensure t
+;;   :commands lsp-python-enable
+;;   :hook (python-mode . lsp-python-enable))
 
 (use-package flycheck-pycheckers
   :ensure t
@@ -864,18 +855,18 @@
   :ensure t
   :mode "\\.html\\'")
 
-(use-package lsp-html
-  :ensure t
-  :hook (html-mode . lsp-html-enable))
+;; (use-package lsp-html
+;;   :ensure t
+;;   :hook (html-mode . lsp-html-enable))
 
 ;; (use-package lsp-css
 ;;   :ensure t
 ;;   :hook (css-mode . (lambda () (when (eq major-mode 'css-mode) (lsp-css-enable)))))
 
 ;;; Javascript
-(use-package lsp-javascript-typescript
-  :ensure t
-  :hook ((js-mode typescript-mode js3-mode rjsx-mode) . lsp-javascript-typescript-enable))
+;; (use-package lsp-javascript-typescript
+;;   :ensure t
+;;   :hook ((js-mode typescript-mode js3-mode rjsx-mode) . lsp-javascript-typescript-enable))
 
 ;;; CMake
 (use-package cmake-mode :ensure t)
@@ -904,12 +895,12 @@
 
 ;;; Lua
 (use-package lua-mode :ensure t)
-(lsp-define-stdio-client
- lsp-lua
- "lua"
- (lambda () default-directory)
- '("/home/wil/.luarocks/bin/lua-lsp"))
-(add-hook 'lua-mode-hook #'lsp-lua-enable)
+;; (lsp-define-stdio-client
+;;  lsp-lua
+;;  "lua"
+;;  (lambda () default-directory)
+;;  '("/home/wil/.luarocks/bin/lua-lsp"))
+;; (add-hook 'lua-mode-hook #'lsp-lua-enable)
 
 (use-package company-lua
   :ensure t
@@ -931,18 +922,18 @@
 (use-package scala-mode :ensure t)
 
 ;;; Go
-(use-package lsp-go
-  :ensure t
-  :hook (go-mode . lsp-go-enable))
+;; (use-package lsp-go
+;;   :ensure t
+;;   :hook (go-mode . lsp-go-enable))
 
 ;;; Rust
 (use-package rust-mode :ensure t)
 (use-package cargo :ensure t)
-(use-package lsp-rust :ensure t
-  :commands lsp-rust-enable
-  :hook (rust-mode . lsp-rust-enable)
-  :init
-  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls")))
+;; (use-package lsp-rust :ensure t
+;;   :commands lsp-rust-enable
+;;   :hook (rust-mode . lsp-rust-enable)
+;;   :init
+;;   (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls")))
 
 (use-package racer
   :ensure t
@@ -1035,6 +1026,7 @@
 (use-package ccls
   :ensure t
   ;; :hook (c-mode-common . lsp-ccls-enable)
+  :hook c-mode-common
   :config
   (setq ccls-extra-init-params '(:completion (:detailedLabel t) :cacheFormat "binary")))
 
@@ -1515,7 +1507,7 @@
 
   "c" #'projectile-compile-project
   "lr" #'xref-find-references
-  "ln" #'lsp-rename
+  "ln" #'eglot-rename
   "SPC" #'execute-extended-command
   "ol" #'org-store-link
   "oi" #'org-insert-link
@@ -1538,6 +1530,7 @@
  '(TeX-newline-function (quote newline-and-indent))
  '(ansi-term-color-vector
    [unspecified "#282828" "#bc5353" "#7f9f7f" "#fddf8d" "#005fa7" "#dc8cc3" "#8cd0d3" nil] t)
+ '(async-bytecomp-allowed-packages (quote (all)))
  '(company-reftex-citations-regexp
    "\\\\\\(?:foot\\|auto\\|smart\\|text\\)?cite\\(?:t\\)?[^[{]*\\(?:\\[[^]]*\\]\\)*{\\(?:[^},]*,\\)*\\([^},]*\\)")
  '(company-reftex-labels-regexp "\\\\\\(?:eq\\|auto\\|c\\)?ref{\\([^}]*\\)\\=")
@@ -1562,7 +1555,7 @@
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (lsp-ui lsp-rust lsp-go lsp-javascript-typescript lsp-html lsp-python lsp-haskell lsp-ocaml yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer paradox ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
+    (yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer paradox ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
  '(paradox-github-token t)
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
