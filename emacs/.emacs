@@ -559,30 +559,30 @@
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
-;; (use-package eglot
-;;   :ensure t
-;;   :config
-;;   (defclass eglot-ccls (eglot-lsp-server) ()
-;;     :documentation "Ccls's C/C++ langserver.")
+(use-package eglot
+  :ensure t
+  :config
+  (defclass eglot-ccls (eglot-lsp-server) ()
+    :documentation "Ccls's C/C++ langserver.")
 
-;;   (cl-defmethod eglot-initialization-options ((server eglot-ccls))
-;;     "Passes through required ccls initialization options"
-;;     (let* ((root (car (project-roots (eglot--project server))))
-;;            (cache (expand-file-name ".ccls-cache/" root)))
-;;       (list :cacheDirectory (file-name-as-directory cache)
-;;             :progressReportFrequencyMs -1)))
+  (cl-defmethod eglot-initialization-options ((server eglot-ccls))
+    "Passes through required ccls initialization options"
+    (let* ((root (car (project-roots (eglot--project server))))
+           (cache (expand-file-name ".ccls-cache/" root)))
+      (list :cacheDirectory (file-name-as-directory cache)
+            :progressReportFrequencyMs -1)))
 
-;;   (setq eglot-server-programs (delete '(c++-mode c-mode) eglot-server-programs))
-;;   (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
-;;   (add-to-list 'eglot-server-programs '((c-mode c++-mode) . (eglot-ccls "ccls")))
-;;   (add-to-list 'eglot-server-programs '(lua-mode . ("/home/wil/.luarocks/bin/lua-lsp")))
-;;   (add-hook 'c-mode-common-hook 'eglot-ensure)
-;;   (add-hook 'tuareg-mode-hook 'eglot-ensure)
-;;   (add-hook 'javascript-mode-hook 'eglot-ensure)
-;;   (add-hook 'rust-mode-hook 'eglot-ensure)
-;;   (add-hook 'lua-mode-hook 'eglot-ensure)
-;;   (add-hook 'python-mode-hook 'eglot-ensure)
-;;   (add-hook 'haskell-mode-hook 'eglot-ensure))
+  (setq eglot-server-programs (delete '(c++-mode c-mode) eglot-server-programs))
+  (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '((c-mode c++-mode) . (eglot-ccls "ccls")))
+  (add-to-list 'eglot-server-programs '(lua-mode . ("/home/wil/.luarocks/bin/lua-lsp")))
+  (add-hook 'c-mode-common-hook 'eglot-ensure)
+  (add-hook 'tuareg-mode-hook 'eglot-ensure)
+  (add-hook 'javascript-mode-hook 'eglot-ensure)
+  (add-hook 'rust-mode-hook 'eglot-ensure)
+  (add-hook 'lua-mode-hook 'eglot-ensure)
+  (add-hook 'python-mode-hook 'eglot-ensure)
+  (add-hook 'haskell-mode-hook 'eglot-ensure))
 
 (use-package lsp-mode
   :ensure t
@@ -593,9 +593,9 @@
   (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
   (setq lsp-enable-completion-at-point nil))
 
-;; (use-package lsp-ui
-;;   :ensure t
-;;   :hook (lsp-mode . lsp-ui-mode))
+(use-package lsp-ui
+  :ensure t
+  :hook (lsp-mode . lsp-ui-mode))
 
 (use-package company-lsp
   :ensure t
@@ -1034,7 +1034,7 @@
 
 (use-package ccls
   :ensure t
-  :hook (c-mode-common . lsp-ccls-enable)
+  ;; :hook (c-mode-common . lsp-ccls-enable)
   :config
   (setq ccls-extra-init-params '(:completion (:detailedLabel t) :cacheFormat "binary")))
 
@@ -1043,7 +1043,9 @@
                                 (flycheck-add-next-checker 'irony 'c/c++-clang-tidy)
                                 (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-clangcheck)
                                 (flycheck-add-next-checker 'c/c++-clangcheck 'c/c++-cppcheck)
-                                (flycheck-add-next-checker 'c/c++-googlelint 'clang-analyzer)))
+                                ;; Keeps throwing errors right now...
+                                ;; (flycheck-add-next-checker 'c/c++-googlelint 'clang-analyzer) ;;
+                                ))
 ;;; Deft
 (use-package deft
   :ensure t
@@ -1560,7 +1562,7 @@
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (lsp-rust lsp-go lsp-javascript-typescript lsp-html lsp-python lsp-haskell lsp-ocaml yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer paradox ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
+    (lsp-ui lsp-rust lsp-go lsp-javascript-typescript lsp-html lsp-python lsp-haskell lsp-ocaml yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer paradox ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
  '(paradox-github-token t)
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
