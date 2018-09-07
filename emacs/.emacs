@@ -522,10 +522,10 @@
         company-selection-wrap-around t))
 
 ;;; NOTE: This package is slow and buggy. Maybe revisit in the future (8/29/2018)
-(use-package company-box
-  :disabled t
-  :ensure t
-  :hook (company-mode . company-box-mode))
+;; (use-package company-box
+;;   :disabled t
+;;   :ensure t
+;;   :hook (company-mode . company-box-mode))
 
 (use-package company-posframe
   :after (company desktop)
@@ -592,9 +592,9 @@
   (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
   (setq lsp-enable-completion-at-point nil))
 
-(use-package lsp-ui
-  :ensure t
-  :hook (lsp-mode . lsp-ui-mode))
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package company-lsp
   :ensure t
@@ -606,10 +606,10 @@
   :config
   (push 'company-lsp company-backends))
 
-(use-package company-quickhelp :ensure t
-  :disabled t
-  :config
-  (company-quickhelp-mode))
+;; (use-package company-quickhelp :ensure t
+;;   :disabled t
+;;   :config
+;;   (company-quickhelp-mode))
 
 ;; Languages
 ;; Common Lisp
@@ -713,24 +713,26 @@
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode))
 
-(use-package anaconda-mode
-  :ensure t
-  :diminish anaconda-mode
-  :hook ((python-mode . anaconda-mode)
-         (python-mode . anaconda-eldoc-mode)))
+;; (use-package anaconda-mode
+;;   :ensure t
+;;   :disabled t
+;;   :diminish anaconda-mode
+;;   :hook ((python-mode . anaconda-mode)
+;;          (python-mode . anaconda-eldoc-mode)))
 
-(use-package company-anaconda
-  :ensure t
-  :hook (python-mode . (lambda () (push 'company-anaconda company-backends))))
+;; (use-package company-anaconda
+;;   :ensure t
+;;   :disabled t
+;;   :hook (python-mode . (lambda () (push 'company-anaconda company-backends))))
 
-(use-package company-jedi
-  :ensure t
-  :disabled t
-  :hook (python-mode . (lambda ()
-                         (push 'company-jedi company-backends)
-                         (add-hook 'python-mode-hook 'jedi:setup)))
-  :config
-  (setq jedi:complete-on-dot t))
+;; (use-package company-jedi
+;;   :ensure t
+;;   :disabled t
+;;   :hook (python-mode . (lambda ()
+;;                          (push 'company-jedi company-backends)
+;;                          (add-hook 'python-mode-hook 'jedi:setup)))
+;;   :config
+;;   (setq jedi:complete-on-dot t))
 
 (use-package yapfify
   :ensure t
@@ -968,19 +970,19 @@
 
 (use-package modern-cpp-font-lock :ensure t)
 
-(use-package irony
-  :ensure t
-  :disabled t
-  :hook (((c++-mode c-mode objc-mode) . irony-mode)
-         (irony-mode . irony-cdb-autosetup-compile-options)))
+;; (use-package irony
+;;   :ensure t
+;;   :disabled t
+;;   :hook (((c++-mode c-mode objc-mode) . irony-mode)
+;;          (irony-mode . irony-cdb-autosetup-compile-options)))
 
-(use-package company-irony
-  :ensure t
-  :disabled t
-  :hook (irony-mode . company-irony-setup-begin-commands)
-  :config
-  (setq company-irony-ignore-case 'smart)
-  (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete)))
+;; (use-package company-irony
+;;   :ensure t
+;;   :disabled t
+;;   :hook (irony-mode . company-irony-setup-begin-commands)
+;;   :config
+;;   (setq company-irony-ignore-case 'smart)
+;;   (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete)))
 
 (use-package company-c-headers
   :ensure t
@@ -1015,19 +1017,19 @@
   :config (setq flycheck-c/c++-clangcheck-executable "/usr/bin/clang-check")
   :hook (flycheck-mode . (lambda () (add-to-list 'flycheck-checkers 'c/c++-clangcheck))))
 
-(use-package irony-eldoc
-  :ensure t
-  :disabled t
-  :hook (irony-mode . irony-eldoc))
+;; (use-package irony-eldoc
+;;   :ensure t
+;;   :disabled t
+;;   :hook (irony-mode . irony-eldoc))
 
-(use-package cquery
-  :ensure t
-  :disabled t
-  :commands lsp-cquery-enable
-  :hook (c-mode-common . lsp-cquery-enable)
-  :config
-  (setq cquery-executable "/usr/bin/cquery"
-        cquery-extra-init-params '(:index (:comments 2) :completion (:detailedLabel t) :cacheFormat "msgpack")))
+;; (use-package cquery
+;;   :ensure t
+;;   :disabled t
+;;   :commands lsp-cquery-enable
+;;   :hook (c-mode-common . lsp-cquery-enable)
+;;   :config
+;;   (setq cquery-executable "/usr/bin/cquery"
+;;         cquery-extra-init-params '(:index (:comments 2) :completion (:detailedLabel t) :cacheFormat "msgpack")))
 
 (use-package ccls
   :ensure t
@@ -1101,11 +1103,11 @@
   :after org
   :hook (org-mode . org-autolist-mode))
 
-(use-package org-variable-pitch
-  :disabled t
-  :ensure t
-  :after org
-  :hook (org-mode . org-variable-pitch-minor-mode))
+;; (use-package org-variable-pitch
+;;   :disabled t
+;;   :ensure t
+;;   :after org
+;;   :hook (org-mode . org-variable-pitch-minor-mode))
 
 (use-package org-bullets
   :ensure t
@@ -1557,7 +1559,7 @@
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (format-all org-journal org-noter org-plus-contrib flycheck-clang-analyzer flycheck-rust parinfer ein olivetti company-box mixed-pitch lisp-extra-font-lock no-littering paradox company-quickhelp org-projectile cquery dtrt-indent golden-ratio browse-kill-ring focus highlight-parentheses rainbow-delimiters hl-todo linum-relative doom-modeline yasnippet-snippets biblio ox-pandoc wc-mode org-evil org-bullets org-variable-pitch org-autolist deft ccls irony-eldoc flycheck-clangcheck flycheck-irony company-c-headers company-irony irony modern-cpp-font-lock google-c-style scribble-mode racket-mode racer lsp-rust cargo rust-mode lsp-go scala-mode geiser fish-mode company-lua lua-mode toml-mode meson-mode cmake-font-lock cmake-mode lsp-javascript-typescript lsp-html yaml-mode company-math company-reftex company-auctex auctex-latexmk auctex markdown-toc flycheck-pycheckers lsp-python py-isort yapfify company-jedi company-anaconda anaconda-mode flycheck-ghcmod flycheck-haskell company-ghc company-ghci company-cabal lsp-haskell hindent intero ghc haskell-mode lsp-ocaml utop merlin tuareg ocp-indent slime-company company-lsp lsp-ui lsp-mode company-prescient prescient all-the-icons-dired all-the-icons-ivy company-posframe which-key highlight-indent-guides restart-emacs auto-dictionary flyspell-correct flycheck-pos-tip flycheck evil-goggles evil-lion evil-snipe evil-commentary evil-terminal-cursor-changer evil-magit evil-escape evil-embrace evil-visualstar evil-args evil-fringe-mark evil-matchit evil-surround evil-collection evil-leader evil-expat evil undo-tree lispyville lispy popup-kill-ring ialign rainbow-mode eyebrowse git-gutter esh-autosuggest ivy-posframe amx wgrep counsel-etags counsel-projectile counsel ivy-xref ivy-rich swiper ivy auto-compile use-package)))
+    (lsp-rust lsp-go lsp-javascript-typescript lsp-html lsp-python lsp-haskell lsp-ocaml yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer paradox ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
  '(paradox-github-token t)
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
