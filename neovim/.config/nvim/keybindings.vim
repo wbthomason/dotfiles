@@ -20,7 +20,7 @@ nnoremap <silent> <localleader>r @:
 let g:llmaps.r = ['@:', 'Rerun last colon command']
 
 " Lame M-x approximation
-nnoremap <silent> <leader><leader> :Denite command<cr>
+nnoremap <silent> <leader><leader> :Command<cr>
 
 " Exiting
 nnoremap <silent> <leader>q :qa<cr>
@@ -42,9 +42,9 @@ nnoremap <silent> <leader>s :bn<cr>
 let g:lmaps.s = ['bn', 'Go to next buffer']
 nnoremap <silent> <leader>bl :b#<cr>
 let g:lmaps.b.l = ['b#', 'Go to last used buffer']
-nnoremap <silent> <leader>bb :Denite buffer<cr>
-nnoremap <silent> <tab> :Denite buffer file/old<cr>
-let g:lmaps.b.b = ['Denite buffer', 'Select a buffer']
+nnoremap <silent> <leader>bb :Buffers<cr>
+nnoremap <silent> <tab> :History<cr>
+let g:lmaps.b.b = ['Buffers', 'Select a buffer']
 
 " Configuration bindings
 let g:lmaps.c = {'name': 'Configuration'}
@@ -65,21 +65,32 @@ let g:lmaps.e.c = ['lclose', 'Close error list']
 
 " Finder bindings
 let g:lmaps.f = {'name': 'Find'}
-nnoremap <silent> <leader>ff :Denite directory_rec file_rec<CR>
-let g:lmaps.f.f = ['Denite directory_rec file_rec', 'Search for files in the current directory']
-nnoremap <silent> <leader>fg :Denite file/rec/git<CR>
-let g:lmaps.f.g = ['Denite file/rec/git', 'Search for files in the current Git repo']
-nnoremap <silent> <leader>fh :Denite help<CR>
-let g:lmaps.f.h = ['Denite help', 'Search in help tags']
-nnoremap <silent> <leader>fr :Denite file/old<CR>
-let g:lmaps.f.r = ['Denite file/old', 'Search for recently edited files']
-nnoremap <silent> <leader>fi :Denite grep<CR>
-let g:lmaps.f.i = ['Denite grep', 'Search for text in files in the current directory']
+nnoremap <silent> <leader>ff :Files<CR>
+let g:lmaps.f.f = ['Files', 'Search for files in the current directory']
+nnoremap <leader>fa :Files <C-r>=getcwd()<CR>
+let g:lmaps.f.a = ['Files <C-r>=getcwd()<CR>', 'Search for files in an arbitrary directory']
+nnoremap <silent> <leader>fg :GFiles<CR>
+let g:lmaps.f.g = ['GFiles', 'Search for files in the current Git repo']
+nnoremap <silent> <leader>fh :Helptags<CR>
+let g:lmaps.f.h = ['Helptags', 'Search in help tags']
+nnoremap <silent> <leader>fr :History<CR>
+let g:lmaps.f.r = ['History', 'Search for recently edited files']
+let g:lmaps.f.t = {'name': 'Tags'}
+nnoremap <silent> <leader>ftt :Tags<CR>
+let g:lmaps.f.t.t = ['Tags', 'Search in tags for the current directory']
+nnoremap <silent> <leader>ftb :BTags<CR>
+let g:lmaps.f.t.b = ['BTags', 'Search in tags for the current buffer']
+nnoremap <silent> <leader>fi :Rg<CR>
+let g:lmaps.f.i = ['Rg', 'Search for text in files in the current directory']
+nnoremap <silent> <leader>fl :Lines<CR>
+let g:lmaps.f.l = ['Lines', 'Search for text in currently open buffers']
+nnoremap  <leader>fL :Locate
+let g:lmaps.f.l = ['Locate', 'Search the system with locate']
 let g:lmaps.f.s = {'name': 'Symbols'}
-nnoremap <silent> <leader>fsb :Denite documentSymbol<CR>
-let g:lmaps.f.s.b = ['Denite documentSymbol', 'Search symbols in the current buffer']
-nnoremap <silent> <leader>fsp :Denite workspaceSymbol<CR>
-let g:lmaps.f.s.p = ['Denite workspaceSymbol', 'Search symbols in the current project']
+nnoremap <silent> <leader>fsb :call LanguageClient_textDocument_documentSymbol()<CR>
+let g:lmaps.f.s.b = ['call LanguageClient_textDocument_documentSymbol()', 'Search symbols in the current buffer']
+nnoremap <silent> <leader>fsp :call LanguageClient_workspace_symbol()<CR>
+let g:lmaps.f.s.p = ['call LanguageClient_workspace_symbol()', 'Search symbols in the current project']
 nnoremap <silent> <leader>fd :Vaffle<CR>
 let g:lmaps.f.d = ['Vaffle', 'Open Vaffle']
 
@@ -181,8 +192,8 @@ nnoremap <silent> <leader>la :Denite codeAction<CR>
 let g:lmaps.l.a = ['Denite codeAction', 'Code actions at point']
 nnoremap <silent> <leader>lf :call LanguageClient_textDocument_formatting()<CR>
 let g:lmaps.l.f = ['call LanguageClient_textDocument_formatting()', 'Format document']
-nnoremap <silent> <leader>lm :Denite contextMenu<CR>
-let g:lmaps.l.m = ['Denite contextMenu', 'Display menu of LC actions']
+nnoremap <silent> <leader>lm :call LanguageClient_contextMenu()<CR>
+let g:lmaps.l.m = ['call LanguageClient_contextMenu()', 'Display menu of LC actions']
 
 " Formatting Bindings
 nnoremap <silent> <leader>bf :Neoformat<CR>

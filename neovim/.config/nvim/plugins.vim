@@ -83,16 +83,16 @@ Plug 'zirrostig/vim-schlepp'
 " Plug 'ludovicchabant/vim-gutentags'
 
 " FZF
-" Plug 'junegunn/fzf.vim'
-" Plug 'fszymanski/fzf-gitignore'
+Plug 'junegunn/fzf.vim'
+Plug 'fszymanski/fzf-gitignore'
 
 " Denite
 Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
 Plug 'Shougo/denite.nvim'
-Plug 'iamcco/gitignore.vim'
+" Plug 'iamcco/gitignore.vim'
 Plug 'dunstontc/projectile.nvim'
-Plug 'ozelentok/denite-gtags'
-Plug 'neoclide/denite-extra'
+" Plug 'ozelentok/denite-gtags'
+" Plug 'neoclide/denite-extra'
 
 " Writing
 Plug 'junegunn/goyo.vim'

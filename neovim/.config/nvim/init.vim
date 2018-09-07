@@ -335,21 +335,21 @@ let g:vaffle_show_hidden_files = 1
 let g:vaffle_force_delete = 1
 
 " " FZF
-" let g:fzf_gitignore_no_maps = 1
-" let g:fzf_colors =
-"       \ { 'fg':      ['fg', 'Normal'],
-"       \ 'bg':      ['bg', 'Normal'],
-"       \ 'hl':      ['fg', 'Comment'],
-"       \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-"       \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-"       \ 'hl+':     ['fg', 'Statement'],
-"       \ 'info':    ['fg', 'PreProc'],
-"       \ 'border':  ['fg', 'Ignore'],
-"       \ 'prompt':  ['fg', 'Conditional'],
-"       \ 'pointer': ['fg', 'Exception'],
-"       \ 'marker':  ['fg', 'Keyword'],
-"       \ 'spinner': ['fg', 'Label'],
-"       \ 'header':  ['fg', 'Comment'] }
+let g:fzf_gitignore_no_maps = 1
+let g:fzf_colors =
+      \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
 " Projectile
 let g:projectile#enable_devicons = 1
