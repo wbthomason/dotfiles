@@ -46,6 +46,7 @@
 (require 'use-package)
 
 (use-package paradox
+  :disabled t
   :ensure t
   :config
   (define-key paradox-menu-mode-map (kbd "M-f") #'hydra-paradox-filter/body)
