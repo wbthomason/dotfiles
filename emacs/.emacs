@@ -140,8 +140,8 @@
    `(ivy-posframe-center-dynamic-size
      :cleanup
      (lambda () (when
-               (ivy-posframe-workable-p)
-             (posframe-hide ivy-posframe-buffer))))
+                    (ivy-posframe-workable-p)
+                  (posframe-hide ivy-posframe-buffer))))
    ivy-display-functions-props))
 
 ;;; Eshell
@@ -499,29 +499,33 @@
         which-key-idle-delay 0.5))
 
 ;;; Company
+(defvar company-standard-backends '(company-semantic
+                                    company-files
+                                    (company-dabbrev-code
+                                     company-gtags
+                                     company-etags
+                                     company-keywords)
+                                    company-yasnippet))
 (use-package company
   :ensure t
   :diminish company-mode
   :hook (after-init . global-company-mode)
-
   :config
   (define-key company-active-map [tab] 'company-select-next)
   (define-key company-active-map [S-tab] 'company-select-previous)
   (define-key company-active-map [C-return] #'company-complete-selection)
   (define-key company-active-map [return] #'company-complete-selection)
-  (setq company-backends (delete 'company-semantic company-backends))
-  (setq company-backends (delete 'company-dabbrev company-backends))
-  (setq company-backends (delete 'company-clang company-backends))
-  (setq company-backends (delete 'company-oddmuse company-backends))
+  (setq company-backends (append '(company-capf) company-standard-backends))
   (setq company-idle-delay 0
         company-echo-delay 0
         company-frontends '(company-posframe-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
-        company-minimum-prefix-length 2
+        company-minimum-prefix-length 1
         company-require-match nil
         company-dabbrev-downcase nil
         company-tooltip-limit 20
         company-tooltip-align-annotations t
         company-selection-wrap-around t))
+
 
 ;;; NOTE: This package is slow and buggy. Maybe revisit in the future (8/29/2018)
 ;; (use-package company-box
@@ -555,6 +559,7 @@
 
 (use-package company-prescient
   :ensure t
+  :disabled t
   :after company
   :config (company-prescient-mode))
 
@@ -563,17 +568,20 @@
 (use-package eglot
   :ensure t
   :config
-  (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(lua-mode . ("/home/wil/.luarocks/bin/lua-lsp")))
-  (add-hook 'c-mode-common-hook 'eglot-ensure)
-  (add-hook 'c-mode-hook 'eglot-ensure)
-  (add-hook 'c++-mode-hook 'eglot-ensure)
-  (add-hook 'tuareg-mode-hook 'eglot-ensure)
-  (add-hook 'javascript-mode-hook 'eglot-ensure)
-  (add-hook 'rust-mode-hook 'eglot-ensure)
-  (add-hook 'lua-mode-hook 'eglot-ensure)
-  (add-hook 'python-mode-hook 'eglot-ensure)
-  (add-hook 'haskell-mode-hook 'eglot-ensure))
+  (add-to-list 'eglot-server-programs '((tuareg-mode caml-mode reason-mode) . ("ocaml-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(lua-mode . ("/home/wil/.luarocks/bin/lua-lsp"))))
+
+(add-hook 'c-mode-common-hook 'eglot-ensure)
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+(add-hook 'tuareg-mode-hook 'eglot-ensure)
+(add-hook 'caml-mode-hook 'eglot-ensure)
+(add-hook 'reason-mode-hook 'eglot-ensure)
+(add-hook 'javascript-mode-hook 'eglot-ensure)
+(add-hook 'rust-mode-hook 'eglot-ensure)
+(add-hook 'lua-mode-hook 'eglot-ensure)
+(add-hook 'python-mode-hook 'eglot-ensure)
+(add-hook 'haskell-mode-hook 'eglot-ensure)
 
 ;; (use-package lsp-mode
 ;;   :ensure t
@@ -649,6 +657,12 @@
   :config
   (setq utop-command "opam config exec -- utop -emacs"))
 
+(defun setup-ocaml-company ()
+  "Setup OCaml-specific company backends."
+  (set (make-local-variable 'company-backends)
+       (append '((company-capf merlin-company-backend)) company-standard-backends)))
+(add-hook 'tuareg-mode-hook 'setup-ocaml-company)
+
 ;; (use-package lsp-ocaml
 ;;   :ensure t
 ;;   :hook ((tuareg-mode caml-mode reason-mode) . lsp-ocaml-enable))
@@ -664,7 +678,7 @@
 
 (use-package intero
   :ensure t
-  :hook (haskell-mode . intero-mode))
+  :defer t)
 
 (use-package hindent
   :ensure t
@@ -676,17 +690,11 @@
 ;;   :ensure t
 ;;   :hook (haskell-mode . lsp-haskell-enable))
 
-(use-package company-cabal
-  :ensure t
-  :hook (haskell-mode . (lambda () (push 'company-cabal company-backends))))
+(use-package company-cabal :ensure)
 
-(use-package company-ghci
-  :ensure t
-  :hook (haskell-mode . (lambda () (push 'company-ghci company-backends))))
+(use-package company-ghci :ensure t)
 
-(use-package company-ghc
-  :ensure t
-  :hook (haskell-mode . (lambda () (push 'company-ghc company-backends))))
+(use-package company-ghc :ensure t)
 
 (use-package flycheck-haskell
   :ensure t
@@ -696,6 +704,14 @@
 (use-package flycheck-ghcmod
   :ensure t
   :after flycheck)
+
+(defun setup-haskell-company ()
+  "Setup Haskell-specific company backends."
+  (set (make-local-variable 'company-backends)
+       (append '((intero-company company-capf company-ghci company-ghc company-cabal))
+               company-standard-backends)))
+(add-hook 'haskell-mode-hook 'intero-mode)
+(add-hook 'haskell-mode-hook 'setup-haskell-company)
 
 ;;; Python
 (setenv "PYTHONPATH" "/opt/ros/melodic/lib/python2.7/site-packages")
@@ -831,22 +847,23 @@
       '("cpageref" TeX-arg-ref)
       '("Cpageref" TeX-arg-ref)))))
 
-(use-package company-reftex
-  :ensure t
-  :hook (LaTeX-mode . (lambda ()
-                        (push 'company-reftex-labels company-backends)
-                        (push 'company-reftex-citations company-backends))))
+(use-package company-reftex :ensure t :after company)
 
-(use-package company-math
-  :ensure t
-  :after company
-  :config
-  (push 'company-math-symbols-latex company-backends)
-  (push 'company-latex-commands company-backends))
+(use-package company-math :ensure t :after company)
 
 (use-package evil-latex-textobjects
   :hook (LaTeX-mode . turn-on-evil-latex-textobjects-mode))
 
+(defun setup-LaTeX-company ()
+  "Setup LaTeX-specific company backends."
+  (set (make-local-variable 'company-backends)
+       (append '((company-auctex
+                  company-math-symbols-latex
+                  company-latex-commands)
+                 company-reftex-labels
+                 company-reftex-citations)
+               company-standard-backends)))
+(add-hook 'LaTeX-mode-hook 'setup-LaTeX-company)
 ;;; YAML
 (use-package yaml-mode :ensure t)
 
@@ -902,9 +919,14 @@
 ;;  '("/home/wil/.luarocks/bin/lua-lsp"))
 ;; (add-hook 'lua-mode-hook #'lsp-lua-enable)
 
-(use-package company-lua
-  :ensure t
-  :hook (lua-mode . (lambda () (push 'company-lua company-backends))))
+(use-package company-lua :ensure t)
+
+(defun setup-lua-company ()
+  "Setup Lua-specific company backends."
+  (set (make-local-variable 'company-backends)
+       (append '((company-lua company-capf))
+               company-standard-backends)))
+(add-hook 'lua-mode-hook 'setup-lua-company)
 
 ;;; Fish
 (use-package fish-mode :ensure t)
@@ -976,9 +998,7 @@
 ;;   (setq company-irony-ignore-case 'smart)
 ;;   (setq-default irony-cdb-compilation-databases '(irony-cdb-libclang irony-cdb-clang-complete)))
 
-(use-package company-c-headers
-  :ensure t
-  :hook ((c++-mode c-mode) . (lambda () (push 'company-c-headers company-backends))))
+(use-package company-c-headers :ensure t)
 
 (use-package flycheck-irony
   :ensure t
@@ -1025,8 +1045,6 @@
 
 (use-package ccls
   :ensure t
-  ;; :hook (c-mode-common . lsp-ccls-enable)
-  :hook c-mode-common
   :config
   (setq ccls-extra-init-params '(:completion (:detailedLabel t) :cacheFormat "binary")))
 
@@ -1038,6 +1056,14 @@
                                 ;; Keeps throwing errors right now...
                                 ;; (flycheck-add-next-checker 'c/c++-googlelint 'clang-analyzer) ;;
                                 ))
+(defun setup-c++-company ()
+  "Setup C++-specific company backends."
+  (set (make-local-variable 'company-backends)
+       (append '((company-c-headers company-capf))
+               company-standard-backends)))
+(add-hook 'c++-mode-hook 'setup-c++-company)
+(add-hook 'c-mode-hook 'setup-c++-company)
+
 ;;; Deft
 (use-package deft
   :ensure t
@@ -1151,7 +1177,7 @@
   (yas-global-mode t)
   (advice-add 'company-complete-common :before (lambda () (setq my-company-point (point))))
   (advice-add 'company-complete-common :after (lambda () (when (equal my-company-point (point)) (yas-expand))))
-  (add-to-list 'company-backends 'company-yasnippet t)
+  ;; (add-to-list 'company-backends 'company-yasnippet t)
   )
 
 (use-package yasnippet-snippets :ensure t)
