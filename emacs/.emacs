@@ -82,6 +82,7 @@
         ;; ivy-re-builders-alist '((t . ivy--regex-fuzzy))
         ivy-display-style 'fancy
         ivy-height 200
+        ivy-use-selectable-prompt t
         ivy-format-function 'ivy-format-function-line)
   (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
   (define-key ivy-minibuffer-map (kbd "C-a") 'ivy-read-action)
@@ -508,6 +509,7 @@
   (define-key company-active-map [return] #'company-complete-selection)
   (setq company-backends (delete 'company-semantic company-backends))
   (setq company-backends (delete 'company-dabbrev company-backends))
+  (setq company-backends (delete 'company-clang company-backends))
   (setq company-backends (delete 'company-oddmuse company-backends))
   (setq company-idle-delay 0
         company-echo-delay 0
@@ -991,6 +993,7 @@
 
 (use-package flycheck-clang-analyzer
   :ensure t
+  :disabled t
   :after flycheck
   :hook (flycheck-mode . flycheck-clang-analyzer-setup))
 
