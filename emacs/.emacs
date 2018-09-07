@@ -556,11 +556,30 @@
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
-;; (use-package eglot :ensure t
+;; (use-package eglot
+;;   :ensure t
 ;;   :config
+;;   (defclass eglot-ccls (eglot-lsp-server) ()
+;;     :documentation "Ccls's C/C++ langserver.")
+
+;;   (cl-defmethod eglot-initialization-options ((server eglot-ccls))
+;;     "Passes through required ccls initialization options"
+;;     (let* ((root (car (project-roots (eglot--project server))))
+;;            (cache (expand-file-name ".ccls-cache/" root)))
+;;       (list :cacheDirectory (file-name-as-directory cache)
+;;             :progressReportFrequencyMs -1)))
+
+;;   (setq eglot-server-programs (delete '(c++-mode c-mode) eglot-server-programs))
 ;;   (add-to-list 'eglot-server-programs '(tuareg-mode . ("ocaml-language-server" "--stdio")))
-;;   (add-to-list 'eglot-server-programs '(haskell-mode . ("hie" "--lsp")))
-;;   (add-to-list 'eglot-server-programs '(common-lisp-mode . ("cl-lsp"))))
+;;   (add-to-list 'eglot-server-programs '((c-mode c++-mode) . (eglot-ccls "ccls")))
+;;   (add-to-list 'eglot-server-programs '(lua-mode . ("/home/wil/.luarocks/bin/lua-lsp")))
+;;   (add-hook 'c-mode-common-hook 'eglot-ensure)
+;;   (add-hook 'tuareg-mode-hook 'eglot-ensure)
+;;   (add-hook 'javascript-mode-hook 'eglot-ensure)
+;;   (add-hook 'rust-mode-hook 'eglot-ensure)
+;;   (add-hook 'lua-mode-hook 'eglot-ensure)
+;;   (add-hook 'python-mode-hook 'eglot-ensure)
+;;   (add-hook 'haskell-mode-hook 'eglot-ensure))
 
 (use-package lsp-mode
   :ensure t
