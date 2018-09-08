@@ -234,17 +234,10 @@ nnoremap <silent> <leader>pi :e ~/wiki/index.md<cr>
 let g:lmaps.p.i = ['e ~/wiki/index.md', 'Go to plan index']
 
 " Leader guide bindings and settings
-let g:allmaps = {}
-let g:allmaps[' '] = g:lmaps
-let g:allmaps[','] = g:llmaps
-let g:allmaps[',']['name'] = '<localleader>'
-
-nnoremap <silent> <leader> :<c-u>LeaderGuide '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>LeaderGuideVisual '<Space>'<CR>
-map <leader>. <Plug>leaderguide-global
-nnoremap <localleader> :<c-u>LeaderGuide  ','<CR>
-vnoremap <localleader> :<c-u>LeaderGuideVisual  ','<CR>
-map <localleader>. <Plug>leaderguide-buffer
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
 
 " 2-character Sneak (default)
 nmap z <Plug>Sneak_s
@@ -313,5 +306,6 @@ omap T <Plug>Sneak_T
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 imap <c-u> <Plug>(ultisnips_expand)
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
 
 inoremap <silent> <c-t> :Snippets<CR>

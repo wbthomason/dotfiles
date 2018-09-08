@@ -3,7 +3,7 @@
 set title
 set wildmenu
 set autoread
-set autochdir
+" set autochdir
 set textwidth=100
 set formatoptions+=t
 set formatoptions+=j

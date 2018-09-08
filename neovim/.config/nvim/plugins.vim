@@ -14,7 +14,8 @@ Plug 'vim-scripts/LargeFile'
 Plug 'roman/golden-ratio'
 
 " Mappings
-Plug 'hecal3/vim-leader-guide'
+Plug 'liuchengxu/vim-which-key'
+" Plug 'hecal3/vim-leader-guide'
 
 " Registers
 Plug 'junegunn/vim-peekaboo'
@@ -59,6 +60,7 @@ Plug 'luochen1990/rainbow'
 Plug 'ozelentok/vim-closer'
 Plug 'tpope/vim-endwise'
 Plug 'itchyny/vim-parenmatch'
+Plug 'justinmk/vim-matchparenalways'
 
 " Searching
 Plug 'haya14busa/incsearch.vim'
@@ -72,6 +74,11 @@ Plug 'junegunn/vim-easy-align'
 Plug 'sbdchd/neoformat'
 
 " Text objects
+Plug 'kana/vim-textobj-user'
+Plug 'thalesmello/vim-textobj-methodcall'
+Plug 'blackheaven/vim-textobj-function'
+Plug 'rhysd/vim-textobj-anyblock'
+Plug 'landock/vim-expand-region'
 Plug 'wellle/targets.vim'
 Plug 'tommcdo/vim-exchange'
 
@@ -137,11 +144,12 @@ Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-tagprefix'
 Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
+Plug 'ncm2/ncm2-neoinclude' | Plug 'Shougo/neoinclude.vim'
 
 " Snippets
+Plug 'ncm2/ncm2-ultisnips'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 

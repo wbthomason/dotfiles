@@ -351,14 +351,46 @@ let g:fzf_colors =
       \ 'spinner': ['fg', 'Label'],
       \ 'header':  ['fg', 'Comment'] }
 
+function! Fzf_dev()
+  let l:fzf_files_options = '--preview "rougify {2..-1} | head -'.&lines.'"'
+
+  function! s:files()
+    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+    return s:prepend_icon(l:files)
+  endfunction
+
+  function! s:prepend_icon(candidates)
+    let l:result = []
+    for l:candidate in a:candidates
+      let l:filename = fnamemodify(l:candidate, ':p:t')
+      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+      call add(l:result, printf('%s %s', l:icon, l:candidate))
+    endfor
+
+    return l:result
+  endfunction
+
+  function! s:edit_file(item)
+    let l:pos = stridx(a:item, ' ')
+    let l:file_path = a:item[pos+1:-1]
+    execute 'silent e' l:file_path
+  endfunction
+
+  call fzf#run({
+        \ 'source': <sid>files(),
+        \ 'sink':   function('s:edit_file'),
+        \ 'options': '-m ' . l:fzf_files_options,
+        \ 'down':    '40%' })
+endfunction
+
 " Projectile
 let g:projectile#enable_devicons = 1
 let g:projectile#search_prog = 'rg'
 
 " Snippets
 let g:UltiSnipsExpandTrigger       = '<Plug>(ultisnips_expand)'
-let g:UltiSnipsJumpForwardTrigger  = '<c-c>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-z>'
+let g:UltiSnipsJumpForwardTrigger  = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 let g:UltiSnipsRemoveSelectModeMappings = 0
 
 " Vim-pad
@@ -441,8 +473,10 @@ call denite#custom#map(
 
 " Leader guide
 
-call leaderGuide#register_prefix_descriptions('', 'g:allmaps')
-call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
+call which_key#register('<Space>', 'g:lmaps')
+call which_key#register(',', 'g:llmaps')
+" call leaderGuide#register_prefix_descriptions('', 'g:allmaps')
+" call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
 
 " ALE integration config
 if !exists('g:gui_oni')
