@@ -489,6 +489,7 @@ call which_key#register(',', 'g:llmaps')
 if !exists('g:gui_oni')
   call airline#parts#define_function('ALE', 'LinterStatus')
   let g:airline_section_error = airline#section#create_right(['ALE'])
+  let g:ale_sign_column_always = 1
 endif
 
 " NCM2
