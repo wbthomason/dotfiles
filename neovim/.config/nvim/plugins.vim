@@ -58,9 +58,9 @@ Plug 'tomtom/tcomment_vim'
 Plug 'machakann/vim-sandwich'
 Plug 'luochen1990/rainbow'
 
-Plug 'rstacruz/vim-closer' " - Causes problems with ncm2-ultisnips
+Plug 'rstacruz/vim-closer' " - Causes problems with ncm2-ultisnips default CR binding
 
-" Plug 'tpope/vim-endwise' - Causes problems with ncm2-ultisnips
+Plug 'tpope/vim-endwise' " - Causes problems with ncm2-ultisnips default CR binding
 
 Plug 'itchyny/vim-parenmatch'
 Plug 'justinmk/vim-matchparenalways'
