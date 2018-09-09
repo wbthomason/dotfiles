@@ -490,29 +490,9 @@ if !exists('g:gui_oni')
   let g:airline_section_error = airline#section#create_right(['ALE'])
 endif
 
-" Deoplete
-" let g:deoplete#enable_at_startup = 0
-" call deoplete#custom#option('keyword_patterns', {
-"       \ '_': '[a-zA-Z_]\k*\(?',
-"       \ 'tex': '[^\w|\s][a-zA-Z_]\w*',
-"       \ })
-" call deoplete#custom#source('tag,omni,around,buffer,dictionary,member', 'disabled_syntaxes', ['Comment', 'String'])
-" call deoplete#custom#option('ignore_sources', {'_': ['tag'], 'python': ['tag', 'neoinclude']})
-" call deoplete#custom#var('omni', 'input_patterns', {
-"       \ 'tex' : g:vimtex#re#deoplete,
-"       \})
-" call deoplete#custom#option('num_processes', 0)
-" " cpsm is faster, but seems to break the omni source?
-" call deoplete#custom#source('_', 'matchers', ['matcher_head'])
-" " call deoplete#custom#source('_', 'sorters', [])
-" call deoplete#custom#source('_', 'min_pattern_length', 2)
-" call deoplete#custom#option('smart_case', v:true)
-" call deoplete#custom#option('max_list', 150)
-" call deoplete#custom#option('refresh_always', v:true)
-" call deoplete#custom#option('auto_complete_delay', 5)
-
 " NCM2
 let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
+let g:ncm2#popup_delay = 100
 
 " General settings
 call ConfigInc('settings.vim')
