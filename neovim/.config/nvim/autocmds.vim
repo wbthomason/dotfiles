@@ -3,16 +3,16 @@
 augroup main_aucommands
   au!
   au BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \ exe "normal! g`\"" |
-    \ endif
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \ exe "normal! g`\"" |
+        \ endif
   au BufWinEnter * checktime
   au CompleteDone * pclose
   au FileType qf setlocal wrap
   autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \| endif
+        \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+        \|   PlugInstall --sync | q
+        \| endif
 augroup END
 
 augroup ale_colors
@@ -86,7 +86,7 @@ augroup ncm_aucommands
   au BufEnter * call ncm2#enable_for_buffer()
   au TextChangedI * call ncm2#auto_trigger()
   au InsertEnter * call ncm2#enable_for_buffer()
-    au Filetype tex call ncm2#register_source({
+  au Filetype tex call ncm2#register_source({
         \ 'name' : 'vimtex-cmds',
         \ 'priority': 8, 
         \ 'complete_length': -1,
@@ -96,7 +96,7 @@ augroup ncm_aucommands
         \ 'complete_pattern': g:vimtex#re#ncm2#cmds,
         \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
         \ })
-    au Filetype tex call ncm2#register_source({
+  au Filetype tex call ncm2#register_source({
         \ 'name' : 'vimtex-labels',
         \ 'priority': 8, 
         \ 'complete_length': -1,
@@ -110,7 +110,7 @@ augroup ncm_aucommands
         \ 'complete_pattern': g:vimtex#re#ncm2#labels,
         \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
         \ })
-    au Filetype tex call ncm2#register_source({
+  au Filetype tex call ncm2#register_source({
         \ 'name' : 'vimtex-files',
         \ 'priority': 8, 
         \ 'complete_length': -1,
@@ -124,7 +124,7 @@ augroup ncm_aucommands
         \ 'complete_pattern': g:vimtex#re#ncm2#files,
         \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
         \ })
-    au Filetype tex call ncm2#register_source({
+  au Filetype tex call ncm2#register_source({
         \ 'name' : 'bibtex',
         \ 'priority': 8, 
         \ 'complete_length': -1,

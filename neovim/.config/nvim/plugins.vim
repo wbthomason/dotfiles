@@ -57,8 +57,11 @@ Plug 'tomtom/tcomment_vim'
 " Wrapping/delimiters
 Plug 'machakann/vim-sandwich'
 Plug 'luochen1990/rainbow'
-Plug 'ozelentok/vim-closer'
-Plug 'tpope/vim-endwise'
+
+Plug 'rstacruz/vim-closer' " - Causes problems with ncm2-ultisnips
+
+" Plug 'tpope/vim-endwise' - Causes problems with ncm2-ultisnips
+
 Plug 'itchyny/vim-parenmatch'
 Plug 'justinmk/vim-matchparenalways'
 

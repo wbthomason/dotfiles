@@ -427,6 +427,12 @@ call ConfigInc('keybindings.vim')
 " Add in plugins
 call ConfigInc('plugins.vim')
 
+" NCM2
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <c-u> <Plug>(ultisnips_expand)
+inoremap <silent> <expr> <c-u> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
 " Denite
 let g:denite_source_session_path = '~/.vim/session'
 call denite#custom#option('_', {
