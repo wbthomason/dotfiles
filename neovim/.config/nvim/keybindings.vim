@@ -184,12 +184,12 @@ nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gD :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <leader>ln :call LanguageClient_textDocument_rename()<CR>
 let g:lmaps.l.n = ['call LanguageClient_textDocument_rename()', 'Rename symbol']
-nnoremap <silent> <leader>lr :Denite references<CR>
-let g:lmaps.l.r = ['Denite references', 'Find symbol references']
+nnoremap <silent> <leader>lr :call LanguageClient#textDocument_references()<CR>
+let g:lmaps.l.r = ['call LanguageClient#textDocument_references()', 'Find symbol references']
 nnoremap <silent> <leader>lh :call LanguageClient_textDocument_hover()<CR>
 let g:lmaps.l.h = ['call LanguageClient_textDocument_hover()', 'Hover on symbol']
-nnoremap <silent> <leader>la :Denite codeAction<CR>
-let g:lmaps.l.a = ['Denite codeAction', 'Code actions at point']
+nnoremap <silent> <leader>la :call LanguageClient#textDocument_codeAction()<CR>
+let g:lmaps.l.a = ['call LanguageClient#textDocument_codeAction()', 'Code actions at point']
 nnoremap <silent> <leader>lf :call LanguageClient_textDocument_formatting()<CR>
 let g:lmaps.l.f = ['call LanguageClient_textDocument_formatting()', 'Format document']
 nnoremap <silent> <leader>lm :call LanguageClient_contextMenu()<CR>

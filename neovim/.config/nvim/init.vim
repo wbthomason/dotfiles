@@ -237,7 +237,7 @@ let g:rooter_manual_only = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
 
 " LanguageClient
-let g:LanguageClient_hasSnippetSupport = 0
+let g:LanguageClient_hasSnippetSupport = 1
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
       \ 'python': ['pyls'],
@@ -335,6 +335,7 @@ let g:vaffle_show_hidden_files = 1
 let g:vaffle_force_delete = 1
 
 " " FZF
+" let g:fzf_layout = { 'window': '10split enew' }
 let g:fzf_gitignore_no_maps = 1
 let g:fzf_colors =
       \ { 'fg':      ['fg', 'Normal'],
