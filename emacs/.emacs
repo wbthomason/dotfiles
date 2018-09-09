@@ -519,7 +519,7 @@
   (setq company-idle-delay 0
         company-echo-delay 0
         company-frontends '(company-posframe-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)
-        company-minimum-prefix-length 1
+        company-minimum-prefix-length 2
         company-require-match nil
         company-dabbrev-downcase nil
         company-tooltip-limit 20
