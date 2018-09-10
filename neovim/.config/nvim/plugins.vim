@@ -57,13 +57,13 @@ Plug 'tomtom/tcomment_vim'
 " Wrapping/delimiters
 Plug 'machakann/vim-sandwich'
 Plug 'luochen1990/rainbow'
+Plug 'itchyny/vim-parenmatch'
+Plug 'djdt/vim-matchparenalways'
+Plug 'andymass/vim-matchup'
 
 Plug 'rstacruz/vim-closer' " - Causes problems with ncm2-ultisnips default CR binding
 
 Plug 'tpope/vim-endwise' " - Causes problems with ncm2-ultisnips default CR binding
-
-Plug 'itchyny/vim-parenmatch'
-Plug 'justinmk/vim-matchparenalways'
 
 " Searching
 Plug 'haya14busa/incsearch.vim'
@@ -182,8 +182,8 @@ Plug 'ncm2/ncm2-jedi'
 Plug 'ncm2/ncm2-pyclang'
 
 " Clojure/Lisps/Scheme
-" Plug 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
-" Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
+Plug 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
+Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
 Plug 'vim-scripts/scribble.vim'
 Plug 'kovisoft/slimv', {'for': ['clojure', 'scheme', 'racket']}
 Plug 'l04m33/vlime', {'rtp': 'vim/', 'for': 'lisp'}
