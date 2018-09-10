@@ -72,30 +72,6 @@ let g:bufferline_show_bufnr = 0
 let g:bufferline_rotate = 2
 let g:bufferline_pathshorten = 1
 
-" ALE
-let g:ale_sign_error = '🗙'
-let g:ale_sign_warning = '➤'
-" let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_enter = 1
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_linters = {
-      \ 'haskell': ['hdevtools', 'hlint'],
-      \ 'cpp': ['clangcheck', 'clangtidy', 'cppcheck', 'cpplint', 'flawfinder']
-      \}
-let g:ale_warn_about_trailing_whitespace = 1
-let g:ale_set_highlights = 1
-let g:ale_cpp_cpplint_options = '--linelength=100'
-let g:ale_cpp_clang_options = '-std=c++17 -Wall'
-let g:ale_linter_aliases = {'pandoc': ['markdown']}
-let g:ale_cpp_clangtidy_checks = ['*', '-fuchsia-default-arguments']
-let g:ale_max_signs = -1
-let g:ale_set_signs = 1
-let g:ale_set_balloons = 1
-
 " IndentLine
 " let g:indentLine_color_term = 239
 " let g:indentLine_color_gui = '#09AA08'
@@ -235,56 +211,6 @@ let g:rooter_resolve_links = 1
 let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
-
-" LanguageClient
-let g:LanguageClient_hasSnippetSupport = 1
-let g:LanguageClient_serverCommands = {
-      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-      \ 'python': ['pyls'],
-      \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'typescript': ['javascript-typescript-stdio'],
-      \ 'ocaml': ['ocaml-language-server', '--stdio'],
-      \ 'go': ['~/go/bin/go-langserver'],
-      \ 'haskell': ['hie', '--lsp'],
-      \ 'lua': ['lua-lsp'],
-      \ 'cpp': ['ccls'],
-      \ 'c': ['ccls'],
-      \ 'lisp': ['cl-lsp']
-      \ }
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_loadSettings = 1
-let g:LanguageClient_diagnosticsDisplay = {
-      \ 1: {
-      \     'name': 'Error',
-      \     'texthl': 'ALEError',
-      \     'signText': '🗙',
-      \     'signTexthl': 'ALEErrorSign'
-      \ },
-      \ 2: {
-      \     'name': 'Warning',
-      \     'texthl': 'ALEWarning',
-      \     'signText': '➤',
-      \     'signTexthl': 'ALEWarningSign'
-      \ },
-      \ 3: {
-      \     'name': 'Information',
-      \     'texthl': 'LanguageClientInformation',
-      \     'signText': 'i',
-      \     'signTexthl': 'SignInformation'
-      \ },
-      \ 4: {
-      \     'name': 'Hint',
-      \     'texthl': 'LanguageClientHint',
-      \     'signText': '.',
-      \     'signTexthl': 'SignHint'
-      \ }
-      \ }
-
-let g:LanguageClient_signColumnAlwaysOn = 0
-let g:LanguageClient_diagnosticsEnable = 1
-let g:LanguageClient_diagnosticsList = 'Location'
-let g:LanguageClient_serverRunning = v:false
-let g:LanguageClient_hoverPreview = 'Never'
 
 " Parenmatch
 let g:loaded_matchparen = 1
@@ -427,6 +353,91 @@ call ConfigInc('keybindings.vim')
 
 " Add in plugins
 call ConfigInc('plugins.vim')
+"
+" Colorscheme
+set termguicolors
+set background=dark
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
+colorscheme nazgul
+
+" set background=light
+" colorscheme solarized8_flat
+
+" ALE
+let g:ale_sign_error = '🗙'
+let g:ale_sign_warning = '➤'
+" let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_linters = {
+      \ 'haskell': ['hdevtools', 'hlint'],
+      \ 'cpp': ['clangcheck', 'clangtidy', 'cppcheck', 'cpplint', 'flawfinder']
+      \}
+let g:ale_warn_about_trailing_whitespace = 1
+let g:ale_set_highlights = 1
+let g:ale_cpp_cpplint_options = '--linelength=100'
+let g:ale_cpp_clang_options = '-std=c++17 -Wall'
+let g:ale_linter_aliases = {'pandoc': ['markdown']}
+let g:ale_cpp_clangtidy_checks = ['*', '-fuchsia-default-arguments']
+let g:ale_max_signs = -1
+let g:ale_set_signs = 1
+let g:ale_set_balloons = 1
+let g:ale_sign_column_always = 1
+
+" LanguageClient
+let g:LanguageClient_hasSnippetSupport = 1
+let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+      \ 'python': ['pyls'],
+      \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'typescript': ['javascript-typescript-stdio'],
+      \ 'ocaml': ['ocaml-language-server', '--stdio'],
+      \ 'go': ['~/go/bin/go-langserver'],
+      \ 'haskell': ['hie', '--lsp'],
+      \ 'lua': ['lua-lsp'],
+      \ 'cpp': ['ccls'],
+      \ 'c': ['ccls'],
+      \ 'lisp': ['cl-lsp']
+      \ }
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_loadSettings = 1
+let g:LanguageClient_diagnosticsDisplay = {
+      \ 1: {
+      \     'name': 'Error',
+      \     'texthl': 'ALEError',
+      \     'signText': '🗙',
+      \     'signTexthl': 'ALEErrorSign'
+      \ },
+      \ 2: {
+      \     'name': 'Warning',
+      \     'texthl': 'ALEWarning',
+      \     'signText': '➤',
+      \     'signTexthl': 'ALEWarningSign'
+      \ },
+      \ 3: {
+      \     'name': 'Information',
+      \     'texthl': 'LanguageClientInformation',
+      \     'signText': 'i',
+      \     'signTexthl': 'SignInformation'
+      \ },
+      \ 4: {
+      \     'name': 'Hint',
+      \     'texthl': 'LanguageClientHint',
+      \     'signText': '.',
+      \     'signTexthl': 'SignHint'
+      \ }
+      \ }
+
+let g:LanguageClient_signColumnAlwaysOn = 1
+let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_diagnosticsList = 'Location'
+let g:LanguageClient_serverRunning = v:false
+let g:LanguageClient_hoverPreview = 'Never'
 
 " NCM2
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -489,7 +500,6 @@ call which_key#register(',', 'g:llmaps')
 if !exists('g:gui_oni')
   call airline#parts#define_function('ALE', 'LinterStatus')
   let g:airline_section_error = airline#section#create_right(['ALE'])
-  let g:ale_sign_column_always = 1
 endif
 
 " NCM2
@@ -499,19 +509,6 @@ let g:ncm2#popup_delay = 100
 " General settings
 call ConfigInc('settings.vim')
 
-" Colorscheme
-set termguicolors
-set background=dark
-let &t_Cs = "\e[4:3m"
-let &t_Ce = "\e[4:0m"
-colorscheme nazgul
-" set background=light
-" colorscheme solarized8_flat
-
-hi ShadyAqua guibg=#8ec07c ctermbg=108
-hi! link Sneak ShadyAqua
-
 if &background ==# 'dark'
   let g:rainbow_conf.guifgs = ['#eeeeee', '#c6c6c6', '#aaaaaa', '#888888']
 endif
-

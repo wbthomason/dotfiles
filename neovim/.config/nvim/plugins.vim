@@ -125,10 +125,6 @@ Plug 'hkupty/iron.nvim'
 " Undo tree
 Plug 'simnalamburt/vim-mundo'
 
-" Color scheme
-Plug 'wbthomason/vim-nazgul'
-Plug 'lifepillar/vim-solarized8'
-
 " Notes/Wiki
 Plug 'fmoralesc/vim-pad', {'branch': 'devel'}
 
@@ -223,5 +219,9 @@ Plug 'calebsmith/vim-lambdify'
 
 " Profiling
 Plug 'tweekmonster/startuptime.vim'
+
+" Color scheme
+Plug 'wbthomason/vim-nazgul'
+Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
