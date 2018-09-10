@@ -131,8 +131,8 @@ nnoremap <silent> <leader>gp :Gpush<CR>
 let g:lmaps.g.p = ['Gpush', 'Run git push']
 nnoremap <silent> <leader>gd :Gdiff<CR>
 let g:lmaps.g.d = ['Gdiff', 'Display git diff']
-nnoremap <silent> <leader>gs :Gstatus<CR>
-let g:lmaps.g.s = ['Gstatus', 'Display git status']
+nnoremap <silent> <leader>gs :Magit<CR>
+let g:lmaps.g.s = ['Magit', 'Display git status']
 nnoremap <silent> <leader>gw :Gwrite<CR>
 let g:lmaps.g.w = ['Gwrite', 'Write and stage the file']
 nnoremap <silent> <leader>gi :Denite gitignore<CR>
