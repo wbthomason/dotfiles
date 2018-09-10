@@ -367,7 +367,7 @@ colorscheme nazgul
 " ALE
 let g:ale_sign_error = '🗙'
 let g:ale_sign_warning = '➤'
-" let g:ale_lint_on_save = 1
+let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_enter = 1
@@ -431,6 +431,21 @@ let g:LanguageClient_diagnosticsDisplay = {
       \     'signText': '.',
       \     'signTexthl': 'SignHint'
       \ }
+      \ }
+
+let g:LanguageClient_documentHighlightDisplay = {
+      \  1: {
+      \      'name': 'Text',
+      \      'texthl': 'BlueSign',
+      \  },
+      \  2: {
+      \      'name': 'Read',
+      \      'texthl': 'AquaSign',
+      \  },
+      \  3: {
+      \      'name': 'Write',
+      \      'texthl': 'GreenSign',
+      \  },
       \ }
 
 let g:LanguageClient_signColumnAlwaysOn = 1
