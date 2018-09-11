@@ -1,5 +1,10 @@
 " General autocommands
 
+augroup syntax_aucmds
+  au!
+  au Syntax * syn match extTodo "\<\(NOTE\|HACK\|BAD\|TODO\):\?" containedin=.*Comment.*
+augroup END
+
 augroup main_aucommands
   au!
   au BufReadPost *
@@ -125,10 +130,4 @@ augroup ncm_aucommands
         \ 'complete_pattern': g:vimtex#re#ncm2#bibtex,
         \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
         \ })
-augroup END
-
-augroup syntax_aucmds
-  au Syntax * syntax keyword Todo NOTE
-  au Syntax * syntax keyword Todo HACK
-  au Syntax * syntax keyword Todo BAD
 augroup END
