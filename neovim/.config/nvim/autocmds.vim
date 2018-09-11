@@ -33,6 +33,7 @@ augroup lsp_aucommands
   au User LanguageClientStopped let b:LanguageClient_serverRunning = v:false
   au User LanguageClientStarted let b:LanguageClient_serverRunning = v:true
   au CursorHold * if b:LanguageClient_serverRunning | call LanguageClient_textDocument_hover() | endif
+  au CursorHold * if b:LanguageClient_serverRunning | sil call LanguageClient#textDocument_documentHighlight() | endif
 augroup END
 
 augroup tex_aucommands
@@ -64,16 +65,6 @@ augroup END
 augroup cmake_aucommands
   au!
   au FileType cmake setlocal commentstring=#\ %s
-augroup END
-
-augroup LanguageClient_config
-  au!
-  au BufEnter * let b:Plugin_LanguageClient_started = 0
-  au User LanguageClientStarted setl signcolumn=yes
-  au User LanguageClientStarted let b:Plugin_LanguageClient_started = 1
-  au User LanguageClientStopped setl signcolumn=auto
-  au User LanguageClientStopped let b:Plugin_LanguageClient_stopped = 0
-  au CursorMoved * if b:Plugin_LanguageClient_started | sil call LanguageClient#textDocument_documentHighlight() | endif
 augroup END
 
 augroup ncm_aucommands
