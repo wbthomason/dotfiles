@@ -15,21 +15,6 @@ augroup main_aucommands
         \| endif
 augroup END
 
-" augroup ale_colors
-"   au!
-"   autocmd ColorScheme *
-"         \ hi ALEErrorSign guifg=#ff727b |
-"         \ hi ALEWarningSign guifg=#ebcb8b |
-"         \ hi ALEInfoSign guifg=#eceff4 |
-"         \ hi ALEStyleErrorSign guifg=#bf616a |
-"         \ hi ALEStyleWarningSign guifg=#ebfb8b |
-"         \ hi ALEError guifg=#ff727b |
-"         \ hi ALEWarning guifg=#ebcb8b |
-"         \ hi ALEInfo guifg=#eceff4 |
-"         \ hi ALEStyleError guifg=#bf616a |
-"         \ hi ALEStyleWarning guifg=#ebfb8b |
-" augroup END
-
 augroup markdown_aucommands
   au!
   au FileType pandoc set syntax=pandoc | 
@@ -139,4 +124,10 @@ augroup ncm_aucommands
         \ 'complete_pattern': g:vimtex#re#ncm2#bibtex,
         \ 'on_complete': ['ncm2#on_complete#omni', 'vimtex#complete#omnifunc'],
         \ })
+augroup END
+
+augroup syntax_aucmds
+  au Syntax * syntax keyword Todo NOTE
+  au Syntax * syntax keyword Todo HACK
+  au Syntax * syntax keyword Todo BAD
 augroup END
