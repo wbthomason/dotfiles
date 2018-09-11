@@ -1,5 +1,6 @@
 {
   "initializationOptions": {
-    "cacheDirectory": "/tmp/cquery"
+    "cacheFormat": "msgpack",
+    "completion": {"filterAndSort": false}
   }
 }

@@ -193,6 +193,9 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc-after'
 
+" Org-mode
+Plug 'jceb/vim-orgmode'
+
 " Haskell
 Plug 'parsonsmatt/intero-neovim'
 Plug 'eagletmt/neco-ghc'

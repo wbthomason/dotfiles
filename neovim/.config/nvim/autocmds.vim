@@ -66,6 +66,16 @@ augroup cmake_aucommands
   au FileType cmake setlocal commentstring=#\ %s
 augroup END
 
+augroup LanguageClient_config
+  au!
+  au BufEnter * let b:Plugin_LanguageClient_started = 0
+  au User LanguageClientStarted setl signcolumn=yes
+  au User LanguageClientStarted let b:Plugin_LanguageClient_started = 1
+  au User LanguageClientStopped setl signcolumn=auto
+  au User LanguageClientStopped let b:Plugin_LanguageClient_stopped = 0
+  au CursorMoved * if b:Plugin_LanguageClient_started | sil call LanguageClient#textDocument_documentHighlight() | endif
+augroup END
+
 augroup ncm_aucommands
   au!
   au BufEnter * call ncm2#enable_for_buffer()
