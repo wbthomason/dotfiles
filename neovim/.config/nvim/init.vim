@@ -339,6 +339,10 @@ if !exists('g:gui_oni')
   let g:airline#extensions#hunks#non_zero_only = 1
   let g:airline#extensions#bufferline#overwrite_variables = 1
   let g:airline_extensions = ['bufferline', 'hunks', 'branch']
+  let g:airline#extensions#default#layout = [
+      \ [ 'a', 'b', 'c' ],
+      \ [ 'x', 'z', 'error', 'warning' ]
+      \ ]
 endif
 
 " Sneak

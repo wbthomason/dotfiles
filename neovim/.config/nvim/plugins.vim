@@ -78,9 +78,9 @@ Plug 'sbdchd/neoformat'
 
 " Text objects
 Plug 'kana/vim-textobj-user'
-Plug 'thalesmello/vim-textobj-methodcall'
+" Plug 'thalesmello/vim-textobj-methodcall'
 Plug 'blackheaven/vim-textobj-function'
-Plug 'rhysd/vim-textobj-anyblock'
+" Plug 'rhysd/vim-textobj-anyblock'
 Plug 'landock/vim-expand-region'
 Plug 'wellle/targets.vim'
 Plug 'tommcdo/vim-exchange'
