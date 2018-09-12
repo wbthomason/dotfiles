@@ -38,7 +38,7 @@ augroup lsp_aucommands
   au User LanguageClientStopped let b:LanguageClient_serverRunning = v:false
   au User LanguageClientStarted let b:LanguageClient_serverRunning = v:true
   au CursorHold * if b:LanguageClient_serverRunning | call LanguageClient_textDocument_hover() | endif
-  au CursorHold * if b:LanguageClient_serverRunning | sil call LanguageClient#textDocument_documentHighlight() | endif
+  au CursorMoved * if b:LanguageClient_serverRunning | sil call LanguageClient#textDocument_documentHighlight() | endif
 augroup END
 
 augroup tex_aucommands
