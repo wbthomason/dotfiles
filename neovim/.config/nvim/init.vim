@@ -96,6 +96,7 @@ let g:vimtex_complete_recursive_bib = 1
 let g:vimtex_complete_enabled = 1
 let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_quickfix_mode = 0
+let g:matchup_override_vimtex = 1
 
 " Undotree
 " if has('persistent_undo')
