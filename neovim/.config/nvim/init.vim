@@ -397,7 +397,7 @@ let g:ale_sign_column_always = 1
 " LanguageClient
 let g:LanguageClient_hasSnippetSupport = 1
 let g:LanguageClient_serverCommands = {
-      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+      \ 'rust': ['rls'],
       \ 'python': ['pyls'],
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'typescript': ['javascript-typescript-stdio'],
