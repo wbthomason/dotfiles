@@ -15,7 +15,6 @@ Plug 'roman/golden-ratio'
 
 " Mappings
 Plug 'liuchengxu/vim-which-key'
-" Plug 'hecal3/vim-leader-guide'
 
 " Registers
 Plug 'junegunn/vim-peekaboo'
@@ -52,12 +51,11 @@ Plug 'yggdroot/indentLine'
 
 " Comments
 Plug 'tomtom/tcomment_vim'
-" Plug 'tpope/vim-commentary'
 
 " Wrapping/delimiters
 Plug 'machakann/vim-sandwich'
 Plug 'luochen1990/rainbow'
-Plug 'itchyny/vim-parenmatch'
+" Plug 'itchyny/vim-parenmatch'
 Plug 'djdt/vim-matchparenalways'
 Plug 'andymass/vim-matchup'
 
@@ -77,13 +75,11 @@ Plug 'junegunn/vim-easy-align'
 Plug 'sbdchd/neoformat'
 
 " Text objects
-Plug 'kana/vim-textobj-user'
-" Plug 'thalesmello/vim-textobj-methodcall'
-Plug 'blackheaven/vim-textobj-function'
-" Plug 'rhysd/vim-textobj-anyblock'
-Plug 'landock/vim-expand-region'
+" Plug 'kana/vim-textobj-user'
+" Plug 'blackheaven/vim-textobj-function'
+" Plug 'landock/vim-expand-region'
 Plug 'wellle/targets.vim'
-Plug 'tommcdo/vim-exchange'
+" Plug 'tommcdo/vim-exchange'
 
 " Block manipulation
 Plug 'machakann/vim-swap'
@@ -99,10 +95,7 @@ Plug 'fszymanski/fzf-gitignore'
 " Denite
 Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
 Plug 'Shougo/denite.nvim'
-" Plug 'iamcco/gitignore.vim'
 Plug 'dunstontc/projectile.nvim'
-" Plug 'ozelentok/denite-gtags'
-" Plug 'neoclide/denite-extra'
 
 " Writing
 Plug 'junegunn/goyo.vim'
@@ -130,7 +123,6 @@ Plug 'fmoralesc/vim-pad', {'branch': 'devel'}
 
 " File explorer
 Plug 'cocopon/vaffle.vim'
-" Plug 'Shougo/defx.nvim'
 
 " Git
 Plug 'mhinz/vim-signify'
