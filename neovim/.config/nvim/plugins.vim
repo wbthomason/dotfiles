@@ -86,16 +86,16 @@ Plug 'machakann/vim-swap'
 Plug 'zirrostig/vim-schlepp'
 
 " Tags
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 
 " FZF
 Plug 'junegunn/fzf.vim'
 Plug 'fszymanski/fzf-gitignore'
 
 " Denite
-Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
-Plug 'Shougo/denite.nvim'
-Plug 'dunstontc/projectile.nvim'
+" Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
+" Plug 'Shougo/denite.nvim'
+" Plug 'dunstontc/projectile.nvim'
 
 " Writing
 Plug 'junegunn/goyo.vim'
@@ -122,7 +122,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'fmoralesc/vim-pad', {'branch': 'devel'}
 
 " File explorer
-Plug 'cocopon/vaffle.vim'
+" Plug 'cocopon/vaffle.vim'
 
 " Git
 Plug 'mhinz/vim-signify'
