@@ -122,7 +122,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'fmoralesc/vim-pad', {'branch': 'devel'}
 
 " File explorer
-" Plug 'cocopon/vaffle.vim'
+Plug 'cocopon/vaffle.vim'
 
 " Git
 Plug 'mhinz/vim-signify'
