@@ -223,7 +223,8 @@
 (use-package evil
   :ensure t
   :init
-  (setq evil-want-integration nil
+  (setq evil-want-integration t
+        evil-want-keybinding nil
         evil-ex-visual-char-range t
         evil-want-fine-undo t
         evil-respect-visual-line-mode t
