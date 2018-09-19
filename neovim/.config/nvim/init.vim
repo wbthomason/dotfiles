@@ -242,20 +242,11 @@ let g:neoformat_basic_format_trim = 1
 " IncSearch
 let g:incsearch#auto_nohlsearch = 1
 
-" Leader Guide
-let g:leaderGuide_displayfunc = [function('TrimGuideDisplay')]
-
-" Iron
-" let g:iron_repl_open_cmd = 'vsplit'
-
 " Clever-F
 let g:clever_f_fix_key_direction = 1
 
 " Echodoc
 let g:echodoc#enable_at_startup = 1
-
-" Markdown Composer
-let g:markdown_composer_autostart = 0
 
 " Vaffle
 let g:vaffle_show_hidden_files = 1
