@@ -436,12 +436,6 @@ let g:LanguageClient_serverRunning = v:false
 let g:LanguageClient_hoverPreview = 'Never'
 let g:LanguageClient_completionPreferTextEdit = 1
 
-" NCM2
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <c-u> <Plug>(ultisnips_expand)
-inoremap <silent> <expr> <c-u> ncm2_ultisnips#expand_or("\<CR>", 'n')
-
 " Denite
 " let g:denite_source_session_path = '~/.vim/session'
 " call denite#custom#option('_', {
@@ -502,6 +496,11 @@ endif
 " NCM2
 let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
 let g:ncm2#popup_delay = 100
+inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <c-u> <Plug>(ultisnips_expand)
+inoremap <silent> <expr> <c-u> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
 
 " General settings
 call ConfigInc('settings.vim')
