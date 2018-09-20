@@ -82,10 +82,11 @@ Plug 'wellle/targets.vim'
 " Plug 'tommcdo/vim-exchange'
 
 " Block manipulation
-Plug 'machakann/vim-swap'
-Plug 'zirrostig/vim-schlepp'
+" Plug 'machakann/vim-swap'
+" Plug 'zirrostig/vim-schlepp'
 
 " Tags
+Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 
 " FZF
@@ -148,7 +149,7 @@ Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
 
 " Async building & commands
-Plug 'wbthomason/buildit.nvim'
+" Plug 'wbthomason/buildit.nvim'
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 
@@ -186,6 +187,9 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc-after'
 
 " Org-mode
+Plug 'vim-scripts/utl.vim', {'for': 'org'}
+Plug 'itchyny/calendar.vim', {'for': 'org'}
+Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
 Plug 'jceb/vim-orgmode'
 
 " Haskell

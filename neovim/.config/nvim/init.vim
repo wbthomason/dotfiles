@@ -57,15 +57,6 @@ let g:haskellmode_completion_ghc = 0
 " Intero
 let g:intero_type_on_hover = 1
 
-" Rainbow parens
-let g:rainbow_active = 1
-let g:rainbow_conf = { 'separately': {
-      \		'ocaml': {
-      \			'parentheses': ['start=/(\*\@!/ end=/)/ fold contains=@colorableGroup'],
-      \		}
-      \	}
-      \ }
-
 " Bufferline
 let g:bufferline_echo = 0
 let g:bufferline_show_bufnr = 0
@@ -87,6 +78,11 @@ let g:pandoc#modules#disabled = [ 'commands', 'templates', 'formatting']
 let g:pandoc#completion#bib#use_preview = 0
 let g:pandoc#biblio#use_bibtool = 1
 let g:pandoc#completion#bib#mode = 'citeproc'
+
+" Org-mode
+let g:org_aggressive_conceal = 1
+let g:org_heading_shade_leading_stars = 1
+let g:org_indent = 1
 
 " Vimtex
 let g:tex_flavor = 'latex'
@@ -168,15 +164,6 @@ let g:tagbar_type_elixir = {
       \ ]
       \ }
 
-" Racer
-" let g:racer_cmd = '/usr/bin/racer'
-
-" Gitgutter
-" set updatetime=500
-" let g:gitgutter_sign_modified = '＊'
-" let g:gitgutter_sign_added = '＋'
-" highlight GitGutterAdd guifg = '#A3E28B'
-
 " Signify
 let g:signify_vcs_list = ['git']
 let g:signify_sign_change = '＊'
@@ -212,9 +199,6 @@ let g:rooter_resolve_links = 1
 let g:rooter_silent_chdir = 1
 let g:rooter_manual_only = 1
 let g:rooter_change_directory_for_non_project_files = 'current'
-
-" Parenmatch
-let g:loaded_matchparen = 1
 
 " Prosession
 let g:prosession_tmux_title = 1
@@ -270,41 +254,41 @@ let g:fzf_colors =
       \ 'spinner': ['fg', 'Label'],
       \ 'header':  ['fg', 'Comment'] }
 
-function! Fzf_dev()
-  let l:fzf_files_options = '--preview "rougify {2..-1} | head -'.&lines.'"'
-
-  function! s:files()
-    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-    return s:prepend_icon(l:files)
-  endfunction
-
-  function! s:prepend_icon(candidates)
-    let l:result = []
-    for l:candidate in a:candidates
-      let l:filename = fnamemodify(l:candidate, ':p:t')
-      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
-      call add(l:result, printf('%s %s', l:icon, l:candidate))
-    endfor
-
-    return l:result
-  endfunction
-
-  function! s:edit_file(item)
-    let l:pos = stridx(a:item, ' ')
-    let l:file_path = a:item[pos+1:-1]
-    execute 'silent e' l:file_path
-  endfunction
-
-  call fzf#run({
-        \ 'source': <sid>files(),
-        \ 'sink':   function('s:edit_file'),
-        \ 'options': '-m ' . l:fzf_files_options,
-        \ 'down':    '40%' })
-endfunction
+" function! Fzf_dev()
+"   let l:fzf_files_options = '--preview "rougify {2..-1} | head -'.&lines.'"'
+"
+"   function! s:files()
+"     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
+"     return s:prepend_icon(l:files)
+"   endfunction
+"
+"   function! s:prepend_icon(candidates)
+"     let l:result = []
+"     for l:candidate in a:candidates
+"       let l:filename = fnamemodify(l:candidate, ':p:t')
+"       let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+"       call add(l:result, printf('%s %s', l:icon, l:candidate))
+"     endfor
+"
+"     return l:result
+"   endfunction
+"
+"   function! s:edit_file(item)
+"     let l:pos = stridx(a:item, ' ')
+"     let l:file_path = a:item[pos+1:-1]
+"     execute 'silent e' l:file_path
+"   endfunction
+"
+"   call fzf#run({
+"         \ 'source': <sid>files(),
+"         \ 'sink':   function('s:edit_file'),
+"         \ 'options': '-m ' . l:fzf_files_options,
+"         \ 'down':    '40%' })
+" endfunction
 
 " Projectile
-let g:projectile#enable_devicons = 1
-let g:projectile#search_prog = 'rg'
+" let g:projectile#enable_devicons = 1
+" let g:projectile#search_prog = 'rg'
 
 " Snippets
 let g:UltiSnipsExpandTrigger       = '<Plug>(ultisnips_expand)'
@@ -450,6 +434,7 @@ let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_diagnosticsList = 'Location'
 let g:LanguageClient_serverRunning = v:false
 let g:LanguageClient_hoverPreview = 'Never'
+let g:LanguageClient_completionPreferTextEdit = 1
 
 " NCM2
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -529,6 +514,9 @@ if &background ==# 'dark'
 	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 	\	'separately': {
 	\		'*': {},
+    \		'ocaml': {
+    \			'parentheses': ['start=/(\*\@!/ end=/)/ fold contains=@colorableGroup'],
+    \		},
 	\		'tex': {
 	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
 	\		},
