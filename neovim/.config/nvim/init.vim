@@ -500,6 +500,7 @@ inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <c-u> <Plug>(ultisnips_expand)
 inoremap <silent> <expr> <c-u> ncm2_ultisnips#expand_or("\<CR>", 'n')
+call ncm2#override_source('tagprefix', {'priority': 2})
 
 
 " General settings
