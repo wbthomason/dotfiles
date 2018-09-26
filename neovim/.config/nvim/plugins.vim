@@ -23,7 +23,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'kshenoy/vim-signature'
 
 " Buffer management
-Plug 'mhinz/vim-sayonara'
+Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 
 " Startup screen
 Plug 'mhinz/vim-startify'
@@ -44,7 +44,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Color visualization
-Plug 'chrisbra/Colorizer'
+Plug 'chrisbra/Colorizer', {'on': 'ColorHighlight'}
 
 " Indentation tracking
 Plug 'yggdroot/indentLine'
@@ -72,7 +72,7 @@ Plug 'machakann/vim-highlightedyank'
 
 " Prettification
 Plug 'junegunn/vim-easy-align'
-Plug 'sbdchd/neoformat'
+Plug 'sbdchd/neoformat', {'on': 'Neoformat'}
 
 " Text objects
 " Plug 'kana/vim-textobj-user'
@@ -86,12 +86,12 @@ Plug 'wellle/targets.vim'
 " Plug 'zirrostig/vim-schlepp'
 
 " Tags
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarToggle']}
 Plug 'ludovicchabant/vim-gutentags'
 
 " FZF
 Plug 'junegunn/fzf.vim'
-Plug 'fszymanski/fzf-gitignore'
+Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
 
 " Denite
 " Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
@@ -99,16 +99,16 @@ Plug 'fszymanski/fzf-gitignore'
 " Plug 'dunstontc/projectile.nvim'
 
 " Writing
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
+Plug 'junegunn/limelight.vim', {'on': 'Limelight!!'}
 
 " Special symbols
-Plug 'chrisbra/unicode.vim'
+Plug 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
 
 " Project Management/Sessions
 Plug 'airblade/vim-rooter'
-Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
+Plug 'tpope/vim-obsession', {'on': 'Prosession'}
+Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 
 " REPL
 Plug 'hkupty/iron.nvim'
@@ -117,7 +117,7 @@ Plug 'hkupty/iron.nvim'
 " Plug 'vyzyv/vimpyter'
 
 " Undo tree
-Plug 'simnalamburt/vim-mundo'
+Plug 'simnalamburt/vim-mundo', {'on': ['MundoShow', 'MundoToggle']}
 
 " Notes/Wiki
 Plug 'fmoralesc/vim-pad', {'branch': 'devel'}
@@ -149,7 +149,7 @@ Plug 'honza/vim-snippets'
 Plug 'w0rp/ale'
 
 " Async building & commands
-" Plug 'wbthomason/buildit.nvim'
+Plug 'wbthomason/buildit.nvim'
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 
