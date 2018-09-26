@@ -35,6 +35,9 @@ if !exists('g:gui_oni')
   Plug 'vim-airline/vim-airline'
 endif
 
+" System utilities
+Plug 'tpope/vim-eunuch'
+
 " Movement
 Plug 'chaoren/vim-wordmotion'
 Plug 'tpope/vim-repeat'
