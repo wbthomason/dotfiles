@@ -135,8 +135,8 @@ nnoremap <silent> <leader>gs :Magit<CR>
 let g:lmaps.g.s = ['Magit', 'Display git status']
 nnoremap <silent> <leader>gw :Gwrite<CR>
 let g:lmaps.g.w = ['Gwrite', 'Write and stage the file']
-nnoremap <silent> <leader>gi :Denite gitignore<CR>
-let g:lmaps.g.w = [':Denite gitignore', 'Write and stage the file']
+nnoremap <silent> <leader>gi :FzfGitignore<cr>
+let g:lmaps.g.i = [':FzfGitignore', 'Search gitignores']
 
 " Compilation bindings
 let g:lmaps.m = {'name': 'Build/Make'}
