@@ -92,6 +92,7 @@ Plug 'ludovicchabant/vim-gutentags'
 " FZF
 Plug 'junegunn/fzf.vim'
 Plug 'fszymanski/fzf-gitignore'
+Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
 
 " Denite
 " Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
