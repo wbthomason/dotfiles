@@ -44,7 +44,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Color visualization
-Plug 'chrisbra/Colorizer', {'on': 'ColorHighlight'}
+Plug 'lilydjwg/colorizer'
 
 " Indentation tracking
 Plug 'yggdroot/indentLine'
@@ -92,6 +92,7 @@ Plug 'ludovicchabant/vim-gutentags'
 " FZF
 Plug 'junegunn/fzf.vim'
 Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
+Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
 
 " Denite
 " Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
@@ -162,7 +163,7 @@ Plug 'tpope/vim-apathy'
 " LSP
 Plug 'autozimu/LanguageClient-neovim', {
 	  \ 'branch': 'next',
-	  \ 'do': 'bash install.sh',
+	  \ 'do': 'make -j 8 release',
 	  \ }
 
 " CSS
@@ -193,8 +194,8 @@ Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
 Plug 'jceb/vim-orgmode'
 
 " Haskell
-Plug 'parsonsmatt/intero-neovim'
-Plug 'eagletmt/neco-ghc'
+Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
+Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 
 " Rust
 Plug 'ncm2/ncm2-racer'
