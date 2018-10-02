@@ -218,7 +218,7 @@ let g:neoformat_ocaml_ocamlformat = {
 let g:neoformat_cpp_clangformat = {
       \ 'exe': 'clang-format',
       \ 'stdin': 1,
-      \ 'args': ['--style=file'],
+      \ 'args': ['--style=file', '--assume-filename=code.cc'],
       \ }
 
 let g:neoformat_basic_format_trim = 1
@@ -501,6 +501,7 @@ inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <c-u> <Plug>(ultisnips_expand)
 inoremap <silent> <expr> <c-u> ncm2_ultisnips#expand_or("\<CR>", 'n')
 call ncm2#override_source('tagprefix', {'priority': 2})
+call ncm2#override_source('pyclang', {'priority': 8})
 
 
 " General settings
