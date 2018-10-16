@@ -379,7 +379,7 @@ let g:LanguageClient_serverCommands = {
       \ 'typescript': ['javascript-typescript-stdio'],
       \ 'ocaml': ['ocaml-language-server', '--stdio'],
       \ 'go': ['~/go/bin/go-langserver'],
-      \ 'haskell': ['hie', '--lsp'],
+      \ 'haskell': ['hie-wrapper'],
       \ 'lua': ['lua-lsp'],
       \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
       \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
