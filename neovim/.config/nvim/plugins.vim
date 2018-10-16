@@ -191,10 +191,10 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc-after'
 
 " Org-mode
-Plug 'vim-scripts/utl.vim', {'for': 'org'}
-Plug 'itchyny/calendar.vim', {'for': 'org'}
-Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
-Plug 'jceb/vim-orgmode'
+" Plug 'vim-scripts/utl.vim', {'for': 'org'}
+" Plug 'itchyny/calendar.vim', {'for': 'org'}
+" Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
+" Plug 'jceb/vim-orgmode'
 
 " Haskell
 Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
@@ -226,5 +226,7 @@ Plug 'tweekmonster/startuptime.vim'
 " Color scheme
 Plug 'wbthomason/vim-nazgul'
 Plug 'lifepillar/vim-solarized8'
+
+Plug 'wbthomason/capture.vim'
 
 call plug#end()
