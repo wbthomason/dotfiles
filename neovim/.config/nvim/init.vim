@@ -58,10 +58,10 @@ let g:haskellmode_completion_ghc = 0
 let g:intero_type_on_hover = 1
 
 " Bufferline
-let g:bufferline_echo = 0
-let g:bufferline_show_bufnr = 0
-let g:bufferline_rotate = 2
-let g:bufferline_pathshorten = 1
+" let g:bufferline_echo = 0
+" let g:bufferline_show_bufnr = 0
+" let g:bufferline_rotate = 2
+" let g:bufferline_pathshorten = 1
 
 " IndentLine
 " let g:indentLine_color_term = 239
@@ -308,18 +308,16 @@ let g:vlime_cl_use_terminal = v:true
 let g:vlime_force_default_keys = v:true
 
 " Airline
-if !exists('g:gui_oni')
-  let g:airline_theme = 'minimalist'
-  let g:airline_powerline_fonts = 1
-  let g:airline_highlighting_cache = 1
-  let g:airline#extensions#hunks#non_zero_only = 1
-  let g:airline#extensions#bufferline#overwrite_variables = 1
-  let g:airline_extensions = ['bufferline', 'hunks', 'branch']
-  let g:airline#extensions#default#layout = [
-      \ [ 'a', 'b', 'c' ],
-      \ [ 'x', 'z', 'error', 'warning' ]
-      \ ]
-endif
+let g:airline_theme = 'minimalist'
+let g:airline_powerline_fonts = 1
+let g:airline_highlighting_cache = 1
+let g:airline#extensions#hunks#non_zero_only = 1
+" let g:airline#extensions#bufferline#overwrite_variables = 1
+let g:airline_extensions = ['vimagit', 'vimtex', 'hunks', 'branch']
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'x', 'z', 'error', 'warning' ]
+    \ ]
 
 " Sneak
 let g:sneak#s_next = 1
@@ -488,10 +486,8 @@ call which_key#register(',', 'g:llmaps')
 " call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
 
 " ALE integration config
-if !exists('g:gui_oni')
-  call airline#parts#define_function('ALE', 'LinterStatus')
-  let g:airline_section_error = airline#section#create_right(['ALE'])
-endif
+call airline#parts#define_function('ALE', 'LinterStatus')
+let g:airline_section_error = airline#section#create_right(['ALE'])
 
 " NCM2
 let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'

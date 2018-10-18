@@ -29,11 +29,9 @@ Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 Plug 'mhinz/vim-startify'
 
 " Status line
-if !exists('g:gui_oni')
-  Plug 'bling/vim-bufferline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'vim-airline/vim-airline'
-endif
+" Plug 'bling/vim-bufferline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
 
 " System utilities
 Plug 'tpope/vim-eunuch'
