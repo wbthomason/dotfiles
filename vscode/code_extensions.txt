@@ -1,0 +1,16 @@
+code --install-extension 2gua.rainbow-brackets
+code --install-extension aaron-bond.better-comments
+code --install-extension alanz.vscode-hie-server
+code --install-extension brettlempereur.theme-base16grayscale
+code --install-extension ccls-project.ccls
+code --install-extension CoenraadS.bracket-pair-colorizer-2
+code --install-extension freebroccolo.reasonml
+code --install-extension James-Yu.latex-workshop
+code --install-extension justusadam.language-haskell
+code --install-extension karyfoundation.racket
+code --install-extension mattn.Lisp
+code --install-extension ms-python.python
+code --install-extension ms-vscode.cpptools
+code --install-extension rafaelmaiolla.remote-vscode
+code --install-extension robertohuertasm.vscode-icons
+code --install-extension vscodevim.vim
