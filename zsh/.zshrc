@@ -1,6 +1,22 @@
 # Load plugins
-export ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
-source ~/.zsh/load_plugins.zsh
+export ZSH_PLUGINS=/usr/share/zsh/plugins/
+
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
+source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+source ${ZSH_PLUGINS}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+# Don't want common history between shells
+unsetopt share_history
 
 # pkg-config tweaks
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig
@@ -29,8 +45,15 @@ source /usr/share/fzf/completion.zsh
 
 # Hub
 eval "$(hub alias -s)"
+
+# Completion
 fpath=(~/.zsh/completions $fpath) 
-autoload -U compinit && compinit
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 # Thefuck
 eval $(thefuck --alias)
@@ -47,6 +70,7 @@ alias eclimd='/usr/lib/eclipse/eclimd -b'
 alias em='emacsclient -nw'
 alias emd='emacs --daemon'
 alias git='hub'
+alias ls='ls --color=auto'
 
 # Prompt
 function zle-line-init zle-keymap-select {
@@ -63,5 +87,5 @@ function _prompt_purs_precmd() {
 }
 add-zsh-hook precmd _prompt_purs_precmd
 
-# Don't want common history between shells
-unsetopt share_history
+# Auto-cd
+setopt auto_cd

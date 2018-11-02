@@ -1,9 +1,4 @@
-robbyrussell/oh-my-zsh
-robbyrussell/oh-my-zsh folder:plugins/git
-robbyrussell/oh-my-zsh folder:plugins/pip
-robbyrussell/oh-my-zsh folder:plugins/sudo
-robbyrussell/oh-my-zsh folder:plugins/tmux
-robbyrussell/oh-my-zsh folder:plugins/vi-mode
+willghatch/zsh-saneopt
 
 zsh-users/zsh-autosuggestions branch:develop
 zsh-users/zsh-history-substring-search
