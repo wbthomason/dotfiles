@@ -33,6 +33,14 @@
         {
             "before": ["<leader>", "w"],
             "commands": ["workbench.action.closeActiveEditor"]
+        },
+        {
+            "before": ["<leader>", "g", "p"],
+            "commands": ["git.push"]
+        },
+        {
+            "before": ["<leader>", "g", "l"],
+            "commands": ["git.pull"]
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
@@ -55,9 +63,9 @@
     ],
     "vim.textwidth": 100,
     "workbench.colorCustomizations": {
-      "statusBar.background": "#005f5f",
-      "statusBar.noFolderBackground": "#005f5f",
-      "statusBar.debuggingBackground": "#005f5f"
+      "statusBar.background": "#5f0000",
+      "statusBar.noFolderBackground": "#5f0000",
+      "statusBar.debuggingBackground": "#5f0000"
     },
     "workbench.colorTheme": "Base16 Grayscale Dark",
     "latex-workshop.chktex.enabled": true,
