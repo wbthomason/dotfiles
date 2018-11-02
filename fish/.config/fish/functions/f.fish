@@ -1,1 +1,0 @@
-/home/wil/.config/fisherman/fasd/functions/f.fish

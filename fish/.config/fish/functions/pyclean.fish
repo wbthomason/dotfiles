@@ -1,1 +1,0 @@
-/home/wil/.config/fisherman/python/functions/pyclean.fish

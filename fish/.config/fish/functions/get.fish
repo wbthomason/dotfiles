@@ -1,1 +1,0 @@
-/home/wil/.config/fisherman/get/functions/get.fish
