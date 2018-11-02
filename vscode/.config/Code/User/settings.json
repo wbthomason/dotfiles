@@ -1,6 +1,6 @@
 {
     "vim.disableAnnoyingNeovimMessage": true,
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.iconTheme": "material-icon-theme",
     "editor.fontFamily": "'Fira Code Retina','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.tabSize": 2,
     "editor.wordWrapColumn": 100,
@@ -27,11 +27,11 @@
             "commands": ["workbench.action.quickOpen"]
         },
         {
-            "before": ["<leader>", "<tab>"],
+            "before": ["<leader>", "<leader>"],
             "commands": ["workbench.action.showCommands"]
         },
         {
-            "before": ["<leader>", "w"],
+            "before": ["<leader>", "d"],
             "commands": ["workbench.action.closeActiveEditor"]
         },
         {
@@ -63,11 +63,11 @@
     ],
     "vim.textwidth": 100,
     "workbench.colorCustomizations": {
-      "statusBar.background": "#5f0000",
-      "statusBar.noFolderBackground": "#5f0000",
-      "statusBar.debuggingBackground": "#5f0000"
+      "statusBar.background": "#005f5f",
+      "statusBar.noFolderBackground": "#005f5f",
+      "statusBar.debuggingBackground": "#005f5f"
     },
-    "workbench.colorTheme": "Base16 Grayscale Dark",
+    "workbench.colorTheme": "Base16 Dark Grayscale",
     "latex-workshop.chktex.enabled": true,
     "latex-workshop.intellisense.surroundCommand.enabled": true,
     "latex-workshop.synctex.afterBuild.enabled": true,
@@ -80,7 +80,7 @@
     "latex-workshop.view.pdf.external.synctex": {
       "command": "zathura",
       "args": [
-        "--synctex-forward %LINE%:%TEX% %PDF%",
+        "--synctex-forward %LINE%:1:%TEX% %PDF%",
       ]
     },
     "latex-workshop.view.pdf.viewer": "external",
