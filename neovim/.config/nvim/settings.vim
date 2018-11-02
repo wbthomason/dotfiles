@@ -54,6 +54,7 @@ set previewheight=5
 set undofile
 set synmaxcol=200
 set display=msgsep
+set cursorline
 
 if exists('g:gui_oni')
   set noshowmode
