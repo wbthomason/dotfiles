@@ -1,0 +1,4 @@
+.config/xfce4/**
+
+!.config/xfce4/panel/systemload-10.rc
+!.config/xfce4/panel/weather-12.rc

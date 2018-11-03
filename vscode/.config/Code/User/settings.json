@@ -1,0 +1,132 @@
+{
+  "vim.disableAnnoyingNeovimMessage": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontFamily": "'Fira Code Retina','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.tabSize": 2,
+  "editor.wordWrapColumn": 100,
+  "editor.fontLigatures": true,
+  "editor.lineNumbers": "relative",
+  "window.menuBarVisibility": "toggle",
+  "python.jediEnabled": false,
+  "vim.enableNeovim": true,
+  "vim.visualstar": true,
+  "vim.useCtrlKeys": false,
+  "vim.statusBarColorControl": true,
+  "vim.sneak": true,
+  "vim.incsearch": true,
+  "vim.hlsearch": true,
+  "vim.surround": true,
+  "vim.leader": "<space>",
+  "vim.whichwrap": "h,l,<,>,[,]",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "w"
+      ],
+      "commands": [
+        ":w"
+      ]
+    },
+    {
+      "before": [
+        "<tab>"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "<leader>"
+      ],
+      "commands": [
+        "workbench.action.showCommands"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "d"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "p"
+      ],
+      "commands": [
+        "git.push"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "l"
+      ],
+      "commands": [
+        "git.pull"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
+    },
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
+    },
+  ],
+  "vim.textwidth": 100,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f"
+  },
+  "workbench.colorTheme": "Tomorrow Night",
+  "latex-workshop.chktex.enabled": true,
+  "latex-workshop.intellisense.surroundCommand.enabled": true,
+  "latex-workshop.synctex.afterBuild.enabled": true,
+  "latex-workshop.view.pdf.external.command": {
+    "command": "zathura",
+    "args": [
+      "%PDF%"
+    ]
+  },
+  "latex-workshop.view.pdf.external.synctex": {
+    "command": "zathura",
+    "args": [
+      "--synctex-forward %LINE%:1:%TEX% %PDF%",
+    ]
+  },
+  "latex-workshop.view.pdf.viewer": "external",
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.minimap.enabled": false,
+  "editor.quickSuggestionsDelay": 20,
+  "vsicons.projectDetection.autoReload": true,
+  "editor.fontSize": 13,
+  "editor.detectIndentation": false,
+  "workbench.editor.showTabs": false,
+  "bracket-pair-colorizer-2.highlightActiveScope": true,
+  "scm.diffDecorations": "gutter",
+  "editor.overviewRulerLanes": 1,
+  "scm.diffDecorationsGutterWidth": 1,
+  "extensions.closeExtensionDetailsOnViewChange": true,
+  "vim.sneakUseIgnorecaseAndSmartcase": true
+}

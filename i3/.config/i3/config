@@ -38,6 +38,8 @@ client.focused_inactive #2C2C2C #2C2C2C #ffffff #2C2C2C
 client.unfocused #2C2C2C #2C2C2C #ffffff #2C2C2C
 client.urgent #cc3 #cc3 #fa3 #cc3
 
+# Always float some windows
+for_window[class="matplotlib" instance="matplotlib"] floating enable
 
 # start a terminal
 bindsym $mod+t exec "kitty"
@@ -60,6 +62,10 @@ bindsym $mod+b exec systemctl suspend
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# scratchpad
+bindsym $mod+p move scratchpad
+bindsym $mod+Shift+p show scratchpad
 
 # change focus
 bindsym $mod+j focus left

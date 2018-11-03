@@ -1,1 +1,0 @@
-/home/wil/.config/fisherman/archlinux/functions/paclocs.fish
