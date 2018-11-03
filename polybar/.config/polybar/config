@@ -75,16 +75,16 @@ strip-wsnumbers = true
 
 format = <label-state> <label-mode>
 
-ws-icon-0 = 3:web;
-ws-icon-1 = 1:admin;
-ws-icon-2 = 2:work;
-ws-icon-3 = 7:music;
-ws-icon-4 = 5:comms;
-ws-icon-5 = 8:notes;
-ws-icon-6 = 10:misc;
-ws-icon-7 = 9:logistics;
-ws-icon-8 = 4:files;
-ws-icon-9 = 6:email;
+ws-icon-0 = web;
+ws-icon-1 = admin;
+ws-icon-2 = work;
+ws-icon-3 = music;
+ws-icon-4 = comms;
+ws-icon-5 = notes;
+ws-icon-6 = :misc;
+ws-icon-7 = logistics;
+ws-icon-8 = files;
+ws-icon-9 = email;
 ws-icon-default = 
 
 label-mode = %mode%
@@ -180,7 +180,7 @@ bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
 [module/volume]
-type = internal/volume
+type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
 label-volume = VOL
@@ -246,8 +246,8 @@ format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
 ramp-0 = 
