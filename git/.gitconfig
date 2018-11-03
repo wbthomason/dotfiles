@@ -4,7 +4,7 @@
   signingkey = 8BEE5C508226C4516876B93449B3E4A714642E1D
 
 [credential]
-  helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
+	helper = /usr/lib/git-core/git-credential-libsecret
 
 [push]
   default = simple
