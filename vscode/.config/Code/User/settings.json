@@ -10,7 +10,7 @@
   "python.jediEnabled": false,
   "vim.enableNeovim": true,
   "vim.visualstar": true,
-  "vim.useCtrlKeys": false,
+  "vim.useCtrlKeys": true,
   "vim.statusBarColorControl": true,
   "vim.sneak": true,
   "vim.incsearch": true,
@@ -18,6 +18,14 @@
   "vim.surround": true,
   "vim.leader": "<space>",
   "vim.whichwrap": "h,l,<,>,[,]",
+  "vim.handleKeys": {
+    "<C-d>": true,
+    "<C-f>": false,
+    "<C-o>": false,
+    "<C-k>": false,
+    "<C-b>": false,
+    "<C-w>": false
+  },
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
@@ -72,6 +80,16 @@
       ],
       "commands": [
         "git.pull"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "t",
+        "h"
+      ],
+      "commands": [
+        ":nohl"
       ]
     }
   ],
