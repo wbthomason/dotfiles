@@ -99,7 +99,6 @@
     "statusBar.noFolderBackground": "#005f5f",
     "statusBar.debuggingBackground": "#005f5f"
   },
-  "workbench.colorTheme": "Tomorrow Night",
   "latex-workshop.chktex.enabled": true,
   "latex-workshop.intellisense.surroundCommand.enabled": true,
   "latex-workshop.synctex.afterBuild.enabled": true,
@@ -128,5 +127,6 @@
   "editor.overviewRulerLanes": 1,
   "scm.diffDecorationsGutterWidth": 1,
   "extensions.closeExtensionDetailsOnViewChange": true,
-  "vim.sneakUseIgnorecaseAndSmartcase": true
+  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "workbench.colorTheme": "Tomorrow Night"
 }
