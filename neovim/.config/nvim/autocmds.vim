@@ -20,7 +20,7 @@ augroup END
 
 function! LspMaybeHover(is_running) abort
   if a:is_running.result
-    call LanguageClient_textDocument_hover()
+    call LanguageClient#textDocument_hover()
   endif
 endfunction
 
@@ -32,9 +32,6 @@ endfunction
 
 augroup lsp_aucommands
   au!
-  " au BufEnter * if !exists('g:LanguageClient_serverRunning') | let g:LanguageClient_serverRunning = v:false | endif
-  " au User LanguageClientStopped let g:LanguageClient_serverRunning = v:false
-  " au User LanguageClientStarted let g:LanguageClient_serverRunning = v:true
   au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
   au CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
 augroup END
