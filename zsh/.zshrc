@@ -72,6 +72,10 @@ alias emd='emacs --daemon'
 alias git='hub'
 alias ls='ls --color=auto'
 
+function open() {
+  xdg-open $1 &
+}
+
 # Prompt
 function zle-line-init zle-keymap-select {
   PROMPT=`~/projects/personal/purs/target/release/purs prompt -k "$KEYMAP" -r "$?"`
