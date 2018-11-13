@@ -42,6 +42,9 @@ call ConfigInc('autocmds.vim')
 " Polyglot
 let g:polyglot_disabled = ['latex', 'tex', 'markdown', 'pandoc']
 
+" Vimagit
+let g:magit_default_fold_level = 0
+
 " Haskell
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
