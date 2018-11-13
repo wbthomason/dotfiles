@@ -433,7 +433,6 @@ let g:LanguageClient_documentHighlightDisplay = {
 let g:LanguageClient_signColumnAlwaysOn = 1
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_diagnosticsList = 'Location'
-let g:LanguageClient_serverRunning = v:false
 let g:LanguageClient_hoverPreview = 'Never'
 let g:LanguageClient_completionPreferTextEdit = 1
 
