@@ -73,7 +73,7 @@ alias git='hub'
 alias ls='ls --color=auto'
 
 function open() {
-  xdg-open $1 &
+  xdg-open $1 > /dev/null 2>&1 &
 }
 
 # Prompt
