@@ -91,7 +91,8 @@ Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarToggle']}
 Plug 'ludovicchabant/vim-gutentags'
 
 " FZF
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim' 
 Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
 Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
 
