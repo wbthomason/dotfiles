@@ -216,7 +216,6 @@ Plug 'igankevich/mesonic'
 Plug 'PontusPersson/pddl.vim'
 
 " Coq
-Plug 'https://framagit.org/tyreunom/coquille', {'do': ':UpdateRemotePlugins'}
 Plug 'jvoorhis/coq.vim'
 
 " Pretty pretty symbols
