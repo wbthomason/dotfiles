@@ -234,6 +234,7 @@ let g:clever_f_fix_key_direction = 1
 
 " Echodoc
 let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'virtual'
 
 " Vaffle
 let g:vaffle_show_hidden_files = 1
@@ -370,6 +371,7 @@ let g:ale_max_signs = -1
 let g:ale_set_signs = 1
 let g:ale_set_balloons = 1
 let g:ale_sign_column_always = 1
+let g:ale_virtualtext_cursor = 1
 
 " LanguageClient
 let g:LanguageClient_hasSnippetSupport = 1
