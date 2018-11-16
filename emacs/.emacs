@@ -132,8 +132,9 @@
   (defun ivy-posframe-center-dynamic-size (str)
     "Simple wrapper to dynamically set the width and height for the posframe."
     (setq ivy-height (min 200 (length ivy--all-candidates)))
-    (setq ivy-posframe-height (max 5 (min ivy-height (floor (* 0.85 (frame-height)))))
-          ivy-posframe-width (floor (/ (frame-width) 1.2)))
+    ;; (setq ivy-posframe-height (max 5 (min ivy-height (floor (* 0.85 (frame-height)))))
+    ;;       ivy-posframe-width (floor (/ (frame-width) 1.2)))
+    (setq ivy-posframe-width (floor (/ (frame-width) 1.2)))
     (ivy-posframe--display str #'posframe-poshandler-frame-center))
   (setq ivy-display-function #'ivy-posframe-center-dynamic-size)
   (push
@@ -858,11 +859,11 @@
 (defun setup-LaTeX-company ()
   "Setup LaTeX-specific company backends."
   (set (make-local-variable 'company-backends)
-       (append '((company-auctex
+       (append '(company-reftex-labels
+                 company-reftex-citations
+                 (company-auctex
                   company-math-symbols-latex
-                  company-latex-commands)
-                 company-reftex-labels
-                 company-reftex-citations)
+                  company-latex-commands))
                company-standard-backends)))
 (add-hook 'LaTeX-mode-hook 'setup-LaTeX-company)
 ;;; YAML
