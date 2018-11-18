@@ -1,8 +1,8 @@
 " Custom functions
 
 function! Toggle_writer_mode()
-  execute ":Goyo"
-  execute ":Limelight!!"
+  execute ':Goyo'
+  execute ':Limelight!!'
 endfunction
 
 function! StartifyEntryFormat()
@@ -18,3 +18,15 @@ function! LinterStatus() abort
         \ printf('⚠ %d', l:warnings) . (l:errors == 0 ? '' :
         \ printf(' ⨉ %d', l:errors))
 endfunction
+
+function! ToggleColors()
+  if &background == 'dark'
+    set background=light
+    colorscheme solarized8_flat
+  else
+    set background=dark
+    colorscheme nazgul
+  endif
+endfunction
+
+command ToggleColors call ToggleColors()
