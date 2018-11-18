@@ -193,7 +193,7 @@ Plug 'vim-pandoc/vim-pandoc-after'
 " Plug 'vim-scripts/utl.vim', {'for': 'org'}
 " Plug 'itchyny/calendar.vim', {'for': 'org'}
 " Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
-" Plug 'jceb/vim-orgmode'
+Plug 'jceb/vim-orgmode'
 
 " Haskell
 Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
