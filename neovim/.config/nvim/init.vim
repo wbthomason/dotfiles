@@ -490,8 +490,10 @@ call which_key#register(',', 'g:llmaps')
 " call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
 
 " ALE integration config
-call airline#parts#define_function('ALE', 'LinterStatus')
-let g:airline_section_error = airline#section#create_right(['ALE'])
+if !exists('g:gui_oni')
+  call airline#parts#define_function('ALE', 'LinterStatus')
+  let g:airline_section_error = airline#section#create_right(['ALE'])
+end
 
 " NCM2
 let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
@@ -506,6 +508,25 @@ call ncm2#override_source('pyclang', {'priority': 8})
 
 " General settings
 call ConfigInc('settings.vim')
+
+" Oni settings
+if exists('g:gui_oni')
+  set nocompatible              " be iMproved, required
+  filetype off                  " required
+
+  set number
+  set noswapfile
+  set smartcase
+
+  " Enable GUI mouse behavior
+  set mouse=a
+
+  " If using Oni's externalized statusline, hide vim's native statusline, 
+  set noshowmode
+  set noruler
+  set laststatus=0
+  set noshowcmd
+endif
 
 if &background ==# 'dark'
   " let g:rainbow_conf.guifgs = ['#eeeeee', '#c6c6c6', '#aaaaaa', '#888888']

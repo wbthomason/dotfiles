@@ -30,8 +30,10 @@ Plug 'mhinz/vim-startify'
 
 " Status line
 " Plug 'bling/vim-bufferline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-airline/vim-airline'
+if !exists('g:gui_oni')
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-airline/vim-airline'
+end
 
 " System utilities
 Plug 'tpope/vim-eunuch'
@@ -163,10 +165,12 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-apathy'
 
 " LSP
-Plug 'autozimu/LanguageClient-neovim', {
-	  \ 'branch': 'next',
-	  \ 'do': 'make -j 8 release',
-	  \ }
+if !exists('g:gui_oni')
+  Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'make -j 8 release',
+        \ }
+end
 
 " CSS
 Plug 'ncm2/ncm2-cssomni'

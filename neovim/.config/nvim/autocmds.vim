@@ -30,11 +30,13 @@ function! LspMaybeHighlight(is_running) abort
   endif
 endfunction
 
-augroup lsp_aucommands
-  au!
-  au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
-  au CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
-augroup END
+if !exists('g:gui_oni')
+  augroup lsp_aucommands
+    au!
+    au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
+    au CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
+  augroup END
+end
 
 augroup extra_filetype_aucommands
   au!
