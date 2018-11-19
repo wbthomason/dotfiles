@@ -130,7 +130,7 @@
   :config
   (defun ivy-posframe-center-dynamic-size (str)
     "Simple wrapper to dynamically set the width and height for the posframe."
-    (setq ivy-height (min 200 (length ivy--all-candidates)))
+    (setq ivy-height (min 100 (length ivy--all-candidates)))
     ;; (setq ivy-posframe-height (max 5 (min ivy-height (floor (* 0.85 (frame-height)))))
     ;;       ivy-posframe-width (floor (/ (frame-width) 1.2)))
     (setq ivy-posframe-width (floor (/ (frame-width) 1.2)))
@@ -140,8 +140,8 @@
    `(ivy-posframe-center-dynamic-size
      :cleanup
      (lambda () (when
-                    (ivy-posframe-workable-p)
-                  (posframe-hide ivy-posframe-buffer))))
+               (ivy-posframe-workable-p)
+             (posframe-hide ivy-posframe-buffer))))
    ivy-display-functions-props))
 
 ;;; Eshell
