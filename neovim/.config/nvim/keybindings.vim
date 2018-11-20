@@ -42,9 +42,9 @@ nnoremap <silent> <leader>s :bn<cr>
 let g:lmaps.s = ['bn', 'Go to next buffer']
 nnoremap <silent> <leader>bl :b#<cr>
 let g:lmaps.b.l = ['b#', 'Go to last used buffer']
-nnoremap <silent> <leader>bb :Buffers<cr>
-nnoremap <silent> <tab> :History<cr>
-let g:lmaps.b.b = ['Buffers', 'Select a buffer']
+nnoremap <silent> <leader>bb :Denite buffer<cr>
+nnoremap <silent> <tab> :Denite file_mru<cr>
+let g:lmaps.b.b = ['Denite buffer', 'Select a buffer']
 
 " Configuration bindings
 let g:lmaps.c = {'name': 'Configuration'}
@@ -65,32 +65,32 @@ let g:lmaps.e.c = ['lclose', 'Close error list']
 
 " Finder bindings
 let g:lmaps.f = {'name': 'Find'}
-nnoremap <silent> <leader>ff :Files<CR>
-let g:lmaps.f.f = ['Files', 'Search for files in the current directory']
-nnoremap <leader>fa :Files <C-r>=getcwd()<CR>
-let g:lmaps.f.a = ['Files <C-r>=getcwd()<CR>', 'Search for files in an arbitrary directory']
-nnoremap <silent> <leader>fg :GFiles<CR>
-let g:lmaps.f.g = ['GFiles', 'Search for files in the current Git repo']
-nnoremap <silent> <leader>fh :Helptags<CR>
-let g:lmaps.f.h = ['Helptags', 'Search in help tags']
-nnoremap <silent> <leader>fr :History<CR>
-let g:lmaps.f.r = ['History', 'Search for recently edited files']
+nnoremap <silent> <leader>ff :Denite file/rec<CR>
+let g:lmaps.f.f = ['Denite file/rec', 'Search for files in the current directory']
+nnoremap <leader>fa :Denite file/rec <C-r>=getcwd()<CR>
+let g:lmaps.f.a = ['Denite file/rec <C-r>=getcwd()<CR>', 'Search for files in an arbitrary directory']
+nnoremap <silent> <leader>fg :Denite file/rec/git<CR>
+let g:lmaps.f.g = ['Denite file/rec/git', 'Search for files in the current Git repo']
+nnoremap <silent> <leader>fh :Denite help<CR>
+let g:lmaps.f.h = ['Denite help', 'Search in help tags']
+nnoremap <silent> <leader>fr :Denite file/old<CR>
+let g:lmaps.f.r = ['Denite file/old', 'Search for recently edited files']
 let g:lmaps.f.t = {'name': 'Tags'}
-nnoremap <silent> <leader>ftt :Tags<CR>
-let g:lmaps.f.t.t = ['Tags', 'Search in tags for the current directory']
-nnoremap <silent> <leader>ftb :BTags<CR>
-let g:lmaps.f.t.b = ['BTags', 'Search in tags for the current buffer']
-nnoremap <silent> <leader>fi :Rg<CR>
-let g:lmaps.f.i = ['Rg', 'Search for text in files in the current directory']
-nnoremap <silent> <leader>fl :Lines<CR>
-let g:lmaps.f.l = ['Lines', 'Search for text in currently open buffers']
-nnoremap  <leader>fL :Locate
-let g:lmaps.f.l = ['Locate', 'Search the system with locate']
+nnoremap <silent> <leader>ftt :Denite tag<CR>
+let g:lmaps.f.t.t = ['Denite tag', 'Search in tags for the current directory']
+" nnoremap <silent> <leader>ftb :BTags<CR>
+" let g:lmaps.f.t.b = ['BTags', 'Search in tags for the current buffer']
+nnoremap <silent> <leader>fi :Denite grep<CR>
+let g:lmaps.f.i = ['Denite grep', 'Search for text in files in the current directory']
+nnoremap <silent> <leader>fl :Denite line<CR>
+let g:lmaps.f.l = ['Denite line', 'Search for text in currently open buffers']
+" nnoremap  <leader>fL :Locate
+" let g:lmaps.f.l = ['Locate', 'Search the system with locate']
 let g:lmaps.f.s = {'name': 'Symbols'}
-nnoremap <silent> <leader>fsb :call LanguageClient_textDocument_documentSymbol()<CR>
-let g:lmaps.f.s.b = ['call LanguageClient_textDocument_documentSymbol()', 'Search symbols in the current buffer']
-nnoremap <silent> <leader>fsp :call LanguageClient_workspace_symbol()<CR>
-let g:lmaps.f.s.p = ['call LanguageClient_workspace_symbol()', 'Search symbols in the current project']
+nnoremap <silent> <leader>fsb :Denite documentSymbol<CR>
+let g:lmaps.f.s.b = ['Denite documentSymbol', 'Search symbols in the current buffer']
+nnoremap <silent> <leader>fsp :Denite workspaceSymbol<CR>
+let g:lmaps.f.s.p = ['Denite workspaceSymbol', 'Search symbols in the current project']
 nnoremap <silent> <leader>fd :Vaffle<CR>
 let g:lmaps.f.d = ['Vaffle', 'Open Vaffle']
 
@@ -184,8 +184,8 @@ nnoremap <silent> gD :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> gI :call LanguageClient#textDocument_implementation()<CR>
 nnoremap <silent> <leader>ln :call LanguageClient_textDocument_rename()<CR>
 let g:lmaps.l.n = ['call LanguageClient_textDocument_rename()', 'Rename symbol']
-nnoremap <silent> <leader>lr :call LanguageClient#textDocument_references()<CR>
-let g:lmaps.l.r = ['call LanguageClient#textDocument_references()', 'Find symbol references']
+nnoremap <silent> <leader>lr :Denite references<CR>
+let g:lmaps.l.r = ['Denite references', 'Find symbol references']
 nnoremap <silent> <leader>lh :call LanguageClient_textDocument_hover()<CR>
 let g:lmaps.l.h = ['call LanguageClient_textDocument_hover()', 'Hover on symbol']
 nnoremap <silent> <leader>la :call LanguageClient#textDocument_codeAction()<CR>

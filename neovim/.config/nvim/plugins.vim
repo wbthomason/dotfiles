@@ -93,19 +93,21 @@ Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarToggle']}
 Plug 'ludovicchabant/vim-gutentags'
 
 " FZF
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim' 
-Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
-Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
+" Plug 'junegunn/fzf'
+" Plug 'junegunn/fzf.vim' 
+" Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
+" Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
+Plug 'Shougo/neoyank.vim'
 
 " Gonvim
 Plug 'akiyosi/gonvim-fuzzy'
 Plug 'equalsraf/neovim-gui-shim'
 
 " Denite
-" Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
-" Plug 'Shougo/denite.nvim'
-" Plug 'dunstontc/projectile.nvim'
+Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
+Plug 'Shougo/denite.nvim'
+Plug 'dunstontc/projectile.nvim'
+Plug 'Shougo/neomru.vim'
 
 " Writing
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}

@@ -438,49 +438,50 @@ let g:LanguageClient_diagnosticsList = 'Location'
 let g:LanguageClient_hoverPreview = 'Never'
 let g:LanguageClient_completionPreferTextEdit = 1
 
+" Devicons
+let g:webdevicons_enable_denite = 1
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_airline_statusline_fileformat_symbols = 1
+
 " Denite
-" let g:denite_source_session_path = '~/.vim/session'
-" call denite#custom#option('_', {
-"       \ 'prompt': '❯',
-"       \ 'updatetime': 1,
-"       \ 'reversed': 1,
-"       \ })
-"
-" " call denite#custom#source('_', 'sorters', ['sorter/sublime'])
-"
+call denite#custom#option('_', {
+      \ 'prompt': '❯',
+      \ 'updatetime': 1,
+      \ 'reversed': 1,
+      \ })
+
+call denite#custom#source('_', 'sorters', ['sorter/sublime'])
+call denite#custom#source('_', 'matchers', ['devicons_denite_converter', 'matcher/cpsm'])
+
+call denite#custom#var('file/rec', 'command',
+      \ ['rg', '--files', '--glob', '!.git'])
 " call denite#custom#var('file/rec', 'command',
-"       \ ['rg', '--files', '--glob', '!.git'])
-" " call denite#custom#var('file/rec', 'command',
-" " 	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-" call denite#custom#source('file/rec', 'matchers', ['matcher/cpsm'])
-"
+" 	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
 " call denite#custom#source('file/old', 'matchers', ['matcher/hide_hidden_files', 'matcher/cpsm'])
-"
-" call denite#custom#var('grep', 'command', ['rg'])
-" call denite#custom#var('grep', 'default/opts',
-"       \ ['--vimgrep', '--no-heading'])
-" call denite#custom#var('grep', 'recursive/opts', [])
-" call denite#custom#var('grep', 'pattern/opt', ['--regexp'])
-" call denite#custom#var('grep', 'separator', ['--'])
-" call denite#custom#var('grep', 'final/opts', [])
-"
-" call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-" call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-" call denite#custom#source('file/rec/git', 'matchers', ['matcher/cpsm'])
-"
-" call denite#custom#map(
-"       \ 'insert',
-"       \ '<Down>',
-"       \ '<denite:move_to_next_line>',
-"       \ 'noremap'
-"       \)
-"
-" call denite#custom#map(
-"       \ 'insert',
-"       \ '<Up>',
-"       \ '<denite:move_to_previous_line>',
-"       \ 'noremap'
-"       \)
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'default/opts', ['--vimgrep', '--no-heading'])
+call denite#custom#var('grep', 'recursive/opts', [])
+call denite#custom#var('grep', 'pattern/opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final/opts', [])
+
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+
+call denite#custom#map(
+      \ 'insert',
+      \ '<Down>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'insert',
+      \ '<Up>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
 
 " Leader guide
 
