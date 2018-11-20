@@ -43,7 +43,7 @@ let g:lmaps.s = ['bn', 'Go to next buffer']
 nnoremap <silent> <leader>bl :b#<cr>
 let g:lmaps.b.l = ['b#', 'Go to last used buffer']
 nnoremap <silent> <leader>bb :Denite buffer<cr>
-nnoremap <silent> <tab> :Denite buffer file_mru file/rec/git<cr>
+nnoremap <silent> <tab> :<c-u>Denite buffer file_mru `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<cr>
 let g:lmaps.b.b = ['Denite buffer', 'Select a buffer']
 
 " Configuration bindings
