@@ -47,7 +47,4 @@ augroup END
 augroup ncm_aucommands
   au!
   au BufEnter * call ncm2#enable_for_buffer()
-  au TextChangedI * call ncm2#auto_trigger()
-  au InsertEnter * call ncm2#enable_for_buffer()
-  au CompleteDone * pclose
 augroup END
