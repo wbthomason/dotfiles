@@ -234,7 +234,7 @@ let g:clever_f_fix_key_direction = 1
 
 " Echodoc
 let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'virtual'
+let g:echodoc#type = 'signature'
 
 " Vaffle
 let g:vaffle_show_hidden_files = 1
@@ -335,7 +335,7 @@ call ConfigInc('keybindings.vim')
 
 " Add in plugins
 call ConfigInc('plugins.vim')
-"
+
 " Colorscheme
 set termguicolors
 set background=dark
@@ -490,7 +490,7 @@ call which_key#register(',', 'g:llmaps')
 " call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
 
 " ALE integration config
-if !exists('g:gui_oni')
+if !exists('g:gui_oni') && !exists('g:gonvim_running')
   call airline#parts#define_function('ALE', 'LinterStatus')
   let g:airline_section_error = airline#section#create_right(['ALE'])
 end
@@ -505,28 +505,8 @@ inoremap <silent> <expr> <c-u> ncm2_ultisnips#expand_or("\<CR>", 'n')
 call ncm2#override_source('tagprefix', {'priority': 2})
 call ncm2#override_source('pyclang', {'priority': 8})
 
-
 " General settings
 call ConfigInc('settings.vim')
-
-" Oni settings
-if exists('g:gui_oni')
-  set nocompatible              " be iMproved, required
-  filetype off                  " required
-
-  set number
-  set noswapfile
-  set smartcase
-
-  " Enable GUI mouse behavior
-  set mouse=a
-
-  " If using Oni's externalized statusline, hide vim's native statusline, 
-  set noshowmode
-  set noruler
-  set laststatus=0
-  set noshowcmd
-endif
 
 if &background ==# 'dark'
   " let g:rainbow_conf.guifgs = ['#eeeeee', '#c6c6c6', '#aaaaaa', '#888888']
@@ -568,3 +548,15 @@ let g:capture_templates = {
       \             'pattern': '^# ',
       \             'new_snip': '# `!v strftime("%A, %F")`${0:meeting_notes}'},
       \}
+
+" Gonvim settings
+if exists('g:gonvim_running')
+  set mouse=a
+  set noshowmode
+  set noruler
+  set laststatus=0
+  set noshowcmd
+
+  let g:gonvim_draw_statusline = 1
+  let g:gonvim_draw_lint = 1
+endif
