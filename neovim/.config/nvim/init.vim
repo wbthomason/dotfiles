@@ -341,7 +341,7 @@ set termguicolors
 set background=dark
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
-colorscheme nazgul
+colorscheme plain
 hi! link extTodo Todo
 
 " set background=light
