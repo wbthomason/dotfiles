@@ -444,6 +444,7 @@ let g:webdevicons_enable_airline_statusline = 1
 let g:webdevicons_enable_airline_statusline_fileformat_symbols = 1
 
 " Denite
+let g:fruzzy#usenative = 1
 call denite#custom#option('_', {
       \ 'prompt': '❯',
       \ 'updatetime': 1,
@@ -451,7 +452,7 @@ call denite#custom#option('_', {
       \ })
 
 call denite#custom#source('_', 'sorters', ['sorter/sublime'])
-call denite#custom#source('_', 'matchers', ['devicons_denite_converter', 'matcher/cpsm'])
+call denite#custom#source('_', 'matchers', ['devicons_denite_converter', 'matcher/fruzzy'])
 
 call denite#custom#var('file/rec', 'command',
       \ ['rg', '--files', '--glob', '!.git'])

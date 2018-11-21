@@ -101,6 +101,7 @@ Plug 'Shougo/neoyank.vim'
 
 " Denite
 Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
+Plug 'raghur/fruzzy', {'do': { -> fruzzy#install() }}
 Plug 'Shougo/denite.nvim'
 Plug 'dunstontc/projectile.nvim'
 Plug 'Shougo/neomru.vim'
