@@ -30,7 +30,7 @@ Plug 'mhinz/vim-startify'
 
 " Status line
 " Plug 'bling/vim-bufferline'
-if !exists('g:gui_oni')
+if !exists('g:gonvim_running')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'vim-airline/vim-airline'
 end
@@ -98,6 +98,10 @@ Plug 'ludovicchabant/vim-gutentags'
 " Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
 " Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/neoyank.vim'
+
+" Gonvim
+Plug 'akiyosi/gonvim-fuzzy'
+Plug 'equalsraf/neovim-gui-shim'
 
 " Denite
 Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
@@ -168,12 +172,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-apathy'
 
 " LSP
-if !exists('g:gui_oni')
-  Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'make -j 8 release',
-        \ }
-end
+Plug 'autozimu/LanguageClient-neovim', {
+      \ 'branch': 'next',
+      \ 'do': 'make -j 8 release',
+      \ }
 
 " CSS
 Plug 'ncm2/ncm2-cssomni'
@@ -197,8 +199,8 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc-after'
 
 " Org-mode
-" Plug 'vim-scripts/utl.vim', {'for': 'org'}
-" Plug 'itchyny/calendar.vim', {'for': 'org'}
+Plug 'vim-scripts/utl.vim', {'for': 'org'}
+Plug 'itchyny/calendar.vim', {'for': 'org'}
 " Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
 Plug 'jceb/vim-orgmode'
 
@@ -235,6 +237,7 @@ Plug 'tweekmonster/startuptime.vim'
 " Color scheme
 Plug 'wbthomason/vim-nazgul'
 Plug 'lifepillar/vim-solarized8'
+Plug 'wbthomason/vim-colors-plain'
 
 Plug 'wbthomason/capture.vim'
 

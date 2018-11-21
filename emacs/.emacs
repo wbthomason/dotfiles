@@ -135,14 +135,15 @@
     ;;       ivy-posframe-width (floor (/ (frame-width) 1.2)))
     (setq ivy-posframe-width (floor (/ (frame-width) 1.2)))
     (ivy-posframe--display str #'posframe-poshandler-frame-center))
-  (setq ivy-display-function #'ivy-posframe-center-dynamic-size)
-  (push
-   `(ivy-posframe-center-dynamic-size
-     :cleanup
-     (lambda () (when
-               (ivy-posframe-workable-p)
-             (posframe-hide ivy-posframe-buffer))))
-   ivy-display-functions-props))
+  (setq ivy-display-function #'ivy-posframe-display-at-frame-center)
+  ;; (push
+  ;;  `(ivy-posframe-center-dynamic-size
+  ;;    :cleanup
+  ;;    (lambda () (when
+  ;;              (ivy-posframe-workable-p)
+  ;;            (posframe-hide ivy-posframe-buffer))))
+  ;;  ivy-display-functions-props)
+  )
 
 ;;; Eshell
 (use-package esh-autosuggest
