@@ -341,7 +341,7 @@ set termguicolors
 set background=dark
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
-colorscheme plain
+colorscheme nazgul
 hi! link extTodo Todo
 
 " set background=light
@@ -390,6 +390,7 @@ let g:LanguageClient_serverCommands = {
       \ }
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loadSettings = 1
+let g:LanguageClient_settingsPath = '/home/wil/.config/nvim/settings.json'
 let g:LanguageClient_diagnosticsDisplay = {
       \ 1: {
       \     'name': 'Error',
@@ -498,7 +499,7 @@ end
 
 " NCM2
 let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
-let g:ncm2#popup_delay = 100
+let g:ncm2#popup_delay = 300
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <c-u> <Plug>(ultisnips_expand)
