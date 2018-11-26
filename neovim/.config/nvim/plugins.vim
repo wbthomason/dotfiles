@@ -236,8 +236,8 @@ Plug 'tweekmonster/startuptime.vim'
 
 " Color scheme
 Plug 'wbthomason/vim-nazgul'
+Plug 'AlessandroYorba/Sierra'
 Plug 'lifepillar/vim-solarized8'
-Plug 'wbthomason/vim-colors-plain'
 
 Plug 'wbthomason/capture.vim'
 
