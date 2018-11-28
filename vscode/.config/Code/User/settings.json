@@ -161,5 +161,7 @@
     "IN-PROGRESS",
     "DONE",
     "CANCELED"
-  ]
+  ],
+  "python.formatting.provider": "yapf",
+  "git.confirmSync": false
 }
