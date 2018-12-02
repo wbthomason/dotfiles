@@ -139,7 +139,7 @@
   "scm.diffDecorationsGutterWidth": 1,
   "extensions.closeExtensionDetailsOnViewChange": true,
   "vim.sneakUseIgnorecaseAndSmartcase": true,
-  "workbench.colorTheme": "Base16 Light Grayscale",
+  "workbench.colorTheme": "Tomorrow Night",
   "ccls.highlighting.enabled.types": true,
   "ccls.highlighting.enabled.freeStandingFunctions": true,
   "ccls.highlighting.enabled.memberFunctions": true,
