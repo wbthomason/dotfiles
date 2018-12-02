@@ -30,7 +30,7 @@ Plug 'mhinz/vim-startify'
 
 " Status line
 " Plug 'bling/vim-bufferline'
-if !exists('g:gonvim_running')
+if !exists('g:gui_oni')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'vim-airline/vim-airline'
 end
@@ -98,10 +98,6 @@ Plug 'ludovicchabant/vim-gutentags'
 " Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
 " Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/neoyank.vim'
-
-" Gonvim
-Plug 'akiyosi/gonvim-fuzzy'
-Plug 'equalsraf/neovim-gui-shim'
 
 " Denite
 Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}

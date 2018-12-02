@@ -494,7 +494,7 @@ call which_key#register(',', 'g:llmaps')
 " call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
 
 " ALE integration config
-if !exists('g:gui_oni') && !exists('g:gonvim_running')
+if !exists('g:gui_oni')
   call airline#parts#define_function('ALE', 'LinterStatus')
   let g:airline_section_error = airline#section#create_right(['ALE'])
 end
@@ -552,15 +552,3 @@ let g:capture_templates = {
       \             'pattern': '^# ',
       \             'new_snip': '# `!v strftime("%A, %F")`${0:meeting_notes}'},
       \}
-
-" Gonvim settings
-if exists('g:gonvim_running')
-  set mouse=a
-  set noshowmode
-  set noruler
-  set laststatus=0
-  set noshowcmd
-
-  let g:gonvim_draw_statusline = 1
-  let g:gonvim_draw_lint = 1
-endif
