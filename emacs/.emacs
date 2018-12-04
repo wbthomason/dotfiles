@@ -586,9 +586,17 @@
   (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'haskell-mode-hook 'eglot-ensure))
 
-(use-package lsp-mode
-  :ensure t
+(use-package lsp
+  :ensure lsp-mode
   :config
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection "/home/wil/.luarocks/bin/lua-lsp")
+                    :major-modes '(lua-mode)
+                    :server-id 'lua-lsp))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection "pyls")
+                    :major-modes '(python-mode)
+                    :server-id 'pyls))
   (add-hook 'c-mode-common-hook 'lsp)
   (add-hook 'c-mode-hook 'lsp)
   (add-hook 'c++-mode-hook 'lsp)
@@ -677,11 +685,6 @@
        (append '((company-capf merlin-company-backend)) company-standard-backends)))
 (add-hook 'tuareg-mode-hook 'setup-ocaml-company)
 
-;; (use-package lsp-ocaml
-;;   :ensure t
-;;   :hook ((tuareg-mode caml-mode reason-mode) . lsp-ocaml-enable))
-
-
 ;;; Haskell
 
 (use-package haskell-mode :ensure t)
@@ -699,10 +702,6 @@
   :hook (haskell-mode . hindent-mode))
 
 ;; (use-package haskell-snippets :ensure t)
-
-;; (use-package lsp-haskell
-;;   :ensure t
-;;   :hook (haskell-mode . lsp-haskell-enable))
 
 (use-package company-cabal :ensure)
 
@@ -768,11 +767,6 @@
 (use-package py-isort
   :ensure t
   :hook (python-mode . (lambda () (add-hook 'before-save-hook #'py-isort-before-save))))
-
-;; (use-package lsp-python
-;;   :ensure t
-;;   :commands lsp-python-enable
-;;   :hook (python-mode . lsp-python-enable))
 
 (use-package flycheck-pycheckers
   :ensure t
@@ -886,19 +880,6 @@
   :ensure t
   :mode "\\.html\\'")
 
-;; (use-package lsp-html
-;;   :ensure t
-;;   :hook (html-mode . lsp-html-enable))
-
-;; (use-package lsp-css
-;;   :ensure t
-;;   :hook (css-mode . (lambda () (when (eq major-mode 'css-mode) (lsp-css-enable)))))
-
-;;; Javascript
-;; (use-package lsp-javascript-typescript
-;;   :ensure t
-;;   :hook ((js-mode typescript-mode js3-mode rjsx-mode) . lsp-javascript-typescript-enable))
-
 ;;; CMake
 (use-package cmake-mode :ensure t)
 (use-package cmake-font-lock
@@ -926,12 +907,6 @@
 
 ;;; Lua
 (use-package lua-mode :ensure t)
-;; (lsp-define-stdio-client
-;;  lsp-lua
-;;  "lua"
-;;  (lambda () default-directory)
-;;  '("/home/wil/.luarocks/bin/lua-lsp"))
-;; (add-hook 'lua-mode-hook #'lsp-lua-enable)
 
 (use-package company-lua :ensure t)
 
@@ -947,9 +922,6 @@
 
 ;;; Bash
 (use-package sh-script :ensure t)
-;; (use-package lsp-sh
-;;   :ensure t
-;;   :hook (sh-mode . lsp-sh-enable))
 
 ;;; Scheme
 (use-package geiser :ensure t)
@@ -957,19 +929,9 @@
 ;;; Scala
 (use-package scala-mode :ensure t)
 
-;;; Go
-;; (use-package lsp-go
-;;   :ensure t
-;;   :hook (go-mode . lsp-go-enable))
-
 ;;; Rust
 (use-package rust-mode :ensure t)
 (use-package cargo :ensure t)
-;; (use-package lsp-rust :ensure t
-;;   :commands lsp-rust-enable
-;;   :hook (rust-mode . lsp-rust-enable)
-;;   :init
-;;   (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls")))
 
 (use-package racer
   :ensure t
@@ -1040,22 +1002,15 @@
 (use-package flycheck-clangcheck
   :ensure t
   :after flycheck
-  :config (setq flycheck-c/c++-clangcheck-executable "/usr/bin/clang-check")
+  :config
+  (setq flycheck-c/c++-clangcheck-executable "/usr/bin/clang-check")
+  (setq flycheck-clangcheck-build-path "build")
   :hook (flycheck-mode . (lambda () (add-to-list 'flycheck-checkers 'c/c++-clangcheck))))
 
 ;; (use-package irony-eldoc
 ;;   :ensure t
 ;;   :disabled t
 ;;   :hook (irony-mode . irony-eldoc))
-
-;; (use-package cquery
-;;   :ensure t
-;;   :disabled t
-;;   :commands lsp-cquery-enable
-;;   :hook (c-mode-common . lsp-cquery-enable)
-;;   :config
-;;   (setq cquery-executable "/usr/bin/cquery"
-;;         cquery-extra-init-params '(:index (:comments 2) :completion (:detailedLabel t) :cacheFormat "msgpack")))
 
 (use-package ccls :ensure t)
 
@@ -1596,7 +1551,7 @@
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (lsp-ui kaolin-themes kaolin-theme paradox yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
+    (prescient lsp-ui kaolin-themes kaolin-theme paradox yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
  '(paradox-github-token t)
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
