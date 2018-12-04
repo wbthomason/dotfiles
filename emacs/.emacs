@@ -125,6 +125,7 @@
   (amx-mode))
 
 (use-package ivy-posframe
+  :disabled t
   :after ivy
   :ensure t
   :config
@@ -568,45 +569,46 @@
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
 (use-package eglot
+  :disabled t
   :ensure t
   :config
   (add-to-list 'eglot-server-programs '((tuareg-mode caml-mode reason-mode) . ("ocaml-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(lua-mode . ("/home/wil/.luarocks/bin/lua-lsp"))))
+  (add-to-list 'eglot-server-programs '(lua-mode . ("/home/wil/.luarocks/bin/lua-lsp")))
+  (add-hook 'c-mode-common-hook 'eglot-ensure)
+  (add-hook 'c-mode-hook 'eglot-ensure)
+  (add-hook 'c++-mode-hook 'eglot-ensure)
+  (add-hook 'tuareg-mode-hook 'eglot-ensure)
+  (add-hook 'caml-mode-hook 'eglot-ensure)
+  (add-hook 'reason-mode-hook 'eglot-ensure)
+  (add-hook 'javascript-mode-hook 'eglot-ensure)
+  (add-hook 'rust-mode-hook 'eglot-ensure)
+  (add-hook 'lua-mode-hook 'eglot-ensure)
+  (add-hook 'python-mode-hook 'eglot-ensure)
+  (add-hook 'haskell-mode-hook 'eglot-ensure))
 
-(add-hook 'c-mode-common-hook 'eglot-ensure)
-(add-hook 'c-mode-hook 'eglot-ensure)
-(add-hook 'c++-mode-hook 'eglot-ensure)
-(add-hook 'tuareg-mode-hook 'eglot-ensure)
-(add-hook 'caml-mode-hook 'eglot-ensure)
-(add-hook 'reason-mode-hook 'eglot-ensure)
-(add-hook 'javascript-mode-hook 'eglot-ensure)
-(add-hook 'rust-mode-hook 'eglot-ensure)
-(add-hook 'lua-mode-hook 'eglot-ensure)
-(add-hook 'python-mode-hook 'eglot-ensure)
-(add-hook 'haskell-mode-hook 'eglot-ensure)
+(use-package lsp-mode
+  :ensure t
+  :config
+  (add-hook 'programming-mode-hook 'lsp)
+  (defun my-set-projectile-root ()
+    (when lsp--cur-workspace
+      (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
+  (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
+  (setq lsp-enable-completion-at-point nil))
 
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :config
-;;   (defun my-set-projectile-root ()
-;;     (when lsp--cur-workspace
-;;       (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
-;;   (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
-;;   (setq lsp-enable-completion-at-point nil))
+(use-package lsp-ui
+  :ensure t
+  :hook (lsp-mode . lsp-ui-mode))
 
-;; (use-package lsp-ui
-;;   :ensure t
-;;   :hook (lsp-mode . lsp-ui-mode))
-
-;; (use-package company-lsp
-;;   :ensure t
-;;   :init
-;;   (setq company-lsp-async t
-;;         company-lsp-cache-candidates t
-;;         company-lsp-enable-snippet t
-;;         company-lsp-enable-recompletion t)
-;;   :config
-;;   (push 'company-lsp company-backends))
+(use-package company-lsp
+  :ensure t
+  :init
+  (setq company-lsp-async t
+        company-lsp-cache-candidates t
+        company-lsp-enable-snippet t
+        company-lsp-enable-recompletion t)
+  :config
+  (push 'company-lsp company-backends))
 
 ;; (use-package company-quickhelp :ensure t
 ;;   :disabled t
@@ -1045,16 +1047,13 @@
 ;;   (setq cquery-executable "/usr/bin/cquery"
 ;;         cquery-extra-init-params '(:index (:comments 2) :completion (:detailedLabel t) :cacheFormat "msgpack")))
 
-(use-package ccls
-  :ensure t
-  :config
-  (setq ccls-extra-init-params '(:completion (:detailedLabel t) :cacheFormat "binary")))
+(use-package ccls :ensure t)
 
 ;; Set a chain of C++ checkers
 (add-hook 'c-mode-common-hook (lambda ()
                                 (flycheck-add-next-checker 'irony 'c/c++-clang-tidy)
-                                (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-clangcheck)
-                                (flycheck-add-next-checker 'c/c++-clangcheck 'c/c++-cppcheck)
+                                (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-cppcheck)
+                                ;; (flycheck-add-next-checker 'c/c++-clangcheck 'c/c++-cppcheck)
                                 ;; Keeps throwing errors right now...
                                 ;; (flycheck-add-next-checker 'c/c++-googlelint 'clang-analyzer) ;;
                                 ))
@@ -1338,6 +1337,7 @@
 ;;; Theme
 (add-to-list 'custom-theme-load-path "~/projects/personal/emacs-nazgul-theme/")
 ;; (use-package eziam-dark-theme :ensure eziam-theme)
+(use-package kaolin-themes :ensure t)
 
 (load-theme 'nazgul t)
 ;; (load-theme 'tango t)
@@ -1527,15 +1527,15 @@
   "ft" #'counsel-etags-find-tag-at-point
 
   "gs" #'magit-status
-  "gc" #'magit-commit
-  "gp" #'magit-push
-  "gl" #'magit-pull
+  "gc" #'magit-commit-create
+  "gp" #'magit-push-other
+  "gl" #'magit-pull-branch
 
   "ts" #'window-toggle-split-direction
 
   "c" #'projectile-compile-project
   "lr" #'xref-find-references
-  "ln" #'eglot-rename
+  "ln" #'lsp-rename
   "SPC" #'execute-extended-command
   "ol" #'org-store-link
   "oi" #'org-insert-link
@@ -1564,7 +1564,7 @@
  '(company-reftex-labels-regexp "\\\\\\(?:eq\\|auto\\|c\\)?ref{\\([^}]*\\)\\=")
  '(custom-safe-themes
    (quote
-    ("9b35c097a5025d5da1c97dba45fed027e4fb92faecbd2f89c2a79d2d80975181" "57f95012730e3a03ebddb7f2925861ade87f53d5bbb255398357731a7b1ac0e0" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "075351c6aeaddd2343155cbcd4168da14f54284453b2f1c11d051b2687d6dc48" "e4fe3efbe5098392724aa0be119af539406553f58ef236d1514c8a80ec7ff557" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "242527ce24b140d304381952aa7a081179a9848d734446d913ca8ef0af3cef21" "44247f2a14c661d96d2bff302f1dbf37ebe7616935e4682102b68c0b6cc80095" "c9ddf33b383e74dac7690255dd2c3dfa1961a8e8a1d20e401c6572febef61045" "02956c6f9fc15711d3652ec42ddb43d4ae442da98dba72c7bdd9603525ce82aa" "ef03b74835e14db281cc489faf0d011e1c9255b747ba9c203426c56ed3331197" "058721e6836dfe4d18abbd35820eba7850427f59b9ac7c9c37a5e76f3a405749" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8f137ccf060af657fbc0c1f7c3d406646ad04ebb8b3e025febc8ef432e958b02" default)))
+    ("e1ad20f721b90cc8e1f57fb8150f81e95deb7ecdec2062939389a4b66584c0cf" "d890583c83cb36550c2afb38b891e41992da3b55fecd92e0bb458fb047d65fb3" "834dd2f8d07bee7897b8119afa1f97aa24f1864ba232eb769c3236ea236ca99a" "f97e1d3abc6303757e38130f4003e9e0d76026fc466d9286d661499158a06d99" "2757944f20f5f3a2961f33220f7328acc94c88ef6964ad4a565edc5034972a53" "9399db70f2d5af9c6e82d4f5879b2354b28bc7b5e00cc8c9d568e5db598255c4" "9b35c097a5025d5da1c97dba45fed027e4fb92faecbd2f89c2a79d2d80975181" "57f95012730e3a03ebddb7f2925861ade87f53d5bbb255398357731a7b1ac0e0" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "075351c6aeaddd2343155cbcd4168da14f54284453b2f1c11d051b2687d6dc48" "e4fe3efbe5098392724aa0be119af539406553f58ef236d1514c8a80ec7ff557" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "242527ce24b140d304381952aa7a081179a9848d734446d913ca8ef0af3cef21" "44247f2a14c661d96d2bff302f1dbf37ebe7616935e4682102b68c0b6cc80095" "c9ddf33b383e74dac7690255dd2c3dfa1961a8e8a1d20e401c6572febef61045" "02956c6f9fc15711d3652ec42ddb43d4ae442da98dba72c7bdd9603525ce82aa" "ef03b74835e14db281cc489faf0d011e1c9255b747ba9c203426c56ed3331197" "058721e6836dfe4d18abbd35820eba7850427f59b9ac7c9c37a5e76f3a405749" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "8f137ccf060af657fbc0c1f7c3d406646ad04ebb8b3e025febc8ef432e958b02" default)))
  '(flycheck-pycheckers-max-line-length 100)
  '(font-latex-fontify-script nil)
  '(font-latex-user-keyword-classes
@@ -1583,7 +1583,7 @@
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (paradox yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
+    (lsp-ui kaolin-themes kaolin-theme paradox yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
  '(paradox-github-token t)
  '(projectile-completion-system (quote ivy)))
 ;; custom-set-faces was added by Custom.
