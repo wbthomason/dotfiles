@@ -501,7 +501,9 @@ end
 
 " NCM2
 let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
-let g:ncm2#popup_delay = 300
+let g:ncm2#complete_delay = 300
+" let g:ncm2#popup_delay = 100
+let g:ncm2#popup_limit = 10
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <c-u> <Plug>(ultisnips_expand)
@@ -552,3 +554,9 @@ let g:capture_templates = {
       \             'pattern': '^# ',
       \             'new_snip': '# `!v strftime("%A, %F")`${0:meeting_notes}'},
       \}
+
+hi RedSign guifg=#cc241d ctermfg=124 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
+hi YellowSign guifg=#fabd2f ctermfg=214 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
+hi GreenSign guifg=#b8bb26 ctermfg=142 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
+hi BlueSign guifg=#83a598 ctermfg=109 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
+hi AquaSign guifg=#8ec07c ctermfg=108 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
