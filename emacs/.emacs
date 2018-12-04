@@ -589,7 +589,17 @@
 (use-package lsp-mode
   :ensure t
   :config
-  (add-hook 'programming-mode-hook 'lsp)
+  (add-hook 'c-mode-common-hook 'lsp)
+  (add-hook 'c-mode-hook 'lsp)
+  (add-hook 'c++-mode-hook 'lsp)
+  (add-hook 'tuareg-mode-hook 'lsp)
+  (add-hook 'caml-mode-hook 'lsp)
+  (add-hook 'reason-mode-hook 'lsp)
+  (add-hook 'javascript-mode-hook 'lsp)
+  (add-hook 'rust-mode-hook 'lsp)
+  (add-hook 'lua-mode-hook 'lsp)
+  (add-hook 'python-mode-hook 'lsp)
+  (add-hook 'haskell-mode-hook 'lsp)
   (defun my-set-projectile-root ()
     (when lsp--cur-workspace
       (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
@@ -718,7 +728,7 @@
 (add-hook 'haskell-mode-hook 'setup-haskell-company)
 
 ;;; Python
-(setenv "PYTHONPATH" "/opt/ros/melodic/lib/python2.7/site-packages")
+(setenv "PYTHONPATH" "/opt/ros/melodic/lib/python3.7/site-packages")
 
 (use-package python
   :ensure t
@@ -1576,6 +1586,9 @@
       ("secref" "appref" "tblref" "figref" "listingref" "linref" "defref" "lemref" "thmref" "eqnref" "algoref" "bftt" "kw")
       font-lock-constant-face command))))
  '(ivy-prescient-mode t)
+ '(lsp-ui-doc-enable nil)
+ '(lsp-ui-doc-include-signature t)
+ '(lsp-ui-doc-position (quote top))
  '(lsp-ui-sideline-delay 2.0)
  '(mixed-pitch-fixed-pitch-faces
    (quote
