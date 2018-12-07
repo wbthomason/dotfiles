@@ -18,6 +18,7 @@
       gc-cons-percentage 0.6)
 (defvar file-name-handler-alist-original file-name-handler-alist)
 (setq file-name-handler-alist nil)
+(setq load-prefer-newer t)
 (run-with-idle-timer
  5 nil
  (lambda ()
@@ -54,7 +55,6 @@
 (use-package no-littering :ensure t)
 
 ;; Byte-compile
-(setq load-prefer-newer t)
 (use-package auto-compile
   :ensure t
   :config
@@ -222,11 +222,11 @@
   :config (global-undo-tree-mode))
 
 ;;; Evil!
+(setq evil-want-keybinding nil)
 (use-package evil
   :ensure t
   :init
   (setq evil-want-integration t
-        evil-want-keybinding nil
         evil-ex-visual-char-range t
         evil-want-fine-undo t
         evil-respect-visual-line-mode t
@@ -611,7 +611,7 @@
   (defun my-set-projectile-root ()
     (when lsp--cur-workspace
       (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
-  (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
+  ;; (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
   (setq lsp-enable-completion-at-point nil))
 
 (use-package lsp-ui
