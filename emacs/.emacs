@@ -469,6 +469,7 @@
   :config
   (projectile-mode t)
   (setq projectile-enable-caching t)
+  (setq projectile-git-submodule-command nil)
   (setq-default
    projectile-mode-line
    '(:eval
