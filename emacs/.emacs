@@ -1394,6 +1394,18 @@
 (define-key evil-insert-state-map [C-tab] #'company-complete)
 (add-hook 'server-done-hook 'kill-buffer)
 
+;; Useful functions
+(defun toggle-terminal ()
+  "Toggle font and company-mode settings for terminal vs GUI use."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (fira-code-mode--enable)
+        (setq company-frontends '(company-posframe-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)))
+    (progn
+      (fira-code-mode--disable)
+      (setq company-frontends '(company-preview-frontend company-echo-metadata-frontend)))))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
