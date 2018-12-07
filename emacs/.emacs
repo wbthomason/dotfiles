@@ -1284,6 +1284,7 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 (add-hook 'prog-mode-hook (lambda () (setq-local comment-auto-fill-only-comments t) (auto-fill-mode t)))
+(setq xref-prompt-for-identifier '(not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame xref-find-references))
 (setq c-default-style "bsd")
 (setq auto-window-vscroll nil)
 (defvaralias 'c-basic-offset 'tab-width)
