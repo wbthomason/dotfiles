@@ -18,6 +18,7 @@
       gc-cons-percentage 0.6)
 (defvar file-name-handler-alist-original file-name-handler-alist)
 (setq file-name-handler-alist nil)
+(setq load-prefer-newer t)
 (run-with-idle-timer
  5 nil
  (lambda ()
@@ -54,7 +55,6 @@
 (use-package no-littering :ensure t)
 
 ;; Byte-compile
-(setq load-prefer-newer t)
 (use-package auto-compile
   :ensure t
   :config
@@ -222,11 +222,11 @@
   :config (global-undo-tree-mode))
 
 ;;; Evil!
+(setq evil-want-keybinding nil)
 (use-package evil
   :ensure t
   :init
   (setq evil-want-integration t
-        evil-want-keybinding nil
         evil-ex-visual-char-range t
         evil-want-fine-undo t
         evil-respect-visual-line-mode t
@@ -469,6 +469,7 @@
   :config
   (projectile-mode t)
   (setq projectile-enable-caching t)
+  (setq projectile-git-submodule-command nil)
   (setq-default
    projectile-mode-line
    '(:eval
@@ -611,7 +612,7 @@
   (defun my-set-projectile-root ()
     (when lsp--cur-workspace
       (setq projectile-project-root (lsp--workspace-root lsp--cur-workspace))))
-  (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
+  ;; (add-hook 'lsp-before-open-hook #'my-set-projectile-root)
   (setq lsp-enable-completion-at-point nil))
 
 (use-package lsp-ui
@@ -1284,6 +1285,7 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 (add-hook 'prog-mode-hook (lambda () (setq-local comment-auto-fill-only-comments t) (auto-fill-mode t)))
+(setq xref-prompt-for-identifier '(not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame xref-find-references))
 (setq c-default-style "bsd")
 (setq auto-window-vscroll nil)
 (defvaralias 'c-basic-offset 'tab-width)
@@ -1392,6 +1394,18 @@
 (define-key evil-normal-state-map [tab] #'ivy-switch-buffer)
 (define-key evil-insert-state-map [C-tab] #'company-complete)
 (add-hook 'server-done-hook 'kill-buffer)
+
+;; Useful functions
+(defun toggle-terminal ()
+  "Toggle font and company-mode settings for terminal vs GUI use."
+  (interactive)
+  (if (display-graphic-p)
+      (progn
+        (fira-code-mode--enable)
+        (setq company-frontends '(company-posframe-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)))
+    (progn
+      (fira-code-mode--disable)
+      (setq company-frontends '(company-preview-frontend company-echo-metadata-frontend)))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
