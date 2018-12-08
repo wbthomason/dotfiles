@@ -1248,6 +1248,7 @@
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 ;; Misc behavior settings
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/bash"))
 (setq
  tramp-default-method "ssh"
  vc-follow-symlinks t
