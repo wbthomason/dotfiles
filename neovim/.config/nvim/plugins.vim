@@ -42,6 +42,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'chaoren/vim-wordmotion'
 Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-unimpaired'
 
 " Tmux and vim split navigation
 Plug 'christoomey/vim-tmux-navigator'
