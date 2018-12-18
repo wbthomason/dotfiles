@@ -763,7 +763,7 @@
 (use-package ein
   :ensure t
   :init (setq ein:use-auto-complete-superpack t)
-  :commands (ein:notebooklist-open))
+  :commands (ein:notebooklist-login))
 
 (use-package py-isort
   :ensure t
