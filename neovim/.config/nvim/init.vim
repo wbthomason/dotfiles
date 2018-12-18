@@ -502,8 +502,8 @@ end
 
 " NCM2
 let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
-let g:ncm2#complete_delay = 300
-" let g:ncm2#popup_delay = 100
+let g:ncm2#complete_delay = 500
+let g:ncm2#popup_delay = 100
 let g:ncm2#popup_limit = 10
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
