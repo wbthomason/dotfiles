@@ -29,11 +29,8 @@ Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 Plug 'mhinz/vim-startify'
 
 " Status line
-" Plug 'bling/vim-bufferline'
-if !exists('g:gui_oni')
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'vim-airline/vim-airline'
-end
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
 
 " System utilities
 Plug 'tpope/vim-eunuch'
@@ -42,7 +39,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'chaoren/vim-wordmotion'
 Plug 'tpope/vim-repeat'
 Plug 'justinmk/vim-sneak'
-Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-unimpaired'
 
 " Tmux and vim split navigation
 Plug 'christoomey/vim-tmux-navigator'
@@ -67,10 +64,6 @@ Plug 'rstacruz/vim-closer' " - Causes problems with ncm2-ultisnips default CR bi
 
 Plug 'tpope/vim-endwise' " - Causes problems with ncm2-ultisnips default CR binding
 
-" Searching
-Plug 'haya14busa/incsearch.vim'
-Plug 'markonm/traces.vim'
-
 " Yank highlighting
 Plug 'machakann/vim-highlightedyank'
 
@@ -79,37 +72,25 @@ Plug 'junegunn/vim-easy-align'
 Plug 'sbdchd/neoformat', {'on': 'Neoformat'}
 
 " Text objects
-" Plug 'kana/vim-textobj-user'
-" Plug 'blackheaven/vim-textobj-function'
-" Plug 'landock/vim-expand-region'
 Plug 'wellle/targets.vim'
-" Plug 'tommcdo/vim-exchange'
-
-" Block manipulation
-" Plug 'machakann/vim-swap'
-" Plug 'zirrostig/vim-schlepp'
 
 " Tags
-Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarToggle']}
 Plug 'ludovicchabant/vim-gutentags'
 
 " FZF
-" Plug 'junegunn/fzf'
-" Plug 'junegunn/fzf.vim' 
-" Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
-" Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
-Plug 'Shougo/neoyank.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim' 
+Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
+Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
 
 " Denite
-Plug 'nixprime/cpsm', {'do': 'env PY3=ON ./install.sh'}
 Plug 'raghur/fruzzy', {'do': { -> fruzzy#install() }}
 Plug 'Shougo/denite.nvim'
-Plug 'dunstontc/projectile.nvim'
 Plug 'Shougo/neomru.vim'
 
 " Writing
-Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
-Plug 'junegunn/limelight.vim', {'on': 'Limelight!!'}
+" Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
+" Plug 'junegunn/limelight.vim', {'on': 'Limelight!!'}
 
 " Special symbols
 Plug 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
@@ -120,7 +101,7 @@ Plug 'tpope/vim-obsession', {'on': 'Prosession'}
 Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 
 " REPL
-Plug 'hkupty/iron.nvim'
+Plug 'Vigemus/iron.nvim'
 
 " Jupyter
 " Plug 'vyzyv/vimpyter'
@@ -202,8 +183,8 @@ Plug 'itchyny/calendar.vim', {'for': 'org'}
 Plug 'jceb/vim-orgmode'
 
 " Haskell
-Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
-Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+" Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
+" Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 
 " Rust
 Plug 'ncm2/ncm2-racer'
@@ -233,8 +214,8 @@ Plug 'tweekmonster/startuptime.vim'
 
 " Color scheme
 Plug 'wbthomason/vim-nazgul'
-Plug 'AlessandroYorba/Sierra'
-Plug 'lifepillar/vim-solarized8'
+" Plug 'AlessandroYorba/Sierra'
+" Plug 'lifepillar/vim-solarized8'
 
 Plug 'wbthomason/capture.vim'
 
