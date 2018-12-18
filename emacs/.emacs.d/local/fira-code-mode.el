@@ -5,14 +5,17 @@
      (lambda (s)
        (setq idx (1+ idx))
        (let* ((code (+ #Xe100 idx))
-          (width (string-width s))
-          (prefix ())
-          (suffix '(?\s (Br . Br)))
-          (n 1))
-     (while (< n width)
-       (setq prefix (append prefix '(?\s (Br . Bl))))
-       (setq n (1+ n)))
-     (cons s (append prefix suffix (list (decode-char 'ucs code))))))
+              (width (string-width s))
+              (prefix ())
+              (suffix '(?\s (Br . Br)))
+              (n 1))
+         (while (< n width)
+           (setq prefix (append prefix '(?\s (Br . Bl))))
+           (setq n (1+ n)))
+         ;; This is a really bad, dumb hack. I should figure out a better way to skip this ligature
+         ;; without putting off the indexing for the rest.
+         (unless (or (string= s "[]") (string= s "x"))
+           (cons s (append prefix suffix (list (decode-char 'ucs code)))))))
      list)))
 
 (defconst fira-code-mode--ligatures

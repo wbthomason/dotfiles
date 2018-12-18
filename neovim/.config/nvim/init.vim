@@ -44,6 +44,7 @@ let g:polyglot_disabled = ['latex', 'tex', 'markdown', 'pandoc']
 
 " Vimagit
 let g:magit_default_fold_level = 0
+let g:magit_default_show_all_files = 0
 
 " Haskell
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -342,7 +343,8 @@ set background=dark
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
 let g:sierra_Sunset = 1
-colorscheme sierra
+" colorscheme sierra
+colorscheme nazgul
 hi! link extTodo Todo
 
 " set background=light
@@ -501,8 +503,8 @@ end
 
 " NCM2
 let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
-let g:ncm2#complete_delay = 300
-" let g:ncm2#popup_delay = 100
+let g:ncm2#complete_delay = 500
+let g:ncm2#popup_delay = 100
 let g:ncm2#popup_limit = 10
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
