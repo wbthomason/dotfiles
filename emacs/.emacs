@@ -82,7 +82,7 @@
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
         enable-recursive-minibuffers t
-        ivy-re-builders-alist '((t . ivy--regex-fuzzy))
+        ;; ivy-re-builders-alist '((t . ivy--regex-fuzzy))
         ;; ivy-initial-inputs-alist nil
         ivy-display-style 'fancy
         ivy-height 200
@@ -1405,8 +1405,8 @@
   "op" #'org-projectile-project-todo-completing-read
   "on" #'deft)
 
-(define-key evil-normal-state-map [tab] #'ivy-switch-buffer)
-(define-key evil-insert-state-map [C-tab] #'company-complete)
+(define-key evil-normal-state-map (kbd "TAB") #'ivy-switch-buffer)
+(define-key evil-insert-state-map (kbd "C-TAB") #'company-complete)
 (add-hook 'server-done-hook 'kill-buffer)
 
 ;; Useful functions
@@ -1419,7 +1419,7 @@
         (setq company-frontends '(company-posframe-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)))
     (progn
       (fira-code-mode--disable)
-      (setq company-frontends '(company-preview-frontend company-echo-metadata-frontend)))))
+      (setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend company-preview-frontend company-echo-metadata-frontend)))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
