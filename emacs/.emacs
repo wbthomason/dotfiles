@@ -1428,8 +1428,6 @@
  ;; If there is more than one, they won't work right.
  '(LaTeX-item-indent 0)
  '(TeX-newline-function (quote newline-and-indent))
- '(ansi-term-color-vector
-   [unspecified "#282828" "#bc5353" "#7f9f7f" "#fddf8d" "#005fa7" "#dc8cc3" "#8cd0d3" nil] t)
  '(async-bytecomp-allowed-packages (quote (all)))
  '(company-reftex-citations-regexp
    "\\\\\\(?:foot\\|auto\\|smart\\|text\\)?cite\\(?:t\\)?[^[{]*\\(?:\\[[^]]*\\]\\)*{\\(?:[^},]*,\\)*\\([^},]*\\)")
@@ -1470,7 +1468,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#282828" :foreground "#b6b6b6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "CTDB" :family "Fira Code Retina"))))
  '(evil-goggles-change-face ((t (:inherit diff-refine-removed))))
  '(evil-goggles-delete-face ((t (:inherit diff-refine-removed))))
  '(evil-goggles-paste-face ((t (:inherit diff-refine-added))))
