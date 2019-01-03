@@ -1168,10 +1168,11 @@
 ;; Modeline
 (use-package doom-modeline
   :ensure t
-  :defer t
   :hook (after-init . doom-modeline-init)
   :config (setq doom-modeline-height 15
-                doom-modeline-enable-word-count t))
+                doom-modeline-enable-word-count t
+                doom-modeline-icon t
+                doom-modeline-major-mode-icon t))
 
 ;;; Font
 ;;; Fira code
@@ -1482,6 +1483,7 @@
  '(font-latex-math-face ((t (:foreground "burlywood"))))
  '(font-latex-sectioning-5-face ((t (:inherit bold :weight bold))))
  '(font-latex-sedate-face ((t (:foreground "LightGray"))))
+ '(italic ((t (:slant italic))))
  '(ivy-confirm-face ((t (:inherit minibuffer-prompt :foreground "lemon chiffon"))))
  '(ivy-current-match ((t (:background "dim gray" :foreground "white smoke"))))
  '(lsp-face-highlight-read ((t (:background "#bc5353" :foreground "#efefef"))))
