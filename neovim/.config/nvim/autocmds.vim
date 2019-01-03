@@ -2,7 +2,7 @@
 
 augroup syntax_aucmds
   au!
-  au Syntax * syn match extTodo "\<\(NOTE\|HACK\|BAD\|TODO\):\?" containedin=.*Comment.*
+  au Syntax * syn match extTodo "\<\(NOTE\|HACK\|BAD\|TODO\):\?" containedin=.*Comment.* | hi! link extTodo Todo
 augroup END
 
 augroup main_aucommands

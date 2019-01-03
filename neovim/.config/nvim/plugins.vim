@@ -216,6 +216,9 @@ Plug 'tweekmonster/startuptime.vim'
 Plug 'wbthomason/vim-nazgul'
 " Plug 'AlessandroYorba/Sierra'
 " Plug 'lifepillar/vim-solarized8'
+Plug 'treycucco/vim-monotonic'
+Plug 'andreypopp/vim-colors-plain'
+Plug 'dim13/gocode.vim'
 
 Plug 'wbthomason/capture.vim'
 
