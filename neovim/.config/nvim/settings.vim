@@ -43,8 +43,7 @@ set ttyfast
 set shortmess+=c
 set nojoinspaces
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-set completeopt-=preview
-set completeopt+=noinsert,menuone,noselect
+set completeopt=noinsert,menuone,noselect
 set updatetime=2000
 filetype plugin indent on
 syntax enable
