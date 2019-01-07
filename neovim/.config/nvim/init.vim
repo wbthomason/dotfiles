@@ -258,7 +258,6 @@ let g:lightline.active = {
       \ 'left': [ [ 'mode', 'paste' ],
       \           [ 'vcstatus', 'filename', 'modified', 'readonly' ] ],
       \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-      \            [ 'lineinfo' ],
       \            [ 'percent' ],
       \            [ 'filetype' ] ]}
 
