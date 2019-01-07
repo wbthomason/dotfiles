@@ -313,7 +313,8 @@ let g:sierra_Sunset = 1
 " colorscheme monotonic-light
 
 set background=light
-colorscheme solarized8_flat
+" let ayucolor = "light"
+colorscheme base16-grayscale-light
 
 " ALE
 let g:ale_sign_error = '🗙'
