@@ -486,6 +486,13 @@
 
 
 
+;; Gitignore
+(use-package gitignore-mode :ensure t)
+(use-package gitignore-templates :ensure t)
+
+;; Git config
+(use-package gitconfig-mode :ensure t)
+
 ;;; Magit
 (use-package magit
   :ensure t
@@ -795,9 +802,9 @@
   (LaTeX-mode . (lambda ()
                   (prettify-symbols-mode)
                   (LaTeX-math-mode)
-                  (auto-fill-mode -1)
+                  ;; (auto-fill-mode -1)
                   ;; (variable-pitch-mode)
-                  (visual-line-mode)
+                  ;; (visual-line-mode)
                   (setq TeX-command-default "LatexMk")))
 
   :config
@@ -869,6 +876,7 @@
   (set (make-local-variable 'company-backends)
        (append '(company-reftex-labels
                  company-reftex-citations
+                 company-files
                  (company-auctex
                   company-math-symbols-latex
                   company-latex-commands))
@@ -1457,7 +1465,7 @@
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (white-theme eziam-theme eink-theme twilight-bright-theme flx fira-code-mode prescient lsp-ui kaolin-themes kaolin-theme paradox yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
+    (gitconfig-mode gitignore-templates gitignore-mode white-theme eziam-theme eink-theme twilight-bright-theme flx fira-code-mode prescient lsp-ui kaolin-themes kaolin-theme paradox yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(projectile-completion-system (quote ivy)))
@@ -1486,6 +1494,8 @@
  '(italic ((t (:slant italic))))
  '(ivy-confirm-face ((t (:inherit minibuffer-prompt :foreground "lemon chiffon"))))
  '(ivy-current-match ((t (:background "dim gray" :foreground "white smoke"))))
+ '(line-number ((t (:inherit (shadow default) :family "Fira Code"))))
+ '(linum ((t (:foreground "#d9d9d9" :background "#f7f7f7"))))
  '(lsp-face-highlight-read ((t (:background "#bc5353" :foreground "#efefef"))))
  '(lsp-face-highlight-textual ((t (:background "#bbbb8d" :foreground "black"))))
  '(lsp-face-highlight-write ((t (:background "#8fb28f" :foreground "#efefef"))))
