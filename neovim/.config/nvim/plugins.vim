@@ -29,8 +29,8 @@ Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 Plug 'mhinz/vim-startify'
 
 " Status line
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 
 " System utilities
 Plug 'tpope/vim-eunuch'
@@ -59,9 +59,7 @@ Plug 'luochen1990/rainbow'
 " Plug 'itchyny/vim-parenmatch'
 Plug 'djdt/vim-matchparenalways'
 Plug 'andymass/vim-matchup'
-
 Plug 'rstacruz/vim-closer' " - Causes problems with ncm2-ultisnips default CR binding
-
 Plug 'tpope/vim-endwise' " - Causes problems with ncm2-ultisnips default CR binding
 
 " Yank highlighting
@@ -82,11 +80,6 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim' 
 Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
 Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
-
-" Denite
-Plug 'raghur/fruzzy', {'do': { -> fruzzy#install() }}
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/neomru.vim'
 
 " Writing
 " Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
@@ -179,12 +172,11 @@ Plug 'vim-pandoc/vim-pandoc-after'
 " Org-mode
 Plug 'vim-scripts/utl.vim', {'for': 'org'}
 Plug 'itchyny/calendar.vim', {'for': 'org'}
-" Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
+Plug 'tpope/vim-speeddating', {'for': 'org'}
+Plug 'chrisbra/NrrwRgn', {'for': 'org'}
+Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
 Plug 'jceb/vim-orgmode'
-
-" Haskell
-" Plug 'parsonsmatt/intero-neovim', {'for': 'haskell'}
-" Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+Plug 'wbthomason/capture.vim'
 
 " Rust
 Plug 'ncm2/ncm2-racer'
@@ -206,20 +198,17 @@ Plug 'PontusPersson/pddl.vim'
 Plug 'jvoorhis/coq.vim'
 
 " Pretty pretty symbols
-Plug 'ryanoasis/vim-devicons'
 Plug 'calebsmith/vim-lambdify'
 
 " Profiling
 Plug 'tweekmonster/startuptime.vim'
 
 " Color scheme
-Plug 'wbthomason/vim-nazgul'
+" Plug 'wbthomason/vim-nazgul'
 " Plug 'AlessandroYorba/Sierra'
-" Plug 'lifepillar/vim-solarized8'
-Plug 'treycucco/vim-monotonic'
-Plug 'andreypopp/vim-colors-plain'
-Plug 'dim13/gocode.vim'
-
-Plug 'wbthomason/capture.vim'
+Plug 'lifepillar/vim-solarized8'
+" Plug 'treycucco/vim-monotonic'
+" Plug 'andreypopp/vim-colors-plain'
+" Plug 'dim13/gocode.vim'
 
 call plug#end()

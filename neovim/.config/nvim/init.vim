@@ -46,30 +46,10 @@ let g:polyglot_disabled = ['latex', 'tex', 'markdown', 'pandoc']
 let g:magit_default_fold_level = 0
 let g:magit_default_show_all_files = 0
 
-" Haskell
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-let g:haskellmode_completion_ghc = 0
-" let g:necoghc_enable_detailed_browse = 1
-" let g:necoghc_use_stack = 1
-
 " Intero
 let g:intero_type_on_hover = 1
 
-" Bufferline
-" let g:bufferline_echo = 0
-" let g:bufferline_show_bufnr = 0
-" let g:bufferline_rotate = 2
-" let g:bufferline_pathshorten = 1
-
 " IndentLine
-" let g:indentLine_color_term = 239
-" let g:indentLine_color_gui = '#09AA08'
 let g:indentLine_char = '│'
 let g:indentLine_faster = 1
 
@@ -98,75 +78,69 @@ let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_quickfix_mode = 0
 let g:matchup_override_vimtex = 1
 
-" Undotree
-" if has('persistent_undo')
-"   set undodir=~/.undodir/
-"   set undofile
-" endif
-
 " Tagbar
-let g:tagbar_type_haskell = {
-      \ 'ctagsbin'  : 'hasktags',
-      \ 'ctagsargs' : '-x -c -o-',
-      \ 'kinds'     : [
-      \  'm:modules:0:1',
-      \  'd:data: 0:1',
-      \  'd_gadt: data gadt:0:1',
-      \  't:type names:0:1',
-      \  'nt:new types:0:1',
-      \  'c:classes:0:1',
-      \  'cons:constructors:1:1',
-      \  'c_gadt:constructor gadt:1:1',
-      \  'c_a:constructor accessors:1:1',
-      \  'ft:function types:1:1',
-      \  'fi:function implementations:0:1',
-      \  'o:others:0:1'
-      \ ],
-      \ 'sro'        : '.',
-      \ 'kind2scope' : {
-      \ 'm' : 'module',
-      \ 'c' : 'class',
-      \ 'd' : 'data',
-      \ 't' : 'type'
-      \ },
-      \ 'scope2kind' : {
-      \ 'module' : 'm',
-      \ 'class'  : 'c',
-      \ 'data'   : 'd',
-      \ 'type'   : 't'
-      \ }
-      \ }
-
-let g:tagbar_type_rust = {
-      \ 'ctagstype' : 'rust',
-      \ 'kinds' : [
-      \'T:types,type definitions',
-      \'f:functions,function definitions',
-      \'g:enum,enumeration names',
-      \'s:structure names',
-      \'m:modules,module names',
-      \'c:consts,static constants',
-      \'t:traits,traits',
-      \'i:impls,trait implementations',
-      \]
-      \}
-
-let g:tagbar_type_elixir = {
-      \ 'ctagstype' : 'elixir',
-      \ 'kinds' : [
-      \ 'f:functions',
-      \ 'functions:functions',
-      \ 'c:callbacks',
-      \ 'd:delegates',
-      \ 'e:exceptions',
-      \ 'i:implementations',
-      \ 'a:macros',
-      \ 'o:operators',
-      \ 'm:modules',
-      \ 'p:protocols',
-      \ 'r:records'
-      \ ]
-      \ }
+" let g:tagbar_type_haskell = {
+"       \ 'ctagsbin'  : 'hasktags',
+"       \ 'ctagsargs' : '-x -c -o-',
+"       \ 'kinds'     : [
+"       \  'm:modules:0:1',
+"       \  'd:data: 0:1',
+"       \  'd_gadt: data gadt:0:1',
+"       \  't:type names:0:1',
+"       \  'nt:new types:0:1',
+"       \  'c:classes:0:1',
+"       \  'cons:constructors:1:1',
+"       \  'c_gadt:constructor gadt:1:1',
+"       \  'c_a:constructor accessors:1:1',
+"       \  'ft:function types:1:1',
+"       \  'fi:function implementations:0:1',
+"       \  'o:others:0:1'
+"       \ ],
+"       \ 'sro'        : '.',
+"       \ 'kind2scope' : {
+"       \ 'm' : 'module',
+"       \ 'c' : 'class',
+"       \ 'd' : 'data',
+"       \ 't' : 'type'
+"       \ },
+"       \ 'scope2kind' : {
+"       \ 'module' : 'm',
+"       \ 'class'  : 'c',
+"       \ 'data'   : 'd',
+"       \ 'type'   : 't'
+"       \ }
+"       \ }
+"
+" let g:tagbar_type_rust = {
+"       \ 'ctagstype' : 'rust',
+"       \ 'kinds' : [
+"       \'T:types,type definitions',
+"       \'f:functions,function definitions',
+"       \'g:enum,enumeration names',
+"       \'s:structure names',
+"       \'m:modules,module names',
+"       \'c:consts,static constants',
+"       \'t:traits,traits',
+"       \'i:impls,trait implementations',
+"       \]
+"       \}
+"
+" let g:tagbar_type_elixir = {
+"       \ 'ctagstype' : 'elixir',
+"       \ 'kinds' : [
+"       \ 'f:functions',
+"       \ 'functions:functions',
+"       \ 'c:callbacks',
+"       \ 'd:delegates',
+"       \ 'e:exceptions',
+"       \ 'i:implementations',
+"       \ 'a:macros',
+"       \ 'o:operators',
+"       \ 'm:modules',
+"       \ 'p:protocols',
+"       \ 'r:records'
+"       \ ]
+"       \ }
 
 " Signify
 let g:signify_vcs_list = ['git']
@@ -177,7 +151,7 @@ let g:signify_sign_delete_first_line = g:signify_sign_delete
 let g:signify_sign_show_count = 0
 
 " Goyo
-let g:goyo_width = 110
+" let g:goyo_width = 110
 
 " Startify
 let g:startify_list_order = [
@@ -259,42 +233,6 @@ let g:fzf_colors =
       \ 'spinner': ['fg', 'Label'],
       \ 'header':  ['fg', 'Comment'] }
 
-" function! Fzf_dev()
-"   let l:fzf_files_options = '--preview "rougify {2..-1} | head -'.&lines.'"'
-"
-"   function! s:files()
-"     let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-"     return s:prepend_icon(l:files)
-"   endfunction
-"
-"   function! s:prepend_icon(candidates)
-"     let l:result = []
-"     for l:candidate in a:candidates
-"       let l:filename = fnamemodify(l:candidate, ':p:t')
-"       let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
-"       call add(l:result, printf('%s %s', l:icon, l:candidate))
-"     endfor
-"
-"     return l:result
-"   endfunction
-"
-"   function! s:edit_file(item)
-"     let l:pos = stridx(a:item, ' ')
-"     let l:file_path = a:item[pos+1:-1]
-"     execute 'silent e' l:file_path
-"   endfunction
-"
-"   call fzf#run({
-"         \ 'source': <sid>files(),
-"         \ 'sink':   function('s:edit_file'),
-"         \ 'options': '-m ' . l:fzf_files_options,
-"         \ 'down':    '40%' })
-" endfunction
-
-" Projectile
-" let g:projectile#enable_devicons = 1
-" let g:projectile#search_prog = 'rg'
-
 " Snippets
 let g:UltiSnipsExpandTrigger       = '<Plug>(ultisnips_expand)'
 let g:UltiSnipsJumpForwardTrigger  = '<tab>'
@@ -303,7 +241,7 @@ let g:UltiSnipsRemoveSelectModeMappings = 0
 
 " Vim-pad
 let g:pad#dir = '~/wiki/notes'
-let g:pad#default_format = 'pandoc'
+let g:pad#default_format = 'org'
 let g:pad#open_in_split = 0
 let g:pad#search_backend = 'rg'
 let g:pad#set_mappings = 0
@@ -312,17 +250,44 @@ let g:pad#set_mappings = 0
 let g:vlime_cl_use_terminal = v:true
 let g:vlime_force_default_keys = v:true
 
-" Airline
-let g:airline_theme = 'minimalist'
-let g:airline_powerline_fonts = 1
-let g:airline_highlighting_cache = 1
-let g:airline#extensions#hunks#non_zero_only = 1
-" let g:airline#extensions#bufferline#overwrite_variables = 1
-let g:airline_extensions = ['vimagit', 'vimtex', 'hunks', 'branch']
-let g:airline#extensions#default#layout = [
-    \ [ 'a', 'b', 'c' ],
-    \ [ 'x', 'z', 'error', 'warning' ]
-    \ ]
+" Lightline
+let g:lightline = {}
+let g:lightline.colorscheme = 'OldHope'
+let g:lightline.enable = {'tabline': 0}
+let g:lightline.active = {
+      \ 'left': [ [ 'mode', 'paste' ],
+      \           [ 'vcstatus', 'filename', 'modified', 'readonly' ] ],
+      \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \            [ 'lineinfo' ],
+      \            [ 'percent' ],
+      \            [ 'filetype' ] ]}
+
+let g:lightline.component_function = {
+      \ 'vcstatus': 'VCStatus',
+      \ 'filetype': 'IconFileType'}
+
+let g:lightline.component = {
+      \ 'lineinfo': ' %3l:%-2v',
+      \ 'readonly': "%{&readonly ? '' : ''}"}
+
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+
+let g:lightline#ale#indicator_checking = "\uf110"
+let g:lightline#ale#indicator_warnings = "\uf071"
+let g:lightline#ale#indicator_errors = "\uf05e"
+let g:lightline#ale#indicator_ok = "\uf00c"
 
 " Sneak
 let g:sneak#s_next = 1
@@ -338,18 +303,18 @@ call ConfigInc('keybindings.vim')
 call ConfigInc('plugins.vim')
 
 " Colorscheme
-" set termguicolors
+set termguicolors
 " set background=dark
 let &t_Cs = "\e[4:3m"
 let &t_Ce = "\e[4:0m"
 let g:sierra_Sunset = 1
 " colorscheme sierra
 " colorscheme nazgul
-set notermguicolors
-colorscheme monotonic-light
+" set notermguicolors
+" colorscheme monotonic-light
 
-" set background=light
-" colorscheme solarized8_flat
+set background=light
+colorscheme solarized8_flat
 
 " ALE
 let g:ale_sign_error = '🗙'
@@ -390,7 +355,6 @@ let g:LanguageClient_serverCommands = {
       \ 'lua': ['lua-lsp'],
       \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
       \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
-      \ 'lisp': ['cl-lsp']
       \ }
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loadSettings = 1
@@ -443,70 +407,16 @@ let g:LanguageClient_diagnosticsList = 'Location'
 let g:LanguageClient_hoverPreview = 'Never'
 let g:LanguageClient_completionPreferTextEdit = 1
 
-" Devicons
-let g:webdevicons_enable_denite = 1
-let g:webdevicons_enable_airline_statusline = 1
-let g:webdevicons_enable_airline_statusline_fileformat_symbols = 1
-
-" Denite
-let g:fruzzy#usenative = 1
-call denite#custom#option('_', {
-      \ 'prompt': '❯',
-      \ 'updatetime': 1,
-      \ 'reversed': 1,
-      \ })
-
-call denite#custom#source('_', 'sorters', ['sorter/sublime'])
-call denite#custom#source('_', 'matchers', ['devicons_denite_converter', 'matcher/fruzzy'])
-
-call denite#custom#var('file/rec', 'command',
-      \ ['rg', '--files', '--glob', '!.git'])
-" call denite#custom#var('file/rec', 'command',
-" 	\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-
-" call denite#custom#source('file/old', 'matchers', ['matcher/hide_hidden_files', 'matcher/cpsm'])
-call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default/opts', ['--vimgrep', '--no-heading'])
-call denite#custom#var('grep', 'recursive/opts', [])
-call denite#custom#var('grep', 'pattern/opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final/opts', [])
-
-call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-
-call denite#custom#map(
-      \ 'insert',
-      \ '<Down>',
-      \ '<denite:move_to_next_line>',
-      \ 'noremap'
-      \)
-
-call denite#custom#map(
-      \ 'insert',
-      \ '<Up>',
-      \ '<denite:move_to_previous_line>',
-      \ 'noremap'
-      \)
-
-" Leader guide
+" Which-key
 
 call which_key#register('<Space>', 'g:lmaps')
 call which_key#register(',', 'g:llmaps')
-" call leaderGuide#register_prefix_descriptions('', 'g:allmaps')
-" call leaderGuide#register_prefix_descriptions(',', 'g:llmaps')
-
-" ALE integration config
-if !exists('g:gui_oni')
-  call airline#parts#define_function('ALE', 'LinterStatus')
-  let g:airline_section_error = airline#section#create_right(['ALE'])
-end
 
 " NCM2
 let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
 " let g:ncm2#complete_delay = 500
-let g:ncm2#popup_delay = 100
-let g:ncm2#popup_limit = 10
+" let g:ncm2#popup_delay = 100
+" let g:ncm2#popup_limit = 10
 inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <c-u> <Plug>(ultisnips_expand)
@@ -558,8 +468,8 @@ let g:capture_templates = {
       \             'new_snip': '# `!v strftime("%A, %F")`${0:meeting_notes}'},
       \}
 
-hi RedSign guifg=#cc241d ctermfg=124 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
-hi YellowSign guifg=#fabd2f ctermfg=214 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
-hi GreenSign guifg=#b8bb26 ctermfg=142 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
-hi BlueSign guifg=#83a598 ctermfg=109 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
-hi AquaSign guifg=#8ec07c ctermfg=108 guibg=#333333 ctermbg=235 gui=NONE cterm=NONE
+hi RedSign guifg=#cc241d ctermfg=124 gui=NONE cterm=NONE
+hi YellowSign guifg=#fabd2f ctermfg=214 gui=NONE cterm=NONE
+hi GreenSign guifg=#b8bb26 ctermfg=142 gui=NONE cterm=NONE
+hi BlueSign guifg=#83a598 ctermfg=109 gui=NONE cterm=NONE
+hi AquaSign guifg=#8ec07c ctermfg=108 gui=NONE cterm=NONE
