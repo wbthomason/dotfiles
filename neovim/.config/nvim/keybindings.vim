@@ -109,8 +109,8 @@ nnoremap <silent> <leader>gp :Gpush<CR>
 let g:lmaps.g.p = ['Gpush', 'Run git push']
 nnoremap <silent> <leader>gd :Gdiff<CR>
 let g:lmaps.g.d = ['Gdiff', 'Display git diff']
-nnoremap <silent> <leader>gs :Magit<CR>
-let g:lmaps.g.s = ['Magit', 'Display git status']
+nnoremap <silent> <leader>gs :MagitOnly<CR>
+let g:lmaps.g.s = ['MagitOnly', 'Display git status']
 nnoremap <silent> <leader>gw :Gwrite<CR>
 let g:lmaps.g.w = ['Gwrite', 'Write and stage the file']
 nnoremap <silent> <leader>gi :FzfGitignore<cr>
@@ -218,16 +218,16 @@ nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
 
 " 2-character Sneak (default)
-nmap z <Plug>Sneak_s
-nmap Z <Plug>Sneak_S
+nmap x <Plug>Sneak_s
+nmap X <Plug>Sneak_S
 
 " visual-mode
-xmap z <Plug>Sneak_s
-xmap Z <Plug>Sneak_S
+xmap x <Plug>Sneak_s
+xmap X <Plug>Sneak_S
 
 " operator-pending-mode
-omap z <Plug>Sneak_s
-omap Z <Plug>Sneak_S
+omap x <Plug>Sneak_s
+omap X <Plug>Sneak_S
 
 " repeat motion
 map ; <Plug>Sneak_;

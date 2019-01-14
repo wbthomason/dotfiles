@@ -122,7 +122,7 @@ function! OmniFilter()
 
       call extend(extend(s:file_list, s:gfiles), s:files)
       let s:file_list = luaeval("require('utils').filter_and_iconify(_A)", s:file_list)
-      let l:opts = fzf#wrap({'options': ['-m', '--tiebreak=index']})
+      let l:opts = fzf#wrap({'options': ['-m', '--tiebreak=begin,length,index']})
       let l:opts.source = s:file_list
       let s:Sink = l:opts['sink*']
       let l:opts['sink*'] = function('s:edit_file')

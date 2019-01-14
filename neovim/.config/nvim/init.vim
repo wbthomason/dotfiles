@@ -45,6 +45,7 @@ let g:polyglot_disabled = ['latex', 'tex', 'markdown', 'pandoc']
 " Vimagit
 let g:magit_default_fold_level = 0
 let g:magit_default_show_all_files = 0
+let g:magit_auto_foldopen = 0
 
 " Intero
 let g:intero_type_on_hover = 1
@@ -252,7 +253,7 @@ let g:vlime_force_default_keys = v:true
 
 " Lightline
 let g:lightline = {}
-let g:lightline.colorscheme = 'OldHope'
+let g:lightline.colorscheme = 'Tomorrow_Night_Eighties'
 let g:lightline.enable = {'tabline': 0}
 let g:lightline.active = {
       \ 'left': [ [ 'mode', 'paste' ],
@@ -313,8 +314,7 @@ let g:sierra_Sunset = 1
 " colorscheme monotonic-light
 
 set background=light
-" let ayucolor = "light"
-colorscheme base16-grayscale-light
+colorscheme base16-gruvbox-dark-soft
 
 " ALE
 let g:ale_sign_error = '🗙'

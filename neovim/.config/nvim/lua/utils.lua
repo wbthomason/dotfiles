@@ -50,6 +50,7 @@ utils.icons.map = {
   gif      = '',
   go       = '',
   h        = '',
+  hh       = '',
   hbs      = '',
   hpp      = '',
   hrl      = '',

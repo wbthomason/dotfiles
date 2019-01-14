@@ -156,6 +156,7 @@ Plug 'ncm2/ncm2-jedi'
 
 " C/C++
 Plug 'ncm2/ncm2-pyclang'
+Plug 'sakhnik/nvim-gdb', {'do': './install.sh'}
 
 " Clojure/Lisps/Scheme
 Plug 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
