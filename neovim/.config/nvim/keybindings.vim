@@ -218,16 +218,16 @@ nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
 
 " 2-character Sneak (default)
-nmap x <Plug>Sneak_s
-nmap X <Plug>Sneak_S
+nmap z <Plug>Sneak_s
+nmap Z <Plug>Sneak_S
 
 " visual-mode
-xmap x <Plug>Sneak_s
-xmap X <Plug>Sneak_S
+xmap z <Plug>Sneak_s
+xmap Z <Plug>Sneak_S
 
 " operator-pending-mode
-omap x <Plug>Sneak_s
-omap X <Plug>Sneak_S
+omap z <Plug>Sneak_s
+omap Z <Plug>Sneak_S
 
 " repeat motion
 map ; <Plug>Sneak_;
