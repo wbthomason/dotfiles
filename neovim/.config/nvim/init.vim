@@ -470,6 +470,6 @@ let g:capture_templates = {
 
 hi RedSign guifg=#cc241d ctermfg=124 gui=NONE cterm=NONE
 hi YellowSign guifg=#fabd2f ctermfg=214 gui=NONE cterm=NONE
-hi GreenSign guifg=#b8bb26 ctermfg=142 gui=NONE cterm=NONE
-hi BlueSign guifg=#83a598 ctermfg=109 gui=NONE cterm=NONE
+hi GreenSign guifg=#b8cc26 ctermfg=142 gui=NONE cterm=NONE
+hi BlueSign guifg=#83a5cb ctermfg=109 gui=NONE cterm=NONE
 hi AquaSign guifg=#8ec07c ctermfg=108 gui=NONE cterm=NONE
