@@ -42,6 +42,9 @@ call ConfigInc('autocmds.vim')
 " Polyglot
 let g:polyglot_disabled = ['latex', 'tex', 'markdown', 'pandoc']
 
+" Golden Ratio
+" let g:golden_ratio_exclude_nonmodifiable = 1
+
 " Vimagit
 let g:magit_default_fold_level = 0
 let g:magit_default_show_all_files = 0
@@ -305,8 +308,8 @@ call ConfigInc('plugins.vim')
 " Colorscheme
 set termguicolors
 " set background=dark
-let &t_Cs = "\e[4:3m"
-let &t_Ce = "\e[4:0m"
+" let &t_Cs = "\e[4:3m"
+" let &t_Ce = "\e[4:0m"
 let g:sierra_Sunset = 1
 " colorscheme sierra
 " colorscheme nazgul
@@ -389,15 +392,15 @@ let g:LanguageClient_diagnosticsDisplay = {
 let g:LanguageClient_documentHighlightDisplay = {
       \  1: {
       \      'name': 'Text',
-      \      'texthl': 'BlueSign',
+      \      'texthl': 'BlueHover',
       \  },
       \  2: {
       \      'name': 'Read',
-      \      'texthl': 'AquaSign',
+      \      'texthl': 'AquaHover',
       \  },
       \  3: {
       \      'name': 'Write',
-      \      'texthl': 'GreenSign',
+      \      'texthl': 'GreenHover',
       \  },
       \ }
 
@@ -468,8 +471,26 @@ let g:capture_templates = {
       \             'new_snip': '# `!v strftime("%A, %F")`${0:meeting_notes}'},
       \}
 
-hi RedSign guifg=#cc241d ctermfg=124 gui=NONE cterm=NONE
-hi YellowSign guifg=#fabd2f ctermfg=214 gui=NONE cterm=NONE
-hi GreenSign guifg=#b8cc26 ctermfg=142 gui=NONE cterm=NONE
-hi BlueSign guifg=#83a5cb ctermfg=109 gui=NONE cterm=NONE
-hi AquaSign guifg=#8ec07c ctermfg=108 gui=NONE cterm=NONE
+hi RedHover guifg=#cc241d ctermfg=124 gui=NONE cterm=NONE
+hi YellowHover guifg=#fabd2f ctermfg=214 gui=NONE cterm=NONE
+hi OrangeHover guifg=#fd7d2f ctermfg=214 gui=NONE cterm=NONE
+hi GreenHover guifg=#b8cc26 ctermfg=142 gui=NONE cterm=NONE
+hi BlueHover guifg=#83a5cb ctermfg=109 gui=NONE cterm=NONE
+hi AquaHover guifg=#8ec07c ctermfg=108 gui=NONE cterm=NONE
+hi WhiteHover guifg=#ffffff ctermfg=108 gui=NONE cterm=NONE
+
+hi RedSign guifg=#cc241d guibg=#3c3836 ctermfg=124 gui=NONE cterm=NONE
+hi YellowSign guifg=#fabd2f guibg=#3c3836 ctermfg=214 gui=NONE cterm=NONE
+hi GreenSign guifg=#b8cc26 guibg=#3c3836 ctermfg=142 gui=NONE cterm=NONE
+hi BlueSign guifg=#83a5cb guibg=#3c3836 ctermfg=109 gui=NONE cterm=NONE
+hi AquaSign guifg=#8ec07c guibg=#3c3836 ctermfg=108 gui=NONE cterm=NONE
+
+hi! link ALEErrorSign RedSign
+hi! link ALEWarningSign YellowSign
+hi! link ALEInfoSign BlueSign
+
+hi! link ALEVirtualTextError RedHover
+hi! link ALEVirtualTextWarning YellowHover
+hi! link ALEVirtualTextInfo WhiteHover
+hi! link ALEVirtualTextStyleError OrangeHover
+hi! link ALEVirtualTextStyleWarning BlueHover

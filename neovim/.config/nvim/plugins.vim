@@ -57,13 +57,16 @@ Plug 'tomtom/tcomment_vim'
 Plug 'machakann/vim-sandwich'
 Plug 'luochen1990/rainbow'
 " Plug 'itchyny/vim-parenmatch'
-Plug 'djdt/vim-matchparenalways'
+" Plug 'djdt/vim-matchparenalways'
 Plug 'andymass/vim-matchup'
 Plug 'rstacruz/vim-closer' " - Causes problems with ncm2-ultisnips default CR binding
 Plug 'tpope/vim-endwise' " - Causes problems with ncm2-ultisnips default CR binding
 
 " Yank highlighting
 Plug 'machakann/vim-highlightedyank'
+
+" Expand region
+Plug 'landock/vim-expand-region'
 
 " Prettification
 Plug 'junegunn/vim-easy-align'
