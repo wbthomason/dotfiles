@@ -1,12 +1,11 @@
 # Load plugins
-export ZSH_PLUGINS=/usr/share/zsh/plugins/
-
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
-source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath=(/usr/local/share/zsh-completions $fpath)
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-source ${ZSH_PLUGINS}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
@@ -25,23 +24,13 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig:/usr/local/lib6
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/lib64
 
 # PATH tweaks
-export PATH=$PATH:/home/wil/.local/bin:/home/wil/.cargo/bin:/home/wil/.luarocks/bin:/home/wil/.roswell/bin
+export PATH=$PATH:/home/wil/.local/bin:/home/wil/.cargo/bin:/home/wil/.luarocks/bin
 
 # Editor setting
 export EDITOR=vim
 
-# Rust
-export RUST_SRC_PATH=/usr/src/rust/src
-
-# ROS
-source /opt/ros/melodic/setup.zsh
-export ROS_HOSTNAME=localhost
-export ROS_MASTER_URI=http://localhost:11311
-
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 
 # Hub
 eval "$(hub alias -s)"
@@ -58,23 +47,13 @@ fi
 # Thefuck
 eval $(thefuck --alias)
 
-# gnome-keyring
-if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start --components=gpg,ssh,secrets)
-    export SSH_AUTH_SOCK
-fi
-
 # Aliases
 alias svn='colorsvn'
 alias eclimd='/usr/lib/eclipse/eclimd -b'
 alias em='emacsclient -nw'
 alias emd='emacs --daemon'
 alias git='hub'
-alias ls='ls --color=auto'
-
-function open() {
-  xdg-open $1 > /dev/null 2>&1 &
-}
+alias ls='ls -G'
 
 # Prompt
 function zle-line-init zle-keymap-select {

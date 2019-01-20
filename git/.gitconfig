@@ -1,11 +1,7 @@
 [user]
   name = Wil Thomason
   email = wil.thomason@gmail.com
-  signingkey = 8BEE5C508226C4516876B93449B3E4A714642E1D
-
-[credential]
-	helper = /usr/lib/git-core/git-credential-libsecret
-
+  signingkey = A9BC8452072D64D1
 [push]
   default = simple
 
