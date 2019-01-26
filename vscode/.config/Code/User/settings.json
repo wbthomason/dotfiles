@@ -130,7 +130,6 @@
   "editor.wordWrap": "wordWrapColumn",
   "editor.minimap.enabled": false,
   "editor.quickSuggestionsDelay": 20,
-  "editor.fontSize": 13,
   "editor.detectIndentation": false,
   "workbench.editor.showTabs": true,
   "bracket-pair-colorizer-2.highlightActiveScope": true,
