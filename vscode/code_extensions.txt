@@ -7,6 +7,7 @@ code --install-extension AndrsDC.base16-themes
 code --install-extension asabil.meson
 code --install-extension bungcip.better-toml
 code --install-extension ccls-project.ccls
+code --install-extension christian-kohler.path-intellisense
 code --install-extension CoenraadS.bracket-pair-colorizer-2
 code --install-extension dkundel.vscode-new-file
 code --install-extension eamodio.gitlens
@@ -29,6 +30,7 @@ code --install-extension siegebell.prettify-symbols-mode
 code --install-extension siegebell.vscoq
 code --install-extension sporiley.syntax-racket
 code --install-extension tomphilbin.gruvbox-themes
+code --install-extension tootone.org-mode
 code --install-extension trixnz.vscode-lua
 code --install-extension vscodevim.vim
 code --install-extension webfreak.debug
