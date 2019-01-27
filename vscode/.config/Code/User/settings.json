@@ -6,7 +6,6 @@
   "editor.lineNumbers": "relative",
   "window.menuBarVisibility": "toggle",
   "python.jediEnabled": false,
-  "vim.enableNeovim": true,
   "vim.neovimPath": "nvim",
   "vim.visualstar": true,
   "vim.useCtrlKeys": true,
@@ -155,7 +154,7 @@
   "gitlens.blame.heatmap.enabled": false,
   "gitlens.blame.highlight.enabled": false,
   "gitlens.hovers.enabled": false,
-  "gitlens.statusBar.enabled": false,
+  "gitlens.statusBar.enabled": true,
   "gitlens.settings.mode": "advanced",
   "gitlens.advanced.telemetry.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
@@ -180,5 +179,19 @@
   "C_Cpp.default.cStandard": "c11",
   "C_Cpp.default.intelliSenseMode": "clang-x64",
   "C_Cpp.default.includePath": ["/usr/include","/usr/include/**", "/usr/local/include",
-  "/usr/local/include/**"]
+  "/usr/local/include/**"
+],
+"workbench.iconTheme": "material-icon-theme",
+"vim.enableNeovim": true,
+"rewrap.autoWrap.enabled": true,
+"rewrap.wrappingColumn": 100,
+"ros.distro": "melodic",
+"rewrap.reformat": true,
+"vim.easymotion": true,
+"workbench.statusBar.feedback.visible": false,
+"workbench.colorCustomizations": {
+  "statusBar.background": "#333333",
+  "panel.background": "#555555",
+  "sideBar.background": "#444444"
+}
 }
