@@ -26,88 +26,43 @@
   },
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        "<leader>",
-        "w"
-      ],
-      "commands": [
-        ":w"
-      ]
+      "before": ["<leader>", "w"],
+      "commands": [":w"]
     },
     {
-      "before": [
-        "<tab>"
-      ],
-      "commands": [
-        "workbench.action.quickOpen"
-      ]
+      "before": ["<tab>"],
+      "commands": ["workbench.action.quickOpen"]
     },
     {
-      "before": [
-        "<leader>",
-        "<leader>"
-      ],
-      "commands": [
-        "workbench.action.showCommands"
-      ]
+      "before": ["<leader>", "<leader>"],
+      "commands": ["workbench.action.showCommands"]
     },
     {
-      "before": [
-        "<leader>",
-        "d"
-      ],
-      "commands": [
-        "workbench.action.closeActiveEditor"
-      ]
+      "before": ["<leader>", "d"],
+      "commands": ["workbench.action.closeActiveEditor"]
     },
     {
-      "before": [
-        "<leader>",
-        "g",
-        "p"
-      ],
-      "commands": [
-        "git.push"
-      ]
+      "before": ["<leader>", "g", "p"],
+      "commands": ["git.push"]
     },
     {
-      "before": [
-        "<leader>",
-        "g",
-        "l"
-      ],
-      "commands": [
-        "git.pull"
-      ]
+      "before": ["<leader>", "g", "l"],
+      "commands": ["git.pull"]
     },
     {
-      "before": [
-        "<leader>",
-        "t",
-        "h"
-      ],
-      "commands": [
-        ":nohl"
-      ]
+      "before": ["<leader>", "t", "h"],
+      "commands": [":nohl"]
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": [
-        ">"
-      ],
-      "commands": [
-        "editor.action.indentLines"
-      ]
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
     },
     {
-      "before": [
-        "<"
-      ],
-      "commands": [
-        "editor.action.outdentLines"
-      ]
-    },
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
   ],
   "vim.textwidth": 100,
   "latex-workshop.chktex.enabled": true,
@@ -115,15 +70,11 @@
   "latex-workshop.synctex.afterBuild.enabled": true,
   "latex-workshop.view.pdf.external.command": {
     "command": "zathura",
-    "args": [
-      "%PDF%"
-    ]
+    "args": ["%PDF%"]
   },
   "latex-workshop.view.pdf.external.synctex": {
     "command": "zathura",
-    "args": [
-      "--synctex-forward %LINE%:1:%TEX% %PDF%",
-    ]
+    "args": ["--synctex-forward %LINE%:1:%TEX% %PDF%"]
   },
   "latex-workshop.view.pdf.viewer": "external",
   "editor.wordWrap": "wordWrapColumn",
@@ -138,13 +89,7 @@
   "extensions.closeExtensionDetailsOnViewChange": true,
   "vim.sneakUseIgnorecaseAndSmartcase": true,
   "workbench.colorTheme": "Gruvbox Dark (Soft)",
-  "org.todoKeywords": [
-    "TODO",
-    "WAITING",
-    "IN-PROGRESS",
-    "DONE",
-    "CANCELED"
-  ],
+  "org.todoKeywords": ["TODO", "WAITING", "IN-PROGRESS", "DONE", "CANCELED"],
   "python.formatting.provider": "yapf",
   "git.confirmSync": false,
   "ccls.completion.enableSnippetInsertion": true,
@@ -178,20 +123,24 @@
   "C_Cpp.default.cppStandard": "c++17",
   "C_Cpp.default.cStandard": "c11",
   "C_Cpp.default.intelliSenseMode": "clang-x64",
-  "C_Cpp.default.includePath": ["/usr/include","/usr/include/**", "/usr/local/include",
-  "/usr/local/include/**"
-],
-"workbench.iconTheme": "material-icon-theme",
-"vim.enableNeovim": true,
-"rewrap.autoWrap.enabled": true,
-"rewrap.wrappingColumn": 100,
-"ros.distro": "melodic",
-"rewrap.reformat": true,
-"vim.easymotion": true,
-"workbench.statusBar.feedback.visible": false,
-"workbench.colorCustomizations": {
-  "statusBar.background": "#333333",
-  "panel.background": "#555555",
-  "sideBar.background": "#444444"
-}
+  "C_Cpp.default.includePath": [
+    "/usr/include",
+    "/usr/include/**",
+    "/usr/local/include",
+    "/usr/local/include/**"
+  ],
+  "workbench.iconTheme": "material-icon-theme",
+  "vim.enableNeovim": true,
+  "rewrap.autoWrap.enabled": true,
+  "rewrap.wrappingColumn": 100,
+  "ros.distro": "melodic",
+  "rewrap.reformat": true,
+  "vim.easymotion": true,
+  "workbench.statusBar.feedback.visible": false,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#333333",
+    "panel.background": "#555555",
+    "sideBar.background": "#444444"
+  },
+  "path-intellisense.absolutePathToWorkspace": false
 }
