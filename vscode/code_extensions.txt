@@ -3,15 +3,17 @@ code --install-extension aaron-bond.better-comments
 code --install-extension ajshort.msg
 code --install-extension ajshort.ros
 code --install-extension alanz.vscode-hie-server
-code --install-extension AndrsDC.base16-themes
 code --install-extension asabil.meson
+code --install-extension ban.spellright
 code --install-extension bungcip.better-toml
 code --install-extension ccls-project.ccls
 code --install-extension christian-kohler.path-intellisense
 code --install-extension CoenraadS.bracket-pair-colorizer-2
 code --install-extension dkundel.vscode-new-file
 code --install-extension eamodio.gitlens
+code --install-extension felipecaputo.git-project-manager
 code --install-extension freebroccolo.reasonml
+code --install-extension golf1052.base16-generator
 code --install-extension James-Yu.latex-workshop
 code --install-extension jep-a.lua-plus
 code --install-extension justusadam.language-haskell
@@ -29,7 +31,7 @@ code --install-extension shd101wyy.markdown-preview-enhanced
 code --install-extension siegebell.prettify-symbols-mode
 code --install-extension siegebell.vscoq
 code --install-extension sporiley.syntax-racket
-code --install-extension tomphilbin.gruvbox-themes
+code --install-extension stkb.rewrap
 code --install-extension tootone.org-mode
 code --install-extension trixnz.vscode-lua
 code --install-extension vscodevim.vim

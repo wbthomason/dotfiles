@@ -24,46 +24,106 @@
     "<C-b>": false,
     "<C-w>": false
   },
-  "vim.normalModeKeyBindingsNonRecursive": [{
-    "before": ["<leader>", "w"],
-    "commands": [":w"]
-  }, {
-    "before": ["<tab>"],
-    "commands": ["workbench.action.quickOpen"]
-  }, {
-    "before": ["<leader>", "<leader>"],
-    "commands": ["workbench.action.showCommands"]
-  }, {
-    "before": ["<leader>", "d"],
-    "commands": ["workbench.action.closeActiveEditor"]
-  }, {
-    "before": ["<leader>", "g", "p"],
-    "commands": ["git.push"]
-  }, {
-    "before": ["<leader>", "g", "l"],
-    "commands": ["git.pull"]
-  }, {
-    "before": ["<leader>", "t", "h"],
-    "commands": [":nohl"]
-  }],
-  "vim.visualModeKeyBindingsNonRecursive": [{
-    "before": [">"],
-    "commands": ["editor.action.indentLines"]
-  }, {
-    "before": ["<"],
-    "commands": ["editor.action.outdentLines"]
-  }],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "w"
+      ],
+      "commands": [
+        ":w"
+      ]
+    },
+    {
+      "before": [
+        "<tab>"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "<leader>"
+      ],
+      "commands": [
+        "workbench.action.showCommands"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "d"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "p"
+      ],
+      "commands": [
+        "git.push"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "g",
+        "l"
+      ],
+      "commands": [
+        "git.pull"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "t",
+        "h"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        ">"
+      ],
+      "commands": [
+        "editor.action.indentLines"
+      ]
+    },
+    {
+      "before": [
+        "<"
+      ],
+      "commands": [
+        "editor.action.outdentLines"
+      ]
+    }
+  ],
   "vim.textwidth": 100,
   "latex-workshop.chktex.enabled": true,
   "latex-workshop.intellisense.surroundCommand.enabled": true,
   "latex-workshop.synctex.afterBuild.enabled": true,
   "latex-workshop.view.pdf.external.command": {
     "command": "zathura",
-    "args": ["%PDF%"]
+    "args": [
+      "%PDF%"
+    ]
   },
   "latex-workshop.view.pdf.external.synctex": {
     "command": "zathura",
-    "args": ["--synctex-forward %LINE%:1:%TEX% %PDF%"]
+    "args": [
+      "--synctex-forward %LINE%:1:%TEX% %PDF%"
+    ]
   },
   "latex-workshop.view.pdf.viewer": "external",
   "editor.wordWrap": "wordWrapColumn",
@@ -77,8 +137,14 @@
   "scm.diffDecorationsGutterWidth": 1,
   "extensions.closeExtensionDetailsOnViewChange": true,
   "vim.sneakUseIgnorecaseAndSmartcase": true,
-  "workbench.colorTheme": "Gruvbox Dark (Soft)",
-  "org.todoKeywords": ["TODO", "WAITING", "IN-PROGRESS", "DONE", "CANCELED"],
+  "workbench.colorTheme": "Base16 Gruvbox dark, soft",
+  "org.todoKeywords": [
+    "TODO",
+    "WAITING",
+    "IN-PROGRESS",
+    "DONE",
+    "CANCELED"
+  ],
   "python.formatting.provider": "yapf",
   "git.confirmSync": false,
   "ccls.completion.enableSnippetInsertion": true,
@@ -112,7 +178,10 @@
   "C_Cpp.default.cppStandard": "c++17",
   "C_Cpp.default.cStandard": "c11",
   "C_Cpp.default.intelliSenseMode": "clang-x64",
-  "C_Cpp.default.includePath": ["/usr/include", "/usr/include/**", "/usr/local/include",
+  "C_Cpp.default.includePath": [
+    "/usr/include",
+    "/usr/include/**",
+    "/usr/local/include",
     "/usr/local/include/**"
   ],
   "workbench.iconTheme": "material-icon-theme",
@@ -126,7 +195,27 @@
   "workbench.colorCustomizations": {
     "statusBar.background": "#333333",
     "panel.background": "#555555",
-    "sideBar.background": "#444444"
+    "sideBar.background": "#444444",
+    "terminal.background": "#32302F",
+    "terminal.foreground": "#D5C4A1",
+    "terminalCursor.background": "#D5C4A1",
+    "terminalCursor.foreground": "#D5C4A1",
+    "terminal.ansiBlack": "#32302F",
+    "terminal.ansiBlue": "#83A598",
+    "terminal.ansiBrightBlack": "#665C54",
+    "terminal.ansiBrightBlue": "#83A598",
+    "terminal.ansiBrightCyan": "#8EC07C",
+    "terminal.ansiBrightGreen": "#B8BB26",
+    "terminal.ansiBrightMagenta": "#D3869B",
+    "terminal.ansiBrightRed": "#FB4934",
+    "terminal.ansiBrightWhite": "#FBF1C7",
+    "terminal.ansiBrightYellow": "#FABD2F",
+    "terminal.ansiCyan": "#8EC07C",
+    "terminal.ansiGreen": "#B8BB26",
+    "terminal.ansiMagenta": "#D3869B",
+    "terminal.ansiRed": "#FB4934",
+    "terminal.ansiWhite": "#D5C4A1",
+    "terminal.ansiYellow": "#FABD2F"
   },
   "latex-workshop.intellisense.package.enabled": true,
   "latex-workshop.intellisense.unimathsymbols.enabled": true,
