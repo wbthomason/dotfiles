@@ -1496,8 +1496,6 @@
  '(italic ((t (:slant italic))))
  '(ivy-confirm-face ((t (:inherit minibuffer-prompt :foreground "lemon chiffon"))))
  '(ivy-current-match ((t (:background "dim gray" :foreground "white smoke"))))
- '(line-number ((t (:inherit (shadow default) :family "Fira Code"))))
- '(linum ((t (:foreground "#d9d9d9" :background "#f7f7f7"))))
  '(lsp-face-highlight-read ((t (:background "#bc5353" :foreground "#efefef"))))
  '(lsp-face-highlight-textual ((t (:background "#bbbb8d" :foreground "black"))))
  '(lsp-face-highlight-write ((t (:background "#8fb28f" :foreground "#efefef"))))
