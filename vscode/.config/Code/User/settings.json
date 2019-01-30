@@ -195,8 +195,9 @@
   "vim.easymotion": true,
   "workbench.statusBar.feedback.visible": false,
   "workbench.colorCustomizations": {
-    "statusBar.background": "#333333",
-    "panel.background": "#555555",
+    "statusBar.background": "#222222",
+    "panel.background": "#222222",
+    "activityBar.background": "#414141",
     "sideBar.background": "#444444",
     "terminal.background": "#32302F",
     "terminal.foreground": "#D5C4A1",
@@ -228,5 +229,7 @@
     "*.sdf": "xml",
     "*.urdf": "xml"
   },
-  "lua.format.lineWidth": 100
+  "lua.format.lineWidth": 100,
+  "cpplint.cpplintPath": "/usr/bin/cpplint",
+  "cpplint.lineLength": 100
 }
