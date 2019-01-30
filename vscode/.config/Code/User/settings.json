@@ -221,5 +221,9 @@
   "latex-workshop.intellisense.unimathsymbols.enabled": true,
   "latex-workshop.synctex.path": "/usr/bin/synctex",
   "path-intellisense.absolutePathToWorkspace": false,
-  "explorer.confirmDelete": false
+  "explorer.confirmDelete": false,
+  "files.associations": {
+    "*.sdf": "xml",
+    "*.urdf": "xml"
+  }
 }
