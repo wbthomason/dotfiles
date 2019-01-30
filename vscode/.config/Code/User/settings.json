@@ -22,7 +22,9 @@
     "<C-o>": false,
     "<C-k>": false,
     "<C-b>": false,
-    "<C-w>": false
+    "<C-w>": false,
+    "<C-r>": false,
+    "<C-y>": false
   },
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -225,5 +227,6 @@
   "files.associations": {
     "*.sdf": "xml",
     "*.urdf": "xml"
-  }
+  },
+  "lua.format.lineWidth": 100
 }
