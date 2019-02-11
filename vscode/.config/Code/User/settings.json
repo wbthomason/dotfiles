@@ -6,7 +6,7 @@
   "editor.lineNumbers": "relative",
   "window.menuBarVisibility": "toggle",
   "python.jediEnabled": false,
-  "vim.neovimPath": "nvim",
+  "vim.neovimPath": "/usr/bin/nvim",
   "vim.visualstar": true,
   "vim.useCtrlKeys": true,
   "vim.statusBarColorControl": false,
@@ -231,5 +231,8 @@
   },
   "lua.format.lineWidth": 100,
   "cpplint.cpplintPath": "/usr/bin/cpplint",
-  "cpplint.lineLength": 100
+  "cpplint.lineLength": 100,
+  "breadcrumbs.enabled": true,
+  "editor.cursorBlinking": "solid",
+  "ccls.codeLens.localVariables": true
 }
