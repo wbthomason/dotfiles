@@ -1,0 +1,26 @@
+{
+	"languageserver": {
+		"ccls": {
+			"command": "ccls",
+			"filetypes": [
+				"c",
+				"cpp",
+				"cuda",
+				"objc",
+				"objcpp"
+			],
+			"rootPatterns": [
+				"compile_commands.json",
+				".ccls",
+				".ccls-cache",
+				".vim/",
+				".git/",
+				".hg/"
+			],
+			"initializationOptions": {
+				"cacheDirectory": ".ccls-cache"
+			}
+		}
+	},
+	"coc.source.omni.filetypes": ["tex"]
+}

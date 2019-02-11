@@ -237,12 +237,6 @@ let g:fzf_colors =
       \ 'spinner': ['fg', 'Label'],
       \ 'header':  ['fg', 'Comment'] }
 
-" Snippets
-let g:UltiSnipsExpandTrigger       = '<Plug>(ultisnips_expand)'
-let g:UltiSnipsJumpForwardTrigger  = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-let g:UltiSnipsRemoveSelectModeMappings = 0
-
 " Vim-pad
 let g:pad#dir = '~/wiki/notes'
 let g:pad#default_format = 'org'
@@ -355,7 +349,7 @@ let g:LanguageClient_serverCommands = {
       \ 'ocaml': ['ocaml-language-server', '--stdio'],
       \ 'go': ['~/go/bin/go-langserver'],
       \ 'haskell': ['hie-wrapper'],
-      \ 'lua': ['lua-lsp'],
+      \ 'lua': ['java', '-cp', '~/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS.jar', 'com.tang.vscode.MainKt'],
       \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
       \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
       \ }
@@ -420,40 +414,43 @@ let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
 " let g:ncm2#complete_delay = 500
 " let g:ncm2#popup_delay = 100
 " let g:ncm2#popup_limit = 10
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <c-u> <Plug>(ultisnips_expand)
-inoremap <silent> <expr> <c-u> ncm2_ultisnips#expand_or("\<CR>", 'n')
+inoremap <c-s> <Plug>(neosnippet_expand_target)
+inoremap <silent> <expr> <c-s> ncm2_neosnippet#expand_or("\<CR>", 'n')
+inoremap <c-q> <c-r>=ncm2#force_trigger()<cr>
 call ncm2#override_source('tagprefix', {'priority': 2})
 call ncm2#override_source('pyclang', {'priority': 8})
 
 " General settings
 call ConfigInc('settings.vim')
 
-if &background ==# 'dark'
-  " let g:rainbow_conf.guifgs = ['#eeeeee', '#c6c6c6', '#aaaaaa', '#888888']
-  let g:rainbow_conf = {
-	\	'guifgs': ['#ff1111', '#ff3030', '#ff6a6a', '#cd5555', '#8b3a3a'],
-	\	'operators': '_,_',
-	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-	\	'separately': {
-	\		'*': {},
-    \		'ocaml': {
-    \			'parentheses': ['start=/(\*\@!/ end=/)/ fold contains=@colorableGroup'],
-    \		},
-	\		'tex': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-	\		},
-	\		'vim': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-	\		},
-	\		'html': {
-	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-	\		},
-	\		'css': 0,
-	\	}
-	\}
-endif
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+      \ 'guifgs': ['#bdae93', '#d5c4a1', '#ebdbb2', '#fbf1c7', '#fb4934', '#fe8019', '#fabd2f', '#b8bb26', '#8ec07c', '#83a598', '#d3869b', '#d65d0e'],
+      \	'operators': '_,_',
+      \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+      \	'separately': {
+      \		'*': {},
+      \		'ocaml': {
+      \			'parentheses': ['start=/(\*\@!/ end=/)/ fold contains=@colorableGroup'],
+      \		},
+      \		'tex': {
+      \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+      \		},
+      \		'vim': {
+      \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+      \		},
+      \		'html': {
+      \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+      \		},
+      \		'css': 0,
+      \	}
+      \}
 
 let g:capture_templates = {
       \ 'journal': {'file': '~/wiki/journal/journal.md',

@@ -43,7 +43,7 @@ set shortmess+=c
 set nojoinspaces
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 set completeopt=noinsert,menuone,noselect
-set updatetime=2000
+set updatetime=300
 filetype plugin indent on
 syntax enable
 set conceallevel=2
@@ -53,11 +53,3 @@ set undofile
 set synmaxcol=200
 set display=msgsep
 set cursorline
-
-if exists('g:gui_oni')
-  set noshowmode
-  set noruler
-  set laststatus=0
-  set noshowcmd
-  set mouse=a
-endif

@@ -7,6 +7,9 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugs')
 
+" Moonscript
+Plug 'svermeulen/nvim-moonmaker'
+
 " Tweaks
 Plug 'vim-scripts/LargeFile'
 
@@ -127,9 +130,9 @@ Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
 Plug 'ncm2/ncm2-neoinclude' | Plug 'Shougo/neoinclude.vim'
 
 " Snippets
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'ncm2/ncm2-neosnippet'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 " Checkers
 Plug 'w0rp/ale'
@@ -181,6 +184,7 @@ Plug 'chrisbra/NrrwRgn', {'for': 'org'}
 Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
 Plug 'jceb/vim-orgmode'
 Plug 'wbthomason/capture.vim'
+Plug '/home/wil/projects/personal/orgmode.nvim'
 
 " Rust
 Plug 'ncm2/ncm2-racer'
@@ -209,12 +213,6 @@ Plug 'tweekmonster/startuptime.vim'
 
 " Color scheme
 " Plug 'wbthomason/vim-nazgul'
-" Plug 'AlessandroYorba/Sierra'
-" Plug 'lifepillar/vim-solarized8'
-" Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
-" Plug 'treycucco/vim-monotonic'
-" Plug 'andreypopp/vim-colors-plain'
-" Plug 'dim13/gocode.vim'
 
 call plug#end()
