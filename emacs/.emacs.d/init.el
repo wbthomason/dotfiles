@@ -1178,7 +1178,7 @@
 (use-package doom-modeline
   :ensure t
   :hook (after-init . doom-modeline-mode)
-  :config (setq doom-modeline-height 15
+  :config (setq doom-modeline-height 5
                 doom-modeline-bar-width 3
                 doom-modeline-enable-word-count t
                 doom-modeline-icon t
