@@ -1097,7 +1097,8 @@
         org-fontify-quote-and-verse-blocks t
         org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
         org-pretty-entities-include-sub-superscripts t
-        org-capture-templates '(("r" "Research Note" entry (file "phd.org") "** Note: %^{Title?}\n:CREATED: %T\n%?")
+        org-capture-templates '(("j" "Journal Entry" entry (file+olp+datetree "~/wiki/journal.org") "* %(substring (current-time-string) 11 19) %?\n%i" :empty-lines-after 1 :unnarrowed t)
+                                ("r" "Research Note" entry (file "phd.org") "** Note: %^{Title?}\n:CREATED: %T\n%?")
                                 ("t" "Task Entry" entry (file "tasks.org") "* TODO %?\n:CREATED: %T"))))
 
 (use-package mixed-pitch
