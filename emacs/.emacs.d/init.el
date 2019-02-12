@@ -1176,11 +1176,14 @@
 ;; Modeline
 (use-package doom-modeline
   :ensure t
-  :hook (after-init . doom-modeline-init)
+  :hook (after-init . doom-modeline-mode)
   :config (setq doom-modeline-height 15
+                doom-modeline-bar-width 3
                 doom-modeline-enable-word-count t
                 doom-modeline-icon t
-                doom-modeline-major-mode-icon t))
+                doom-modeline-major-mode-icon t
+                doom-modeline-major-mode-color-icon t
+                doom-modeline-lsp t))
 
 ;;; Font
 ;;; Fira code
