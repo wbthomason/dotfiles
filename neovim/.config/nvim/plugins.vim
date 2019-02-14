@@ -212,7 +212,7 @@ Plug 'calebsmith/vim-lambdify'
 Plug 'tweekmonster/startuptime.vim'
 
 " Color scheme
-" Plug 'wbthomason/vim-nazgul'
-Plug 'chriskempson/base16-vim'
+Plug 'wbthomason/vim-nazgul'
+" Plug 'chriskempson/base16-vim'
 
 call plug#end()

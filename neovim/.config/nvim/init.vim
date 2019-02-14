@@ -311,7 +311,8 @@ let g:sierra_Sunset = 1
 " colorscheme monotonic-light
 
 set background=light
-colorscheme base16-gruvbox-dark-soft
+" colorscheme base16-gruvbox-dark-soft
+colorscheme nazgul
 
 " ALE
 let g:ale_sign_error = '🗙'
@@ -476,11 +477,11 @@ hi BlueHover guifg=#83a5cb ctermfg=109 gui=NONE cterm=NONE
 hi AquaHover guifg=#8ec07c ctermfg=108 gui=NONE cterm=NONE
 hi WhiteHover guifg=#ffffff ctermfg=108 gui=NONE cterm=NONE
 
-hi RedSign guifg=#cc241d guibg=#3c3836 ctermfg=124 gui=NONE cterm=NONE
-hi YellowSign guifg=#fabd2f guibg=#3c3836 ctermfg=214 gui=NONE cterm=NONE
-hi GreenSign guifg=#b8cc26 guibg=#3c3836 ctermfg=142 gui=NONE cterm=NONE
-hi BlueSign guifg=#83a5cb guibg=#3c3836 ctermfg=109 gui=NONE cterm=NONE
-hi AquaSign guifg=#8ec07c guibg=#3c3836 ctermfg=108 gui=NONE cterm=NONE
+hi RedSign guifg=#cc241d ctermfg=124 gui=NONE cterm=NONE
+hi YellowSign guifg=#fabd2f ctermfg=214 gui=NONE cterm=NONE
+hi GreenSign guifg=#b8cc26 ctermfg=142 gui=NONE cterm=NONE
+hi BlueSign guifg=#83a5cb ctermfg=109 gui=NONE cterm=NONE
+hi AquaSign guifg=#8ec07c ctermfg=108 gui=NONE cterm=NONE
 
 hi! link ALEErrorSign RedSign
 hi! link ALEWarningSign YellowSign
