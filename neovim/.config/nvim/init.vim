@@ -256,6 +256,7 @@ let g:lightline.active = {
       \ 'left': [ [ 'mode', 'paste' ],
       \           [ 'vcstatus', 'filename', 'modified', 'readonly' ] ],
       \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \            [ 'gutentags'],
       \            [ 'percent' ],
       \            [ 'filetype' ] ]}
 
@@ -272,6 +273,7 @@ let g:lightline.component_expand = {
       \  'linter_warnings': 'lightline#ale#warnings',
       \  'linter_errors': 'lightline#ale#errors',
       \  'linter_ok': 'lightline#ale#ok',
+      \  'gutentags': 'gutentags#statusline',
       \ }
 
 let g:lightline.component_type = {
@@ -468,6 +470,10 @@ let g:capture_templates = {
       \             'pattern': '^# ',
       \             'new_snip': '# `!v strftime("%A, %F")`${0:meeting_notes}'},
       \}
+
+" Gutentags
+let g:gutentags_ctags_exclude = ['.ccls-cache']
+let g:gutentags_file_list_command = 'rg --files'
 
 hi RedHover guifg=#cc241d ctermfg=124 gui=NONE cterm=NONE
 hi YellowHover guifg=#fabd2f ctermfg=214 gui=NONE cterm=NONE
