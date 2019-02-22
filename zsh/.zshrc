@@ -37,6 +37,7 @@ export RUST_SRC_PATH=/usr/src/rust/src
 source /opt/ros/melodic/setup.zsh
 export ROS_HOSTNAME=localhost
 export ROS_MASTER_URI=http://localhost:11311
+export ROS_PYTHON_VERSION=3
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
