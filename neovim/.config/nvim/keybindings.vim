@@ -30,6 +30,7 @@ let g:lmaps.x = ['x!', 'Write and quit']
 
 " Buffer bindings
 let g:lmaps.b = {'name': 'Buffers'}
+nnoremap <silent> <leader>bb :Buffers<cr>
 nnoremap <silent> <leader>w :w<cr>
 let g:lmaps.w = ['w', 'Write buffer']
 nnoremap <silent> <leader>d :Sayonara<cr>

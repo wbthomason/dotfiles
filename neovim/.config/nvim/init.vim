@@ -328,7 +328,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
       \ 'haskell': ['hdevtools', 'hlint'],
-      \ 'cpp': ['ccls', 'clangtidy', 'cppcheck', 'cpplint', 'flawfinder']
+      \ 'cpp': ['clangtidy', 'cppcheck', 'cpplint', 'flawfinder']
       \}
 let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_set_highlights = 1
@@ -402,7 +402,7 @@ let g:LanguageClient_documentHighlightDisplay = {
       \ }
 
 let g:LanguageClient_signColumnAlwaysOn = 1
-let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_diagnosticsEnable = 1
 let g:LanguageClient_diagnosticsList = 'Location'
 let g:LanguageClient_hoverPreview = 'Never'
 let g:LanguageClient_completionPreferTextEdit = 1
