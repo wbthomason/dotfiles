@@ -65,7 +65,7 @@ bindsym $mod+b exec systemctl suspend
 
 # scratchpad
 bindsym $mod+p move scratchpad
-bindsym $mod+Shift+p show scratchpad
+bindsym $mod+Shift+p scratchpad show
 
 # change focus
 bindsym $mod+j focus left
