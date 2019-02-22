@@ -1178,13 +1178,13 @@
 (use-package doom-modeline
   :ensure t
   :hook (after-init . doom-modeline-mode)
-  :config (setq doom-modeline-height 5
-                doom-modeline-bar-width 3
-                doom-modeline-enable-word-count t
+  :config (setq doom-modeline-enable-word-count t
+                doom-modeline-lsp t
+                doom-modeline-height 3
                 doom-modeline-icon t
                 doom-modeline-major-mode-icon t
-                doom-modeline-major-mode-color-icon t
-                doom-modeline-lsp t))
+                doom-modeline-major-mode-color-icon t))
+;; (add-hook 'after-make-frame-functions #'doom-modeline-refresh-bars)
 
 ;;; Font
 ;;; Fira code
@@ -1207,12 +1207,12 @@
 (use-package twilight-bright-theme
   :ensure t
   :disabled)
-(use-package base16-theme
-  :ensure t
-  :config
-  (load-theme 'base16-gruvbox-dark-soft t))
+;; (use-package base16-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'base16-gruvbox-dark-soft t))
 
-;; (load-theme 'nazgul t)
+(load-theme 'nazgul t)
 ;; (load-theme 'tango t)
 
 ;;; Relative linum
@@ -1411,6 +1411,9 @@
   "c" #'projectile-compile-project
   "lr" #'xref-find-references
   "ln" #'lsp-rename
+  "la" #'lsp-execute-code-action
+  "li" #'lsp-ui-sideline-toggle-symbols-info
+  "lo" #'counsel-imenu
   "SPC" #'execute-extended-command
   "ol" #'org-store-link
   "oi" #'org-insert-link
