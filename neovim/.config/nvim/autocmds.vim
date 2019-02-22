@@ -34,7 +34,7 @@ if !exists('g:gui_oni')
   augroup lsp_aucommands
     au!
     au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
-    au CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
+    au CursorHold * call LanguageClient#isAlive(function('LspMaybeHighlight'))
   augroup END
 end
 

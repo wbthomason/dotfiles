@@ -49,7 +49,7 @@ bindsym $mod+t exec "kitty"
 bindsym $mod+Shift+q kill
 
 # rofi
-bindsym $mod+d exec "rofi -combi-modi drun,run,window,ssh -mesg -show combi -modi combi"
+bindsym $mod+d exec "rofi -combi-modi window,drun,run,ssh -mesg -show combi -modi combi"
 
 # runner
 bindsym $mod+Shift+d exec --no-startup-id xfce4-popup-whiskermenu

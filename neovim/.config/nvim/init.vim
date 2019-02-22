@@ -256,6 +256,7 @@ let g:lightline.active = {
       \ 'left': [ [ 'mode', 'paste' ],
       \           [ 'vcstatus', 'filename', 'modified', 'readonly' ] ],
       \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \            [ 'gutentags'],
       \            [ 'percent' ],
       \            [ 'filetype' ] ]}
 
@@ -272,6 +273,7 @@ let g:lightline.component_expand = {
       \  'linter_warnings': 'lightline#ale#warnings',
       \  'linter_errors': 'lightline#ale#errors',
       \  'linter_ok': 'lightline#ale#ok',
+      \  'gutentags': 'gutentags#statusline',
       \ }
 
 let g:lightline.component_type = {
@@ -326,7 +328,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
       \ 'haskell': ['hdevtools', 'hlint'],
-      \ 'cpp': ['ccls', 'clangtidy', 'cppcheck', 'cpplint', 'flawfinder']
+      \ 'cpp': ['clangtidy', 'cppcheck', 'cpplint', 'flawfinder']
       \}
 let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_set_highlights = 1
@@ -400,7 +402,7 @@ let g:LanguageClient_documentHighlightDisplay = {
       \ }
 
 let g:LanguageClient_signColumnAlwaysOn = 1
-let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_diagnosticsEnable = 1
 let g:LanguageClient_diagnosticsList = 'Location'
 let g:LanguageClient_hoverPreview = 'Never'
 let g:LanguageClient_completionPreferTextEdit = 1
@@ -468,6 +470,10 @@ let g:capture_templates = {
       \             'pattern': '^# ',
       \             'new_snip': '# `!v strftime("%A, %F")`${0:meeting_notes}'},
       \}
+
+" Gutentags
+let g:gutentags_ctags_exclude = ['.ccls-cache']
+let g:gutentags_file_list_command = 'rg --files'
 
 hi RedHover guifg=#cc241d ctermfg=124 gui=NONE cterm=NONE
 hi YellowHover guifg=#fabd2f ctermfg=214 gui=NONE cterm=NONE

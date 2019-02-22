@@ -36,7 +36,7 @@ set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set viminfo^=%
 set hidden
-set nofoldenable
+" set nofoldenable
 set encoding=utf-8
 set ttyfast
 set shortmess+=c

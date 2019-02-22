@@ -64,6 +64,7 @@ Plug 'luochen1990/rainbow'
 Plug 'andymass/vim-matchup'
 Plug 'rstacruz/vim-closer' " - Causes problems with ncm2-ultisnips default CR binding
 Plug 'tpope/vim-endwise' " - Causes problems with ncm2-ultisnips default CR binding
+Plug 'machakann/vim-swap'
 
 " Yank highlighting
 Plug 'machakann/vim-highlightedyank'
