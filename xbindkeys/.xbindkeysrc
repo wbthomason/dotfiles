@@ -14,10 +14,10 @@
   XF86MonBrightnessUp
 
 "playerctl play-pause"
-  Control+Shift + space
+  XF86AudioPlay
 
 "playerctl previous"
-  Control+Shift + Left
+  XF86AudioPrev
 
 "playerctl next"
-  Control+Shift + Right
+  XF86AudioNext
