@@ -32,8 +32,10 @@ endfunction
 
 augroup lsp_aucommands
   au!
-  au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
-  au CursorHold * call LanguageClient#isAlive(function('LspMaybeHighlight'))
+  " au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
+  " au CursorHold * call LanguageClient#isAlive(function('LspMaybeHighlight'))
+  au CursorHold * silent call CocActionAsync('highlight')
+  au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup END
 
 augroup extra_filetype_aucommands
@@ -44,5 +46,5 @@ augroup END
 
 augroup ncm_aucommands
   au!
-  au BufEnter * call ncm2#enable_for_buffer()
+  " au BufEnter * call ncm2#enable_for_buffer()
 augroup END

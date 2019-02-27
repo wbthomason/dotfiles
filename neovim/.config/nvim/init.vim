@@ -40,7 +40,7 @@ call ConfigInc('functions.vim')
 call ConfigInc('autocmds.vim')
 
 " Polyglot
-let g:polyglot_disabled = ['latex', 'tex', 'markdown', 'pandoc']
+let g:polyglot_disabled = ['latex', 'tex', 'markdown', 'pandoc', 'org']
 
 " Golden Ratio
 " let g:golden_ratio_exclude_nonmodifiable = 1
@@ -56,6 +56,10 @@ let g:intero_type_on_hover = 1
 " IndentLine
 let g:indentLine_char = '│'
 let g:indentLine_faster = 1
+
+" Matchup
+let g:matchup_matchparen_deferred = 1
+let g:matchup_matchparen_hi_surround_always = 1
 
 " Pandoc
 let g:pandoc#syntax#conceal#use = 1
@@ -343,91 +347,114 @@ let g:ale_sign_column_always = 1
 let g:ale_virtualtext_cursor = 1
 
 " LanguageClient
-let g:LanguageClient_hasSnippetSupport = 1
-let g:LanguageClient_serverCommands = {
-      \ 'rust': ['rls'],
-      \ 'python': ['pyls'],
-      \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'typescript': ['javascript-typescript-stdio'],
-      \ 'ocaml': ['ocaml-language-server', '--stdio'],
-      \ 'go': ['~/go/bin/go-langserver'],
-      \ 'haskell': ['hie-wrapper'],
-      \ 'lua': ['java', '-cp', '~/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS.jar', 'com.tang.vscode.MainKt'],
-      \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
-      \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
-      \ }
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_loadSettings = 1
-let g:LanguageClient_settingsPath = '/home/wil/.config/nvim/settings.json'
-let g:LanguageClient_diagnosticsDisplay = {
-      \ 1: {
-      \     'name': 'Error',
-      \     'texthl': 'ALEError',
-      \     'signText': '🗙',
-      \     'signTexthl': 'ALEErrorSign'
-      \ },
-      \ 2: {
-      \     'name': 'Warning',
-      \     'texthl': 'ALEWarning',
-      \     'signText': '➤',
-      \     'signTexthl': 'ALEWarningSign'
-      \ },
-      \ 3: {
-      \     'name': 'Information',
-      \     'texthl': 'LanguageClientInformation',
-      \     'signText': 'i',
-      \     'signTexthl': 'SignInformation'
-      \ },
-      \ 4: {
-      \     'name': 'Hint',
-      \     'texthl': 'LanguageClientHint',
-      \     'signText': '.',
-      \     'signTexthl': 'SignHint'
-      \ }
-      \ }
-
-let g:LanguageClient_documentHighlightDisplay = {
-      \  1: {
-      \      'name': 'Text',
-      \      'texthl': 'BlueHover',
-      \  },
-      \  2: {
-      \      'name': 'Read',
-      \      'texthl': 'AquaHover',
-      \  },
-      \  3: {
-      \      'name': 'Write',
-      \      'texthl': 'GreenHover',
-      \  },
-      \ }
-
-let g:LanguageClient_signColumnAlwaysOn = 1
-let g:LanguageClient_diagnosticsEnable = 1
-let g:LanguageClient_diagnosticsList = 'Location'
-let g:LanguageClient_hoverPreview = 'Never'
-let g:LanguageClient_completionPreferTextEdit = 1
+" let g:LanguageClient_hasSnippetSupport = 1
+" let g:LanguageClient_serverCommands = {
+"       \ 'rust': ['rls'],
+"       \ 'python': ['pyls'],
+"       \ 'javascript': ['javascript-typescript-stdio'],
+"       \ 'typescript': ['javascript-typescript-stdio'],
+"       \ 'ocaml': ['ocaml-language-server', '--stdio'],
+"       \ 'go': ['~/go/bin/go-langserver'],
+"       \ 'haskell': ['hie-wrapper'],
+"       \ 'lua': ['java', '-cp', '~/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS.jar', 'com.tang.vscode.MainKt'],
+"       \ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
+"       \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
+"       \ }
+" let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_loadSettings = 1
+" let g:LanguageClient_settingsPath = '/home/wil/.config/nvim/settings.json'
+" let g:LanguageClient_diagnosticsDisplay = {
+"       \ 1: {
+"       \     'name': 'Error',
+"       \     'texthl': 'ALEError',
+"       \     'signText': '🗙',
+"       \     'signTexthl': 'ALEErrorSign'
+"       \ },
+"       \ 2: {
+"       \     'name': 'Warning',
+"       \     'texthl': 'ALEWarning',
+"       \     'signText': '➤',
+"       \     'signTexthl': 'ALEWarningSign'
+"       \ },
+"       \ 3: {
+"       \     'name': 'Information',
+"       \     'texthl': 'LanguageClientInformation',
+"       \     'signText': 'i',
+"       \     'signTexthl': 'SignInformation'
+"       \ },
+"       \ 4: {
+"       \     'name': 'Hint',
+"       \     'texthl': 'LanguageClientHint',
+"       \     'signText': '.',
+"       \     'signTexthl': 'SignHint'
+"       \ }
+"       \ }
+"
+" let g:LanguageClient_documentHighlightDisplay = {
+"       \  1: {
+"       \      'name': 'Text',
+"       \      'texthl': 'BlueHover',
+"       \  },
+"       \  2: {
+"       \      'name': 'Read',
+"       \      'texthl': 'AquaHover',
+"       \  },
+"       \  3: {
+"       \      'name': 'Write',
+"       \      'texthl': 'GreenHover',
+"       \  },
+"       \ }
+"
+" let g:LanguageClient_signColumnAlwaysOn = 1
+" let g:LanguageClient_diagnosticsEnable = 1
+" let g:LanguageClient_diagnosticsList = 'Location'
+" let g:LanguageClient_hoverPreview = 'Never'
+" let g:LanguageClient_completionPreferTextEdit = 1
 
 " Which-key
 
 call which_key#register('<Space>', 'g:lmaps')
 call which_key#register(',', 'g:llmaps')
 
+" Coc
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <cr> <C-R>=Handle_cr_coc()<cr>
+
+function! Handle_cr_coc() abort
+  return pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endfunction
+
 " NCM2
-let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
-" let g:ncm2#complete_delay = 500
-" let g:ncm2#popup_delay = 100
-" let g:ncm2#popup_limit = 10
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
+" " let g:ncm2#complete_delay = 500
+" " let g:ncm2#popup_delay = 100
+" " let g:ncm2#popup_limit = 10
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <c-s> <Plug>(neosnippet_expand_target)
-inoremap <silent> <expr> <c-s> ncm2_neosnippet#expand_or("\<CR>", 'n')
-inoremap <c-q> <c-r>=ncm2#force_trigger()<cr>
-call ncm2#override_source('tagprefix', {'priority': 2})
-call ncm2#override_source('pyclang', {'priority': 8})
+" inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <c-s> <Plug>(neosnippet_expand_target)
+" inoremap <silent> <expr> <c-s> ncm2_neosnippet#expand_or("\<CR>", 'n')
+" inoremap <c-q> <c-r>=ncm2#force_trigger()<cr>
+" call ncm2#override_source('tagprefix', {'priority': 2})
+" call ncm2#override_source('pyclang', {'priority': 8})
 
 " General settings
 call ConfigInc('settings.vim')
@@ -498,3 +525,10 @@ hi! link ALEVirtualTextWarning YellowHover
 hi! link ALEVirtualTextInfo WhiteHover
 hi! link ALEVirtualTextStyleError OrangeHover
 hi! link ALEVirtualTextStyleWarning BlueHover
+
+hi! link CocHighlightText AquaHover
+hi! link CocHighlightRead BlueHover
+hi! link CocHighlightWrite GreenHover
+hi! link CocErrorSign ALEErrorSign
+hi! link CocWarningSign ALEWarningSign
+hi! link CocInfoSign ALEInfoSign

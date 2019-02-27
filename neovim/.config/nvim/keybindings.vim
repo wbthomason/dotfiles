@@ -82,10 +82,8 @@ let g:lmaps.f.l = ['Lines', 'Search for text in currently open buffers']
 nnoremap  <leader>fL :Locate
 let g:lmaps.f.L = ['Locate', 'Search the system with locate']
 let g:lmaps.f.s = {'name': 'Symbols'}
-nnoremap <silent> <leader>fsb :call LanguageClient#textDocument_documentSymbol()<CR>
-let g:lmaps.f.s.b = ['call LanguageClient#textDocument_documentSymbol()', 'Search symbols in the current buffer']
-nnoremap <silent> <leader>fsp :call LanguageClient#workspace_symbol()<CR>
-let g:lmaps.f.s.p = ['call LanguageClient#workspace_symbol()', 'Search symbols in the current project']
+nnoremap <silent> <leader>fsb :CocList outline<CR>
+nnoremap <silent> <leader>fsp :call CocAction("workspaceSymbols")<CR>
 nnoremap <silent> <leader>fd :Vaffle<CR>
 let g:lmaps.f.d = ['Vaffle', 'Open Vaffle']
 
@@ -158,23 +156,37 @@ nnoremap <leader>hiu :InteroUses<CR>
 let g:lmaps.h.i.u = ['InteroUses', 'Find uses with Intero']
 
 " LanguageClient bindings
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gD <Plug>(coc-definition)
+nmap <silent> gT <Plug>(coc-type-definition)
+nmap <silent> gI <Plug>(coc-implementation)
+nmap <silent> gR <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 let g:lmaps.l = {'name': 'LSP'}
-nnoremap <silent> gD :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> gI :call LanguageClient#textDocument_implementation()<CR>
-nnoremap <silent> <leader>ln :call LanguageClient_textDocument_rename()<CR>
-let g:lmaps.l.n = ['call LanguageClient_textDocument_rename()', 'Rename symbol']
-nnoremap <silent> <leader>lr :call LanguageClient#textDocument_references()<CR>
-let g:lmaps.l.r = ['call LanguageClient#textDocument_references()', 'Find symbol references']
-nnoremap <silent> <leader>lh :call LanguageClient_textDocument_hover()<CR>
-let g:lmaps.l.h = ['call LanguageClient_textDocument_hover()', 'Hover on symbol']
-nnoremap <silent> <leader>lc :call LanguageClient#textDocument_codeAction()<CR>
-let g:lmaps.l.c = ['call LanguageClient#textDocument_codeAction()', 'Code actions at point']
-nnoremap <silent> <leader>lf :call LanguageClient_textDocument_formatting()<CR>
-let g:lmaps.l.f = ['call LanguageClient_textDocument_formatting()', 'Format document']
-nnoremap <silent> <leader>lm :call LanguageClient_contextMenu()<CR>
-let g:lmaps.l.m = ['call LanguageClient_contextMenu()', 'Display menu of LC actions']
-nnoremap <silent> <leader>la :call LanguageClient_workspace_applyEdit()<CR>
-let g:lmaps.l.m = ['call LanguageClient_workspace_applyEdit()', 'Apply workspace edits']
+
+nmap <leader>ln <Plug>(coc-rename)
+vmap <leader>lf  <Plug>(coc-format-selected)
+nmap <leader>lf  :call CocAction('format')<cr>
+vmap <leader>la  <Plug>(coc-codeaction-selected)
+nmap <leader>la  <Plug>(coc-codeaction-selected)
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>lqf  <Plug>(coc-fix-current)
 
 " Formatting Bindings
 nnoremap <silent> <leader>bf :Neoformat<CR>

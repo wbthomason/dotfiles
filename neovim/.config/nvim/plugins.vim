@@ -2,19 +2,23 @@
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
 		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  au VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
+  au VimEnter * PlugInstall --sync
+source ~/.config/nvim/init.vim
 endif
 
 call plug#begin('~/.local/share/nvim/plugs')
 
 " Moonscript
-Plug 'svermeulen/nvim-moonmaker'
+" Plug 'svermeulen/nvim-moonmaker'
 
 " Tweaks
 Plug 'vim-scripts/LargeFile'
 
 " Split resizing
 Plug 'roman/golden-ratio'
+
+" QuickFix help
+Plug 'romainl/vim-qf'
 
 " Mappings
 Plug 'liuchengxu/vim-which-key'
@@ -69,9 +73,6 @@ Plug 'machakann/vim-swap'
 " Yank highlighting
 Plug 'machakann/vim-highlightedyank'
 
-" Expand region
-Plug 'landock/vim-expand-region'
-
 " Prettification
 Plug 'junegunn/vim-easy-align'
 Plug 'sbdchd/neoformat', {'on': 'Neoformat'}
@@ -86,7 +87,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim' 
 Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
-Plug 'justinhoward/fzf-neoyank' | Plug 'Shougo/neoyank.vim'
+Plug 'justinhoward/fzf-neoyank'
+Plug 'Shougo/neoyank.vim'
 
 " Writing
 " Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
@@ -122,16 +124,13 @@ Plug 'jreybert/vimagit'
 
 " Completion
 Plug 'Shougo/echodoc.vim'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-tagprefix'
-Plug 'ncm2/ncm2-syntax' | Plug 'Shougo/neco-syntax'
-Plug 'ncm2/ncm2-neoinclude' | Plug 'Shougo/neoinclude.vim'
+Plug 'jsfaint/coc-neoinclude'
+Plug 'neoclide/coc-sources'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
+Plug 'Shougo/neco-syntax'
+Plug 'Shougo/neoinclude.vim'
 
 " Snippets
-Plug 'ncm2/ncm2-neosnippet'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
@@ -149,20 +148,7 @@ Plug 'sheerun/vim-polyglot'
 " Path changing
 Plug 'tpope/vim-apathy'
 
-" LSP
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'make -j 8 release',
-      \ }
-
-" CSS
-Plug 'ncm2/ncm2-cssomni'
-
-" Python
-Plug 'ncm2/ncm2-jedi'
-
-" C/C++
-Plug 'ncm2/ncm2-pyclang'
+" C/C++/Python debugging
 Plug 'sakhnik/nvim-gdb', {'do': './install.sh', 'for': ['c', 'cpp', 'python']}
 
 " Clojure/Lisps/Scheme
@@ -185,13 +171,11 @@ Plug 'chrisbra/NrrwRgn', {'for': 'org'}
 Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
 Plug 'jceb/vim-orgmode'
 Plug 'wbthomason/capture.vim'
-Plug '/home/wil/projects/personal/orgmode.nvim'
-
-" Rust
-Plug 'ncm2/ncm2-racer'
+" Plug '/home/wil/projects/personal/orgmode.nvim'
 
 " Vimscript
-Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-vim'
+Plug 'neoclide/coc-neco'
 
 " LaTeX
 Plug 'lervag/vimtex'

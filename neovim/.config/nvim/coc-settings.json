@@ -22,5 +22,6 @@
 			}
 		}
 	},
-	"coc.source.omni.filetypes": ["tex"]
+    "codeLens.enable": true,
+    "diagnostic.displayByAle": true,
 }
