@@ -1,27 +1,57 @@
 {
-	"languageserver": {
-		"ccls": {
-			"command": "ccls",
-			"filetypes": [
-				"c",
-				"cpp",
-				"cuda",
-				"objc",
-				"objcpp"
-			],
-			"rootPatterns": [
-				"compile_commands.json",
-				".ccls",
-				".ccls-cache",
-				".vim/",
-				".git/",
-				".hg/"
-			],
-			"initializationOptions": {
-				"cacheDirectory": ".ccls-cache"
-			}
-		}
-	},
-    "codeLens.enable": true,
-    "diagnostic.displayByAle": true,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [
+        "compile_commands.json",
+        ".ccls",
+        ".ccls-cache",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cacheDirectory": ".ccls-cache"
+      }
+    },
+    "MPLS": {
+      "command": "dotnet",
+      "args": [
+        "exec",
+        "/home/wil/projects/python-language-server/output/bin/Debug/Microsoft.Python.LanguageServer.dll"
+      ],
+      "filetypes": ["python"],
+      "trace.server": "verbose",
+      "initializationOptions": {
+        "interpreter": {
+          "properties": {
+            "InterpreterPath": "/usr/bin/python3",
+            "DatabasePath": "/home/wil/projects/python-language-server/output/bin/Debug",
+            "Version": "3.7"
+          }
+        },
+        "displayOptions": {
+          "preferredFormat": "markdown",
+          "trimDocumentationLines": false,
+          "maxDocumentationLineLength": 0,
+          "trimDocumentationText": false,
+          "maxDocumentationTextLength": 0
+        },
+        "searchPaths": [
+          "/opt/ros/melodic/lib/python3.7/site-packages",
+          "/usr/local/bin"
+        ],
+        "testEnvironment": false,
+        "analysisUpdates": true,
+        "traceLogging": true,
+        "asyncStartup": true
+      }
+    }
+  },
+  "codeLens.enable": true,
+  "diagnostic.displayByAle": true,
+  "suggest.noselect": false,
+  "suggest.preferCompleteThanJumpPlaceholder": true,
+  "suggest.timeout": 5000
 }

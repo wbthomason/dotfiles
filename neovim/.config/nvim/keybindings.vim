@@ -33,7 +33,7 @@ let g:lmaps.b = {'name': 'Buffers'}
 nnoremap <silent> <leader>bb :Buffers<cr>
 nnoremap <silent> <leader>w :w<cr>
 let g:lmaps.w = ['w', 'Write buffer']
-nnoremap <silent> <leader>d :Sayonara<cr>
+nnoremap <silent><nowait> <leader>d :Sayonara<cr>
 let g:lmaps.d = ['Sayonara', 'Close buffer and window']
 nnoremap <silent> <leader>k :Sayonara!<cr>
 let g:lmaps.k = ['Sayonara!', 'Close buffer, not window']

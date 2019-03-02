@@ -129,6 +129,7 @@ Plug 'neoclide/coc-sources'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neoinclude.vim'
+Plug 'neoclide/coc-jedi'
 
 " Snippets
 Plug 'Shougo/neosnippet.vim'
