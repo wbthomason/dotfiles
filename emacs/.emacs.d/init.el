@@ -376,6 +376,13 @@
   (evil-goggles-mode)
   (evil-goggles-use-diff-refine-faces))
 
+(use-package evil-textobj-anyblock
+  :ensure t
+  :after evil
+  :config
+  (define-key evil-inner-text-objects-map "b" 'evil-textobj-anyblock-inner-block)
+  (define-key evil-outer-text-objects-map "b" 'evil-textobj-anyblock-a-block))
+
 ;;; Tmux navigator
 (use-package navigate)
 (defun tmux-nav-left () (interactive) (tmux-navigate "left"))
@@ -479,6 +486,8 @@
      (if (file-remote-p default-directory)
          " Pr"
        (format " Pr[%s]" (projectile-project-name)))))
+  (push "Cargo.toml" projectile-project-root-files)
+  (push "Cargo.toml" projectile-project-root-files-bottom-up)
   (push "meson.build" projectile-project-root-files)
   (push "meson.build" projectile-project-root-files-bottom-up)
   (push "latexmkrc" projectile-project-root-files)
@@ -1305,6 +1314,7 @@
  py-indent-offset 2
  lua-indent-level 2
  python-indent-offset 2
+ rust-indent-offset 2
  tab-width 2
  c-basic-offset 2
  cperl-indent-level 2
@@ -1474,7 +1484,7 @@
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (base16-theme gitconfig-mode gitignore-templates gitignore-mode white-theme eziam-theme eink-theme twilight-bright-theme flx fira-code-mode prescient lsp-ui kaolin-themes kaolin-theme paradox yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
+    (evil-textobj-anyblock base16-theme gitconfig-mode gitignore-templates gitignore-mode white-theme eziam-theme eink-theme twilight-bright-theme flx fira-code-mode prescient lsp-ui kaolin-themes kaolin-theme paradox yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(projectile-completion-system (quote ivy)))
