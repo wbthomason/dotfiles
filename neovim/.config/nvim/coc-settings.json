@@ -53,5 +53,7 @@
   "diagnostic.displayByAle": true,
   "suggest.noselect": false,
   "suggest.preferCompleteThanJumpPlaceholder": true,
-  "suggest.timeout": 5000
+  "suggest.timeout": 5000,
+  "rust-client.channel": "stable",
+  "rust.trace.server": "verbose",
 }
