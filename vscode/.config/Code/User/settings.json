@@ -234,5 +234,5 @@
   "cpplint.lineLength": 100,
   "breadcrumbs.enabled": true,
   "editor.cursorBlinking": "solid",
-  "ccls.codeLens.localVariables": true
-}
+  "ccls.codeLens.localVariables": true,
+  "git.detectSubmodules": false,
