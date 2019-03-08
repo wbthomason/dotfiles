@@ -27,7 +27,7 @@
         "interpreter": {
           "properties": {
             "InterpreterPath": "/usr/bin/python3",
-            "DatabasePath": "/home/wil/projects/python-language-server/output/bin/Debug",
+            "DatabasePath": "/home/wil/projects/python-language-server/output/bin/Release",
             "Version": "3.7"
           }
         },
