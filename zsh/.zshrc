@@ -30,9 +30,6 @@ export PATH=$PATH:/home/wil/.local/bin:/home/wil/.cargo/bin:/home/wil/.luarocks/
 # Editor setting
 export EDITOR=vim
 
-# Rust
-export RUST_SRC_PATH=/usr/src/rust/src
-
 # ROS
 source /opt/ros/melodic/setup.zsh
 export ROS_HOSTNAME=localhost
