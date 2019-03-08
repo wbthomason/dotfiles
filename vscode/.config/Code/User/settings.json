@@ -234,5 +234,14 @@
   "cpplint.lineLength": 100,
   "breadcrumbs.enabled": true,
   "editor.cursorBlinking": "solid",
-  "ccls.codeLens.localVariables": true
+  "ccls.codeLens.localVariables": true,
+  "rust.all_features": true,
+  "rust.rustup": {
+    "toolchain": "stable-x86_64-unknown-linux-gnu",
+    "nightlyToolchain": "nightly-x86_64-unknown-linux-gnu"
+  },
+  "rust.mode": "rls",
+  "rust.rls": {
+    "useRustfmt": true
+  }
 }
