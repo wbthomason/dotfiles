@@ -51,9 +51,6 @@ bindsym $mod+Shift+q kill
 # rofi
 bindsym $mod+d exec "rofi -combi-modi window,drun,run,ssh -mesg -show combi -modi combi"
 
-# runner
-bindsym $mod+Shift+d exec --no-startup-id xfce4-popup-whiskermenu
-
 # suspending
 bindsym $mod+b exec systemctl suspend
 # start dmenu (a program launcher)
