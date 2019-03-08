@@ -235,6 +235,7 @@
   "breadcrumbs.enabled": true,
   "editor.cursorBlinking": "solid",
   "ccls.codeLens.localVariables": true,
+  "git.detectSubmodules": false,
   "rust.all_features": true,
   "rust.rustup": {
     "toolchain": "stable-x86_64-unknown-linux-gnu",
