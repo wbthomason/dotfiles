@@ -86,6 +86,9 @@ let g:vimtex_quickfix_method = 'pplatex'
 let g:vimtex_quickfix_mode = 0
 let g:matchup_override_vimtex = 1
 
+" Vim-qf
+let g:qf_auto_open_quickfix = 0
+
 " Rust
 let g:rust_recommended_style = 0
 
