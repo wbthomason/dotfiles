@@ -1,6 +1,6 @@
-" inoremap <buffer> <silent> " "<c-r>=UltiSnips#Anon("\\`\\`$1''$0", '"', '', 'i')<cr>
+inoremap <buffer> <silent> " <c-r>=neosnippet#anonymous("\\`\\`${1}''${0}")<cr>
 setlocal spell
-silent :ALEDisableBuffer
+" silent :ALEDisableBuffer
 " call ncm2#register_source({
 "         \ 'name': 'vimtex',
 "         \ 'priority': 8,
