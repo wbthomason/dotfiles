@@ -15,7 +15,7 @@ call plug#begin('~/.local/share/nvim/plugs')
 Plug 'vim-scripts/LargeFile'
 
 " Split resizing
-Plug 'roman/golden-ratio'
+" Plug 'roman/golden-ratio'
 
 " QuickFix help
 Plug 'romainl/vim-qf'
@@ -52,7 +52,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Color visualization
-Plug 'lilydjwg/colorizer'
+" Plug 'lilydjwg/colorizer'
 
 " Indentation tracking
 Plug 'yggdroot/indentLine'
@@ -66,8 +66,8 @@ Plug 'luochen1990/rainbow'
 " Plug 'itchyny/vim-parenmatch'
 " Plug 'djdt/vim-matchparenalways'
 Plug 'andymass/vim-matchup'
-Plug 'rstacruz/vim-closer' " - Causes problems with ncm2-ultisnips default CR binding
-Plug 'tpope/vim-endwise' " - Causes problems with ncm2-ultisnips default CR binding
+Plug 'rstacruz/vim-closer'
+Plug 'tpope/vim-endwise'
 Plug 'machakann/vim-swap'
 
 " Yank highlighting
@@ -84,8 +84,8 @@ Plug 'wellle/targets.vim'
 Plug 'ludovicchabant/vim-gutentags'
 
 " FZF
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim' 
+" Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
 Plug 'justinhoward/fzf-neoyank'
 Plug 'Shougo/neoyank.vim'
@@ -98,21 +98,18 @@ Plug 'Shougo/neoyank.vim'
 Plug 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
 
 " Project Management/Sessions
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-obsession', {'on': 'Prosession'}
 Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 
 " REPL
-Plug 'Vigemus/iron.nvim'
+" Plug 'Vigemus/iron.nvim'
 
 " Jupyter
 " Plug 'vyzyv/vimpyter'
 
 " Undo tree
 Plug 'simnalamburt/vim-mundo', {'on': ['MundoShow', 'MundoToggle']}
-
-" Notes/Wiki
-Plug 'fmoralesc/vim-pad', {'branch': 'devel'}
 
 " File explorer
 Plug 'cocopon/vaffle.vim'
@@ -139,7 +136,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'w0rp/ale'
 
 " Async building & commands
-Plug 'wbthomason/buildit.nvim'
+" Plug 'wbthomason/buildit.nvim'
 Plug 'tpope/vim-dispatch'
 Plug 'radenling/vim-dispatch-neovim'
 
