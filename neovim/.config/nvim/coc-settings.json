@@ -55,4 +55,5 @@
   "suggest.preferCompleteThanJumpPlaceholder": true,
   "suggest.timeout": 5000,
   "rust-client.channel": "stable",
+  "coc.source.tag.enable": false,
 }

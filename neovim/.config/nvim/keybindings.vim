@@ -178,15 +178,15 @@ function! s:show_documentation()
 endfunction
 let g:lmaps.l = {'name': 'LSP'}
 
-nmap <leader>ln <Plug>(coc-rename)
-vmap <leader>lf  <Plug>(coc-format-selected)
-nmap <leader>lf  :call CocAction('format')<cr>
-vmap <leader>la  <Plug>(coc-codeaction-selected)
-nmap <leader>la  <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>ln <Plug>(coc-rename)
+vmap <silent> <leader>lf  <Plug>(coc-format-selected)
+nmap <silent> <leader>lf  :call CocAction('format')<cr>
+vmap <silent> <leader>la  <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>la  <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <silent> <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>lqf  <Plug>(coc-fix-current)
+nmap <silent> <leader>lqf  <Plug>(coc-fix-current)
 
 " Formatting Bindings
 nnoremap <silent> <leader>bf :Neoformat<CR>
@@ -194,10 +194,10 @@ let g:lmaps.b.f = ['Neoformat', 'Format buffer with Neoformat']
 
 " Easy-Align bindings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+xmap <silent> ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+nmap <silent> ga <Plug>(EasyAlign)
 
 " Schlepp bindings
 vmap <up>    <Plug>SchleppUp
