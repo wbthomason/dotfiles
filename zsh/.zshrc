@@ -91,3 +91,6 @@ add-zsh-hook precmd _prompt_purs_precmd
 
 # Auto-cd
 setopt auto_cd
+
+# Vi mode
+bindkey -v
