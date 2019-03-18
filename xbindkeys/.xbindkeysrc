@@ -21,3 +21,12 @@
 
 "playerctl next"
   XF86AudioNext
+
+"playerctl play-pause"
+ Control+Shift + space 
+
+"playerctl previous"
+  Control+Shift + Left
+
+"playerctl next"
+  Control+Shift + Right
