@@ -215,8 +215,8 @@ let g:neoformat_cpp_clangformat = {
 
 let g:neoformat_basic_format_trim = 1
 
-" IncSearch
-let g:incsearch#auto_nohlsearch = 1
+" Traces
+let g:traces_num_range_preview = 1
 
 " Clever-F
 let g:clever_f_fix_key_direction = 1

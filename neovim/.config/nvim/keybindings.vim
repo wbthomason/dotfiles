@@ -1,5 +1,8 @@
 " Keybindings
 
+" Get rid of the annoying F1 binding
+map <F1> <nop>
+
 " Set the leader keys
 let g:mapleader = "\<space>"
 let g:maplocalleader = ','
@@ -43,8 +46,7 @@ nnoremap <silent> <leader>s :bn<cr>
 let g:lmaps.s = ['bn', 'Go to next buffer']
 nnoremap <silent> <leader>bl :b#<cr>
 let g:lmaps.b.l = ['b#', 'Go to last used buffer']
-" nnoremap <silent> <tab> :<c-u>Denite buffer `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'` file_mru<cr>
-nnoremap <silent> <tab> :FindIt<cr>
+nnoremap <silent>  - :FindIt<cr>
 
 " Configuration bindings
 let g:lmaps.c = {'name': 'Configuration'}

@@ -70,6 +70,10 @@ Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-endwise'
 Plug 'machakann/vim-swap'
 
+" Search
+Plug 'markonm/traces.vim'
+Plug 'romainl/vim-cool'
+
 " Yank highlighting
 Plug 'machakann/vim-highlightedyank'
 
