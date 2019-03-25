@@ -51,9 +51,6 @@ Plug 'justinmk/vim-sneak'
 " Tmux and vim split navigation
 Plug 'christoomey/vim-tmux-navigator'
 
-" Color visualization
-" Plug 'lilydjwg/colorizer'
-
 " Indentation tracking
 Plug 'yggdroot/indentLine'
 
@@ -71,7 +68,6 @@ Plug 'tpope/vim-endwise'
 Plug 'machakann/vim-swap'
 
 " Search
-Plug 'markonm/traces.vim'
 Plug 'romainl/vim-cool'
 
 " Yank highlighting
@@ -85,7 +81,7 @@ Plug 'sbdchd/neoformat', {'on': 'Neoformat'}
 Plug 'wellle/targets.vim'
 
 " Tags
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 
 " FZF
 " Plug 'junegunn/fzf'
@@ -93,10 +89,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
 Plug 'justinhoward/fzf-neoyank'
 Plug 'Shougo/neoyank.vim'
-
-" Writing
-" Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
-" Plug 'junegunn/limelight.vim', {'on': 'Limelight!!'}
 
 " Special symbols
 Plug 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
@@ -121,7 +113,7 @@ Plug 'cocopon/vaffle.vim'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
-Plug 'jreybert/vimagit'
+Plug 'jreybert/vimagit', {'on': 'Magit'}
 
 " Completion
 Plug 'Shougo/echodoc.vim'
@@ -130,7 +122,6 @@ Plug 'neoclide/coc-sources'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neoinclude.vim'
-Plug 'neoclide/coc-jedi'
 
 " Snippets
 Plug 'Shougo/neosnippet.vim'

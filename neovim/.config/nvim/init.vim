@@ -215,9 +215,6 @@ let g:neoformat_cpp_clangformat = {
 
 let g:neoformat_basic_format_trim = 1
 
-" Traces
-let g:traces_num_range_preview = 1
-
 " Clever-F
 let g:clever_f_fix_key_direction = 1
 
@@ -313,16 +310,7 @@ call ConfigInc('plugins.vim')
 
 " Colorscheme
 set termguicolors
-" set background=dark
-" let &t_Cs = "\e[4:3m"
-" let &t_Ce = "\e[4:0m"
-let g:sierra_Sunset = 1
-" colorscheme sierra
-" colorscheme nazgul
-" set notermguicolors
-" colorscheme monotonic-light
-
-set background=light
+set background=dark
 " colorscheme base16-gruvbox-dark-soft
 colorscheme nazgul
 
