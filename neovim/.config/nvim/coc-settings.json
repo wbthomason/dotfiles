@@ -15,39 +15,6 @@
         "cacheDirectory": ".ccls-cache"
       }
     },
-    "MPLS": {
-      "command": "dotnet",
-      "args": [
-        "exec",
-        "/home/wil/projects/python-language-server/output/bin/Debug/Microsoft.Python.LanguageServer.dll"
-      ],
-      "filetypes": ["python"],
-      "trace.server": "verbose",
-      "initializationOptions": {
-        "interpreter": {
-          "properties": {
-            "InterpreterPath": "/usr/bin/python3",
-            "DatabasePath": "/home/wil/projects/python-language-server/output/bin/Release",
-            "Version": "3.7"
-          }
-        },
-        "displayOptions": {
-          "preferredFormat": "markdown",
-          "trimDocumentationLines": false,
-          "maxDocumentationLineLength": 0,
-          "trimDocumentationText": false,
-          "maxDocumentationTextLength": 0
-        },
-        "searchPaths": [
-          "/opt/ros/melodic/lib/python3.7/site-packages",
-          "/usr/local/bin"
-        ],
-        "testEnvironment": false,
-        "analysisUpdates": true,
-        "traceLogging": true,
-        "asyncStartup": true
-      }
-    }
   },
   "codeLens.enable": true,
   "diagnostic.displayByAle": true,
