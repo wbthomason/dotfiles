@@ -2,11 +2,12 @@
 export ZSH_PLUGINS=/usr/share/zsh/plugins/
 
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
-source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 source ${ZSH_PLUGINS}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.zsh
+# source ~/zsh-prompt-benchmark.plugin.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
@@ -35,11 +36,6 @@ source /opt/ros/melodic/setup.zsh
 export ROS_HOSTNAME=localhost
 export ROS_MASTER_URI=http://localhost:11311
 export ROS_PYTHON_VERSION=3
-
-# FZF
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 
 # Hub
 eval "$(hub alias -s)"
@@ -94,3 +90,8 @@ setopt auto_cd
 
 # Vi mode
 bindkey -v
+
+# FZF
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
