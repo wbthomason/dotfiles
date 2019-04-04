@@ -36,15 +36,11 @@ augroup lsp_aucommands
   " au CursorHold * call LanguageClient#isAlive(function('LspMaybeHighlight'))
   au CursorHold * silent call CocActionAsync('highlight')
   au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  au User CocDiagnosticChange call lightline#update_once()
 augroup END
 
 augroup extra_filetype_aucommands
   au!
   au BufRead,BufNewFile *.launch set filetype=roslaunch
   au BufNewFile,BufFilePre,BufRead *.scrbl set filetype=scribble
-augroup END
-
-augroup ncm_aucommands
-  au!
-  " au BufEnter * call ncm2#enable_for_buffer()
 augroup END
