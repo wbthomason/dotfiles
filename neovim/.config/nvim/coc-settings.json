@@ -15,6 +15,11 @@
         "cacheDirectory": ".ccls-cache"
       }
     },
+    "lua-lsp": {
+      "command": "java",
+      "args": ["-cp", "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS.jar", "com.tang.vscode.MainKt"],
+      "filetypes": ["lua"]
+    }
   },
   "codeLens.enable": true,
   "diagnostic.displayByAle": true,
