@@ -113,7 +113,7 @@ Plug 'cocopon/vaffle.vim'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
-Plug 'jreybert/vimagit', {'on': 'Magit'}
+Plug 'jreybert/vimagit', {'on': ['Magit', 'MagitOnly']}
 
 " Completion
 Plug 'Shougo/echodoc.vim'

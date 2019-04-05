@@ -262,14 +262,16 @@ let g:lightline.enable = {'tabline': 0}
 let g:lightline.active = {
       \ 'left': [ [ 'mode', 'paste' ],
       \           [ 'vcstatus', 'filename', 'modified', 'readonly' ] ],
-      \ 'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+      \ 'right': [ [ 'cocstatus' ],
+      \            [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
       \            [ 'gutentags'],
       \            [ 'percent' ],
       \            [ 'filetype' ] ]}
 
 let g:lightline.component_function = {
       \ 'vcstatus': 'VCStatus',
-      \ 'filetype': 'IconFileType'}
+      \ 'filetype': 'IconFileType',
+      \ 'cocstatus': 'coc#status'}
 
 let g:lightline.component = {
       \ 'lineinfo': ' %3l:%-2v',
@@ -434,25 +436,14 @@ function! Handle_cr_coc() abort
   return pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endfunction
 
-" NCM2
-" let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
-" " let g:ncm2#complete_delay = 500
-" " let g:ncm2#popup_delay = 100
-" " let g:ncm2#popup_limit = 10
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
 let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-" inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <c-s> <Plug>(neosnippet_expand_target)
-" inoremap <silent> <expr> <c-s> ncm2_neosnippet#expand_or("\<CR>", 'n')
-" inoremap <c-q> <c-r>=ncm2#force_trigger()<cr>
-" call ncm2#override_source('tagprefix', {'priority': 2})
-" call ncm2#override_source('pyclang', {'priority': 8})
+let g:coc_status_error_sign = ' 🗙 '
+let g:coc_status_warning_sign = ' ⚠ '
 
 " General settings
 call ConfigInc('settings.vim')
@@ -530,3 +521,6 @@ hi! link CocHighlightWrite GreenHover
 hi! link CocErrorSign ALEErrorSign
 hi! link CocWarningSign ALEWarningSign
 hi! link CocInfoSign ALEInfoSign
+
+hi default link CocErrorHighlight ALEError
+hi default link CocWarningHighlight ALEWarning
