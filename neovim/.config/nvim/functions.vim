@@ -24,7 +24,7 @@ endfunction
 
 function! VCStatus() abort
   let l:mark = ''
-  let l:branch = fugitive#head()
+  let l:branch = gitbranch#name()
   let l:changes = sy#repo#get_stats()
   let l:status = l:changes[0] > 0 ? '+' . l:changes[0] : ''
   let l:prefix = l:changes[0] > 0 ? ' ' : ''

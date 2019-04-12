@@ -1,8 +1,8 @@
-" Packin installation
+" Plugin installation
 if empty(glob('~/.local/share/nvim/site/autoload/plugpac.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plugpac.vim --create-dirs
 		\ https://raw.githubusercontent.com/bennyyip/plugpac.vim/master/plugpac.vim
-  au VimEnter * PackInstall --sync
+  au VimEnter * PackInstall
 source ~/.config/nvim/init.vim
 endif
 
@@ -43,7 +43,7 @@ Pack 'itchyny/lightline.vim'
 Pack 'maximbaz/lightline-ale'
 
 " System utilities
-Pack 'tpope/vim-eunuch'
+" Pack 'tpope/vim-eunuch'
 
 " Movement
 Pack 'chaoren/vim-wordmotion'
@@ -90,7 +90,7 @@ Pack 'wellle/targets.vim'
 " Pack 'junegunn/fzf'
 Pack 'junegunn/fzf.vim'
 Pack 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
-Pack 'justinhoward/fzf-neoyank'
+Pack 'justinhoward/fzf-neoyank', {'on': 'FZFNeoyank'}
 Pack 'Shougo/neoyank.vim'
 
 " Special symbols
@@ -115,8 +115,9 @@ Pack 'cocopon/vaffle.vim'
 
 " Git
 Pack 'mhinz/vim-signify'
-Pack 'tpope/vim-fugitive'
+Pack 'tpope/vim-fugitive', {'on': ['Gstatus', 'Gpush', 'Gpull', 'Gdiff']}
 Pack 'jreybert/vimagit', {'on': ['Magit', 'MagitOnly']}
+Pack 'itchyny/vim-gitbranch'
 
 " Completion
 Pack 'Shougo/echodoc.vim'
@@ -145,7 +146,7 @@ Pack 'sheerun/vim-polyglot'
 Pack 'tpope/vim-apathy'
 
 " C/C++/Python debugging
-Pack 'sakhnik/nvim-gdb', {'do': {-> system('./install.sh')}, 'for': ['c', 'cpp', 'python']}
+Pack 'sakhnik/nvim-gdb', {'do': {-> system('./install.sh')}, 'on': ['GdbStart', 'GdbStartLLDB', 'GdbStartPDB']}
 
 " Clojure/Lisps/Scheme
 Pack 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
@@ -187,7 +188,7 @@ Pack 'PontusPersson/pddl.vim'
 Pack 'jvoorhis/coq.vim'
 
 " Pretty pretty symbols
-Pack 'calebsmith/vim-lambdify'
+" Pack 'calebsmith/vim-lambdify'
 
 " Profiling
 Pack 'tweekmonster/startuptime.vim'
