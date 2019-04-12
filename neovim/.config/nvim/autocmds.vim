@@ -12,10 +12,10 @@ augroup main_aucommands
   "       \ exe "normal! g`\"" |
   "       \ endif
   au BufWinEnter * checktime
-  au VimEnter *
-        \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-        \|   PlugInstall --sync | q
-        \| endif
+  " au VimEnter *
+  "       \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  "       \|   PlugInstall --sync | q
+  "       \| endif
 augroup END
 
 function! LspMaybeHover(is_running) abort

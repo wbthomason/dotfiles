@@ -175,9 +175,8 @@ let g:startify_list_order = [
       \ ['Bookmarks'], 'bookmarks',
       \ ['Sessions'], 'sessions']
 let g:startify_commands = [
-      \ {'u': ['Update plugins', ':PlugUpdate']},
-      \ {'g': ['Upgrade Plug', ':PlugUpgrade']},
-      \ {'c': ['Clean plugins', ':PlugClean']},
+      \ {'u': ['Update plugins', ':PackUpdate']},
+      \ {'c': ['Clean plugins', ':PackClean']},
       \ {'t': ['Time startup', ':StartupTime']},
       \ {'s': ['Start Prosession', ':Prosession .']}]
 let g:startify_session_persistence = 1
@@ -409,7 +408,7 @@ let g:ale_virtualtext_cursor = 1
 " let g:LanguageClient_completionPreferTextEdit = 1
 
 " Which-key
-
+packadd vim-which-key
 call which_key#register('<Space>', 'g:lmaps')
 call which_key#register(',', 'g:llmaps')
 

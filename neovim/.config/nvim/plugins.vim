@@ -1,196 +1,199 @@
-" Plugin installation
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  au VimEnter * PlugInstall --sync
+" Packin installation
+if empty(glob('~/.local/share/nvim/site/autoload/plugpac.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plugpac.vim --create-dirs
+		\ https://raw.githubusercontent.com/bennyyip/plugpac.vim/master/plugpac.vim
+  au VimEnter * PackInstall --sync
 source ~/.config/nvim/init.vim
 endif
 
-call plug#begin('~/.local/share/nvim/plugs')
+call plugpac#begin()
+
+" minpac
+Pack 'k-takata/minpac', {'type': 'opt'}
 
 " Moonscript
-" Plug 'svermeulen/nvim-moonmaker'
+" Pack 'svermeulen/nvim-moonmaker'
 
 " Tweaks
-Plug 'vim-scripts/LargeFile'
+Pack 'vim-scripts/LargeFile'
 
 " Split resizing
-" Plug 'roman/golden-ratio'
+" Pack 'roman/golden-ratio'
 
 " QuickFix help
-Plug 'romainl/vim-qf'
+Pack 'romainl/vim-qf'
 
 " Mappings
-Plug 'liuchengxu/vim-which-key'
+Pack 'liuchengxu/vim-which-key'
 
 " Registers
-Plug 'junegunn/vim-peekaboo'
+Pack 'junegunn/vim-peekaboo'
 
 " Marks
-Plug 'kshenoy/vim-signature'
+Pack 'kshenoy/vim-signature'
 
 " Buffer management
-Plug 'mhinz/vim-sayonara', {'on': 'Sayonara'}
+Pack 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 
 " Startup screen
-Plug 'mhinz/vim-startify'
+Pack 'mhinz/vim-startify'
 
 " Status line
-Plug 'itchyny/lightline.vim'
-Plug 'maximbaz/lightline-ale'
+Pack 'itchyny/lightline.vim'
+Pack 'maximbaz/lightline-ale'
 
 " System utilities
-Plug 'tpope/vim-eunuch'
+Pack 'tpope/vim-eunuch'
 
 " Movement
-Plug 'chaoren/vim-wordmotion'
-Plug 'tpope/vim-repeat'
-Plug 'justinmk/vim-sneak'
-" Plug 'tpope/vim-unimpaired'
+Pack 'chaoren/vim-wordmotion'
+Pack 'tpope/vim-repeat'
+Pack 'justinmk/vim-sneak'
+" Pack 'tpope/vim-unimpaired'
 
 " Tmux and vim split navigation
-Plug 'christoomey/vim-tmux-navigator'
+Pack 'christoomey/vim-tmux-navigator'
 
 " Indentation tracking
-Plug 'yggdroot/indentLine'
+Pack 'yggdroot/indentLine'
 
 " Comments
-Plug 'tomtom/tcomment_vim'
+Pack 'tomtom/tcomment_vim'
 
 " Wrapping/delimiters
-Plug 'machakann/vim-sandwich'
-Plug 'luochen1990/rainbow'
-" Plug 'itchyny/vim-parenmatch'
-" Plug 'djdt/vim-matchparenalways'
-Plug 'andymass/vim-matchup'
-Plug 'rstacruz/vim-closer'
-Plug 'tpope/vim-endwise'
-Plug 'machakann/vim-swap'
+Pack 'machakann/vim-sandwich'
+Pack 'luochen1990/rainbow'
+" Pack 'itchyny/vim-parenmatch'
+" Pack 'djdt/vim-matchparenalways'
+Pack 'andymass/vim-matchup'
+Pack 'rstacruz/vim-closer'
+Pack 'tpope/vim-endwise'
+Pack 'machakann/vim-swap'
 
 " Search
-Plug 'romainl/vim-cool'
+Pack 'romainl/vim-cool'
 
 " Yank highlighting
-Plug 'machakann/vim-highlightedyank'
+Pack 'machakann/vim-highlightedyank'
 
 " Prettification
-Plug 'junegunn/vim-easy-align'
-Plug 'sbdchd/neoformat', {'on': 'Neoformat'}
+Pack 'junegunn/vim-easy-align'
+Pack 'sbdchd/neoformat', {'on': 'Neoformat'}
 
 " Text objects
-Plug 'wellle/targets.vim'
+Pack 'wellle/targets.vim'
 
 " Tags
-" Plug 'ludovicchabant/vim-gutentags'
+" Pack 'ludovicchabant/vim-gutentags'
 
 " FZF
-" Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
-Plug 'justinhoward/fzf-neoyank'
-Plug 'Shougo/neoyank.vim'
+" Pack 'junegunn/fzf'
+Pack 'junegunn/fzf.vim'
+Pack 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
+Pack 'justinhoward/fzf-neoyank'
+Pack 'Shougo/neoyank.vim'
 
 " Special symbols
-Plug 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
+Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
 
 " Project Management/Sessions
-" Plug 'airblade/vim-rooter'
-Plug 'tpope/vim-obsession', {'on': 'Prosession'}
-Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
+" Pack 'airblade/vim-rooter'
+Pack 'tpope/vim-obsession', {'on': 'Prosession'}
+Pack 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 
 " REPL
-" Plug 'Vigemus/iron.nvim'
+" Pack 'Vigemus/iron.nvim'
 
 " Jupyter
-" Plug 'vyzyv/vimpyter'
+" Pack 'vyzyv/vimpyter'
 
 " Undo tree
-Plug 'simnalamburt/vim-mundo', {'on': ['MundoShow', 'MundoToggle']}
+Pack 'simnalamburt/vim-mundo', {'on': ['MundoShow', 'MundoToggle']}
 
 " File explorer
-Plug 'cocopon/vaffle.vim'
+Pack 'cocopon/vaffle.vim'
 
 " Git
-Plug 'mhinz/vim-signify'
-Plug 'tpope/vim-fugitive'
-Plug 'jreybert/vimagit', {'on': ['Magit', 'MagitOnly']}
+Pack 'mhinz/vim-signify'
+Pack 'tpope/vim-fugitive'
+Pack 'jreybert/vimagit', {'on': ['Magit', 'MagitOnly']}
 
 " Completion
-Plug 'Shougo/echodoc.vim'
-Plug 'jsfaint/coc-neoinclude'
-Plug 'neoclide/coc-sources'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install'}
-Plug 'Shougo/neco-syntax'
-Plug 'Shougo/neoinclude.vim'
+Pack 'Shougo/echodoc.vim'
+Pack 'jsfaint/coc-neoinclude'
+Pack 'neoclide/coc-sources'
+Pack 'neoclide/coc.nvim', {'do': {-> system('yarn install')}}
+Pack 'Shougo/neco-syntax'
+Pack 'Shougo/neoinclude.vim'
 
 " Snippets
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+Pack 'Shougo/neosnippet.vim'
+Pack 'Shougo/neosnippet-snippets'
 
 " Checkers
-Plug 'w0rp/ale'
+Pack 'w0rp/ale'
 
 " Async building & commands
-" Plug 'wbthomason/buildit.nvim'
-Plug 'tpope/vim-dispatch'
-Plug 'radenling/vim-dispatch-neovim'
+" Pack 'wbthomason/buildit.nvim'
+Pack 'tpope/vim-dispatch'
+Pack 'radenling/vim-dispatch-neovim'
 
 " Language multipack
-Plug 'sheerun/vim-polyglot'
+Pack 'sheerun/vim-polyglot'
 
 " Path changing
-Plug 'tpope/vim-apathy'
+Pack 'tpope/vim-apathy'
 
 " C/C++/Python debugging
-Plug 'sakhnik/nvim-gdb', {'do': './install.sh', 'for': ['c', 'cpp', 'python']}
+Pack 'sakhnik/nvim-gdb', {'do': {-> system('./install.sh')}, 'for': ['c', 'cpp', 'python']}
 
 " Clojure/Lisps/Scheme
-Plug 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
-Plug 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
-Plug 'vim-scripts/scribble.vim'
-Plug 'kovisoft/slimv', {'for': ['clojure', 'scheme', 'racket']}
-Plug 'l04m33/vlime', {'rtp': 'vim/', 'for': 'lisp'}
+Pack 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
+Pack 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
+Pack 'vim-scripts/scribble.vim'
+Pack 'kovisoft/slimv', {'for': ['clojure', 'scheme', 'racket']}
+Pack 'l04m33/vlime', {'rtp': 'vim/', 'for': 'lisp'}
 
 " Pandoc/Markdown
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-pandoc-after'
+Pack 'vim-pandoc/vim-pandoc'
+Pack 'vim-pandoc/vim-pandoc-syntax'
+Pack 'vim-pandoc/vim-pandoc-after'
 
 " Org-mode
-Plug 'vim-scripts/utl.vim', {'for': 'org'}
-Plug 'itchyny/calendar.vim', {'for': 'org'}
-Plug 'tpope/vim-speeddating', {'for': 'org'}
-Plug 'chrisbra/NrrwRgn', {'for': 'org'}
-Plug 'inkarkat/vim-SyntaxRange', {'for': 'org'}
-Plug 'jceb/vim-orgmode'
-Plug 'wbthomason/capture.vim'
-" Plug '/home/wil/projects/personal/orgmode.nvim'
+Pack 'vim-scripts/utl.vim', {'for': 'org'}
+Pack 'itchyny/calendar.vim', {'for': 'org'}
+Pack 'tpope/vim-speeddating', {'for': 'org'}
+Pack 'chrisbra/NrrwRgn', {'for': 'org'}
+Pack 'inkarkat/vim-SyntaxRange', {'for': 'org'}
+Pack 'jceb/vim-orgmode'
+Pack 'wbthomason/capture.vim'
+" Pack '/home/wil/projects/personal/orgmode.nvim'
 
 " Vimscript
-Plug 'Shougo/neco-vim'
-Plug 'neoclide/coc-neco'
+Pack 'Shougo/neco-vim'
+Pack 'neoclide/coc-neco'
 
 " LaTeX
-Plug 'lervag/vimtex'
+Pack 'lervag/vimtex'
 
 " Meson
-Plug 'stfl/meson.vim'
-Plug 'igankevich/mesonic'
+Pack 'stfl/meson.vim'
+Pack 'igankevich/mesonic'
 
 " PDDL
-Plug 'PontusPersson/pddl.vim'
+Pack 'PontusPersson/pddl.vim'
 
 " Coq
-Plug 'jvoorhis/coq.vim'
+Pack 'jvoorhis/coq.vim'
 
 " Pretty pretty symbols
-Plug 'calebsmith/vim-lambdify'
+Pack 'calebsmith/vim-lambdify'
 
 " Profiling
-Plug 'tweekmonster/startuptime.vim'
+Pack 'tweekmonster/startuptime.vim'
 
 " Color scheme
-Plug 'wbthomason/vim-nazgul'
-" Plug 'chriskempson/base16-vim'
+Pack 'wbthomason/vim-nazgul'
+" Pack 'chriskempson/base16-vim'
 
-call plug#end()
+call plugpac#end()
