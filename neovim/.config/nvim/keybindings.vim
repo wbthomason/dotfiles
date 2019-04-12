@@ -46,7 +46,8 @@ nnoremap <silent> <leader>s :bn<cr>
 let g:lmaps.s = ['bn', 'Go to next buffer']
 nnoremap <silent> <leader>bl :b#<cr>
 let g:lmaps.b.l = ['b#', 'Go to last used buffer']
-nnoremap <silent>  - :FindIt<cr>
+nnoremap <silent>  - :Buffers<cr>
+nnoremap <silent> _ :FindIt<cr>
 
 " Configuration bindings
 let g:lmaps.c = {'name': 'Configuration'}
