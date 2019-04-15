@@ -123,7 +123,7 @@ Pack 'itchyny/vim-gitbranch'
 Pack 'Shougo/echodoc.vim'
 Pack 'jsfaint/coc-neoinclude'
 Pack 'neoclide/coc-sources'
-Pack 'neoclide/coc.nvim', {'do': {-> system('yarn install')}}
+Pack 'neoclide/coc.nvim', {'do': {-> system('yarn install --frozen-lockfile')}}
 Pack 'Shougo/neco-syntax'
 Pack 'Shougo/neoinclude.vim'
 
