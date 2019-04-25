@@ -59,5 +59,6 @@
   },
   "diagnostic.errorSign": "🗙",
   "diagnostic.warningSign": "➤",
-  "python.jediEnabled": false
+  "python.jediEnabled": false,
+  "python.formatting.provider": "yapf"
 }
