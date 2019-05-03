@@ -29,7 +29,6 @@
   "suggest.preferCompleteThanJumpPlaceholder": true,
   "suggest.timeout": 5000,
   "rust-client.channel": "stable",
-  "coc.source.tag.enable": false,
   "suggest.completionItemKindLabels": {
     "function": "\uf794",
     "method": "\uf6a6",
