@@ -11,6 +11,11 @@ call plugpac#begin()
 " minpac
 Pack 'k-takata/minpac', {'type': 'opt'}
 
+" Async building & commands
+" Pack 'wbthomason/buildit.nvim'
+Pack 'tpope/vim-dispatch'
+Pack 'radenling/vim-dispatch-neovim'
+
 " Moonscript
 " Pack 'svermeulen/nvim-moonmaker'
 
@@ -134,11 +139,6 @@ Pack 'Shougo/neosnippet-snippets'
 " Checkers
 Pack 'w0rp/ale'
 
-" Async building & commands
-" Pack 'wbthomason/buildit.nvim'
-Pack 'tpope/vim-dispatch'
-Pack 'radenling/vim-dispatch-neovim'
-
 " Language multipack
 Pack 'sheerun/vim-polyglot'
 
@@ -195,6 +195,8 @@ Pack 'tweekmonster/startuptime.vim'
 
 " Color scheme
 Pack 'wbthomason/vim-nazgul'
+Pack 'logico-software/typewriter'
+Pack 'bruth/vim-newsprint-theme'
 " Pack 'chriskempson/base16-vim'
 
 call plugpac#end()

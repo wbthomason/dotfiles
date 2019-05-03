@@ -60,5 +60,6 @@
   "diagnostic.errorSign": "🗙",
   "diagnostic.warningSign": "➤",
   "python.jediEnabled": false,
-  "python.formatting.provider": "yapf"
+  "python.formatting.provider": "yapf",
+  "diagnostic.virtualText": true
 }
