@@ -1,0 +1,110 @@
+menupos = 0 40
+
+iconsize = 25
+
+item = Run
+cmd = dboxrun
+icon = /usr/share/icons/Adwaita/scalable/actions/system-run-symbolic.svg
+
+item = Applications
+cmd = morc_menu
+icon = /usr/share/icons/Adwaita/scalable/actions/open-menu-symbolic.svg
+
+item = Find
+cmd = finder
+icon = /usr/share/icons/Adwaita/scalable/apps/preferences-system-search-symbolic.svg
+
+item = Terminal
+cmd = default-terminal
+icon = /usr/share/icons/Adwaita/scalable/apps/utilities-terminal-symbolic.svg
+
+item = Browser
+cmd = default-browser
+icon = /usr/share/icons/Adwaita/scalable/apps/web-browser-symbolic.svg
+
+item = Files
+cmd = spacefm
+icon = /usr/share/icons/Adwaita/scalable/apps/system-file-manager-symbolic.svg
+
+item = Editor
+cmd = default-editor
+icon = /usr/share/icons/Adwaita/scalable/apps/text-editor-symbolic.svg
+
+item = Package Manager
+cmd = default-terminal -e pacui
+icon = /usr/share/icons/Adwaita/scalable/apps/system-software-install-symbolic.svg
+
+item = Main menu
+cmd = default-terminal -e bmenu
+icon = /usr/share/icons/Adwaita/scalable/apps/utilities-system-monitor-symbolic.svg
+
+separator
+submenu = Settings
+
+	icon = /usr/share/icons/Adwaita/scalable/emblems/emblem-system-symbolic.svg
+
+	item = Keybindings
+	cmd = default-editor .config/sxhkd/sxhkdrc
+	icon = /usr/share/icons/Adwaita/scalable/apps/preferences-desktop-keyboard-shortcuts-symbolic.svg
+
+	item = Bspwmrc
+	cmd = default-editor .config/bspwm/bspwmrc
+	icon = /usr/share/icons/Adwaita/scalable/apps/text-editor-symbolic.svg
+
+	item = Autostart
+	cmd = default-editor .config/bspwm/autostart
+	icon = /usr/share/icons/Adwaita/scalable/actions/system-run-symbolic.svg
+		
+	item = Profile
+	cmd = default-editor .profile
+	icon = /usr/share/icons/Adwaita/scalable/apps/user-info-symbolic.svg
+	
+	item = Dmenu settings
+	cmd = default-editor .dmenurc
+	icon = /usr/share/icons/Adwaita/scalable/actions/open-menu-symbolic.svg
+	
+	item = Panel settings
+	cmd = default-editor .limepanelrc
+	icon = /usr/share/icons/Adwaita/scalable/actions/document-properties-symbolic.svg
+	
+	item = Appearance
+	cmd = lxappearance
+	icon = /usr/share/icons/Adwaita/scalable/apps/preferences-color-symbolic.svg
+
+	item = Firewall
+	cmd = zensu gufw
+	icon = /usr/share/icons/Adwaita/scalable/status/security-high-symbolic.svg
+	
+	item = Network
+	cmd = default-terminal -e nmtui
+	icon = /usr/share/icons/Adwaita/scalable/apps/preferences-system-network-symbolic.svg	
+separator	
+
+submenu = Exit
+
+	icon = /usr/share/icons/Adwaita/scalable/actions/system-shutdown-symbolic.svg
+
+	item = Lock screen
+	cmd = screenlock
+	icon = /usr/share/icons/Adwaita/scalable/status/changes-allow-symbolic.svg
+
+	item = Logout
+	cmd = bspc quit 1
+	icon = /usr/share/icons/Adwaita/scalable/actions/application-exit-symbolic.svg
+	
+	item = Suspend
+	cmd = systemctl suspend
+	icon = /usr/share/icons/Adwaita/scalable/apps/utilities-system-monitor-symbolic.svg
+	
+	item = Hibenate
+	cmd = systemctl hibernate
+	icon = /usr/share/icons/Adwaita/scalable/actions/document-save-symbolic.svg
+	
+	item = Reboot
+	cmd = reboot
+	icon = /usr/share/icons/Adwaita/scalable/actions/view-refresh-symbolic.svg
+	
+	item = Shutdown
+	cmd = poweroff
+	icon = /usr/share/icons/Adwaita/scalable/actions/system-shutdown-symbolic.svg
+	

@@ -1,0 +1,5 @@
+separator
+
+item = Update menu
+cmd = update_menu.sh
+icon = NULL

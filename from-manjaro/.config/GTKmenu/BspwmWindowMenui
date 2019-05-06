@@ -1,0 +1,130 @@
+#Bspwm_window_menu
+# …………… Beginning of menu ……………
+submenu = Window
+
+	icon = /usr/share/icons/Adwaita/scalable/actions/view-restore-symbolic.svg
+
+	item = Floating
+	cmd = bspc node -t floating
+	icon = /usr/share/icons/Adwaita/scalable/actions/edit-copy-symbolic.svg
+
+	item = Tiled
+	cmd = bspc node -t tiled
+	icon = /usr/share/icons/Adwaita/scalable/actions/edit-select-all-symbolic.svg
+
+	item = Monocle
+	cmd = bspc desktop -l next
+	icon = /usr/share/icons/Adwaita/scalable/actions/window-maximize-symbolic.svg
+
+	item = Fullscreen
+	cmd = bspc node -t fullscreen
+	icon = /usr/share/icons/Adwaita/scalable/actions/view-fullscreen-symbolic.svg
+
+	item = Pseudo-tiling
+	cmd = bspc node -t pseudo_tiled
+	icon = /usr/share/icons/Adwaita/scalable/actions/edit-select-all-symbolic.svg
+
+	item = Lock
+	cmd = bspc node -g locked
+	icon = /usr/share/icons/Adwaita/scalable/status/changes-allow-symbolic.svg
+
+	item = Sticky
+	cmd = bspc node -g sticky
+	icon = /usr/share/icons/Adwaita/scalable/actions/process-stop-symbolic.svg
+
+	item = Private
+	cmd = bspc node -g private
+	icon = /usr/share/icons/Adwaita/scalable/actions/star-new-symbolic.svg
+
+submenu = Move to...
+
+	icon = /usr/share/icons/Adwaita/scalable/actions/send-to-symbolic.svg
+
+	item = Desktop n°...
+	cmd = bspwm-zenity move-to-desktop
+	icon = NULL
+
+	item = Next empty desktop
+	cmd = bspc node -d next.free
+	icon = NULL
+
+	item = Last focused desktop
+	cmd = bspc node -d last
+	icon = NULL
+
+	separator
+
+	item = Swap with biggest window
+	cmd = bspc node -w biggest.local
+	icon = NULL
+
+	item = Move to another monitor
+	cmd = 
+	icon = NULL
+submenu = Manual
+
+	icon = /usr/share/icons/Adwaita/scalable/actions/edit-cut-symbolic.svg
+
+	submenu = Manual split
+
+		icon = /usr/share/icons/Adwaita/scalable/actions/edit-cut-symbolic.svg
+
+		item = Up
+		cmd = bspc node -p north
+		icon = /usr/share/icons/Adwaita/scalable/actions/go-up-symbolic.svg
+
+		item = Right
+		cmd = bspc node -p east
+		icon = /usr/share/icons/Adwaita/scalable/actions/go-next-symbolic.svg
+
+		item = Left
+		cmd = bspc node -p west
+		icon = /usr/share/icons/Adwaita/scalable/actions/go-previous-symbolic.svg
+
+		item = Down
+		cmd = bspc node -p south
+		icon = /usr/share/icons/Adwaita/scalable/actions/go-down-symbolic.svg
+
+	submenu = Split ratio
+
+		icon = NULL
+
+		item = 25%
+		cmd = bspc node -o 0.25
+		icon = NULL
+
+		item = 50%
+		cmd = bspc node -o 0.5
+		icon = NULL
+
+		item = 75%
+		cmd = bspc node -o 0.75
+		icon = NULL
+
+	separator
+
+	item = Move to last manual split
+	cmd = bspc node -w last.manual
+	icon = /usr/share/icons/Adwaita/scalable/actions/focus-windows-symbolic.svg
+
+	item = Cancel all splits
+	cmd = bspc desktop -c
+	icon = /usr/share/icons/Adwaita/scalable/actions/action-unavailable-symbolic.svg
+
+
+separator
+
+item = Next urgent window
+cmd = bspc node -f next.urgent
+icon = /usr/share/icons/Adwaita/scalable/actions/focus-windows-symbolic.svg
+
+separator
+
+item = Close window
+cmd = bspc node -c
+icon = /usr/share/icons/Adwaita/scalable/actions/window-close-symbolic.svg
+
+item = Close the window class
+cmd = xdo close -cd
+icon = /usr/share/icons/Adwaita/scalable/actions/window-close-symbolic.svg
+

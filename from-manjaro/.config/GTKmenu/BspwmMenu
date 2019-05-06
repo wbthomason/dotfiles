@@ -1,0 +1,196 @@
+# …………… Beginning of menu ……………
+
+Submenu = Window
+
+	icon = NULL
+
+	item = Floating
+	cmd = bspc window -t floating
+	icon = NULL
+
+	item = Monocle
+	cmd = bspc desktop -l next
+	icon = NULL
+
+	item = Fullscreen
+	cmd = bspc window -t fullscreen
+	icon = NULL
+
+	item = Pseudo-tiling
+	cmd = bspc window -t pseudo_tiled
+	icon = NULL
+
+	item = Lock
+	cmd = bspc window -t locked
+	icon = NULL
+
+	item = Sticky
+	cmd = bspc window -t sticky
+	icon = NULL
+
+	item = Private
+	cmd = bspc window -t private
+	icon = NULL
+
+Submenu = Move to...
+
+	icon = NULL
+
+	item = Desktop n°...
+	cmd = bspwm-zenity move-to-desktop
+	icon = NULL
+
+	item = Next empty desktop
+	cmd = bspc window -d next.free
+	icon = NULL
+
+	item = Last focused desktop
+	cmd = bspc window -d last
+	icon = NULL
+
+	separator
+
+	item = Swap with biggest window
+	cmd = bspc window -w biggest.local
+	icon = NULL
+
+	item = Move to another monitor
+	cmd = 
+	icon = NULL
+
+
+Submenu = Desktop
+
+	icon = NULL
+
+	Submenu = Flip
+
+		icon = NULL
+
+		item = Vertical flip
+		cmd = bspc desktop -F horizontal
+		icon = NULL
+
+		item = Horizontal flip
+		cmd = bspc desktop -F vertical
+		icon = NULL
+
+	Submenu = Rotate
+
+		icon = NULL
+
+		item = +90°
+		cmd = bspc desktop -R 90
+		icon = NULL
+
+		item = -90°
+		cmd = bspc desktop -R -90
+		icon = NULL
+
+		item = +180°
+		cmd = bspc desktop -R 180
+		icon = NULL
+
+	separator
+
+	item = Balance windows
+	cmd = bspc desktop -B
+	icon = NULL
+
+	item = Equalize windows
+	cmd = bspc desktop -E
+	icon = NULL
+
+	separator
+
+	item = Rename current desktop
+	cmd = bspwm-zenity desktop-rename
+	icon = NULL
+
+	separator
+
+	item = Add a desktop
+	cmd = bspwm-zenity desktop-add
+	icon = NULL
+
+	item = Remove a desktop
+	cmd = bspwm-zenity desktop-remove
+	icon = NULL
+
+	separator
+
+	item = Swap with desktop
+	cmd = bspwm-zenity desktop-swap
+	icon = NULL
+
+	item = Move to another monitor
+	cmd = 
+	icon = NULL
+
+
+Submenu = Manual
+
+	icon = NULL
+
+	Submenu = Manual split
+
+		icon = NULL
+
+		item = Up
+		cmd = bspc window -p up
+		icon = NULL
+
+		item = Right
+		cmd = bspc window -p right
+		icon = NULL
+
+		item = Left
+		cmd = bspc window -p left
+		icon = NULL
+
+		item = Down
+		cmd = bspc window -p down
+		icon = NULL
+
+	Submenu = Split ratio
+
+		icon = NULL
+
+		item = 25%
+		cmd = bspc window -r 0.25
+		icon = NULL
+
+		item = 50%
+		cmd = bspc window -r 0.5
+		icon = NULL
+
+		item = 75%
+		cmd = bspc window -r 0.75
+		icon = NULL
+
+	separator
+
+	item = Move to last manual split
+	cmd = bspc window -w last.manual
+	icon = NULL
+
+	item = Cancel all splits
+	cmd = bspc desktop -c
+	icon = NULL
+
+
+separator
+
+item = Next urgent window
+cmd = bspc window -f next.urgent
+icon = NULL
+
+separator
+
+item = Close window
+cmd = bspc window -c
+icon = NULL
+
+item = Close the window class
+cmd = xdo close -cd
+icon = NULL

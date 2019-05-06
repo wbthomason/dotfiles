@@ -1,0 +1,13 @@
+[Added Associations]
+text/plain=micro.desktop;libreoffice-writer.desktop;
+application/x-shellscript=micro.desktop;
+image/svg+xml=firefox.desktop;
+text/x-scheme=micro.desktop;
+application/xml=firefox.desktop;
+application/pdf=xreader.desktop;libreoffice-draw.desktop;
+image/png=xviewer.desktop;
+image/jpeg=xviewer.desktop;
+
+[Default Applications]
+text/plain=micro.desktop
+application/pdf=xreader.desktop

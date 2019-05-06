@@ -1,0 +1,16 @@
+[
+	{
+		"Name": "fzf",
+		"Description": "adds support to opening files via fzf",
+		"Tags": ["fzf"],
+		"Versions": [
+			{
+				"Version": "1.0.5",
+				"Url": "https://github.com/samdmarshall/micro-fzf-plugin/archive/v1.0.5.zip",
+				"Require": {
+					"micro": ">=1.1.2"
+				}
+			}
+		]
+	}
+]

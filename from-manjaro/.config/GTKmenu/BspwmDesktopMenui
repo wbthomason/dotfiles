@@ -1,0 +1,103 @@
+# …………… Beginning of menu ……………
+submenu = Flip
+
+	icon = /usr/share/icons/Adwaita/scalable/actions/object-flip-horizontal-symbolic.svg
+
+	item = Vertical flip
+	cmd = bspc node @/ -F horizontal
+	icon = /usr/share/icons/Adwaita/scalable/actions/object-flip-vertical-symbolic.svg
+
+	item = Horizontal flip
+	cmd = bspc node @/ -F vertical
+	icon = /usr/share/icons/Adwaita/scalable/actions/object-flip-horizontal-symbolic.svg
+
+submenu = Rotate
+
+	icon = /usr/share/icons/Adwaita/scalable/actions/view-refresh-symbolic.svg
+
+	item = +90°
+	cmd = bspc node @/ -R 90
+	icon = /usr/share/icons/Adwaita/scalable/actions/object-rotate-right-symbolic.svg
+
+	item = -90°
+	cmd = bspc node @/ -R -90
+	icon = /usr/share/icons/Adwaita/scalable/actions/object-rotate-left-symbolic.svg
+
+	item = +180°
+	cmd = bspc node @/ -R 180
+	icon = /usr/share/icons/Adwaita/scalable/actions/view-refresh-symbolic.svg
+
+separator
+
+item = Balance windows
+cmd = bspc node @/ -B
+icon = /usr/share/icons/Adwaita/scalable/actions/view-continuous-symbolic.svg
+
+item = Equalize windows
+cmd = bspc node @/ -E
+icon = /usr/share/icons/Adwaita/scalable/actions/view-grid-symbolic.svg
+
+separator
+
+item = Rename current desktop
+cmd = bspc-zen desktop-rename
+icon = /usr/share/icons/Adwaita/scalable/devices/pda-symbolic.svg
+
+separator
+
+item = Add a desktop
+cmd = bspc-zen desktop-add
+icon = /usr/share/icons/Adwaita/scalable/actions/list-add-symbolic.svg
+
+item = Remove a desktop
+cmd = bspc-zen desktop-remove
+icon = /usr/share/icons/Adwaita/scalable/actions/list-remove-symbolic.svg
+
+item = Swap with desktop
+cmd = bspc-zen desktop-swap
+icon = /usr/share/icons/Adwaita/scalable/actions/edit-copy-symbolic.svg
+
+separator
+
+item = Toggle focus follows pointer
+cmd = toggle-focus-follows-pointer
+icon = /usr/share/icons/Adwaita/scalable/devices/input-mouse-symbolic.svg
+
+item = Toggle pointer follows focus
+cmd = toggle-pointer-follows-focus
+icon = /usr/share/icons/Adwaita/scalable/devices/input-keyboard-symbolic.svg
+
+item = Toggle dynamic gaps
+cmd = autogap
+icon = /usr/share/icons/Adwaita/scalable/emblems/emblem-important-symbolic.svg
+
+item = Toggle automatic balancing
+cmd = euclid_balance
+icon = /usr/share/icons/Adwaita/scalable/emblems/emblem-synchronizing-symbolic.svg
+
+#item = Move to another monitor
+#cmd = 
+#icon = NULL
+submenu = External rules
+
+	icon = /usr/share/icons/Adwaita/scalable/actions/send-to-symbolic.svg
+
+	item = Pseudo automatic mode
+	cmd = bspc config external_rules_command /usr/bin/pseudo_automatic_mode
+	icon = /usr/share/icons/Adwaita/scalable/actions/bookmark-new-symbolic.svg
+
+	item = Euclid mode
+	cmd = bspc config external_rules_command /usr/bin/euclid_mode
+	icon = /usr/share/icons/Adwaita/scalable/actions/view-sort-ascending-symbolic.svg
+
+	item = Automatic mode
+	cmd = bspc config external_rules_command no
+	icon = /usr/share/icons/Adwaita/scalable/emblems/emblem-default-symbolic.svg
+	
+item = Manage rules
+cmd = roxterm -e bspwm-ruler
+icon = /usr/share/icons/Adwaita/scalable/apps/preferences-desktop-keyboard-shortcuts-symbolic.svg
+
+item = Choose wallpaper
+cmd = wallpaper
+icon = /usr/share/icons/Adwaita/scalable/apps/preferences-desktop-wallpaper-symbolic.svg

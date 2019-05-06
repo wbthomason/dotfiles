@@ -1,0 +1,617 @@
+item = Terminal
+cmd = termite
+icon = NULL
+
+item = Browser
+cmd = firefox
+icon = NULL
+
+item = Filemanager
+cmd = spacefm
+icon = NULL
+
+item = Settings
+cmd = xfce4-settings-manager
+icon = NULL
+
+separator
+Submenu = Development
+	icon = NULL
+
+	item = Geany
+	cmd = geany
+	icon = NULL
+
+	item = OpenJDK Policy Tool
+	cmd = policytool
+	icon = NULL
+
+	item = Qt Assistant
+	cmd = /usr/lib/qt/bin/assistant
+	icon = NULL
+
+	item = Qt Designer
+	cmd = /usr/lib/qt/bin/designer
+	icon = NULL
+
+	item = Qt Linguist
+	cmd = /usr/lib/qt/bin/linguist
+	icon = NULL
+
+	item = Qt QDbusViewer
+	cmd = /usr/lib/qt/bin/qdbusviewer
+	icon = NULL
+
+	item = Qt4 Assistant
+	cmd = assistant-qt4
+	icon = NULL
+
+	item = Qt4 Designer
+	cmd = designer-qt4
+	icon = NULL
+
+	item = Qt4 Linguist
+	cmd = linguist-qt4
+	icon = NULL
+
+	item = Qt4 QDbusViewer
+	cmd = qdbusviewer-qt4
+	icon = NULL
+
+Submenu = Editors
+	icon = NULL
+
+	item = Leafpad
+	cmd = leafpad
+	icon = NULL
+
+	item = Vi IMproved
+	cmd = gvim
+	icon = NULL
+
+Submenu = Graphics
+	icon = NULL
+
+	item = GNU Image Manipulation Program
+	cmd = gimp-2.8
+	icon = NULL
+
+	item = Image Viewer
+	cmd = gpicview
+	icon = NULL
+
+	item = Simple Scan
+	cmd = simple-scan
+	icon = NULL
+
+Submenu = Multimedia
+	icon = NULL
+
+	item = Audacious
+	cmd = audacious
+	icon = NULL
+
+	item = Audio Mixer
+	cmd = xfce4-mixer
+	icon = NULL
+
+	item = Cheese
+	cmd = cheese
+	icon = NULL
+
+	item = PulseAudio Volume Control
+	cmd = pavucontrol
+	icon = NULL
+
+	item = VLC media player
+	cmd = vlc
+	icon = NULL
+
+	item = VolWheel
+	cmd = volwheel
+	icon = NULL
+
+Submenu = Network
+	icon = NULL
+
+	item = Avahi SSH Server Browser
+	cmd = bssh
+	icon = NULL
+
+	item = Avahi VNC Server Browser
+	cmd = bvnc
+	icon = NULL
+
+	item = dwb
+	cmd = dwb
+	icon = NULL
+
+	item = Empathy
+	cmd = empathy
+	icon = NULL
+
+	item = Firefox
+	cmd = firefox
+	icon = NULL
+
+	item = Google Chrome (unstable)
+	cmd = google-chrome-unstable
+	icon = NULL
+
+	item = Mail Reader
+	cmd = exo-open --launch MailReader
+	icon = NULL
+
+	item = Midori Private Browsing
+	cmd = midori
+	icon = NULL
+
+	item = nmcli_dmenu
+	cmd = nmcli_dmenu
+	icon = NULL
+
+	item = Pidgin Internet Messenger
+	cmd = pidgin
+	icon = NULL
+
+	item = Skype
+	cmd = skype
+	icon = NULL
+
+	item = Transmission
+	cmd = transmission-gtk
+	icon = NULL
+
+	item = Web
+	cmd = epiphany
+	icon = NULL
+
+	item = Web Browser
+	cmd = exo-open --launch WebBrowser
+	icon = NULL
+
+Submenu = Office
+	icon = NULL
+
+	item = Document Viewer
+	cmd = evince
+	icon = NULL
+
+	item = LibreOffice Impress
+	cmd = libreoffice
+	icon = NULL
+
+	item = Zathura
+	cmd = zathura
+	icon = NULL
+
+Submenu = Other
+	icon = NULL
+
+	item = About LXQt
+	cmd = lxqt-about
+	icon = NULL
+
+	item = CMake
+	cmd = cmake-gui
+	icon = NULL
+
+	item = compton
+	cmd = compton
+	icon = NULL
+
+	item = DockX
+	cmd = dockx
+	icon = NULL
+
+	item = Docky
+	cmd = docky
+	icon = NULL
+
+	item = Galculator
+	cmd = galculator
+	icon = NULL
+
+	item = IcedTea-Web Control Panel
+	cmd = itweb-settings
+	icon = NULL
+
+	item = Isousb
+	cmd = gksu isousb
+	icon = NULL
+
+	item = Plank
+	cmd = plank
+	icon = NULL
+
+	item = Qt V4L2 test Utility
+	cmd = qv4l2
+	icon = NULL
+
+Submenu = Shells
+	icon = NULL
+
+	item = Files
+	cmd = nautilus
+	icon = NULL
+
+	item = LXTerminal
+	cmd = lxterminal
+	icon = NULL
+
+	item = Nautilus-Actions Configuration Tool
+	cmd = nautilus-actions-config-tool
+	icon = NULL
+
+	item = Oracle VM VirtualBox
+	cmd = VirtualBox
+	icon = NULL
+
+	item = PCManFM File Manager
+	cmd = pcmanfm-qt
+	icon = NULL
+
+	item = Root Terminal
+	cmd = gksu -l gnome-terminal
+	icon = NULL
+
+	item = Termite
+	cmd = termite
+	icon = NULL
+
+	item = Thunar File Manager
+	cmd = thunar
+	icon = NULL
+
+	item = termite
+	cmd = termite
+	icon = NULL
+
+	item = termite (client)
+	cmd = termitec
+	icon = NULL
+
+	item = termite (tabbed)
+	cmd = termite-tabbed
+	icon = NULL
+
+	item = UXTerm
+	cmd = uxterm
+	icon = NULL
+
+	item = Xfce Terminal
+	cmd = xfce4-terminal
+	icon = NULL
+
+	item = XTerm
+	cmd = xterm
+	icon = NULL
+
+Submenu = System
+	icon = NULL
+
+	Submenu = Settings
+		icon = NULL
+
+		Submenu = GNOME
+			icon = NULL
+
+			item = Adobe Flash Player
+			cmd = flash-player-properties
+			icon = NULL
+
+			item = DockbarX Preference
+			cmd = dbx_preference
+			icon = NULL
+
+			item = Network Connections
+			cmd = nm-connection-editor
+			icon = NULL
+
+			item = Plank Config
+			cmd = plank-config
+			icon = NULL
+
+			item = Privilege granting
+			cmd = gksu-properties
+			icon = NULL
+
+			item = Theme Configuration
+			cmd = gtk-theme-config
+			icon = NULL
+
+		Submenu = Xfce
+			icon = NULL
+
+			item = Settings Manager
+			cmd = xfce4-settings-manager
+			icon = NULL
+
+		item = Accessibility
+		cmd = xfce4-accessibility-settings
+		icon = NULL
+
+		item = Appearance
+		cmd = xfce4-appearance-settings
+		icon = NULL
+
+		item = Appearance
+		cmd = lxqt-config-appearance
+		icon = NULL
+
+		item = Customize Look and Feel
+		cmd = lxappearance
+		icon = NULL
+
+		item = Date and Time
+		cmd = lxqt-admin-time
+		icon = NULL
+
+		item = Desktop
+		cmd = xfdesktop-settings
+		icon = NULL
+
+		item = Desktop Notifications
+		cmd = lxqt-config-notificationd
+		icon = NULL
+
+		item = Disks
+		cmd = gnome-disks
+		icon = NULL
+
+		item = Display
+		cmd = xfce4-display-settings
+		icon = NULL
+
+		item = File Associations
+		cmd = lxqt-config-file-associations
+		icon = NULL
+
+		item = File Manager
+		cmd = thunar-settings
+		icon = NULL
+
+		item = Keyboard
+		cmd = xfce4-keyboard-settings
+		icon = NULL
+
+		item = Keyboard and Mouse
+		cmd = lxqt-config-input
+		icon = NULL
+
+		item = LXQt System Settings
+		cmd = lxqt-config
+		icon = NULL
+
+		item = Manage Printing
+		cmd = xdg-open http://localhost:631/
+		icon = NULL
+
+		item = Manjaro Settings Manager
+		cmd = manjaro-settings-manager
+		icon = NULL
+
+		item = MIME Type Editor
+		cmd = xfce4-mime-settings
+		icon = NULL
+
+		item = Monitor settings
+		cmd = lxqt-config-monitor
+		icon = NULL
+
+		item = Mouse and Touchpad
+		cmd = xfce4-mouse-settings
+		icon = NULL
+
+		item = NVIDIA X Server Settings
+		cmd = nvidia-settings
+		icon = NULL
+
+		item = Panel
+		cmd = xfce4-panel --preferences
+		icon = NULL
+
+		item = Power Management
+		cmd = lxqt-config-powermanagement
+		icon = NULL
+
+		item = Power Manager
+		cmd = xfce4-power-manager-settings
+		icon = NULL
+
+		item = Preferred Applications
+		cmd = exo-preferred-applications
+		icon = NULL
+
+		item = Preferred Applications
+		cmd = libfm-pref-apps
+		icon = NULL
+
+		item = Print Settings
+		cmd = system-config-printer
+		icon = NULL
+
+		item = Removable Drives and Media
+		cmd = thunar-volman-settings
+		icon = NULL
+
+		item = Search and Indexing
+		cmd = tracker-preferences
+		icon = NULL
+
+		item = Session and Startup
+		cmd = xfce4-session-settings
+		icon = NULL
+
+		item = Session Settings
+		cmd = lxqt-config-session
+		icon = NULL
+
+		item = Settings Editor
+		cmd = xfce4-settings-editor
+		icon = NULL
+
+		item = Shortcut Keys
+		cmd = lxqt-config-globalkeyshortcuts
+		icon = NULL
+
+		item = Users and Groups
+		cmd = lxqt-admin-user
+		icon = NULL
+
+		item = Window Manager
+		cmd = xfwm4-settings
+		icon = NULL
+
+		item = Window Manager Tweaks
+		cmd = xfwm4-tweaks-settings
+		icon = NULL
+
+		item = Workspaces
+		cmd = xfwm4-workspace-settings
+		icon = NULL
+
+	item = Add/Remove Software
+	cmd = pamac-manager
+	icon = NULL
+
+	item = Avahi Zeroconf Browser
+	cmd = avahi-discover
+	icon = NULL
+
+	item = b2im
+	cmd = termite -e b2im
+	icon = NULL
+
+	item = BleachBit
+	cmd = bleachbit
+	icon = NULL
+
+	item = Bulk Rename
+	cmd = /usr/lib/Thunar/ThunarBulkRename
+	icon = NULL
+
+	item = dconf Editor
+	cmd = dconf-editor
+	icon = NULL
+
+	item = Disk Usage Analyzer
+	cmd = baobab
+	icon = NULL
+
+	item = Htop
+	cmd = termite -e htop
+	icon = NULL
+
+	item = Leave
+	cmd = lxqt-power
+	icon = NULL
+
+	item = Log Out
+	cmd = xfce4-session-logout
+	icon = NULL
+
+	item = Logs
+	cmd = gnome-logs
+	icon = NULL
+
+	item = Network Tools
+	cmd = gnome-nettool
+	icon = NULL
+
+	item = Sensor Viewer
+	cmd = xfce4-sensors
+	icon = NULL
+
+	item = Settings
+	cmd = gnome-control-center --overview
+	icon = NULL
+
+	item = Software Update
+	cmd = pamac-updater
+	icon = NULL
+
+	item = System Log
+	cmd = gnome-system-log
+	icon = NULL
+
+	item = Yaourt-Gui
+	cmd = termite -e yaourt-gui
+	icon = NULL
+
+Submenu = Utilities
+	icon = NULL
+
+	item = 7-Zip FM
+	cmd = 7zFM
+	icon = NULL
+
+	item = About Xfce
+	cmd = xfce4-about
+	icon = NULL
+
+	item = ADesk Menu
+	cmd = adeskmenu
+	icon = NULL
+
+	item = Application Finder
+	cmd = xfce4-appfinder
+	icon = NULL
+
+	item = Archive Manager
+	cmd = file-roller
+	icon = NULL
+
+	item = ClipIt
+	cmd = clipit
+	icon = NULL
+
+	item = Contacts
+	cmd = gnome-contacts
+	icon = NULL
+
+	item = Desktop Search
+	cmd = tracker-needle
+	icon = NULL
+
+	item = File Manager
+	cmd = exo-open --launch FileManager
+	icon = NULL
+
+	item = Gnome-Pie
+	cmd = gnome-pie
+	icon = NULL
+
+	item = HP Device Manager
+	cmd = hp-toolbox
+	icon = NULL
+
+	item = Pie Dock
+	cmd = piedock
+	icon = NULL
+
+	item = Run Program...
+	cmd = xfce4-appfinder --collapsed
+	icon = NULL
+
+	item = Screenshot
+	cmd = gnome-screenshot --interactive
+	icon = NULL
+
+	item = SpaceFM File Search
+	cmd = spacefm
+	icon = NULL
+
+	item = Terminal Emulator
+	cmd = exo-open --launch TerminalEmulator
+	icon = NULL
+
+	item = Tweak Tool
+	cmd = gnome-tweak-tool
+	icon = NULL
+
+separator
+
+item = Update menu
+cmd = update_menu.sh
+icon = NULL

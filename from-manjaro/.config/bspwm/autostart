@@ -1,0 +1,43 @@
+##run_once is a script in /usr/bin that prevents running script if it is running already
+##
+
+## Load appearance settings
+xsetroot -cursor_name left_ptr &
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0" &
+xrdb merge .Xresources &
+## Wallpaper. Nitrogen just draws wallpaper, 
+sh ~/.fehbg &
+## compositing. Required for shadows, transparency and stuff. 
+## Reduces flicker. Disabling saves resources.
+#compton -b &
+## enable local fonts in .fonts directory
+xset +fp /usr/share/fonts/local &
+xset +fp /usr/share/fonts/misc &
+xset +fp ~/.fonts &
+xset fp rehash &
+fc-cache -fv &
+## Automount removable media
+devmon &
+## powersaving options
+xset s off &
+xset s noblank &
+xset s noexpose &
+xset c on &
+xset -dpms &
+xbacklight -set 15 &
+## Run screenlock when suspending
+light-locker &
+## Make monitor settings persist between reboots
+eval $(awk -F'=' '/Exec=/ {print $2}' ~/.config/autostart/lxrandr-autostart.desktop) &
+## Notify about package updates
+update-checker 7200 &
+## Map super key to trigger rofi when used alone
+xcape -e 'Super_L=Super_L|Shift_L|space' &
+## Polkit agent
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+## Gnome keyring
+gnome-keyring-daemon &
+thunar --daemon &
+/usr/lib/mate-notification-daemon/mate-notification-daemon &
+## Welcome message
+sleep 1 && notify-send "Welcome to Manjaro-bspwm! " "Press super + F1 to show keybindings" &

@@ -1,0 +1,12 @@
+#!/bin/sh
+# [Gedit Tool]
+# Shortcut=F4
+# Name=Open terminal here
+# Save-files=nothing
+# Output=nothing
+# Applicability=all
+# Input=nothing
+
+
+ cd "$GEDIT_CURRENT_DOCUMENT_DIR" && \
+sterm 2> /dev/null

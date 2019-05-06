@@ -1,0 +1,17 @@
+item = Terminal
+cmd = termite
+icon = NULL
+
+item = Browser
+cmd = firefox
+icon = NULL
+
+item = Filemanager
+cmd = spacefm
+icon = NULL
+
+item = Settings
+cmd = xfce4-settings-manager
+icon = NULL
+
+separator
