@@ -1,3 +1,8 @@
+# FZF
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
 # Load plugins
 export ZSH_PLUGINS=/usr/share/zsh/plugins/
 
@@ -8,14 +13,27 @@ source ${ZSH_PLUGINS}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.z
 
 source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.zsh
 # source ~/zsh-prompt-benchmark.plugin.zsh
-bindkey '^[[A' history-substring-search-up
+# bind UP and DOWN arrow keys to history substring search
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[[A' history-substring-search-up			
 bindkey '^[[B' history-substring-search-down
+
+# General options
+setopt correct
+setopt extendedglob
+setopt nocaseglob
+setopt rcexpandparam
+setopt nocheckjobs
+setopt numericglobsort
 
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
+setopt histignorealldups
 # Don't want common history between shells
 unsetopt share_history
 
@@ -40,7 +58,28 @@ export ROS_PYTHON_VERSION=3
 # Hub
 eval "$(hub alias -s)"
 
+# Color man pages
+export LESS_TERMCAP_mb=$'\E[01;32m'
+export LESS_TERMCAP_md=$'\E[01;32m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;47;34m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;36m'
+export LESS=-r
+
 # Completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+# Speed up completions
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+HISTFILE=~/.zhistory
+HISTSIZE=1000
+SAVEHIST=500
+WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 fpath=(~/.zsh/completions $fpath) 
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
@@ -90,8 +129,3 @@ setopt auto_cd
 
 # Vi mode
 bindkey -v
-
-# FZF
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
