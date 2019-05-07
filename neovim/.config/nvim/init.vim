@@ -199,7 +199,6 @@ let g:prosession_on_startup = 0
 let g:neoformat_python_yapf = {
       \ 'exe': 'yapf',
       \ 'stdin': 1,
-      \ 'args': ["--style='{based_on_style: chromium, indent_width: 2, column_limit: 100}'"]
       \}
 let g:neoformat_ocaml_ocamlformat = {
       \ 'exe': 'ocamlformat',
