@@ -1,8 +1,3 @@
-# FZF
-export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-
 # Load plugins
 export ZSH_PLUGINS=/usr/share/zsh/plugins/
 
@@ -129,3 +124,8 @@ setopt auto_cd
 
 # Vi mode
 bindkey -v
+#
+# FZF
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
