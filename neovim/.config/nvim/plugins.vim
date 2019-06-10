@@ -128,7 +128,7 @@ Pack 'itchyny/vim-gitbranch'
 Pack 'Shougo/echodoc.vim'
 Pack 'jsfaint/coc-neoinclude'
 Pack 'neoclide/coc-sources'
-Pack 'neoclide/coc.nvim', {'do': {-> system('yarn install --frozen-lockfile')}}
+Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}}
 Pack 'Shougo/neco-syntax'
 Pack 'Shougo/neoinclude.vim'
 
@@ -146,7 +146,7 @@ Pack 'sheerun/vim-polyglot'
 Pack 'tpope/vim-apathy'
 
 " C/C++/Python debugging
-Pack 'sakhnik/nvim-gdb', {'do': {-> system('./install.sh')}, 'on': ['GdbStart', 'GdbStartLLDB', 'GdbStartPDB']}
+Pack 'sakhnik/nvim-gdb', {'do': {-> jobstart('./install.sh')}, 'on': ['GdbStart', 'GdbStartLLDB', 'GdbStartPDB']}
 
 " Clojure/Lisps/Scheme
 Pack 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}

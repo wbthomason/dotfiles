@@ -326,15 +326,16 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
       \ 'haskell': ['hdevtools', 'hlint'],
-      \ 'cpp': ['clangtidy', 'cppcheck', 'cpplint', 'flawfinder'],
+      \ 'cpp': ['cppcheck', 'cpplint', 'flawfinder'],
       \ 'rust': ['rustfmt']
       \}
+      " \ 'cpp': ['clangtidy', 'cppcheck', 'cpplint', 'flawfinder'],
 let g:ale_warn_about_trailing_whitespace = 1
 let g:ale_set_highlights = 1
 let g:ale_cpp_cpplint_options = '--linelength=100'
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_linter_aliases = {'pandoc': ['markdown']}
-let g:ale_cpp_clangtidy_checks = ['*', '-fuchsia-default-arguments']
+" let g:ale_cpp_clangtidy_checks = ['*', '-fuchsia-default-arguments']
 let g:ale_max_signs = -1
 let g:ale_set_signs = 1
 let g:ale_set_balloons = 1
@@ -448,7 +449,7 @@ call ConfigInc('settings.vim')
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-      \ 'guifgs': ['#bdae93', '#d5c4a1', '#ebdbb2', '#fbf1c7', '#fb4934', '#fe8019', '#fabd2f', '#b8bb26', '#8ec07c', '#83a598', '#d3869b', '#d65d0e'],
+      \ 'guifgs': ['#bdae93', '#d5c4a1', '#ebdbb2', '#fbf1c7', '#f9f9f9', '#d3d3d3', '#b5b5b5'],
       \	'operators': '_,_',
       \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
       \	'separately': {

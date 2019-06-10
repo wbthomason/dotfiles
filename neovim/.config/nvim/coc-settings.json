@@ -23,7 +23,20 @@
       "command": "java",
       "args": ["-cp", "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS.jar", "com.tang.vscode.MainKt"],
       "filetypes": ["lua"]
-    }
+    },
+    "haskell": {
+    "command": "hie-wrapper",
+    "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
+    "filetypes": ["hs", "lhs", "haskell"],
+    "initializationOptions": {},
+    "settings": {
+	"languageServerHaskell": {
+		"hlintOn": false,
+		"maxNumberOfProblems": 10,
+		"completionSnippetsOn": true
+	}
+     }
+  }
   },
   "suggest.noselect": false,
   "suggest.preferCompleteThanJumpPlaceholder": true,
@@ -60,5 +73,9 @@
   "diagnostic.warningSign": "➤",
   "python.jediEnabled": false,
   "python.formatting.provider": "yapf",
-  "diagnostic.virtualText": true
+  "diagnostic.virtualText": true,
+  "coc.preferences.hoverTarget": "echo",
+  "coc.source.tag.enable": false,
+  "coc.source.around.enable": false,
+  "coc.source.buffer.enable": false
 }

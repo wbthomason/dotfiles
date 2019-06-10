@@ -40,10 +40,6 @@ nnoremap <silent><nowait> <leader>d :Sayonara<cr>
 let g:lmaps.d = ['Sayonara', 'Close buffer and window']
 nnoremap <silent> <leader>k :Sayonara!<cr>
 let g:lmaps.k = ['Sayonara!', 'Close buffer, not window']
-nnoremap <silent> <leader>a :bp<cr>
-let g:lmaps.a = ['bp', 'Go to previous buffer']
-nnoremap <silent> <leader>s :bn<cr>
-let g:lmaps.s = ['bn', 'Go to next buffer']
 nnoremap <silent> <leader>bl :b#<cr>
 let g:lmaps.b.l = ['b#', 'Go to last used buffer']
 nnoremap <silent>  - :Buffers<cr>
@@ -76,8 +72,6 @@ nnoremap <silent> <leader>fg :GFiles<CR>
 let g:lmaps.f.g = ['GFiles', 'Search for files in the current Git repo']
 nnoremap <silent> <leader>fh :Helptags<CR>
 let g:lmaps.f.h = ['Helptags', 'Search in help tags']
-nnoremap <silent> <leader>fr :History<CR>
-let g:lmaps.f.r = ['History', 'Search for recently edited files']
 nnoremap <silent> <leader>fi :Rg<CR>
 let g:lmaps.f.i = ['Rg', 'Search for text in files in the current directory']
 nnoremap <silent> <leader>fl :Lines<CR>
@@ -85,21 +79,21 @@ let g:lmaps.f.l = ['Lines', 'Search for text in currently open buffers']
 nnoremap  <leader>fL :Locate
 let g:lmaps.f.L = ['Locate', 'Search the system with locate']
 let g:lmaps.f.s = {'name': 'Symbols'}
-nnoremap <silent> <leader>fsb :CocList outline<CR>
-nnoremap <silent> <leader>fsp :call CocAction("workspaceSymbols")<CR>
+nnoremap <silent> gO :CocList outline<CR>
+nnoremap <silent> gS :call CocAction("workspaceSymbols")<CR>
 nnoremap <silent> <leader>fd :Vaffle<CR>
 let g:lmaps.f.d = ['Vaffle', 'Open Vaffle']
 
 " Toggles
-let g:lmaps.t = {'name': 'Toggles'}
-nnoremap <silent> <leader>th :nohls<CR>
-let g:lmaps.t.h = ['nohls', 'Reset search highlights']
-nnoremap <silent> <leader>ts :TagbarToggle<CR>
-let g:lmaps.t.s = ['TagbarToggle', 'Toggle Tagbar split']
-nnoremap <silent> <leader>tu :UndotreeToggle<CR>
-let g:lmaps.t.u = ['UndotreeToggle', 'Toggle Undotree split']
-nnoremap <silent> <leader>tw :call Toggle_writer_mode()<CR>
-let g:lmaps.t.w = ['call Toggle_writer_mode()', 'Toggle writer mode']
+" let g:lmaps.t = {'name': 'Toggles'}
+" nnoremap <silent> <leader>th :nohls<CR>
+" let g:lmaps.t.h = ['nohls', 'Reset search highlights']
+" nnoremap <silent> <leader>ts :TagbarToggle<CR>
+" let g:lmaps.t.s = ['TagbarToggle', 'Toggle Tagbar split']
+" nnoremap <silent> <leader>tu :UndotreeToggle<CR>
+" let g:lmaps.t.u = ['UndotreeToggle', 'Toggle Undotree split']
+" nnoremap <silent> <leader>tw :call Toggle_writer_mode()<CR>
+" let g:lmaps.t.w = ['call Toggle_writer_mode()', 'Toggle writer mode']
 
 " Version control bindings
 let g:lmaps.g = {'name': 'Git'}
@@ -279,3 +273,6 @@ inoremap <silent> <c-t> :Snippets<CR>
 
 nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
+
+" replace under cursor
+nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
