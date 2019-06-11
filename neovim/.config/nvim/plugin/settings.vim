@@ -39,4 +39,4 @@ set undofile
 set synmaxcol=200
 set display=msgsep
 set cursorline
-
+set nomodeline
