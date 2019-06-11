@@ -90,8 +90,11 @@ alt + Return
 	bspc node -n @/
 	
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
-super + {_,shift + }{1-9,0}
-    bspc {desktop -f,node -d} ^{1-9,10}
+super + {1-9,0}
+  ~/move_desktop.sh {1-9,0}
+
+super + shift + {1-9,0}
+  ~/move_to_desktop.sh {1-9,0}
 
 ## Alternative: i3 style behavior (focus nth, desktop of the focused monitor)
 #super + {1-9,0}
@@ -305,8 +308,7 @@ alt + ctrl + space
 	$GUI_EDITOR ~/.config/sxhkd/sxhkdrc
 # Toggle compositing
 super + ctrl + space
-	{pkill compton ,\
-	compton -b }
+	{pkill compton , compton -b }
 
 # Remove receptacles
 super + BackSpace
