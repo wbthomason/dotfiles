@@ -1,5 +1,4 @@
 {
-  //"codeLens.enable": true,
   "languageserver": {
     "ccls": {
       "command": "ccls",
@@ -16,27 +15,36 @@
         "cacheDirectory": ".ccls-cache"
       },
       "settings": {
-      "codeLens.enable": false,
+        "codeLens.enable": false
       }
     },
     "lua-lsp": {
       "command": "java",
-      "args": ["-cp", "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS.jar", "com.tang.vscode.MainKt"],
+      "args": [
+        "-cp",
+        "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS.jar",
+        "com.tang.vscode.MainKt"
+      ],
       "filetypes": ["lua"]
     },
     "haskell": {
-    "command": "hie-wrapper",
-    "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
-    "filetypes": ["hs", "lhs", "haskell"],
-    "initializationOptions": {},
-    "settings": {
-	"languageServerHaskell": {
-		"hlintOn": false,
-		"maxNumberOfProblems": 10,
-		"completionSnippetsOn": true
-	}
-     }
-  }
+      "command": "hie-wrapper",
+      "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
+      "filetypes": ["hs", "lhs", "haskell"],
+      "initializationOptions": {},
+      "settings": {
+        "languageServerHaskell": {
+          "hlintOn": false,
+          "maxNumberOfProblems": 10,
+          "completionSnippetsOn": true
+        }
+      }
+    },
+    "latex": {
+      "command": "/home/wil/projects/texlab/target/release/texlab",
+      "ignoredRootPaths": ["~"],
+      "filetypes": ["tex", "bib", "plaintex", "context"]
+    }
   },
   "suggest.noselect": false,
   "suggest.preferCompleteThanJumpPlaceholder": true,
