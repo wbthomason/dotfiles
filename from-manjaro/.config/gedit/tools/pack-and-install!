@@ -1,9 +1,0 @@
-#!/bin/sh
-# [Gedit Tool]
-# Output=output-panel
-# Save-files=nothing
-# Applicability=all
-# Input=nothing
-# Name=pack and install!
-
-makepkg -sri
