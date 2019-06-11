@@ -1,22 +1,6 @@
-" Custom functions
-
-" function! Toggle_writer_mode()
-"   execute ':Goyo'
-"   execute ':Limelight!!'
-" endfunction
-
 function! StartifyEntryFormat()
   return "luaeval(\"require('utils').iconify(_A)\", entry_path)"
 endfunction
-
-" function! LinterStatus() abort
-"   let l:counts = ale#statusline#Count(bufnr(''))
-"   let l:errors = l:counts.error + l:counts.style_error
-"   let l:warnings = l:counts.warning + l:counts.style_warning
-"   return l:counts.total == 0 ? '⬥ ok' :
-"         \ printf('⚠ %d', l:warnings) . (l:errors == 0 ? '' :
-"         \ printf(' ⨉ %d', l:errors))
-" endfunction
 
 function! IconFileType() abort
   return (&filetype !=# '' ? &filetype : 'no filetype') . ' ' . luaeval("require('utils').icons.lookup_filetype(_A)", &filetype) 

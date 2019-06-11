@@ -38,3 +38,32 @@ vmap <silent> <leader>la  <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>la  <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>ac  <Plug>(coc-codeaction)
 nmap <silent> <leader>lqf  <Plug>(coc-fix-current)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+inoremap <silent> <cr> <C-R>=Handle_cr_coc()<cr>
+
+function! Handle_cr_coc() abort
+  return pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endfunction
+
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+let g:coc_status_error_sign = ' 🗙 '
+let g:coc_status_warning_sign = ' ⚠ '

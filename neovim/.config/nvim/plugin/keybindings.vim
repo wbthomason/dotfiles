@@ -10,10 +10,6 @@ let g:maplocalleader = ','
 " More convenient ESC
 inoremap <silent> jj <ESC>
 
-" Setup descriptions
-let g:lmaps = {}
-let g:llmaps = {}
-
 " Re-run commands
 nnoremap <silent> <localleader>r @:
 let g:llmaps.r = ['@:', 'Rerun last colon command']

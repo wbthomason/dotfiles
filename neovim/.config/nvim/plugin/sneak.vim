@@ -37,3 +37,6 @@ xmap T <Plug>Sneak_T
 " operator-pending-mode
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
+
+let g:sneak#s_next = 1
+let g:sneak#label = 1
