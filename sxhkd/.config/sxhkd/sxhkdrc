@@ -154,6 +154,10 @@ super + ctrl + {h,j,k,l}
 super + ctrl + {Left,Down,Up,Right}
 	bspwm_resize.sh {west,south,north,east}
 
+# Move desktop to monitor
+super + bracket{left,right}
+	bspc desktop --to-monitor {prev,next} --follow
+
 #
 # Layout manipulation/desktop level controls
 # ______________    
