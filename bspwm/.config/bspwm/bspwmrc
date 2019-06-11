@@ -1,12 +1,11 @@
 #! /bin/sh
 
 # Startup programs
-sxhkd -f 50 &
+sxhkd &
 ~/.screenlayout/default.sh &
 ~/bgscript.sh &
 compton -CGb &
 xmodmap ~/.Xmodmap &
-light-locker &
 ~/.config/polybar/launch.sh &
 nm-applet &
 volnoti &
