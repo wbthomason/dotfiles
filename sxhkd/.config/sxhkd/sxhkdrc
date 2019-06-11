@@ -4,118 +4,320 @@
 
 # terminal emulator
 super + Return
-	urxvt
+	kitty
 
-# program launcher
-super + @space
-	dmenu_run
+# Close window
+super + x
+	bspc node -c
+
+# Kill window
+super + shift + x
+	bspc node -k
+
+# Toggle tiling mode of window
+super + shift + t
+	bspc node -t {pseudo_tiled,tiled}
+super + t
+	{bspc node -t floating && window-placer $(bspc query -T -d | grep -o '"state":"floating"' | wc -l),bspc node -t tiled}
+
+# Force all windows of the desktop to tile
+super + ctrl + t
+	bspcp tile
+
+# Force all windows of the desktop to float and arrange them
+super + ctrl + shift + t
+	bspcp float
+	
+# Toggle fullscreen
+super + shift + f 
+	bspc node -t {fullscreen,tiled}	
+
+# Try to keep size and position of the selected window
+super + o
+	bspc node -g private
+
+# Make window sticky
+super + i
+	bspc node -g sticky
+
+# Lock a window from closing
+super + Escape
+	bspc node -g locked 
+
+### Map or unmap windows (functional equivalent of "minimize")
+super + c
+    whid dmenu
+
+super + shift + c
+    whid hide
+
+super + ctrl + c
+    whid last
+
+#
+# Window moving and splitting
+# ______________    
+
+# Autopresel (split window in its largest dimension)
+ctrl + space
+	auto-presel
+	
+# Presel window for splitting in certain direction
+alt + ctrl + {a,s,w,d}
+	bspc node -p \~{west,south,north,east} -i
+
+#alt + ctrl + {h,j,k,l}
+#	bspc node -p \~{west,south,north,east}
+
+alt + ctrl + {Left,Down,Up,Right}
+	bspc node -p \~{west,south,north,east}
+
+# Presel the desktop for splitting in certain direction
+# alt + shift + {a,s,w,d}
+	# bspc node @/ -p \~{west,south,north,east}
+# 
+# alt + shift + {h,j,k,l}
+	# bspc node @/ -p \~{west,south,north,east}
+
+# alt + shift + {Left,Down,Up,Right}
+	# bspc node @/ -p \~{west,south,north,east}
+# Set splitting ratio of windows
+alt + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+		
+# Create a new "master area", splitting the whole desktop instead of just windows.
+alt + Return
+	bspc node -n @/
+	
+# go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} ^{1-9,10}
+
+## Alternative: i3 style behavior (focus nth, desktop of the focused monitor)
+#super + {1-9,0}
+#	focusdesktopofthismonitor {1-9}
+#super + shift + {1-9,0}
+#	movetodesktopofthismonitor {1-9,10}
+
+## Another alternative: xmonad style desktops. You have 10 desktops shared between all monitors,
+## and focusing a desktop focuses it on the currently focused monitor
+#super + {1-9,0}
+#	summondesktop.sh {1-9,10}
+#super + shift + {1-9,0}
+#	bspc node -d ^{1-9,10}
+
+# Select previous / next desktop
+super + {m,n}
+	bspc desktop -f {prev.occupied,next.occupied} 
+
+# cycle windows
+alt + {_,shift + }Tab
+    bspc node -f {next,prev}
+
+# Go to specific window
+super + Tab
+	WindowSelector
+	
+#Focus windows by direction, works with multihead
+#super +  {a,s,w,d}
+#    focusmover {west,south,north,east}
+
+super +  {h,j,k,l}
+    focusmover {west,south,north,east}
+
+super +  {Left,Down,Up,Right}
+    focusmover {west,south,north,east}
+        	
+# Move tiled windows. Moving a tiled window to 
+# preselected one moves into preselection instead. 
+# Moving out of the screen should move the window to next monitor if possible
+#super + shift + {a,s,w,d}
+#	windowgrabber {west,south,north,east}
+
+super + shift + {h,j,k,l}
+	windowgrabber {west,south,north,east}
+	
+# Different style of movement: transplant into window in chosen direction
+super + shift + {Left,Down,Up,Right}
+	euclid_mover {west,south,north,east}
+
+#resize windows
+#super + ctrl + {a,s,w,d}
+#	bspwm_resize.sh {west,south,north,east}
+
+super + ctrl + {h,j,k,l}
+	bspwm_resize.sh {west,south,north,east}
+	
+super + ctrl + {Left,Down,Up,Right}
+	bspwm_resize.sh {west,south,north,east}
+
+#
+# Layout manipulation/desktop level controls
+# ______________    
+
+# Toggle monocle mode
+super + f 
+	bspc desktop -l next
+	
+# Balance tree
+super + b
+	bspc node @/ -B
+
+# Balance brother node. If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
+super + alt + b
+	bspc node @brother -B
+	
+# Undo balancing (equalize windows)
+super + ctrl + b
+	bspc node @/ -E
+
+# Toggle automatic balancing of windows
+alt + b
+	euclid_balancer
+
+# Mirror and flip leaves of tree
+super + {comma,period}
+	bspc node @/ -F {horizontal,vertical}
+	
+# Rotate leaves of tree
+super + shift + {comma,period}
+	bspc node @/ -R {90,270}
+
+# Change window gap
+
+super + g
+	bspc config -d focused window_gap {$gap,$(($gap+$gap)),$(($gap+$gap+$gap))}
+
+super + button{4,5}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 2 ))
+#
+# mouse bindings
+# __________________
+
+~button1
+	DidIClickDesktop.sh && gapgrab	
+
+#~button2
+#	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmDesktopMenui
+##DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
+#		
+#~button3
+#	DidIClickDesktop.sh && mygtkmenui -- .config/GTKmenu/LaunchMenu
+
+# Switch workspace by scrolling on the desktop. Causes scrolling issues on some systems.
+#~button4
+#	DidIClickDesktop.sh && bspc desktop -f next
+#~button5
+#	DidIClickDesktop.sh && bspc desktop -f prev
+	
+### Add or remove desktops by scrolling
+super + ctrl + button5
+    bspcp dsktp rm
+
+super + ctrl + button4
+    bspcp dsktp add
+
+# Spawn applications popup menu and manually tile selected 
+# app where your mouse was when you opened the menu. Smartsplit only chooses
+# biggest dimension of the window, MouseLaunch only cares which edge is closer.
+# mod5 is alt_gr (first key right from space) on most keyboards. 
+mod5 + @button1
+    MouseLaunch ; mygtkmenui -- .config/GTKmenu/LaunchMenu
+#	smartsplit ; dboxmenu
+
+# Spawn window manipulation menu
+# Mod1 is alt
+#    BspwmWindowMenu
+mod1 + @button1
+    mygtkmenui -- .config/GTKmenu/BspwmWindowMenui
+
+
+#
+# Touchpad "gestures" (depend on your touchpad driver, very likely to be unavailable)
+#_____________________
+    
+#
+# spawn programs
+#
+
+#super + p
+#	dmenu_recent -h $PANEL_HEIGHT -fn 'xos4 Terminus:size=15' -i
+
+super + shift + Return
+	default-terminal
+
+super + z
+	default-terminal
+
+super + shift + b
+	$BROWSER
+    		
+super + e
+	thunar
+
+# Use slightly bigger font for ranger
+#super + shift + e
+#	default-terminal ranger
+
+Print
+	maim
+	
+#
+# Media keys
+#
+
+XF86AudioPrev
+  playerctl prev
+
+XF86AudioNext
+  playerctl next
+
+XF86AudioPlay
+  playerctl play-pause
+
+XF86AudioRaiseVolume
+	pamixer --increase 5; volnoti-show `pamixer --get-volume`
+
+XF86AudioLowerVolume
+	pamixer --decrease 5; volnoti-show `pamixer --get-volume`
+
+XF86AudioMute
+    pamixer --toggle-mute; if `pamixer --get-mute`; then volnoti-show -m; else volnoti-show `pamixer --get-volume`; fi
+	
+XF86MonBrightnessDown
+ xbacklight -dec 1
+
+XF86MonBrightnessUp
+ xbacklight -inc 1
+
+XF86Sleep
+	systemctl suspend
 
 # make sxhkd reload its configuration files:
-super + Escape
+super + shift + Escape
 	pkill -USR1 -x sxhkd
 
-#
-# bspwm hotkeys
-#
-
-# quit/restart bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}
-
-# close and kill
-super + {_,shift + }w
-	bspc node -{c,k}
-
-# alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
-
-# send the newest marked node to the newest preselected node
-super + y
-	bspc node newest.marked.local -n newest.!automatic.local
-
-# swap the current node and the biggest node
-super + g
-	bspc node -s biggest
-
-#
-# state/flags
-#
-
-# set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-
-# set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
-
-#
-# focus/swap
-#
-
-# focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
-
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
-
-# focus the next/previous node in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local
-
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
-
-# focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
-
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-#
-# preselect
-#
-
-# preselect the direction
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-
-# preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-# cancel the preselection for the focused node
+# In case bspwmrc fails to execute/you wish have plugged in a new monitor
+super + shift + r
+	bspwmrc
+#edit this file
+alt + ctrl + space
+	$GUI_EDITOR ~/.config/sxhkd/sxhkdrc
+# Toggle compositing
 super + ctrl + space
-	bspc node -p cancel
+	{pkill compton ,\
+	compton -b }
 
-# cancel the preselection for the focused desktop
-super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+# Remove receptacles
+super + BackSpace
+  for i in $(bspc query -N -n .leaf.!window.local); do bspc node $i -k; done
 
-#
-# move/resize
-#
+# Triggered by just tapping super 
+super + d
+	rofi -combi-modi window,drun,run,ssh -mesg -show combi -modi combi
 
-# expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+super + space
+    dm-tool lock
 
-# contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# move a floating window
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+super + shift + space
+    systemctl suspend
