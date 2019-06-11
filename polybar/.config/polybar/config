@@ -39,88 +39,107 @@ module-margin-right = 2
 font-0 = dina:pixelsize=9.5;1
 font-1 = "Wuncon Siji:pixelsize=10;1"
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-3 = Font Awesome 5 Free:pixelsize=9;3
-font-4 = Font Awesome 5 Free Solid:pixelsize=9;3
-font-5 = Font Awesome 5 Brands:pixelsize=9;3
+font-3 = Font Awesome 5 Free:pixelsize=9;1
+font-4 = Font Awesome 5 Free Solid:pixelsize=9;1
+font-5 = Font Awesome 5 Brands:pixelsize=9;1
 
-modules-left = i3 mpris
+modules-left = bspwm mpris
 modules-center = 
-modules-right = xbacklight volume wifi battery_0 date fs-root memory cpu temperature
+modules-right = xbacklight volume fs-root memory cpu temperature battery_0 date
 
 tray-position = right
 tray-padding = 4
 tray-maxsize = 16
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+;scroll-up = i3-wsprev
+;scroll-down = i3-wsnext
 
-i3-focused-overline = ${colors.linecolor}
-i3-focused-underline = #cc333333
+focused-overline = ${colors.linecolor}
+focused-underline = #cc333333
 
 [module/fs-root]
 type = internal/fs
 mount-0 = /
-label-mounted = %{F#e60053}%percentage_used%%%{F-} used of %mountpoint%
+label-mounted =  %percentage_used%% used of %mountpoint%
 
-[module/xwindow]
-type = internal/xwindow
-label-font = 0
+[module/bspwm]
+type = internal/bspwm
 
-[module/i3]
-type = internal/i3
-index-sort = true
+; Only show workspaces defined on the same output as the bar
+; NOTE: The bspwm and XRandR monitor names must match, which they do by default.
+; Default: true
 pin-workspaces = true
-wrapping-scroll = true
-enable-scroll = true
-strip-wsnumbers = true
 
-format = <label-state> <label-mode>
+; Output mode flags after focused state label
+; Default: false
+inline-mode = false
 
-ws-icon-0 = web;
-ws-icon-1 = admin;
-ws-icon-2 = work;
-ws-icon-3 = music;
-ws-icon-4 = comms;
-ws-icon-5 = notes;
-ws-icon-6 = :misc;
-ws-icon-7 = logistics;
-ws-icon-8 = files;
-ws-icon-9 = email;
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = false
+format = <label-state>
+
+ws-icon-2 = web;
+ws-icon-0 = admin;
+ws-icon-1 = work;
+ws-icon-5 = music;
+; ws-icon-4 = comms;
+ws-icon-4 = notes;
+ws-icon-6 = misc;
+; ws-icon-7 = logistics;
+ws-icon-3 = reading;
+; ws-icon-9 = email;
 ws-icon-default = 
-
-label-mode = %mode%
-label-mode-padding = 2
-label-mode-background = ${colors.accent}
 
 label-focused = %name% %icon%
 label-focused-background = #383838
 label-focused-foreground = #fff
-label-focused-overline= ${root.i3-focused-overline}
-label-focused-underline= ${root.i3-focused-underline}
+label-focused-overline= ${root.focused-overline}
+label-focused-underline= ${root.focused-underline}
 label-focused-padding = 2
 
-label-unfocused = %name% %icon%
+label-empty = 
 label-unfocused-padding = 2
 
-label-urgent = %name% %icon%
+label-occupied = %icon%
+label-occupied-padding = 2
+
+label-urgent = %icon%
 label-urgent-background = #bd2c40
 label-urgent-padding = 2
 
-label-visible = %name% %icon%
+label-visible = %icon%
 label-visible-padding = 2
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-label = %percentage-cores%
-format-prefix = " "
-format-prefix-foreground = #666
+label = %percentage:2:2%%
+format-prefix = " "
+format-prefix-foreground = #ccc
 
 [module/memory]
 type = internal/memory
 interval = 2
 label = %percentage_used%%
-format-prefix = " "
-format-prefix-foreground = #666
+format-prefix = " "
+format-prefix-foreground = #ccc
 
 [module/wifi]
 type = internal/network
@@ -130,13 +149,13 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-prefix = " "
-format-connected-prefix-foreground = #666
+format-connected-prefix-foreground = #ccc
 format-connected-prefix-offset = -6
 label-connected = %downspeed:8%
 
 format-disconnected = <label-disconnected>
 format-disconnected-prefix = " "
-format-disconnected-prefix-foreground = #666
+format-disconnected-prefix-foreground = #ccc
 label-disconnected = not connected
 label-disconnected-foreground = #66
 
@@ -145,7 +164,7 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = #666
+ramp-signal-foreground = #ccc
 
 [module/wired]
 type = internal/network
@@ -160,14 +179,14 @@ label-disconnected-font = 3
 
 [module/date]
 type = internal/date
-label = %{F#666}%{F-} %date%  %{F#e60053}%{F-} %time%
+label = %{F#ccc}%{F-} %date%  %{F#ccc}%{F-} %time%
 date = %Y-%m-%d
 time = %H:%M:%S
 interval = 5
 
 [module/xbacklight]
 type = internal/xbacklight
-format = <bar> <label>
+format =  <bar> <label>
 bar-width = 10
 bar-indicator = │
 bar-indicator-foreground = #ff
@@ -178,15 +197,16 @@ bar-fill-foreground = #9f78e1
 bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
+label = %percentage%%
 
 [module/volume]
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+label-volume = 
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
+format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
@@ -222,27 +242,32 @@ format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage%% %time%
 
 format-full = <label-full>
-format-full-prefix = " "
-format-full-prefix-foreground = #666
+format-full-prefix = " "
+format-full-prefix-foreground = #ccc
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = #666
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = #ccc
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = #666
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = #ccc
 animation-charging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
+thermal-zone = 1
+warn-temperature = 90
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = 
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
@@ -250,52 +275,12 @@ label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
 [module/mpris]
 type = custom/script
 exec = ~/.config/polybar/player-mpris-tail.py
 tail = true
-
-[module/mpd]
-type = internal/mpd
-
-format-online = <label-time>  <bar-progress>  <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-;format-online-background = #ee333333
-format-online-underline = #cc333333
-format-online-padding = 3
-
-format-offline = <label-offline>
-;format-offline-foreground = #777
-
-label-offline = mpd is off
-
-label-song-maxlen = 45
-label-song-ellipsis = true
-
-label-time-foreground = #777
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-icon-random = 
-icon-repeat = 
-
-toggle-on-foreground = ${colors.accent}
-toggle-off-foreground = #777
-
-bar-progress-width = 10
-bar-progress-indicator = 
-bar-progress-indicator-foreground = #bb
-bar-progress-fill = ─
-bar-progress-fill-foreground = #bb
-bar-progress-fill-font = 3
-bar-progress-empty = ─
-bar-progress-empty-foreground = #44
-bar-progress-empty-font = 3
