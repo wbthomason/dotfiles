@@ -1,6 +1,7 @@
 #! /bin/sh
 
 # Startup programs
+udiskie &
 sxhkd &
 ~/.screenlayout/default.sh &
 ~/bgscript.sh &
