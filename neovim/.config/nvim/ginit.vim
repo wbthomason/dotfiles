@@ -4,5 +4,5 @@ if exists('g:GuiLoaded')
 elseif exists('g:GtkGuiLoaded')
   call rpcnotify(1, 'Gui', 'Font', 'Fira Code Retina 11')
   call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
-  call rpcnotify(1, 'Gui', 'Option', 'Cmdline', 1)
+  call rpcnotify(1, 'Gui', 'Option', 'Cmdline', 0)
 endif
