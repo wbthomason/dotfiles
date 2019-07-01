@@ -50,7 +50,6 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
 inoremap <silent> <cr> <C-R>=Handle_cr_coc()<cr>
@@ -67,3 +66,6 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 let g:coc_status_error_sign = ' 🗙 '
 let g:coc_status_warning_sign = ' ⚠ '
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
