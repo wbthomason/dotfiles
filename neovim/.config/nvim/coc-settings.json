@@ -81,9 +81,8 @@
   "diagnostic.warningSign": "➤",
   "python.jediEnabled": false,
   "python.formatting.provider": "yapf",
-  "diagnostic.virtualText": true,
-  "coc.preferences.hoverTarget": "echo",
-  "coc.source.tag.enable": false,
   "coc.source.around.enable": false,
+  "suggest.enablePreview": true,
+  "highlight.document.enable": true,
   "coc.source.buffer.enable": false
 }

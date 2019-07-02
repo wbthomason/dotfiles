@@ -68,3 +68,5 @@ hi! link CocInfoSign ALEInfoSign
 
 hi default link CocErrorHighlight ALEError
 hi default link CocWarningHighlight ALEWarning
+hi default link CocErrorFloat ALEError
+hi default link CocWarningFloat ALEWarning
