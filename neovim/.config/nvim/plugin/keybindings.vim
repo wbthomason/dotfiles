@@ -3,10 +3,6 @@
 " Get rid of the annoying F1 binding
 map <F1> <nop>
 
-" Set the leader keys
-let g:mapleader = "\<space>"
-let g:maplocalleader = ','
-
 " More convenient ESC
 inoremap <silent> jj <ESC>
 

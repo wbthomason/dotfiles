@@ -112,7 +112,7 @@ function! OmniFilter()
       let l:opts['sink*'] = function('s:edit_file')
       " let l:opts.options = []
       call fzf#run(l:opts)
-      call feedkeys('G', 'n')
+      " call feedkeys('G', 'n')
     endif
   endfunction
 endfunction

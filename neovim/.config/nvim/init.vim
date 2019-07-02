@@ -1,5 +1,9 @@
 scriptencoding utf-8
 
+" Set the leader keys
+let g:mapleader = "\<space>"
+let g:maplocalleader = ','
+
 " Maps for which-key
 let g:lmaps = {}
 let g:llmaps = {}
