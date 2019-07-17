@@ -90,3 +90,11 @@ nnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
 
 " replace under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
+
+" Swap ` and ' for marks (` includes horizontal position)
+for first in ['', 'g', '[', ']']
+  for mode in ['n', 'x', 'o']
+    exe mode . 'noremap ' . first . "' " . first . '`'
+    exe mode . 'noremap ' . first . '` ' . first . "'"
+  endfor
+endfor
