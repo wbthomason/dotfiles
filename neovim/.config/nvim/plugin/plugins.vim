@@ -1,7 +1,7 @@
 " Plugin installation
 if empty(glob('~/.local/share/nvim/site/autoload/plugpac.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plugpac.vim --create-dirs
-		\ https://raw.githubusercontent.com/bennyyip/plugpac.vim/master/plugpac.vim
+        \ https://raw.githubusercontent.com/bennyyip/plugpac.vim/master/plugpac.vim
   au VimEnter * PackInstall
   source ~/.config/nvim/init.vim
 endif
@@ -136,13 +136,14 @@ Pack 'sakhnik/nvim-gdb', {'do': {-> jobstart('./install.sh')}, 'on': ['GdbStart'
 Pack 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
 Pack 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
 Pack 'vim-scripts/scribble.vim'
-Pack 'kovisoft/slimv', {'for': ['clojure', 'scheme', 'racket']}
-Pack 'l04m33/vlime', {'rtp': 'vim/', 'for': 'lisp'}
+Pack 'kovisoft/slimv'
+" Pack 'l04m33/vlime', {'rtp': 'vim/', 'for': 'lisp'}
 
 " Pandoc/Markdown
 Pack 'vim-pandoc/vim-pandoc'
 Pack 'vim-pandoc/vim-pandoc-syntax'
 Pack 'vim-pandoc/vim-pandoc-after'
+Pack 'iamcco/markdown-preview.nvim', {'do': {-> jobstart('cd app && yarn install')}}
 
 " Org-mode
 Pack 'vim-scripts/utl.vim', {'for': 'org'}
