@@ -61,9 +61,6 @@ endfunction
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
 let g:coc_snippet_next = '<TAB>'
 let g:coc_snippet_prev = '<S-TAB>'
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
 let g:coc_status_error_sign = ' 🗙 '
 let g:coc_status_warning_sign = ' ⚠ '
 " nmap <silent> <TAB> <Plug>(coc-range-select)

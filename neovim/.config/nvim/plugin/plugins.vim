@@ -13,7 +13,7 @@ Pack 'k-takata/minpac', {'type': 'opt'}
 
 " Async building & commands
 Pack 'tpope/vim-dispatch'
-Pack 'radenling/vim-dispatch-neovim'
+" Pack 'radenling/vim-dispatch-neovim'
 
 " Moonscript
 " Pack 'svermeulen/nvim-moonmaker'
@@ -22,7 +22,7 @@ Pack 'radenling/vim-dispatch-neovim'
 Pack 'vim-scripts/LargeFile'
 
 " QuickFix help
-Pack 'romainl/vim-qf'
+" Pack 'romainl/vim-qf'
 
 " Mappings
 Pack 'liuchengxu/vim-which-key'
@@ -82,7 +82,6 @@ Pack 'wellle/targets.vim'
 
 " FZF
 Pack 'junegunn/fzf.vim'
-Pack 'fszymanski/fzf-gitignore', {'on': 'FzfGitignore'}
 Pack 'justinhoward/fzf-neoyank', {'on': 'FZFNeoyank'}
 Pack 'Shougo/neoyank.vim'
 
@@ -117,8 +116,7 @@ Pack 'Shougo/neco-syntax'
 Pack 'Shougo/neoinclude.vim'
 
 " Snippets
-Pack 'Shougo/neosnippet.vim'
-Pack 'Shougo/neosnippet-snippets'
+Pack 'honza/vim-snippets'
 
 " Checkers
 Pack 'w0rp/ale'
@@ -146,13 +144,13 @@ Pack 'vim-pandoc/vim-pandoc-after'
 Pack 'iamcco/markdown-preview.nvim', {'do': {-> jobstart('cd app && yarn install')}}
 
 " Org-mode
-Pack 'vim-scripts/utl.vim', {'for': 'org'}
-Pack 'itchyny/calendar.vim', {'for': 'org'}
-Pack 'tpope/vim-speeddating', {'for': 'org'}
-Pack 'chrisbra/NrrwRgn', {'for': 'org'}
-Pack 'inkarkat/vim-SyntaxRange', {'for': 'org'}
-Pack 'jceb/vim-orgmode'
-Pack 'wbthomason/capture.vim'
+" Pack 'vim-scripts/utl.vim', {'for': 'org'}
+" Pack 'itchyny/calendar.vim', {'for': 'org'}
+" Pack 'tpope/vim-speeddating', {'for': 'org'}
+" Pack 'chrisbra/NrrwRgn', {'for': 'org'}
+" Pack 'inkarkat/vim-SyntaxRange', {'for': 'org'}
+" Pack 'jonathanbranam/vim-orgmode'
+" Pack 'wbthomason/capture.vim'
 " Pack '/home/wil/projects/personal/orgmode.nvim'
 
 " Vimscript
