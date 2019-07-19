@@ -112,7 +112,7 @@ Pack 'Shougo/echodoc.vim'
 Pack 'jsfaint/coc-neoinclude'
 Pack 'neoclide/coc-sources'
 Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}}
-Pack 'Shougo/neco-syntax'
+" Pack 'Shougo/neco-syntax'
 Pack 'Shougo/neoinclude.vim'
 
 " Snippets

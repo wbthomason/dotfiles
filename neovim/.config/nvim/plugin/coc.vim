@@ -1,4 +1,19 @@
+scriptencoding utf8
 " coc config (as much as happens outside of coc-settings.json)
+call coc#add_extension('coc-python',
+	\'coc-rls',
+	\'coc-tsserver',
+	\'coc-lists',
+	\'coc-yank',
+	\'coc-omni',
+	\'coc-vimtex',
+	\'coc-gocode',
+	\'coc-gitignore',
+	\'coc-texlab',
+	\'coc-syntax',
+	\'coc-snippets',
+	\'coc-highlight',
+	\'coc-vimlsp')
 augroup coc_aucommands
   au!
   au CursorHold * silent call CocActionAsync('highlight')

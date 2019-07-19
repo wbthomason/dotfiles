@@ -22,7 +22,7 @@
       "command": "java",
       "args": [
         "-cp",
-        "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS.jar",
+        "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS-all.jar",
         "com.tang.vscode.MainKt"
       ],
       "filetypes": ["lua"]
@@ -40,11 +40,6 @@
         }
       }
     },
-    "latex": {
-      "command": "/home/wil/projects/texlab/target/release/texlab",
-      "ignoredRootPaths": ["~"],
-      "filetypes": ["tex", "bib", "plaintex", "context"]
-    }
   },
   "suggest.noselect": false,
   "suggest.preferCompleteThanJumpPlaceholder": true,
