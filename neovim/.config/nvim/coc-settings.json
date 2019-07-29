@@ -2,7 +2,13 @@
   "languageserver": {
     "ccls": {
       "command": "ccls",
-      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "filetypes": [
+        "c",
+        "cpp",
+        "cuda",
+        "objc",
+        "objcpp"
+      ],
       "rootPatterns": [
         "compile_commands.json",
         ".ccls",
@@ -25,12 +31,22 @@
         "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS-all.jar",
         "com.tang.vscode.MainKt"
       ],
-      "filetypes": ["lua"]
+      "filetypes": [
+        "lua"
+      ]
     },
     "haskell": {
       "command": "hie-wrapper",
-      "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
-      "filetypes": ["hs", "lhs", "haskell"],
+      "rootPatterns": [
+        ".stack.yaml",
+        "cabal.config",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ],
       "initializationOptions": {},
       "settings": {
         "languageServerHaskell": {
@@ -39,6 +55,16 @@
           "completionSnippetsOn": true
         }
       }
+    },
+    "ocaml": {
+      "command": "ocaml-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "ocaml",
+        "reason"
+      ]
     },
   },
   "suggest.noselect": false,
