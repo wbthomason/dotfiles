@@ -29,8 +29,8 @@ let g:lmaps.b.l = ['b#', 'Go to last used buffer']
 " nnoremap <silent>  - :Buffers<cr>
 " nnoremap <silent> _ :FindIt<cr>
 
-nnoremap <silent> - :Buffers<cr>
-nnoremap <silent> _ :FindIt<cr>
+nnoremap <silent> - :Denite buffer<cr>
+nnoremap <silent> _ :Denite file/rec file/rec/git file_mru buffer<cr>
 
 " Error bindings
 let g:lmaps.e = {'name': 'Errors'}
