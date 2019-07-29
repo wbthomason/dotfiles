@@ -1,13 +1,12 @@
 " Settings for fzf (and related plugins)
-
 " Lame M-x approximation
 nnoremap <silent> <leader><leader> :Command<cr>
 
-" let g:fzf_layout = { 'window': '10split enew' }
+let g:fzf_layout = { 'window': 'call fzf#floatingwin()' }
 let g:fzf_gitignore_no_maps = 1
 let g:fzf_colors =
-      \ { 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
+      \ {'fg':     ['fg', 'NormalFloat'],
+      \ 'bg':      ['bg', 'NormalFloat'],
       \ 'hl':      ['fg', 'Comment'],
       \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
       \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
@@ -19,3 +18,8 @@ let g:fzf_colors =
       \ 'marker':  ['fg', 'Keyword'],
       \ 'spinner': ['fg', 'Label'],
       \ 'header':  ['fg', 'Comment'] }
+
+augroup fzf_aucmds
+  au!
+  au FileType fzf set nonumber norelativenumber
+augroup END
