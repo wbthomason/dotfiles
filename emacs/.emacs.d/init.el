@@ -44,7 +44,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(require 'use-package)
+(eval-when-compile (require 'use-package))
+(require 'bind-key)
 
 (use-package paradox
   :ensure t
@@ -74,20 +75,16 @@
                        ":/home/wil/.roswell/bin" (getenv "PATH")))
 
 ;; General Packages
-(use-package flx :ensure t)
 (use-package ivy
   :ensure t
-  :diminish ivy-mode
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
         enable-recursive-minibuffers t
-        ;; ivy-re-builders-alist '((t . ivy--regex-fuzzy))
-        ;; ivy-initial-inputs-alist nil
         ivy-display-style 'fancy
         ivy-height 200
-        ivy-use-selectable-prompt t
-        ivy-format-function 'ivy-format-function-line)
+        ivy-use-selectable-prompt t)
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
   (define-key ivy-minibuffer-map [escape] 'minibuffer-keyboard-quit)
   (define-key ivy-minibuffer-map (kbd "C-a") 'ivy-read-action)
   (define-key ivy-minibuffer-map (kbd "C-f") 'ivy-toggle-fuzzy))
@@ -328,8 +325,6 @@
 (use-package evil-escape
   :ensure t
   :after evil
-  :diminish
-  (evil-escape-mode)
   :config
   (evil-escape-mode)
   (setq-default evil-escape-key-sequence "zx"
@@ -354,7 +349,6 @@
 
 (use-package evil-snipe
   :ensure t
-  :diminish evil-snipe-mode
   :after evil
   :init
   (setq evil-snipe-scope 'buffer
@@ -533,7 +527,6 @@
                                     company-yasnippet))
 (use-package company
   :ensure t
-  :diminish company-mode
   :hook (after-init . global-company-mode)
   :config
   (define-key company-active-map [tab] 'company-select-next)
@@ -757,7 +750,6 @@
 ;; (use-package anaconda-mode
 ;;   :ensure t
 ;;   :disabled t
-;;   :diminish anaconda-mode
 ;;   :hook ((python-mode . anaconda-mode)
 ;;          (python-mode . anaconda-eldoc-mode)))
 
