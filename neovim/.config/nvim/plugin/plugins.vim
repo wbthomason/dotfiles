@@ -84,6 +84,9 @@ Pack 'wellle/targets.vim'
 Pack 'junegunn/fzf.vim'
 Pack 'justinhoward/fzf-neoyank', {'on': 'FZFNeoyank'}
 Pack 'Shougo/neoyank.vim'
+" Pack 'nixprime/cpsm', {'do': {-> jobstart('PY3=ON ./install.sh')}}
+" Pack 'Shougo/denite.nvim'
+" Pack 'Shougo/neomru.vim'
 
 " Special symbols
 Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
@@ -144,12 +147,12 @@ Pack 'vim-pandoc/vim-pandoc-after'
 Pack 'iamcco/markdown-preview.nvim', {'do': {-> jobstart('cd app && yarn install')}}
 
 " Org-mode
-" Pack 'vim-scripts/utl.vim', {'for': 'org'}
-" Pack 'itchyny/calendar.vim', {'for': 'org'}
-" Pack 'tpope/vim-speeddating', {'for': 'org'}
+Pack 'vim-scripts/utl.vim', {'for': 'org'}
+Pack 'itchyny/calendar.vim', {'for': 'org'}
+Pack 'tpope/vim-speeddating', {'for': 'org'}
 " Pack 'chrisbra/NrrwRgn', {'for': 'org'}
-" Pack 'inkarkat/vim-SyntaxRange', {'for': 'org'}
-" Pack 'jonathanbranam/vim-orgmode'
+Pack 'inkarkat/vim-SyntaxRange', {'for': 'org'}
+Pack 'jonathanbranam/vim-orgmode'
 " Pack 'wbthomason/capture.vim'
 " Pack '/home/wil/projects/personal/orgmode.nvim'
 
