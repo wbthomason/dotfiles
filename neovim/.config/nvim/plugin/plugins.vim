@@ -81,13 +81,13 @@ Pack 'sbdchd/neoformat', {'on': 'Neoformat'}
 Pack 'wellle/targets.vim'
 
 " FZF
-" Pack 'junegunn/fzf.vim'
-" Pack 'justinhoward/fzf-neoyank', {'on': 'FZFNeoyank'}
-Pack 'ryanoasis/vim-devicons'
+Pack 'junegunn/fzf.vim'
+Pack 'justinhoward/fzf-neoyank', {'on': 'FZFNeoyank'}
+" Pack 'ryanoasis/vim-devicons'
 Pack 'Shougo/neoyank.vim'
-Pack 'nixprime/cpsm', {'do': {-> jobstart('PY3=ON ./install.sh')}}
-Pack 'Shougo/denite.nvim'
-Pack 'Shougo/neomru.vim'
+" Pack 'nixprime/cpsm', {'do': {-> jobstart('PY3=ON ./install.sh')}}
+" Pack 'Shougo/denite.nvim'
+" Pack 'Shougo/neomru.vim'
 
 " Special symbols
 Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
