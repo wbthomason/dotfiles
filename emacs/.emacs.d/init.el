@@ -108,17 +108,6 @@
 
 (use-package counsel-tramp :ensure t)
 
-;; (use-package ivy-bibtex :ensure t)
-(use-package counsel-etags
-  :ensure t
-  :config
-  (add-to-list 'counsel-etags-ignore-directories ".cquery_cached_index")
-  (add-to-list 'counsel-etags-ignore-directories "lib")
-  (setq tags-revert-without-query t)
-  (add-hook 'prog-mode-hook
-            (lambda ()
-              (add-hook 'after-save-hook 'counsel-etags-virtual-update-tags 'append 'local))))
-
 (use-package wgrep :ensure t)
 
 (use-package amx
@@ -127,8 +116,8 @@
   (amx-mode))
 
 (use-package ivy-posframe
-  :disabled t
   :after ivy
+  :disabled t
   :ensure t
   :config
   (defun ivy-posframe-center-dynamic-size (str)
@@ -138,7 +127,8 @@
     ;;       ivy-posframe-width (floor (/ (frame-width) 1.2)))
     (setq ivy-posframe-width (floor (/ (frame-width) 1.2)))
     (ivy-posframe--display str #'posframe-poshandler-frame-center))
-  (setq ivy-display-function #'ivy-posframe-display-at-frame-center)
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-center-dynamic-size)))
+  (ivy-posframe-mode 1)
   ;; (push
   ;;  `(ivy-posframe-center-dynamic-size
   ;;    :cleanup
@@ -274,10 +264,6 @@
   :config
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>"))
-
-(use-package hydra :ensure t)
-
-;; (use-package evil-mc :ensure t)
 
 (use-package evil-collection
   :ensure t
@@ -523,8 +509,7 @@
                                     (company-dabbrev-code
                                      company-gtags
                                      company-etags
-                                     company-keywords)
-                                    company-yasnippet))
+                                     company-keywords)))
 (use-package company
   :ensure t
   :hook (after-init . global-company-mode)
@@ -567,19 +552,6 @@
 (use-package all-the-icons-dired
   :ensure t
   :hook (dired-mode . all-the-icons-dired-mode))
-;;; Prescient
-(use-package prescient :ensure t)
-
-;; (use-package ivy-prescient
-;;   :ensure t
-;;   :after ivy
-;;   :config (ivy-prescient-mode))
-
-(use-package company-prescient
-  :ensure t
-  :disabled t
-  :after company
-  :config (company-prescient-mode))
 
 ;;; LSP
 ;; Rust, Python, Javascript, Bash, and PHP work out of the box
@@ -630,6 +602,15 @@
 (use-package lsp-ui
   :ensure t
   :hook (lsp-mode . lsp-ui-mode))
+
+;;; Snippets
+(use-package yasnippet
+  :after company
+  :ensure t
+  :config
+  (yas-global-mode t)
+  (advice-add 'company-complete-common :before (lambda () (setq my-company-point (point))))
+  (advice-add 'company-complete-common :after (lambda () (when (equal my-company-point (point)) (yas-expand)))))
 
 (use-package company-lsp
   :ensure t
@@ -1163,19 +1144,6 @@
 (use-package biblio-core :ensure t)
 (setq bibtex-dialect 'biblatex)
 
-;;; Snippets
-(use-package yasnippet
-  :after company
-  :ensure t
-  :config
-  (yas-global-mode t)
-  (advice-add 'company-complete-common :before (lambda () (setq my-company-point (point))))
-  (advice-add 'company-complete-common :after (lambda () (when (equal my-company-point (point)) (yas-expand))))
-  ;; (add-to-list 'company-backends 'company-yasnippet t)
-  )
-
-(use-package yasnippet-snippets :ensure t)
-
 ;; Theming and Interface
 
 ;;; Prettify
@@ -1191,7 +1159,6 @@
                 doom-modeline-icon t
                 doom-modeline-major-mode-icon t
                 doom-modeline-major-mode-color-icon t))
-;; (add-hook 'after-make-frame-functions #'doom-modeline-refresh-bars)
 
 ;;; Font
 ;;; Fira code
@@ -1254,8 +1221,6 @@
   :ensure t
   :config
   (setq focus-mode-to-thing '((prog-mode . defun) (text-mode . paragraph))))
-
-(use-package olivetti :ensure t)
 
 ;;; Browse kill ring
 (use-package browse-kill-ring :ensure t)
@@ -1476,13 +1441,14 @@
  '(lsp-ui-doc-include-signature t)
  '(lsp-ui-doc-position (quote top))
  '(lsp-ui-sideline-delay 2.0)
+ '(lsp-ui-sideline-show-hover nil)
  '(mixed-pitch-fixed-pitch-faces
    (quote
     (diff-added diff-context diff-file-header diff-function diff-header diff-hunk-header diff-removed font-latex-math-face font-latex-sedate-face font-latex-warning-face font-latex-sectioning-5-face font-lock-builtin-face font-lock-comment-delimiter-face font-lock-constant-face font-lock-function-name-face font-lock-keyword-face font-lock-negation-char-face font-lock-preprocessor-face font-lock-regexp-grouping-backslash font-lock-regexp-grouping-construct font-lock-string-face font-lock-type-face font-lock-variable-name-face markdown-code-face markdown-gfm-checkbox-face markdown-inline-code-face markdown-language-info-face markdown-language-keyword-face markdown-math-face message-header-name message-header-to message-header-cc message-header-newsgroups message-header-xheader message-header-subject message-header-other mu4e-header-key-face mu4e-header-value-face mu4e-link-face mu4e-contact-face mu4e-compose-separator-face mu4e-compose-header-face org-block org-block-begin-line org-block-end-line org-document-info-keyword org-code org-latex-and-related org-checkbox org-meta-line org-table org-verbatim)))
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
  '(package-selected-packages
    (quote
-    (ox-clip emacs-counsel-tramp evil-textobj-anyblock base16-theme gitconfig-mode gitignore-templates gitignore-mode white-theme eziam-theme eink-theme twilight-bright-theme flx fira-code-mode prescient lsp-ui kaolin-themes kaolin-theme paradox yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort popup-kill-ring parinfer ox-pandoc org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc lispyville lisp-extra-font-lock linum-relative ivy-xref ivy-rich ivy-posframe irony-eldoc intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flycheck-clang-analyzer fish-mode eyebrowse evil-visualstar evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest ein eglot dtrt-indent doom-modeline deft counsel-projectile counsel-etags company-reftex company-quickhelp company-prescient company-posframe company-math company-lua company-lsp company-jedi company-irony company-ghci company-ghc company-cabal company-c-headers company-auctex company-anaconda cmake-font-lock ccls cargo browse-kill-ring biblio auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
+    (ivy-posframe yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package twilight-bright-theme tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort prescient popup-kill-ring parinfer paradox ox-pandoc ox-clip org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc magit-popup lsp-ui lispyville lisp-extra-font-lock linum-relative kaolin-themes ivy-xref ivy-rich intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio gitignore-templates gitignore-mode gitconfig-mode git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flx fish-mode eyebrowse evil-visualstar evil-textobj-anyblock evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest eldoc-eval ein dtrt-indent doom-modeline deft counsel-tramp counsel-projectile counsel-etags company-reftex company-posframe company-math company-lua company-lsp company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock ccls cargo browse-kill-ring biblio base16-theme auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(projectile-completion-system (quote ivy)))
@@ -1532,5 +1498,5 @@
 ;; If you edit it by hand, you could mess it up, so be careful.
 ;; Your init file should contain only one such instance.
 ;; If there is more than one, they won't work right.
-(provide '.emacs)
+(provide '\.emacs)
 ;;; .emacs ends here
