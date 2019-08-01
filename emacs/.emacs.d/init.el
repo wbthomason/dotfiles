@@ -603,6 +603,10 @@
   :ensure t
   :hook (lsp-mode . lsp-ui-mode))
 
+(use-package lsp-treemacs
+  :ensure t
+  :commands lsp-treemacs-error-list)
+
 ;;; Snippets
 (use-package yasnippet
   :after company
@@ -614,6 +618,7 @@
 
 (use-package company-lsp
   :ensure t
+  :commands company-lsp
   :init
   (setq company-lsp-async t
         company-lsp-cache-candidates t
@@ -1446,9 +1451,6 @@
    (quote
     (diff-added diff-context diff-file-header diff-function diff-header diff-hunk-header diff-removed font-latex-math-face font-latex-sedate-face font-latex-warning-face font-latex-sectioning-5-face font-lock-builtin-face font-lock-comment-delimiter-face font-lock-constant-face font-lock-function-name-face font-lock-keyword-face font-lock-negation-char-face font-lock-preprocessor-face font-lock-regexp-grouping-backslash font-lock-regexp-grouping-construct font-lock-string-face font-lock-type-face font-lock-variable-name-face markdown-code-face markdown-gfm-checkbox-face markdown-inline-code-face markdown-language-info-face markdown-language-keyword-face markdown-math-face message-header-name message-header-to message-header-cc message-header-newsgroups message-header-xheader message-header-subject message-header-other mu4e-header-key-face mu4e-header-value-face mu4e-link-face mu4e-contact-face mu4e-compose-separator-face mu4e-compose-header-face org-block org-block-begin-line org-block-end-line org-document-info-keyword org-code org-latex-and-related org-checkbox org-meta-line org-table org-verbatim)))
  '(org-variable-pitch-fixed-font "Fira Code Retina-11")
- '(package-selected-packages
-   (quote
-    (ivy-posframe yasnippet-snippets yapfify yaml-mode which-key wgrep wc-mode utop use-package twilight-bright-theme tuareg toml-mode slime-company scribble-mode scala-mode restart-emacs rainbow-mode rainbow-delimiters racket-mode racer py-isort prescient popup-kill-ring parinfer paradox ox-pandoc ox-clip org-projectile org-plus-contrib org-noter org-journal org-evil org-bullets org-autolist olivetti ocp-indent no-littering modern-cpp-font-lock mixed-pitch meson-mode merlin markdown-toc magit-popup lsp-ui lispyville lisp-extra-font-lock linum-relative kaolin-themes ivy-xref ivy-rich intero ialign hl-todo hindent highlight-parentheses highlight-indent-guides google-c-style golden-ratio gitignore-templates gitignore-mode gitconfig-mode git-gutter geiser format-all focus flyspell-correct flycheck-rust flycheck-pycheckers flycheck-pos-tip flycheck-irony flycheck-haskell flycheck-ghcmod flycheck-clangcheck flx fish-mode eyebrowse evil-visualstar evil-textobj-anyblock evil-terminal-cursor-changer evil-snipe evil-matchit evil-magit evil-lion evil-leader evil-goggles evil-fringe-mark evil-expat evil-escape evil-embrace evil-commentary evil-collection evil-args esh-autosuggest eldoc-eval ein dtrt-indent doom-modeline deft counsel-tramp counsel-projectile counsel-etags company-reftex company-posframe company-math company-lua company-lsp company-ghci company-ghc company-cabal company-c-headers company-box company-auctex cmake-font-lock ccls cargo browse-kill-ring biblio base16-theme auto-dictionary auto-compile auctex-latexmk amx all-the-icons-ivy all-the-icons-dired)))
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(projectile-completion-system (quote ivy)))
