@@ -91,6 +91,7 @@ utils.icons.map = {
   pyd      = '',
   pyo      = '',
   rb       = '',
+  rkt      = 'λ',
   rlib     = '',
   rmd      = '',
   rs       = '',

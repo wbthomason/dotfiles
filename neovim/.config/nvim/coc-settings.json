@@ -105,5 +105,6 @@
   "coc.source.around.enable": false,
   "suggest.enablePreview": true,
   "highlight.document.enable": true,
-  "coc.source.buffer.enable": false
+  "coc.source.buffer.enable": false,
+  "latex.build.onSave": true
 }
