@@ -1401,7 +1401,7 @@
   "op" #'org-projectile-project-todo-completing-read
   "on" #'deft)
 
-(define-key evil-normal-state-map (kbd "TAB") #'ivy-switch-buffer)
+(define-key evil-normal-state-map (kbd "-") #'ivy-switch-buffer)
 (define-key evil-insert-state-map (kbd "C-TAB") #'company-complete)
 (add-hook 'server-done-hook 'kill-buffer)
 
