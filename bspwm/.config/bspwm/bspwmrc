@@ -73,6 +73,7 @@ bspc rule -a google-chrome-unstable private=on
 bspc rule -a google-chrome-stable private=on
 bspc rule -a chromium private=on
 bspc rule -a firefox private=on
+bspc rule -a Emacs state=tiled
 bspc rule -a midori private=on
 bspc rule -a gnome-pie border=off manage=off
 bspc rule -a wpa_gui state=pseudo_tiled
