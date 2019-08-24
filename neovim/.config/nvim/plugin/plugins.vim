@@ -65,6 +65,7 @@ Pack 'luochen1990/rainbow'
 Pack 'andymass/vim-matchup'
 Pack 'rstacruz/vim-closer'
 Pack 'tpope/vim-endwise'
+Pack 'FooSoft/vim-argwrap'
 Pack 'machakann/vim-swap'
 
 " Search
@@ -139,6 +140,7 @@ Pack 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
 Pack 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
 Pack 'vim-scripts/scribble.vim'
 Pack 'kovisoft/slimv'
+Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}}
 " Pack 'l04m33/vlime', {'rtp': 'vim/', 'for': 'lisp'}
 
 " Pandoc/Markdown
