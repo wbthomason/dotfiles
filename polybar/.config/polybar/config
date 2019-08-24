@@ -95,7 +95,8 @@ reverse-scroll = false
 fuzzy-match = false
 format = <label-state>
 
-ws-icon-2 = web;
+; ws-icon-2 = web;
+ws-icon-2 = web;
 ws-icon-0 = admin;
 ws-icon-1 = work;
 ws-icon-5 = music;
