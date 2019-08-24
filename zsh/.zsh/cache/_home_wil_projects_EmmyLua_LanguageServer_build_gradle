@@ -1,0 +1,8 @@
+gradle_group_tasks=( ${(Q)"${(z)$(<<\EO:gradle_group_tasks
+
+EO:gradle_group_tasks
+)}"} )
+gradle_all_tasks=( ${(Q)"${(z)$(<<\EO:gradle_all_tasks
+
+EO:gradle_all_tasks
+)}"} )

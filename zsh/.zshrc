@@ -38,9 +38,6 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig:/usr/local/lib6
 # LD_LIBRARY_PATH tweaks
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/lib64
 
-# PATH tweaks
-export PATH=$PATH:/home/wil/.local/bin:/home/wil/.cargo/bin:/home/wil/.luarocks/bin:/home/wil/.roswell/bin
-
 # Editor setting
 export EDITOR=vim
 
@@ -129,3 +126,6 @@ bindkey -v
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+# OPAM configuration
+eval $(opam config env)

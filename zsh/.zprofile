@@ -1,5 +1,2 @@
-export PATH=/home/wil/.local/bin:$PATH
-
-# OPAM configuration
-eval `opam config env`
-
+# PATH tweaks
+export PATH=$PATH:/home/wil/.local/bin:/home/wil/.cargo/bin:/home/wil/.luarocks/bin:/home/wil/.roswell/bin
