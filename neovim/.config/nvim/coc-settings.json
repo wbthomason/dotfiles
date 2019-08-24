@@ -37,20 +37,12 @@
     },
     "haskell": {
       "command": "hie-wrapper",
-      "rootPatterns": [
-        ".stack.yaml",
-        "cabal.config",
-        "package.yaml"
-      ],
-      "filetypes": [
-        "hs",
-        "lhs",
-        "haskell"
-      ],
+      "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
+      "filetypes": ["hs", "lhs", "haskell"],
       "initializationOptions": {},
       "settings": {
         "languageServerHaskell": {
-          "hlintOn": false,
+          "hlintOn": true,
           "maxNumberOfProblems": 10,
           "completionSnippetsOn": true
         }
@@ -66,6 +58,13 @@
         "reason"
       ]
     },
+    "julia": {
+      "command": "/usr/bin/julia",
+      "args": ["--startup-file=no", "--history-file=no", "-e",
+        "using LanguageServer; using Pkg; import StaticLint; import SymbolServer; env_path = dirname(Pkg.Types.Context().env.project_file); debug = false; server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, \"\", Dict()); server.runlinter = true; run(server);"
+      ],
+      "filetypes": ["julia"]
+    }
   },
   "suggest.noselect": false,
   "suggest.preferCompleteThanJumpPlaceholder": true,
@@ -106,5 +105,5 @@
   "suggest.enablePreview": true,
   "highlight.document.enable": true,
   "coc.source.buffer.enable": false,
-  "latex.build.onSave": true
+  "latex.build.onSave": true,
 }
