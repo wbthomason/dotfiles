@@ -282,6 +282,9 @@ XF86AudioNext
 XF86AudioPlay
   playerctl play-pause
 
+ctrl + shift + {Left, Right, space}
+  playerctl {prev, next, play-pause}
+
 XF86AudioRaiseVolume
 	pamixer --increase 5; volnoti-show `pamixer --get-volume`
 
@@ -318,7 +321,6 @@ super + ctrl + space
 super + BackSpace
   for i in $(bspc query -N -n .leaf.!window.local); do bspc node $i -k; done
 
-# Triggered by just tapping super 
 super + d
 	rofi -combi-modi window,drun,run,ssh -mesg -show combi -modi combi
 
