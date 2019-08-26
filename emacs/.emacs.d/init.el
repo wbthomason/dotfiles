@@ -1314,10 +1314,13 @@
   :init
   (dtrt-indent-mode))
 
+;; doc-view mode
+(setq doc-view-continuous t)
+
 ;; Evil settings
-(setq evil-insert-state-cursor '("#268bd2" bar) ;; blue
-      evil-normal-state-cursor '("#b58900" box) ;; blue
-      evil-visual-state-cursor '("#cb4b16" box) ;; orange
+(setq evil-insert-state-cursor '("#268bd2" bar)   ;; blue
+      evil-normal-state-cursor '("#b58900" box)   ;; blue
+      evil-visual-state-cursor '("#cb4b16" box)   ;; orange
       evil-replace-state-cursor '("#859900" hbar) ;; green
       evil-emacs-state-cursor '("#d33682" box)) ;; magenta
 
