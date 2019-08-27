@@ -106,4 +106,6 @@
   "highlight.document.enable": true,
   "coc.source.buffer.enable": false,
   "latex.build.onSave": true,
+  "latex.forwardSearch.executable": "zathura",
+  "latex.forwardSearch.args": ["--synctex-forward", "%l:1:%f", "%p"]
 }
