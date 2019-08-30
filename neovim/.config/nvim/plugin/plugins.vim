@@ -108,7 +108,7 @@ Pack 'cocopon/vaffle.vim'
 
 " Git
 Pack 'mhinz/vim-signify'
-" Pack 'tpope/vim-fugitive', {'on': ['Gstatus', 'Gpush', 'Gpull', 'Gdiff']}
+Pack 'tpope/vim-fugitive'
 Pack 'jreybert/vimagit', {'on': ['Magit', 'MagitOnly']}
 Pack 'itchyny/vim-gitbranch'
 

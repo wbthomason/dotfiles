@@ -41,10 +41,10 @@ let g:lmaps.e.c = ['lclose', 'Close error list']
 
 " Version control bindings
 let g:lmaps.g = {'name': 'Git'}
-nnoremap <silent> <leader>gl :Dispatch git pull<CR>
-let g:lmaps.g.l = ['Dispatch git pull', 'Run git pull']
-nnoremap <silent> <leader>gp :Dispatch git push<CR>
-let g:lmaps.g.p = ['Dispatch git push', 'Run git push']
+nnoremap <silent> <leader>gl :Gpull<CR>
+let g:lmaps.g.l = ['Gpull', 'Run git pull']
+nnoremap <silent> <leader>gp :Gpush<CR>
+let g:lmaps.g.p = ['Gpush', 'Run git push']
 nnoremap <silent> <leader>gs :MagitOnly<CR>
 let g:lmaps.g.s = ['MagitOnly', 'Display git status']
 
