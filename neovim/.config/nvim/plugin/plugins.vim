@@ -183,6 +183,7 @@ Pack 'tweekmonster/startuptime.vim'
 Pack 'wbthomason/vim-nazgul'
 Pack 'logico-software/typewriter'
 Pack 'bruth/vim-newsprint-theme'
+Pack 'chriskempson/base16-vim'
 
 call plugpac#end()
 

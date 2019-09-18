@@ -66,7 +66,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-tab> coc#refresh()
 
 inoremap <silent> <cr> <C-R>=Handle_cr_coc()<cr>
 
