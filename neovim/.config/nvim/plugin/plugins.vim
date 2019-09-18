@@ -13,19 +13,12 @@ Pack 'k-takata/minpac', {'type': 'opt'}
 
 " Async building & commands
 Pack 'tpope/vim-dispatch'
-" Pack 'radenling/vim-dispatch-neovim'
-
-" Moonscript
-" Pack 'svermeulen/nvim-moonmaker'
 
 " Tweaks
 Pack 'vim-scripts/LargeFile'
 
-" QuickFix help
-" Pack 'romainl/vim-qf'
-
 " Mappings
-Pack 'liuchengxu/vim-which-key'
+" Pack 'liuchengxu/vim-which-key'
 
 " Registers
 Pack 'junegunn/vim-peekaboo'
@@ -65,11 +58,13 @@ Pack 'luochen1990/rainbow'
 Pack 'andymass/vim-matchup'
 Pack 'rstacruz/vim-closer'
 Pack 'tpope/vim-endwise'
-Pack 'FooSoft/vim-argwrap'
-Pack 'machakann/vim-swap'
+" Pack 'FooSoft/vim-argwrap'
+" Pack 'machakann/vim-swap'
 
 " Search
 Pack 'romainl/vim-cool'
+Pack 'eugen0329/vim-esearch'
+Pack 'ripxorip/aerojump.nvim', {'do': ':UpdateRemotePlugins'}
 
 " Yank highlighting
 Pack 'machakann/vim-highlightedyank'
@@ -83,12 +78,8 @@ Pack 'wellle/targets.vim'
 
 " FZF
 Pack 'junegunn/fzf.vim'
-Pack 'justinhoward/fzf-neoyank', {'on': 'FZFNeoyank'}
-" Pack 'ryanoasis/vim-devicons'
-Pack 'Shougo/neoyank.vim'
-" Pack 'nixprime/cpsm', {'do': {-> jobstart('PY3=ON ./install.sh')}}
-" Pack 'Shougo/denite.nvim'
-" Pack 'Shougo/neomru.vim'
+" Pack 'justinhoward/fzf-neoyank', {'on': 'FZFNeoyank'}
+" Pack 'Shougo/neoyank.vim'
 
 " Special symbols
 Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
@@ -104,7 +95,7 @@ Pack 'Vigemus/iron.nvim'
 Pack 'simnalamburt/vim-mundo', {'on': ['MundoShow', 'MundoToggle']}
 
 " File explorer
-Pack 'cocopon/vaffle.vim'
+Pack 'ripxorip/bolt.nvim', {'do': ':UpdateRemotePlugins'}
 
 " Git
 Pack 'mhinz/vim-signify'
@@ -117,7 +108,6 @@ Pack 'Shougo/echodoc.vim'
 Pack 'jsfaint/coc-neoinclude'
 Pack 'neoclide/coc-sources'
 Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}}
-" Pack 'Shougo/neco-syntax'
 Pack 'Shougo/neoinclude.vim'
 
 " Snippets
@@ -141,21 +131,19 @@ Pack 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', '
 Pack 'vim-scripts/scribble.vim'
 Pack 'kovisoft/slimv'
 Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}}
-" Pack 'l04m33/vlime', {'rtp': 'vim/', 'for': 'lisp'}
 
 " Pandoc/Markdown
 Pack 'vim-pandoc/vim-pandoc'
 Pack 'vim-pandoc/vim-pandoc-syntax'
 Pack 'vim-pandoc/vim-pandoc-after'
-Pack 'iamcco/markdown-preview.nvim', {'do': {-> jobstart('cd app && yarn install')}}
 
 " Org-mode
-Pack 'vim-scripts/utl.vim', {'for': 'org'}
-Pack 'itchyny/calendar.vim', {'for': 'org'}
-Pack 'tpope/vim-speeddating', {'for': 'org'}
-" Pack 'chrisbra/NrrwRgn', {'for': 'org'}
-Pack 'inkarkat/vim-SyntaxRange', {'for': 'org'}
-Pack 'jonathanbranam/vim-orgmode'
+" Pack 'vim-scripts/utl.vim', {'for': 'org'}
+" Pack 'itchyny/calendar.vim', {'for': 'org'}
+" Pack 'tpope/vim-speeddating', {'for': 'org'}
+" " Pack 'chrisbra/NrrwRgn', {'for': 'org'}
+" Pack 'inkarkat/vim-SyntaxRange', {'for': 'org'}
+" Pack 'jonathanbranam/vim-orgmode'
 " Pack 'wbthomason/capture.vim'
 " Pack '/home/wil/projects/personal/orgmode.nvim'
 
