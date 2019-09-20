@@ -138,12 +138,12 @@ Pack 'vim-pandoc/vim-pandoc-syntax'
 Pack 'vim-pandoc/vim-pandoc-after'
 
 " Org-mode
-" Pack 'vim-scripts/utl.vim', {'for': 'org'}
-" Pack 'itchyny/calendar.vim', {'for': 'org'}
-" Pack 'tpope/vim-speeddating', {'for': 'org'}
+Pack 'vim-scripts/utl.vim', {'for': 'org'}
+Pack 'itchyny/calendar.vim', {'for': 'org'}
+Pack 'tpope/vim-speeddating', {'for': 'org'}
 " " Pack 'chrisbra/NrrwRgn', {'for': 'org'}
 " Pack 'inkarkat/vim-SyntaxRange', {'for': 'org'}
-" Pack 'jonathanbranam/vim-orgmode'
+Pack 'jonathanbranam/vim-orgmode'
 " Pack 'wbthomason/capture.vim'
 " Pack '/home/wil/projects/personal/orgmode.nvim'
 
