@@ -1,0 +1,10 @@
+[language.c_cpp]
+filetypes = ["c", "cpp"]
+roots = ["compile_commands.json", ".ccls", ".git"]
+command = "ccls"
+
+[language.typescript]
+filetypes = ["typescript"]
+roots = ["package.json"]
+command = "typescript-language-server"
+args = ["--stdio"]
