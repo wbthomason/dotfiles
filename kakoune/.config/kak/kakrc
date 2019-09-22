@@ -50,8 +50,13 @@ plug "andreyorst/smarttab.kak" config %{
 # LSP
 eval %sh{kak-lsp --kakoune -s $kak_session}
 hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
-        lsp-enable-window
+	set-option window lsp_auto_highlight_references true
+	set-option window lsp_hover_anchor false
+	lsp-auto-hover-enable
+  lsp-enable-window
 }
+
+hook global KakEnd .* lsp-exit
 
 set-option global lsp_server_configuration pyls.configurationSources=["flake8"]
 
@@ -67,9 +72,6 @@ set-option global scrolloff 5,5
 # Git diff
 hook global -group fly-git NormalIdle .* %{ try %{ git show-diff } }
 hook global -group fly-git InsertIdle .* %{ try %{ git show-diff } }
-
-# Poor man's indent guides
-add-highlighter global/ show-whitespaces -lf ' ' -spc ' ' -nbsp '⋅'
 
 # Commenting
 #map global normal '<c-/>' ':comment-line<ret>'
