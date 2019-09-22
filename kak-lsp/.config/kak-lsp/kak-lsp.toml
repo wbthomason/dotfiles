@@ -1,7 +1,22 @@
+[language.rust]
+filetypes = ["rust"]
+roots = ["Cargo.toml"]
+command = "rls"
+offset_encoding = "utf-8"
+
+[language.rust.initialization_options]
+offsetEncoding = ["utf-8"]
+formatTool = "rustfmt"
+
 [language.c_cpp]
-filetypes = ["c", "cpp"]
-roots = ["compile_commands.json", ".ccls", ".git"]
+filetypes = ["c", "cpp", "h", "cc", "hh"]
+roots = ["compile_flags.txt", "compile_commands.json"]
 command = "ccls"
+offset_encoding = "utf-8"
+
+[language.c_cpp.initialization_options]
+offsetEncoding = ["utf-8"]
+formatTool = "clang-format"
 
 [language.typescript]
 filetypes = ["typescript"]

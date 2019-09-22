@@ -43,16 +43,16 @@ set-option global tabstop 2
 set-option global indentwidth 2
 
 plug "andreyorst/smarttab.kak" config %{
-  #set-option global softtabstop 2
+  set-option global softtabstop 2
   expandtab
 }
    
 # LSP
 eval %sh{kak-lsp --kakoune -s $kak_session}
 hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
-	set-option window lsp_auto_highlight_references true
-	set-option window lsp_hover_anchor false
-	lsp-auto-hover-enable
+  set-option window lsp_auto_highlight_references true
+  set-option window lsp_hover_anchor false
+  lsp-auto-hover-enable
   lsp-enable-window
 }
 
