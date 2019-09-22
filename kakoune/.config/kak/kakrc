@@ -43,7 +43,7 @@ set-option global tabstop 2
 set-option global indentwidth 2
 
 plug "andreyorst/smarttab.kak" config %{
-  set-option global softtabstop 2
+  #set-option global softtabstop 2
   expandtab
 }
    
@@ -69,4 +69,7 @@ hook global -group fly-git NormalIdle .* %{ try %{ git show-diff } }
 hook global -group fly-git InsertIdle .* %{ try %{ git show-diff } }
 
 # Poor man's indent guides
-#add-highlighter global/ show-whitespaces -tab '▏' -lf " " -nbsp "⋅" -spc " "
+add-highlighter global/ show-whitespaces -lf ' ' -spc ' ' -nbsp '⋅'
+
+# Commenting
+#map global normal '<c-/>' ':comment-line<ret>'
