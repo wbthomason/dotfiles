@@ -126,11 +126,13 @@ Pack 'tpope/vim-apathy'
 Pack 'sakhnik/nvim-gdb', {'do': {-> jobstart('./install.sh')}, 'on': ['GdbStart', 'GdbStartLLDB', 'GdbStartPDB']}
 
 " Clojure/Lisps/Scheme
-Pack 'guns/vim-sexp', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
-Pack 'tpope/vim-sexp-mappings-for-regular-people', {'for': ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']}
+let g:lisps = ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']
+Pack 'guns/vim-sexp', {'for': g:lisps}
+Pack 'tpope/vim-sexp-mappings-for-regular-people', {'for': g:lisps}
 Pack 'vim-scripts/scribble.vim'
 Pack 'kovisoft/slimv'
-Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}}
+Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}, 'for': g:lisps}
+unlet g:lisps
 
 " Pandoc/Markdown
 Pack 'vim-pandoc/vim-pandoc'
