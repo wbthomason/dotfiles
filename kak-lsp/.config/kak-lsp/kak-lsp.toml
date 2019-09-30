@@ -1,3 +1,113 @@
+snippet_support = false
+verbosity = 2
+
+[server]
+# exit session if no requests were received during given period in seconds
+# works only in unix sockets mode (-s/--session)
+# set to 0 to disable
+timeout = 1800 # seconds = 30 minutes
+
+[language.crystal]
+filetypes = ["crystal"]
+roots = ["shard.yml"]
+command = "scry"
+
+[language.javascript]
+filetypes = ["javascript"]
+roots = ["package.json"]
+command = "flow"
+args = ["lsp"]
+
+[language.json]
+filetypes = ["json"]
+roots = ["package.json"]
+command = "json-languageserver"
+args = ["--stdio"]
+
+[language.css]
+filetypes = ["css"]
+roots = ["package.json"]
+command = "css-languageserver"
+args = ["--stdio"]
+
+[language.html]
+filetypes = ["html"]
+roots = ["package.json"]
+command = "html-languageserver"
+args = ["--stdio"]
+
+[language.ocaml]
+filetypes = ["ocaml"]
+roots = ["Makefile", "opam", "*.opam"]
+command = "ocaml-language-server"
+args = ["--stdio"]
+
+[language.reason]
+filetypes = ["reason"]
+roots = ["package.json", "Makefile", ".git", ".hg"]
+command = "ocaml-language-server"
+args = ["--stdio"]
+
+[language.python]
+filetypes = ["python"]
+roots = ["requirements.txt", "setup.py", ".git", ".hg"]
+command = "pyls"
+offset_encoding = "utf-8"
+
+[language.haskell]
+filetypes = ["haskell"]
+roots = ["Setup.hs", "stack.yaml", "*.cabal"]
+command = "hie"
+args = ["--lsp"]
+
+[language.go]
+filetypes = ["go"]
+roots = ["Gopkg.toml", "go.mod", ".git", ".hg"]
+command = "bingo"
+offset_encoding = "utf-8"
+
+[language.bash]
+filetypes = ["sh"]
+roots = [".git", ".hg"]
+command = "bash-language-server"
+args = ["start"]
+
+[language.dart]
+filetypes = ["dart"]
+roots = ["pubspec.yaml", ".git"]
+command = "dart_language_server"
+
+[language.d]
+filetypes = ["d", "di"]
+roots = [".git", "dub.sdl", "dub.json"]
+command = "dls"
+
+[language.php]
+filetypes = ["php"]
+roots = [".htaccess", "composer.json"]
+command = "intelephense"
+args = ["--stdio"]
+
+[language.php.initialization_options]
+storagePath = "/tmp/intelephense"
+
+[language.nim]
+filetypes = ["nim"]
+roots = ["*.nimble", ".git"]
+command = "nimlsp"
+
+[language.elm]
+filetypes = ["elm"]
+roots = ["elm.json"]
+command = "elm-language-server"
+args = ["--stdio"]
+
+[language.elm.initialization_options]
+runtime = "node"
+elmPath = "elm"
+elmFormatPath = "elm-format"
+elmTestPath = "elm-test"
+
 [language.rust]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]
