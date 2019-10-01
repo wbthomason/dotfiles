@@ -265,7 +265,7 @@ animation-charging-framerate = 750
 type = internal/temperature
 thermal-zone = 1
 warn-temperature = 90
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input
 
 format = <ramp> <label>
 format-underline = 
