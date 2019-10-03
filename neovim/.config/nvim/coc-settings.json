@@ -19,12 +19,7 @@
       }
     },
     "lua-lsp": {
-      "command": "java",
-      "args": [
-        "-cp",
-        "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS-all.jar",
-        "com.tang.vscode.MainKt"
-      ],
+      "command": "lua-lsp",
       "filetypes": ["lua"]
     },
     "haskell": {
