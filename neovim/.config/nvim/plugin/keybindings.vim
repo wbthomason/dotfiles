@@ -85,11 +85,11 @@ let g:lmaps.p = {'name': 'Plans/Plan notes'}
 nnoremap <silent> <leader>ps :Files ~/wiki<cr>
 let g:lmaps.p.s = ['Files ~/wiki', 'Search plans/notes']
 
-" Leader guide bindings and settings
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
+" " Leader guide bindings and settings
+" nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+" vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+" nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+" nnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
 
 " replace under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
