@@ -12,6 +12,7 @@ call plugpac#begin()
 Pack 'k-takata/minpac', {'type': 'opt'}
 
 " Async building & commands
+Pack 'radenling/vim-dispatch-neovim'
 Pack 'tpope/vim-dispatch'
 
 " Tweaks
