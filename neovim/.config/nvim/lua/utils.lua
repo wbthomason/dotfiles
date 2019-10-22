@@ -87,6 +87,7 @@ utils.icons.map = {
   psb      = '',
   psd      = '',
   py       = '',
+  python   = '',
   pyc      = '',
   pyd      = '',
   pyo      = '',
