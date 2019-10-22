@@ -18,9 +18,6 @@ Pack 'tpope/vim-dispatch'
 " Tweaks
 Pack 'vim-scripts/LargeFile'
 
-" Mappings
-" Pack 'liuchengxu/vim-which-key'
-
 " Registers
 Pack 'junegunn/vim-peekaboo'
 
@@ -32,10 +29,6 @@ Pack 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 
 " Startup screen
 Pack 'mhinz/vim-startify'
-
-" Status line
-" Pack 'itchyny/lightline.vim'
-" Pack 'maximbaz/lightline-ale'
 
 " Tags
 Pack 'ludovicchabant/vim-gutentags'
@@ -80,10 +73,8 @@ Pack 'sbdchd/neoformat', {'on': 'Neoformat'}
 " Text objects
 Pack 'wellle/targets.vim'
 
-" FZF
+" Search
 Pack 'junegunn/fzf.vim'
-" Pack 'justinhoward/fzf-neoyank', {'on': 'FZFNeoyank'}
-" Pack 'Shougo/neoyank.vim'
 Pack 'liuchengxu/vim-clap'
 
 " Special symbols
@@ -148,11 +139,7 @@ Pack 'vim-pandoc/vim-pandoc-after'
 Pack 'vim-scripts/utl.vim', {'for': 'org'}
 Pack 'itchyny/calendar.vim', {'for': 'org'}
 Pack 'tpope/vim-speeddating', {'for': 'org'}
-" " Pack 'chrisbra/NrrwRgn', {'for': 'org'}
-" Pack 'inkarkat/vim-SyntaxRange', {'for': 'org'}
 Pack 'jonathanbranam/vim-orgmode'
-" Pack 'wbthomason/capture.vim'
-" Pack '/home/wil/projects/personal/orgmode.nvim'
 
 " Vimscript
 Pack 'Shougo/neco-vim'
