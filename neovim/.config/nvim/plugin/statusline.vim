@@ -107,7 +107,7 @@ hi StatusLineNC        guifg=#d75f5f     guibg=NONE     gui=bold
 
 hi StatuslineSeparator guifg=#3a3a3a gui=none guibg=none
 
-hi StatuslineFiletypeBody guifg=#d485ad gui=italic guibg=#3a3a3a
+hi StatuslineFiletypeBody guifg=#d485ad gui=none guibg=#3a3a3a
 
 hi StatuslinePercentage guifg=#3a3a3a gui=NONE guibg=NONE
 hi StatuslinePercentageBody guibg=#3a3a3a gui=none guifg=#dab997
