@@ -34,8 +34,11 @@ Pack 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 Pack 'mhinz/vim-startify'
 
 " Status line
-Pack 'itchyny/lightline.vim'
-Pack 'maximbaz/lightline-ale'
+" Pack 'itchyny/lightline.vim'
+" Pack 'maximbaz/lightline-ale'
+
+" Tags
+Pack 'ludovicchabant/vim-gutentags'
 
 " Movement
 Pack 'chaoren/vim-wordmotion'
@@ -81,6 +84,7 @@ Pack 'wellle/targets.vim'
 Pack 'junegunn/fzf.vim'
 " Pack 'justinhoward/fzf-neoyank', {'on': 'FZFNeoyank'}
 " Pack 'Shougo/neoyank.vim'
+Pack 'liuchengxu/vim-clap'
 
 " Special symbols
 Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
@@ -93,7 +97,7 @@ Pack 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 Pack 'Vigemus/iron.nvim'
 
 " Undo tree
-Pack 'simnalamburt/vim-mundo', {'on': ['MundoShow', 'MundoToggle']}
+Pack 'simnalamburt/vim-mundo'
 
 " File explorer
 Pack 'ripxorip/bolt.nvim', {'do': ':UpdateRemotePlugins'}

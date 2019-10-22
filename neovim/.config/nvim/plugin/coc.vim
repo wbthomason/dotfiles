@@ -18,7 +18,6 @@ augroup coc_aucommands
   au!
   au CursorHold * silent call CocActionAsync('highlight')
   au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  au User CocDiagnosticChange call lightline#update_once()
 augroup END
 
 nnoremap <silent> gO :CocList outline<CR>

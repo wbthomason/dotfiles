@@ -23,3 +23,5 @@ augroup fzf_aucmds
   au!
   au FileType fzf set nonumber norelativenumber
 augroup END
+
+command FindIt :call fzf#omnifilter()
