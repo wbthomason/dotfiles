@@ -44,6 +44,29 @@ endfunction
 
 function! statusline#linted() abort
   return get(g:, 'ale_enabled', 0) == 1
-    \ && getbufvar(bufnr(''), 'ale_linted', 0) > 0
-    \ && ale#engine#IsCheckingBuffer(bufnr('')) == 0
+        \ && getbufvar(bufnr(''), 'ale_linted', 0) > 0
+        \ && ale#engine#IsCheckingBuffer(bufnr('')) == 0
+endfunction
+
+function! statusline#coc_status() abort
+  let l:info = get(b:, 'coc_diagnostic_info', {})
+  let l:msgs = []
+  if get(l:info, 'error', 0)
+    call add(l:msgs, s:indicator_errors . l:info['error'])
+  endif
+  if get(l:info, 'warning', 0)
+    call add(l:msgs, s:indicator_warnings . l:info['warning'])
+  endif
+  return s:trim(join(l:msgs, ' ') . ' ' . get(g:, 'coc_status', ''))
+endfunction
+
+function! s:trim(str)
+  if exists('*trim')
+    return trim(a:str)
+  endif
+  return substitute(a:str, '\s\+$', '', '')
+endfunction
+
+function! statusline#force_update() abort
+  set &ro = &ro
 endfunction

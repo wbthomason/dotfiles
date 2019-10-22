@@ -96,7 +96,7 @@ set statusline+=%#StatuslineSeparator#\
 set statusline+=%(%#StatuslineSeparator#%#StatuslineLintChecking#%{statusline#lint_checking()}%#StatuslineLintWarn#%{statusline#lint_warnings()}%#StatuslineLintError#%{statusline#lint_errors()}%#StatuslineLintOk#%{statusline#lint_ok()}%#StatuslineSeparator#%{statusline#linted()\|\|statusline#lint_checking()!=#''?'\ ':''}%)
 
 " coc
-set statusline+=%(%#StatuslineSeparator#%#StatuslineNormalBody#%{coc#status()}%#StatuslineSeparator#%{coc#status()!=#''?'\ ':''}%)
+set statusline+=%(%#StatuslineSeparator#%#StatuslineNormalBody#%{statusline#coc_status()}%#StatuslineSeparator#%{statusline#coc_status()!=#''?'\ ':''}%)
 
 " Gutentags
 set statusline+=%(%#StatuslineSeparator#%#StatuslineNormalBody#%{gutentags#statusline()}%#StatuslineSeparator#%{gutentags#statusline()!=#''?'\ ':''}%)
@@ -114,9 +114,9 @@ hi StatuslinePercentageBody guibg=#3a3a3a gui=none guifg=#dab997
 
 hi StatuslineNormalBody guibg=#3a3a3a gui=none guifg=#e9e9e9
 
-hi StatuslineLintWarn guibg=#3a3a3a gui=none guifg=#fabd2f
+hi StatuslineLintWarn guibg=#3a3a3a gui=none guifg=#ffcf00
 hi StatuslineLintChecking guibg=#3a3a3a gui=none guifg=#458588
-hi StatuslineLintError guibg=#3a3a3a gui=none guifg=#cc241d
+hi StatuslineLintError guibg=#3a3a3a gui=none guifg=#d75f5f
 hi StatuslineLintOk guibg=#3a3a3a gui=none guifg=#b8bb26
 
 hi StatuslineLineCol guifg=#3a3a3a gui=NONE guibg=NONE
