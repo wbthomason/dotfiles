@@ -13,7 +13,7 @@ Pack 'k-takata/minpac', {'type': 'opt'}
 
 " Async building & commands
 Pack 'radenling/vim-dispatch-neovim'
-Pack 'tpope/vim-dispatch'
+Pack 'tpope/vim-dispatch', {'on': ['Dispatch', 'Make', 'Focus', 'Start']}
 
 " Tweaks
 Pack 'vim-scripts/LargeFile'
@@ -126,7 +126,7 @@ let g:lisps = ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']
 Pack 'guns/vim-sexp', {'for': g:lisps}
 Pack 'tpope/vim-sexp-mappings-for-regular-people', {'for': g:lisps}
 Pack 'vim-scripts/scribble.vim'
-Pack 'kovisoft/slimv'
+Pack 'kovisoft/slimv', {'for': g:lisps}
 Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}, 'for': g:lisps}
 unlet g:lisps
 
@@ -163,9 +163,8 @@ Pack 'tweekmonster/startuptime.vim'
 
 " Color scheme
 Pack 'wbthomason/vim-nazgul'
-Pack 'logico-software/typewriter'
-Pack 'bruth/vim-newsprint-theme'
-Pack 'chriskempson/base16-vim'
+" Pack 'bruth/vim-newsprint-theme'
+" Pack 'chriskempson/base16-vim'
 
 call plugpac#end()
 
