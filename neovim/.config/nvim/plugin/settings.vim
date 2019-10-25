@@ -5,7 +5,7 @@ set scrolloff=7
 set wildignore=*.o,*~,*.pyc
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
-set inccommand=nosplit
+" set inccommand=nosplit
 set lazyredraw
 set magic
 set showmatch

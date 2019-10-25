@@ -66,6 +66,9 @@ Pack 'ripxorip/aerojump.nvim', {'do': ':UpdateRemotePlugins'}
 " Yank highlighting
 Pack 'machakann/vim-highlightedyank'
 
+" Pattern preview
+Pack 'markonm/traces.vim'
+
 " Prettification
 Pack 'junegunn/vim-easy-align'
 Pack 'sbdchd/neoformat', {'on': 'Neoformat'}
