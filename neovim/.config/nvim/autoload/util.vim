@@ -18,10 +18,11 @@ function! util#vc_status() abort
 endfunction
 
 
-function! util#syntax_stack()
+function! util#syntax_stack() abort
   if !exists('*synstack')
     return
   endif
+
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')
 endfunc
 

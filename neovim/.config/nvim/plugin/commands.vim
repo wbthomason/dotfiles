@@ -6,4 +6,4 @@
 "       \           : fzf#vim#with_preview('right:50%:hidden', '?'),
 "       \   <bang>0)
 
-command! WhatHighlight :call <SID>util#syntax_stack()<CR>
+command! WhatHighlight :call util#syntax_stack()<CR>
