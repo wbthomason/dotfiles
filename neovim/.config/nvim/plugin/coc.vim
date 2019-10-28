@@ -3,7 +3,7 @@ scriptencoding utf8
 
 augroup coc_load_aucommands
   au!
-  au InsertEnter * call s:load_coc()
+  au VimEnter * call s:load_coc()
 augroup END
 
 function! s:load_coc() abort
@@ -28,7 +28,7 @@ function! s:load_coc() abort
     au User CocDiagnosticChange call statusline#force_update()
   augroup END
 
-  au! coc_load_aucommands InsertEnter *
+  au! coc_load_aucommands VimEnter *
 endfunction
 
 nnoremap <silent> gO :CocList outline<CR>
