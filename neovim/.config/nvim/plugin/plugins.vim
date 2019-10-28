@@ -30,9 +30,6 @@ Pack 'mhinz/vim-sayonara', {'on': 'Sayonara'}
 " Startup screen
 Pack 'mhinz/vim-startify'
 
-" Tags
-Pack 'ludovicchabant/vim-gutentags'
-
 " Movement
 Pack 'chaoren/vim-wordmotion'
 Pack 'tpope/vim-repeat'
@@ -106,7 +103,7 @@ Pack 'itchyny/vim-gitbranch'
 Pack 'Shougo/echodoc.vim'
 Pack 'jsfaint/coc-neoinclude'
 Pack 'neoclide/coc-sources'
-Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}}
+Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}, 'type': 'opt'}
 Pack 'Shougo/neoinclude.vim'
 
 " Snippets

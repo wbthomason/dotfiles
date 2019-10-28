@@ -98,8 +98,8 @@ set statusline+=%(%#StatuslineSeparator#%#StatuslineLintChecking#%{statusline
 " coc
 set statusline+=%(%#StatuslineSeparator#%#StatuslineNormalBody#%{statusline#coc_status()}%#StatuslineSeparator#%{statusline#coc_status()!=#''?'\ ':''}%)
 
-" Gutentags
-set statusline+=%(%#StatuslineSeparator#%#StatuslineNormalBody#%{gutentags#statusline()}%#StatuslineSeparator#%{gutentags#statusline()!=#''?'\ ':''}%)
+" " Gutentags
+" set statusline+=%(%#StatuslineSeparator#%#StatuslineNormalBody#%{gutentags#statusline()}%#StatuslineSeparator#%{gutentags#statusline()!=#''?'\ ':''}%)
 
 " Setup the colors
 hi StatusLine          guifg=#d485ad     guibg=NONE     gui=NONE

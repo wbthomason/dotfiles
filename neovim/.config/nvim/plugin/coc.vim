@@ -1,25 +1,35 @@
 scriptencoding utf8
 " coc config (as much as happens outside of coc-settings.json)
 
-call coc#add_extension('coc-python',
-    \'coc-rls',
-    \'coc-tsserver',
-    \'coc-lists',
-    \'coc-omni',
-    \'coc-gocode',
-    \'coc-gitignore',
-    \'coc-texlab',
-    \'coc-syntax',
-    \'coc-snippets',
-    \'coc-highlight',
-    \'coc-vimlsp')
-
-augroup coc_aucommands
+augroup coc_load_aucommands
   au!
-  au CursorHold * silent call CocActionAsync('highlight')
-  au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-  au User CocDiagnosticChange call statusline#force_update()
+  au InsertEnter * call s:load_coc()
 augroup END
+
+function! s:load_coc() abort
+  packadd coc.nvim
+  call coc#add_extension('coc-python',
+      \'coc-rls',
+      \'coc-tsserver',
+      \'coc-lists',
+      \'coc-omni',
+      \'coc-gocode',
+      \'coc-gitignore',
+      \'coc-texlab',
+      \'coc-syntax',
+      \'coc-snippets',
+      \'coc-highlight',
+      \'coc-vimlsp')
+    
+  augroup coc_aucommands
+    au!
+    au CursorHold * silent call CocActionAsync('highlight')
+    au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    au User CocDiagnosticChange call statusline#force_update()
+  augroup END
+
+  au! coc_load_aucommands InsertEnter *
+endfunction
 
 nnoremap <silent> gO :CocList outline<CR>
 nnoremap <silent> gS :call CocAction("workspaceSymbols")<CR>
