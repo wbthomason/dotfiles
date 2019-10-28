@@ -78,7 +78,7 @@ Pack 'wellle/targets.vim'
 
 " Search
 Pack 'junegunn/fzf.vim'
-Pack 'liuchengxu/vim-clap'
+" Pack 'liuchengxu/vim-clap'
 
 " Special symbols
 Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
