@@ -81,8 +81,8 @@ Pack 'junegunn/fzf.vim'
 Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
 
 " Project Management/Sessions
-Pack 'tpope/vim-obsession', {'on': 'Prosession'}
-Pack 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
+Pack 'tpope/vim-obsession'
+Pack 'dhruvasagar/vim-prosession'
 
 " REPL
 Pack 'Vigemus/iron.nvim'
