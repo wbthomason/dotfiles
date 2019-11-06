@@ -90,9 +90,6 @@ Pack 'Vigemus/iron.nvim'
 " Undo tree
 Pack 'simnalamburt/vim-mundo'
 
-" File explorer
-Pack 'ripxorip/bolt.nvim', {'do': ':UpdateRemotePlugins'}
-
 " Git
 Pack 'mhinz/vim-signify'
 Pack 'tpope/vim-fugitive'
