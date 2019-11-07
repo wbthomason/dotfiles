@@ -590,10 +590,11 @@
   :init
   (setq lsp-prefer-flymake nil)
   :config
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection "/home/wil/.luarocks/bin/lua-lsp")
-                    :major-modes '(lua-mode)
-                    :server-id 'lua-lsp))
+  ;; (lsp-register-client
+  ;;  (make-lsp-client :new-connection (lsp-stdio-connection "/home/wil/.luarocks/bin/lua-lsp")
+  ;;                   :major-modes '(lua-mode)
+  ;;                   :server-id 'lua-lsp))
+  (setq lsp-clients-emmy-lua-jar-path "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS-all.jar")
   (add-hook 'c-mode-common-hook 'lsp)
   (add-hook 'c-mode-hook 'lsp)
   (add-hook 'c++-mode-hook 'lsp)
@@ -636,6 +637,7 @@
         company-lsp-cache-candidates t
         company-lsp-enable-snippet t
         company-lsp-enable-recompletion t)
+  (add-to-list 'company-lsp-filter-candidates '(lsp-emmy-lua . t))
   :config
   (push 'company-lsp company-backends))
 
