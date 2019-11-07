@@ -47,22 +47,20 @@ nmap <silent> gR <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if &filetype == 'vim'
+  if &filetype ==# 'vim'
     execute 'h '.expand('<cword>')
   else
     call CocAction('doHover')
   endif
 endfunction
 
-let g:lmaps.l = {'name': 'LSP'}
-
-nmap <silent> <leader>ln <Plug>(coc-rename)
-vmap <silent> <leader>lf  <Plug>(coc-format-selected)
-nmap <silent> <leader>lf  :call CocAction('format')<cr>
-vmap <silent> <leader>la  <Plug>(coc-codeaction-selected)
-nmap <silent> <leader>la  <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>cn <Plug>(coc-rename)
+vmap <silent> <leader>cf  <Plug>(coc-format-selected)
+nmap <silent> <leader>cf  :call CocAction('format')<cr>
+vmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>ac  <Plug>(coc-codeaction)
-nmap <silent> <leader>lqf  <Plug>(coc-fix-current)
+nmap <silent> <leader>cqf  <Plug>(coc-fix-current)
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
