@@ -80,6 +80,11 @@ else
   compinit -C
 fi
 
+# pazi
+if command -v pazi &>/dev/null; then
+  eval "$(pazi init zsh)"
+fi
+
 # Thefuck
 eval $(thefuck --alias)
 
