@@ -7,16 +7,14 @@ let g:esearch = {
       \ 'default_mappings': 0,
       \}
 
-call esearch#out#win#map('t',       'tab')
-call esearch#out#win#map('i',       'split')
-call esearch#out#win#map('s',       'vsplit')
+call esearch#out#win#map('s',       'split')
+call esearch#out#win#map('v',       'vsplit')
 call esearch#out#win#map('<Enter>', 'open')
-call esearch#out#win#map('o',       'open')
+call esearch#out#win#map('e',       'open')
 
 "    Open silently (keep focus on the results window)
-call esearch#out#win#map('T', 'tab-silent')
-call esearch#out#win#map('I', 'split-silent')
-call esearch#out#win#map('S', 'vsplit-silent')
+call esearch#out#win#map('S', 'split-silent')
+call esearch#out#win#map('V', 'vsplit-silent')
 
 "    Move cursor with snapping
 call esearch#out#win#map('<C-n>', 'next')
