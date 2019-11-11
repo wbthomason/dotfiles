@@ -102,6 +102,10 @@ alias emd='emacs --daemon'
 alias git='hub'
 alias ls='ls --color=auto'
 
+function create() {
+  mkdir -p $1 && cd $1
+}
+
 function open() {
   xdg-open $1 > /dev/null 2>&1 &
 }
@@ -126,7 +130,7 @@ setopt auto_cd
 
 # Vi mode
 bindkey -v
-#
+
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 source /usr/share/fzf/key-bindings.zsh
