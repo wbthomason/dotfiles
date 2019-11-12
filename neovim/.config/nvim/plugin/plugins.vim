@@ -55,6 +55,9 @@ Pack 'tpope/vim-endwise'
 " Pack 'FooSoft/vim-argwrap'
 " Pack 'machakann/vim-swap'
 
+" Splitting/joining
+Pack 'AndrewRadev/splitjoin.vim'
+
 " Search
 Pack 'romainl/vim-cool'
 Pack 'eugen0329/vim-esearch'
