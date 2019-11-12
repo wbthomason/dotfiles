@@ -79,7 +79,7 @@ set statusline+=%=
 
 " Line and Column
 set statusline+=%#StatuslineSeparator#
-set statusline+=%#StatuslineLineColBody#%l\/%#StatuslineLineColBody#%c
+set statusline+=%#StatuslineLineColBody#(%l,%#StatuslineLineColBody#%c)
 set statusline+=%#StatuslineSeparator#\ 
 
 " Current scroll percentage and total lines of the file
