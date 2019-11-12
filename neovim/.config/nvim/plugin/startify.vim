@@ -5,7 +5,7 @@ let g:startify_bookmarks = [ '~/.config/nvim/', '~/.zshrc', '~/Dropbox/notes', '
 let g:startify_lists = [
       \ { 'header': ['Commands'], 'type': 'commands' },
       \ { 'header': ['Sessions'], 'type': 'sessions' },
-      \ { 'header': ['Recent Files in ' . getcwd()], 'type': 'dir' },
+      \ { 'header': ['Recent Files in ' . substitute(getcwd(),$HOME,'~','')], 'type': 'dir' },
       \ { 'header': ['Recent Files'], 'type': 'files' },
       \ { 'header': ['Bookmarks'], 'type': 'bookmarks' }]
 
