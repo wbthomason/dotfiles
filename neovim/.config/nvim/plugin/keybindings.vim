@@ -13,6 +13,10 @@ nnoremap <silent> <localleader><localleader> :Make<cr>
 nnoremap <silent> <leader>q :qa<cr>
 nnoremap <silent> <leader>x :x!<cr>
 
+" A little Emacs in my Neovim
+nnoremap <silent><c-x><c-s> :w<cr>
+inoremap <silent><c-x><c-s> <esc>:w<cr>a
+
 " Buffer bindings
 nnoremap <silent> <leader>w :w<cr>
 nnoremap <silent><nowait> <leader>d :Sayonara<cr>
