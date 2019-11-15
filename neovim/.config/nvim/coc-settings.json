@@ -19,9 +19,15 @@
       }
     },
     "lua": {
-      "command": "lua-lsp",
-      "filetypes": ["lua"]
+      "command": "/home/wil/projects/lua-language-server/server/Linux/bin/lua",
+      "args": ["-E", "-e", "LANG=en", "/home/wil/projects/lua-language-server/server/main.lua"],
+      "filetypes": ["lua"],
+      "rootPatterns": [".git/"]
     },
+    // "lua": {
+    //   "command": "lua-lsp",
+    //   "filetypes": ["lua"]
+    // },
     // "lua": {
     //   "command": "java",
     //   "args": ["-cp", "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS-all.jar", "com.tang.vscode.MainKt"],
