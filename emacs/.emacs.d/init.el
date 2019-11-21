@@ -543,7 +543,8 @@
   (push '(company-posframe-mode . nil) desktop-minor-mode-table)
   (company-posframe-mode 1))
 
-(use-package prescient :ensure t)
+(use-package prescient :ensure t
+  :config (prescient-persist-mode))
 
 (use-package ivy-prescient
   :ensure t
