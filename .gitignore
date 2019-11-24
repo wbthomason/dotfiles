@@ -9,3 +9,4 @@ emacs/.emacs.d/*
 *.log
 neovim/.config/nvim/pack
 kakoune/.config/kak/*
+bspwm/.config/bspwm/autostart
