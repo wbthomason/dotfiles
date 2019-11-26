@@ -1,14 +1,15 @@
 [Appearance]
 BoldIntense=true
 ColorScheme=base16-tomorrow-night
-Font=Fira Code,9,-1,5,53,0,0,0,0,0,Retina
+Font=Iosevka Slab,10,-1,5,57,0,0,0,0,0,Medium
 UseFontLineChararacters=false
 
 [General]
-Command=/usr/bin/fish
+Command=/usr/bin/zsh
 Name=Default
 Parent=FALLBACK/
 ShowTerminalSizeHint=false
+TerminalColumns=100
 
 [Keyboard]
 KeyBindings=linux
