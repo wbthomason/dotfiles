@@ -11,6 +11,10 @@ call plugpac#begin()
 " minpac
 Pack 'k-takata/minpac', {'type': 'opt'}
 
+" Configure with Fennel
+Pack 'Olical/aniseed'
+Pack 'bakpakin/fennel.vim'
+
 " Async building & commands
 Pack 'radenling/vim-dispatch-neovim'
 Pack 'tpope/vim-dispatch', {'on': ['Dispatch', 'Make', 'Focus', 'Start']}
@@ -122,11 +126,12 @@ Pack 'tpope/vim-apathy'
 Pack 'sakhnik/nvim-gdb', {'do': {-> jobstart('./install.sh')}, 'on': ['GdbStart', 'GdbStartLLDB', 'GdbStartPDB']}
 
 " Clojure/Lisps/Scheme
-let g:lisps = ['clojure', 'lisp', 'scheme', 'racket', 'jbuild']
+let g:lisps = ['clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel']
 Pack 'guns/vim-sexp', {'for': g:lisps}
 Pack 'tpope/vim-sexp-mappings-for-regular-people', {'for': g:lisps}
 Pack 'vim-scripts/scribble.vim'
-Pack 'kovisoft/slimv', {'for': g:lisps}
+Pack 'kovisoft/slimv', {'for': ['lisp', 'scheme']}
+Pack 'Olical/conjure', {'for': 'conjure', 'do': {-> jobstart('bin/compile')}}
 Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}, 'for': g:lisps}
 unlet g:lisps
 
