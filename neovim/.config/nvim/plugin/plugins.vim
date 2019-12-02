@@ -88,7 +88,7 @@ Pack 'tpope/vim-obsession'
 Pack 'dhruvasagar/vim-prosession'
 
 " REPL
-Pack 'Vigemus/iron.nvim'
+Pack 'Vigemus/iron.nvim', {'type': 'opt'}
 
 " Undo tree
 Pack 'simnalamburt/vim-mundo'
@@ -167,4 +167,3 @@ Pack 'wbthomason/vim-nazgul'
 " Pack 'chriskempson/base16-vim'
 
 call plugpac#end()
-

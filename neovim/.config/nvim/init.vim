@@ -38,5 +38,3 @@ let g:loaded_zipPlugin = 1
 set termguicolors
 set background=dark
 colorscheme nazgul
-
-" luafile $HOME/.config/nvim/plugins.lua
