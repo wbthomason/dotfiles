@@ -10,6 +10,11 @@ iron.core.add_repl_definitions {
     croissant = {
       command = {'croissant'}
     }
+  },
+  fennel = {
+    fennel = {
+      command = {'fennel'}
+    }
   }
 }
 
