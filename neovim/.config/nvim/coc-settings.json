@@ -1,23 +1,29 @@
 {
   "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-      "rootPatterns": [
-        "compile_commands.json",
-        ".ccls",
-        ".ccls-cache",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cacheDirectory": ".ccls-cache"
-      },
-      "settings": {
-        "codeLens.enable": false
-      }
-    },
+     "ccls": {
+       "command": "ccls",
+       "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+       "rootPatterns": [
+         "compile_commands.json",
+         ".ccls",
+         ".ccls-cache",
+         ".vim/",
+         ".git/",
+         ".hg/"
+       ],
+       "initializationOptions": {
+         "cacheDirectory": ".ccls-cache"
+       },
+       "settings": {
+         "codeLens.enable": false
+       }
+     },
+    //"clangd": {
+    //  "command": "clangd",
+    //  "args": ["--background-index"],
+    //  "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+    //  "filetypes": ["c", "cpp", "objc", "objcpp"]
+    //},
     "lua": {
       "command": "/home/wil/projects/lua-language-server/bin/Linux/lua-language-server",
       "args": ["-E", "-e", "LANG=en", "/home/wil/projects/lua-language-server/main.lua"],

@@ -136,5 +136,9 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[[A' history-substring-search-up			
+bindkey '^[[B' history-substring-search-down
 # OPAM configuration
 eval $(opam config env)

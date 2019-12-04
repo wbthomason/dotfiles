@@ -4,10 +4,6 @@ scriptencoding utf-8
 let g:mapleader = "\<space>"
 let g:maplocalleader = ','
 
-" Maps for which-key
-let g:lmaps = {}
-let g:llmaps = {}
-
 " Set Python host program to speed up loading
 " let g:loaded_python_provider = 1
 " let g:python_host_skip_check = 1
