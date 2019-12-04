@@ -1,2 +1,2 @@
 " Polyglot
-let g:polyglot_disabled = ['latex', 'tex', 'markdown', 'pandoc', 'org']
+let g:polyglot_disabled = ['latex', 'tex', 'org']

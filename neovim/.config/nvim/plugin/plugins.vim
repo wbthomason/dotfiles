@@ -19,14 +19,14 @@ Pack 'bakpakin/fennel.vim'
 Pack 'radenling/vim-dispatch-neovim'
 Pack 'tpope/vim-dispatch', {'on': ['Dispatch', 'Make', 'Focus', 'Start']}
 
-" Tweaks
-Pack 'vim-scripts/LargeFile'
+" More efficient large files (disabled because it's not clear if it's still necessary)
+" Pack 'vim-scripts/LargeFile'
 
 " Registers
 Pack 'junegunn/vim-peekaboo'
 
 " Marks
-Pack 'kshenoy/vim-signature'
+" Pack 'kshenoy/vim-signature'
 
 " Buffer management
 Pack 'mhinz/vim-sayonara', {'on': 'Sayonara'}
@@ -40,19 +40,19 @@ Pack 'tpope/vim-repeat'
 Pack 'justinmk/vim-sneak'
 
 " Tmux and vim split navigation
-Pack 'christoomey/vim-tmux-navigator'
+" Pack 'christoomey/vim-tmux-navigator'
 
 " Indentation tracking
 Pack 'yggdroot/indentLine'
 
 " Comments
-Pack 'tomtom/tcomment_vim'
+" Pack 'tomtom/tcomment_vim'
+Pack 'tpope/vim-commentary'
 
 " Wrapping/delimiters
 Pack 'machakann/vim-sandwich'
-Pack 'luochen1990/rainbow'
+" Pack 'luochen1990/rainbow'
 " Pack 'itchyny/vim-parenmatch'
-" Pack 'djdt/vim-matchparenalways'
 Pack 'andymass/vim-matchup'
 Pack 'rstacruz/vim-closer'
 Pack 'tpope/vim-endwise'
@@ -105,10 +105,10 @@ Pack 'itchyny/vim-gitbranch'
 
 " Completion
 Pack 'Shougo/echodoc.vim'
-Pack 'jsfaint/coc-neoinclude'
+" Pack 'jsfaint/coc-neoinclude'
 Pack 'neoclide/coc-sources'
 Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}, 'type': 'opt'}
-Pack 'Shougo/neoinclude.vim'
+" Pack 'Shougo/neoinclude.vim'
 
 " Snippets
 Pack 'honza/vim-snippets'
@@ -136,9 +136,9 @@ Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}, 'f
 unlet g:lisps
 
 " Pandoc/Markdown
-Pack 'vim-pandoc/vim-pandoc'
-Pack 'vim-pandoc/vim-pandoc-syntax'
-Pack 'vim-pandoc/vim-pandoc-after'
+" Pack 'vim-pandoc/vim-pandoc'
+" Pack 'vim-pandoc/vim-pandoc-syntax'
+" Pack 'vim-pandoc/vim-pandoc-after'
 
 " Org-mode
 Pack 'vim-scripts/utl.vim', {'for': 'org'}
@@ -154,8 +154,7 @@ Pack 'neoclide/coc-neco'
 Pack 'lervag/vimtex'
 
 " Meson
-Pack 'stfl/meson.vim'
-Pack 'igankevich/mesonic'
+" Pack 'igankevich/mesonic'
 
 " PDDL
 Pack 'PontusPersson/pddl.vim'
