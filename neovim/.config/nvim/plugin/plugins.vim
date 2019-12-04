@@ -12,7 +12,7 @@ call plugpac#begin()
 Pack 'k-takata/minpac', {'type': 'opt'}
 
 " Configure with Fennel
-Pack 'Olical/aniseed'
+Pack 'Olical/aniseed', {'type': 'opt'}
 Pack 'bakpakin/fennel.vim'
 
 " Async building & commands
