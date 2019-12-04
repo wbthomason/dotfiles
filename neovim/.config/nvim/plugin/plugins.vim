@@ -40,7 +40,7 @@ Pack 'tpope/vim-repeat'
 Pack 'justinmk/vim-sneak'
 
 " Tmux and vim split navigation
-" Pack 'christoomey/vim-tmux-navigator'
+Pack 'christoomey/vim-tmux-navigator'
 
 " Indentation tracking
 Pack 'yggdroot/indentLine'
