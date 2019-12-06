@@ -96,10 +96,7 @@ set statusline+=%#StatuslineSeparator#\
 set statusline+=%(%#StatuslineSeparator#%#StatuslineLintChecking#%{statusline#lint_checking()}%#StatuslineLintWarn#%{statusline#lint_warnings()}%#StatuslineLintError#%{statusline#lint_errors()}%#StatuslineLintOk#%{statusline#lint_ok()}%#StatuslineSeparator#%{statusline#linted()\|\|statusline#lint_checking()!=#''?'\ ':''}%)
 
 " coc
-set statusline+=%(%#StatuslineSeparator#%#StatuslineNormalBody#%{statusline#coc_status()}%#StatuslineSeparator#%{statusline#coc_status()!=#''?'\ ':''}%)
-
-" " Gutentags
-" set statusline+=%(%#StatuslineSeparator#%#StatuslineNormalBody#%{gutentags#statusline()}%#StatuslineSeparator#%{gutentags#statusline()!=#''?'\ ':''}%)
+set statusline+=%(%#StatuslineSeparator#%#StatuslineNormalBody#%{coc#status()}%#StatuslineSeparator#%)
 
 " Setup the colors
 hi StatusLine          guifg=#d485ad     guibg=NONE     gui=NONE

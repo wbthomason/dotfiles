@@ -48,18 +48,6 @@ function! statusline#linted() abort
         \ && ale#engine#IsCheckingBuffer(bufnr('')) == 0
 endfunction
 
-function! statusline#coc_status() abort
-  let l:info = get(b:, 'coc_diagnostic_info', {})
-  let l:msgs = []
-  if get(l:info, 'error', 0)
-    call add(l:msgs, s:indicator_errors . l:info['error'])
-  endif
-  if get(l:info, 'warning', 0)
-    call add(l:msgs, s:indicator_warnings . l:info['warning'])
-  endif
-  return s:trim(join(l:msgs, ' ') . ' ' . get(g:, 'coc_status', ''))
-endfunction
-
 function! s:trim(str)
   if exists('*trim')
     return trim(a:str)
