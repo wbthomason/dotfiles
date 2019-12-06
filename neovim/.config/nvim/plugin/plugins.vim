@@ -154,7 +154,7 @@ Pack 'neoclide/coc-neco'
 Pack 'lervag/vimtex'
 
 " Meson
-" Pack 'igankevich/mesonic'
+Pack 'igankevich/mesonic'
 
 " PDDL
 Pack 'PontusPersson/pddl.vim'
