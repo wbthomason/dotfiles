@@ -1,58 +1,63 @@
 {
   "languageserver": {
-     "ccls": {
-       "command": "ccls",
-       "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-       "rootPatterns": [
-         "compile_commands.json",
-         ".ccls",
-         ".ccls-cache",
-         ".vim/",
-         ".git/",
-         ".hg/"
-       ],
-       "initializationOptions": {
-         "cacheDirectory": ".ccls-cache"
-       },
-       "settings": {
-         "codeLens.enable": false
-       }
-     },
-    //"clangd": {
-    //  "command": "clangd",
-    //  "args": ["--background-index"],
-    //  "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-    //  "filetypes": ["c", "cpp", "objc", "objcpp"]
-    //},
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [
+        "compile_commands.json",
+        ".ccls",
+        ".ccls-cache",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cacheDirectory": ".ccls-cache"
+      },
+      "settings": {
+        "codeLens.enable": true
+      }
+    },
+    //  //"clangd": {
+    //  //  "command": "clangd",
+    //  //  "args": ["--background-index"],
+    //  //  "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+    //  //  "filetypes": ["c", "cpp", "objc", "objcpp"]
+    //  //},
     "lua": {
       "command": "/home/wil/projects/lua-language-server/bin/Linux/lua-language-server",
-      "args": ["-E", "-e", "LANG=en", "/home/wil/projects/lua-language-server/main.lua"],
+      "args": [
+        "-E",
+        "-e",
+        "LANG=en",
+        "/home/wil/projects/lua-language-server/main.lua"
+      ],
       "filetypes": ["lua"],
       "rootPatterns": [".git/"]
     },
-    // "lua": {
-    //   "command": "lua-lsp",
-    //   "filetypes": ["lua"]
-    // },
-    // "lua": {
-    //   "command": "java",
-    //   "args": ["-cp", "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS-all.jar", "com.tang.vscode.MainKt"],
-    //   "filetypes": ["lua"],
-    //   "rootPatterns": [".git/"]
-    // },
-    "haskell": {
-      "command": "hie-wrapper",
-      "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
-      "filetypes": ["hs", "lhs", "haskell"],
-      "initializationOptions": {},
-      "settings": {
-        "languageServerHaskell": {
-          "hlintOn": true,
-          "maxNumberOfProblems": 10,
-          "completionSnippetsOn": true
-        }
-      }
-    },
+    //  // "lua": {
+    //  //   "command": "lua-lsp",
+    //  //   "filetypes": ["lua"]
+    //  // },
+    //  // "lua": {
+    //  //   "command": "java",
+    //  //   "args": ["-cp", "/home/wil/projects/EmmyLua-LanguageServer/EmmyLua-LS/build/libs/EmmyLua-LS-all.jar", "com.tang.vscode.MainKt"],
+    //  //   "filetypes": ["lua"],
+    //  //   "rootPatterns": [".git/"]
+    //  // },
+    //  "haskell": {
+    //    "command": "hie-wrapper",
+    //    "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
+    //    "filetypes": ["hs", "lhs", "haskell"],
+    //    "initializationOptions": {},
+    //    "settings": {
+    //      "languageServerHaskell": {
+    //        "hlintOn": true,
+    //        "maxNumberOfProblems": 10,
+    //        "completionSnippetsOn": true
+    //      }
+    //    }
+    //  },
     "ocaml": {
       "command": "ocaml-language-server",
       "args": ["--stdio"],
