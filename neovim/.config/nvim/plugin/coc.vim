@@ -1,6 +1,7 @@
 scriptencoding utf8
 " coc config (as much as happens outside of coc-settings.json)
 
+let g:coc_force_debug = 1
 augroup coc_load_aucommands
   au!
   au VimEnter * call s:load_coc()
@@ -18,6 +19,7 @@ function! s:load_coc() abort
       \'coc-texlab',
       \'coc-syntax',
       \'coc-snippets',
+      \'coc-python',
       \'coc-highlight',
       \'coc-vimlsp')
     
@@ -88,4 +90,9 @@ let g:coc_status_error_sign = ' 🗙 '
 let g:coc_status_warning_sign = ' ⚠ '
 " nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+xmap <silent> <S-TAB> <Plug>(coc-range-select-backward)
+
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
