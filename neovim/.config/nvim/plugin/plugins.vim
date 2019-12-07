@@ -127,12 +127,13 @@ Pack 'sakhnik/nvim-gdb', {'do': {-> jobstart('./install.sh')}, 'on': ['GdbStart'
 
 " Clojure/Lisps/Scheme
 let g:lisps = ['clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel']
-Pack 'guns/vim-sexp', {'for': g:lisps}
-Pack 'tpope/vim-sexp-mappings-for-regular-people', {'for': g:lisps}
+Pack 'guns/vim-sexp'
+Pack 'tpope/vim-sexp-mappings-for-regular-people'
 Pack 'vim-scripts/scribble.vim'
 Pack 'kovisoft/slimv', {'for': ['lisp', 'scheme']}
 Pack 'Olical/conjure', {'for': 'conjure', 'do': {-> jobstart('bin/compile')}}
 Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}, 'for': g:lisps}
+let g:sexp_filetypes = join(g:lisps, ',')
 unlet g:lisps
 
 " Pandoc/Markdown
