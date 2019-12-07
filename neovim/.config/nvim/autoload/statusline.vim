@@ -10,6 +10,7 @@ let s:indicator_ok = "\uf00c"
 
 " The below adapted (slightly) from https://github.com/maximbaz/lightline-ale/blob/master/autoload/lightline/ale.vim
 
+let g:statusline_ale_warnings = v:false
 function! statusline#lint_warnings() abort
   if !statusline#linted()
     return ''
@@ -17,6 +18,7 @@ function! statusline#lint_warnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
+  let g:statusline_ale_warnings = l:all_non_errors != 0
   return l:all_non_errors == 0 ? '' : printf(s:indicator_warnings . '%d', all_non_errors)
 endfunction
 
@@ -53,8 +55,4 @@ function! s:trim(str)
     return trim(a:str)
   endif
   return substitute(a:str, '\s\+$', '', '')
-endfunction
-
-function! statusline#force_update() abort
-  set &ro = &ro
 endfunction

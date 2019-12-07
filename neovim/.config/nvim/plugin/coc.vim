@@ -27,7 +27,7 @@ function! s:load_coc() abort
     au!
     au CursorHold * silent call CocActionAsync('highlight')
     au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-    au User CocDiagnosticChange call statusline#force_update()
+    au User CocDiagnosticChange redrawstatus!
   augroup END
 
   au! coc_load_aucommands VimEnter *
