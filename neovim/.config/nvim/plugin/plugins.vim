@@ -100,7 +100,7 @@ Pack 'simnalamburt/vim-mundo'
 " Git
 Pack 'mhinz/vim-signify'
 Pack 'tpope/vim-fugitive'
-Pack 'jreybert/vimagit', {'on': ['Magit', 'MagitOnly']}
+" Pack 'jreybert/vimagit', {'on': ['Magit', 'MagitOnly']}
 Pack 'itchyny/vim-gitbranch'
 
 " Completion
@@ -127,8 +127,8 @@ Pack 'sakhnik/nvim-gdb', {'do': {-> jobstart('./install.sh')}, 'on': ['GdbStart'
 
 " Clojure/Lisps/Scheme
 let g:lisps = ['clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel']
-Pack 'guns/vim-sexp'
-Pack 'tpope/vim-sexp-mappings-for-regular-people'
+Pack 'guns/vim-sexp', {'type': 'opt'}
+Pack 'tpope/vim-sexp-mappings-for-regular-people', {'type': 'opt'}
 Pack 'vim-scripts/scribble.vim'
 Pack 'kovisoft/slimv', {'for': ['lisp', 'scheme']}
 Pack 'Olical/conjure', {'for': 'conjure', 'do': {-> jobstart('bin/compile')}}
