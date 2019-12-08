@@ -104,7 +104,7 @@ Pack 'tpope/vim-fugitive'
 Pack 'itchyny/vim-gitbranch'
 
 " Completion
-Pack 'Shougo/echodoc.vim'
+" Pack 'Shougo/echodoc.vim'
 " Pack 'jsfaint/coc-neoinclude'
 Pack 'neoclide/coc-sources'
 Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}, 'type': 'opt'}
