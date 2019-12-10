@@ -251,10 +251,10 @@ mod1 + @button1
 #	dmenu_recent -h $PANEL_HEIGHT -fn 'xos4 Terminus:size=15' -i
 
 super + shift + Return
-	default-terminal
+	tdrop -ma -w -30 -x 15 -h "45%" -y 35 -s sysadmin kitty 
 
 super + z
-	default-terminal
+	tdrop -ma -w -30 -x 15 -h "45%" -y 35 -s sysadmin kitty 
 
 super + shift + b
 	$BROWSER
