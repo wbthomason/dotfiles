@@ -65,7 +65,7 @@ Pack 'AndrewRadev/splitjoin.vim'
 " Search
 Pack 'romainl/vim-cool'
 Pack 'eugen0329/vim-esearch'
-Pack 'ripxorip/aerojump.nvim', {'do': ':UpdateRemotePlugins'}
+" Pack 'ripxorip/aerojump.nvim', {'do': ':UpdateRemotePlugins'}
 
 " Yank highlighting
 Pack 'machakann/vim-highlightedyank'
