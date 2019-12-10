@@ -31,7 +31,8 @@ function! s:load_coc() abort
     au FileType cpp,c,python,rust call s:map_funcobs()
   augroup END
 
-  au! coc_load_aucommands VimEnter *
+  autocmd! coc_load_aucommands
+  augroup! coc_load_aucommands
 endfunction
 
 function! s:map_funcobs() abort

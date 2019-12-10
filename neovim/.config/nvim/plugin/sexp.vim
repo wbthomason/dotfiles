@@ -6,6 +6,7 @@ augroup sexp_loaders
 augroup END
 
 function! s:load_sexps() abort
+  autocmd! sexp_loaders
   augroup! sexp_loaders
   packadd vim-sexp
   packadd vim-sexp-mappings-for-regular-people
