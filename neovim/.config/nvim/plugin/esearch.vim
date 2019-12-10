@@ -7,6 +7,9 @@ let g:esearch = {
       \ 'default_mappings': 0,
       \}
 
+let g:esearch#out#win#open = 'enew'
+let g:esearch#cmdline#dir_icon = '🖿 '
+
 call esearch#out#win#map('s',       'split')
 call esearch#out#win#map('v',       'vsplit')
 call esearch#out#win#map('<Enter>', 'open')

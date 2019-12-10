@@ -28,9 +28,17 @@ function! s:load_coc() abort
     au CursorHold * silent call CocActionAsync('highlight')
     au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     au User CocDiagnosticChange redrawstatus!
+    au FileType cpp,c,python,rust call s:map_funcobs()
   augroup END
 
   au! coc_load_aucommands VimEnter *
+endfunction
+
+function! s:map_funcobs() abort
+  xmap <buffer> if <Plug>(coc-funcobj-i)
+  xmap <buffer> af <Plug>(coc-funcobj-a)
+  omap <buffer> if <Plug>(coc-funcobj-i)
+  omap <buffer> af <Plug>(coc-funcobj-a)
 endfunction
 
 nnoremap <silent> gO :CocList outline<CR>
@@ -91,8 +99,3 @@ let g:coc_status_warning_sign = ' ⚠ '
 " nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <S-TAB> <Plug>(coc-range-select-backward)
-
-" xmap if <Plug>(coc-funcobj-i)
-" xmap af <Plug>(coc-funcobj-a)
-" omap if <Plug>(coc-funcobj-i)
-" omap af <Plug>(coc-funcobj-a)
