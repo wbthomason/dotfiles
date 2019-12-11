@@ -32,7 +32,7 @@ nnoremap <silent> <leader>ec :lclose<CR>
 " Version control bindings
 nnoremap <silent> <leader>gl :Gpull<CR>
 nnoremap <silent> <leader>gp :Gpush<CR>
-nnoremap <silent> <leader>gs :MagitOnly<CR>
+nnoremap <silent> <leader>gs :Gstatus<CR>
 
 " REPL and Terminal bindings
 tnoremap jj <C-\><C-n>
