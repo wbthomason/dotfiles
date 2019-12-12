@@ -1,1 +1,1 @@
-setlocal wrap
+setlocal nowrap

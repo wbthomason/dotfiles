@@ -42,6 +42,9 @@ Pack 'justinmk/vim-sneak'
 " Tmux and vim split navigation
 Pack 'christoomey/vim-tmux-navigator'
 
+" Quickfix
+Pack 'romainl/vim-qf' 
+
 " Indentation tracking
 Pack 'yggdroot/indentLine'
 
