@@ -16,7 +16,7 @@ Pack 'Olical/aniseed', {'type': 'opt'}
 Pack 'bakpakin/fennel.vim'
 
 " Async building & commands
-Pack 'radenling/vim-dispatch-neovim'
+" Pack 'radenling/vim-dispatch-neovim'
 Pack 'tpope/vim-dispatch', {'on': ['Dispatch', 'Make', 'Focus', 'Start']}
 
 " More efficient large files (disabled because it's not clear if it's still necessary)
