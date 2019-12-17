@@ -10,19 +10,49 @@ augroup END
 function! s:load_coc() abort
   packadd coc.nvim
   call coc#add_extension('coc-python',
-      \'coc-rls',
-      \'coc-tsserver',
-      \'coc-lists',
-      \'coc-omni',
-      \'coc-gocode',
-      \'coc-gitignore',
-      \'coc-texlab',
-      \'coc-syntax',
-      \'coc-snippets',
-      \'coc-python',
-      \'coc-highlight',
-      \'coc-vimlsp')
-    
+        \'coc-rls',
+        \'coc-tsserver',
+        \'coc-lists',
+        \'coc-omni',
+        \'coc-gocode',
+        \'coc-gitignore',
+        \'coc-texlab',
+        \'coc-syntax',
+        \'coc-snippets',
+        \'coc-python',
+        \'coc-highlight',
+        \'coc-vimlsp')
+
+  if exists("g:fvim_loaded")
+    call coc#config('suggest.completionItemKindLabels', {
+          \ "text": "t",
+          \ "method": ":",
+          \ "function": "f",
+          \ "constructor": "c",
+          \ "field": ".",
+          \ "variable": "v",
+          \ "class": "C",
+          \ "interface": "I",
+          \ "module": "M",
+          \ "property": "p",
+          \ "unit": "U",
+          \ "value": "l",
+          \ "enum": "E",
+          \ "keyword": "k",
+          \ "snippet": "s",
+          \ "color": "K",
+          \ "file": "F",
+          \ "reference": "r",
+          \ "folder": "d",
+          \ "enumMember": "m",
+          \ "constant": "0",
+          \ "struct": "S",
+          \ "event": "e",
+          \ "operator": "o",
+          \ "typeParameter": "T"
+          \ })
+  endif
+
   augroup coc_aucommands
     au!
     au CursorHold * silent call CocActionAsync('highlight')
