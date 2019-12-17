@@ -133,8 +133,8 @@ let g:lisps = ['clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel']
 Pack 'guns/vim-sexp', {'type': 'opt'}
 Pack 'tpope/vim-sexp-mappings-for-regular-people', {'type': 'opt'}
 Pack 'vim-scripts/scribble.vim'
-Pack 'kovisoft/slimv', {'for': ['lisp', 'scheme']}
-Pack 'Olical/conjure', {'for': 'conjure', 'do': {-> jobstart('bin/compile')}}
+Pack 'phmarek/vlime'
+Pack 'Olical/conjure', {'for': 'clojure', 'do': {-> jobstart('bin/compile')}}
 Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}, 'for': g:lisps}
 let g:sexp_filetypes = join(g:lisps, ',')
 unlet g:lisps
