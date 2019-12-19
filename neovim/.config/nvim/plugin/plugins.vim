@@ -1,7 +1,7 @@
 " Plugin installation
-if empty(glob('~/.local/share/nvim/site/autoload/plugpac.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plugpac.vim --create-dirs
-        \ https://raw.githubusercontent.com/bennyyip/plugpac.vim/master/plugpac.vim
+if empty(glob('~/.config/nvim/pack/minpac/opt/plugpac.vim'))
+  silent !git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
+  silent !curl -fLo ~/.config/nvim/autoload/plugpac.vim --create-dirs https://raw.githubusercontent.com/bennyyip/plugpac.vim/master/plugpac.vim
   au VimEnter * PackInstall
   source ~/.config/nvim/init.vim
 endif
@@ -10,6 +10,7 @@ call plugpac#begin()
 
 " minpac
 Pack 'k-takata/minpac', {'type': 'opt'}
+Pack 'bennyyip/plugpac.vim', {'type': 'opt', 'do': ':silent !cp ~/.config/nvim/pack/minpac/plugpac.vim/plugpac.vim ~/.config/nvim/autoload/plugpac.vim'}
 
 " Configure with Fennel
 Pack 'Olical/aniseed', {'type': 'opt'}
