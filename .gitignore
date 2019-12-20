@@ -11,3 +11,4 @@ neovim/.config/nvim/pack
 kakoune/.config/kak/*
 bspwm/.config/bspwm/autostart
 neovim/.config/nvim/autoload/plugpac.vim
+vscode/.config/Code - OSS/*
