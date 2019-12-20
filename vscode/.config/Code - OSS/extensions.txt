@@ -1,0 +1,17 @@
+code --install-extension AndrsDC.base16-themes
+code --install-extension asabil.meson
+code --install-extension asvetliakov.vscode-neovim
+code --install-extension ccls-project.ccls
+code --install-extension efoerster.texlab
+code --install-extension evzen-wybitul.magic-racket
+code --install-extension jan-dolejsi.pddl
+code --install-extension jaredly.reason-vscode
+code --install-extension jdinhlife.gruvbox
+code --install-extension mattn.Lisp
+code --install-extension ms-python.python
+code --install-extension ms-vscode.cmake-tools
+code --install-extension ms-vscode.cpptools
+code --install-extension ms-vscode.Go
+code --install-extension shaunlebron.vscode-parinfer
+code --install-extension surajbarkale.ninja
+code --install-extension vscode-icons-team.vscode-icons
