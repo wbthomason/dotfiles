@@ -57,7 +57,7 @@ Pack 'tpope/vim-commentary'
 Pack 'machakann/vim-sandwich'
 " Pack 'luochen1990/rainbow'
 " Pack 'itchyny/vim-parenmatch'
-Pack 'andymass/vim-matchup'
+Pack 'andymass/vim-matchup', {'type': 'opt'}
 Pack 'rstacruz/vim-closer'
 Pack 'tpope/vim-endwise'
 " Pack 'FooSoft/vim-argwrap'
