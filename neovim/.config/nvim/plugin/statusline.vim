@@ -1,4 +1,14 @@
 scriptencoding utf-8
+if exists('g:loaded_statusline')
+  finish
+endif
+
+if exists('g:vscode')
+  set statusline=
+  let g:loaded_statusline = v:true
+  finish
+endif
+
 " Adapted and modified from https://github.com/elenapan/dotfiles/blob/master/config/nvim/statusline.vim
 
 set noshowmode

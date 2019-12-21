@@ -2,10 +2,12 @@ scriptencoding utf8
 " coc config (as much as happens outside of coc-settings.json)
 
 let g:coc_force_debug = 1
-augroup coc_load_aucommands
-  au!
-  au VimEnter * call s:load_coc()
-augroup END
+if !exists('g:vscode')
+  augroup coc_load_aucommands
+    au!
+    au VimEnter * call s:load_coc()
+  augroup END
+endif
 
 function! s:load_coc() abort
   packadd coc.nvim
