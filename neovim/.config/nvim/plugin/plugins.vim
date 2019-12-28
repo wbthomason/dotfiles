@@ -146,10 +146,11 @@ unlet g:lisps
 " Pack 'vim-pandoc/vim-pandoc-after'
 
 " Org-mode
-Pack 'vim-scripts/utl.vim', {'for': 'org'}
-Pack 'itchyny/calendar.vim', {'for': 'org'}
-Pack 'tpope/vim-speeddating', {'for': 'org'}
-Pack 'jonathanbranam/vim-orgmode'
+" Pack 'vim-scripts/utl.vim', {'for': 'org'}
+" Pack 'itchyny/calendar.vim', {'for': 'org'}
+" Pack 'tpope/vim-speeddating', {'for': 'org'}
+" Pack 'jonathanbranam/vim-orgmode'
+Pack 'axvr/org.vim'
 
 " Vimscript
 Pack 'Shougo/neco-vim'
