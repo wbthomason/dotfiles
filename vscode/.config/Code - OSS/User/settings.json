@@ -1,9 +1,7 @@
 {
     "latex.forwardSearch.executable": "zathura",
     "latex.forwardSearch.args": ["--synctex-forward", "%l:1:%f", "%p"],
-    "latex.server.autoDownload": true,
-    "latex.trace.server": "verbose",
-    "texlab.trace.server": "verbose",
+    "latex.server.autoDownload": false,
     "workbench.colorTheme": "Tomorrow Night",
     "vscode-neovim.neovimPath": "/usr/bin/nvim",
     "window.menuBarVisibility": "toggle",
