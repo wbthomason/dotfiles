@@ -11,6 +11,7 @@ endif
 
 function! s:load_matchup() abort
   packadd vim-matchup
+  doautocmd matchup_filetype FileType *
   autocmd! matchup_load_aucommands
   augroup! matchup_load_aucommands
 endfunction
