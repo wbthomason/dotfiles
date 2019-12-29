@@ -4,7 +4,7 @@
     "latex.server.autoDownload": true,
     "latex.trace.server": "verbose",
     "texlab.trace.server": "verbose",
-    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.colorTheme": "Tomorrow Night",
     "vscode-neovim.neovimPath": "/usr/bin/nvim",
     "window.menuBarVisibility": "toggle",
     "editor.scrollBeyondLastLine": false,
