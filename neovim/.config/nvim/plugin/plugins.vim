@@ -27,7 +27,7 @@ Pack 'tpope/vim-dispatch', {'on': ['Dispatch', 'Make', 'Focus', 'Start']}
 Pack 'junegunn/vim-peekaboo'
 
 " Marks
-" Pack 'kshenoy/vim-signature'
+Pack 'kshenoy/vim-signature'
 
 " Buffer management
 Pack 'mhinz/vim-sayonara', {'on': 'Sayonara'}
@@ -39,6 +39,7 @@ Pack 'mhinz/vim-startify'
 Pack 'chaoren/vim-wordmotion'
 Pack 'tpope/vim-repeat'
 Pack 'justinmk/vim-sneak'
+Pack 'unblevable/quick-scope', {'type': 'opt'}
 
 " Tmux and vim split navigation
 Pack 'christoomey/vim-tmux-navigator'
