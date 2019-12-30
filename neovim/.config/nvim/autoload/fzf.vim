@@ -1,8 +1,8 @@
 scriptencoding utf-8
 
 function! fzf#floatingwin()
-  let width = min([&columns - 4, max([80, &columns - 20])])
-  let height = min([&lines - 4, max([20, &lines - 10])])
+  let width = &columns / 2
+  let height = &lines / 2
   let top = ((&lines - height) / 2) - 1
   let left = (&columns - width) / 2
   let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
