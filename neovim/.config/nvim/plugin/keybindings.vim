@@ -22,7 +22,7 @@ nnoremap <silent> <leader>w :w<cr>
 nnoremap <silent><nowait> <leader>d :Sayonara<cr>
 nnoremap <silent> <leader>k :Sayonara!<cr>
 nnoremap <silent> <leader>l :b#<cr>
-nnoremap <silent>  - :Buffers<cr>
+nnoremap <silent>  - :Clap buffers<cr>
 nnoremap <silent> _ :FindIt<cr>
 
 " Error bindings
@@ -56,9 +56,6 @@ vmap <right> <Plug>SchleppRight
 
 " Journal and note bindings
 nnoremap <silent> <leader>jt :e ~/wiki/journal/<c-r>=strftime("%Y%m%d")<cr>.org<cr>
-nnoremap <silent> <leader>js :Rg .* ~/wiki/journal<cr>
-
-nnoremap <silent> <leader>ps :Files ~/wiki<cr>
 
 " replace under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>

@@ -86,8 +86,8 @@ Pack 'sbdchd/neoformat', {'on': 'Neoformat'}
 Pack 'wellle/targets.vim'
 
 " Search
-Pack 'junegunn/fzf.vim'
-" Pack 'liuchengxu/vim-clap'
+" Pack 'junegunn/fzf.vim'
+Pack 'liuchengxu/vim-clap', {'do': 'call clap#helper#build_all()'}
 
 " Special symbols
 Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}

@@ -35,3 +35,25 @@ hi default link CocErrorHighlight ALEError
 hi default link CocWarningHighlight ALEWarning
 hi default link CocErrorFloat ALEError
 hi default link CocWarningFloat ALEWarning
+
+hi ClapCurrentSelection guifg=#ffffff gui=bold
+hi ClapSelected guifg=#dddddd gui=bold,underline
+hi ClapInput guifg=#ebdbb2 guibg=#404040
+hi ClapDisplay guifg=#ebdbb2 guibg=#505050
+hi ClapNoMatchesFound guifg=#fe4559
+hi ClapQuery guifg=#ffffff
+hi ClapSpinner guifg=#ebdbb2 guibg=#404040
+hi ClapMatches guifg=#aaddaa
+
+let s:idx = 1
+while s:idx < 9
+  execute 'hi link ClapMatches' . s:idx . ' ClapMatches'
+  execute 'hi link ClapFuzzyMatches' . s:idx . ' ClapMatches'
+  let s:idx += 1
+endwhile
+
+while s:idx < 13
+  execute 'hi link ClapFuzzyMatches' . s:idx . ' ClapMatches'
+  let s:idx += 1
+endwhile
+unlet s:idx
