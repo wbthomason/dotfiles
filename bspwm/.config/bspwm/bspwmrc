@@ -9,7 +9,7 @@ compton -CGb &
 xmodmap ~/.Xmodmap &
 ~/.config/polybar/launch.sh &
 nm-applet &
-volnoti &
+rumno-background
 caffeine &
 #xcape -e 'Super_L=Super_L|Shift_L|space' &
 
