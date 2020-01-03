@@ -76,6 +76,7 @@
   "diagnostic.warningSign": "➤",
   "python.jediEnabled": false,
   "python.formatting.provider": "yapf",
+  "python.sortImports.path": "isort",
   "coc.source.around.enable": false,
   "suggest.enablePreview": true,
   "highlight.document.enable": true,

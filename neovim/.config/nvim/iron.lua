@@ -20,7 +20,7 @@ iron.core.add_repl_definitions {
 
 iron.core.set_config {
   preferred = {
-    python  = 'ptipython',
+    python  = 'ipython',
     haskell = 'intero',
     lisp    = 'sbcl',
     ocaml   = 'utop',
