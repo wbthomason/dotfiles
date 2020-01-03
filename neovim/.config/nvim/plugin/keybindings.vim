@@ -23,7 +23,7 @@ nnoremap <silent><nowait> <leader>d :Sayonara<cr>
 nnoremap <silent> <leader>k :Sayonara!<cr>
 nnoremap <silent> <leader>l :b#<cr>
 nnoremap <silent>  - :Clap buffers<cr>
-nnoremap <silent> _ :Clap files --hidden<cr>
+nnoremap <silent> _ :Clap files --hidden -g "!.git/"<cr>
 
 " Error bindings
 nnoremap <silent> <leader>eo :lopen<CR>
