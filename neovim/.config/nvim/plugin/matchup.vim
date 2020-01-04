@@ -1,6 +1,8 @@
 " Matchup
 let g:matchup_matchparen_deferred = 1
+let g:matchup_matchparen_deferred_show_delay = 100
 let g:matchup_matchparen_hi_surround_always = 1
+let g:matchup_override_vimtex = 0
 
 if !exists('g:vscode')
   augroup matchup_load_aucommands

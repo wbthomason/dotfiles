@@ -67,3 +67,6 @@ for first in ['', 'g', '[', ']']
     exe mode . 'noremap ' . first . '` ' . first . "'"
   endfor
 endfor
+
+" Edit config
+nnoremap <silent> <localleader>c :Clap files --hidden ~/dotfiles/neovim/.config/nvim<cr>
