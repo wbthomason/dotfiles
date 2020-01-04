@@ -5,12 +5,13 @@ udiskie &
 sxhkd &
 ~/.screenlayout/default.sh &
 ~/bgscript.sh &
-compton -CGb &
+picom -CGb &
 xmodmap ~/.Xmodmap &
 ~/.config/polybar/launch.sh &
 nm-applet &
 rumno-background
 caffeine &
+unset DBUS_SESSION_BUS_ADDRESS
 #xcape -e 'Super_L=Super_L|Shift_L|space' &
 
 gap=10

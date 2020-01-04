@@ -12,7 +12,8 @@
         ".hg/"
       ],
       "initializationOptions": {
-        "cacheDirectory": ".ccls-cache"
+        "cache.directory": ".ccls-cache",
+        //"compilationDatabaseDirectory": "build"
       },
       "settings": {
         "codeLens.enable": true
