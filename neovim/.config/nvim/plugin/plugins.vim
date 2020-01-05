@@ -56,13 +56,9 @@ Pack 'tpope/vim-commentary'
 
 " Wrapping/delimiters
 Pack 'machakann/vim-sandwich'
-" Pack 'luochen1990/rainbow'
-" Pack 'itchyny/vim-parenmatch'
 Pack 'andymass/vim-matchup', {'type': 'opt'}
 Pack 'rstacruz/vim-closer'
 Pack 'tpope/vim-endwise'
-" Pack 'FooSoft/vim-argwrap'
-" Pack 'machakann/vim-swap'
 
 " Splitting/joining
 Pack 'AndrewRadev/splitjoin.vim'
@@ -70,7 +66,6 @@ Pack 'AndrewRadev/splitjoin.vim'
 " Search
 Pack 'romainl/vim-cool'
 Pack 'eugen0329/vim-esearch', {'type': 'opt'}
-" Pack 'ripxorip/aerojump.nvim', {'do': ':UpdateRemotePlugins'}
 
 " Yank highlighting
 Pack 'machakann/vim-highlightedyank'
@@ -105,15 +100,11 @@ Pack 'simnalamburt/vim-mundo'
 " Git
 Pack 'mhinz/vim-signify'
 Pack 'tpope/vim-fugitive'
-" Pack 'jreybert/vimagit', {'on': ['Magit', 'MagitOnly']}
 Pack 'itchyny/vim-gitbranch'
 
 " Completion
-" Pack 'Shougo/echodoc.vim'
-" Pack 'jsfaint/coc-neoinclude'
 Pack 'neoclide/coc-sources'
 Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}, 'type': 'opt'}
-" Pack 'Shougo/neoinclude.vim'
 
 " Snippets
 Pack 'honza/vim-snippets'
@@ -141,16 +132,7 @@ Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}, 'f
 let g:sexp_filetypes = join(g:lisps, ',')
 unlet g:lisps
 
-" Pandoc/Markdown
-" Pack 'vim-pandoc/vim-pandoc'
-" Pack 'vim-pandoc/vim-pandoc-syntax'
-" Pack 'vim-pandoc/vim-pandoc-after'
-
 " Org-mode
-" Pack 'vim-scripts/utl.vim', {'for': 'org'}
-" Pack 'itchyny/calendar.vim', {'for': 'org'}
-" Pack 'tpope/vim-speeddating', {'for': 'org'}
-" Pack 'jonathanbranam/vim-orgmode'
 Pack 'axvr/org.vim'
 
 " Vimscript
