@@ -32,3 +32,4 @@ set synmaxcol=200
 set display=msgsep
 set cursorline
 set nomodeline
+set mouse=nivh
