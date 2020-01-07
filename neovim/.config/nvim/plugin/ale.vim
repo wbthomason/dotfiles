@@ -13,7 +13,9 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
       \ 'haskell': ['hdevtools', 'hlint'],
       \ 'cpp': ['cppcheck', 'cpplint', 'flawfinder'],
-      \ 'rust': ['rustfmt']
+      \ 'rust': ['rustfmt'],
+      \ 'latex': ['lacheck', 'proselint', 'write-good', 'alex', 'vale'],
+      \ 'tex': ['lacheck', 'proselint', 'write-good', 'alex', 'vale']
       \}
       " \ 'cpp': ['clangtidy', 'cppcheck', 'cpplint', 'flawfinder'],
 let g:ale_warn_about_trailing_whitespace = 1
@@ -27,3 +29,6 @@ let g:ale_set_signs = v:true
 let g:ale_set_balloons = v:true
 let g:ale_sign_column_always = v:true
 let g:ale_virtualtext_cursor = v:true
+let g:ale_textlint_use_global = v:true
+let g:ale_alex_executable = 'alexjs'
+let g:ale_alex_use_global = v:true
