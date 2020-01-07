@@ -12,9 +12,9 @@ call plugpac#begin()
 Pack 'k-takata/minpac', {'type': 'opt'}
 Pack 'bennyyip/plugpac.vim', {'type': 'opt', 'do': ':silent !cp ~/.config/nvim/pack/minpac/plugpac.vim/plugpac.vim ~/.config/nvim/autoload/plugpac.vim'}
 
-" Configure with Fennel
-Pack 'Olical/aniseed', {'type': 'opt'}
-Pack 'bakpakin/fennel.vim'
+" " Configure with Fennel
+" Pack 'Olical/aniseed', {'type': 'opt'}
+" Pack 'bakpakin/fennel.vim'
 
 " Async building & commands
 " Pack 'radenling/vim-dispatch-neovim'
