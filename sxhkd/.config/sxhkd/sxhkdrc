@@ -295,10 +295,10 @@ XF86AudioMute
     pamixer --toggle-mute; if `pamixer --get-mute`; then volnoti-show -m; else volnoti-show `pamixer --get-volume`; fi
 	
 XF86MonBrightnessDown
- xbacklight -dec 1
+ xbacklight -dec 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
 
 XF86MonBrightnessUp
- xbacklight -inc 1
+ xbacklight -inc 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
 
 XF86Sleep
 	systemctl suspend
