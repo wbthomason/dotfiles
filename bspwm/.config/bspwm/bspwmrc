@@ -9,9 +9,8 @@ picom -CGb &
 xmodmap ~/.Xmodmap &
 ~/.config/polybar/launch.sh &
 nm-applet &
-rumno-background
+volnoti &
 caffeine &
-unset DBUS_SESSION_BUS_ADDRESS
 #xcape -e 'Super_L=Super_L|Shift_L|space' &
 
 gap=10
@@ -29,6 +28,10 @@ bspc config bottom_padding $gap
 bspc config gapless_monocle     true 
 bspc config borderless_monocle  true
 bspc config single_monocle true
+bspc config top_monocle_padding $gap
+bspc config left_monocle_padding $gap
+bspc config right_monocle_padding $gap
+bspc config bottom_monocle_padding $gap
 # bspc config paddingless_monocle false
 #bspc config ignore_ewmh_focus      true
 #bspc config initial_polarity second_child
