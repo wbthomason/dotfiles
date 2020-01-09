@@ -81,6 +81,8 @@
   },
   "diagnostic.errorSign": "🗙",
   "diagnostic.warningSign": "➤",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "❗",
   "python.jediEnabled": false,
   "python.formatting.provider": "yapf",
   "python.sortImports.path": "isort",

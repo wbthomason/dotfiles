@@ -8,15 +8,16 @@ hi BlueHover guifg=#83a5cb ctermfg=109 gui=NONE cterm=NONE
 hi AquaHover guifg=#8ec07c ctermfg=108 gui=NONE cterm=NONE
 hi WhiteHover guifg=#ffffff ctermfg=108 gui=NONE cterm=NONE
 
-hi RedSign guifg=#cc241d ctermfg=124 gui=NONE cterm=NONE
-hi YellowSign guifg=#fabd2f ctermfg=214 gui=NONE cterm=NONE
-hi GreenSign guifg=#b8cc26 ctermfg=142 gui=NONE cterm=NONE
-hi BlueSign guifg=#83a5cb ctermfg=109 gui=NONE cterm=NONE
-hi AquaSign guifg=#8ec07c ctermfg=108 gui=NONE cterm=NONE
+hi RedSign guifg=#cc241d guibg=#282828 ctermfg=124 gui=NONE cterm=NONE
+hi YellowSign guifg=#fabd2f guibg=#282828 ctermfg=214 gui=NONE cterm=NONE
+hi GreenSign guifg=#b8cc26 guibg=#282828 ctermfg=142 gui=NONE cterm=NONE
+hi BlueSign guifg=#83a5cb guibg=#282828 ctermfg=109 gui=NONE cterm=NONE
+hi AquaSign guifg=#8ec07c guibg=#282828 ctermfg=108 gui=NONE cterm=NONE
+hi WhiteSign guifg=#ffffff guibg=#282828 gui=NONE cterm=NONE
 
 hi! link ALEErrorSign RedSign
 hi! link ALEWarningSign YellowSign
-hi! link ALEInfoSign BlueSign
+hi! link ALEInfoSign WhiteSign
 
 hi! link ALEVirtualTextError RedHover
 hi! link ALEVirtualTextWarning YellowHover
@@ -30,6 +31,8 @@ hi! link CocHighlightWrite GreenHover
 hi! link CocErrorSign ALEErrorSign
 hi! link CocWarningSign ALEWarningSign
 hi! link CocInfoSign ALEInfoSign
+hi! CocHintHighlight guifg=#83a5cb gui=undercurl guisp=#83a5cb
+hi! link CocHintSign BlueSign
 
 hi default link CocErrorHighlight ALEError
 hi default link CocWarningHighlight ALEWarning
