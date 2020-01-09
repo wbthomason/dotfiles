@@ -23,7 +23,7 @@ set shortmess+=c
 set nojoinspaces
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 " set completeopt=noinsert,menuone,noselect
-set updatetime=300
+set updatetime=700
 set conceallevel=2
 set concealcursor=nc
 set previewheight=5
