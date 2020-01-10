@@ -11,7 +11,7 @@ xmodmap ~/.Xmodmap &
 nm-applet &
 volnoti &
 caffeine &
-xcape -e 'Super_L=Super_L|Shift_L|space' &
+# xcape -e 'Super_L=Super_L|Shift_L|space' &
 
 gap=10
 PANEL_HEIGHT=26

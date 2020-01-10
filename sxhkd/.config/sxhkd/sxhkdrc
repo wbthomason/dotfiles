@@ -2,8 +2,8 @@
 # wm independent hotkeys
 #
 
-super
-  rofi -combi-modi window,drun,run,ssh -mesg -show combi -modi combi
+# super
+#   rofi -combi-modi window,drun,run,ssh -mesg -show combi -modi combi
 
 # terminal emulator
 super + Return
