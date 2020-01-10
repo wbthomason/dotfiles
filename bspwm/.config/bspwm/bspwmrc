@@ -14,7 +14,7 @@ caffeine &
 #xcape -e 'Super_L=Super_L|Shift_L|space' &
 
 gap=10
-PANEL_HEIGHT=25
+PANEL_HEIGHT=26
 export gap
 export PANEL_HEIGHT
 
