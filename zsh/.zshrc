@@ -142,3 +142,5 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 # OPAM configuration
 eval $(opam config env)
+
+source /home/wil/.config/broot/launcher/bash/br
