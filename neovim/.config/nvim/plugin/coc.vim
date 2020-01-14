@@ -61,10 +61,12 @@ function! s:load_coc() abort
     au User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     au User CocDiagnosticChange redrawstatus!
     au FileType cpp,c,python,rust call s:map_funcobs()
+    au FileType python let b:coc_root_patterns = ['pyproject.toml', '.git', '.env']
   augroup END
 
   autocmd! coc_load_aucommands
   augroup! coc_load_aucommands
+  doautoall coc_aucommands FileType
 endfunction
 
 function! s:map_funcobs() abort
