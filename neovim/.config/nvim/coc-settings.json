@@ -86,6 +86,12 @@
   "python.jediEnabled": false,
   "python.formatting.provider": "yapf",
   "python.sortImports.path": "isort",
+  "python.venvFolders": [
+    "envs",
+    ".pyenv",
+    ".direnv",
+    ".cache/pypoetry/virtualenvs"
+  ],
   "coc.source.around.enable": false,
   "suggest.enablePreview": true,
   "highlight.document.enable": true,
