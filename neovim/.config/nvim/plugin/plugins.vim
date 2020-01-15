@@ -46,6 +46,7 @@ Pack 'christoomey/vim-tmux-navigator'
 
 " Quickfix
 Pack 'romainl/vim-qf' 
+Pack 'Olical/vim-enmasse'
 
 " Indentation tracking
 Pack 'yggdroot/indentLine'
