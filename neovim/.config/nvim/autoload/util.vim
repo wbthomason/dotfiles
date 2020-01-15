@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " Utility functions
 
 function! util#in_vc_repo() abort
@@ -19,10 +20,6 @@ endfunction
 
 
 function! util#syntax_stack() abort
-  if !exists('*synstack')
-    return
-  endif
-
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')
+  let l:s = synID(line('.'), col('.'), 1)                                       
+  echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfunc
-
