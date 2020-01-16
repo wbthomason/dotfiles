@@ -1,0 +1,47 @@
+[FileDialogSize]
+Height 1080=1018
+Width 1920=788
+
+[KFileDialog Settings]
+Recent Files[$e]=Archlinux-icon-crystal-64.svg,file:$HOME/Downloads/Archlinux-icon-crystal-64.svg
+Recent URLs[$e]=file:$HOME/Downloads/
+detailViewIconSize=0
+
+[PlasmaRunnerManager]
+LaunchCounts=3 services_systemsettings.desktop,1 services_kcm_kaccounts.desktop,1 services_qdbusviewer.desktop,1 services_powerdevilactivitiesconfig.desktop,2 services_kcm_kscreen.desktop,1 services_kitty.desktop,1 services_kcm_kwin_effects.desktop,1 desktopsessions_1
+pluginWhiteList=desktopsessions,services,places,PowerDevil,calculator,unitconverter,shell,bookmarks,recentdocuments,locations,baloosearch
+
+[PlasmaTransientsConfig]
+PreloadWeight=34
+
+[PlasmaViews][Panel 19]
+alignment=132
+panelVisibility=1
+
+[PlasmaViews][Panel 19][Defaults]
+thickness=26
+
+[PlasmaViews][Panel 19][Horizontal1080]
+thickness=26
+
+[PlasmaViews][Panel 19][Horizontal1920]
+thickness=24
+
+[PlasmaViews][Panel 3]
+panelVisibility=1
+
+[PlasmaViews][Panel 3][Defaults]
+thickness=28
+
+[PlasmaViews][Panel 3][Horizontal1080]
+thickness=36
+
+[PlasmaViews][Panel 3][Horizontal1920]
+thickness=28
+
+[ScreenConnectors]
+0=DP-4
+1=DP-2
+
+[Updates]
+performed=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/move_desktop_layout_config.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/obsolete_kickoffrc.js

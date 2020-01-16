@@ -327,6 +327,9 @@ super + BackSpace
 super + d
 	rofi -combi-modi window,drun,run,ssh -mesg -show combi -modi combi
 
+super + a
+  qdbus org.kde.kglobalaccel /component/krunner_desktop org.kde.kglobalaccel.Component.invokeShortcut '_launch'
+
 super + space
     dm-tool lock
 

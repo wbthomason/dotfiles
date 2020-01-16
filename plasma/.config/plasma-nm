@@ -1,0 +1,4 @@
+[General]
+AirplaneModeEnabled=false
+ManageVirtualConnections=false
+UnlockModemOnDetection=true

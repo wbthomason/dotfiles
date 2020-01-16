@@ -3,22 +3,21 @@
 # Startup programs
 udiskie &
 sxhkd &
-~/.screenlayout/default.sh &
-~/bgscript.sh &
+# ~/bgscript.sh &
 picom -CGb &
 xmodmap ~/.Xmodmap &
-~/.config/polybar/launch.sh &
-nm-applet &
-volnoti &
+# ~/.config/polybar/launch.sh &
+# nm-applet &
+# volnoti &
 caffeine &
 # xcape -e 'Super_L=Super_L|Shift_L|space' &
 
 gap=10
-PANEL_HEIGHT=26
+PANEL_HEIGHT=16
 export gap
 export PANEL_HEIGHT
 
-bspc config window_gap $gap;
+bspc config window_gap $gap
 bspc config top_padding $(($PANEL_HEIGHT+$gap))
 bspc config left_padding $gap
 bspc config right_padding $gap
@@ -51,6 +50,9 @@ bspc config pointer_follows_focus true
 bspc config pointer_follows_monitor true
 
 bspc config split_ratio          0.52
+
+bspwm_root_id=$(xdo id -N Bspwm -n root | sort | head -n 1)
+for wid in $(xdotool search --class plasmashell); do xdo below -t $bspwm_root_id $wid; done
 
 bspc rule -a screenkey --unmanage
 bspc rule -a gcolor2 state=floating center=true
@@ -92,5 +94,8 @@ bspc rule -a 9menu border=off manage=off
 bspc rule -a tint2 border=off manage=off
 #bspc desktop I --layout monocle
 #bspc desktop II --layout monocle
+bspc rule -a plasmashell state=floating border=off layer=normal
+bspc rule -a krunner state=floating border=off
 
 #bspc config external_rules_command /usr/bin/pseudo_automatic_mode
+~/.screenlayout/default.sh &
