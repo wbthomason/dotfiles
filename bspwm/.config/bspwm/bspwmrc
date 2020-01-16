@@ -7,6 +7,7 @@ sxhkd &
 # ~/bgscript.sh &
 picom -CGb &
 xmodmap ~/.Xmodmap &
+latte-dock &
 # ~/.config/polybar/launch.sh &
 # nm-applet &
 # volnoti &
@@ -14,12 +15,12 @@ xmodmap ~/.Xmodmap &
 # xcape -e 'Super_L=Super_L|Shift_L|space' &
 
 gap=10
-PANEL_HEIGHT=16
+PANEL_HEIGHT=25
 export gap
 export PANEL_HEIGHT
 
 bspc config window_gap $gap
-bspc config top_padding $(($PANEL_HEIGHT+$gap))
+bspc config top_padding $gap
 bspc config left_padding $gap
 bspc config right_padding $gap
 bspc config bottom_padding $gap
@@ -55,48 +56,14 @@ bspc config split_ratio          0.52
 bspwm_root_id=$(xdo id -N Bspwm -n root | sort | head -n 1)
 for wid in $(xdotool search --class plasmashell); do xdo below -t $bspwm_root_id $wid; done
 
-bspc rule -a screenkey --unmanage
-bspc rule -a gcolor2 state=floating center=true
-bspc rule -a lxappearance state=floating center=true
-bspc rule -a gmrun state=floating center=true
-bspc rule -a lxterminal state=floating center=true sticky=true
-#bspc rule -a urxvt state=floating center=true
-bspc rule -a viewnior state=floating center=true
-bspc rule -a file-roller state=floating center=true
-bspc rule -a floaterm state=floating center=true
 bspc rule -a spotify state=pseudo_tiled
-#bspc rule -a nautilus state=pseudo_tiled
-#bspc rule -a skype state=pseudo_tiled
-bspc rule -a file-roller state=pseudo_tiled
-bspc rule -a transmission-gtk state=pseudo_tiled
-bspc rule -a conky sticky=on manage=off lower=on
-bspc rule -a astime sticky=on
-bspc rule -a yad state=floating
-bspc rule -a Docky layer=above border=off manage=on
-bspc rule -a Plank layer=above border=off manage=on
-bspc rule -a wbar layer=above
-bspc rule -a dockbarx layer=above
-bspc rule -a google-chrome-unstable private=on
-bspc rule -a google-chrome-stable private=on
-bspc rule -a chromium private=on
-bspc rule -a firefox private=on
 bspc rule -a Emacs state=tiled
-bspc rule -a midori private=on
-bspc rule -a gnome-pie border=off manage=off
-bspc rule -a wpa_gui state=pseudo_tiled
 bspc rule -a libreoffice state=tiled
 bspc rule -a '*:libreofficedev' state=tiled
 bspc rule -a '*:soffice' state=tiled
-#bspc rule -a firefox desktop=I
-#bspc rule -a calibre desktop=II
-#bspc rule -a geany desktop=II
-#bspc rule -a deluge desktop=III
-bspc rule -a 9menu border=off manage=off
-bspc rule -a tint2 border=off manage=off
-#bspc desktop I --layout monocle
-#bspc desktop II --layout monocle
 bspc rule -a plasmashell state=floating border=off layer=normal
 bspc rule -a krunner state=floating border=off
+bspc rule -a 'latte-dock:Latte Shell' layer=above border=off manage=on
 
 #bspc config external_rules_command /usr/bin/pseudo_automatic_mode
-~/.screenlayout/default.sh &
+#~/.screenlayout/default.sh &
