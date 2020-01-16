@@ -135,6 +135,7 @@ unlet g:lisps
 
 " Org-mode
 Pack 'axvr/org.vim'
+Pack 'dhruvasagar/vim-dotoo'
 
 " Vimscript
 Pack 'Shougo/neco-vim'
