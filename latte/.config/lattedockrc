@@ -1,0 +1,36 @@
+[FileDialogSize]
+Height 1080=1018
+Width 1920=788
+
+[KFileDialog Settings]
+Recent Files[$e]=Archlinux-icon-crystal-64.svg,file:$HOME/Downloads/Archlinux-icon-crystal-64.svg
+Recent URLs[$e]=file:$HOME/Downloads/
+detailViewIconSize=0
+
+[PlasmaRunnerManager]
+LaunchCounts=1 services_systemsettings.desktop
+pluginWhiteList=desktopsessions,services,places,PowerDevil,calculator,unitconverter,shell,bookmarks,recentdocuments,locations,baloosearch
+
+[PlasmaThemeExtended]
+outlineWidth=1
+
+[ScreenConnectors]
+10=DVI-I-1
+11=DP-2
+12=DP-4
+
+[UniversalSettings]
+badges3DStyle=false
+canDisableBorders=false
+currentLayout=Plasma
+downloadWindowSize=800,550
+lastNonAssignedLayout=Plasma
+launchers=
+layoutsColumnWidths=86,76,63,0
+layoutsWindowSize=700,587
+memoryUsage=0
+metaPressAndHoldEnabled=true
+mouseSensitivity=2
+screenTrackerInterval=2500
+showInfoWindow=true
+version=2
