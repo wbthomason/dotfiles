@@ -1,3 +1,7 @@
+[DownloadDialog Settings]
+Height 1920=472
+Width 1080=700
+
 [FileDialogSize]
 Height 1080=1018
 Width 1920=788
@@ -12,7 +16,7 @@ LaunchCounts=3 services_systemsettings.desktop,1 services_kcm_kaccounts.desktop,
 pluginWhiteList=desktopsessions,services,places,PowerDevil,calculator,unitconverter,shell,bookmarks,recentdocuments,locations,baloosearch
 
 [PlasmaTransientsConfig]
-PreloadWeight=34
+PreloadWeight=18
 
 [PlasmaViews][Panel 19]
 alignment=132

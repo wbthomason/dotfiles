@@ -52,17 +52,16 @@ plugin=org.kde.plasma.panelspacer
 [Containments][19][Applets][26][Configuration]
 PreloadWeight=26
 
-[Containments][19][Applets][30]
+[Containments][19][Applets][32]
 immutability=1
-plugin=org.kde.plasma.pager
+plugin=org.kde.plasma.virtualdesktopbar
 
-[Containments][19][Applets][30][Configuration][ConfigDialog]
+[Containments][19][Applets][32][Configuration][ConfigDialog]
 DialogHeight=480
 DialogWidth=640
 
-[Containments][19][Applets][30][Configuration][General]
-displayedText=Name
-showOnlyCurrentScreen=true
+[Containments][19][Applets][32][Configuration][General]
+showPlusButton=false
 
 [Containments][19][ConfigDialog]
 DialogHeight=82
@@ -72,7 +71,7 @@ DialogWidth=1080
 PreloadWeight=10
 
 [Containments][19][General]
-AppletOrder=21;30;26;22
+AppletOrder=21;32;26;22
 
 [Containments][24]
 ItemGeometriesHorizontal=
@@ -100,7 +99,7 @@ showToolbox=false
 Image=file:///usr/share/wallpapers/Next/contents/images/1920x1080.png
 
 [Containments][24][Wallpaper][org.kde.slideshow][General]
-Image=file:///home/wil/dotfiles/backgrounds/desktopbgs/Vzh77Je.jpg
+Image=file:///home/wil/dotfiles/backgrounds/desktopbgs/4wdi7ggusksy.png
 SlidePaths=/home/wil/desktopbgs
 
 [Containments][28]
@@ -126,7 +125,7 @@ showToolbox=false
 Image=file:///usr/share/wallpapers/Next/contents/images/1280x1024.png
 
 [Containments][28][Wallpaper][org.kde.slideshow][General]
-Image=file:///home/wil/dotfiles/backgrounds/desktopbgs/5899519358fed5eb6c40361e496b63c3.jpg
+Image=file:///home/wil/dotfiles/backgrounds/desktopbgs/4wdi7ggusksy.png
 SlidePaths=/home/wil/desktopbgs
 
 [Containments][3]
@@ -152,6 +151,17 @@ plugin=org.kde.plasma.lock_logout
 [Containments][3][Applets][27][Configuration]
 PreloadWeight=26
 
+[Containments][3][Applets][31]
+immutability=1
+plugin=org.kde.plasma.virtualdesktopbar
+
+[Containments][3][Applets][31][Configuration][ConfigDialog]
+DialogHeight=480
+DialogWidth=640
+
+[Containments][3][Applets][31][Configuration][General]
+showPlusButton=false
+
 [Containments][3][Applets][4]
 immutability=1
 plugin=org.kde.plasma.kickoff
@@ -174,27 +184,12 @@ global=Alt+F1
 [Containments][3][Applets][4][Shortcuts]
 global=Meta+A
 
-[Containments][3][Applets][5]
-immutability=1
-plugin=org.kde.plasma.pager
-
-[Containments][3][Applets][5][Configuration]
-PreloadWeight=10
-
-[Containments][3][Applets][5][Configuration][ConfigDialog]
-DialogHeight=480
-DialogWidth=640
-
-[Containments][3][Applets][5][Configuration][General]
-displayedText=Name
-showOnlyCurrentScreen=true
-
 [Containments][3][Applets][7]
 immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][3][Applets][7][Configuration]
-PreloadWeight=65
+PreloadWeight=70
 SystrayContainmentId=8
 
 [Containments][3][Applets][9]
@@ -219,7 +214,7 @@ DialogWidth=1920
 PreloadWeight=10
 
 [Containments][3][General]
-AppletOrder=4;5;25;7;9;27
+AppletOrder=4;31;25;7;9;27
 
 [Containments][8]
 activityId=
@@ -235,7 +230,7 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][8][Applets][11][Configuration]
-PreloadWeight=10
+PreloadWeight=15
 
 [Containments][8][Applets][12]
 immutability=1
@@ -270,7 +265,7 @@ immutability=1
 plugin=org.kde.plasma.vault
 
 [Containments][8][Applets][16][Configuration]
-PreloadWeight=10
+PreloadWeight=15
 
 [Containments][8][Applets][17]
 immutability=1
