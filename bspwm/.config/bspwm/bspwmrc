@@ -1,7 +1,8 @@
 #! /bin/sh
 
+export SXHKD_SHELL=sh
 # Startup programs
-udiskie &
+# udiskie &
 sxhkd &
 # ~/bgscript.sh &
 picom -CGb &
@@ -9,7 +10,7 @@ xmodmap ~/.Xmodmap &
 # ~/.config/polybar/launch.sh &
 # nm-applet &
 # volnoti &
-caffeine &
+# caffeine &
 # xcape -e 'Super_L=Super_L|Shift_L|space' &
 
 gap=10
@@ -46,7 +47,7 @@ bspc config presel_feedback_color "#1ABB9B"
 bspc config border_width 2
 
 bspc config focus_follows_pointer true
-bspc config pointer_follows_focus true
+# bspc config pointer_follows_focus true
 bspc config pointer_follows_monitor true
 
 bspc config split_ratio          0.52

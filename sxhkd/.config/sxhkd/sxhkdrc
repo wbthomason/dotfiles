@@ -276,35 +276,35 @@ Print
 # Media keys
 #
 
-XF86AudioPrev
-  playerctl prev
-
-XF86AudioNext
-  playerctl next
-
-XF86AudioPlay
-  playerctl play-pause
+# XF86AudioPrev
+#   playerctl prev
+# 
+# XF86AudioNext
+#   playerctl next
+# 
+# XF86AudioPlay
+#   playerctl play-pause
 
 ctrl + shift + {Left, Right, space}
   playerctl {prev, next, play-pause}
 
-XF86AudioRaiseVolume
-	pamixer --increase 5; volnoti-show `pamixer --get-volume`
-
-XF86AudioLowerVolume
-	pamixer --decrease 5; volnoti-show `pamixer --get-volume`
-
-XF86AudioMute
-    pamixer --toggle-mute; if `pamixer --get-mute`; then volnoti-show -m; else volnoti-show `pamixer --get-volume`; fi
-	
-XF86MonBrightnessDown
- xbacklight -dec 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
-
-XF86MonBrightnessUp
- xbacklight -inc 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
-
-XF86Sleep
-	systemctl suspend
+# XF86AudioRaiseVolume
+# 	pamixer --increase 5; volnoti-show `pamixer --get-volume`
+# 
+# XF86AudioLowerVolume
+# 	pamixer --decrease 5; volnoti-show `pamixer --get-volume`
+# 
+# XF86AudioMute
+#     pamixer --toggle-mute; if `pamixer --get-mute`; then volnoti-show -m; else volnoti-show `pamixer --get-volume`; fi
+# 	
+# XF86MonBrightnessDown
+#  xbacklight -dec 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
+# 
+# XF86MonBrightnessUp
+#  xbacklight -inc 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
+# 
+# XF86Sleep
+# 	systemctl suspend
 
 # make sxhkd reload its configuration files:
 super + shift + Escape
@@ -330,8 +330,8 @@ super + d
 super + a
   qdbus org.kde.kglobalaccel /component/krunner_desktop org.kde.kglobalaccel.Component.invokeShortcut '_launch'
 
-super + space
-    dm-tool lock
-
-super + shift + space
-    systemctl suspend
+# super + space
+#     dm-tool lock
+# 
+# super + shift + space
+#     systemctl suspend
