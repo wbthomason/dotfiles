@@ -2,16 +2,21 @@
 
 export SXHKD_SHELL=sh
 # Startup programs
-# udiskie &
 sxhkd &
-# ~/bgscript.sh &
 picom -CGb &
-xmodmap ~/.Xmodmap &
-latte-dock --replace &
-# ~/.config/polybar/launch.sh &
-# nm-applet &
-# volnoti &
-# caffeine &
+# xmodmap ~/.Xmodmap &
+if [ -z $KDEWM ]
+then
+  ~/.config/polybar/launch.sh &
+  udiskie &
+  ~/bgscript.sh &
+  nm-applet &
+  volnoti &
+  caffeine &
+else
+  latte-dock --replace &
+fi
+
 # xcape -e 'Super_L=Super_L|Shift_L|space' &
 
 gap=10
