@@ -7,7 +7,7 @@ sxhkd &
 # ~/bgscript.sh &
 picom -CGb &
 xmodmap ~/.Xmodmap &
-latte-dock &
+latte-dock --replace &
 # ~/.config/polybar/launch.sh &
 # nm-applet &
 # volnoti &
@@ -63,7 +63,7 @@ bspc rule -a '*:libreofficedev' state=tiled
 bspc rule -a '*:soffice' state=tiled
 bspc rule -a plasmashell state=floating border=off layer=normal
 bspc rule -a krunner state=floating border=off
-bspc rule -a 'latte-dock:Latte Shell' layer=above border=off manage=on
+bspc rule -a lattedock border=off state=floating
 
 #bspc config external_rules_command /usr/bin/pseudo_automatic_mode
 #~/.screenlayout/default.sh &
