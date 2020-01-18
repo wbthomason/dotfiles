@@ -12,12 +12,7 @@ call plugpac#begin()
 Pack 'k-takata/minpac', {'type': 'opt'}
 Pack 'bennyyip/plugpac.vim', {'type': 'opt', 'do': ':silent !cp ~/.config/nvim/pack/minpac/plugpac.vim/plugpac.vim ~/.config/nvim/autoload/plugpac.vim'}
 
-" " Configure with Fennel
-" Pack 'Olical/aniseed', {'type': 'opt'}
-" Pack 'bakpakin/fennel.vim'
-
 " Async building & commands
-" Pack 'radenling/vim-dispatch-neovim'
 Pack 'tpope/vim-dispatch', {'on': ['Dispatch', 'Make', 'Focus', 'Start']}
 
 " More efficient large files (disabled because it's not clear if it's still necessary)
@@ -45,7 +40,7 @@ Pack 'unblevable/quick-scope', {'type': 'opt'}
 Pack 'christoomey/vim-tmux-navigator'
 
 " Quickfix
-Pack 'romainl/vim-qf' 
+" Pack 'romainl/vim-qf' 
 Pack 'Olical/vim-enmasse'
 
 " Indentation tracking
@@ -151,7 +146,7 @@ Pack 'igankevich/mesonic'
 Pack 'PontusPersson/pddl.vim'
 
 " Coq
-Pack 'jvoorhis/coq.vim'
+" Pack 'jvoorhis/coq.vim'
 
 " Profiling
 Pack 'tweekmonster/startuptime.vim'
