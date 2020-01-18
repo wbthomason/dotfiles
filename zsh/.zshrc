@@ -42,7 +42,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/lib64
 export EDITOR=vim
 
 # ROS
+if [ -f /opt/ros/melodic/setup.zsh ]
+then
 source /opt/ros/melodic/setup.zsh
+fi
+
 export ROS_HOSTNAME=localhost
 export ROS_MASTER_URI=http://localhost:11311
 export ROS_PYTHON_VERSION=3
@@ -134,6 +138,10 @@ setopt auto_cd
 
 # Vi mode
 bindkey -v
+export KEYTIMEOUT=1
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
