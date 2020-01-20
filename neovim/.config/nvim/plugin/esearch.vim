@@ -37,4 +37,3 @@ function! s:load_esearch(cmd) abort
 endfunction
 
 command! Esearch :call s:load_esearch(':Esearch')
-

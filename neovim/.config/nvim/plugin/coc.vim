@@ -11,19 +11,20 @@ endif
 
 function! s:load_coc() abort
   packadd coc.nvim
-  call coc#add_extension('coc-python',
-        \'coc-rls',
-        \'coc-tsserver',
-        \'coc-lists',
-        \'coc-omni',
-        \'coc-gocode',
+  call coc#add_extension(
         \'coc-gitignore',
-        \'coc-texlab',
-        \'coc-syntax',
-        \'coc-snippets',
-        \'coc-python',
+        \'coc-gocode',
         \'coc-highlight',
-        \'coc-vimlsp')
+        \'coc-lists',
+        \'coc-python',
+        \'coc-python',
+        \'coc-rls',
+        \'coc-snippets',
+        \'coc-syntax',
+        \'coc-texlab',
+        \'coc-tsserver',
+        \'coc-vimlsp'
+        \)
 
   if exists("g:fvim_loaded")
     call coc#config('suggest.completionItemKindLabels', {

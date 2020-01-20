@@ -57,11 +57,11 @@ Pack 'rstacruz/vim-closer'
 Pack 'tpope/vim-endwise'
 
 " Splitting/joining
-Pack 'AndrewRadev/splitjoin.vim'
+" Pack 'AndrewRadev/splitjoin.vim'
 
 " Search
 Pack 'romainl/vim-cool'
-Pack 'eugen0329/vim-esearch', {'type': 'opt'}
+" Pack 'eugen0329/vim-esearch', {'type': 'opt'}
 
 " Yank highlighting
 Pack 'machakann/vim-highlightedyank'
@@ -77,15 +77,14 @@ Pack 'sbdchd/neoformat', {'on': 'Neoformat'}
 Pack 'wellle/targets.vim'
 
 " Search
-" Pack 'junegunn/fzf.vim'
 Pack 'liuchengxu/vim-clap', {'do': 'call clap#helper#build_all()'}
 
 " Special symbols
 Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
 
 " Project Management/Sessions
-Pack 'tpope/vim-obsession'
-Pack 'dhruvasagar/vim-prosession'
+" Pack 'tpope/vim-obsession'
+" Pack 'dhruvasagar/vim-prosession'
 
 " REPL
 Pack 'Vigemus/iron.nvim', {'type': 'opt'}
@@ -99,11 +98,10 @@ Pack 'tpope/vim-fugitive'
 Pack 'itchyny/vim-gitbranch'
 
 " Completion
-Pack 'neoclide/coc-sources'
 Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}, 'type': 'opt'}
 
 " Snippets
-Pack 'honza/vim-snippets'
+" Pack 'honza/vim-snippets'
 
 " Checkers
 Pack 'w0rp/ale'
@@ -123,7 +121,7 @@ Pack 'guns/vim-sexp', {'type': 'opt'}
 Pack 'tpope/vim-sexp-mappings-for-regular-people', {'type': 'opt'}
 Pack 'vim-scripts/scribble.vim'
 Pack 'phmarek/vlime'
-Pack 'Olical/conjure', {'for': 'clojure', 'do': {-> jobstart('bin/compile')}}
+" Pack 'Olical/conjure', {'for': 'clojure', 'do': {-> jobstart('bin/compile')}}
 Pack 'eraserhd/parinfer-rust', {'do': {-> jobstart('cargo build --release')}, 'for': g:lisps}
 let g:sexp_filetypes = join(g:lisps, ',')
 unlet g:lisps
@@ -131,10 +129,6 @@ unlet g:lisps
 " Org-mode
 Pack 'axvr/org.vim'
 Pack 'dhruvasagar/vim-dotoo'
-
-" Vimscript
-Pack 'Shougo/neco-vim'
-Pack 'neoclide/coc-neco'
 
 " LaTeX
 Pack 'lervag/vimtex'

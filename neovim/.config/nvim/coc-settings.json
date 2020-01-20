@@ -26,13 +26,7 @@
       "filetypes": ["c", "cpp", "objc", "objcpp"]
     },
     "lua": {
-      "command": "/home/wil/projects/lua-language-server/bin/Linux/lua-language-server",
-      "args": [
-        "-E",
-        "-e",
-        "LANG=en",
-        "/home/wil/projects/lua-language-server/main.lua"
-      ],
+      "command": "lua-language-server",
       "filetypes": ["lua"],
       "rootPatterns": [".git/"]
     },
