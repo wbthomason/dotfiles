@@ -76,11 +76,11 @@ alt + Return
   bspc node -n @/
   
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
-# super + {1-9,0}
-#   ~/move_desktop.sh {1-9,0}
-# 
-# super + shift + {1-9,0}
-#   ~/move_to_desktop.sh {1-9,0}
+super + {1-9,0}
+  ~/move_desktop.sh {1-9,0}
+
+super + shift + {1-9,0}
+  ~/move_to_desktop.sh {1-9,0}
 
 ## Alternative: i3 style behavior (focus nth, desktop of the focused monitor)
 #super + {1-9,0}
@@ -90,11 +90,11 @@ alt + Return
 
 # Another alternative: xmonad style desktops. You have 10 desktops shared between all monitors,
 # and focusing a desktop focuses it on the currently focused monitor
-super + {1-9,0}
-  summondesktop.sh {1-9,7}
+# super + {1-9,0}
+#   summondesktop.sh {1-9,7}
 
-super + shift + {1-9,0}
-  bspc node -d ^{1-9,10}
+# super + shift + {1-9,0}
+#   bspc node -d ^{1-9,10}
 
 # Select previous / next desktop
 super + {m,n}

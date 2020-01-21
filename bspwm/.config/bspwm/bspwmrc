@@ -1,5 +1,6 @@
 #! /bin/sh
 
+~/.screenlayout/default.sh &
 export SXHKD_SHELL=sh
 # Startup programs
 sxhkd &
@@ -71,4 +72,3 @@ bspc rule -a krunner state=floating border=off
 bspc rule -a lattedock border=off state=floating
 
 #bspc config external_rules_command /usr/bin/pseudo_automatic_mode
-#~/.screenlayout/default.sh &
