@@ -1,6 +1,7 @@
 code --install-extension AndrsDC.base16-themes
 code --install-extension asabil.meson
 code --install-extension asvetliakov.vscode-neovim
+code --install-extension eamodio.gitlens
 code --install-extension efoerster.texlab
 code --install-extension evzen-wybitul.magic-racket
 code --install-extension jan-dolejsi.pddl
