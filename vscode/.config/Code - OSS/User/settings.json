@@ -1,5 +1,8 @@
 {
     "latex.forwardSearch.executable": "zathura",
+    "search.quickOpen.includeHistory": true,
+    "search.quickOpen.includeSymbols": true,
+    "task.quickOpen.skip": true,
     "latex.forwardSearch.args": ["--synctex-forward", "%l:1:%f", "%p"],
     "latex.server.autoDownload": false,
     "latex.build.onSave": true,

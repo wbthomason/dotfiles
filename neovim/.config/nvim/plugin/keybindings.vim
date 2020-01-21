@@ -1,5 +1,7 @@
 " Keybindings
 
+let s:in_vscode = exists('g:vscode')
+
 " Get rid of the annoying F1 binding
 map <F1> <nop>
 
@@ -10,25 +12,42 @@ nnoremap <silent> <localleader>r @:
 nnoremap <silent> <localleader><localleader> :Make<cr>
 
 " Exiting
-nnoremap <silent> <leader>q :qa<cr>
-nnoremap <silent> <leader>x :x!<cr>
+if s:in_vscode
+  nnoremap <silent> <leader>q :Qall<cr>
+  nnoremap <silent> <leader>x :Xall<cr>
+  nnoremap <silent> <leader>d :Quit<cr>
+else
+  nnoremap <silent> <leader>q :qa<cr>
+  nnoremap <silent> <leader>x :x!<cr>
+  nnoremap <silent><nowait> <leader>d :Sayonara<cr>
+endif
 
 " A little Emacs in my Neovim
 nnoremap <silent><c-x><c-s> :w<cr>
 inoremap <silent><c-x><c-s> <esc>:w<cr>a
 
 " Buffer bindings
-nnoremap <silent> <leader>w :w<cr>
-nnoremap <silent><nowait> <leader>d :Sayonara<cr>
-nnoremap <silent> <leader>k :Sayonara!<cr>
-nnoremap <silent> <leader>l :b#<cr>
-nnoremap <silent>  - :Clap buffers<cr>
-nnoremap <silent> _ :Clap files<cr>
-nnoremap <silent> + :Clap gfiles<cr>
+if s:in_vscode
+  nnoremap <silent> <leader>w :Write<cr>
+  nnoremap <silent> - :call VSCodeNotify('workbench.action.quickOpen')<cr>
+  nnoremap <silent> _ :call VSCodeNotify('workbench.action.quickOpen')<cr>
+  nnoremap <silent> + :call VSCodeNotify('workbench.action.quickOpen')<cr>
+else
+  nnoremap <silent> <leader>w :w<cr>
+  nnoremap <silent> <leader>k :Sayonara!<cr>
+  nnoremap <silent> <leader>l :b#<cr>
+  nnoremap <silent>  - :Clap buffers<cr>
+  nnoremap <silent> _ :Clap files<cr>
+  nnoremap <silent> + :Clap gfiles<cr>
+endif
 
 " Error bindings
-nnoremap <silent> <leader>eo :lopen<CR>
-nnoremap <silent> <leader>ec :lclose<CR>
+if s:in_vscode
+  nnoremap <silent> <leader>eo :call VSCodeNotify('workbench.actions.view.problems')<cr>
+else
+  nnoremap <silent> <leader>eo :lopen<CR>
+  nnoremap <silent> <leader>ec :lclose<CR>
+endif
 
 " Version control bindings
 nnoremap <silent> <leader>gl :Gpull<CR>
@@ -37,10 +56,18 @@ nnoremap <silent> <leader>gs :Gstatus<CR>
 
 " REPL and Terminal bindings
 tnoremap jj <C-\><C-n>
-nnoremap <leader>r :IronRepl<CR>
+if s:in_vscode
+  nnoremap <leader>r :call VSCodeNotify('workbench.debug.action.toggleRepl')<cr>
+else
+  nnoremap <leader>r :IronRepl<CR>
+endif
 
 " Formatting Bindings
-nnoremap <silent> <leader>f :Neoformat<CR>
+if s:in_vscode
+  nnoremap <silent> <leader>f :call VSCodeNotify('editor.action.formatDocument')<cr>
+else
+  nnoremap <silent> <leader>f :Neoformat<CR>
+endif
 
 " Easy-Align bindings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
