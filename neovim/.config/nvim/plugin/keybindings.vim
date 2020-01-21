@@ -44,15 +44,22 @@ endif
 " Error bindings
 if s:in_vscode
   nnoremap <silent> <leader>eo :call VSCodeNotify('workbench.actions.view.problems')<cr>
+  nnoremap <silent> <leader>ec :call VSCodeNotify('workbench.action.closePanel')<cr>
 else
   nnoremap <silent> <leader>eo :lopen<CR>
   nnoremap <silent> <leader>ec :lclose<CR>
 endif
 
 " Version control bindings
-nnoremap <silent> <leader>gl :Gpull<CR>
-nnoremap <silent> <leader>gp :Gpush<CR>
-nnoremap <silent> <leader>gs :Gstatus<CR>
+if s:in_vscode
+  nnoremap <silent> <leader>gl :call VSCodeNotify('git.pull')<CR>
+  nnoremap <silent> <leader>gp :call VSCodeNotify('git.push')<CR>
+  nnoremap <silent> <leader>gs :call VSCodeNotify('gitlens.views.repositories:scm.focus')<CR>
+else
+  nnoremap <silent> <leader>gl :Gpull<CR>
+  nnoremap <silent> <leader>gp :Gpush<CR>
+  nnoremap <silent> <leader>gs :Gstatus<CR>
+endif
 
 " REPL and Terminal bindings
 tnoremap jj <C-\><C-n>
