@@ -104,7 +104,7 @@ Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}
 " Pack 'honza/vim-snippets'
 
 " Checkers
-Pack 'w0rp/ale'
+Pack 'w0rp/ale', {'type': 'opt'}
 
 " Language multipack
 Pack 'sheerun/vim-polyglot'
