@@ -9,3 +9,10 @@ augroup misc_aucmds
   au!
   au BufWinEnter * checktime
 augroup END
+
+if exists('g:vscode')
+  augroup vscode_aucmds
+    au!
+    au VimEnter * set nospell
+  augroup END
+endif

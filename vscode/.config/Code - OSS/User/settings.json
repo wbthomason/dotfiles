@@ -32,5 +32,14 @@
     "C_Cpp.default.intelliSenseMode": "clang-x64",
     "ccls.codeLens.renderInline": true,
     "ccls.completion.detailedLabel": true,
-    "ccls.completion.enableSnippetInsertion": true
+    "ccls.completion.enableSnippetInsertion": true,
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.codeLens.enabled": false,
+    "gitlens.statusBar.enabled": false,
+    "gitlens.views.repositories.location": "scm",
+    "gitlens.views.fileHistory.location": "explorer",
+    "gitlens.views.lineHistory.location": "explorer",
+    "gitlens.views.compare.location": "gitlens",
+    "gitlens.views.search.location": "gitlens"
 }
