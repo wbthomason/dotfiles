@@ -8,6 +8,7 @@
     "latex.build.onSave": true,
     "workbench.colorTheme": "Base16 Light Grayscale",
     "vscode-neovim.neovimPath": "/usr/bin/nvim",
+    "vscode-neovim.useCtrlKeysForNormalMode": false,
     "window.menuBarVisibility": "toggle",
     "editor.scrollBeyondLastLine": false,
     "editor.fontFamily": "'Fira Code Retina', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
@@ -44,5 +45,8 @@
     "gitlens.views.fileHistory.location": "explorer",
     "gitlens.views.lineHistory.location": "explorer",
     "gitlens.views.compare.location": "gitlens",
-    "gitlens.views.search.location": "gitlens"
+    "gitlens.views.search.location": "gitlens",
+    "[latex]": {
+        "editor.defaultFormatter": "nickfode.latex-formatter"
+    },
 }

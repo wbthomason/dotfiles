@@ -4,7 +4,6 @@ code --install-extension asvetliakov.vscode-neovim
 code --install-extension eamodio.gitlens
 code --install-extension efoerster.texlab
 code --install-extension evzen-wybitul.magic-racket
-code --install-extension jan-dolejsi.pddl
 code --install-extension jaredly.reason-vscode
 code --install-extension jdinhlife.gruvbox
 code --install-extension llvm-vs-code-extensions.vscode-clangd
@@ -14,6 +13,7 @@ code --install-extension ms-vscode.cmake-tools
 code --install-extension ms-vscode.cpptools
 code --install-extension ms-vscode.Go
 code --install-extension ms-vscode.Theme-TomorrowKit
+code --install-extension nickfode.latex-formatter
 code --install-extension shaunlebron.vscode-parinfer
 code --install-extension streetsidesoftware.code-spell-checker
 code --install-extension surajbarkale.ninja
