@@ -8,4 +8,12 @@
     "key": "ctrl+p",
     "command": "-workbench.action.quickOpen"
   },
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "actions.find"
+  }
 ]

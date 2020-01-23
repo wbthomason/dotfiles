@@ -6,9 +6,8 @@
     "latex.forwardSearch.args": ["--synctex-forward", "%l:1:%f", "%p"],
     "latex.server.autoDownload": false,
     "latex.build.onSave": true,
-    "workbench.colorTheme": "Base16 Light Grayscale",
+    "workbench.colorTheme": "Base16 Dark Grayscale",
     "vscode-neovim.neovimPath": "/usr/bin/nvim",
-    "vscode-neovim.useCtrlKeysForNormalMode": false,
     "window.menuBarVisibility": "toggle",
     "editor.scrollBeyondLastLine": false,
     "editor.fontFamily": "'Fira Code Retina', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
@@ -49,4 +48,6 @@
     "[latex]": {
         "editor.defaultFormatter": "nickfode.latex-formatter"
     },
+    "editor.cursorBlinking": "solid",
+    "window.zoomLevel": 0,
 }
