@@ -16,7 +16,7 @@
     "git.showProgress": true,
     "git.showPushSuccessNotification": true,
     "editor.tabSize": 2,
-    "editor.fontSize": 12,
+    "editor.fontSize": 13,
     "editor.wordWrapColumn": 100,
     "editor.wordWrap": "wordWrapColumn",
     "editor.minimap.enabled": false,
@@ -50,4 +50,6 @@
     },
     "editor.cursorBlinking": "solid",
     "window.zoomLevel": 0,
+    "path-intellisense.absolutePathToWorkspace": false,
+    "path-intellisense.showHiddenFiles": true,
 }

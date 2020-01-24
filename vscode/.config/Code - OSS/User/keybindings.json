@@ -15,5 +15,13 @@
   {
     "key": "ctrl+f",
     "command": "actions.find"
-  }
+  },
+  {
+    "key": "ctrl+k o",
+    "command": "workbench.action.files.openFolder"
+  },
+  {
+    "key": "ctrl+k f",
+    "command": "workbench.action.closeFolder",
+  },
 ]

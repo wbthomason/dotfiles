@@ -11,6 +11,22 @@ nnoremap <silent> <localleader>r @:
 " Easily run a build
 nnoremap <silent> <localleader><localleader> :Make<cr>
 
+" Fuzzy-finding
+nnoremap <c-p> :Clap<cr>
+
+" Comments
+if s:in_vscode
+  xunmap gc
+  nunmap gc
+  ounmap gc
+  nunmap gcc 
+
+  xmap gc  <Plug>VSCodeCommentary
+  nmap gc  <Plug>VSCodeCommentary
+  omap gc  <Plug>VSCodeCommentary
+  nmap gcc <Plug>VSCodeCommentaryLine
+endif
+
 " Exiting
 if s:in_vscode
   nnoremap <silent> <leader>q :Qall<cr>
@@ -29,9 +45,9 @@ inoremap <silent><c-x><c-s> <esc>:w<cr>a
 " Buffer bindings
 if s:in_vscode
   nnoremap <silent> <leader>w :Write<cr>
-  nnoremap <silent> - :call VSCodeNotify('workbench.action.quickOpen')<cr>
-  nnoremap <silent> _ :call VSCodeNotify('workbench.action.quickOpen')<cr>
-  nnoremap <silent> + :call VSCodeNotify('workbench.action.quickOpen')<cr>
+  nnoremap <silent> - :call VSCodeNotify('workbench.action.quickOpenPreviousEditor')<cr>
+  nnoremap <silent> _ :call VSCodeNotify('workbench.action.quickOpenPreviousEditor')<cr>
+  nnoremap <silent> + :call VSCodeNotify('workbench.action.quickOpenPreviousEditor')<cr>
 else
   nnoremap <silent> <leader>w :w<cr>
   nnoremap <silent> <leader>k :Sayonara!<cr>
@@ -96,12 +112,12 @@ nnoremap <silent> <leader>jt :e ~/wiki/journal/<c-r>=strftime("%Y%m%d")<cr>.org<
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 
 " Swap ` and ' for marks (` includes horizontal position)
-for first in ['', 'g', '[', ']']
-  for mode in ['n', 'x', 'o']
-    exe mode . 'noremap ' . first . "' " . first . '`'
-    exe mode . 'noremap ' . first . '` ' . first . "'"
-  endfor
-endfor
+" for first in ['', 'g', '[', ']']
+"   for mode in ['n', 'x', 'o']
+"     exe mode . 'noremap ' . first . "' " . first . '`'
+"     exe mode . 'noremap ' . first . '` ' . first . "'"
+"   endfor
+" endfor
 
 " Edit config
 nnoremap <silent> <localleader>c :Clap files --hidden ~/dotfiles/neovim/.config/nvim<cr>

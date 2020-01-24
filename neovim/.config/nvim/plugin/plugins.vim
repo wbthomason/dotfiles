@@ -43,6 +43,9 @@ Pack 'christoomey/vim-tmux-navigator'
 " Pack 'romainl/vim-qf' 
 Pack 'Olical/vim-enmasse'
 
+" Grepping
+Pack 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+
 " Indentation tracking
 Pack 'yggdroot/indentLine'
 
@@ -147,7 +150,7 @@ Pack 'tweekmonster/startuptime.vim'
 
 " Color scheme
 Pack 'wbthomason/vim-nazgul'
-" Pack 'bruth/vim-newsprint-theme'
-" Pack 'chriskempson/base16-vim'
+Pack 'bruth/vim-newsprint-theme'
+Pack 'chriskempson/base16-vim'
 
 call plugpac#end()

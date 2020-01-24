@@ -3,7 +3,9 @@ set textwidth=100
 set scrolloff=7
 set wildignore=*.o,*~,*.pyc
 set whichwrap+=<,>,h,l
-" set inccommand=nosplit
+if exists('g:vscode')
+  set inccommand=nosplit
+endif
 set lazyredraw
 set showmatch
 set ignorecase
