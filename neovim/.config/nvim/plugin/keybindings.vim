@@ -3,7 +3,9 @@
 let s:in_vscode = exists('g:vscode')
 
 " Get rid of the annoying F1 binding
-map <F1> <nop>
+map <f1> <nop>
+nmap <f1> <nop>
+imap <f1> <nop>
 
 " Re-run commands
 nnoremap <silent> <localleader>r @:
@@ -13,6 +15,7 @@ nnoremap <silent> <localleader><localleader> :Make<cr>
 
 " Fuzzy-finding
 nnoremap <c-p> :Clap<cr>
+inoremap <c-p> <esc>:Clap<cr>
 
 " Comments
 if s:in_vscode
