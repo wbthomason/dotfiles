@@ -57,6 +57,8 @@ function! s:setup_colors() abort
   hi! link SignifySignChange AquaSign
   hi! link SignifySignDelete RedSign
 
+  hi! link HoverDisplay ClapDisplay
+
   let s:idx = 1
   while s:idx < 9
     execute 'hi! link ClapMatches' . s:idx . ' ClapMatches'
