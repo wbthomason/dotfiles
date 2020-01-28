@@ -25,7 +25,7 @@ local sources = {
         and item.valid
         and item.col == position.col
         and item.lnum == position.row then
-        table.insert(relevant_items, vim.fn.printf('[%s] %s', item['type'], item.text))
+        table.insert(relevant_items, item.text)
       end
     end
 
@@ -140,6 +140,8 @@ hover.hover = function()
   for _, item in ipairs(content) do
     height = height + math.ceil(#item / width)
   end
+
+  height = height - 1
 
   local prev_win = vim.api.nvim_get_current_win()
   local window = hover.show_window(position, height, width)

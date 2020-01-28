@@ -60,6 +60,11 @@ else
   nnoremap <silent> + :Clap gfiles<cr>
 endif
 
+" Hovering
+if !s:in_vscode
+  nnoremap <silent> gh :lua require('hover').hover()<cr>
+endif
+
 " Error bindings
 if s:in_vscode
   nnoremap <silent> <leader>eo :call VSCodeNotify('workbench.actions.view.problems')<cr>
