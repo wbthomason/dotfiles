@@ -5,7 +5,8 @@ local defaults = {}
 defaults.window_settings = {
   relative = 'win',
   focusable = false,
-  style = 'minimal'
+  style = 'minimal',
+  anchor = 'SW'
 }
 
 defaults.window_width = 60
@@ -17,9 +18,6 @@ local sources = {
     local items = {}
     vim.list_extend(items, qf_items)
     vim.list_extend(items, loc_items)
-    if #items == 0 then
-      return nil
-    end
 
     local relevant_items = {}
     for _, item in ipairs(items) do
@@ -31,10 +29,13 @@ local sources = {
       end
     end
 
+    if #relevant_items == 0 then
+      return nil
+    end
+
     return relevant_items
   end,
   -- TODO: Customizable git command
-  -- TODO: Prettier presentation of results
   blame = function(position)
     local blame_cmd = vim.fn.printf('git blame -L %d,%d -- %s', position.row, position.row, position.filename)
     local result = vim.fn.system(blame_cmd)
@@ -43,14 +44,14 @@ local sources = {
     end
 
     local commit = vim.split(result, ' ')[1]
-    local format = '%aN in %h, %ar%n%s'
+    local format = '%aN in %h, %ar%n%n%s'
     local commit_cmd = vim.fn.printf('git show --format="%s" --no-patch %s', format, commit)
     local blame_msg = vim.fn.system(commit_cmd)
     if vim.v.shell_error ~= 0 then
       return nil
     end
 
-    return blame_msg
+    return vim.split(blame_msg, '\n')
   end,
   coc = {}
 }
@@ -64,7 +65,9 @@ end
 
 hover.show_window = function(position, height, width)
   local buffer = vim.api.nvim_create_buf(false, true)
-  -- vim.api.nvim_buf_set_option(buffer, 'buftype', 'nofile')
+  vim.api.nvim_buf_set_option(buffer, 'buftype', 'nofile')
+  vim.api.nvim_buf_set_option(buffer, 'textwidth', width)
+
   local max_width = vim.api.nvim_get_option('columns')
   local max_height = vim.api.nvim_get_option('lines')
   width = math.min(width, max_width)
@@ -78,50 +81,31 @@ hover.show_window = function(position, height, width)
   return { buf = buffer, win = window }
 end
 
-hover.format_section = function(name, content)
-  return vim.fn.printf('[%s]\n%s', name, content)
+hover.format_section = function(name, content, width)
+  local reps = width - (#name + 2)
+  local left_reps = math.min(math.floor(0.1 * reps), 5)
+  local right_reps = reps - left_reps
+  local header = string.rep('━', left_reps) .. '<' .. name .. '>' .. string.rep('━', right_reps)
+  return { header, content }
 end
 
-hover.make_section = function(name, source, position)
+hover.make_section = function(name, source, position, width)
   local content = source(position)
   if content then
-    return (type(source) == 'table' and source.formatter) and source.formatter(content) or hover.format_section(name, content)
+    return (type(source) == 'table' and source.formatter) and source.formatter(content, width) or hover.format_section(name, content, width)
   end
 
   return nil
 end
 
-hover.make_separator = function(width, pad, separator_pattern)
-  if pad == nil then
-    pad = ' '
-  end
-
-  if separator_pattern == nil then
-    separator_pattern = '-'
-  end
-
-  local reps = math.floor(width / #separator_pattern)
-  local padding = width - reps * #separator_pattern
-  local separator = string.rep(separator_pattern, reps)
-  if pad then
-    separator = string.rep(pad, math.floor(padding / 2)) .. separator
-    separator = separator .. string.rep(pad, math.ceil(padding / 2))
-  end
-
-  return separator
-end
-
 hover.setup_window = function(main_buf, window_data)
   local buf_aucmd = 'autocmd CursorMoved <buffer=' .. main_buf .. '> ++once :bwipeout ' .. window_data.buf
   vim.fn.execute(buf_aucmd)
-  local win_aucmd = 'autocmd CursorMoved <buffer=' .. main_buf .. '> ++once :call nvim_win_close(' .. window_data.win .. ', v:true)'
-  vim.fn.execute(win_aucmd)
 end
 
-hover.fill_window = function(content)
-  for i, section in ipairs(content) do
-    vim.api.nvim_command('normal a' .. section)
-  end
+hover.fill_window = function(buffer, content)
+  vim.api.nvim_buf_set_lines(buffer, 0, 0, false, content)
+  vim.api.nvim_command('%normal gqq')
 end
 
 hover.hover = function()
@@ -133,25 +117,20 @@ hover.hover = function()
   local filename = vim.fn.expand('%:p')
   local position = { row = row, col = col, buffer = buffer, filename = filename}
 
-  -- Get the separator
-  local width = hover.window_width or defaults.window_width
-  local separator = hover.make_separator(width)
 
   -- Get each source's content at the position
   -- TODO: Probably want to allow for async sources
   local content = {}
+  local width = hover.window_width or defaults.window_width
   for name, source in pairs(hover.sources) do
-    local source_content = hover.make_section(name, source, position)
+    local source_content = hover.make_section(name, source, position, width)
     if source_content then
-      table.insert(content, source_content)
-      table.insert(content, separator)
+      vim.list_extend(content, source_content)
     end
   end
 
-  if #content > 1 then
-    -- Remove the final extraneous separator
-    table.remove(content, #content)
-  else
+  content = vim.tbl_flatten(content)
+  if #content == 0 then
     -- No results!
     return
   end
@@ -159,13 +138,14 @@ hover.hover = function()
   -- Display the results
   local height = 0
   for _, item in ipairs(content) do
-    height = height + math.ceil(#item / width) + 1
+    height = height + math.ceil(#item / width)
   end
 
   local prev_win = vim.api.nvim_get_current_win()
   local window = hover.show_window(position, height, width)
   vim.api.nvim_set_current_win(window.win)
-  hover.fill_window(content)
+  vim.api.nvim_command('set winhl=Normal:HoverDisplay')
+  hover.fill_window(window.buf, content)
   vim.api.nvim_win_set_cursor(window.win, {1, 0})
   vim.api.nvim_set_current_win(prev_win)
   hover.setup_window(position.buffer, window)
