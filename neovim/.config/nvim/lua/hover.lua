@@ -9,7 +9,7 @@ defaults.window_settings = {
   anchor = 'SW'
 }
 
-defaults.window_width = 60
+defaults.max_window_width = 60
 
 local sources = {
   errors = function(position)
@@ -66,17 +66,17 @@ end
 hover.show_window = function(position, height, width)
   local buffer = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_option(buffer, 'buftype', 'nofile')
-  vim.api.nvim_buf_set_option(buffer, 'textwidth', width)
+  vim.api.nvim_buf_set_option(buffer, 'textwidth', width - 2)
+  vim.api.nvim_buf_set_option(buffer, 'filetype', 'hoverwindow')
 
   local max_width = vim.api.nvim_get_option('columns')
   local max_height = vim.api.nvim_get_option('lines')
   width = math.min(width, max_width)
   height = math.min(height, max_height)
-  local settings = hover.window_settings or defaults.window_settings
+  local settings = vim.deepcopy(hover.window_settings or defaults.window_settings)
   settings.width = width
   settings.height = height
-  settings.row = position.row
-  settings.col = position.col
+  settings.bufpos = { position.row - 1, position.col }
   local window = vim.api.nvim_open_win(buffer, false, settings)
   return { buf = buffer, win = window }
 end
@@ -86,6 +86,10 @@ hover.format_section = function(name, content, width)
   local left_reps = math.min(math.floor(0.1 * reps), 5)
   local right_reps = reps - left_reps
   local header = string.rep('━', left_reps) .. '<' .. name .. '>' .. string.rep('━', right_reps)
+  for idx, line in ipairs(content) do
+      content[idx] = ' ' .. line
+  end
+
   return { header, content }
 end
 
@@ -99,8 +103,24 @@ hover.make_section = function(name, source, position, width)
 end
 
 hover.setup_window = function(main_buf, window_data)
-  local buf_aucmd = 'autocmd CursorMoved <buffer=' .. main_buf .. '> ++once :bwipeout ' .. window_data.buf
-  vim.fn.execute(buf_aucmd)
+  local cmds = {
+    vim.fn.printf(
+      'autocmd CursorMoved <buffer=%d> ++once :bwipeout %d | autocmd! * <buffer=%d>',
+      main_buf,
+      window_data.buf,
+      main_buf
+    ),
+    vim.fn.printf(
+      'autocmd CursorMovedI <buffer=%d> ++once :bwipeout %d | autocmd! * <buffer=%d>',
+      main_buf,
+      window_data.buf,
+      main_buf
+    )
+  }
+
+  for _, cmd in ipairs(cmds) do
+    vim.fn.execute(cmd)
+  end
 end
 
 hover.fill_window = function(buffer, content)
@@ -115,13 +135,12 @@ hover.hover = function()
   local row = cursor_pos[2]
   local buffer = vim.fn.bufnr(vim.fn.bufname('%'))
   local filename = vim.fn.expand('%:p')
-  local position = { row = row, col = col, buffer = buffer, filename = filename}
-
+  local position = { row = row, col = col, buffer = buffer, filename = filename }
 
   -- Get each source's content at the position
   -- TODO: Probably want to allow for async sources
   local content = {}
-  local width = hover.window_width or defaults.window_width
+  local width = hover.window_width or defaults.max_window_width
   for name, source in pairs(hover.sources) do
     local source_content = hover.make_section(name, source, position, width)
     if source_content then
