@@ -1,3 +1,13 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Prompt
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
 # Load plugins
 export ZSH_PLUGINS=/usr/share/zsh/plugins/
 
@@ -80,6 +90,7 @@ fpath=(~/.zsh/completions $fpath)
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
   compinit
+  kitty + complete setup zsh | source /dev/stdin
 else
   compinit -C
 fi
@@ -114,25 +125,6 @@ function open() {
   xdg-open $1 > /dev/null 2>&1 &
 }
 
-# Prompt
-function zle-line-init zle-keymap-select {
-  PROMPT=`~/projects/personal/purs/target/release/purs prompt -k "$KEYMAP" -r "$?"`
-  if [[ -v VIRTUAL_ENV ]]; then
-    RPROMPT="($(basename $VIRTUAL_ENV))"
-  fi
-  zle reset-prompt
-}
-
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-autoload -Uz add-zsh-hook
-
-function _prompt_purs_precmd() {
-  ~/projects/personal/purs/target/release/purs precmd
-}
-add-zsh-hook precmd _prompt_purs_precmd
-
 # Auto-cd
 setopt auto_cd
 
@@ -156,3 +148,6 @@ bindkey '^[[B' history-substring-search-down
 eval $(opam config env)
 
 source /home/wil/.config/broot/launcher/bash/br
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
