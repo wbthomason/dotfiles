@@ -1,11 +1,7 @@
 ;;; .emacs --- wbthomason's Emacs config
 
-;;; Commentary:
-;; Basic Emacs config, split up into separate packages for easier maintenance
-
 ;;; TODO: More consistently use :after
 ;;; TODO: Put keybindings with relevant packages
-;;; TODO: Split into separate files
 
 ;;; Code:
 
@@ -68,11 +64,7 @@
 ;; Local packages
 (add-to-list 'load-path "~/.emacs.d/local")
 
-;; Path-ish settings
-(setenv "PKG_CONFIG_PATH" (concat "/opt/ros/melodic/lib/pkgconfig" ":/usr/local/lib/pkgconfig" ":/usr/local/lib64/pkgconfig/" (getenv "PKG_CONFIG_PATH")))
-(setenv "LD_LIBRARY_PATH" (concat "/opt/ros/melodic/lib" ":/usr/local/lib" ":/usr/local/lib64" (getenv "LD_LIBRARY_PATH")))
-(setenv "PATH" (concat "/home/wil/.local/bin" ":/home/wil/.cargo/bin" ":/home/wil/.luarocks/bin"
-                       ":/home/wil/.roswell/bin" (getenv "PATH")))
+; (setenv "PATH" (concat "/home/wil/.local/bin" ":/home/wil/.cargo/bin" ":/home/wil/.luarocks/bin" ":/home/wil/.roswell/bin" (getenv "PATH")))
 
 ;; General Packages
 (use-package ivy
@@ -115,29 +107,6 @@
   :config
   (amx-mode))
 
-(use-package ivy-posframe
-  :after ivy
-  :disabled t
-  :ensure t
-  :config
-  (defun ivy-posframe-center-dynamic-size (str)
-    "Simple wrapper to dynamically set the width and height for the posframe."
-    (setq ivy-height (min 100 (length ivy--all-candidates)))
-    ;; (setq ivy-posframe-height (max 5 (min ivy-height (floor (* 0.85 (frame-height)))))
-    ;;       ivy-posframe-width (floor (/ (frame-width) 1.2)))
-    (setq ivy-posframe-width (floor (/ (frame-width) 1.2)))
-    (ivy-posframe--display str #'posframe-poshandler-frame-center))
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-center-dynamic-size)))
-  (ivy-posframe-mode 1)
-  ;; (push
-  ;;  `(ivy-posframe-center-dynamic-size
-  ;;    :cleanup
-  ;;    (lambda () (when
-  ;;              (ivy-posframe-workable-p)
-  ;;            (posframe-hide ivy-posframe-buffer))))
-  ;;  ivy-display-functions-props)
-  )
-
 ;;; Eshell
 (use-package esh-autosuggest
   :ensure t
@@ -169,9 +138,6 @@
 
 ;;; Interactive align
 (use-package ialign :ensure t)
-
-;;; Popup kill ring
-(use-package popup-kill-ring :ensure t)
 
 ;;; Lispy
 (use-package lispy
@@ -226,33 +192,6 @@
         evil-move-beyond-eol t)
   :config
   (evil-mode t))
-
-;; (use-package targets
-;;   :config
-;;   (targets-define-composite-to anyblock
-;;     (("(" ")" pair)
-;;      ("[" "]" pair)
-;;      ("{" "}" pair)
-;;      ("<" ">" pair)
-;;      ("\"" "\"" quote)
-;;      ("'" "'" quote)
-;;      ("`" "`" quote)
-;;      ("“" "”" quote))
-;;     :bind t
-;;     :keys "b")
-;;   (targets-define-composite-to pair-delimiter
-;;     (("(" ")" pair)
-;;      ("[" "]" pair)
-;;      ("{" "}" pair)
-;;      ("<" ">" pair))
-;;     :bind t
-;;     :next-key nil
-;;     :last-key nil
-;;     :keys "d")
-;;   (targets-setup t
-;;                  :inside-key nil
-;;                  :around-key nil
-;;                  :remote-key nil))
 
 (use-package evil-expat
   :ensure t
