@@ -405,17 +405,17 @@
       res+="${meta}:${clean}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"  # escape %
     fi
 
+    # ↓42 if behind the remote.
+    (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${diffs}↓${VCS_STATUS_COMMITS_BEHIND}"
+    # ↑42 if ahead of the remote; no leading space if also behind the remote: ↓42↑42.
+    (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
+    (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${diffs}↑${VCS_STATUS_COMMITS_AHEAD}"
+    # *42 if have stashes.
+    # (( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
+    #
     if ! (( VCS_STATUS_HAS_CONFLICTED || VCS_STATUS_HAS_STAGED || VCS_STATUS_HAS_UNSTAGED || VCS_STATUS_HAS_UNTRACKED )) && [[ -z $VCS_STATUS_ACTION ]]; then
       res+="${clean} ✔"
     else
-
-      # ↓42 if behind the remote.
-      (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${diffs}↓${VCS_STATUS_COMMITS_BEHIND}"
-      # ↑42 if ahead of the remote; no leading space if also behind the remote: ↓42↑42.
-      (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
-      (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${diffs}↑${VCS_STATUS_COMMITS_AHEAD}"
-      # *42 if have stashes.
-      # (( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
       # 'merge' if the repo is in an unusual state.
       [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}${VCS_STATUS_ACTION}"
       # ~42 if have merge conflicts.
