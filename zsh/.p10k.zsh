@@ -370,7 +370,7 @@
       local   modified='%4F'  # blue foreground 
       local  untracked='%3F'  # yellow foreground
       local conflicted='%1F'  # red foreground
-      local diffs='%5F'
+      local diffs='%8F'
     else
       # Styling for incomplete and stale Git status.
       local       meta='%f'  # default foreground
