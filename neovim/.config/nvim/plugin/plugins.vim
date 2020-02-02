@@ -50,8 +50,8 @@ Pack 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Pack 'yggdroot/indentLine'
 
 " Comments
-" Pack 'tomtom/tcomment_vim'
-Pack 'tpope/vim-commentary'
+Pack 'tomtom/tcomment_vim'
+" Pack 'tpope/vim-commentary'
 
 " Wrapping/delimiters
 Pack 'machakann/vim-sandwich'
@@ -116,7 +116,7 @@ Pack 'sheerun/vim-polyglot'
 Pack 'tpope/vim-apathy'
 
 " C/C++/Python debugging
-Pack 'sakhnik/nvim-gdb', {'do': {-> jobstart('./install.sh')}, 'on': ['GdbStart', 'GdbStartLLDB', 'GdbStartPDB']}
+" Pack 'sakhnik/nvim-gdb', {'do': {-> jobstart('./install.sh')}, 'on': ['GdbStart', 'GdbStartLLDB', 'GdbStartPDB']}
 
 " Clojure/Lisps/Scheme
 let g:lisps = ['clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel']
