@@ -18,6 +18,6 @@ if exists('g:vscode')
 else
   augroup collab_aucmds
     au!
-    au VimEnter ~/projects/research/communion-wafr/*.tex set formatoptions-=t
+    au VimEnter ~/projects/research/communion*/*.tex set formatoptions-=t | set wrap linebreak
   augroup END
 endif

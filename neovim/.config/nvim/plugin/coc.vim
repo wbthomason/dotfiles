@@ -18,7 +18,7 @@ function! s:load_coc() abort
         \'coc-lists',
         \'coc-python',
         \'coc-python',
-        \'coc-rls',
+        \'coc-rust-analyzer',
         \'coc-snippets',
         \'coc-syntax',
         \'coc-texlab',
