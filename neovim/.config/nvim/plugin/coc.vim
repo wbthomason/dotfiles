@@ -133,5 +133,5 @@ let g:coc_snippet_prev = '<S-TAB>'
 let g:coc_status_error_sign = ' 🗙 '
 let g:coc_status_warning_sign = ' ⚠ '
 " nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <S-TAB> <Plug>(coc-range-select-backward)
