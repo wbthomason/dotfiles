@@ -83,6 +83,8 @@ else
   nnoremap <silent> <leader>gl :Gpull<CR>
   nnoremap <silent> <leader>gp :Gpush<CR>
   nnoremap <silent> <leader>gs :Gstatus<CR>
+  nmap <silent> ]h <plug>(signify-next-hunk)
+  nmap <silent> [h <plug>(signify-prev-hunk)
 endif
 
 " REPL and Terminal bindings
@@ -127,5 +129,12 @@ nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 "   endfor
 " endfor
 
+" Folds
+nnoremap <silent> <tab> :normal! za<cr>
+
 " Edit config
 nnoremap <silent> <localleader>c :Clap files --hidden ~/dotfiles/neovim/.config/nvim<cr>
+
+" Yank to clipboard
+nnoremap <silent> y+ :set opfunc=util#clipboard_yank<cr>g@
+vnoremap <silent> y+ :<C-U>call util#clipboard_yank(visualmode(), 1)<cr>
