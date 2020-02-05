@@ -1,24 +1,5 @@
 {
   "languageserver": {
-    // "ccls": {
-    //   "command": "ccls",
-    //   "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-    //   "rootPatterns": [
-    //     "compile_commands.json",
-    //     ".ccls",
-    //     ".ccls-cache",
-    //     ".vim/",
-    //     ".git/",
-    //     ".hg/"
-    //   ],
-    //   "initializationOptions": {
-    //     "cache.directory": ".ccls-cache",
-    //     //"compilationDatabaseDirectory": "build"
-    //   },
-    //   "settings": {
-    //     "codeLens.enable": true
-    //   }
-    // },
      "clangd": {
       "command": "clangd",
       "args": ["--background-index", "--clang-tidy", "--completion-style=bundled", "--header-insertion=iwyu", "--suggest-missing-includes"],
@@ -33,7 +14,7 @@
     "ocaml": {
       "command": "ocaml-language-server",
       "args": ["--stdio"],
-      "filetypes": ["ocaml", "reason"]
+      "filetypes": ["ocaml"]
     },
     "julia": {
       "command": "/usr/bin/julia",
@@ -45,7 +26,6 @@
   "suggest.noselect": false,
   "suggest.preferCompleteThanJumpPlaceholder": true,
   "suggest.timeout": 5000,
-  "rust-client.channel": "stable",
   "suggest.completionItemKindLabels": {
     "function": "\uf794",
     "method": "\uf6a6",
