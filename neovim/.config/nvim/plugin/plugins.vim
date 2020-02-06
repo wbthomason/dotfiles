@@ -80,7 +80,7 @@ Pack 'sbdchd/neoformat', {'on': 'Neoformat'}
 Pack 'wellle/targets.vim'
 
 " Search
-Pack 'liuchengxu/vim-clap', {'do': 'call clap#helper#build_all()'}
+Pack 'liuchengxu/vim-clap', {'do': 'Clap install-binary'}
 
 " Special symbols
 Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
