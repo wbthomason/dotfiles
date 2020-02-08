@@ -1,15 +1,10 @@
 " Utilities for lazy-loading Iron
+let s:iron_config = {
+      \'delete': ['IronRepl', 'IronWatchCurrentFile', 'IronSend'],
+      \'package': 'iron.nvim',
+      \'config': ['luafile $HOME/.config/nvim/iron.lua']
+      \}
 
-function! s:load_and_run(cmd) abort
-  echom a:cmd
-  delcommand IronRepl
-  delcommand IronWatchCurrentFile
-  delcommand IronSend
-  packadd iron.nvim
-  luafile $HOME/.config/nvim/iron.lua
-  execute a:cmd
-endfunction
-
-command! IronRepl call <SID>load_and_run(':IronRepl')
-command! -nargs=* IronWatchCurrentFile call <SID>load_and_run(':IronWatchCurrentFile ' . <q-args>)
-command! -nargs=+ -bang IronSend call <SID>load_and_run(':IronSend' . (<bang>0 ? '!' : '') . ' ' . <q-args>)
+command! IronRepl call util#load_and_run(':IronRepl', s:iron_config)
+command! -nargs=* IronWatchCurrentFile call util#load_and_run(':IronWatchCurrentFile ' . <q-args>, s:iron_config)
+command! -nargs=+ -bang IronSend call util#load_and_run(':IronSend' . (<bang>0 ? '!' : '') . ' ' . <q-args>, s:iron_config)
