@@ -1,5 +1,6 @@
 -- Plugin to show "hover" information in a floating window, like VS Code
 
+local api = vim.api
 local hover = {}
 local defaults = {}
 defaults.window_settings = {
@@ -36,6 +37,7 @@ local sources = {
     return relevant_items
   end,
   -- TODO: Customizable git command
+  -- TODO: Make async
   blame = function(position)
     local blame_cmd = vim.fn.printf('git blame -L %d,%d -- %s', position.row, position.row, position.filename)
     local result = vim.fn.system(blame_cmd)
@@ -53,10 +55,29 @@ local sources = {
 
     return vim.split(blame_msg, '\n')
   end,
-  coc = {}
+  coc_diagnostics = function(position)
+    local items = vim.fn.CocAction('diagnosticList')
+    local relevant_items = {}
+    for _, item in ipairs(items) do
+      local start_pos = item.location.range.start
+      local end_pos = item.location.range['end']
+      local bufnr = vim.fn.bufnr(item.file)
+      if bufnr == position.buffer
+        and (start_pos.character <= position.col and position.col <= end_pos.character)
+        and (start_pos.line + 1 <= position.row and position.row <= end_pos.line + 1) then
+        table.insert(relevant_items, item.message)
+      end
+    end
+
+    if #relevant_items == 0 then
+      return nil
+    end
+
+    return relevant_items
+  end
 }
 
-defaults.sources = { errors = sources.errors, blame = sources.blame }
+defaults.sources = { errors = sources.errors, blame = sources.blame, coc_diagnostics = sources.coc_diagnostics }
 hover.sources = defaults.sources
 
 hover.add_source = function(name, source)
@@ -64,20 +85,20 @@ hover.add_source = function(name, source)
 end
 
 hover.show_window = function(position, height, width)
-  local buffer = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_option(buffer, 'buftype', 'nofile')
-  vim.api.nvim_buf_set_option(buffer, 'textwidth', width - 2)
-  vim.api.nvim_buf_set_option(buffer, 'filetype', 'hoverwindow')
+  local buffer = api.nvim_create_buf(false, true)
+  api.nvim_buf_set_option(buffer, 'buftype', 'nofile')
+  api.nvim_buf_set_option(buffer, 'textwidth', width - 2)
+  api.nvim_buf_set_option(buffer, 'filetype', 'hoverwindow')
 
-  local max_width = vim.api.nvim_get_option('columns')
-  local max_height = vim.api.nvim_get_option('lines')
+  local max_width = api.nvim_get_option('columns')
+  local max_height = api.nvim_get_option('lines')
   width = math.min(width, max_width)
   height = math.min(height, max_height)
   local settings = vim.deepcopy(hover.window_settings or defaults.window_settings)
   settings.width = width
   settings.height = height
   settings.bufpos = { position.row - 1, position.col }
-  local window = vim.api.nvim_open_win(buffer, false, settings)
+  local window = api.nvim_open_win(buffer, false, settings)
   return { buf = buffer, win = window }
 end
 
@@ -87,7 +108,7 @@ hover.format_section = function(name, content, width)
   local right_reps = reps - left_reps
   local header = string.rep('━', left_reps) .. '<' .. name .. '>' .. string.rep('━', right_reps)
   for idx, line in ipairs(content) do
-      content[idx] = ' ' .. line
+    content[idx] = ' ' .. line
   end
 
   return { header, content }
@@ -124,8 +145,8 @@ hover.setup_window = function(main_buf, window_data)
 end
 
 hover.fill_window = function(buffer, content)
-  vim.api.nvim_buf_set_lines(buffer, 0, 0, false, content)
-  vim.api.nvim_command('%normal gqq')
+  api.nvim_buf_set_lines(buffer, 0, 0, false, content)
+  api.nvim_command('%normal gqq')
 end
 
 hover.hover = function()
@@ -162,13 +183,13 @@ hover.hover = function()
 
   height = height - 1
 
-  local prev_win = vim.api.nvim_get_current_win()
+  local prev_win = api.nvim_get_current_win()
   local window = hover.show_window(position, height, width)
-  vim.api.nvim_set_current_win(window.win)
-  vim.api.nvim_command('set winhl=Normal:HoverDisplay')
+  api.nvim_set_current_win(window.win)
+  api.nvim_command('set winhl=Normal:HoverDisplay')
   hover.fill_window(window.buf, content)
-  vim.api.nvim_win_set_cursor(window.win, {1, 0})
-  vim.api.nvim_set_current_win(prev_win)
+  api.nvim_win_set_cursor(window.win, {1, 0})
+  api.nvim_set_current_win(prev_win)
   hover.setup_window(position.buffer, window)
 end
 
