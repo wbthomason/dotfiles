@@ -64,7 +64,6 @@ Pack 'tpope/vim-endwise'
 
 " Search
 Pack 'romainl/vim-cool'
-" Pack 'eugen0329/vim-esearch', {'type': 'opt'}
 
 " Yank highlighting
 Pack 'machakann/vim-highlightedyank'
@@ -98,15 +97,19 @@ Pack 'simnalamburt/vim-mundo'
 " Git
 Pack 'mhinz/vim-signify'
 Pack 'tpope/vim-fugitive'
+Pack 'tpope/vim-rhubarb'
 Pack 'itchyny/vim-gitbranch'
 
-" Completion
+" Terminal
+Pack 'voldikss/vim-floaterm'
+
+" Completion and linting
 Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}, 'type': 'opt'}
 
 " Snippets
 " Pack 'honza/vim-snippets'
 
-" Checkers
+" Linting
 " Pack 'w0rp/ale', {'type': 'opt'}
 
 " Language multipack
