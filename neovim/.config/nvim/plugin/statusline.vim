@@ -81,7 +81,7 @@ set statusline+=%#StatuslineSeparator#%{&paste\|\|&readonly?'\ ':''}
 
 " VCS
 set statusline+=%#StatuslineSeparator#%{util#in_vc_repo()?'':''}
-set statusline+=%#StatuslineNormalBody#%{util#vc_status()}
+set statusline+=%#StatuslineNormalBody#%{statusline#vc_status()}
 set statusline+=%#StatuslineSeparator#%{util#in_vc_repo()?'':''}
 
 " Right side items

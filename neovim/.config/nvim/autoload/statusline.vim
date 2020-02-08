@@ -43,7 +43,6 @@ function! statusline#lint_checking() abort
   return ale#engine#IsCheckingBuffer(bufnr('')) ? s:indicator_checking : ''
 endfunction
 
-
 function! statusline#linted() abort
   return get(g:, 'ale_enabled', 0) == 1
         \ && getbufvar(bufnr(''), 'ale_linted', 0) > 0
@@ -56,3 +55,16 @@ function! s:trim(str)
   endif
   return substitute(a:str, '\s\+$', '', '')
 endfunction
+
+function! statusline#vc_status() abort
+  let l:mark = ''
+  let l:branch = gitbranch#name()
+  let l:changes = sy#repo#get_stats()
+  let l:status = l:changes[0] > 0 ? '+' . l:changes[0] : ''
+  let l:prefix = l:changes[0] > 0 ? ' ' : ''
+  let l:status = l:changes[1] > 0 ? l:status . l:prefix . '~' . l:changes[1] : l:status
+  let l:prefix = l:changes[1] > 0 ? ' ' : ''
+  let l:status = l:changes[2] > 0 ? l:status . l:prefix . '-' . l:changes[2] : l:status
+  return l:branch !=# '' ? l:status . ' ' . l:mark . ' ' . l:branch : ''
+endfunction
+

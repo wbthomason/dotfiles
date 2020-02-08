@@ -1,29 +1,19 @@
 scriptencoding utf-8
 " Utility functions
 
+" Quickly test if we're in a git repo
 function! util#in_vc_repo() abort
   let l:branch = gitbranch#name()
   return l:branch !=# ''
 endfunction
 
-function! util#vc_status() abort
-  let l:mark = ''
-  let l:branch = gitbranch#name()
-  let l:changes = sy#repo#get_stats()
-  let l:status = l:changes[0] > 0 ? '+' . l:changes[0] : ''
-  let l:prefix = l:changes[0] > 0 ? ' ' : ''
-  let l:status = l:changes[1] > 0 ? l:status . l:prefix . '~' . l:changes[1] : l:status
-  let l:prefix = l:changes[1] > 0 ? ' ' : ''
-  let l:status = l:changes[2] > 0 ? l:status . l:prefix . '-' . l:changes[2] : l:status
-  return l:branch !=# '' ? l:status . ' ' . l:mark . ' ' . l:branch : ''
-endfunction
-
-
+" Report the highlight groups active at the current point
 function! util#syntax_stack() abort
   let l:s = synID(line('.'), col('.'), 1)                                       
   echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfunc
 
+" Operator function to yank directly to the clipboard via the + register
 function! util#clipboard_yank(type, ...) abort
   let sel_save = &selection
   let &selection = 'inclusive'
@@ -34,4 +24,18 @@ function! util#clipboard_yank(type, ...) abort
   endif
 
   let &selection = sel_save
+endfunction
+
+" Lazy-load a package on a command
+function! util#load_and_run(cmd, info) abort
+  for old_cmd in a:info['delete']
+    execute 'delcommand ' . old_cmd
+  endfor
+
+  execute 'packadd ' . a:info['package']
+  for config_cmd in a:info['config']
+    execute config_cmd
+  endfor
+
+  execute a:cmd
 endfunction
