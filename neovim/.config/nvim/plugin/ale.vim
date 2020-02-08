@@ -1,9 +1,9 @@
-if !exists('g:vscode')
-  augroup ale_load_aucommands
-    au!
-    au VimEnter * call s:load_ale()
-  augroup END
-endif
+" if !exists('g:vscode')
+"   augroup ale_load_aucommands
+"     au!
+"     au VimEnter * call s:load_ale()
+"   augroup END
+" endif
 
 function! s:load_ale() abort
   packadd ale

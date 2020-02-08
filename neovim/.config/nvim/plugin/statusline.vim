@@ -103,8 +103,8 @@ set statusline+=%#StatuslineFiletypeBody#%{statusline#icon_filetype()}
 set statusline+=%#StatuslineSeparator#\ 
 
 " ALE status
-set statusline+=%(%#StatuslineSeparator#%{g:ale_enabled?'':''}%#StatuslineLintChecking#%{statusline#lint_checking()}%#StatuslineLintWarn#%{statusline#lint_warnings()}%#StatuslineLintError#%{g:statusline_ale_warnings?'\ ':''}%{statusline#lint_errors()}%#StatuslineLintOk#%{statusline#lint_ok()}%#StatuslineSeparator#%{g:ale_enabled?'':''}%{statusline#linted()\|\|statusline#lint_checking()!=#''?'\ ':''}%)
-
+" set statusline+=%(%#StatuslineSeparator#%{g:ale_enabled?'':''}%#StatuslineLintChecking#%{statusline#lint_checking()}%#StatuslineLintWarn#%{statusline#lint_warnings()}%#StatuslineLintError#%{g:statusline_ale_warnings?'\ ':''}%{statusline#lint_errors()}%#StatuslineLintOk#%{statusline#lint_ok()}%#StatuslineSeparator#%{g:ale_enabled?'':''}%{statusline#linted()\|\|statusline#lint_checking()!=#''?'\ ':''}%)
+"
 " coc
 set statusline+=%(%#StatuslineSeparator#%#StatuslineNormalBody#%{coc#status()}%#StatuslineSeparator#%)
 
