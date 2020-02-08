@@ -176,12 +176,15 @@ hover.hover = function()
   end
 
   -- Display the results
-  local height = 0
+  local lines = 0
+  local wrap = 0
   for _, item in ipairs(content) do
-    height = height + math.ceil(#item / width)
+    lines = lines + math.floor(#item / width)
+    wrap = wrap + (#item / width - math.floor(#item / width))
   end
 
-  height = height - 1
+  wrap = math.ceil(wrap)
+  local height = lines + wrap
 
   local prev_win = api.nvim_get_current_win()
   local window = hover.show_window(position, height, width)
