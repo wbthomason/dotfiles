@@ -17,7 +17,6 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 source ${ZSH_PLUGINS}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.zsh
-# source ~/zsh-prompt-benchmark.plugin.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -34,9 +33,9 @@ setopt nocheckjobs
 setopt numericglobsort
 
 # History
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTFILE=~/.zhistory
+HISTSIZE=1000
+SAVEHIST=500
 setopt appendhistory
 setopt histignorealldups
 # Don't want common history between shells
@@ -75,16 +74,14 @@ export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
 # Completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
+zstyle ':completion:*' completer _complete
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
 zstyle ':completion:*' rehash true                              # automatically find new executables in path 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-HISTFILE=~/.zhistory
-HISTSIZE=1000
-SAVEHIST=500
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 fpath=(~/.zsh/completions $fpath) 
 autoload -Uz compinit
@@ -144,10 +141,9 @@ bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up			
 bindkey '^[[B' history-substring-search-down
+
 # OPAM configuration
 eval $(opam config env)
-
-source /home/wil/.config/broot/launcher/bash/br
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
