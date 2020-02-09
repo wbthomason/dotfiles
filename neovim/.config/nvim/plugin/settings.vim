@@ -19,7 +19,7 @@ set relativenumber
 set smartindent
 set laststatus=2
 set noshowmode
-set shada^=%
+set shada='20,<50,s10,h,/100
 set hidden
 set shortmess+=c
 set nojoinspaces
