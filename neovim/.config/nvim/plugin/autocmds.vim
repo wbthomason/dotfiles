@@ -18,6 +18,6 @@ if exists('g:vscode')
 else
   augroup collab_aucmds
     au!
-    au VimEnter ~/projects/research/communion*/*.tex set formatoptions-=t | set wrap linebreak breakindent
+    au VimEnter,BufEnter ~/projects/research/communion*/*.tex set formatoptions-=t | set wrap linebreak breakindent
   augroup END
 endif
