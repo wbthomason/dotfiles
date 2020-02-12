@@ -104,7 +104,7 @@ Pack 'itchyny/vim-gitbranch'
 Pack 'voldikss/vim-floaterm'
 
 " Completion and linting
-Pack 'neoclide/coc.nvim', {'do': {-> jobstart('yarn install --frozen-lockfile')}, 'type': 'opt'}
+Pack 'neoclide/coc.nvim', {'do': ':Start! yarn install --frozen-lockfile', 'type': 'opt'}
 
 " Snippets
 " Pack 'honza/vim-snippets'
