@@ -1,11 +1,21 @@
-" if !exists('g:vscode')
-"   augroup ale_load_aucommands
-"     au!
-"     au VimEnter * call s:load_ale()
-"   augroup END
-" endif
+if !exists('g:vscode')
+  augroup ale_load_aucommands
+    au!
+    au FileType sh,zsh,bash,c,cpp,cmake,html,markdown,racket,vim call s:load_ale()
+  augroup END
+endif
+
+let s:ale_loaded = v:false
+let g:ale_enabled = v:false
 
 function! s:load_ale() abort
+  let b:ale_enabled = v:true
+  if s:ale_loaded
+    finish
+  endif
+
+  let s:ale_loaded = v:true
+
   packadd ale
   nmap <silent> [e <Plug>(ale_previous_wrap)
   nmap <silent> ]e <Plug>(ale_next_wrap)
