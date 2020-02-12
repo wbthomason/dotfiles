@@ -85,8 +85,8 @@ Pack 'liuchengxu/vim-clap', {'do': 'Clap install-binary'}
 Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
 
 " Project Management/Sessions
-" Pack 'tpope/vim-obsession'
-" Pack 'dhruvasagar/vim-prosession'
+Pack 'tpope/vim-obsession'
+Pack 'dhruvasagar/vim-prosession'
 
 " REPL
 Pack 'Vigemus/iron.nvim', {'type': 'opt'}
