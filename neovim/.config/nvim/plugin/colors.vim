@@ -57,7 +57,7 @@ function! s:setup_colors() abort
   hi! link SignifySignChange AquaSign
   hi! link SignifySignDelete RedSign
 
-  hi! link HoverDisplay ClapDisplay
+  hi! HoverDisplay guibg=#303030 guifg=#dddddd
 
   let s:idx = 1
   while s:idx < 9
