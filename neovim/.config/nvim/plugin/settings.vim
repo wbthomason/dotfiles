@@ -35,4 +35,3 @@ set display=msgsep
 set cursorline
 set nomodeline
 set mouse=nivh
-set signcolumn=yes:1
