@@ -1,3 +1,4 @@
+scriptencoding utf-8
 " Statusline functions
 function! statusline#icon_filetype() abort
   return (&filetype !=# '' ? &filetype : 'no filetype') . ' ' . luaeval("require('utils').icons.lookup_filetype(_A)", &filetype) 
@@ -12,9 +13,6 @@ let s:indicator_ok = "\uf00c"
 
 let g:statusline_ale_warnings = v:false
 function! statusline#lint_warnings() abort
-  if !statusline#linted()
-    return ''
-  endif
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
@@ -23,18 +21,12 @@ function! statusline#lint_warnings() abort
 endfunction
 
 function! statusline#lint_errors() abort
-  if !statusline#linted()
-    return ''
-  endif
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   return l:all_errors == 0 ? '' : printf(s:indicator_errors . '%d', all_errors)
 endfunction
 
 function! statusline#lint_ok() abort
-  if !statusline#linted()
-    return ''
-  endif
   let l:counts = ale#statusline#Count(bufnr(''))
   return l:counts.total == 0 ? s:indicator_ok : ''
 endfunction
@@ -47,6 +39,31 @@ function! statusline#linted() abort
   return get(g:, 'ale_enabled', 0) == 1
         \ && getbufvar(bufnr(''), 'ale_linted', 0) > 0
         \ && ale#engine#IsCheckingBuffer(bufnr('')) == 0
+endfunction
+
+function! statusline#has_ale() abort
+  return get(g:, 'ale_enabled', 0) == 1 && getbufvar(bufnr(''), 'ale_linted', 0) > 0
+endfunction
+
+function! statusline#ale_status() abort 
+  if !statusline#has_ale()
+    return ''
+  endif
+
+  let l:icon = '  🍺 '
+  let l:checking = statusline#lint_checking()
+  if l:checking !=# ''
+    return l:icon . l:checking
+  endif
+
+  let l:ok = statusline#lint_ok()
+  if l:ok !=# '' 
+    return l:icon . l:ok . ' '
+  endif
+
+  let l:warnings = statusline#lint_warnings()
+  let l:errors = statusline#lint_errors()
+  return l:icon . l:warnings . (l:warnings ==# '' ? '' : (l:errors ==# '' ? '' : ' ')) . l:errors . ' '
 endfunction
 
 function! s:trim(str)
@@ -65,11 +82,11 @@ function! statusline#vc_status() abort
   let l:status = l:changes[1] > 0 ? l:status . l:prefix . '~' . l:changes[1] : l:status
   let l:prefix = l:changes[1] > 0 ? ' ' : ''
   let l:status = l:changes[2] > 0 ? l:status . l:prefix . '-' . l:changes[2] : l:status
-  let l:status = l:status == '' ? '' : l:status . ' '
+  let l:status = l:status ==# '' ? '' : l:status . ' '
   return l:branch !=# '' ? l:status . l:mark . ' ' . l:branch . ' ' : ''
 endfunction
 
 function! statusline#coc_status() abort
   let l:base_status = coc#status()
-  return l:base_status != '' ? '  ' . l:base_status . ' ' : ''
+  return l:base_status !=# '' ? ' 🇻 ' . l:base_status . ' ' : ''
 endfunction

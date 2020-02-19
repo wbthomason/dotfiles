@@ -84,14 +84,14 @@ set statusline+=%=
 " Filetype
 set statusline+=%#StatuslineFiletypeBody#%{statusline#icon_filetype()}\ \ 
 
-" ALE status
-" set statusline+=%(%#StatuslineSeparator#%{g:ale_enabled?'':''}%#StatuslineLintChecking#%{statusline#lint_checking()}%#StatuslineLintWarn#%{statusline#lint_warnings()}%#StatuslineLintError#%{g:statusline_ale_warnings?'\ ':''}%{statusline#lint_errors()}%#StatuslineLintOk#%{statusline#lint_ok()}%#StatuslineSeparator#%{g:ale_enabled?'':''}%{statusline#linted()\|\|statusline#lint_checking()!=#''?'\ ':''}%)
-"
 " Line and Column
-set statusline+=%#StatuslineLineColBody#(Ln\ %l/%L,\ %#StatuslineLineColBody#Col\ %c)
+set statusline+=%#StatuslineLineColBody#(Ln\ %l/%L,\ %#StatuslineLineColBody#Col\ %c)\ 
 
 " Current scroll percentage and total lines of the file
 " set statusline+=%#StatuslinePercentageBody#%p%%\ (%L)\ \ 
+
+" ALE status
+set statusline+=%{statusline#has_ale()?'\ ':''}%(%#StatuslineLint#%{statusline#ale_status()}%)
 
 " coc
 set statusline+=%{coc#status()==''?'':'\ '}%(%#StatuslineLint#%{statusline#coc_status()}%)

@@ -53,4 +53,6 @@ function! s:load_ale() abort
   let g:ale_alex_use_global = v:true
   autocmd! ale_load_aucommands
   augroup! ale_load_aucommands
+  ALEEnable
+augroup END
 endfunction
