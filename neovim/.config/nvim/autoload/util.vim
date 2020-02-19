@@ -9,7 +9,7 @@ endfunction
 
 " Report the highlight groups active at the current point
 function! util#syntax_stack() abort
-  let l:s = synID(line('.'), col('.'), 1)                                       
+  let l:s = synID(line('.'), col('.'), 1)
   echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfunc
 
@@ -38,4 +38,29 @@ function! util#load_and_run(cmd, info) abort
   endfor
 
   execute a:cmd
+endfunction
+
+function! util#get_mode(mode) abort
+  let l:currentmode={
+      \'n' : 'Normal',
+      \'no' : 'N·Operator Pending',
+      \'v' : 'Visual',
+      \'V' : 'V·Line',
+      \'^V' : 'V·Block',
+      \'s' : 'Select',
+      \'S': 'S·Line',
+      \'^S' : 'S·Block',
+      \'i' : 'Insert',
+      \'R' : 'Replace',
+      \'Rv' : 'V·Replace',
+      \'c' : 'Command',
+      \'cv' : 'Vim Ex',
+      \'ce' : 'Ex',
+      \'r' : 'Prompt',
+      \'rm' : 'More',
+      \'r?' : 'Confirm',
+      \'!' : 'Shell',
+      \'t' : 'Terminal'
+      \}
+  return toupper(get(l:currentmode, a:mode))
 endfunction

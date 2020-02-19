@@ -65,6 +65,11 @@ function! statusline#vc_status() abort
   let l:status = l:changes[1] > 0 ? l:status . l:prefix . '~' . l:changes[1] : l:status
   let l:prefix = l:changes[1] > 0 ? ' ' : ''
   let l:status = l:changes[2] > 0 ? l:status . l:prefix . '-' . l:changes[2] : l:status
-  return l:branch !=# '' ? l:status . ' ' . l:mark . ' ' . l:branch : ''
+  let l:status = l:status == '' ? '' : l:status . ' '
+  return l:branch !=# '' ? l:status . l:mark . ' ' . l:branch . ' ' : ''
 endfunction
 
+function! statusline#coc_status() abort
+  let l:base_status = coc#status()
+  return l:base_status != '' ? '  ' . l:base_status . ' ' : ''
+endfunction
