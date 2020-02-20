@@ -154,6 +154,9 @@
   :config (counsel-mode))
 (use-package counsel-projectile)
 (use-package counsel-tramp)
+(use-package ivy-prescient
+  :after ivy
+  :config (ivy-prescient-mode))
 (use-package ivy-fuz
   :demand t
   :after ivy
@@ -311,13 +314,8 @@
 
 ;;; Prescient
 (use-package prescient :config (prescient-persist-mode))
-(use-package ivy-prescient
-  :after ivy
-  :disabled t
-  :config (ivy-prescient-mode))
 (use-package company-prescient
   :after company
-  :disabled t
   :config (company-prescient-mode))
 
 ;;; All-the-icons
