@@ -367,6 +367,15 @@
   :config (all-the-icons-ivy-setup))
 (use-package all-the-icons-dired :hook (dired-mode . all-the-icons-dired-mode))
 
+;;; Snippets
+(use-package yasnippet
+  :after company
+  :ensure t
+  :config
+  (yas-global-mode t)
+  (advice-add 'company-complete-common :before (lambda () (setq my-company-point (point))))
+  (advice-add 'company-complete-common :after (lambda () (when (equal my-company-point (point)) (yas-expand)))))
+
 ;;; LSP
 (use-package lsp-mode
   :init (setq read-process-output-max (* 1024 1024))
