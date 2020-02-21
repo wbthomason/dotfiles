@@ -1,11 +1,22 @@
 ;;; Startup speedup
 ;; From https://www.reddit.com/r/emacs/comments/3kqt6e/2_easy_little_known_steps_to_speed_up_emacs_start/ and https://github.com/hlissner/doom-emacs/wiki/FAQ#how-is-dooms-startup-so-fast
 ;; -*- lexical-binding: t; -*-
-(setq gc-cons-threshold 100000000
+(setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6)
 (defvar file-name-handler-alist-original file-name-handler-alist)
 (setq file-name-handler-alist nil)
-(setq load-prefer-newer t)
+(setq load-prefer-newer noninteractive)
+
+;;; Optimizations (from Doom Emacs)
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
+(setq-default cursor-in-non-selected-windows nil)
+(setq highlight-nonselected-windows nil)
+(setq fast-but-imprecise-scrolling t)
+(setq frame-inhibit-implied-resize t)
+(setq ffap-machine-p-known 'reject)
+(setq command-line-ns-option-alist nil)
+
 (run-with-idle-timer
  5 nil
  (lambda ()
@@ -40,6 +51,15 @@
 (use-package exec-path-from-shell
   :config
   (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
+
+;;; Garbage Collector Magic Hack
+(use-package gcmh
+  :config
+  (setq gcmh-idle-delay 10
+        gcmh-verbose nil
+        gcmh-high-cons-threshold 16777216) ; 16mb
+  (gcmh-mode +1)
+  (add-hook 'focus-out-hook #'gcmh-idle-garbage-collect))
 
 ;;; Clean .emacs.d
 (use-package no-littering)
@@ -241,13 +261,36 @@
 
 (use-package auto-dictionary :hook (flyspell-mode . auto-dictionary-mode))
 
+;;; Flycheck
+(use-package flycheck
+  :config (setq flycheck-emacs-lisp-load-path 'inherit)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (setq flycheck-display-errors-delay 0.25))
+
+(use-package flycheck-posframe
+  :config (setq flycheck-posframe-warning-prefix "⚠ "
+                flycheck-posframe-info-prefix "··· "
+                flycheck-posframe-error-prefix "✕ ")
+  (add-hook 'flycheck-posframe-inhibit-functions #'company--active-p)
+  (add-hook 'flycheck-posframe-inhibit-functions #'evil-insert-state-p)
+  (add-hook 'flycheck-posframe-inhibit-functions #'evil-replace-state-p)
+  :after (company evil))
+
 ;;; Restart Emacs
 (use-package restart-emacs)
 
 ;;; Indentation guides
 (use-package highlight-indent-guides
+  :disabled t
   :hook (prog-mode . highlight-indent-guides-mode)
   :config (setq highlight-indent-guides-method 'character))
+
+;;; Cursor line
+(use-package hl-line
+  :hook ((prog-mode text-mode conf-mode) . hl-line-mode)
+  :config (setq hl-line-sticky-flag nil
+        global-hl-line-sticky-flag nil))
+
 
 ;;; Projectile
 (use-package projectile
@@ -299,7 +342,7 @@
   :config (setq company-backends company-standard-backends
                 company-idle-delay 0
                 company-echo-delay 0
-                company-minimum-prefix-length 2
+                company-minimum-prefix-length 1
                 company-require-match nil
                 company-dabbrev-downcase nil
                 company-tooltip-limit 20
@@ -327,6 +370,8 @@
 ;;; LSP
 (use-package lsp-mode
   :init (setq read-process-output-max (* 1024 1024))
+  (setq lsp-auto-guess-root t)
+  (setq lsp-keep-workspace-alive nil)
   :config (lsp-register-client
            (make-lsp-client :new-connection (lsp-stdio-connection "lua-language-server")
                             :major-modes '(lua-mode)
@@ -347,12 +392,14 @@
   (julia-mode . lsp-deferred)
   (haskell-mode . lsp-deferred)
   (tex-mode . lsp-deferred)
-  (latex-mode . lsp-deferred))
+  (latex-mode . lsp-deferred)
+  (lsp-mode . lsp-enable-which-key-integration))
 
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package lsp-treemacs :commands lsp-treemacs-error-list)
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 (use-package lsp-python-ms
+  :demand
   :hook (python-mode . (lambda ()
                          (require 'lsp-python-ms)
                          (lsp-deferred))))
@@ -609,7 +656,7 @@
 (use-package fira-code-mode
   :straight nil
   :config (add-hook 'prog-mode-hook 'fira-code-mode))
-(set-frame-font "Fira Code Retina-11") ;;; set default font
+(cons 'font "Fira Code Retina-11") ;;; set default font
 (setq default-frame-alist '((font . "Fira Code Retina-11")))
 
 ;;; Theme
@@ -620,6 +667,13 @@
   :config (setq linum-relative-format "%4s ")
   (setq linum-relative-current-symbol "")
   (setq linum-relative-backend 'display-line-numbers-mode))
+
+;; Explicitly define a width to reduce computation
+(setq-default display-line-numbers-width 3)
+
+;; Show absolute line numbers for narrowed regions makes it easier to tell the
+;; buffer is narrowed, and where you are, exactly.
+(setq-default display-line-numbers-widen t)
 
 ;;; TODO Highlight
 (use-package hl-todo
@@ -679,6 +733,7 @@
 (setq
  tramp-default-method "ssh"
  vc-follow-symlinks t
+ find-file-visit-truename t
  select-enable-clipboard t
  make-backup-files nil
  coding-system-for-read 'utf-8
@@ -692,6 +747,23 @@
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 (save-place-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
+(setq hscroll-margin 2
+      hscroll-step 1
+      ;; Emacs spends too much effort recentering the screen if you scroll the
+      ;; cursor more than N lines past window edges (where N is the settings of
+      ;; `scroll-conservatively'). This is especially slow in larger files
+      ;; during large-scale scrolling commands. If kept over 100, the window is
+      ;; never automatically recentered.
+      scroll-conservatively 101
+      scroll-margin 0
+      scroll-preserve-screen-position t
+      ;; Reduce cursor lag by a tiny bit by not auto-adjusting `window-vscroll'
+      ;; for tall lines.
+      auto-window-vscroll nil
+      ;; mouse
+      mouse-wheel-scroll-amount '(5 ((shift) . 2))
+      mouse-wheel-progressive-speed nil)  ; don't accelerate scrolling
+
 
 ;; Defaults
 (setq-default
@@ -710,6 +782,7 @@
  auto-fill-function 'do-auto-fill
  sentence-end-double-space nil)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
+(setq x-underline-at-descent-line t)
 
 (add-hook 'prog-mode-hook (lambda () (setq-local comment-auto-fill-only-comments t) (auto-fill-mode t)))
 (setq c-default-style "bsd")
