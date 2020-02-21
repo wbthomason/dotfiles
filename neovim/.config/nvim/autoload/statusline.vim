@@ -1,7 +1,12 @@
 scriptencoding utf-8
+"
 " Statusline functions
-function! statusline#icon_filetype() abort
-  return (&filetype !=# '' ? &filetype : 'no filetype') . ' ' . luaeval("require('utils').icons.lookup_filetype(_A)", &filetype) 
+function! statusline#icon() abort
+  return luaeval("require('utils').icons.lookup_filetype(_A)", &filetype)
+endfunction
+
+function! statusline#filetype() abort
+  return &filetype !=# '' ? &filetype : 'no filetype'
 endfunction
 
 let s:indicator_checking = "\uf110"
@@ -9,60 +14,61 @@ let s:indicator_warnings = "\uf071"
 let s:indicator_errors = "\uf05e"
 let s:indicator_ok = "\uf00c"
 
-" The below adapted (slightly) from https://github.com/maximbaz/lightline-ale/blob/master/autoload/lightline/ale.vim
-
-let g:statusline_ale_warnings = v:false
-function! statusline#lint_warnings() abort
+function! statusline#ale_warnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
-  let g:statusline_ale_warnings = l:all_non_errors != 0
   return l:all_non_errors == 0 ? '' : printf(s:indicator_warnings . '%d', all_non_errors)
 endfunction
 
-function! statusline#lint_errors() abort
+function! statusline#ale_errors() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   return l:all_errors == 0 ? '' : printf(s:indicator_errors . '%d', all_errors)
 endfunction
 
-function! statusline#lint_ok() abort
+function! statusline#ale_ok() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   return l:counts.total == 0 ? s:indicator_ok : ''
 endfunction
 
-function! statusline#lint_checking() abort
-  return ale#engine#IsCheckingBuffer(bufnr('')) ? s:indicator_checking : ''
+let s:spinner_frames = ['⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷']
+
+let s:ale_frame_idx = 0
+function! statusline#ale_checking() abort
+  let result = ''
+  if ale#engine#IsCheckingBuffer(bufnr(''))
+    let result = s:spinner_frames[s:ale_frame_idx % len(s:spinner_frames)]
+    let s:ale_frame_idx = s:ale_frame_idx + 1
+  else
+    let s:ale_frame_idx = 0
+  endif
+  return result
 endfunction
 
-function! statusline#linted() abort
-  return get(g:, 'ale_enabled', 0) == 1
-        \ && getbufvar(bufnr(''), 'ale_linted', 0) > 0
-        \ && ale#engine#IsCheckingBuffer(bufnr('')) == 0
-endfunction
-
-function! statusline#has_ale() abort
+function! statusline#ale_enabled() abort
   return get(g:, 'ale_enabled', 0) == 1 && getbufvar(bufnr(''), 'ale_linted', 0) > 0
 endfunction
 
-function! statusline#ale_status() abort 
-  if !statusline#has_ale()
+function! statusline#ale() abort
+  if !statusline#ale_enabled()
     return ''
   endif
 
   let l:icon = '  🍺 '
-  let l:checking = statusline#lint_checking()
+  let l:checking = statusline#ale_checking()
+
   if l:checking !=# ''
-    return l:icon . l:checking
+    return l:icon . l:checking . ' '
   endif
 
-  let l:ok = statusline#lint_ok()
-  if l:ok !=# '' 
+  let l:ok = statusline#ale_ok()
+  if l:ok !=# ''
     return l:icon . l:ok . ' '
   endif
 
-  let l:warnings = statusline#lint_warnings()
-  let l:errors = statusline#lint_errors()
+  let l:warnings = statusline#ale_warnings()
+  let l:errors = statusline#ale_errors()
   return l:icon . l:warnings . (l:warnings ==# '' ? '' : (l:errors ==# '' ? '' : ' ')) . l:errors . ' '
 endfunction
 
@@ -86,7 +92,39 @@ function! statusline#vc_status() abort
   return l:branch !=# '' ? l:status . l:mark . ' ' . l:branch . ' ' : ''
 endfunction
 
-function! statusline#coc_status() abort
+function! statusline#coc() abort
   let l:base_status = coc#status()
-  return l:base_status !=# '' ? ' 🇻 ' . l:base_status . ' ' : ''
+  let l:status = ' 🇻 '
+  if l:base_status !=# ''
+    let l:status = l:status . l:base_status . ' '
+  else
+    let l:status = l:status . s:indicator_ok . ' '
+  endif
+
+  return l:status
+endfunction
+
+function! statusline#get_mode(mode) abort
+  let l:currentmode={
+        \'n' : 'Normal',
+        \'no' : 'N·Operator Pending',
+        \'v' : 'Visual',
+        \'V' : 'V·Line',
+        \'^V' : 'V·Block',
+        \'s' : 'Select',
+        \'S': 'S·Line',
+        \'^S' : 'S·Block',
+        \'i' : 'Insert',
+        \'R' : 'Replace',
+        \'Rv' : 'V·Replace',
+        \'c' : 'Command',
+        \'cv' : 'Vim Ex',
+        \'ce' : 'Ex',
+        \'r' : 'Prompt',
+        \'rm' : 'More',
+        \'r?' : 'Confirm',
+        \'!' : 'Shell',
+        \'t' : 'Terminal'
+        \}
+  return toupper(get(l:currentmode, a:mode, 'V-Block'))
 endfunction

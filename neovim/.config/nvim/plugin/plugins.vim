@@ -82,7 +82,7 @@ Pack 'wellle/targets.vim'
 Pack 'liuchengxu/vim-clap', {'do': 'Clap install-binary'}
 
 " Special symbols
-Pack 'chrisbra/unicode.vim', {'on': 'UnicodeSearch'}
+Pack 'chrisbra/unicode.vim', {'on': ['UnicodeSearch', 'UnicodeName']}
 
 " Project Management/Sessions
 Pack 'tpope/vim-obsession'
@@ -105,6 +105,7 @@ Pack 'voldikss/vim-floaterm'
 
 " Completion and linting
 Pack 'neoclide/coc.nvim', {'do': ':Start! yarn install --frozen-lockfile', 'type': 'opt'}
+Pack 'Shougo/echodoc.vim'
 
 " Snippets
 " Pack 'honza/vim-snippets'
@@ -150,6 +151,9 @@ Pack 'PontusPersson/pddl.vim'
 
 " Profiling
 Pack 'tweekmonster/startuptime.vim'
+
+" Highlight colors
+Pack 'norcalli/nvim-colorizer.lua'
 
 " Color scheme
 Pack 'wbthomason/vim-nazgul'

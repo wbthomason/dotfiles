@@ -73,5 +73,10 @@
   "latex.build.onSave": false,
   "latex.forwardSearch.executable": "zathura",
   "latex.forwardSearch.args": ["--synctex-forward", "%l:1:%f", "%p"],
-  "diagnostic.enableMessage": "never"
+  "diagnostic.enableMessage": "never",
+  "suggest.detailField": "preview",
+  "suggest.echodocSupport": true,
+  "suggest.fixInsertedWord": false,
+  "coc.preferences.colorSupport": false,
+  "coc.preferences.useQuickfixForLocations": true,
 }
