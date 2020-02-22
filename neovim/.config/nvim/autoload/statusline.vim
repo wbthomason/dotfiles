@@ -128,3 +128,13 @@ function! statusline#get_mode(mode) abort
         \}
   return toupper(get(l:currentmode, a:mode, 'V-Block'))
 endfunction
+
+function! statusline#filename() abort
+  let base_name = fnamemodify(bufname('%'), ':~:.')
+  let space = min([60, float2nr(floor(0.6 * winwidth(0)))])
+  if len(base_name) <= space
+    return base_name
+  endif
+
+  return pathshorten(base_name)
+endfunction

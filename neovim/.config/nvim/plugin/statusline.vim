@@ -63,7 +63,7 @@ set statusline+=%#StatuslineFiletype#\ %{statusline#icon()}
 set statusline+=%#StatuslineModified#%{SetModifiedSymbol(&modified)}
 
 " Filename
-set statusline+=%#StatuslineFilename#\ %.50f\ %<
+set statusline+=%#StatuslineFilename#\ %{statusline#filename()}\ %<
 
 " Paste and RO
 set statusline+=%#StatuslineFilename#%{&paste?'PASTE\ ':''}
