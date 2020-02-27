@@ -107,6 +107,9 @@ Pack 'voldikss/vim-floaterm'
 Pack 'neoclide/coc.nvim', {'do': ':Start! yarn install --frozen-lockfile', 'type': 'opt'}
 Pack 'Shougo/echodoc.vim'
 
+" Symbol jumping
+Pack 'pechorin/any-jump.nvim'
+
 " Snippets
 " Pack 'honza/vim-snippets'
 
