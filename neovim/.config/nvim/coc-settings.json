@@ -79,4 +79,5 @@
   "suggest.fixInsertedWord": false,
   "coc.preferences.colorSupport": false,
   "coc.preferences.useQuickfixForLocations": true,
+  "signature.preferShownAbove": false
 }

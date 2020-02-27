@@ -35,13 +35,21 @@ function! s:setup_colors() abort
   hi! CocHintHighlight guifg=#83a5cb gui=undercurl guisp=#83a5cb
   hi! link CocHintSign BlueSign
 
+  let matchGroupId = hlID(hlexists('ClapInput') != 0 ? 'ClapInput' : 'Visual')
+  let input_bg = synIDattr(synIDtrans(matchGroupId), 'bg#', 'gui')
+  let input_bg = input_bg !=# '' ? input_bg : synIDattr(synIDtrans(hlID('Visual')), 'bg#', 'gui')
+
+  let matchGroupId = hlID(hlexists('ClapDisplay') != 0 ? 'ClapDisplay' : 'Pmenu')
+  let display_bg = synIDattr(synIDtrans(matchGroupId), 'bg#', 'gui')
+  let display_bg = display_bg !=# '' ? display_bg : synIDattr(synIDtrans(hlID('Pmenu')), 'bg#', 'gui')
+
   hi! ClapCurrentSelection guifg=#ffffff gui=bold
   " hi! ClapSelected guifg=#dddddd gui=bold,underline
-  " hi! ClapInput guifg=#ebdbb2 guibg=#404040
+  exec 'hi! ClapInput guifg=#ffffff guibg=' . input_bg
   " hi! ClapDisplay guifg=#ebdbb2 guibg=#505050
-  " hi! ClapNoMatchesFound guifg=#fe4559
-  " hi! ClapQuery guifg=#ffffff
-  hi! ClapSpinner guifg=#ebdbb2 guibg=#404040
+  exec 'hi! ClapNoMatchesFound guifg=#fe4559 guibg=' . display_bg
+  hi! ClapQuery guifg=#ffffff
+  hi! link ClapSpinner ClapInput
   " hi! ClapMatches guifg=#aaddaa
 
   hi! ALEError guifg=#ff727b ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
