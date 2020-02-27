@@ -130,7 +130,7 @@ nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 " endfor
 
 " Folds
-nnoremap <silent> <tab> :normal! za<cr>
+nnoremap <silent> <c-t> :normal! za<cr>
 
 " Edit config
 nnoremap <silent> <localleader>c :Clap files --hidden ~/dotfiles/neovim/.config/nvim<cr>
