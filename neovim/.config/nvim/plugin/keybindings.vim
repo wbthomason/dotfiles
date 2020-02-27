@@ -138,3 +138,10 @@ nnoremap <silent> <localleader>c :Clap files --hidden ~/dotfiles/neovim/.config/
 " Yank to clipboard
 nnoremap <silent> y+ :set opfunc=util#clipboard_yank<cr>g@
 vnoremap <silent> y+ :<C-U>call util#clipboard_yank(visualmode(), 1)<cr>
+
+" Highlighted undo
+nmap u     <Plug>(highlightedundo-undo)
+nmap <C-r> <Plug>(highlightedundo-redo)
+nmap U     <Plug>(highlightedundo-Undo)
+nmap g-    <Plug>(highlightedundo-gminus)
+nmap g+    <Plug>(highlightedundo-gplus)

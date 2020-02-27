@@ -65,8 +65,9 @@ Pack 'tpope/vim-endwise'
 " Search
 Pack 'romainl/vim-cool'
 
-" Yank highlighting
+" Yank and undo highlighting
 Pack 'machakann/vim-highlightedyank'
+Pack 'machakann/vim-highlightedundo'
 
 " Pattern preview
 Pack 'markonm/traces.vim'
