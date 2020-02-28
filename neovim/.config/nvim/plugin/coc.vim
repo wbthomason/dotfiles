@@ -12,6 +12,7 @@ endif
 function! s:load_coc() abort
   packadd coc.nvim
   call coc#add_extension(
+        \'coc-actions',
         \'coc-gitignore',
         \'coc-gocode',
         \'coc-highlight',
@@ -106,9 +107,12 @@ endfunction
 nmap <silent> <leader>cn <Plug>(coc-rename)
 vmap <silent> <leader>cf  <Plug>(coc-format-selected)
 nmap <silent> <leader>cf  :call CocAction('format')<cr>
-vmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
-nmap <silent> <leader>ca  <Plug>(coc-codeaction-selected)
-nmap <silent> <leader>ac  <Plug>(coc-codeaction)
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+nmap <silent> <leader>a :CocCommand actions.open<cr>
+xmap <silent> <leader>ca :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>ca :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 nmap <silent> <leader>cqf  <Plug>(coc-fix-current)
 
 inoremap <silent><expr> <TAB>
