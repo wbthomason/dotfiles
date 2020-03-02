@@ -127,7 +127,7 @@ endfunction
 
 inoremap <silent><expr> <c-tab> coc#refresh()
 
-inoremap <silent> <cr> <C-R>=Handle_cr_coc()<cr>
+inoremap <silent><expr> <cr> Handle_cr_coc()
 
 function! Handle_cr_coc() abort
   return pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

@@ -11,9 +11,6 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # Load plugins
 export ZSH_PLUGINS=/usr/share/zsh/plugins/
 
-export ZSH_AUTOSUGGEST_USE_ASYNC=1
-# source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 source ${ZSH_PLUGINS}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -53,7 +50,7 @@ export EDITOR=vim
 # ROS
 if [ -f /opt/ros/melodic/setup.zsh ]
 then
-source /opt/ros/melodic/setup.zsh
+  source /opt/ros/melodic/setup.zsh
 fi
 
 export ROS_HOSTNAME=localhost
