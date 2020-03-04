@@ -4,4 +4,4 @@ let s:termdebug_config = {
       \'config': []
       \}
 
-command! -nargs=* Termdebug call util#load_and_run(':Termdebug ' . <q-args>, s:termdebug_config)
+command! -nargs=* Termdebug call util#load_and_run('Termdebug', 0, 0, '', <q-args>, s:termdebug_config)

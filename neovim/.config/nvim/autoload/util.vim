@@ -27,7 +27,7 @@ function! util#clipboard_yank(type, ...) abort
 endfunction
 
 " Lazy-load a package on a command
-function! util#load_and_run(cmd, info) abort
+function! util#load_and_run(cmd, start, end, bang, args, info) abort
   for old_cmd in a:info['delete']
     execute 'delcommand ' . old_cmd
   endfor
@@ -37,5 +37,5 @@ function! util#load_and_run(cmd, info) abort
     execute config_cmd
   endfor
 
-  execute a:cmd
+  execute printf('%s%s%s %s', (a:start == a:end ? '' : (a:start . ',' . a:end)), a:cmd, a:bang, a:args)
 endfunction

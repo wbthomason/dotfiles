@@ -10,8 +10,8 @@ let g:startify_lists = [
       \ { 'header': ['Bookmarks'], 'type': 'bookmarks' }]
 
 let g:startify_commands = [
-      \ {'u': ['Update plugins', ':PackUpdate']},
-      \ {'c': ['Clean plugins', ':PackClean']},
+      \ {'u': ['Update plugins', ':PackagerUpdate']},
+      \ {'c': ['Clean plugins', ':PackagerClean']},
       \ {'t': ['Time startup', ':StartupTime']},
       \ {'s': ['Start Prosession', ':Prosession .']}]
 
