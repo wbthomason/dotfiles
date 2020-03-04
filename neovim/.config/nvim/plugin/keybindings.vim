@@ -145,3 +145,9 @@ nmap <C-r> <Plug>(highlightedundo-redo)
 nmap U     <Plug>(highlightedundo-Undo)
 nmap g-    <Plug>(highlightedundo-gminus)
 nmap g+    <Plug>(highlightedundo-gplus)
+
+" Move between windows
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l

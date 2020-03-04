@@ -15,9 +15,6 @@ Pack 'bennyyip/plugpac.vim', {'type': 'opt', 'do': ':silent !cp ~/.config/nvim/p
 " Async building & commands
 Pack 'tpope/vim-dispatch', {'on': ['Dispatch', 'Make', 'Focus', 'Start']}
 
-" More efficient large files (disabled because it's not clear if it's still necessary)
-" Pack 'vim-scripts/LargeFile'
-
 " Registers
 Pack 'junegunn/vim-peekaboo'
 
@@ -36,9 +33,6 @@ Pack 'tpope/vim-repeat'
 Pack 'justinmk/vim-sneak'
 Pack 'unblevable/quick-scope', {'type': 'opt'}
 
-" Tmux and vim split navigation
-Pack 'christoomey/vim-tmux-navigator'
-
 " Quickfix
 " Pack 'romainl/vim-qf' 
 Pack 'Olical/vim-enmasse'
@@ -51,12 +45,11 @@ Pack 'yggdroot/indentLine'
 
 " Comments
 Pack 'tomtom/tcomment_vim'
-" Pack 'tpope/vim-commentary'
 
 " Wrapping/delimiters
 Pack 'machakann/vim-sandwich'
 Pack 'andymass/vim-matchup', {'type': 'opt'}
-Pack 'rstacruz/vim-closer'
+Pack '9mm/vim-closer'
 Pack 'tpope/vim-endwise'
 
 " Splitting/joining
@@ -111,9 +104,6 @@ Pack 'Shougo/echodoc.vim'
 " Symbol jumping
 Pack 'pechorin/any-jump.nvim'
 
-" Snippets
-" Pack 'honza/vim-snippets'
-
 " Linting
 Pack 'w0rp/ale', {'type': 'opt'}
 
@@ -139,7 +129,6 @@ unlet g:lisps
 
 " Org-mode
 Pack 'axvr/org.vim'
-Pack 'dhruvasagar/vim-dotoo'
 
 " LaTeX
 Pack 'lervag/vimtex'
@@ -149,9 +138,6 @@ Pack 'igankevich/mesonic'
 
 " PDDL
 Pack 'PontusPersson/pddl.vim'
-
-" Coq
-" Pack 'jvoorhis/coq.vim'
 
 " Profiling
 Pack 'tweekmonster/startuptime.vim'
@@ -163,5 +149,8 @@ Pack 'norcalli/nvim-colorizer.lua'
 Pack 'wbthomason/vim-nazgul'
 Pack 'bruth/vim-newsprint-theme'
 Pack 'chriskempson/base16-vim'
+
+" Markdown
+Pack 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install'} 
 
 call plugpac#end()
