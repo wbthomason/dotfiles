@@ -13,9 +13,11 @@ function! s:load_coc() abort
   packadd coc.nvim
   call coc#add_extension(
         \'coc-actions',
+        \'coc-clangd',
         \'coc-gitignore',
         \'coc-gocode',
         \'coc-highlight',
+        \'coc-json',
         \'coc-lists',
         \'coc-python',
         \'coc-python',

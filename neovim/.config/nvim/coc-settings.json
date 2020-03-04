@@ -1,11 +1,5 @@
 {
   "languageserver": {
-     "clangd": {
-      "command": "clangd",
-      "args": ["--background-index", "--clang-tidy", "--completion-style=bundled", "--header-insertion=iwyu", "--suggest-missing-includes"],
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["c", "cpp", "objc", "objcpp"]
-    },
     "lua": {
       "command": "lua-language-server",
       "filetypes": ["lua"],
@@ -79,5 +73,6 @@
   "suggest.fixInsertedWord": false,
   "coc.preferences.colorSupport": false,
   "coc.preferences.useQuickfixForLocations": true,
-  "signature.preferShownAbove": false
+  "signature.preferShownAbove": false,
+  "clangd.arguments": ["--background-index", "--clang-tidy", "--completion-style=bundled", "--header-insertion=iwyu", "--suggest-missing-includes"]
 }
