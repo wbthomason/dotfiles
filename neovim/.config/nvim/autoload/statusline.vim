@@ -47,7 +47,7 @@ function! statusline#ale_checking() abort
 endfunction
 
 function! statusline#ale_enabled() abort
-  return get(g:, 'ale_enabled', 0) == 1 && getbufvar(bufnr(''), 'ale_linted', 0) > 0
+  return (get(g:, 'ale_enabled', 0) == 1 && getbufvar(bufnr(''), 'ale_linted', 0) > 0) || getbufvar(bufnr(''), 'ale_linted', 0) > 0
 endfunction
 
 function! statusline#ale() abort

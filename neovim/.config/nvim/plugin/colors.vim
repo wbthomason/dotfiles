@@ -44,13 +44,10 @@ function! s:setup_colors() abort
   let display_bg = display_bg !=# '' ? display_bg : synIDattr(synIDtrans(hlID('Pmenu')), 'bg#', 'gui')
 
   hi! ClapCurrentSelection guifg=#ffffff gui=bold
-  " hi! ClapSelected guifg=#dddddd gui=bold,underline
   exec 'hi! ClapInput guifg=#ffffff guibg=' . input_bg
-  " hi! ClapDisplay guifg=#ebdbb2 guibg=#505050
   exec 'hi! ClapNoMatchesFound guifg=#fe4559 guibg=' . display_bg
   hi! ClapQuery guifg=#ffffff
   hi! link ClapSpinner ClapInput
-  " hi! ClapMatches guifg=#aaddaa
 
   hi! ALEError guifg=#ff727b ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
   hi! ALEWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
