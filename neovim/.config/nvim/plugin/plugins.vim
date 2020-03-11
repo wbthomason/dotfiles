@@ -147,6 +147,7 @@ function! PackagerInit() abort
   call packager#add('wbthomason/vim-nazgul')
   call packager#add('bruth/vim-newsprint-theme')
   call packager#add('chriskempson/base16-vim')
+  call packager#add('hardselius/warlock')
 
   " Markdown
   call packager#add('iamcco/markdown-preview.nvim', {'do': funcref('StartBuild', ['cd app && yarn install'])})
