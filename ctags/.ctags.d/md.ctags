@@ -1,0 +1,5 @@
+--langdef=zettletags
+--languages=zettletags
+--langmap=zettletags:.md
+--kinddef-zettletags=z,ztag,ztags
+--mline-regex-zettletags=/(^|[[:space:]])@(\w\S*)/\2/z/{mgroup=1}
