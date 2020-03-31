@@ -114,6 +114,9 @@ function! PackagerInit() abort
   " Path changing
   call packager#add('tpope/vim-apathy')
 
+  " C/C++ semantic highlighting
+  call packager#add('jackguo380/vim-lsp-cxx-highlight')
+
   " C/C++/Python debugging
   " Pack 'sakhnik/nvim-gdb', {'do': {-> jobstart('./install.sh')}, 'on': ['GdbStart', 'GdbStartLLDB', 'GdbStartPDB']}
 
@@ -151,6 +154,15 @@ function! PackagerInit() abort
 
   " Markdown
   call packager#add('iamcco/markdown-preview.nvim', {'do': funcref('StartBuild', ['cd app && yarn install'])})
+
+  " Tags
+  call packager#add('ludovicchabant/vim-gutentags', {'type': 'opt'})
+
+  " Wiki
+  call packager#add('lervag/wiki.vim')
+
+  " TODO
+  call packager#add('https://gitlab.com/dbeniamine/todo.txt-vim')
 endfunction
 
 command! PackagerInstall call PackagerInit() | call packager#install()

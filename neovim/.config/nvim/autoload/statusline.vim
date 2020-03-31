@@ -55,7 +55,7 @@ function! statusline#ale() abort
     return ''
   endif
 
-  let l:icon = '  🍺 '
+  let l:icon = ' 🍺 '
   let l:checking = statusline#ale_checking()
 
   if l:checking !=# ''
@@ -70,6 +70,19 @@ function! statusline#ale() abort
   let l:warnings = statusline#ale_warnings()
   let l:errors = statusline#ale_errors()
   return l:icon . l:warnings . (l:warnings ==# '' ? '' : (l:errors ==# '' ? '' : ' ')) . l:errors . ' '
+endfunction
+
+
+function! statusline#gutentags_enabled() abort
+  return exists('g:gutentags_enabled') && g:gutentags_enabled == 1 && gutentags#statusline() !=# ''
+endfunction
+
+function! statusline#gutentags()
+  if !statusline#gutentags_enabled()
+    return ''
+  endif
+
+  return gutentags#statusline('[', '] ')
 endfunction
 
 function! s:trim(str)

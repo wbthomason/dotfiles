@@ -76,6 +76,10 @@ function! s:setup_colors() abort
     let s:idx += 1
   endwhile
   unlet s:idx
+
+  hi LspCxxHlGroupEnumConstant guifg=#818181
+  hi LspCxxHlGroupNamespace guifg=#f0f0f0
+  hi LspCxxHlGroupMemberVariable guifg=#ebebeb
 endfunction
 
 augroup colors_customization

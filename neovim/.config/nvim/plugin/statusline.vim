@@ -84,8 +84,11 @@ set statusline+=%=
 " VCS
 set statusline+=%#StatuslineVC#%{statusline#vc_status()}\ 
 
+" Gutentags status
+set statusline+=%{statusline#gutentags_enabled()?'\ ':''}%(%#StatuslineLint#%{statusline#gutentags()}%)
+
 " ALE status
-set statusline+=%{statusline#ale_enabled()?'\ ':''}%(%#StatuslineLint#%{statusline#ale()}%)
+set statusline+=%{statusline#ale_enabled()?'':'\ '}%(%#StatuslineLint#%{statusline#ale()}%)
 
 " coc
 set statusline+=%{g:coc_enabled?'':'\ '}%(%#StatuslineLint#%{statusline#coc()}%)
