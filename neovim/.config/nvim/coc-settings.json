@@ -3,7 +3,14 @@
     "lua": {
       "command": "lua-language-server",
       "filetypes": ["lua"],
-      "rootPatterns": [".git/"]
+      "rootPatterns": [".git/"],
+      "settings": {
+        "Lua": {
+          "diagnostics": {
+            "globals": ["vim"]
+          }
+        }
+      }
     },
     "ocaml": {
       "command": "ocaml-language-server",
@@ -64,10 +71,9 @@
   "suggest.enablePreview": true,
   "highlight.document.enable": true,
   "coc.source.buffer.enable": false,
-  "suggest.autoTrigger": "trigger",
   "latex.build.onSave": false,
-  "latex.forwardSearch.executable": "zathura",
-  "latex.forwardSearch.args": ["--synctex-forward", "%l:1:%f", "%p"],
+  "latex.forwardSearch.executable": "okular",
+  "latex.forwardSearch.args": ["--unique", "file:%p#src:%l%f"],
   "diagnostic.enableMessage": "never",
   "suggest.detailField": "preview",
   "suggest.echodocSupport": true,
@@ -76,5 +82,6 @@
   "coc.preferences.useQuickfixForLocations": true,
   "signature.preferShownAbove": false,
   "clangd.arguments": ["--background-index", "--clang-tidy", "--completion-style=bundled", "--header-insertion=iwyu", "--suggest-missing-includes"],
-  "clangd.semanticHighlighting": true
+  "clangd.semanticHighlighting": true,
+  "rust-analyzer.serverPath": "/usr/bin/rust-analyzer"
 }
