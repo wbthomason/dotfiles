@@ -75,6 +75,7 @@ function! PackagerInit() abort
 
   " Search
   call packager#add('liuchengxu/vim-clap', {'do': ':Clap install-binary'})
+  call packager#add('vn-ki/coc-clap')
 
   " Special symbols
   call packager#add('chrisbra/unicode.vim')
@@ -148,9 +149,9 @@ function! PackagerInit() abort
 
   " Color scheme
   call packager#add('wbthomason/vim-nazgul')
-  call packager#add('bruth/vim-newsprint-theme')
   call packager#add('chriskempson/base16-vim')
   call packager#add('hardselius/warlock')
+  call packager#add('arzg/vim-substrata')
 
   " Markdown
   call packager#add('iamcco/markdown-preview.nvim', {'do': funcref('StartBuild', ['cd app && yarn install'])})
@@ -159,7 +160,8 @@ function! PackagerInit() abort
   call packager#add('ludovicchabant/vim-gutentags', {'type': 'opt'})
 
   " Wiki
-  call packager#add('lervag/wiki.vim')
+  call packager#add('lervag/wiki.vim', {'type': 'opt'})
+  call packager#add('lervag/wiki-ft.vim')
 
   " TODO
   call packager#add('https://gitlab.com/dbeniamine/todo.txt-vim')
