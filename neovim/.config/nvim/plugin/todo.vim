@@ -6,3 +6,4 @@ augroup todo_txt_aucmds
 augroup END
 
 let g:Todo_txt_prefix_creation_date = 1
+let g:TodoTxtUseAbbrevInsertMode = 1
