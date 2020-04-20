@@ -103,6 +103,11 @@ function! PackagerInit() abort
   call packager#add('neoclide/coc.nvim', {'do': funcref('StartBuild', ['yarn install --frozen-lockfile']), 'type': 'opt'})
   call packager#add('Shougo/echodoc.vim')
 
+  " These should be good, but not ready for prime time yet
+  call packager#add('neovim/nvim-lsp', {'type': 'opt'})
+  call packager#add('haorenW1025/completion-nvim', {'type': 'opt'})
+  call packager#add('haorenW1025/diagnostic-nvim', {'type': 'opt'})
+
   " Symbol jumping
   call packager#add('pechorin/any-jump.nvim')
 
