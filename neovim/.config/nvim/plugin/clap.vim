@@ -17,3 +17,4 @@ let g:clap_prompt_format = '%spinner% %provider_id% ❯  '
 let g:clap_enable_icon = 1
 let g:clap_provider_grep_enable_icon = 1
 let g:clap_provider_grep_opts = '-H --no-heading --vimgrep --smart-case --hidden'
+let g:clap_insert_mode_only = v:true
