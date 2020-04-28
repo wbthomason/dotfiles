@@ -10,7 +10,7 @@ MENU="$(rofi -sep "|" -dmenu -i -p 'System' \
 -color-enabled true \
 <<< " Lock| Logout|⏾ Suspend| Reboot| Shutdown")"
             case "$MENU" in
-                *Lock) dmtool-lock ;;
+                *Lock) xflock4 ;;
                 *Logout) bspc quit;;
                 *Suspend) systemctl suspend;;
                 *Reboot) systemctl reboot ;;

@@ -4,7 +4,7 @@
 
 MENU="$(rofi -sep "|" -dmenu -i -p 'System' -width 12 -hide-scrollbar -line-padding 4 -padding 20 -lines 5 <<< " Lock| Logout|⏾ Suspend| Reboot| Shutdown")"
             case "$MENU" in
-                *Lock) dm-tool lock ;;
+                *Lock) xflock4;;
                 *Logout) bspc quit;;
                 *Suspend) systemctl suspend;;
                 *Reboot) systemctl reboot ;;
