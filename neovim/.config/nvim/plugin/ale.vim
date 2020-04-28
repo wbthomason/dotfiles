@@ -34,7 +34,8 @@ function! s:load_ale() abort
         \ 'cpp': ['cppcheck', 'cpplint', 'flawfinder'],
         \ 'rust': ['rustfmt'],
         \ 'latex': ['lacheck', 'proselint', 'write-good', 'alex', 'vale'],
-        \ 'tex': ['lacheck', 'proselint', 'write-good', 'alex', 'vale']
+        \ 'tex': ['lacheck', 'proselint', 'write-good', 'alex', 'vale'],
+        \ 'markdown': ['alex', 'markdownlint', 'proselint', 'write-good', 'vale']
         \}
         " \ 'cpp': ['clangtidy', 'cppcheck', 'cpplint', 'flawfinder'],
   let g:ale_warn_about_trailing_whitespace = 1
