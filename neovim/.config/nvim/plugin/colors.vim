@@ -37,6 +37,14 @@ function! s:setup_colors() abort
   hi! CocHintHighlight guifg=#83a5cb gui=undercurl guisp=#83a5cb
   hi! link CocHintSign BlueSign
 
+  hi! link LspDiagnosticsError RedHover
+  hi! link LspDiagnosticsWarning YellowHover
+  hi! link LspDiagnosticsInformation WhiteHover
+  hi! link LspDiagnosticsHint CocHintHighlight
+  hi! link LspReferenceText AquaHover
+  hi! link LspReferenceRead BlueHover
+  hi! link LspReferenceWrite GreenHover
+
   let matchGroupId = hlID(hlexists('ClapInput') != 0 ? 'ClapInput' : 'Visual')
   let input_bg = synIDattr(synIDtrans(matchGroupId), 'bg#', 'gui')
   let input_bg = input_bg !=# '' ? input_bg : synIDattr(synIDtrans(hlID('Visual')), 'bg#', 'gui')
@@ -59,6 +67,11 @@ function! s:setup_colors() abort
   hi! link CocWarningHighlight ALEWarning
   hi! link CocErrorFloat ALEError
   hi! link CocWarningFloat ALEWarning
+
+  hi! link LspDiagnosticsUnderlineError ALEError
+  hi! link LspDiagnosticsUnderlineWarning ALEWarning
+  hi! link LspDiagnosticsUnderlineInformation ALEInfo
+  hi! link LspDiagnosticsUnderlineHint LspDiagnosticsHint
 
   hi! link SignifySignAdd GreenSign
   hi! link SignifySignChange AquaSign

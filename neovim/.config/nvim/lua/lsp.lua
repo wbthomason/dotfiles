@@ -1,6 +1,8 @@
 local nvim_lsp = require('nvim_lsp')
 
 local function on_attach(_, bufnr)
+  require('diagnostic').on_attach()
+  require('completion').on_attach()
   local opts = { noremap=true, silent=true }
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -35,7 +37,7 @@ nvim_lsp.julials.setup { on_attach = on_attach }
 nvim_lsp.ocamllsp.setup { on_attach = on_attach }
 
 nvim_lsp.pyls_ms.setup {
-  cmd = { "mspyls" },
+  -- cmd = { "mspyls" },
   on_attach = on_attach
 }
 
