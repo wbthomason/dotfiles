@@ -17,14 +17,6 @@ super + shift + t
 super + t
   {bspc node -t floating && window-placer $(bspc query -T -d | grep -o '"state":"floating"' | wc -l),bspc node -t tiled}
 
-# Force all windows of the desktop to tile
-super + ctrl + t
-  bspcp tile
-
-# Force all windows of the desktop to float and arrange them
-super + ctrl + shift + t
-  bspcp float
-  
 # Toggle fullscreen
 super + shift + f 
   bspc node -t {fullscreen,tiled}	
@@ -63,10 +55,6 @@ ctrl + space
 alt + ctrl + {h,j,k,l}
   bspc node -p \~{west,south,north,east}
 
-# Presel the desktop for splitting in certain direction
-# alt + shift + {h,j,k,l}
-  # bspc node @/ -p \~{west,south,north,east}
-
 # Set splitting ratio of windows
 alt + ctrl + {1-9}
   bspc node -o 0.{1-9}
@@ -96,10 +84,6 @@ super + shift + {1-9,0}
 # super + shift + {1-9,0}
 #   bspc node -d ^{1-9,10}
 
-# Select previous / next desktop
-super + {m,n}
-  bspc desktop -f {prev.occupied,next.occupied} 
-
 # cycle windows
 alt + {_,shift + }Tab
     bspc node -f {next,prev}
@@ -108,16 +92,8 @@ alt + {_,shift + }Tab
 super + Tab
   rofi -show window
   
-#Focus windows by direction, works with multihead
-#super +  {a,s,w,d}
-#    focusmover {west,south,north,east}
-
 super +  {h,j,k,l}
     focusmover {west,south,north,east}
-
-super +  {Left,Down,Up,Right}
-    focusmover {west,south,north,east}
-        	
 # Move tiled windows. Moving a tiled window to 
 # preselected one moves into preselection instead. 
 # Moving out of the screen should move the window to next monitor if possible
@@ -174,16 +150,6 @@ super + {comma,period}
 super + shift + {comma,period}
   bspc node @/ -R {90,270}
 
-#
-# mouse bindings
-# __________________
-
-~button1
-  DidIClickDesktop.sh && gapgrab	
-
-super + shift + Return
-  tdrop -ma -w -30 -x 15 -h "45%" -y 35 -s sysadmin kitty 
-
 super + z
   tdrop -ma -w -30 -x 15 -h "45%" -y 35 -s sysadmin kitty 
 
@@ -211,11 +177,11 @@ XF86AudioLowerVolume
 XF86AudioMute
   pamixer --toggle-mute; if `pamixer --get-mute`; then volnoti-show -m; else volnoti-show `pamixer --get-volume`; fi
   
-XF86MonBrightnessDown
-  xbacklight -dec 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
-
-XF86MonBrightnessUp
-  xbacklight -inc 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
+/* XF86MonBrightnessDown */
+/*   xbacklight -dec 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight) */
+/*  */
+/* XF86MonBrightnessUp */
+/*   xbacklight -inc 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight) */
 
 XF86Sleep
   systemctl suspend
@@ -228,14 +194,6 @@ super + shift + Escape
 super + shift + r
   bspwmrc
 
-#edit this file
-alt + ctrl + space
-  $GUI_EDITOR ~/.config/sxhkd/sxhkdrc
-
-# Toggle compositing
-super + ctrl + space
-  {pkill compton , compton -b }
-
 # Remove receptacles
 super + BackSpace
   for i in $(bspc query -N -n .leaf.!window.local); do bspc node $i -k; done
@@ -243,11 +201,11 @@ super + BackSpace
 super + d
   rofi -combi-modi window,drun,run,ssh -mesg -show combi -modi combi
 
-super + a
-  krunner
-
 super + space
-  dm-tool lock
+  xflock4
 
 super + shift + space
   systemctl suspend
+
+super + p
+  ~/.config/polybar/scripts/powermenu
