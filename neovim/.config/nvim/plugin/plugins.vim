@@ -4,8 +4,6 @@ if empty(glob('~/.config/nvim/pack/packager/opt/vim-packager'))
   au VimEnter * PackagerInstall
   source ~/.config/nvim/init.vim
 endif
-let g:lisps = ['clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel']
-let g:sexp_filetypes = join(g:lisps, ',')
 function! PackagerInit() abort
   packadd vim-packager
   call packager#init()
@@ -44,7 +42,7 @@ function! PackagerInit() abort
   " Indentation tracking
   call packager#add('yggdroot/indentLine')
 
-  " Comments
+  " Commenting
   call packager#add('tomtom/tcomment_vim')
 
   " Wrapping/delimiters
@@ -53,15 +51,12 @@ function! PackagerInit() abort
   call packager#add('9mm/vim-closer')
   call packager#add('tpope/vim-endwise')
 
-  " Splitting/joining
-  " Pack 'AndrewRadev/splitjoin.vim'
-
   " Search
   call packager#add('romainl/vim-cool')
 
   " Yank and undo highlighting
   call packager#add('machakann/vim-highlightedyank')
-  call packager#add('machakann/vim-highlightedundo')
+  " call packager#add('machakann/vim-highlightedundo')
 
   " Pattern preview
   call packager#add('markonm/traces.vim')
@@ -108,9 +103,6 @@ function! PackagerInit() abort
   call packager#add('haorenW1025/completion-nvim', {'type': 'opt'})
   call packager#add('haorenW1025/diagnostic-nvim', {'type': 'opt'})
 
-  " Symbol jumping
-  call packager#add('pechorin/any-jump.nvim')
-
   " Linting
   call packager#add('w0rp/ale', {'type': 'opt'})
 
@@ -133,9 +125,6 @@ function! PackagerInit() abort
   call packager#add('phmarek/vlime')
   " Pack 'Olical/conjure', {'for': 'clojure', 'do': {-> jobstart('bin/compile')}}
   call packager#add('eraserhd/parinfer-rust', {'do': funcref('StartBuild', ['cargo build --release']), 'type': 'opt'})
-
-  " Org-mode
-  call packager#add('axvr/org.vim')
 
   " LaTeX
   call packager#add('lervag/vimtex')
@@ -166,7 +155,6 @@ function! PackagerInit() abort
 
   " Wiki
   call packager#add('lervag/wiki.vim', {'type': 'opt'})
-  call packager#add('lervag/wiki-ft.vim')
 
   " TODO
   call packager#add('https://gitlab.com/dbeniamine/todo.txt-vim')
@@ -185,4 +173,6 @@ augroup packager_filetype
   au!
 augroup END
 
+let g:sexp_filetypes = join(['clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel', 'pddl'], ',')
 execute 'autocmd packager_filetype FileType ' . g:sexp_filetypes . '++once packadd parinfer-rust'
+" execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'

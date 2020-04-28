@@ -140,11 +140,11 @@ nnoremap <silent> y+ :set opfunc=util#clipboard_yank<cr>g@
 vnoremap <silent> y+ :<C-U>call util#clipboard_yank(visualmode(), 1)<cr>
 
 " Highlighted undo
-nmap u     <Plug>(highlightedundo-undo)
-nmap <C-r> <Plug>(highlightedundo-redo)
-nmap U     <Plug>(highlightedundo-Undo)
-nmap g-    <Plug>(highlightedundo-gminus)
-nmap g+    <Plug>(highlightedundo-gplus)
+" nmap u     <Plug>(highlightedundo-undo)
+" nmap <C-r> <Plug>(highlightedundo-redo)
+" nmap U     <Plug>(highlightedundo-Undo)
+" nmap g-    <Plug>(highlightedundo-gminus)
+" nmap g+    <Plug>(highlightedundo-gplus)
 
 " Move between windows
 nnoremap <c-h> <c-w>h
