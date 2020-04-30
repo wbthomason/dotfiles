@@ -8,7 +8,7 @@ function! s:load_gutentags()
   verbose call gutentags#setup_gutentags()
 endfunction
 
-augroup gutentags_load_aucommands
-  au!
-  au VimEnter,BufEnter ~/wiki/*.md call s:load_gutentags()
-augroup END
+" augroup gutentags_load_aucommands
+"   au!
+"   au VimEnter,BufEnter ~/wiki/*.md call s:load_gutentags()
+" augroup END
