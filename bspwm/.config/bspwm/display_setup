@@ -1,5 +1,5 @@
 #! /bin/sh
 
-# "${HOME}"/.screenlayout/default.sh
+picom -CGb -d :0
 "${XDG_CONFIG_HOME:-"$HOME/.config"}"/polybar/launch.sh &
 "${HOME}"/bgscript.sh &
