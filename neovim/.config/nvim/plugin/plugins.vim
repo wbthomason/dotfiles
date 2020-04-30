@@ -157,7 +157,7 @@ function! PackagerInit() abort
   call packager#add('lervag/wiki.vim', {'type': 'opt'})
 
   " TODO
-  call packager#add('https://gitlab.com/dbeniamine/todo.txt-vim')
+  " call packager#add('https://gitlab.com/dbeniamine/todo.txt-vim')
 endfunction
 
 command! PackagerInstall call PackagerInit() | call packager#install()
