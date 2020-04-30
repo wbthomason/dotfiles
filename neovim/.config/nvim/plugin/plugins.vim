@@ -59,7 +59,7 @@ function! PackagerInit() abort
   " call packager#add('machakann/vim-highlightedundo')
 
   " Pattern preview
-  call packager#add('markonm/traces.vim')
+  " call packager#add('markonm/traces.vim')
 
   " Prettification
   call packager#add('junegunn/vim-easy-align')
