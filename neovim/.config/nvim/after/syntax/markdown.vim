@@ -6,6 +6,7 @@ for [s:group, s:rx; s:contained] in [
       \ ['wikiLinkRef',       'ref_single', 'mkdNonListItemBlock'],
       \ ['wikiLinkRefTarget', 'ref_target',  'wikiLinkUrl', 'mkdNonListItemBlock'],
       \ ['wikiLinkRef',       'ref_double',  'wikiLinkRefConceal', 'mkdNonListItemBlock'],
+      \ ['wikiLinkMd',        'md',          'wikiLinkMdConceal', 'mkdNonListItemBlock'],
       \ ['wikiLinkDate',      'date', 'mkdNonListItemBlock'],
       \]
   execute 'syntax cluster wikiLink  add=' . s:group
@@ -28,6 +29,10 @@ syntax match wikiLinkWikiConceal /\[\[\%(\/\|#\)\?\%([^\\\]]\{-}|\)\?/
       \ contained transparent contains=NONE conceal
 syntax match wikiLinkWikiConceal /\]\]/
       \ contained transparent contains=NONE conceal
+syntax match wikiLinkMdConceal /\[/
+      \ contained transparent contains=NONE conceal
+syntax match wikiLinkMdConceal /\]([^\\]\{-})/
+      \ contained transparent contains=NONE conceal
 syntax match wikiLinkRefConceal /[\]\[]\@<!\[/
       \ contained transparent contains=NONE conceal
 syntax match wikiLinkRefConceal /\]\[[^\\\[\]]\{-}\]/
@@ -35,6 +40,7 @@ syntax match wikiLinkRefConceal /\]\[[^\\\[\]]\{-}\]/
 
 highlight default link wikiLinkUrl ModeMsg
 highlight default link wikiLinkWiki Underlined
+highlight default link wikiLinkMd Underlined
 highlight default link wikiLinkRef Underlined
 highlight default link wikiLinkRefTarget Underlined
 highlight default link wikiLinkDate MoreMsg
