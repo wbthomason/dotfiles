@@ -10,10 +10,9 @@ let g:wiki_journal = {
       \   'monthly' : '%Y_m%m',
       \}
       \}
-
 let g:wiki_list_todos = ['TODO', 'NEXT', 'IN-PROGRESS', 'DONE', 'PAUSED', 'CANCELLED']
-
 let g:wiki_mappings_use_defaults = 'local'
+let g:wiki_tags = { 'output': 'cursor' }
 
 function! UpdateWikiTagsList() abort
   let old_a = @a
