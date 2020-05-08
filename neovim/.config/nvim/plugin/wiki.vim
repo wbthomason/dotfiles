@@ -22,7 +22,7 @@ function! UpdateWikiTagsList() abort
   let wiki_tags = map(split(@a, '\W\+'), {_, val -> ':' . val . ':'})
   let @a = old_a
   let [lnum, col] = searchpos('## All Tags', 'cn')
-  if lnum == 0 && col == 0 
+  if lnum == 0 && col == 0
     call append(line('$'), ['', '## All Tags', ''])
   endif
 
@@ -54,9 +54,28 @@ nnoremap <silent> <localleader>w :Clap files ~/notes/wiki<cr>
 " Register tags provider
 call clap#register('wiki_tags', g:clap#provider#wiki_tags#)
 
+function! Wiki_Open_Map(name) abort
+  let l:name = wiki#get_root() . '/' . a:name
+  if filereadable(l:name) || split(a:name, '/')[0] != 'meetings'
+    return a:name
+  endif
 
+  return a:name . '_' . strftime('%Y%m%d')
 endfunction
 
+let g:wiki_map_create_page = 'Wiki_Open_Map'
 
+function! Wiki_Link_Map(text) abort
+  let l:lowercase = tolower(a:text)
+  let l:no_spaces = substitute(l:lowercase, '\s\+', '_', 'g')
+  let l:with_extension = printf('%s.%s', l:no_spaces, b:wiki.extension)
+  let l:from_root = printf('%s/%s', wiki#get_root(), l:with_extension)
+  let l:local_file = printf('%s/%s', expand('%:p:h'), l:with_extension)
+  if !filereadable(l:local_file) && filereadable(l:from_root)
+    return '/' . l:no_spaces
+  endif
+
+  return l:no_spaces
 endfunction
 
+let g:wiki_map_link_target = 'Wiki_Link_Map'
