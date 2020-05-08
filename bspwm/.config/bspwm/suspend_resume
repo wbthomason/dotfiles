@@ -1,9 +1,0 @@
-#! /bin/sh
-
-if [ "${1}" == "pre" ]; then
-  bspc config remove_disabled_monitors false
-  bspc config remove_unplugged_monitors false
-elif [ "${1}" == "post" ]; then
-  bspc config remove_disabled_monitors true
-  bspc config remove_unplugged_monitors true
-fi

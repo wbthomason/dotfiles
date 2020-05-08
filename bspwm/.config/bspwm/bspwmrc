@@ -17,8 +17,8 @@ bspc config top_monocle_padding $gap
 bspc config left_monocle_padding $gap
 bspc config right_monocle_padding $gap
 bspc config bottom_monocle_padding $gap
-bspc config remove_disabled_monitors true
-bspc config remove_unplugged_monitors true
+bspc config remove_disabled_monitors false
+bspc config remove_unplugged_monitors false
 
 bspc config focused_border_color "#dddddd"
 bspc config normal_border_color "#2D2D2D"
@@ -38,7 +38,7 @@ bspc rule -a Xfce4-notifyd state=floating manage=on layer=above sticky=on follow
 bspc subscribe monitor | while read -r line; do
   case $line in
     monitor_add*|monitor_remove*)
-      "${XDG_CONFIG_HOME:-"$HOME/.config"}"/bspwm/display_reconfigure &
+      autorandr --change
     ;;
     *)
     ;;
