@@ -41,15 +41,11 @@ function! LoadWiki() abort
   packadd wiki.vim
   autocmd! wiki_load_aucmds
   augroup! wiki_load_aucmds
-  augroup wiki_aucmds
-    au!
-    au BufRead ~/notes/todo.txt,~/notes/done.txt call wiki#buffer#init()
-  augroup END
 endfunction
 
 augroup wiki_load_aucmds
   au!
-  au BufNewFile,BufReadPre ~/notes/todo.txt,~/notes/done.txt,~/notes/*.md,~/notes/log/*.md call LoadWiki()
+  au BufNewFile,BufReadPre ~/notes/**/*.md call LoadWiki()
   au VimEnter * call LoadWiki()
 augroup END
 
