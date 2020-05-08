@@ -1,5 +1,7 @@
-set guifont=FuraCode\ Nerd\ Font:h11
+set guifont=Fira\ Code\ Retina
 " set guifont=Iosevka\ Slab:h11
+let g:neovide_cursor_animation_length = 0.0
+let g:neovide_cursor_trail_length = 0.0
 
 if exists('g:GuiLoaded')
   GuiFont 'Fira Code Retina:h11'
@@ -12,10 +14,10 @@ elseif exists('g:fvim_loaded')
   FVimFontAntialias v:true
   FVimFontAutohint v:true
   FVimFontSubpixel v:true
-  FVimFontLcdRender v:true
   FVimFontHintLevel 'full'
   FVimFontAutoSnap v:true
+  FVimFontNoBuiltinSymbols v:true
   nnoremap <silent> <C-ScrollWheelUp> :set guifont=+<CR>
   nnoremap <silent> <C-ScrollWheelDown> :set guifont=-<CR>
-  " FVimCursorSmoothMove v:true
+  FVimBackgroundComposition 'none'
 endif
