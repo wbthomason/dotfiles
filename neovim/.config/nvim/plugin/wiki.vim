@@ -1,7 +1,5 @@
-" Config for wiki.vim and wiki-ft.vim
-
 let g:wiki_root = '~/notes/wiki'
-let g:wiki_zotero_root = '~/Dropbox/papers'
+let g:wiki_zotero_root = '~/gdrive/papers'
 let g:wiki_filetypes = ['md']
 let g:wiki_journal = {
       \ 'name': 'log',
