@@ -1,13 +1,13 @@
 " Add wiki-ft link concealing
 for [s:group, s:rx; s:contained] in [
-      \ ['wikiLinkUrl',       'url',         'wikiLinkUrlConceal', 'mkdNonListItemBlock'],
-      \ ['wikiLinkUrl',       'shortcite', 'mkdNonListItemBlock'],
-      \ ['wikiLinkWiki',      'wiki',        'wikiLinkWikiConceal', 'mkdNonListItemBlock'],
-      \ ['wikiLinkRef',       'ref_single', 'mkdNonListItemBlock'],
-      \ ['wikiLinkRefTarget', 'ref_target',  'wikiLinkUrl', 'mkdNonListItemBlock'],
-      \ ['wikiLinkRef',       'ref_double',  'wikiLinkRefConceal', 'mkdNonListItemBlock'],
-      \ ['wikiLinkMd',        'md',          'wikiLinkMdConceal', 'mkdNonListItemBlock'],
-      \ ['wikiLinkDate',      'date', 'mkdNonListItemBlock'],
+      \ ['wikiLinkUrl',       'url',         'wikiLinkUrlConceal', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
+      \ ['wikiLinkUrl',       'shortcite', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
+      \ ['wikiLinkWiki',      'wiki',        'wikiLinkWikiConceal', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
+      \ ['wikiLinkRef',       'ref_single', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
+      \ ['wikiLinkRefTarget', 'ref_target',  'wikiLinkUrl', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
+      \ ['wikiLinkRef',       'ref_double',  'wikiLinkRefConceal', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
+      \ ['wikiLinkMd',        'md',          'wikiLinkMdConceal', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
+      \ ['wikiLinkDate',      'date', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
       \]
   execute 'syntax cluster wikiLink  add=' . s:group
   execute 'syntax match' s:group
@@ -48,4 +48,6 @@ highlight default link wikiLinkDate MoreMsg
 unlet s:group s:rx s:contained
 
 " To play nice with vim-markdown
+syn match  mkdListItem     /^\s*\%([-*+]\|\d\+\.\)\ze\s\+/ contained contains=@wikiLink
+syn region mkdListItemLine start="^\s*\%([-*+]\|\d\+\.\)\s\+" end="$" oneline contains=@mkdNonListItem,mkdListItem,@Spell,@wikiLink
 syn region mkdNonListItemBlock start="\(\%^\(\s*\([-*+]\|\d\+\.\)\s\+\)\@!\|\n\(\_^\_$\|\s\{4,}[^ ]\|\t+[^\t]\)\@!\)" end="^\(\s*\([-*+]\|\d\+\.\)\s\+\)\@=" contains=@mkdNonListItem,@Spell,@wikiLink
