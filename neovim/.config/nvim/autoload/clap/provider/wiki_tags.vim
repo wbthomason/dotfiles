@@ -14,7 +14,6 @@ function! s:get_wiki_tags() abort
 endfunction
 
 function! s:accept_wiki_tag(line) abort
-  " TODO: Support opening loclist with all files of same tag
   let [l:tag, l:file, l:lnum] = split(a:line, ':')
   if has_key(g:clap, 'open_action')
     execute g:clap.open_action l:file
@@ -33,6 +32,14 @@ function! s:preview_wiki_file() abort
   call clap#preview#file_at(l:file, l:lnum)
 endfunction
 
+function! s:loclist_all_tag_files() abort
+  let l:line = g:clap.display.getcurline()
+  call clap#_exit()
+  let [l:tag, l:file, l:lnum] = split(l:line, ':')
+  let l:tag = trim(l:tag)
+  call wiki#tags#search('-output', 'loclist', l:tag)
+endfunction
+
 let g:clap#provider#wiki_tags# = {
       \ 'source': funcref('s:get_wiki_tags'),
       \ 'sink': funcref('s:accept_wiki_tag'),
@@ -40,4 +47,9 @@ let g:clap#provider#wiki_tags# = {
       \ 'on_move': funcref('s:preview_wiki_file'),
       \ 'syntax': 'markdown',
       \ 'support_open_action': v:true,
+      \ 'action': {
+        \ 'Open &vertically': { -> clap#selection#try_open('ctrl-v') },
+        \ 'Open in &split': { -> clap#selection#try_open('ctrl-x') },
+        \ 'Open &all with tag': function('s:loclist_all_tag_files')
+        \}
       \}
