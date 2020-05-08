@@ -51,38 +51,12 @@ augroup END
 
 " Open wiki files
 nnoremap <silent> <localleader>w :Clap files ~/notes/wiki<cr>
+" Register tags provider
+call clap#register('wiki_tags', g:clap#provider#wiki_tags#)
 
-function! s:get_wiki_tags() abort
-  let l:tags = wiki#tags#get_all()
-  let l:results = []
-  for [l:key, l:val] in items(l:tags)
-    for [l:file, l:lnum, l:col] in l:val
-      let l:results += [l:key . ': ' . l:file . ':' . l:lnum]
-    endfor
-  endfor
 
-  return l:results
 endfunction
 
-function! s:accept_wiki_tag(line) abort
-  " TODO: Support opening loclist with all files of same tag
-  let [l:tag, l:file, l:lnum] = split(a:line, ':')
-  execute 'edit ' . l:file
-  execute l:lnum
+
 endfunction
 
-function! s:preview_wiki_file() abort
-  let l:line = g:clap.display.getcurline()
-  let [l:tag, l:file, l:lnum] = split(l:line, ':')
-  echom "called for " . l:file
-  call clap#preview#file_at(l:file, l:lnum)
-endfunction
-
-" Wiki tags with Clap
-let g:clap_provider_wiki_tags = {
-      \ 'source': funcref('s:get_wiki_tags'),
-      \ 'sink': funcref('s:accept_wiki_tag'),
-      \ 'source_type': 4,
-      \ 'on_move': funcref('s:preview_wiki_file'),
-      \ 'syntax': 'wiki'
-      \}
