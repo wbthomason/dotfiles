@@ -51,8 +51,6 @@ augroup END
 
 " Open wiki files
 nnoremap <silent> <localleader>w :Clap files ~/notes/wiki<cr>
-" Register tags provider
-call clap#register('wiki_tags', g:clap#provider#wiki_tags#)
 
 function! Wiki_Open_Map(name) abort
   let l:name = wiki#get_root() . '/' . a:name
