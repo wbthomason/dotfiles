@@ -13,6 +13,8 @@ let s:indicator_checking = "\uf110"
 let s:indicator_warnings = "\uf071"
 let s:indicator_errors = "\uf05e"
 let s:indicator_ok = "\uf00c"
+let s:indicator_info = '🛈'
+let s:indicator_hint = '❗'
 
 function! statusline#ale_warnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
@@ -106,8 +108,36 @@ function! statusline#vc_status() abort
 endfunction
 
 function! statusline#coc() abort
-  let l:base_status = coc#status()
-  let l:status = ' 🇻 '
+  " Partially adapted from coc#status
+  let l:coc_info = get(b:, 'coc_diagnostic_info', {})
+  let l:coc_msgs = []
+  let l:only_hint = v:true
+  if get(l:coc_info, 'error', 0)
+    call add(l:coc_msgs, s:indicator_errors . ' ' . l:coc_info['error'])
+    let l:only_hint = v:false
+  endif
+
+  if get(l:coc_info, 'warning', 0)
+    call add(l:coc_msgs, s:indicator_warnings . ' ' . l:coc_info['warning'])
+    let l:only_hint = v:false
+  endif
+
+  if get(l:coc_info, 'information', 0)
+    call add(l:coc_msgs, s:indicator_info . ' ' . l:coc_info['information'])
+    let l:only_hint = v:false
+  endif
+
+  if get(l:coc_info, 'hint', 0)
+    call add(l:coc_msgs, s:indicator_hint . l:coc_info['hint'])
+  endif
+
+  let l:base_status = trim(join(l:coc_msgs, ' ') . ' ' . get(g:, 'coc_status', ''))
+  let l:status = ' 🇻' . (l:only_hint ? '' : ' ')
+  let l:current_function = get(b:, 'coc_current_function', '')
+  if l:current_function !=# ''
+    let l:status = l:status . '(' . l:current_function . ') ' 
+  endif
+
   if l:base_status !=# ''
     let l:status = l:status . l:base_status . ' '
   else
