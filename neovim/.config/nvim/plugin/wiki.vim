@@ -36,7 +36,6 @@ endfunction
 
 command! UpdateWikiTags call UpdateWikiTagsList()
 
-
 function! LoadWiki() abort
   packadd wiki.vim
   autocmd! wiki_load_aucmds
@@ -76,4 +75,4 @@ function! Wiki_Link_Map(text) abort
   return l:no_spaces
 endfunction
 
-let g:wiki_map_link_target = 'Wiki_Link_Map'
+let g:wiki_map_link_create = 'Wiki_Link_Map'
