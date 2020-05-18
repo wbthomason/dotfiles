@@ -102,6 +102,8 @@ function! PackagerInit() abort
   call packager#add('neovim/nvim-lsp', {'type': 'opt'})
   call packager#add('haorenW1025/completion-nvim', {'type': 'opt'})
   call packager#add('haorenW1025/diagnostic-nvim', {'type': 'opt'})
+  call packager#add('hrsh7th/vim-vsnip', {'type': 'opt'})
+  call packager#add('hrsh7th/vim-vsnip-integ', {'type': 'opt'})
 
   " Linting
   call packager#add('w0rp/ale', {'type': 'opt'})
@@ -175,4 +177,3 @@ augroup END
 
 let g:sexp_filetypes = join(['clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel', 'pddl'], ',')
 execute 'autocmd packager_filetype FileType ' . g:sexp_filetypes . '++once packadd parinfer-rust'
-" execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'

@@ -15,7 +15,7 @@ nnoremap <silent> <localleader><localleader> :Make<cr>
 
 " Fuzzy-finding
 nnoremap <c-p> :Clap<cr>
-inoremap <c-p> <esc>:Clap<cr>
+" inoremap <c-p> <esc>:Clap<cr>
 
 " Comments
 if s:in_vscode
@@ -90,9 +90,9 @@ endif
 " REPL and Terminal bindings
 tnoremap jj <C-\><C-n>
 if s:in_vscode
-  nnoremap <leader>r :call VSCodeNotify('workbench.debug.action.toggleRepl')<cr>
+  nnoremap <leader>R :call VSCodeNotify('workbench.debug.action.toggleRepl')<cr>
 else
-  nnoremap <leader>r :IronRepl<CR>
+  nnoremap <leader>R :IronRepl<CR>
 endif
 
 " Formatting Bindings

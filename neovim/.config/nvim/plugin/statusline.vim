@@ -91,7 +91,8 @@ set statusline+=%{statusline#gutentags_enabled()?'\ ':''}%(%#StatuslineLint#%{st
 set statusline+=%{statusline#ale_enabled()?'':'\ '}%(%#StatuslineLint#%{statusline#ale()}%)
 
 " coc
-set statusline+=%{g:coc_enabled?'':'\ '}%(%#StatuslineLint#%{statusline#coc()}%)
+" set statusline+=%{g:coc_enabled?'':'\ '}%(%#StatuslineLint#%{statusline#coc()}%)
+set statusline+=%{statusline#have_lsp()?'':'\ '}%(%#StatuslineLint#%{statusline#lsp()}%)
 
 " Setup the colors
 function! s:setup_colors() abort

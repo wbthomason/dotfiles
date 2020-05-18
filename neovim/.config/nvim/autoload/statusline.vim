@@ -9,38 +9,38 @@ function! statusline#filetype() abort
   return &filetype !=# '' ? &filetype : 'no filetype'
 endfunction
 
-let s:indicator_checking = "\uf110"
-let s:indicator_warnings = "\uf071"
-let s:indicator_errors = "\uf05e"
-let s:indicator_ok = "\uf00c"
-let s:indicator_info = '🛈'
-let s:indicator_hint = '❗'
+let g:indicator_checking = "\uf110"
+let g:indicator_warnings = "\uf071"
+let g:indicator_errors = "\uf05e"
+let g:indicator_ok = "\uf00c"
+let g:indicator_info = '🛈'
+let g:indicator_hint = '❗'
 
 function! statusline#ale_warnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
-  return l:all_non_errors == 0 ? '' : printf(s:indicator_warnings . '%d', all_non_errors)
+  return l:all_non_errors == 0 ? '' : printf(g:indicator_warnings . '%d', all_non_errors)
 endfunction
 
 function! statusline#ale_errors() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
-  return l:all_errors == 0 ? '' : printf(s:indicator_errors . '%d', all_errors)
+  return l:all_errors == 0 ? '' : printf(g:indicator_errors . '%d', all_errors)
 endfunction
 
 function! statusline#ale_ok() abort
   let l:counts = ale#statusline#Count(bufnr(''))
-  return l:counts.total == 0 ? s:indicator_ok : ''
+  return l:counts.total == 0 ? g:indicator_ok : ''
 endfunction
 
-let s:spinner_frames = ['⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷']
+let g:spinner_frames = ['⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷']
 
 let s:ale_frame_idx = 0
 function! statusline#ale_checking() abort
   let result = ''
   if ale#engine#IsCheckingBuffer(bufnr(''))
-    let result = s:spinner_frames[s:ale_frame_idx % len(s:spinner_frames)]
+    let result = g:spinner_frames[s:ale_frame_idx % len(g:spinner_frames)]
     let s:ale_frame_idx = s:ale_frame_idx + 1
   else
     let s:ale_frame_idx = 0
@@ -113,22 +113,22 @@ function! statusline#coc() abort
   let l:coc_msgs = []
   let l:only_hint = v:true
   if get(l:coc_info, 'error', 0)
-    call add(l:coc_msgs, s:indicator_errors . ' ' . l:coc_info['error'])
+    call add(l:coc_msgs, g:indicator_errors . ' ' . l:coc_info['error'])
     let l:only_hint = v:false
   endif
 
   if get(l:coc_info, 'warning', 0)
-    call add(l:coc_msgs, s:indicator_warnings . ' ' . l:coc_info['warning'])
+    call add(l:coc_msgs, g:indicator_warnings . ' ' . l:coc_info['warning'])
     let l:only_hint = v:false
   endif
 
   if get(l:coc_info, 'information', 0)
-    call add(l:coc_msgs, s:indicator_info . ' ' . l:coc_info['information'])
+    call add(l:coc_msgs, g:indicator_info . ' ' . l:coc_info['information'])
     let l:only_hint = v:false
   endif
 
   if get(l:coc_info, 'hint', 0)
-    call add(l:coc_msgs, s:indicator_hint . l:coc_info['hint'])
+    call add(l:coc_msgs, g:indicator_hint . l:coc_info['hint'])
   endif
 
   let l:base_status = trim(join(l:coc_msgs, ' ') . ' ' . get(g:, 'coc_status', ''))
@@ -141,10 +141,18 @@ function! statusline#coc() abort
   if l:base_status !=# ''
     let l:status = l:status . l:base_status . ' '
   else
-    let l:status = l:status . s:indicator_ok . ' '
+    let l:status = l:status . g:indicator_ok . ' '
   endif
 
   return l:status
+endfunction
+
+function! statusline#have_lsp() abort
+  return luaeval("#vim.lsp.buf_get_clients() > 0")
+endfunction
+
+function! statusline#lsp() abort
+  return luaeval("require('lsp-status').statusline()")
 endfunction
 
 function! statusline#get_mode(mode) abort

@@ -5,7 +5,7 @@ let g:coc_force_debug = 1
 if !exists('g:vscode')
   augroup coc_load_aucommands
     au!
-    au VimEnter * call s:load_coc()
+    " au VimEnter * call s:load_coc()
   augroup END
 endif
 
@@ -75,71 +75,71 @@ function! s:load_coc() abort
   doautoall coc_aucommands FileType
 endfunction
 
-function! s:map_funcobs() abort
-  xmap <buffer> if <Plug>(coc-funcobj-i)
-  xmap <buffer> af <Plug>(coc-funcobj-a)
-  omap <buffer> if <Plug>(coc-funcobj-i)
-  omap <buffer> af <Plug>(coc-funcobj-a)
-endfunction
-
-nnoremap <silent> gO :CocList outline<CR>
-nnoremap <silent> gS :call CocAction("workspaceSymbols")<CR>
-
-" Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gD <Plug>(coc-definition)
-nmap <silent> gT <Plug>(coc-type-definition)
-nmap <silent> gI <Plug>(coc-implementation)
-nmap <silent> gR <Plug>(coc-references)
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if &filetype ==# 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-nmap <silent> <leader>cn <Plug>(coc-rename)
-vmap <silent> <leader>cf  <Plug>(coc-format-selected)
-nmap <silent> <leader>cf  :call CocAction('format')<cr>
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-nmap <silent> <leader>a :CocCommand actions.open<cr>
-xmap <silent> <leader>ca :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>ca :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-nmap <silent> <leader>cqf  <Plug>(coc-fix-current)
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <silent><expr> <c-tab> coc#refresh()
-
-inoremap <silent><expr> <cr> Handle_cr_coc()
-
-function! Handle_cr_coc() abort
-  return pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endfunction
-
-inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
-let g:coc_snippet_next = '<TAB>'
-let g:coc_snippet_prev = '<S-TAB>'
-let g:coc_status_warning_sign = "\uf071"
-let g:coc_status_error_sign = "\uf05e"
-" nmap <silent> <TAB> <Plug>(coc-range-select)
-" xmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <S-TAB> <Plug>(coc-range-select-backward)
+" function! s:map_funcobs() abort
+"   xmap <buffer> if <Plug>(coc-funcobj-i)
+"   xmap <buffer> af <Plug>(coc-funcobj-a)
+"   omap <buffer> if <Plug>(coc-funcobj-i)
+"   omap <buffer> af <Plug>(coc-funcobj-a)
+" endfunction
+"
+" nnoremap <silent> gO :CocList outline<CR>
+" nnoremap <silent> gS :call CocAction("workspaceSymbols")<CR>
+"
+" " Use `[c` and `]c` to navigate diagnostics
+" nmap <silent> [c <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]c <Plug>(coc-diagnostic-next)
+"
+" " Remap keys for gotos
+" nmap <silent> gD <Plug>(coc-definition)
+" nmap <silent> gT <Plug>(coc-type-definition)
+" nmap <silent> gI <Plug>(coc-implementation)
+" nmap <silent> gR <Plug>(coc-references)
+"
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
+"
+" function! s:show_documentation()
+"   if &filetype ==# 'vim'
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
+"
+" nmap <silent> <leader>cn <Plug>(coc-rename)
+" vmap <silent> <leader>cf  <Plug>(coc-format-selected)
+" nmap <silent> <leader>cf  :call CocAction('format')<cr>
+" function! s:cocActionsOpenFromSelected(type) abort
+"   execute 'CocCommand actions.open ' . a:type
+" endfunction
+" nmap <silent> <leader>a :CocCommand actions.open<cr>
+" xmap <silent> <leader>ca :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+" nmap <silent> <leader>ca :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+" nmap <silent> <leader>cqf  <Plug>(coc-fix-current)
+"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+"
+" inoremap <silent><expr> <c-tab> coc#refresh()
+"
+" inoremap <silent><expr> <cr> Handle_cr_coc()
+"
+" function! Handle_cr_coc() abort
+"   return pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" endfunction
+"
+" inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
+" let g:coc_snippet_next = '<TAB>'
+" let g:coc_snippet_prev = '<S-TAB>'
+" let g:coc_status_warning_sign = "\uf071"
+" let g:coc_status_error_sign = "\uf05e"
+" " nmap <silent> <TAB> <Plug>(coc-range-select)
+" " xmap <silent> <TAB> <Plug>(coc-range-select)
+" xmap <silent> <S-TAB> <Plug>(coc-range-select-backward)
