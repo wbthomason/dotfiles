@@ -4,7 +4,7 @@ M.filter = function(list, test)
   local result = {}
   for i, v in ipairs(list) do
     if test(i, v) then
-      table.concat(result, v)
+      table.insert(result, v)
     end
   end
 

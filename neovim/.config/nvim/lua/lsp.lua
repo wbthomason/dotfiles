@@ -24,16 +24,20 @@ local function make_on_attach(config)
     vim.api.nvim_buf_set_keymap(0, 'n', '<leader>e', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
     vim.api.nvim_command('augroup lsp_aucmds')
     vim.api.nvim_command('au! * <buffer>')
+    vim.api.nvim_command('au User LspDiagnosticsChanged redrawstatus!')
+    vim.api.nvim_command('au User LspMessageUpdate redrawstatus!')
+    vim.api.nvim_command('au User LspStatusUpdate redrawstatus!')
     vim.api.nvim_command('augroup END')
-    if client.resolved_capabilities.documentHighlightProvider then
+
+    if client.resolved_capabilities.document_highlight then
       vim.api.nvim_command('augroup lsp_aucmds')
       vim.api.nvim_command('au CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
-      vim.api.nvim_command('au User LspDiagnosticsChanged redrawstatus!')
-      vim.api.nvim_command('au User LspMessageUpdate redrawstatus!')
+      vim.api.nvim_command('au CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()')
+      vim.api.nvim_command('au CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
       vim.api.nvim_command('augroup END')
     end
 
-    if client.resolved_capabilities.documentSymbolProvider then
+    if client.resolved_capabilities.document_symbol then
       vim.api.nvim_command('augroup lsp_aucmds')
       vim.api.nvim_command('au CursorHold <buffer> lua require("lsp-status").update_current_function()')
       vim.api.nvim_command('augroup END')

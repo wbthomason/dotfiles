@@ -7,6 +7,11 @@ function! s:load_lsp() abort
   packadd completion-nvim
   packadd diagnostic-nvim
   execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'
+  augroup lsp_use_aucmd
+    au!
+    au BufEnter * lua require('completion').on_attach()
+  augroup END
+  lua require('completion').on_attach()
   doautoall FileType
 endfunction
 
@@ -34,6 +39,12 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 let g:completion_max_items = 20
+let g:completion_confirm_key = "\<c-y>"
+inoremap <silent><expr> <cr> <sid>handle_cr()
+
+function! s:handle_cr() abort
+  return pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endfunction
 
 call sign_define('LspDiagnosticsErrorSign', {'text' : "🗙", 'texthl' : 'RedHover'})
 call sign_define('LspDiagnosticsWarningSign', {'text' : "➤", 'texthl' : 'YellowHover'})

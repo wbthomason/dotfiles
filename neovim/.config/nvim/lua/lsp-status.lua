@@ -124,7 +124,7 @@ local function extract_symbols(items, _result)
     end
 
     table.insert(result, {
-      filename = vim.uri_to_fname(item.location.uri),
+      filename = item.location and vim.uri_to_fname(item.location.uri) or nil,
       range = sym_range,
       kind = kind,
       text = item.name
@@ -138,27 +138,33 @@ local function extract_symbols(items, _result)
 end
 
 local function in_range(pos, range)
-  return (
-    pos[0] >= range.start.line and
-    pos[0] <= range['end'].line and
-    pos[1] >= range.start.character and
-    pos[1] <= range['end'].character
-    )
+  local line = pos[1]
+  local char = pos[2]
+  if line < range.start.line or line > range['end'].line then return false end
+  if
+    line == range.start.line and char < range.start.character or
+    line == range['end'].line and char > range['end'].character
+  then
+    return false
+  end
+
+  return true
 end
 
 local function current_function_callback(_, _, result, _, _)
+  vim.b.lsp_current_function = ''
   local function_symbols = functools.filter(extract_symbols(result),
     function(_, v)
       return v.kind == 'Class' or v.kind == 'Function' or v.kind == 'Method'
     end)
+
   if not function_symbols or #function_symbols == 0 then
-    vim.b.lsp_current_function = ''
+    vim.api.nvim_command('doautocmd User LspStatusUpdate')
     return
   end
 
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
-  for i = #function_symbols, 1, -1 do
-    local sym = function_symbols[i]
+  for _, sym in ipairs(function_symbols) do
     if
       sym.range and
       in_range(cursor_pos, sym.range)
@@ -169,6 +175,7 @@ local function current_function_callback(_, _, result, _, _)
       end
 
       vim.b.lsp_current_function = fn_name
+      vim.api.nvim_command('doautocmd User LspStatusUpdate')
       return
     end
   end
@@ -176,7 +183,7 @@ end
 
 local function update_current_function()
   local params = { textDocument = lsp_util.make_text_document_params() }
-  vim.lsp.buf_request('textDocument/documentSymbol', params, current_function_callback)
+  vim.lsp.buf_request(0, 'textDocument/documentSymbol', params, current_function_callback)
 end
 
 local function get_all_diagnostics()
@@ -303,7 +310,7 @@ local function generate_statusline()
   local base_status = vim.trim(table.concat(status_parts, ' ') .. ' ' .. table.concat(msgs, ' '))
   local symbol = ' 🇻' .. ((some_diagnostics and only_hint) and '' or ' ')
   local current_function = vim.b.lsp_current_function
-  if current_function then
+  if current_function and current_function ~= '' then
     symbol = symbol .. '(' .. current_function .. ') '
   end
 
