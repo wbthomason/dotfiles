@@ -36,7 +36,7 @@ endfunction
 
 command! UpdateWikiTags call UpdateWikiTagsList()
 
-function! LoadWiki() abort
+function! s:load_wiki() abort
   packadd wiki.vim
   autocmd! wiki_load_aucmds
   augroup! wiki_load_aucmds
@@ -44,8 +44,8 @@ endfunction
 
 augroup wiki_load_aucmds
   au!
-  au BufNewFile,BufReadPre ~/notes/**/*.md call LoadWiki()
-  au VimEnter * call LoadWiki()
+  au BufNewFile,BufReadPre ~/notes/**/*.md call s:load_wiki()
+  au VimEnter * call s:load_wiki()
 augroup END
 
 " Open wiki files
