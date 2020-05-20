@@ -41,7 +41,10 @@ augroup wiki_load_aucmds
   au BufNewFile,BufReadPre ~/notes/**/*.md ++once packadd wiki.vim
 augroup END
 
-let s:wiki_load_config = { 'delete': ['WikiJournal', 'WikiOpen'], 'package': 'wiki.vim' }
+let s:wiki_load_config = { 
+      \ 'delete': ['WikiJournal', 'WikiOpen'],
+      \ 'package': 'wiki.vim',
+      \}
 
 command! WikiJournal call util#load_and_run('WikiJournal', 0, 0, '', '', s:wiki_load_config)
 command! WikiOpen call util#load_and_run('WikiOpen', 0, 0, '', '', s:wiki_load_config)
