@@ -1,5 +1,5 @@
 [style]
-based_on_style = chromium
+based_on_style = yapf
 coalesce_brackets = true
 column_limit = 100
 continuation_align_style = space
