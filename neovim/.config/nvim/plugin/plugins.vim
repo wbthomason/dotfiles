@@ -64,6 +64,7 @@ function! PackagerInit() abort
 
   " Text objects
   call packager#add('wellle/targets.vim')
+  call packager#add('PeterRincker/vim-argumentative')
 
   " Search
   call packager#add('liuchengxu/vim-clap', {'do': ':Clap install-binary'})
