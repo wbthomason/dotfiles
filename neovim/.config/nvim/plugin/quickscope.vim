@@ -5,7 +5,7 @@ highlight QuickScopeSecondary guifg='#5fdfdf' gui=underline ctermfg=81 cterm=und
 
 augroup qs_load_aucommands
   au!
-  au InsertEnter * ++once call s:load_qs()
+  " au InsertEnter * ++once call s:load_qs()
 augroup END
 
 function! s:load_qs() abort

@@ -25,23 +25,23 @@ function! PackagerInit() abort
   call packager#add('mhinz/vim-sayonara')
 
   " Startup screen
-  " call packager#add('mhinz/vim-startify')
+  call packager#add('mhinz/vim-startify')
 
   " Movement
   call packager#add('chaoren/vim-wordmotion')
   call packager#add('tpope/vim-repeat')
   call packager#add('justinmk/vim-sneak')
-  call packager#add('unblevable/quick-scope', {'type': 'opt'})
+  " call packager#add('unblevable/quick-scope', {'type': 'opt'})
 
   " Quickfix
   " Pack 'romainl/vim-qf' 
-  call packager#add('Olical/vim-enmasse')
+  call packager#add('Olical/vim-enmasse', {'type': 'opt'})
 
   " Grepping
   call packager#add('mhinz/vim-grepper', {'type': 'opt'})
 
   " Indentation tracking
-  call packager#add('yggdroot/indentLine')
+  " call packager#add('yggdroot/indentLine')
 
   " Commenting
   call packager#add('tomtom/tcomment_vim')
@@ -55,10 +55,6 @@ function! PackagerInit() abort
   " Search
   call packager#add('romainl/vim-cool')
 
-  " Yank and undo highlighting
-  " call packager#add('machakann/vim-highlightedyank')
-  " call packager#add('machakann/vim-highlightedundo')
-
   " Pattern preview
   " call packager#add('markonm/traces.vim')
 
@@ -71,10 +67,9 @@ function! PackagerInit() abort
 
   " Search
   call packager#add('liuchengxu/vim-clap', {'do': ':Clap install-binary'})
-  " call packager#add('vn-ki/coc-clap')
 
   " Special symbols
-  call packager#add('chrisbra/unicode.vim')
+  " call packager#add('chrisbra/unicode.vim', {'type': 'opt'})
 
   " Project Management/Sessions
   call packager#add('tpope/vim-obsession', {'type': 'opt'})
@@ -84,11 +79,11 @@ function! PackagerInit() abort
   call packager#add('Vigemus/iron.nvim', {'type': 'opt'})
 
   " Undo tree
-  call packager#add('simnalamburt/vim-mundo')
+  call packager#add('simnalamburt/vim-mundo', {'type': 'opt'})
 
   " Git
   call packager#add('mhinz/vim-signify')
-  call packager#add('tpope/vim-fugitive')
+  call packager#add('tpope/vim-fugitive', {'type': 'opt'})
   call packager#add('tpope/vim-rhubarb')
   call packager#add('itchyny/vim-gitbranch')
 
@@ -159,9 +154,6 @@ function! PackagerInit() abort
 
   " Notes
   call packager#local('~/projects/personal/pdf-scribe.nvim')
-
-  " TODO
-  " call packager#add('https://gitlab.com/dbeniamine/todo.txt-vim')
 endfunction
 
 command! PackagerInstall call PackagerInit() | call packager#install()

@@ -1,3 +1,4 @@
+let g:clap_enable_yanks_provider = 0
 let g:clap_no_matches_msg = 'No matches'
 let g:clap_current_selection_sign = {
       \ 'text': '=>',

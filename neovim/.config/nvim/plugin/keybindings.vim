@@ -39,9 +39,16 @@ nnoremap <silent> <leader>eo :lopen<CR>
 nnoremap <silent> <leader>ec :lclose<CR>
 
 " Version control bindings
-nnoremap <silent> <leader>gl :Gpull<CR>
-nnoremap <silent> <leader>gp :Gpush<CR>
-nnoremap <silent> <leader>gs :Gstatus<CR>
+function! s:load_run_fugitive(cmd) abort
+  if !exists('g:loaded_fugitive')
+    packadd vim-fugitive
+  endif
+
+  execute a:cmd
+endfunction
+nnoremap <silent> <leader>gl <cmd>call <sid>load_run_fugitive('Gpull')<cr>
+nnoremap <silent> <leader>gp <cmd>call <sid>load_run_fugitive('Gpush')<cr>
+nnoremap <silent> <leader>gs <cmd>call <sid>load_run_fugitive('Gstatus')<cr>
 nmap <silent> ]h <plug>(signify-next-hunk)
 nmap <silent> [h <plug>(signify-prev-hunk)
 

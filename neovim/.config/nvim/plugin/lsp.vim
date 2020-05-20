@@ -1,3 +1,7 @@
+" This disables the fairly slow loading of server installation commands, which we don't really use
+" anyway
+let g:nvim_lsp = 1
+
 function! s:load_lsp() abort
   packadd nvim-lsp
   packadd vim-vsnip
