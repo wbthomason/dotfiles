@@ -41,7 +41,7 @@ function! PackagerInit() abort
   call packager#add('mhinz/vim-grepper', {'type': 'opt'})
 
   " Indentation tracking
-  " call packager#add('yggdroot/indentLine')
+  call packager#add('yggdroot/indentLine')
 
   " Commenting
   call packager#add('tomtom/tcomment_vim')
@@ -119,7 +119,7 @@ function! PackagerInit() abort
   call packager#add('guns/vim-sexp', {'type': 'opt'})
   call packager#add('tpope/vim-sexp-mappings-for-regular-people', {'type': 'opt'})
   call packager#add('phmarek/vlime')
-  " Pack 'Olical/conjure', {'for': 'clojure', 'do': {-> jobstart('bin/compile')}}
+  call packager#add('Olical/conjure', {'type': 'opt'})
   call packager#add('eraserhd/parinfer-rust', {'do': funcref('StartBuild', ['cargo build --release']), 'type': 'opt'})
 
   " LaTeX
