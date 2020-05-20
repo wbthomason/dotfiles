@@ -9,34 +9,34 @@ imap <f1> <nop>
 nnoremap <silent> <localleader>r @:
 
 " Easily run a build
-nnoremap <silent> <localleader><localleader> :Make<cr>
+nnoremap <silent> <localleader><localleader> <cmd>Make<cr>
 
 " Fuzzy-finding
-nnoremap <c-p> :Clap<cr>
+nnoremap <c-p> <cmd>Clap<cr>
 
 " Exiting
-nnoremap <silent> <leader>q :qa<cr>
-nnoremap <silent> <leader>x :x!<cr>
-nnoremap <silent><nowait> <leader>d :Sayonara<cr>
+nnoremap <silent> <leader>q <cmd>qa<cr>
+nnoremap <silent> <leader>x <cmd>x!<cr>
+nnoremap <silent><nowait> <leader>d <cmd>Sayonara<cr>
 
 " A little Emacs in my Neovim
-nnoremap <silent><c-x><c-s> :w<cr>
-inoremap <silent><c-x><c-s> <esc>:w<cr>a
+nnoremap <silent><c-x><c-s> <cmd>w<cr>
+inoremap <silent><c-x><c-s> <esc><cmd>w<cr>a
 
 " Buffer bindings
-nnoremap <silent> <leader>w :w<cr>
-nnoremap <silent> <leader>k :Sayonara!<cr>
-nnoremap <silent> <leader>l :b#<cr>
-nnoremap <silent>  - :Clap buffers<cr>
-nnoremap <silent> _ :Clap files<cr>
-nnoremap <silent> + :Clap gfiles<cr>
+nnoremap <silent> <leader>w <cmd>w<cr>
+nnoremap <silent> <leader>k <cmd>Sayonara!<cr>
+nnoremap <silent> <leader>l <cmd>b#<cr>
+nnoremap <silent>  - <cmd>Clap buffers<cr>
+nnoremap <silent> _ <cmd>Clap files<cr>
+nnoremap <silent> + <cmd>Clap gfiles<cr>
 
 " Hovering
-nnoremap <silent> gh :lua require('hover').hover()<cr>
+nnoremap <silent> gh <cmd>lua require('hover').hover()<cr>
 
 " Error bindings
-nnoremap <silent> <leader>eo :lopen<CR>
-nnoremap <silent> <leader>ec :lclose<CR>
+nnoremap <silent> <leader>eo <cmd>lopen<CR>
+nnoremap <silent> <leader>ec <cmd>lclose<CR>
 
 " Version control bindings
 function! s:load_run_fugitive(cmd) abort
@@ -46,18 +46,18 @@ function! s:load_run_fugitive(cmd) abort
 
   execute a:cmd
 endfunction
-nnoremap <silent> <leader>gl <cmd>call <sid>load_run_fugitive('Gpull')<cr>
-nnoremap <silent> <leader>gp <cmd>call <sid>load_run_fugitive('Gpush')<cr>
-nnoremap <silent> <leader>gs <cmd>call <sid>load_run_fugitive('Gstatus')<cr>
+nnoremap <silent> gl <cmd>call <sid>load_run_fugitive('Gpull')<cr>
+nnoremap <silent> gp <cmd>call <sid>load_run_fugitive('Gpush')<cr>
+nnoremap <silent> gs <cmd>call <sid>load_run_fugitive('Gstatus')<cr>
 nmap <silent> ]h <plug>(signify-next-hunk)
 nmap <silent> [h <plug>(signify-prev-hunk)
 
 " REPL and Terminal bindings
 tnoremap jj <C-\><C-n>
-nnoremap <leader>R :IronRepl<CR>
+nnoremap <leader>R <cmd>IronRepl<CR>
 
 " Formatting Bindings
-nnoremap <silent> <leader>f :Neoformat<CR>
+nnoremap <silent> <leader>f <cmd>Neoformat<CR>
 
 " Easy-Align bindings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -78,14 +78,14 @@ nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 " endfor
 
 " Folds
-nnoremap <silent> <c-t> :normal! za<cr>
+nnoremap <silent> <c-t> <cmd>normal! za<cr>
 
 " Edit config
-nnoremap <silent> <localleader>c :Clap files --hidden ~/dotfiles/neovim/.config/nvim<cr>
+nnoremap <silent> <localleader>c <cmd>Clap files --hidden ~/dotfiles/neovim/.config/nvim<cr>
 
 " Yank to clipboard
-nnoremap <silent> y+ :set opfunc=util#clipboard_yank<cr>g@
-vnoremap <silent> y+ :<C-U>call util#clipboard_yank(visualmode(), 1)<cr>
+nnoremap <silent> y+ <cmd>set opfunc=util#clipboard_yank<cr>g@
+vnoremap <silent> y+ <cmd><C-U>call util#clipboard_yank(visualmode(), 1)<cr>
 
 " Move between windows
 nnoremap <c-h> <c-w>h
