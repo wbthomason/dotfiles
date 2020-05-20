@@ -19,9 +19,10 @@ function! s:load_lsp() abort
 endfunction
 
 augroup lsp_load_aucommands
-  au!
-  au VimEnter * ++once call s:load_lsp()
+  au InsertEnter * ++once call s:load_lsp()
 augroup END
+
+command! -nargs=0 LoadLsp call s:load_lsp()
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 function! s:check_back_space() abort
@@ -96,3 +97,5 @@ let g:completion_customize_lsp_label = {
       \ 'TypeParameter': "\uf278",
       \ 'Default': "\uf29c"
       \}
+
+let g:diagnostic_insert_delay = 1
