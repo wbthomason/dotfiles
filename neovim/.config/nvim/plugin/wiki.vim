@@ -36,17 +36,15 @@ endfunction
 
 command! UpdateWikiTags call UpdateWikiTagsList()
 
-function! s:load_wiki() abort
-  packadd wiki.vim
-  autocmd! wiki_load_aucmds
-  augroup! wiki_load_aucmds
-endfunction
-
 augroup wiki_load_aucmds
   au!
-  au BufNewFile,BufReadPre ~/notes/**/*.md call s:load_wiki()
-  au VimEnter * call s:load_wiki()
+  au BufNewFile,BufReadPre ~/notes/**/*.md ++once packadd wiki.vim
 augroup END
+
+let s:wiki_load_config = { 'delete': ['WikiJournal', 'WikiOpen'], 'package': 'wiki.vim' }
+
+command! WikiJournal call util#load_and_run('WikiJournal', 0, 0, '', '', s:wiki_load_config)
+command! WikiOpen call util#load_and_run('WikiOpen', 0, 0, '', '', s:wiki_load_config)
 
 " Open wiki files
 nnoremap <silent> <localleader>w :Clap files ~/notes/wiki<cr>

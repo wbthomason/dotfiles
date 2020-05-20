@@ -1,3 +1,4 @@
+finish
 augroup floaterm_aucmds
   au!
   autocmd User Startified setlocal buflisted

@@ -1,4 +1,3 @@
-" Just the important parts of vsnip_integ
 let g:vsnip_integ_config = {
       \ 'vim_lsp': v:false,
       \ 'vim_lsc': v:false,

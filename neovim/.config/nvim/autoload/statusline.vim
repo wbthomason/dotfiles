@@ -152,7 +152,7 @@ function! statusline#have_lsp() abort
 endfunction
 
 function! statusline#lsp() abort
-  return luaeval("require('lsp-status').statusline()")
+  return luaeval("require('statusline').lsp()")
 endfunction
 
 function! statusline#get_mode(mode) abort

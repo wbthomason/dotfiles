@@ -1,7 +1,8 @@
 " Neoformat
-let g:neoformat_python_yapf = {
-      \ 'exe': 'yapf',
+let g:neoformat_python_black = {
+      \ 'exe': 'black',
       \ 'stdin': 1,
+      \ 'args': ['-q', '-l 100', '--fast', '-'] 
       \}
 let g:neoformat_ocaml_ocamlformat = {
       \ 'exe': 'ocamlformat',

@@ -3,12 +3,10 @@ let g:qs_lazy_highlight = 1
 highlight QuickScopePrimary guifg='#afdf5f' gui=underline ctermfg=155 cterm=underline
 highlight QuickScopeSecondary guifg='#5fdfdf' gui=underline ctermfg=81 cterm=underline
 
-if !exists('g:vscode')
-  augroup qs_load_aucommands
-    au!
-    au VimEnter * call s:load_qs()
-  augroup END
-endif
+augroup qs_load_aucommands
+  au!
+  au InsertEnter * ++once call s:load_qs()
+augroup END
 
 function! s:load_qs() abort
   packadd quick-scope

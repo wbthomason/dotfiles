@@ -1,5 +1,4 @@
 local M = {}
-
 M.filter = function(list, test)
   local result = {}
   for i, v in ipairs(list) do

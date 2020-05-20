@@ -1,14 +1,4 @@
 scriptencoding utf-8
-if exists('g:loaded_statusline')
-  finish
-endif
-
-if exists('g:vscode')
-  set statusline=
-  let g:loaded_statusline = v:true
-  finish
-endif
-
 set noshowmode
 set laststatus=2
 function! UpdateColors(mode) abort
@@ -85,8 +75,8 @@ set statusline+=%=
 set statusline+=%#StatuslineVC#%{statusline#vc_status()}\ 
 
 " Gutentags status
-set statusline+=%{statusline#gutentags_enabled()?'\ ':''}%(%#StatuslineLint#%{statusline#gutentags()}%)
-
+" set statusline+=%{statusline#gutentags_enabled()?'\ ':''}%(%#StatuslineLint#%{statusline#gutentags()}%)
+"
 " ALE status
 set statusline+=%{statusline#ale_enabled()?'':'\ '}%(%#StatuslineLint#%{statusline#ale()}%)
 
@@ -117,7 +107,6 @@ function! s:setup_colors() abort
   hi StatuslineLineCol guibg=#3a3a3a gui=none guifg=#878787
 
   hi StatuslineFiletype guibg=#3a3a3a gui=none guifg=#e9e9e9
-
 endfunction
 
 augroup statusline_colors

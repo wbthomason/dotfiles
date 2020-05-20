@@ -28,19 +28,13 @@ function! s:setup_colors() abort
   hi! link ALEVirtualTextStyleError OrangeHover
   hi! link ALEVirtualTextStyleWarning BlueHover
 
-  hi! link CocHighlightText AquaHover
-  hi! link CocHighlightRead BlueHover
-  hi! link CocHighlightWrite GreenHover
-  hi! link CocErrorSign ALEErrorSign
-  hi! link CocWarningSign ALEWarningSign
-  hi! link CocInfoSign ALEInfoSign
-  hi! CocHintHighlight guifg=#83a5cb gui=undercurl guisp=#83a5cb
+  hi! HintHighlight guifg=#83a5cb gui=undercurl guisp=#83a5cb
   hi! link CocHintSign BlueSign
 
   hi! link LspDiagnosticsError RedHover
   hi! link LspDiagnosticsWarning YellowHover
   hi! link LspDiagnosticsInformation WhiteHover
-  hi! link LspDiagnosticsHint CocHintHighlight
+  hi! link LspDiagnosticsHint HintSign
   hi! link LspReferenceText AquaHover
   hi! link LspReferenceRead BlueHover
   hi! link LspReferenceWrite GreenHover
@@ -71,7 +65,7 @@ function! s:setup_colors() abort
   hi! link LspDiagnosticsUnderlineError ALEError
   hi! link LspDiagnosticsUnderlineWarning ALEWarning
   hi! link LspDiagnosticsUnderlineInformation ALEInfo
-  hi! link LspDiagnosticsUnderlineHint LspDiagnosticsHint
+  hi! link LspDiagnosticsUnderlineHint CocHintHighlight
 
   hi! link SignifySignAdd GreenSign
   hi! link SignifySignChange AquaSign

@@ -1,7 +1,5 @@
 " Keybindings
 
-let s:in_vscode = exists('g:vscode')
-
 " Get rid of the annoying F1 binding
 map <f1> <nop>
 nmap <f1> <nop>
@@ -15,92 +13,44 @@ nnoremap <silent> <localleader><localleader> :Make<cr>
 
 " Fuzzy-finding
 nnoremap <c-p> :Clap<cr>
-" inoremap <c-p> <esc>:Clap<cr>
-
-" Comments
-if s:in_vscode
-  xunmap gc
-  nunmap gc
-  ounmap gc
-  nunmap gcc 
-
-  xmap gc  <Plug>VSCodeCommentary
-  nmap gc  <Plug>VSCodeCommentary
-  omap gc  <Plug>VSCodeCommentary
-  nmap gcc <Plug>VSCodeCommentaryLine
-endif
 
 " Exiting
-if s:in_vscode
-  nnoremap <silent> <leader>q :Qall<cr>
-  nnoremap <silent> <leader>x :Xall<cr>
-  nnoremap <silent> <leader>d :Quit<cr>
-else
-  nnoremap <silent> <leader>q :qa<cr>
-  nnoremap <silent> <leader>x :x!<cr>
-  nnoremap <silent><nowait> <leader>d :Sayonara<cr>
-endif
+nnoremap <silent> <leader>q :qa<cr>
+nnoremap <silent> <leader>x :x!<cr>
+nnoremap <silent><nowait> <leader>d :Sayonara<cr>
 
 " A little Emacs in my Neovim
 nnoremap <silent><c-x><c-s> :w<cr>
 inoremap <silent><c-x><c-s> <esc>:w<cr>a
 
 " Buffer bindings
-if s:in_vscode
-  nnoremap <silent> <leader>w :Write<cr>
-  nnoremap <silent> - :call VSCodeNotify('workbench.action.quickOpenPreviousEditor')<cr>
-  nnoremap <silent> _ :call VSCodeNotify('workbench.action.quickOpenPreviousEditor')<cr>
-  nnoremap <silent> + :call VSCodeNotify('workbench.action.quickOpenPreviousEditor')<cr>
-else
-  nnoremap <silent> <leader>w :w<cr>
-  nnoremap <silent> <leader>k :Sayonara!<cr>
-  nnoremap <silent> <leader>l :b#<cr>
-  nnoremap <silent>  - :Clap buffers<cr>
-  nnoremap <silent> _ :Clap files<cr>
-  nnoremap <silent> + :Clap gfiles<cr>
-endif
+nnoremap <silent> <leader>w :w<cr>
+nnoremap <silent> <leader>k :Sayonara!<cr>
+nnoremap <silent> <leader>l :b#<cr>
+nnoremap <silent>  - :Clap buffers<cr>
+nnoremap <silent> _ :Clap files<cr>
+nnoremap <silent> + :Clap gfiles<cr>
 
 " Hovering
-if !s:in_vscode
-  nnoremap <silent> gh :lua require('hover').hover()<cr>
-endif
+nnoremap <silent> gh :lua require('hover').hover()<cr>
 
 " Error bindings
-if s:in_vscode
-  nnoremap <silent> <leader>eo :call VSCodeNotify('workbench.actions.view.problems')<cr>
-  nnoremap <silent> <leader>ec :call VSCodeNotify('workbench.action.closePanel')<cr>
-else
-  nnoremap <silent> <leader>eo :lopen<CR>
-  nnoremap <silent> <leader>ec :lclose<CR>
-endif
+nnoremap <silent> <leader>eo :lopen<CR>
+nnoremap <silent> <leader>ec :lclose<CR>
 
 " Version control bindings
-if s:in_vscode
-  nnoremap <silent> <leader>gl :call VSCodeNotify('git.pull')<CR>
-  nnoremap <silent> <leader>gp :call VSCodeNotify('git.push')<CR>
-  nnoremap <silent> <leader>gs :call VSCodeNotify('gitlens.views.repositories:scm.focus')<CR>
-else
-  nnoremap <silent> <leader>gl :Gpull<CR>
-  nnoremap <silent> <leader>gp :Gpush<CR>
-  nnoremap <silent> <leader>gs :Gstatus<CR>
-  nmap <silent> ]h <plug>(signify-next-hunk)
-  nmap <silent> [h <plug>(signify-prev-hunk)
-endif
+nnoremap <silent> <leader>gl :Gpull<CR>
+nnoremap <silent> <leader>gp :Gpush<CR>
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nmap <silent> ]h <plug>(signify-next-hunk)
+nmap <silent> [h <plug>(signify-prev-hunk)
 
 " REPL and Terminal bindings
 tnoremap jj <C-\><C-n>
-if s:in_vscode
-  nnoremap <leader>R :call VSCodeNotify('workbench.debug.action.toggleRepl')<cr>
-else
-  nnoremap <leader>R :IronRepl<CR>
-endif
+nnoremap <leader>R :IronRepl<CR>
 
 " Formatting Bindings
-if s:in_vscode
-  nnoremap <silent> <leader>f :call VSCodeNotify('editor.action.formatDocument')<cr>
-else
-  nnoremap <silent> <leader>f :Neoformat<CR>
-endif
+nnoremap <silent> <leader>f :Neoformat<CR>
 
 " Easy-Align bindings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -108,15 +58,6 @@ xmap <silent> ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap <silent> ga <Plug>(EasyAlign)
-
-" Schlepp bindings
-vmap <up>    <Plug>SchleppUp
-vmap <down>  <Plug>SchleppDown
-vmap <left>  <Plug>SchleppLeft
-vmap <right> <Plug>SchleppRight
-
-" Journal and note bindings
-nnoremap <silent> <leader>jt :e ~/wiki/journal/<c-r>=strftime("%Y%m%d")<cr>.org<cr>
 
 " replace under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
@@ -138,13 +79,6 @@ nnoremap <silent> <localleader>c :Clap files --hidden ~/dotfiles/neovim/.config/
 " Yank to clipboard
 nnoremap <silent> y+ :set opfunc=util#clipboard_yank<cr>g@
 vnoremap <silent> y+ :<C-U>call util#clipboard_yank(visualmode(), 1)<cr>
-
-" Highlighted undo
-" nmap u     <Plug>(highlightedundo-undo)
-" nmap <C-r> <Plug>(highlightedundo-redo)
-" nmap U     <Plug>(highlightedundo-Undo)
-" nmap g-    <Plug>(highlightedundo-gminus)
-" nmap g+    <Plug>(highlightedundo-gplus)
 
 " Move between windows
 nnoremap <c-h> <c-w>h

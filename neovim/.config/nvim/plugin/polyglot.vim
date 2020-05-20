@@ -1,8 +1,4 @@
 " Polyglot
-" let g:polyglot_disabled = [
-"       \ 'latex',
-"       \ 'tex',
-"       \]
 " Disable unused languages; has a slight (~1ms) performance impact
 let g:polyglot_disabled = [
       \ 'acpiasl',

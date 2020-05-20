@@ -1,6 +1,4 @@
 function! s:load_lsp() abort
-  autocmd! coc_load_aucommands
-  augroup! coc_load_aucommands
   packadd nvim-lsp
   packadd vim-vsnip
   packadd vim-vsnip-integ
@@ -11,13 +9,14 @@ function! s:load_lsp() abort
     au!
     au BufEnter * lua require('completion').on_attach()
   augroup END
+
   lua require('completion').on_attach()
   doautoall FileType
 endfunction
 
 augroup lsp_load_aucommands
   au!
-  au VimEnter * call s:load_lsp()
+  au VimEnter * ++once call s:load_lsp()
 augroup END
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -48,10 +47,10 @@ endfunction
 
 call sign_define('LspDiagnosticsErrorSign', {'text' : "🗙", 'texthl' : 'RedHover'})
 call sign_define('LspDiagnosticsWarningSign', {'text' : "➤", 'texthl' : 'YellowHover'})
-call sign_define('LspDiagnosticInformationSign', {'text' : "🛈", 'texthl' : 'WhiteHover'})
+call sign_define('LspDiagnosticsInformationSign', {'text' : "🛈", 'texthl' : 'WhiteHover'})
 call sign_define('LspDiagnosticsHintSign', {'text' : "❗", 'texthl' : 'CocHintHighlight'})
 
-let g:completion_auto_change_source = 1
+let g:completion_auto_change_source = 0
 let g:completion_chain_complete_list = {
       \ 'default' : {
       \   'default': [

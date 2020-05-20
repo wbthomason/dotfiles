@@ -1,9 +1,7 @@
-if !exists('g:vscode')
-  augroup ale_load_aucommands
-    au!
-    au FileType sh,zsh,bash,c,cpp,cmake,html,markdown,racket,vim call s:load_ale()
-  augroup END
-endif
+augroup ale_load_aucommands
+  au!
+  au FileType sh,zsh,bash,c,cpp,cmake,html,markdown,racket,vim call s:load_ale()
+augroup END
 
 let s:ale_loaded = v:false
 let g:ale_enabled = v:false

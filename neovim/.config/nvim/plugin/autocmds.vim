@@ -1,4 +1,4 @@
-" General autocommands
+" Misc autocommands
 
 augroup syntax_aucmds
   au!
@@ -8,16 +8,10 @@ augroup END
 augroup misc_aucmds
   au!
   au BufWinEnter * checktime
+  au TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
 
-if exists('g:vscode')
-  augroup vscode_aucmds
-    au!
-    au VimEnter * set nospell
-  augroup END
-else
-  augroup collab_aucmds
-    au!
-    au VimEnter,BufEnter ~/projects/research/communion*/*.tex set formatoptions-=t | set wrap linebreak breakindent
-  augroup END
-endif
+augroup collab_aucmds
+  au!
+  au VimEnter,BufEnter ~/projects/research/communion*/*.tex set formatoptions-=t | set wrap linebreak breakindent
+augroup END

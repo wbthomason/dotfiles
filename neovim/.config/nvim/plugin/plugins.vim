@@ -1,7 +1,7 @@
 " Plugin installation
 if empty(glob('~/.config/nvim/pack/packager/opt/vim-packager'))
   silent !git clone https://github.com/kristijanhusak/vim-packager ~/.config/nvim/pack/packager/opt/vim-packager
-  au VimEnter * PackagerInstall
+  au VimEnter * ++once PackagerInstall
   source ~/.config/nvim/init.vim
 endif
 function! PackagerInit() abort
@@ -19,12 +19,13 @@ function! PackagerInit() abort
 
   " Marks
   call packager#add('kshenoy/vim-signature')
+  call packager#add('Yilin-Yang/vim-markbar', {'type': 'opt'})
 
   " Buffer management
   call packager#add('mhinz/vim-sayonara')
 
   " Startup screen
-  call packager#add('mhinz/vim-startify')
+  " call packager#add('mhinz/vim-startify')
 
   " Movement
   call packager#add('chaoren/vim-wordmotion')
@@ -55,7 +56,7 @@ function! PackagerInit() abort
   call packager#add('romainl/vim-cool')
 
   " Yank and undo highlighting
-  call packager#add('machakann/vim-highlightedyank')
+  " call packager#add('machakann/vim-highlightedyank')
   " call packager#add('machakann/vim-highlightedundo')
 
   " Pattern preview
@@ -70,14 +71,14 @@ function! PackagerInit() abort
 
   " Search
   call packager#add('liuchengxu/vim-clap', {'do': ':Clap install-binary'})
-  call packager#add('vn-ki/coc-clap')
+  " call packager#add('vn-ki/coc-clap')
 
   " Special symbols
   call packager#add('chrisbra/unicode.vim')
 
   " Project Management/Sessions
-  call packager#add('tpope/vim-obsession')
-  call packager#add('dhruvasagar/vim-prosession')
+  call packager#add('tpope/vim-obsession', {'type': 'opt'})
+  call packager#add('dhruvasagar/vim-prosession', {'type': 'opt'})
 
   " REPL
   call packager#add('Vigemus/iron.nvim', {'type': 'opt'})
@@ -92,15 +93,16 @@ function! PackagerInit() abort
   call packager#add('itchyny/vim-gitbranch')
 
   " Terminal
-  call packager#add('voldikss/vim-floaterm')
+  " call packager#add('voldikss/vim-floaterm')
 
   " Completion and linting
-  call packager#add('neoclide/coc.nvim', {'do': funcref('StartBuild', ['yarn install --frozen-lockfile']), 'type': 'opt'})
-  call packager#add('Shougo/echodoc.vim')
+  " call packager#add('neoclide/coc.nvim', {'do': funcref('StartBuild', ['yarn install --frozen-lockfile']), 'type': 'opt'})
+  " call packager#add('Shougo/echodoc.vim')
 
-  " These should be good, but not ready for prime time yet
   call packager#add('neovim/nvim-lsp', {'type': 'opt'})
+  call packager#local('~/projects/personal/lsp-status.nvim')
   call packager#add('haorenW1025/completion-nvim', {'type': 'opt'})
+  call packager#local('~/projects/personal/hover.nvim')
   call packager#add('haorenW1025/diagnostic-nvim', {'type': 'opt'})
   call packager#add('hrsh7th/vim-vsnip', {'type': 'opt'})
   call packager#add('hrsh7th/vim-vsnip-integ', {'type': 'opt'})
@@ -115,15 +117,11 @@ function! PackagerInit() abort
   call packager#add('tpope/vim-apathy')
 
   " C/C++ semantic highlighting
-  call packager#add('jackguo380/vim-lsp-cxx-highlight')
-
-  " C/C++/Python debugging
-  " Pack 'sakhnik/nvim-gdb', {'do': {-> jobstart('./install.sh')}, 'on': ['GdbStart', 'GdbStartLLDB', 'GdbStartPDB']}
+  " call packager#add('jackguo380/vim-lsp-cxx-highlight')
 
   " Clojure/Lisps/Scheme
   call packager#add('guns/vim-sexp', {'type': 'opt'})
   call packager#add('tpope/vim-sexp-mappings-for-regular-people', {'type': 'opt'})
-  call packager#add('vim-scripts/scribble.vim')
   call packager#add('phmarek/vlime')
   " Pack 'Olical/conjure', {'for': 'clojure', 'do': {-> jobstart('bin/compile')}}
   call packager#add('eraserhd/parinfer-rust', {'do': funcref('StartBuild', ['cargo build --release']), 'type': 'opt'})
@@ -132,31 +130,35 @@ function! PackagerInit() abort
   call packager#add('lervag/vimtex')
 
   " Meson
-  call packager#add('igankevich/mesonic')
+  " call packager#add('igankevich/mesonic')
 
   " PDDL
   call packager#add('PontusPersson/pddl.vim')
 
   " Profiling
-  call packager#add('tweekmonster/startuptime.vim')
+  call packager#add('dstein64/vim-startuptime', {'type': 'opt'})
 
   " Highlight colors
   call packager#add('norcalli/nvim-colorizer.lua')
 
   " Color scheme
-  call packager#add('wbthomason/vim-nazgul')
-  call packager#add('chriskempson/base16-vim')
-  call packager#add('hardselius/warlock')
-  call packager#add('arzg/vim-substrata')
+  call packager#local('~/projects/personal/vim-nazgul')
+  " call packager#add('chriskempson/base16-vim')
+  " call packager#add('hardselius/warlock')
+  " call packager#add('arzg/vim-substrata')
+  call packager#add('tjdevries/colorbuddy.vim')
 
   " Markdown
   call packager#add('iamcco/markdown-preview.nvim', {'do': funcref('StartBuild', ['cd app && yarn install'])})
 
   " Tags
-  call packager#add('ludovicchabant/vim-gutentags', {'type': 'opt'})
+  " call packager#add('ludovicchabant/vim-gutentags', {'type': 'opt'})
 
   " Wiki
   call packager#add('lervag/wiki.vim', {'type': 'opt'})
+
+  " Notes
+  call packager#local('~/projects/personal/pdf-scribe.nvim')
 
   " TODO
   " call packager#add('https://gitlab.com/dbeniamine/todo.txt-vim')

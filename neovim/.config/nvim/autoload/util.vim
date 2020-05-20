@@ -32,10 +32,19 @@ function! util#load_and_run(cmd, start, end, bang, args, info) abort
     execute 'delcommand ' . old_cmd
   endfor
 
-  execute 'packadd ' . a:info['package']
-  for config_cmd in a:info['config']
-    execute config_cmd
-  endfor
+  if type(a:info['package']) == v:t_list
+    for package in a:info['package']
+      execute 'packadd ' . package
+    endfor
+  else
+    execute 'packadd ' . a:info['package']
+  endif
+
+  if has_key(a:info, 'config')
+    for config_cmd in a:info['config']
+      execute config_cmd
+    endfor
+  endif
 
   execute printf('%s%s%s %s', (a:start == a:end ? '' : (a:start . ',' . a:end)), a:cmd, a:bang, a:args)
 endfunction
