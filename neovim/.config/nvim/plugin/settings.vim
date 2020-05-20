@@ -2,6 +2,7 @@
 set textwidth=100
 set scrolloff=7
 set wildignore=*.o,*~,*.pyc
+set wildmode=longest,full
 set whichwrap+=<,>,h,l
 set inccommand=nosplit
 set lazyredraw
