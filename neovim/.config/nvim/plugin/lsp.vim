@@ -35,6 +35,7 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ completion#trigger_completion()
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <c-p> completion#trigger_completion()
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect

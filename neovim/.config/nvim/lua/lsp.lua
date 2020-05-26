@@ -1,7 +1,7 @@
 local nvim_lsp = require('nvim_lsp')
 local lsp_status = require('lsp-status')
 local diagnostic = require('diagnostic')
-local completion = require('completion')
+-- local ncm2 = require('ncm2')
 
 local severity_map = {'E', 'W', 'I', 'H'}
 
@@ -83,7 +83,7 @@ lsp_status.config {
         }
       }
 
-      return require('lsp-status.util').in_range(cursor_pos, value_range)
+      return require('lsp-status/util').in_range(cursor_pos, value_range)
     end
   end
 }
@@ -96,9 +96,8 @@ local function make_on_attach(config)
       config.before(client)
     end
 
-    lsp_status.register_client(client.name)
+    lsp_status.on_attach(client)
     diagnostic.on_attach()
-    completion.on_attach()
     local opts = { noremap=true, silent=true }
     vim.api.nvim_buf_set_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -111,23 +110,15 @@ local function make_on_attach(config)
     vim.api.nvim_buf_set_keymap(0, 'n', '<leader>e', '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
     vim.api.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>NextDiagnosticCycle<cr>', opts)
     vim.api.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>PrevDiagnosticCycle<cr>', opts)
-    vim.api.nvim_command('augroup lsp_aucmds')
-    vim.api.nvim_command('au! * <buffer>')
-    vim.api.nvim_command('au User LspDiagnosticsChanged redrawstatus!')
-    vim.api.nvim_command('au User LspMessageUpdate redrawstatus!')
-    vim.api.nvim_command('au User LspStatusUpdate redrawstatus!')
-    vim.api.nvim_command('augroup END')
+
+    if client.resolved_capabilities.document_formatting then
+      vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>', opts)
+    end
 
     if client.resolved_capabilities.document_highlight then
       vim.api.nvim_command('augroup lsp_aucmds')
       vim.api.nvim_command('au CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
       vim.api.nvim_command('au CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
-      vim.api.nvim_command('augroup END')
-    end
-
-    if client.resolved_capabilities.document_symbol then
-      vim.api.nvim_command('augroup lsp_aucmds')
-      vim.api.nvim_command('au CursorHold <buffer> lua require("lsp-status").update_current_function()')
       vim.api.nvim_command('augroup END')
     end
 
@@ -147,12 +138,13 @@ local servers = {
       '--header-insertion=iwyu',
       '--suggest-missing-includes'
     },
-    callbacks = {
-      ['textDocument/clangd.fileStatus'] = lsp_status.extension_callbacks.clangd['textDocument/clangd.fileStatus']
+    callbacks = lsp_status.extensions.clangd.setup(),
+    init_options = {
+      clangdFileStatus = true
     }
   },
+  ghcide = {},
   html = {},
-  hie = {},
   jsonls = {
     cmd = { 'json-languageserver', '--stdio' }
   },
@@ -160,17 +152,11 @@ local servers = {
   ocamllsp = {},
   pyls_ms = {
     cmd = { 'mspyls' },
-    callbacks = {
-      ['python/setStatusBarMessage'] = lsp_status.extension_callbacks.pyls_ms["python/setStatusBarMessage"],
-      ['python/reportProgress'] = lsp_status.extension_callbacks.pyls_ms["python/reportProgress"],
-      ['python/beginProgress'] = lsp_status.extension_callbacks.pyls_ms["python/beginProgress"],
-      ['python/endProgress'] = lsp_status.extension_callbacks.pyls_ms["python/endProgress"],
-    },
+    callbacks = lsp_status.extensions.pyls_ms.setup(),
     settings = {
       python = {
         jediEnabled = false,
         analysis = {
-          logLevel = 'Trace',
           cachingLevel = 'Library',
         },
         formatting = {
@@ -196,7 +182,7 @@ local servers = {
         '.flake8rc',
         '.gitignore'
       )(fname) or
-      nvim_lsp.util.find_git_anscestor(fname) or
+      nvim_lsp.util.find_git_ancestor(fname) or
       vim.loop.os_homedir()
     end;
   },
@@ -250,5 +236,7 @@ local servers = {
 
 for server, config in pairs(servers) do
   config.on_attach = make_on_attach(config)
+  config.capabilities = vim.tbl_extend('keep', config.capabilities or {}, lsp_status.capabilities)
+  -- config.on_init = ncm2.register_lsp_source
   nvim_lsp[server].setup(config)
 end
