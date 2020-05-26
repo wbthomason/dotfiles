@@ -1,4 +1,4 @@
-let g:wiki_root = '~/notes/wiki'
+let g:wiki_root = '~/gdrive/notes'
 let g:wiki_zotero_root = '~/gdrive/papers'
 let g:wiki_filetypes = ['md']
 let g:wiki_journal = {
