@@ -65,29 +65,20 @@ set statusline+=%#StatuslineLineCol#(Ln\ %l/%L,\ %#StatuslineLineCol#Col\ %c)\ %
 " Right side items
 set statusline+=%=
 
-" Filetype
-" set statusline+=%#StatuslineFiletype#%{statusline#filetype()}\ \ 
-
-" Current scroll percentage and total lines of the file
-" set statusline+=%#StatuslinePercentage#%p%%\ (%L)\ \
-
 " VCS
 set statusline+=%#StatuslineVC#%{statusline#vc_status()}\ 
 
-" Gutentags status
-" set statusline+=%{statusline#gutentags_enabled()?'\ ':''}%(%#StatuslineLint#%{statusline#gutentags()}%)
-"
 " ALE status
 set statusline+=%{statusline#ale_enabled()?'':'\ '}%(%#StatuslineLint#%{statusline#ale()}%)
 
 " coc
 " set statusline+=%{g:coc_enabled?'':'\ '}%(%#StatuslineLint#%{statusline#coc()}%)
-set statusline+=%{statusline#have_lsp()?'':'\ '}%(%#StatuslineLint#%{statusline#lsp()}%)
+set statusline+=%{statusline#have_lsp()?'':'\ '}%(%#StatuslineLint#%{statusline#lsp()}%)%#StatuslineFiletype#
 
 " Setup the colors
 function! s:setup_colors() abort
-  hi StatusLine          guifg=#d485ad     guibg=NONE     gui=NONE
-  hi StatusLineNC        guifg=#d75f5f     guibg=NONE     gui=bold
+  " hi StatusLine          guifg=#d485ad     guibg=NONE     gui=NONE
+  " hi StatusLineNC        guifg=#d75f5f     guibg=NONE     gui=bold
 
   hi StatuslineSeparator guifg=#3a3a3a gui=none guibg=none
 
