@@ -155,6 +155,9 @@ function! PackagerInit() abort
 
   " Notes
   call packager#local('~/projects/personal/pdf-scribe.nvim')
+
+  " Tasks
+  call packager#local('~/projects/personal/todoist-import.nvim')
 endfunction
 
 command! PackagerInstall call PackagerInit() | call packager#install()

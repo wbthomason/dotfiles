@@ -12,3 +12,4 @@ kakoune/.config/kak/*
 bspwm/.config/bspwm/autostart
 neovim/.config/nvim/autoload/plugpac.vim
 vscode/.config/Code - OSS/*
+neovim/.config/nvim/plugin/todoist_token.vim
