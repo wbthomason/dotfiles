@@ -136,5 +136,11 @@ bindkey '^[[B' history-substring-search-down
 # OPAM configuration
 eval $(opam config env)
 
+# Keyring
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  eval $(gnome-keyring-daemon --start --components=ssh,secrets,gpg)
+  export SSH_AUTH_SOCK
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
