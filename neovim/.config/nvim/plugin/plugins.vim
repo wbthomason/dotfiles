@@ -118,6 +118,10 @@ function! PackagerInit() abort
   " Path changing
   call packager#add('tpope/vim-apathy')
 
+  " Path navigation
+  call packager#add('justinmk/vim-dirvish')
+  call packager#add('kristijanhusak/vim-dirvish-git')
+
   " C/C++ semantic highlighting
   " call packager#add('jackguo380/vim-lsp-cxx-highlight')
 
@@ -163,7 +167,7 @@ function! PackagerInit() abort
   call packager#local('~/projects/personal/pdf-scribe.nvim')
 
   " Tasks
-  call packager#local('~/projects/personal/todoist-import.nvim')
+  call packager#local('~/projects/personal/import-todoist.nvim')
 endfunction
 
 command! PackagerInstall call PackagerInit() | call packager#install()
