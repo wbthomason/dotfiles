@@ -24,17 +24,9 @@ augroup END
 
 command! -nargs=0 LoadLsp call s:load_lsp()
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ completion#trigger_completion()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:completion_trigger_on_delete = 1
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <c-p> completion#trigger_completion()
 
 " Set completeopt to have a better completion experience
