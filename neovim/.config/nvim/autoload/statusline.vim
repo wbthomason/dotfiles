@@ -148,7 +148,7 @@ function! statusline#coc() abort
 endfunction
 
 function! statusline#have_lsp() abort
-  return luaeval("#vim.lsp.buf_get_clients() > 0")
+  return luaeval('#vim.lsp.buf_get_clients() > 0')
 endfunction
 
 function! statusline#lsp() abort
