@@ -71,6 +71,13 @@ function! s:setup_colors() abort
   hi! link SignifySignChange AquaSign
   hi! link SignifySignDelete RedSign
 
+  hi! link DirvishGitModified AquaSign
+  hi! link DirvishGitStaged GreenSign
+  hi! link DirvishGitRenamed AquaSign
+  hi! link DirvishGitUnmerged RedSign
+  hi! link DirvishGitUntracked YellowSign
+  hi! link DirvishGitUntrackedDir OrangeHover
+
   hi! HoverDisplay guibg=#303030 guifg=#dddddd
 
   let s:idx = 1
