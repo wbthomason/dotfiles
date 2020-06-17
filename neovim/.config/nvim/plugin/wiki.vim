@@ -38,19 +38,10 @@ command! UpdateWikiTags call UpdateWikiTagsList()
 
 let g:wiki_tag_format_pattern = '\v%(^|\s)#\zs[^# ]+\ze($| )'
 
-augroup wiki_load_aucmds
-  au!
-  au BufNewFile,BufReadPre ~/gdrive/notes/**/*.md ++once packadd wiki.vim
-  au BufNewFile,BufReadPre ~/gdrive/notes/**/*.md WikiEnable
-augroup END
-
 let s:wiki_load_config = { 
       \ 'delete': ['WikiJournal', 'WikiOpen'],
       \ 'package': 'wiki.vim',
       \}
-
-command! WikiJournal call util#load_and_run('WikiJournal', 0, 0, '', '', s:wiki_load_config)
-command! WikiOpen call util#load_and_run('WikiOpen', 0, 0, '', '', s:wiki_load_config)
 
 " Open wiki files
 nnoremap <silent> <localleader>w :Clap files ~/gdrive/notes<cr>

@@ -1,10 +1,6 @@
 " Prosession
 let g:prosession_tmux_title = 1
 let g:prosession_on_startup = 0
-let s:prosession_load_config = {
-      \'delete': ['Prosession'],
-      \'package': ['vim-obsession', 'vim-prosession'],
-      \}
 let g:prosession_dir = expand('~/.cache/nvim/sessions')
 
 function! s:complete_sessions(lead, cmd, curs)
@@ -19,5 +15,3 @@ function! s:complete_sessions(lead, cmd, curs)
   let flist = map(flist, "substitute(v:val, '%', '/', 'g')")
   return flist  
 endfunction
-
-command! -bar -nargs=1 -complete=customlist,s:complete_sessions Prosession call util#load_and_run('Prosession', 0, 0, '', <q-args>, s:prosession_load_config)
