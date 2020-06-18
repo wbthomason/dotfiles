@@ -205,7 +205,6 @@ local plugins = {
   },
   ["wiki.vim"] = {
     commands = { "WikiJournal", "WikiOpen" },
-    config = 'vim.api.nvim_command("WikiEnable")',
     loaded = false,
     only_sequence = false,
     only_setup = false,

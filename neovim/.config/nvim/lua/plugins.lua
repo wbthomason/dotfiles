@@ -77,8 +77,16 @@ local function init()
   -- use { 'chrisbra/unicode.vim', opt = true }
 
   -- Project Management/Sessions
-  use { 'tpope/vim-obsession', cmd = 'Prosession' }
-  use { 'dhruvasagar/vim-prosession', after = 'vim-obsession' }
+  use {
+    'dhruvasagar/vim-prosession',
+    after = 'vim-obsession',
+    requires = {
+      {
+        'tpope/vim-obsession',
+        cmd = 'Prosession'
+      }
+    }
+  }
 
   -- REPL
   use {
@@ -108,22 +116,36 @@ local function init()
   -- Completion and linting
   use { 'neovim/nvim-lsp', opt = true }
   use  '~/projects/personal/lsp-status.nvim'
-  use { 'haorenW1025/completion-nvim', opt = true }
+  use {
+    'haorenW1025/completion-nvim',
+    opt = true,
+    requires = {
+      { 'hrsh7th/vim-vsnip', opt = true },
+      { 'hrsh7th/vim-vsnip-integ', opt = true }
+    }
+  }
+
   use { 'nvim-treesitter/completion-treesitter', opt = true }
   use { 'nvim-treesitter/nvim-treesitter', opt = true }
 
   use '~/projects/personal/hover.nvim'
   use { 'haorenW1025/diagnostic-nvim', opt = true }
-  use { 'hrsh7th/vim-vsnip', opt = true }
-  use { 'hrsh7th/vim-vsnip-integ', opt = true }
 
 
-  use { 'ncm2/ncm2', opt = true }
-  use { 'roxma/nvim-yarp', opt = true }
-  use { 'ncm2/ncm2-path', opt = true }
-  use { 'ncm2/ncm2-syntax', opt = true }
-  use { 'Shougo/neco-syntax', opt = true }
-  use { 'ncm2/float-preview.nvim', opt = true }
+  use {
+    'ncm2/ncm2',
+    opt = true,
+    requires = {
+      { 'roxma/nvim-yarp', opt = true },
+      { 'ncm2/ncm2-path', opt = true },
+      {
+        'ncm2/ncm2-syntax',
+        opt = true,
+        requires = {{ 'Shougo/neco-syntax', opt = true }}
+      },
+      { 'ncm2/float-preview.nvim', opt = true },
+    }
+  }
 
   -- Linting
   use {
@@ -216,7 +238,6 @@ local function init()
     'lervag/wiki.vim',
     event = { 'BufNewFile ~/gdrive/notes/**/*.md', 'BufReadPre ~/gdrive/notes/**/*.md' },
     cmd = { 'WikiJournal', 'WikiOpen' },
-    config = 'vim.api.nvim_command("WikiEnable")'
   }
 
   -- Notes
