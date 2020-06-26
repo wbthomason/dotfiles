@@ -68,12 +68,14 @@ set statusline+=%=
 " VCS
 set statusline+=%#StatuslineVC#%{statusline#vc_status()}\ 
 
-" ALE status
-set statusline+=%{statusline#ale_enabled()?'':'\ '}%(%#StatuslineLint#%{statusline#ale()}%)
-
-" coc
-" set statusline+=%{g:coc_enabled?'':'\ '}%(%#StatuslineLint#%{statusline#coc()}%)
-set statusline+=%{statusline#have_lsp()?'':'\ '}%(%#StatuslineLint#%{statusline#lsp()}%)%#StatuslineFiletype#
+" Linters/LSP
+set statusline+=%(%#StatuslineLint#%{statusline#lint_lsp()}%)%#StatuslineFiletype#
+"
+" " ALE status
+" set statusline+=%{statusline#ale_enabled()?'':'\ '}%(%#StatuslineLint#%{statusline#ale()}%)
+"
+" " LSP
+" set statusline+=%{statusline#have_lsp()?'':'\ '}%(%#StatuslineLint#%{statusline#lsp()}%)%#StatuslineFiletype#
 
 " Setup the colors
 function! s:setup_colors() abort

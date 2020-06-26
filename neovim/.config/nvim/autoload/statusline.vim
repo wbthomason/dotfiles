@@ -74,7 +74,6 @@ function! statusline#ale() abort
   return l:icon . l:warnings . (l:warnings ==# '' ? '' : (l:errors ==# '' ? '' : ' ')) . l:errors . ' '
 endfunction
 
-
 function! statusline#gutentags_enabled() abort
   return exists('g:gutentags_enabled') && g:gutentags_enabled == 1 && gutentags#statusline() !=# ''
 endfunction
@@ -107,52 +106,27 @@ function! statusline#vc_status() abort
   return l:branch !=# '' ? l:status . l:mark . ' ' . l:branch . ' ' : ''
 endfunction
 
-function! statusline#coc() abort
-  " Partially adapted from coc#status
-  let l:coc_info = get(b:, 'coc_diagnostic_info', {})
-  let l:coc_msgs = []
-  let l:only_hint = v:true
-  if get(l:coc_info, 'error', 0)
-    call add(l:coc_msgs, g:indicator_errors . ' ' . l:coc_info['error'])
-    let l:only_hint = v:false
-  endif
-
-  if get(l:coc_info, 'warning', 0)
-    call add(l:coc_msgs, g:indicator_warnings . ' ' . l:coc_info['warning'])
-    let l:only_hint = v:false
-  endif
-
-  if get(l:coc_info, 'information', 0)
-    call add(l:coc_msgs, g:indicator_info . ' ' . l:coc_info['information'])
-    let l:only_hint = v:false
-  endif
-
-  if get(l:coc_info, 'hint', 0)
-    call add(l:coc_msgs, g:indicator_hint . l:coc_info['hint'])
-  endif
-
-  let l:base_status = trim(join(l:coc_msgs, ' ') . ' ' . get(g:, 'coc_status', ''))
-  let l:status = ' 🇻' . (l:only_hint ? '' : ' ')
-  let l:current_function = get(b:, 'coc_current_function', '')
-  if l:current_function !=# ''
-    let l:status = l:status . '(' . l:current_function . ') ' 
-  endif
-
-  if l:base_status !=# ''
-    let l:status = l:status . l:base_status . ' '
-  else
-    let l:status = l:status . g:indicator_ok . ' '
-  endif
-
-  return l:status
-endfunction
-
 function! statusline#have_lsp() abort
   return luaeval('#vim.lsp.buf_get_clients() > 0')
 endfunction
 
 function! statusline#lsp() abort
   return luaeval("require('lsp-status').status()")
+endfunction
+
+function! statusline#lint_lsp()
+  let l:segment = ''
+  let l:have_ale = v:false
+  if statusline#ale_enabled()
+    let l:have_ale = v:true
+    let l:segment = statusline#ale()
+  endif
+
+  if statusline#have_lsp()
+    let l:segment = l:segment . statusline#lsp()
+  endif
+
+  return l:segment
 endfunction
 
 function! statusline#get_mode(mode) abort
