@@ -132,6 +132,7 @@ local function init()
 
   use '~/projects/personal/hover.nvim'
   use { 'haorenW1025/diagnostic-nvim', opt = true }
+  use {'liuchengxu/vista.vim', cmd = 'Vista'}
 
 
   use {
