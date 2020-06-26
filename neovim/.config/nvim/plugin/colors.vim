@@ -29,7 +29,7 @@ function! s:setup_colors() abort
   hi! link ALEVirtualTextStyleWarning BlueHover
 
   hi! HintHighlight guifg=#83a5cb gui=undercurl guisp=#83a5cb
-  hi! link CocHintSign BlueSign
+  " hi! link CocHintSign BlueSign
 
   hi! link LspDiagnosticsError RedHover
   hi! link LspDiagnosticsWarning YellowHover
@@ -39,28 +39,28 @@ function! s:setup_colors() abort
   hi! link LspReferenceRead BlueHover
   hi! link LspReferenceWrite GreenHover
 
-  let matchGroupId = hlID(hlexists('ClapInput') != 0 ? 'ClapInput' : 'Visual')
-  let input_bg = synIDattr(synIDtrans(matchGroupId), 'bg#', 'gui')
-  let input_bg = input_bg !=# '' ? input_bg : synIDattr(synIDtrans(hlID('Visual')), 'bg#', 'gui')
-
-  let matchGroupId = hlID(hlexists('ClapDisplay') != 0 ? 'ClapDisplay' : 'Pmenu')
-  let display_bg = synIDattr(synIDtrans(matchGroupId), 'bg#', 'gui')
-  let display_bg = display_bg !=# '' ? display_bg : synIDattr(synIDtrans(hlID('Pmenu')), 'bg#', 'gui')
-
-  hi! ClapCurrentSelection guifg=#ffffff gui=bold
-  exec 'hi! ClapInput guifg=#ffffff guibg=' . input_bg
-  exec 'hi! ClapNoMatchesFound guifg=#fe4559 guibg=' . display_bg
-  hi! ClapQuery guifg=#ffffff
-  hi! link ClapSpinner ClapInput
-
+  " let matchGroupId = hlID(hlexists('ClapInput') != 0 ? 'ClapInput' : 'Visual')
+  " let input_bg = synIDattr(synIDtrans(matchGroupId), 'bg#', 'gui')
+  " let input_bg = input_bg !=# '' ? input_bg : synIDattr(synIDtrans(hlID('Visual')), 'bg#', 'gui')
+  "
+  " let matchGroupId = hlID(hlexists('ClapDisplay') != 0 ? 'ClapDisplay' : 'Pmenu')
+  " let display_bg = synIDattr(synIDtrans(matchGroupId), 'bg#', 'gui')
+  " let display_bg = display_bg !=# '' ? display_bg : synIDattr(synIDtrans(hlID('Pmenu')), 'bg#', 'gui')
+  "
+  " hi! ClapCurrentSelection guifg=#ffffff gui=bold
+  " exec 'hi! ClapInput guifg=#ffffff guibg=' . input_bg
+  " exec 'hi! ClapNoMatchesFound guifg=#fe4559 guibg=' . display_bg
+  " hi! ClapQuery guifg=#ffffff
+  " hi! link ClapSpinner ClapInput
+  "
   hi! ALEError guifg=#ff727b ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
   hi! ALEWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
   hi! ALEInfo guifg=#83a598 ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl
 
-  hi! link CocErrorHighlight ALEError
-  hi! link CocWarningHighlight ALEWarning
-  hi! link CocErrorFloat ALEError
-  hi! link CocWarningFloat ALEWarning
+  " hi! link CocErrorHighlight ALEError
+  " hi! link CocWarningHighlight ALEWarning
+  " hi! link CocErrorFloat ALEError
+  " hi! link CocWarningFloat ALEWarning
 
   hi! link LspDiagnosticsUnderlineError ALEError
   hi! link LspDiagnosticsUnderlineWarning ALEWarning
@@ -80,18 +80,18 @@ function! s:setup_colors() abort
 
   hi! HoverDisplay guibg=#303030 guifg=#dddddd
 
-  let s:idx = 1
-  while s:idx < 9
-    execute 'hi! link ClapMatches' . s:idx . ' ClapMatches'
-    execute 'hi! link ClapFuzzyMatches' . s:idx . ' ClapMatches'
-    let s:idx += 1
-  endwhile
-
-  while s:idx < 13
-    execute 'hi! link ClapFuzzyMatches' . s:idx . ' ClapMatches'
-    let s:idx += 1
-  endwhile
-  unlet s:idx
+  " let s:idx = 1
+  " while s:idx < 9
+  "   execute 'hi! link ClapMatches' . s:idx . ' ClapMatches'
+  "   execute 'hi! link ClapFuzzyMatches' . s:idx . ' ClapMatches'
+  "   let s:idx += 1
+  " endwhile
+  "
+  " while s:idx < 13
+  "   execute 'hi! link ClapFuzzyMatches' . s:idx . ' ClapMatches'
+  "   let s:idx += 1
+  " endwhile
+  " unlet s:idx
 
   hi LspCxxHlGroupEnumConstant guifg=#818181
   hi LspCxxHlGroupNamespace guifg=#f0f0f0

@@ -71,10 +71,12 @@ local function init()
   use 'PeterRincker/vim-argumentative'
 
   -- Search
-  use { 'liuchengxu/vim-clap', run = ':Clap install-binary' }
 
   -- Special symbols
   -- use { 'chrisbra/unicode.vim', opt = true }
+  use 'yuki-ycino/fzf-preview.vim'
+  use 'junegunn/fzf.vim'
+  use {'liuchengxu/vim-clap', run = ':Clap install-binary', opt = true}
 
   -- Project Management/Sessions
   use {

@@ -44,7 +44,7 @@ let s:wiki_load_config = {
       \}
 
 " Open wiki files
-nnoremap <silent> <localleader>w :Clap files ~/gdrive/notes<cr>
+nnoremap <silent> <localleader>w :FzfPreviewDirectory ~/gdrive/notes<cr>
 
 function! Wiki_Open_Map(name) abort
   let l:name = wiki#get_root() . '/' . a:name
