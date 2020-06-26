@@ -49,10 +49,10 @@ function! s:handle_cr() abort
   return pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endfunction
 
-call sign_define('LspDiagnosticsErrorSign', {'text' : "🗙", 'texthl' : 'RedHover'})
-call sign_define('LspDiagnosticsWarningSign', {'text' : "➤", 'texthl' : 'YellowHover'})
-call sign_define('LspDiagnosticsInformationSign', {'text' : "🛈", 'texthl' : 'WhiteHover'})
-call sign_define('LspDiagnosticsHintSign', {'text' : "❗", 'texthl' : 'CocHintHighlight'})
+call sign_define('LspDiagnosticsErrorSign', {'text' : '🗙', 'texthl' : 'RedHover'})
+call sign_define('LspDiagnosticsWarningSign', {'text' : '➤', 'texthl' : 'YellowHover'})
+call sign_define('LspDiagnosticsInformationSign', {'text' : '🛈', 'texthl' : 'WhiteHover'})
+call sign_define('LspDiagnosticsHintSign', {'text' : '❗', 'texthl' : 'CocHintHighlight'})
 
 let g:completion_enable_snippet = 'vim-vsnip'
 let g:completion_auto_change_source = 1
