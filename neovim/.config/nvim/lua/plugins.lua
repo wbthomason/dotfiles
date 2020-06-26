@@ -9,27 +9,22 @@ local function init()
   packer.reset()
 
   -- Packer
-  use { '~/projects/personal/packer.nvim', opt = true }
+  use {'~/projects/personal/packer.nvim', opt = true}
 
   -- Async building & commands
-  use {
-    'tpope/vim-dispatch',
-    opt = true,
-    cmd = { 'Dispatch', 'Make', 'Focus', 'Start' }
-  }
+  use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
   -- Registers
-  use 'junegunn/vim-peekaboo'
+  -- use 'junegunn/vim-peekaboo'
 
   -- Marks
   use 'kshenoy/vim-signature'
-  use { 'Yilin-Yang/vim-markbar', opt = true }
 
   -- Buffer management
-  use 'mhinz/vim-sayonara'
+  use {'mhinz/vim-sayonara', cmd = 'Sayonara'}
 
   -- Startup screen
-  use 'mhinz/vim-startify'
+  use {'mhinz/vim-startify', opt = false}
 
   -- Movement
   use 'chaoren/vim-wordmotion'
@@ -39,20 +34,21 @@ local function init()
 
   -- Quickfix
   -- Pack 'romainl/vim-qf'
-  use { 'Olical/vim-enmasse', cmd = 'EnMasse' }
+  use {'Olical/vim-enmasse', cmd = 'EnMasse'}
 
   -- Grepping
-  use { 'mhinz/vim-grepper', cmd = 'Grepper' }
+  use {'mhinz/vim-grepper', cmd = 'Grepper'}
 
   -- Indentation tracking
   use 'yggdroot/indentLine'
 
   -- Commenting
   use 'tomtom/tcomment_vim'
+  -- use 'tyru/caw.vim'
 
   -- Wrapping/delimiters
   use 'machakann/vim-sandwich'
-  use { 'andymass/vim-matchup', event = 'VimEnter *' }
+  use {'andymass/vim-matchup', event = 'VimEnter *'}
   use '9mm/vim-closer'
   use 'tpope/vim-endwise'
 
@@ -64,16 +60,14 @@ local function init()
 
   -- Prettification
   use 'junegunn/vim-easy-align'
-  use 'sbdchd/neoformat'
+  -- TODO: Only load this for filetypes where LSP doesn't provide formatting
+  use {'sbdchd/neoformat', cmd = 'Neoformat'}
 
   -- Text objects
   use 'wellle/targets.vim'
-  use 'PeterRincker/vim-argumentative'
+  -- use 'PeterRincker/vim-argumentative'
 
   -- Search
-
-  -- Special symbols
-  -- use { 'chrisbra/unicode.vim', opt = true }
   use 'yuki-ycino/fzf-preview.vim'
   use 'junegunn/fzf.vim'
   use {'liuchengxu/vim-clap', run = ':Clap install-binary', opt = true}
@@ -82,100 +76,54 @@ local function init()
   use {
     'dhruvasagar/vim-prosession',
     after = 'vim-obsession',
-    requires = {
-      {
-        'tpope/vim-obsession',
-        cmd = 'Prosession'
-      }
-    }
+    requires = {{'tpope/vim-obsession', cmd = 'Prosession'}}
   }
 
   -- REPL
-  use {
-    'Vigemus/iron.nvim',
-    cmd = { 'IronRepl', 'IronWatchCurrentFile', 'IronSend' }
-  }
+  use {'hkupty/iron.nvim', cmd = {'IronRepl', 'IronWatchCurrentFile', 'IronSend'}}
 
   -- Undo tree
-  use {
-    'simnalamburt/vim-mundo',
-    cmd = { 'MundoToggle', 'MundoShow' }
-  }
+  use {'simnalamburt/vim-mundo', cmd = {'MundoToggle', 'MundoShow'}}
 
   -- Git
   use 'mhinz/vim-signify'
-  use {
-    'tpope/vim-fugitive',
-    cmd = { 'Gpull', 'Gpush', 'Gstatus' }
-  }
+  use {'tpope/vim-fugitive', cmd = {'Gpull', 'Gpush', 'Gstatus'}}
 
-  use 'tpope/vim-rhubarb'
   use 'itchyny/vim-gitbranch'
 
   -- Terminal
-  -- use { 'voldikss/vim-floaterm' }
+  use 'voldikss/vim-floaterm'
 
   -- Completion and linting
-  use { 'neovim/nvim-lsp', opt = true }
-  use  '~/projects/personal/lsp-status.nvim'
+  use {'neovim/nvim-lsp', opt = true}
+  use '~/projects/personal/lsp-status.nvim'
   use {
     'haorenW1025/completion-nvim',
     opt = true,
-    requires = {
-      { 'hrsh7th/vim-vsnip', opt = true },
-      { 'hrsh7th/vim-vsnip-integ', opt = true }
-    }
+    requires = {{'hrsh7th/vim-vsnip', opt = true}, {'hrsh7th/vim-vsnip-integ', opt = true}}
   }
 
-  use { 'nvim-treesitter/completion-treesitter', opt = true }
-  use { 'nvim-treesitter/nvim-treesitter', opt = true }
+  use {'nvim-treesitter/completion-treesitter', opt = true}
+  use {'nvim-treesitter/nvim-treesitter', opt = true}
 
-  use '~/projects/personal/hover.nvim'
-  use { 'haorenW1025/diagnostic-nvim', opt = true }
   use {'liuchengxu/vista.vim', cmd = 'Vista'}
 
+  use '~/projects/personal/hover.nvim'
+  use {'haorenW1025/diagnostic-nvim', opt = true}
 
-  use {
-    'ncm2/ncm2',
-    opt = true,
-    requires = {
-      { 'roxma/nvim-yarp', opt = true },
-      { 'ncm2/ncm2-path', opt = true },
-      {
-        'ncm2/ncm2-syntax',
-        opt = true,
-        requires = {{ 'Shougo/neco-syntax', opt = true }}
-      },
-      { 'ncm2/float-preview.nvim', opt = true },
-    }
-  }
   -- Debugger
   use 'mfussenegger/nvim-dap'
 
   -- Linting
   use {
     'w0rp/ale',
-    ft = {
-      'sh',
-      'zsh',
-      'bash',
-      'c',
-      'cpp',
-      'cmake',
-      'html',
-      'markdown',
-      'racket',
-      'vim',
-      'tex'
-    },
+    ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
+    cmd = 'ALEEnable',
     config = 'vim.api.nvim_command("ALEEnable")'
   }
 
   -- Language multipack
   use 'sheerun/vim-polyglot'
-
-  -- Path changing
-  use 'tpope/vim-apathy'
 
   -- Path navigation
   use 'justinmk/vim-dirvish'
@@ -185,7 +133,7 @@ local function init()
   -- use  'jackguo380/vim-lsp-cxx-highlight'
 
   -- Clojure/Lisps/Scheme
-  local sexp_filetypes = { 'clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel', 'pddl' }
+  local sexp_filetypes = {'clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel', 'pddl'}
   use {
     'guns/vim-sexp',
     ft = sexp_filetypes,
@@ -198,17 +146,10 @@ local function init()
     config = 'vim.api.nvim_command("doautoall sexp_mappings_for_regular_people Filetype")'
   }
 
-  use 'phmarek/vlime'
-  use {
-    'Olical/conjure',
-    ft = { 'clojure', 'fennel' }
-  }
+  -- use {'vlime/vlime', rtp = 'vim/'}
+  use {'Olical/conjure', ft = {'clojure', 'fennel'}}
 
-  use {
-    'eraserhd/parinfer-rust',
-    ft = sexp_filetypes,
-    run = 'cargo build --release'
-  }
+  use {'eraserhd/parinfer-rust', ft = sexp_filetypes, run = 'cargo build --release'}
 
   -- LaTeX
   use 'lervag/vimtex'
@@ -220,20 +161,23 @@ local function init()
   use 'PontusPersson/pddl.vim'
 
   -- Profiling
-  use { 'dstein64/vim-startuptime', cmd = 'StartupTime' }
+  use {'dstein64/vim-startuptime', cmd = 'StartupTime'}
 
   -- Highlight colors
   use 'norcalli/nvim-colorizer.lua'
+
+  -- Lua development
+  use {'rafcamlet/nvim-luapad', ft = 'lua'}
 
   -- Color scheme
   use '~/projects/personal/vim-nazgul'
   -- use 'chriskempson/base16-vim'
   -- use 'hardselius/warlock'
   -- use 'arzg/vim-substrata'
-  use { 'tjdevries/colorbuddy.vim', opt = true }
+  -- use {'tjdevries/colorbuddy.vim', opt = true}
 
   -- Markdown
-  use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
 
   -- Tags
   -- use { 'ludovicchabant/vim-gutentags', opt = true }
@@ -241,8 +185,8 @@ local function init()
   -- Wiki
   use {
     'lervag/wiki.vim',
-    event = { 'BufNewFile ~/gdrive/notes/**/*.md', 'BufReadPre ~/gdrive/notes/**/*.md' },
-    cmd = { 'WikiJournal', 'WikiOpen' },
+    event = {'BufNewFile ~/gdrive/notes/**/*.md', 'BufReadPre ~/gdrive/notes/**/*.md'},
+    cmd = {'WikiJournal', 'WikiOpen'}
   }
 
   -- Notes
