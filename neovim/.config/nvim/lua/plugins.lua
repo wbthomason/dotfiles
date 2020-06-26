@@ -146,6 +146,8 @@ local function init()
       { 'ncm2/float-preview.nvim', opt = true },
     }
   }
+  -- Debugger
+  use 'mfussenegger/nvim-dap'
 
   -- Linting
   use {

@@ -9,6 +9,7 @@ function! s:load_lsp() abort
   packadd completion-nvim
   packadd diagnostic-nvim
   execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'
+  execute 'luafile ' . stdpath('config') . '/lua/dap-config.lua'
   augroup lsp_use_aucmd
     au!
     au BufEnter * lua require('completion').on_attach()
@@ -99,3 +100,12 @@ let g:completion_customize_lsp_label = {
       \}
 
 let g:diagnostic_insert_delay = 1
+
+nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <leader>B :lua require'dap'.toggle_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <leader>R :lua require'dap'.repl.open()<CR>
+nnoremap <silent> <leader>L :lua require'dap'.repl.run_last()<CR>
