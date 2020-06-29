@@ -155,7 +155,7 @@ local function init()
   use 'lervag/vimtex'
 
   -- Meson
-  -- use 'igankevich/mesonic'
+  use 'igankevich/mesonic'
 
   -- PDDL
   use 'PontusPersson/pddl.vim'
