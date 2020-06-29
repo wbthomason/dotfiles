@@ -1,7 +1,11 @@
 local M = {}
 
 function M.getCompletionItems(prefix)
-  local items = vim.api.nvim_call_function('wiki#complete#omnicomplete', {0, prefix})
+  local items = {}
+  if vim.fn.exists('g:wiki_loaded') == 1 then
+    items = vim.api.nvim_call_function('wiki#complete#omnicomplete', {0, prefix})
+  end
+
   return items
 end
 
