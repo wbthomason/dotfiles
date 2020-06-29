@@ -379,9 +379,9 @@ augroup packer_load_aucmds
   au FileType clojure ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp', 'conjure'], { "ft": "clojure" })
   au FileType zsh ++once call s:load(['ale'], { "ft": "zsh" })
   au FileType racket ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp', 'ale'], { "ft": "racket" })
-  au BufNewFile ~/gdrive/notes/**/*.md ++once call s:load(['wiki.vim'], { "event": "BufNewFile ~/gdrive/notes/**/*.md" })
+  au BufRead ~/gdrive/notes/*.md ++once call s:load(['wiki.vim'], { "event": "BufRead ~/gdrive/notes/*.md" })
   au VimEnter * ++once call s:load(['vim-matchup'], { "event": "VimEnter *" })
-  au BufReadPre ~/gdrive/notes/**/*.md ++once call s:load(['wiki.vim'], { "event": "BufReadPre ~/gdrive/notes/**/*.md" })
+  au BufNewFile ~/gdrive/notes/*.md ++once call s:load(['wiki.vim'], { "event": "BufNewFile ~/gdrive/notes/*.md" })
   " Event lazy-loads
 augroup END
 

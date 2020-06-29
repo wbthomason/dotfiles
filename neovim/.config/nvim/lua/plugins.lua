@@ -185,7 +185,7 @@ local function init()
   -- Wiki
   use {
     'lervag/wiki.vim',
-    event = {'BufNewFile ~/gdrive/notes/**/*.md', 'BufReadPre ~/gdrive/notes/**/*.md'},
+    event = {'BufNewFile ~/gdrive/notes/*.md', 'BufRead ~/gdrive/notes/*.md'},
     cmd = {'WikiJournal', 'WikiOpen'}
   }
 
