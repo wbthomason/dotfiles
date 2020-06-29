@@ -137,7 +137,8 @@ local servers = {
       '--clang-tidy',
       '--completion-style=bundled',
       '--header-insertion=iwyu',
-      '--suggest-missing-includes'
+      '--suggest-missing-includes',
+      '--cross-file-rename'
     },
     callbacks = lsp_status.extensions.clangd.setup(),
     init_options = {
