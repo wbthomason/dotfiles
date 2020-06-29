@@ -8,6 +8,11 @@ function! s:load_lsp() abort
   packadd vim-vsnip-integ
   packadd completion-nvim
   packadd diagnostic-nvim
+  lua << END
+    require('completion').addCompletionSource('vimtex', require('vimtex').complete_item)
+    require('completion').addCompletionSource('wiki', require('wiki').complete_item)
+END
+
   execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'
   execute 'luafile ' . stdpath('config') . '/lua/dap-config.lua'
   augroup lsp_use_aucmd
@@ -60,14 +65,27 @@ let g:completion_auto_change_source = 1
 let g:completion_chain_complete_list = {
       \ 'default' : {
       \   'default': [
-      \       {'complete_items': ['lsp', 'snippet']},
+      \       {'complete_items': ['lsp']},
       \       {'mode': '<c-p>'},
       \       {'mode': '<c-n>'},
       \],
       \   'comment': [],
-      \   'string' : [
-      \     {'complete_items': ['path']}
-      \   ]
+      \   'string' : [ {'complete_items': ['path']} ]
+      \},
+      \ 'tex': {
+      \     'default': [
+      \     { 'complete_items': ['lsp'] },
+      \     { 'complete_items': ['vimtex'] },
+      \     { 'mode': '<c-p>' },
+      \     { 'mode': '<c-n>' },
+      \]
+      \},
+      \ 'markdown': {
+      \     'default': [
+      \     { 'complete_items': ['wiki'] },
+      \     { 'mode': '<c-p>' },
+      \     { 'mode': '<c-n>' },
+      \]
       \}
       \}
 
