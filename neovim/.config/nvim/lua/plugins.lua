@@ -70,7 +70,7 @@ local function init()
   -- Search
   use 'yuki-ycino/fzf-preview.vim'
   use 'junegunn/fzf.vim'
-  use {'liuchengxu/vim-clap', run = ':Clap install-binary', opt = true}
+  use {'liuchengxu/vim-clap', run = ':Clap install-binary', opt = true, disable = true}
 
   -- Project Management/Sessions
   use {
