@@ -30,7 +30,7 @@ nnoremap <silent> <leader>l <cmd>b#<cr>
 " nnoremap <silent>  - <cmd>Clap buffers<cr>
 " nnoremap <silent> _ <cmd>Clap files<cr>
 " nnoremap <silent> + <cmd>Clap gfiles<cr>
-nnoremap <silent> - <cmd>FzfPreviewBuffers<cr>
+nnoremap <silent> - <cmd>Buffers<cr>
 nnoremap <silent> _ <cmd>FzfPreviewFromResources buffer mru old git directory<cr>
 
 " Hovering
