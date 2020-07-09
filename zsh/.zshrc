@@ -38,12 +38,6 @@ setopt histignorealldups
 # Don't want common history between shells
 unsetopt share_history
 
-# pkg-config tweaks
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig
-
-# LD_LIBRARY_PATH tweaks
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/lib64
-
 # Editor setting
 export EDITOR=vim
 

@@ -50,7 +50,6 @@ end
 
 diagnostic.diagnostics_loclist = function(local_result)
   if local_result then for _, v in ipairs(local_result) do v.uri = v.uri or local_result.uri end end
-
   vim.lsp.util.set_loclist(diagnostics_to_items(local_result))
 end
 
