@@ -56,9 +56,9 @@ diagnostic.diagnostics_loclist = function(local_result)
     for _, v in ipairs(local_result.diagnostics) do
       v.uri = v.uri or local_result.uri
     end
-  end
 
-  vim.lsp.util.set_loclist(diagnostics_to_items(local_result.diagnostics))
+    vim.lsp.util.set_loclist(diagnostics_to_items(local_result.diagnostics))
+  end
 end
 
 local texlab_search_status = vim.tbl_add_reverse_lookup {
