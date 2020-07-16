@@ -89,8 +89,6 @@ local function init()
   use 'mhinz/vim-signify'
   use {'tpope/vim-fugitive', cmd = {'Gpull', 'Gpush', 'Gstatus'}}
 
-  use 'itchyny/vim-gitbranch'
-
   -- Terminal
   use 'voldikss/vim-floaterm'
 
