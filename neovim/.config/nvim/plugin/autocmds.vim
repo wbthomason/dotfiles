@@ -8,7 +8,7 @@ augroup END
 augroup misc_aucmds
   au!
   au BufWinEnter * checktime
-  au TextYankPost * silent! lua require'vim.highlight'.on_yank()
+  au TextYankPost * silent! lua vim.highlight.on_yank()
 augroup END
 
 augroup collab_aucmds
