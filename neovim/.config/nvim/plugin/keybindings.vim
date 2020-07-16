@@ -1,8 +1,6 @@
 " Keybindings
 
 " Get rid of the annoying F1 binding
-map <f1> <nop>
-nmap <f1> <nop>
 imap <f1> <nop>
 
 " Re-run commands
