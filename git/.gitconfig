@@ -4,7 +4,7 @@
   signingkey = 8BEE5C508226C4516876B93449B3E4A714642E1D
 
 [credential]
-	helper = /usr/lib/git-core/git-credential-libsecret
+  helper = /usr/lib/git-core/git-credential-libsecret
 
 [push]
   default = simple
@@ -13,7 +13,7 @@
   editor = nvim
   autocrlf = input
   excludesfile = /home/wil/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = diff-so-fancy | less --tabs=4 -RFX
 
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
@@ -37,25 +37,25 @@
   cp    = cherry-pick
   cl    = clone
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [commit]
-	gpgsign = true
+  gpgsign = true
 [gpg]
-	program = gpg2
+  program = gpg2
 [color]
-	ui = true
+  ui = true
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 [color "diff"]
-	meta = yellow
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = yellow
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
