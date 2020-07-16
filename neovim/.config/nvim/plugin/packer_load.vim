@@ -4,21 +4,32 @@ lua << END
 local plugins = {
   ale = {
     commands = { "ALEEnable" },
-    config = 'vim.api.nvim_command("ALEEnable")',
+    config = { "\27LJ\1\2>\0\0\2\0\4\0\0064\0\0\0007\0\1\0007\0\2\0%\1\3\0>\0\2\1G\0\1\0\14ALEEnable\17nvim_command\bapi\bvim\0" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/ale"
   },
   ["completion-nvim"] = {
+    after = { "completion-nvim-vlime" },
     loaded = false,
-    only_sequence = true,
+    only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/completion-nvim"
   },
+  ["completion-nvim-vlime"] = {
+    load_after = {
+      ["completion-nvim"] = true,
+      vlime = true
+    },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/completion-nvim-vlime"
+  },
   ["completion-treesitter"] = {
     loaded = false,
-    only_sequence = true,
+    only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/completion-treesitter"
   },
@@ -30,7 +41,7 @@ local plugins = {
   },
   ["diagnostic-nvim"] = {
     loaded = false,
-    only_sequence = true,
+    only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/diagnostic-nvim"
   },
@@ -43,6 +54,7 @@ local plugins = {
   },
   ["markdown-preview.nvim"] = {
     commands = { "MarkdownPreview" },
+    config = { 'vim.api.nvim_command("doautocmd BufEnter")' },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -57,7 +69,7 @@ local plugins = {
   },
   ["nvim-lsp"] = {
     loaded = false,
-    only_sequence = true,
+    only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-lsp"
   },
@@ -69,13 +81,13 @@ local plugins = {
   },
   ["nvim-treesitter"] = {
     loaded = false,
-    only_sequence = true,
+    only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
   },
   ["packer.nvim"] = {
     loaded = false,
-    only_sequence = true,
+    only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
@@ -84,12 +96,6 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/parinfer-rust"
-  },
-  ["vim-clap"] = {
-    loaded = false,
-    only_sequence = true,
-    only_setup = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-clap"
   },
   ["vim-dispatch"] = {
     commands = { "Dispatch", "Make", "Focus", "Start" },
@@ -157,14 +163,14 @@ local plugins = {
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-sayonara"
   },
   ["vim-sexp"] = {
-    config = 'vim.api.nvim_command("doautoall sexp_filetypes Filetype")',
+    config = { "\27LJ\1\2V\0\0\2\0\4\0\0064\0\0\0007\0\1\0007\0\2\0%\1\3\0>\0\2\1G\0\1\0&doautoall sexp_filetypes Filetype\17nvim_command\bapi\bvim\0" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-sexp"
   },
   ["vim-sexp-mappings-for-regular-people"] = {
-    config = 'vim.api.nvim_command("doautoall sexp_mappings_for_regular_people Filetype")',
+    config = { "\27LJ\1\2h\0\0\2\0\4\0\0064\0\0\0007\0\1\0007\0\2\0%\1\3\0>\0\2\1G\0\1\0008doautoall sexp_mappings_for_regular_people Filetype\17nvim_command\bapi\bvim\0" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
@@ -179,13 +185,13 @@ local plugins = {
   },
   ["vim-vsnip"] = {
     loaded = false,
-    only_sequence = true,
+    only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   },
   ["vim-vsnip-integ"] = {
     loaded = false,
-    only_sequence = true,
+    only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-vsnip-integ"
   },
@@ -195,6 +201,13 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vista.vim"
+  },
+  vlime = {
+    after = { "completion-nvim-vlime" },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vlimevim/"
   },
   ["wiki.vim"] = {
     commands = { "WikiJournal", "WikiOpen" },
@@ -267,7 +280,9 @@ _packer_load = function(names, cause)
     if not plugins[name].loaded then
       vim.api.nvim_command('packadd ' .. name)
       if plugins[name].config then
-        loadstring(plugins[name].config)()
+        for _i, config_line in ipairs(plugins[name].config) do
+          loadstring(config_line)()
+        end
       end
 
       if plugins[name].after then
@@ -347,11 +362,11 @@ command! -nargs=* -range -bang -complete=file Gpush call s:load(['vim-fugitive']
 command! -nargs=* -range -bang -complete=file Gstatus call s:load(['vim-fugitive'], { "cmd": "Gstatus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file IronRepl call s:load(['iron.nvim'], { "cmd": "IronRepl", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file IronSend call s:load(['iron.nvim'], { "cmd": "IronSend", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file MarkdownPreview call s:load(['markdown-preview.nvim'], { "cmd": "MarkdownPreview", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file ALEEnable call s:load(['ale'], { "cmd": "ALEEnable", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Focus call s:load(['vim-dispatch'], { "cmd": "Focus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file IronWatchCurrentFile call s:load(['iron.nvim'], { "cmd": "IronWatchCurrentFile", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file ALEEnable call s:load(['ale'], { "cmd": "ALEEnable", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Neoformat call s:load(['neoformat'], { "cmd": "Neoformat", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file MarkdownPreview call s:load(['markdown-preview.nvim'], { "cmd": "MarkdownPreview", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Grepper call s:load(['vim-grepper'], { "cmd": "Grepper", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Prosession call s:load(['vim-obsession'], { "cmd": "Prosession", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
@@ -361,28 +376,29 @@ command! -nargs=* -range -bang -complete=file Prosession call s:load(['vim-obses
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType jbuild ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp'], { "ft": "jbuild" })
+  au FileType jbuild ++once call s:load(['vim-sexp-mappings-for-regular-people', 'parinfer-rust', 'vim-sexp'], { "ft": "jbuild" })
   au FileType html ++once call s:load(['ale'], { "ft": "html" })
   au FileType sh ++once call s:load(['ale'], { "ft": "sh" })
-  au FileType fennel ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp', 'conjure'], { "ft": "fennel" })
+  au FileType fennel ++once call s:load(['vim-sexp-mappings-for-regular-people', 'parinfer-rust', 'vim-sexp', 'conjure'], { "ft": "fennel" })
   au FileType c ++once call s:load(['ale'], { "ft": "c" })
-  au FileType scheme ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp'], { "ft": "scheme" })
+  au FileType scheme ++once call s:load(['vim-sexp-mappings-for-regular-people', 'parinfer-rust', 'vim-sexp'], { "ft": "scheme" })
   au FileType cpp ++once call s:load(['ale'], { "ft": "cpp" })
   au FileType tex ++once call s:load(['ale'], { "ft": "tex" })
   au FileType cmake ++once call s:load(['ale'], { "ft": "cmake" })
   au FileType bash ++once call s:load(['ale'], { "ft": "bash" })
-  au FileType lisp ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp'], { "ft": "lisp" })
-  au FileType pddl ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp'], { "ft": "pddl" })
+  au FileType lisp ++once call s:load(['vim-sexp-mappings-for-regular-people', 'parinfer-rust', 'vlime', 'vim-sexp'], { "ft": "lisp" })
+  au FileType pddl ++once call s:load(['vim-sexp-mappings-for-regular-people', 'parinfer-rust', 'vim-sexp'], { "ft": "pddl" })
   au FileType markdown ++once call s:load(['ale'], { "ft": "markdown" })
   au FileType vim ++once call s:load(['ale'], { "ft": "vim" })
   au FileType lua ++once call s:load(['nvim-luapad'], { "ft": "lua" })
-  au FileType clojure ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp', 'conjure'], { "ft": "clojure" })
+  au FileType clojure ++once call s:load(['vim-sexp-mappings-for-regular-people', 'parinfer-rust', 'vim-sexp', 'conjure'], { "ft": "clojure" })
   au FileType zsh ++once call s:load(['ale'], { "ft": "zsh" })
-  au FileType racket ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp', 'ale'], { "ft": "racket" })
+  au FileType racket ++once call s:load(['vim-sexp-mappings-for-regular-people', 'parinfer-rust', 'vim-sexp', 'ale'], { "ft": "racket" })
+  " Event lazy-loads
   au BufRead ~/gdrive/notes/*.md ++once call s:load(['wiki.vim'], { "event": "BufRead ~/gdrive/notes/*.md" })
   au VimEnter * ++once call s:load(['vim-matchup'], { "event": "VimEnter *" })
   au BufNewFile ~/gdrive/notes/*.md ++once call s:load(['wiki.vim'], { "event": "BufNewFile ~/gdrive/notes/*.md" })
-  " Event lazy-loads
 augroup END
 
 " Runtimepath customization
+let &runtimepath .=",/home/wil/.local/share/nvim/site/pack/packer/opt/vlime/vim/"

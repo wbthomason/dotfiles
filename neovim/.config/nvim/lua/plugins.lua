@@ -68,9 +68,8 @@ local function init()
   -- use 'PeterRincker/vim-argumentative'
 
   -- Search
-  use 'yuki-ycino/fzf-preview.vim'
+  use {'yuki-ycino/fzf-preview.vim', run = 'pwd && npm install', opt = true}
   use 'junegunn/fzf.vim'
-  use {'liuchengxu/vim-clap', run = ':Clap install-binary', opt = true, disable = true}
 
   -- Project Management/Sessions
   use {
@@ -98,7 +97,10 @@ local function init()
   use {
     'haorenW1025/completion-nvim',
     opt = true,
-    requires = {{'hrsh7th/vim-vsnip', opt = true}, {'hrsh7th/vim-vsnip-integ', opt = true}}
+    requires = {
+      {'hrsh7th/vim-vsnip', opt = true}, {'hrsh7th/vim-vsnip-integ', opt = true},
+      {'https://gitlab.com/HiPhish/completion-nvim-vlime', after = {'completion-nvim', 'vlime'}}
+    }
   }
 
   use {'nvim-treesitter/completion-treesitter', opt = true}
@@ -111,13 +113,18 @@ local function init()
 
   -- Debugger
   use 'mfussenegger/nvim-dap'
+  use {
+    'puremourning/vimspector',
+    setup = function() vim.g.vimspector_enable_mappings = 'HUMAN' end,
+    config = function() vim.g.vimspector_enable_mappings = 'HUMAN' end
+  }
 
   -- Linting
   use {
     'w0rp/ale',
     ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
     cmd = 'ALEEnable',
-    config = 'vim.api.nvim_command("ALEEnable")'
+    config = function() vim.api.nvim_command('ALEEnable') end
   }
 
   -- Language multipack
@@ -135,16 +142,18 @@ local function init()
   use {
     'guns/vim-sexp',
     ft = sexp_filetypes,
-    config = 'vim.api.nvim_command("doautoall sexp_filetypes Filetype")'
+    config = function() vim.api.nvim_command('doautoall sexp_filetypes Filetype') end
   }
 
   use {
     'tpope/vim-sexp-mappings-for-regular-people',
     ft = sexp_filetypes,
-    config = 'vim.api.nvim_command("doautoall sexp_mappings_for_regular_people Filetype")'
+    config = function()
+      vim.api.nvim_command('doautoall sexp_mappings_for_regular_people Filetype')
+    end
   }
 
-  -- use {'vlime/vlime', rtp = 'vim/'}
+  use {'vlime/vlime', rtp = 'vim/', ft = {'lisp'}}
   use {'Olical/conjure', ft = {'clojure', 'fennel'}}
 
   use {'eraserhd/parinfer-rust', ft = sexp_filetypes, run = 'cargo build --release'}
@@ -175,7 +184,12 @@ local function init()
   -- use {'tjdevries/colorbuddy.vim', opt = true}
 
   -- Markdown
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
+  use {
+    'iamcco/markdown-preview.nvim',
+    config = 'vim.api.nvim_command("doautocmd BufEnter")',
+    run = 'cd app && yarn install',
+    cmd = 'MarkdownPreview'
+  }
 
   -- Tags
   -- use { 'ludovicchabant/vim-gutentags', opt = true }
