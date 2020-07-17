@@ -186,7 +186,7 @@ local function update_changes(path)
       string.format('git show HEAD:./%s > %s && diff -U0 %s %s', buf_file_name, temp_base_file_name,
                     temp_base_file_name, temp_buf_file_name)
     }
-    ctx.exit_code = 1
+    ctx.exit_code = {[1] = true, [0] = true}
     ctx.split = true
   else
     job = {
@@ -194,7 +194,7 @@ local function update_changes(path)
       string.format('git -C %s --no-pager diff --no-color --no-ext-diff -U0 -- %s', buf_file_dir,
                     buf_file_name)
     }
-    ctx.exit_code = 0
+    ctx.exit_code = {[0] = true}
     ctx.split = true
   end
 
@@ -216,7 +216,7 @@ local function update_changes(path)
       end
 
       vim.loop.check_stop(check)
-      process_diff(exit_code == ctx.exit_code, path, ctx, output_log, err_log)
+      process_diff(ctx.exit_code[exit_code] ~= nil, path, ctx, output_log, err_log)
     end)
   end)
 
