@@ -122,7 +122,12 @@ local servers = {
       '--suggest-missing-includes', '--cross-file-rename'
     },
     callbacks = lsp_status.extensions.clangd.setup(),
-    init_options = {clangdFileStatus = true, usePlaceholders = true, completeUnimported = true}
+    init_options = {
+      clangdFileStatus = true,
+      usePlaceholders = true,
+      completeUnimported = true,
+      semanticHighlighting = true
+    }
   },
   cssls = {
     filetypes = {"css", "scss", "less", "sass"},
