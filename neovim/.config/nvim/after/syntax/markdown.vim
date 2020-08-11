@@ -1,6 +1,6 @@
 if exists('g:wiki_loaded')
   " Add wiki-ft link concealing
-  for [s:group, s:rx; s:contained] in [
+  for [s:group, s:type; s:contained] in [
         \ ['wikiLinkUrl',       'url',         'wikiLinkUrlConceal', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
         \ ['wikiLinkUrl',       'shortcite', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
         \ ['wikiLinkWiki',      'wiki',        'wikiLinkWikiConceal', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
@@ -10,15 +10,16 @@ if exists('g:wiki_loaded')
         \ ['wikiLinkMd',        'md',          'wikiLinkMdConceal', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
         \ ['wikiLinkDate',      'date', 'mkdNonListItemBlock', 'mkdListItem', 'mkdListItemLine'],
         \]
+    let s:rx = wiki#link#{s:type}#matcher().rx
     execute 'syntax cluster wikiLink  add=' . s:group
     execute 'syntax match' s:group
-          \ '/' . wiki#link#get_matcher_opt(s:rx, 'rx') . '/'
+          \ '/' . s:rx . '/'
           \ 'display contains=@NoSpell'
           \ . (empty(s:contained) ? '' : ',' . join(s:contained, ','))
 
     call filter(s:contained, 'v:val !~# ''Conceal''')
     execute 'syntax match' s:group . 'T'
-          \ '/' . wiki#link#get_matcher_opt(s:rx, 'rx') . '/'
+          \ '/' . s:rx . '/'
           \ 'display contained contains=@NoSpell'
           \ . (empty(s:contained) ? '' : ',' . join(s:contained, ','))
   endfor
@@ -46,7 +47,7 @@ if exists('g:wiki_loaded')
   highlight default link wikiLinkRefTarget Underlined
   highlight default link wikiLinkDate MoreMsg
 
-  unlet s:group s:rx s:contained
+  unlet s:group s:type s:rx s:contained
 endif
 
 " To play nice with vim-markdown
