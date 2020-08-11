@@ -125,6 +125,12 @@ local function init()
   -- Language multipack
   use 'sheerun/vim-polyglot'
 
+  -- Better Lua highlighting
+  use 'euclidianAce/BetterLua.vim'
+
+  -- Better Lua development for Neovim
+  use 'tjdevries/nlua.nvim'
+
   -- Path navigation
   use 'justinmk/vim-dirvish'
   use 'kristijanhusak/vim-dirvish-git'
