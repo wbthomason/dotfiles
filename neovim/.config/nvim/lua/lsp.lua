@@ -181,7 +181,7 @@ local servers = {
       Lua = {
         diagnostics = {globals = {'vim'}},
         completion = {keywordSnippet = 'Disable'},
-        runtime = {version = 'LuaJIT'}
+        runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')}
       }
     }
   },
