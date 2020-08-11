@@ -27,9 +27,7 @@ local function init()
   use {'mhinz/vim-startify', opt = false}
 
   -- Movement
-  use 'chaoren/vim-wordmotion'
-  use 'tpope/vim-repeat'
-  use 'justinmk/vim-sneak'
+  use {'chaoren/vim-wordmotion', 'tpope/vim-repeat', 'justinmk/vim-sneak'}
   -- use { 'unblevable/quick-scope', opt = true }
 
   -- Quickfix
@@ -47,10 +45,10 @@ local function init()
   -- use 'tyru/caw.vim'
 
   -- Wrapping/delimiters
-  use 'machakann/vim-sandwich'
-  use {'andymass/vim-matchup', event = 'VimEnter *'}
-  use '9mm/vim-closer'
-  use 'tpope/vim-endwise'
+  use {
+    'machakann/vim-sandwich', {'andymass/vim-matchup', event = 'VimEnter *'}, '9mm/vim-closer',
+    'tpope/vim-endwise'
+  }
 
   -- Search
   use 'romainl/vim-cool'
@@ -68,8 +66,7 @@ local function init()
   -- use 'PeterRincker/vim-argumentative'
 
   -- Search
-  use {'yuki-ycino/fzf-preview.vim', run = 'pwd && npm install', opt = true}
-  use 'junegunn/fzf.vim'
+  use {{'yuki-ycino/fzf-preview.vim', run = 'pwd && npm install', opt = false}, 'junegunn/fzf.vim'}
 
   -- Project Management/Sessions
   use {
@@ -82,29 +79,27 @@ local function init()
   use {'hkupty/iron.nvim', cmd = {'IronRepl', 'IronWatchCurrentFile', 'IronSend'}}
 
   -- Undo tree
-  use {'simnalamburt/vim-mundo', cmd = {'MundoToggle', 'MundoShow'}}
+  -- use {'simnalamburt/vim-mundo', cmd = {'MundoToggle', 'MundoShow'}}
+  use {'mbbill/undotree', cmd = 'UndotreeToggle'}
 
   -- Git
-  use 'mhinz/vim-signify'
-  use {'tpope/vim-fugitive', cmd = {'Gpull', 'Gpush', 'Gstatus'}}
+  use {'mhinz/vim-signify', {'tpope/vim-fugitive', cmd = {'Gpull', 'Gpush', 'Gstatus'}}}
 
   -- Terminal
   use 'voldikss/vim-floaterm'
 
   -- Completion and linting
-  use {'neovim/nvim-lsp', opt = true}
-  use '~/projects/personal/lsp-status.nvim'
   use {
-    'haorenW1025/completion-nvim',
-    opt = true,
-    requires = {
-      {'hrsh7th/vim-vsnip', opt = true}, {'hrsh7th/vim-vsnip-integ', opt = true},
-      {'https://gitlab.com/HiPhish/completion-nvim-vlime', after = {'completion-nvim', 'vlime'}}
-    }
+    {'neovim/nvim-lsp', opt = true}, '~/projects/personal/lsp-status.nvim', {
+      'haorenW1025/completion-nvim',
+      opt = true,
+      requires = {
+        {'hrsh7th/vim-vsnip', opt = true}, {'hrsh7th/vim-vsnip-integ', opt = true},
+        {'https://gitlab.com/HiPhish/completion-nvim-vlime', after = {'completion-nvim', 'vlime'}},
+      }
+    }, {'nvim-treesitter/completion-treesitter', opt = true},
+    {'nvim-treesitter/nvim-treesitter', opt = true }
   }
-
-  use {'nvim-treesitter/completion-treesitter', opt = true}
-  use {'nvim-treesitter/nvim-treesitter', opt = true}
 
   use {'liuchengxu/vista.vim', cmd = 'Vista'}
 
@@ -112,7 +107,7 @@ local function init()
   use {'haorenW1025/diagnostic-nvim', opt = true}
 
   -- Debugger
-  use 'mfussenegger/nvim-dap'
+  use {'mfussenegger/nvim-dap', opt = true}
   use {
     'puremourning/vimspector',
     setup = function() vim.g.vimspector_enable_mappings = 'HUMAN' end,
@@ -190,9 +185,6 @@ local function init()
     run = 'cd app && yarn install',
     cmd = 'MarkdownPreview'
   }
-
-  -- Tags
-  -- use { 'ludovicchabant/vim-gutentags', opt = true }
 
   -- Wiki
   use {
