@@ -47,6 +47,7 @@ let g:polyglot_disabled = [
       \ 'jst',
       \ 'jsx',
       \ 'latex',
+      \ 'lua',
       \ 'tex',
       \ 'less',
       \ 'lilypond',
