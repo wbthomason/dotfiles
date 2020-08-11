@@ -15,7 +15,7 @@ local function init()
   use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
   -- Registers
-  -- use 'junegunn/vim-peekaboo'
+  use 'junegunn/vim-peekaboo'
 
   -- Marks
   use 'kshenoy/vim-signature'
