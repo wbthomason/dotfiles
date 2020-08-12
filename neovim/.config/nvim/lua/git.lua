@@ -170,6 +170,11 @@ local function update_changes(path)
       if vim.fn.getbufvar(buf, '&bomb', false) == 1 then
         buf_contents[1] = '' .. buf_contents[1]
       end
+
+      for idx, _ in ipairs(buf_contents) do
+        buf_contents[idx] = buf_contents[idx] .. '\n'
+      end
+
       local temp_file = io.open(temp_buf_file_name, 'w')
       temp_file:write(unpack(buf_contents))
       temp_file:close()
@@ -227,7 +232,6 @@ end
 local function get_info(path)
   if not git_info[path] then
     if not init_git_info(path) then return nil end
-
     git_info[path].branch = get_branch(path)
     update_changes(path)
   end
