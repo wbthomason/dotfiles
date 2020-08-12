@@ -77,7 +77,7 @@ local function vcs(path)
   local changes = git_info.stats
   local added = changes.added > 0 and ('+' .. changes.added .. ' ') or ''
   local modified = changes.modified > 0 and ('~' .. changes.modified .. ' ') or ''
-  local removed = changes.removed > 0 and ('-' .. changes.removed) or ''
+  local removed = changes.removed > 0 and ('-' .. changes.removed .. ' ') or ''
   local pad = ((added ~= '') or (removed ~= '') or (modified ~= '')) and ' ' or ''
   local diff_str = string.format('%s%s%s%s', added, removed, modified, pad)
   return string.format('%s%s %s ', diff_str, branch_sign, git_info.branch)
