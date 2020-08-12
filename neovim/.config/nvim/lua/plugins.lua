@@ -23,15 +23,11 @@ local function init()
   -- Buffer management
   use {'mhinz/vim-sayonara', cmd = 'Sayonara'}
 
-  -- Startup screen
-  use {'mhinz/vim-startify', opt = false}
-
   -- Movement
   use {'chaoren/vim-wordmotion', 'tpope/vim-repeat', 'justinmk/vim-sneak'}
   -- use { 'unblevable/quick-scope', opt = true }
 
   -- Quickfix
-  -- Pack 'romainl/vim-qf'
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
 
   -- Grepping
@@ -66,7 +62,7 @@ local function init()
   -- use 'PeterRincker/vim-argumentative'
 
   -- Search
-  use {{'yuki-ycino/fzf-preview.vim', run = 'pwd && npm install', opt = false}, 'junegunn/fzf.vim'}
+  use {{'yuki-ycino/fzf-preview.vim', run = 'npm install', opt = false, disable = true}, 'junegunn/fzf.vim'}
 
   -- Project Management/Sessions
   use {
@@ -140,6 +136,7 @@ local function init()
 
   -- Clojure/Lisps/Scheme
   local sexp_filetypes = {'clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel', 'pddl'}
+  use 'bakpakin/fennel.vim'
   use {
     'guns/vim-sexp',
     ft = sexp_filetypes,

@@ -24,3 +24,8 @@ let g:loaded_netrwPlugin       = 1
 set termguicolors
 set background=dark
 colorscheme nazgul
+
+augroup start_screen
+  au!
+  autocmd VimEnter * ++once lua require('start').start()
+augroup END
