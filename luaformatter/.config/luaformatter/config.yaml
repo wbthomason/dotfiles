@@ -3,7 +3,7 @@ align_parameter: true
 align_table_field: true
 break_after_functioncall_lp: false
 break_after_functiondef_lp: false
-break_after_operator: false 
+break_after_operator: true
 break_after_table_lb: true
 break_before_functioncall_rp: true
 break_before_functiondef_rp: true
