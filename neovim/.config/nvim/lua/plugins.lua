@@ -136,7 +136,6 @@ local function init()
 
   -- Clojure/Lisps/Scheme
   local sexp_filetypes = {'clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel', 'pddl'}
-  use 'bakpakin/fennel.vim'
   use {
     'guns/vim-sexp',
     ft = sexp_filetypes,
