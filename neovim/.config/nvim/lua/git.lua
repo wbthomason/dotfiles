@@ -90,6 +90,7 @@ local process_diff = vim.schedule_wrap(function(exit_success, path, ctx, output_
   end
 
   if not exit_success then
+    print(vim.inspect(ctx), vim.inspect(output_log))
     git_info[path].updating = false
     git_info[path].disabled = true
     return
@@ -188,7 +189,7 @@ local function update_changes(path)
     temp_buf_file_name = vim.fn.fnameescape(temp_buf_file_name)
     job = {
       'sh', '-c',
-      string.format('git show HEAD:./%s > %s && diff -U0 %s %s', buf_file_name, temp_base_file_name,
+      string.format('git -C %s show HEAD:./%s > %s && diff -U0 %s %s', buf_file_dir, buf_file_name, temp_base_file_name,
                     temp_base_file_name, temp_buf_file_name)
     }
     ctx.exit_code = {[1] = true, [0] = true}
