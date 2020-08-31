@@ -1,12 +1,6 @@
 scriptencoding utf-8
 " Utility functions
 
-" Quickly test if we're in a git repo
-function! util#in_vc_repo() abort
-  let l:branch = gitbranch#name()
-  return l:branch !=# ''
-endfunction
-
 " Report the highlight groups active at the current point
 function! util#syntax_stack() abort
   let l:s = synID(line('.'), col('.'), 1)

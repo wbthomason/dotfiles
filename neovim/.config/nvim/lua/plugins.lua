@@ -24,7 +24,7 @@ local function init()
   use {'mhinz/vim-sayonara', cmd = 'Sayonara'}
 
   -- Movement
-  use {'chaoren/vim-wordmotion', 'tpope/vim-repeat', 'justinmk/vim-sneak'}
+  use {'chaoren/vim-wordmotion', 'justinmk/vim-sneak'}
   -- use { 'unblevable/quick-scope', opt = true }
 
   -- Quickfix
@@ -59,10 +59,13 @@ local function init()
 
   -- Text objects
   use 'wellle/targets.vim'
-  -- use 'PeterRincker/vim-argumentative'
 
   -- Search
-  use {{'yuki-ycino/fzf-preview.vim', run = 'npm install', opt = false, disable = true}, 'junegunn/fzf.vim'}
+  use {
+    {'yuki-ycino/fzf-preview.vim', run = 'npm install', opt = false, disable = true},
+    'junegunn/fzf.vim',
+    {'nvim-lua/telescope.nvim', opt = true }
+  }
 
   -- Project Management/Sessions
   use {
@@ -75,7 +78,6 @@ local function init()
   use {'hkupty/iron.nvim', cmd = {'IronRepl', 'IronWatchCurrentFile', 'IronSend'}}
 
   -- Undo tree
-  -- use {'simnalamburt/vim-mundo', cmd = {'MundoToggle', 'MundoShow'}}
   use {'mbbill/undotree', cmd = 'UndotreeToggle'}
 
   -- Git
@@ -114,7 +116,6 @@ local function init()
 }
 
   use {'liuchengxu/vista.vim', cmd = 'Vista'}
-
   use '~/projects/personal/hover.nvim'
 
   -- Debugger
@@ -122,7 +123,6 @@ local function init()
   use {
     'puremourning/vimspector',
     setup = function() vim.g.vimspector_enable_mappings = 'HUMAN' end,
-    config = function() vim.g.vimspector_enable_mappings = 'HUMAN' end
   }
 
   -- Linting
@@ -130,7 +130,7 @@ local function init()
     'w0rp/ale',
     ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
     cmd = 'ALEEnable',
-    config = function() vim.api.nvim_command('ALEEnable') end
+    config = function() vim.cmd [[ ALEEnable ]] end
   }
 
   -- Language multipack
@@ -154,14 +154,14 @@ local function init()
   use {
     'guns/vim-sexp',
     ft = sexp_filetypes,
-    config = function() vim.api.nvim_command('doautoall sexp_filetypes Filetype') end
+    config = function() vim.cmd [[ doautoall sexp_filetypes Filetype ]] end
   }
 
   use {
     'tpope/vim-sexp-mappings-for-regular-people',
     ft = sexp_filetypes,
     config = function()
-      vim.api.nvim_command('doautoall sexp_mappings_for_regular_people Filetype')
+      vim.cmd [[ doautoall sexp_mappings_for_regular_people Filetype ]]
     end
   }
 
@@ -198,7 +198,7 @@ local function init()
   -- Markdown
   use {
     'iamcco/markdown-preview.nvim',
-    config = 'vim.api.nvim_command("doautocmd BufEnter")',
+    config = 'vim.cmd [[ doautocmd BufEnter ]]',
     run = 'cd app && yarn install',
     cmd = 'MarkdownPreview'
   }

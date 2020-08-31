@@ -10,8 +10,3 @@ augroup misc_aucmds
   au BufWinEnter * checktime
   au TextYankPost * silent! lua vim.highlight.on_yank()
 augroup END
-
-augroup collab_aucmds
-  au!
-  au VimEnter,BufEnter ~/projects/research/communion*/*.tex set formatoptions-=t | set wrap linebreak breakindent
-augroup END

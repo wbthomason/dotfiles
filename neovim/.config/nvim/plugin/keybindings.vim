@@ -9,9 +9,6 @@ nnoremap <silent> <localleader>r @:
 " Easily run a build
 nnoremap <silent> <localleader><localleader> <cmd>Make<cr>
 
-" Fuzzy-finding
-nnoremap <c-p> <cmd>Clap<cr>
-
 " Exiting
 nnoremap <silent> <leader>q <cmd>qa<cr>
 nnoremap <silent> <leader>x <cmd>x!<cr>
@@ -25,9 +22,6 @@ inoremap <silent><c-x><c-s> <esc><cmd>w<cr>a
 nnoremap <silent> <leader>w <cmd>w<cr>
 nnoremap <silent> <leader>k <cmd>Sayonara!<cr>
 nnoremap <silent> <leader>l <cmd>b#<cr>
-" nnoremap <silent>  - <cmd>Clap buffers<cr>
-" nnoremap <silent> _ <cmd>Clap files<cr>
-" nnoremap <silent> + <cmd>Clap gfiles<cr>
 nnoremap <silent> - <cmd>Buffers<cr>
 nnoremap <silent> _ <cmd>FzfPreviewFromResources buffer mru old git directory<cr>
 
@@ -61,14 +55,6 @@ nmap <silent> ga <Plug>(EasyAlign)
 
 " replace under cursor
 nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
-
-" Swap ` and ' for marks (` includes horizontal position)
-" for first in ['', 'g', '[', ']']
-"   for mode in ['n', 'x', 'o']
-"     exe mode . 'noremap ' . first . "' " . first . '`'
-"     exe mode . 'noremap ' . first . '` ' . first . "'"
-"   endfor
-" endfor
 
 " Folds
 nnoremap <silent> <c-t> <cmd>normal! za<cr>
