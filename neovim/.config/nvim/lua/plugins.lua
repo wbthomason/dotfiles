@@ -61,7 +61,11 @@ local function init()
   use 'wellle/targets.vim'
 
   -- Search
-  use {{'yuki-ycino/fzf-preview.vim', run = 'npm install', opt = false, disable = true}, 'junegunn/fzf.vim'}
+  use {
+    {'yuki-ycino/fzf-preview.vim', run = 'npm install', opt = false, disable = true},
+    'junegunn/fzf.vim',
+    {'nvim-lua/telescope.nvim', opt = true }
+  }
 
   -- Project Management/Sessions
   use {
