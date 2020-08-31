@@ -2,57 +2,6 @@ local nvim_lsp = require('nvim_lsp')
 local lsp_status = require('lsp-status')
 local diagnostic = require('diagnostic')
 
-local severity_map = {'E', 'W', 'I', 'H'}
-
-local function diagnostics_to_items(diagnostics)
-  local items = {}
-  local grouped = setmetatable({}, {
-    __index = function(t, k)
-      local v = {}
-      rawset(t, k, v)
-      return v
-    end
-  })
-
-  local fname = vim.api.nvim_buf_get_name(0)
-  for _, d in ipairs(diagnostics) do
-    local range = d.range
-    table.insert(grouped[fname], {start = range.start, item = d})
-  end
-
-  local keys = vim.tbl_keys(grouped)
-  table.sort(keys)
-  for _, name in ipairs(keys) do
-    local rows = grouped[name]
-    table.sort(rows, function(a, b)
-      if a.start.line < b.start.line
-        or (a.start.line == b.start.line and a.start.character < b.start.character) then
-        return true
-      end
-
-      return false
-    end)
-
-    for _, row in ipairs(rows) do
-      table.insert(items, {
-        filename = name,
-        lnum = row.start.line + 1,
-        text = row.item.message,
-        ['type'] = severity_map[row.item.severity],
-        col = row.start.character + 1,
-        vcol = true
-      })
-    end
-  end
-
-  return items
-end
-
-diagnostic.diagnostics_loclist = function(local_result)
-  if local_result then for _, v in ipairs(local_result) do v.uri = v.uri or local_result.uri end end
-  vim.lsp.util.set_loclist(diagnostics_to_items(local_result))
-end
-
 local texlab_search_status = vim.tbl_add_reverse_lookup {
   Success = 0,
   Error = 1,
