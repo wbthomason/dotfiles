@@ -12,7 +12,7 @@ local function init()
   use {'~/projects/personal/packer.nvim', opt = true}
 
   -- Async building & commands
-  use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
+  use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
   -- Registers
   use 'junegunn/vim-peekaboo'
