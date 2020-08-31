@@ -86,21 +86,36 @@ local function init()
 
   -- Completion and linting
   use {
-    {'neovim/nvim-lsp', opt = true}, '~/projects/personal/lsp-status.nvim', {
-      'haorenW1025/completion-nvim',
-      opt = true,
+    'neovim/nvim-lspconfig',
+    '~/projects/personal/lsp-status.nvim',
+    {
+      {'haorenW1025/completion-nvim', event = 'InsertEnter *', config = function()
+        local completion = require('completion')
+        completion.addCompletionSource('vimtex', require('vimtex').complete_item)
+        completion.addCompletionSource('wiki', require('wiki').complete_item)
+
+        vim.cmd [[ augroup lsp_aucmds ]]
+        vim.cmd [[ au BufEnter * lua require('completion').on_attach() ]]
+        vim.cmd [[ augroup END ]]
+
+        completion.on_attach()
+        vim.cmd [[ doautoall FileType ]]
+      end,
       requires = {
-        {'hrsh7th/vim-vsnip', opt = true}, {'hrsh7th/vim-vsnip-integ', opt = true},
+        {'hrsh7th/vim-vsnip', event = 'InsertEnter *'},
+        {'hrsh7th/vim-vsnip-integ', event = 'InsertEnter *'},
         {'https://gitlab.com/HiPhish/completion-nvim-vlime', after = {'completion-nvim', 'vlime'}},
       }
-    }, {'nvim-treesitter/completion-treesitter', opt = true},
+    },
+    'haorenW1025/diagnostic-nvim',
+    {'nvim-treesitter/completion-treesitter', opt = true},
     {'nvim-treesitter/nvim-treesitter', opt = true }
   }
+}
 
   use {'liuchengxu/vista.vim', cmd = 'Vista'}
 
   use '~/projects/personal/hover.nvim'
-  use {'haorenW1025/diagnostic-nvim', opt = true}
 
   -- Debugger
   use {'mfussenegger/nvim-dap', opt = true}
