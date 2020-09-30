@@ -111,7 +111,7 @@ local function init()
     },
     'haorenW1025/diagnostic-nvim',
     {'nvim-treesitter/completion-treesitter', opt = true},
-    {'nvim-treesitter/nvim-treesitter', opt = true }
+    {'nvim-treesitter/nvim-treesitter', config = 'require("treesitter")'}
   }
 }
 
@@ -145,9 +145,6 @@ local function init()
   -- Path navigation
   use 'justinmk/vim-dirvish'
   use 'kristijanhusak/vim-dirvish-git'
-
-  -- C/C++ semantic highlighting
-  -- use  'jackguo380/vim-lsp-cxx-highlight'
 
   -- Clojure/Lisps/Scheme
   local sexp_filetypes = {'clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel', 'pddl'}
