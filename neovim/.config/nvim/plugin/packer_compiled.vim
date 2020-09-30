@@ -74,12 +74,6 @@ local plugins = {
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-luapad"
   },
-  ["nvim-treesitter"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
-  },
   ["packer.nvim"] = {
     loaded = false,
     only_sequence = false,
@@ -176,13 +170,6 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-sexp-mappings-for-regular-people"
-  },
-  ["vim-startuptime"] = {
-    commands = { "StartupTime" },
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-startuptime"
   },
   ["vim-vsnip"] = {
     loaded = false,
@@ -343,43 +330,44 @@ _packer_load = function(names, cause)
   end
 end
 
+-- Runtimepath customization
+vim.o.runtimepath = vim.o.runtimepath .. ",/home/wil/.local/share/nvim/site/pack/packer/opt/vlime/vim/"
 -- Pre-load configuration
 -- Setup for: vimspector
 loadstring("\27LJ\1\2B\0\0\2\0\4\0\0054\0\0\0007\0\1\0%\1\3\0:\1\2\0G\0\1\0\nHUMAN\31vimspector_enable_mappings\6g\bvim\0")()
 vim.cmd("packadd vimspector")
 -- Post-load configuration
+-- Config for: nvim-treesitter
+require("treesitter")
 -- Conditional loads
+-- Load plugins in order defined by `after`
 vim._update_package_paths()
 END
 
 function! s:load(names, cause) abort
-  call luaeval('_packer_load(_A[1], _A[2])', [a:names, a:cause])
+call luaeval('_packer_load(_A[1], _A[2])', [a:names, a:cause])
 endfunction
 
-" Runtimepath customization
-let &runtimepath .=",/home/wil/.local/share/nvim/site/pack/packer/opt/vlime/vim/"
-" Load plugins in order defined by `after`
 
 " Command lazy-loads
-command! -nargs=* -range -bang -complete=file MarkdownPreview call s:load(['markdown-preview.nvim'], { "cmd": "MarkdownPreview", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Make call s:load(['vim-dispatch'], { "cmd": "Make", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Dispatch call s:load(['vim-dispatch'], { "cmd": "Dispatch", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file WikiOpen call s:load(['wiki.vim'], { "cmd": "WikiOpen", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Start call s:load(['vim-dispatch'], { "cmd": "Start", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Gpull call s:load(['vim-fugitive'], { "cmd": "Gpull", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Vista call s:load(['vista.vim'], { "cmd": "Vista", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file WikiJournal call s:load(['wiki.vim'], { "cmd": "WikiJournal", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file StartupTime call s:load(['vim-startuptime'], { "cmd": "StartupTime", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file EnMasse call s:load(['vim-enmasse'], { "cmd": "EnMasse", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file IronSend call s:load(['iron.nvim'], { "cmd": "IronSend", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Gpush call s:load(['vim-fugitive'], { "cmd": "Gpush", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Gstatus call s:load(['vim-fugitive'], { "cmd": "Gstatus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file IronRepl call s:load(['iron.nvim'], { "cmd": "IronRepl", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file ALEEnable call s:load(['ale'], { "cmd": "ALEEnable", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file UndotreeToggle call s:load(['undotree'], { "cmd": "UndotreeToggle", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Focus call s:load(['vim-dispatch'], { "cmd": "Focus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file IronWatchCurrentFile call s:load(['iron.nvim'], { "cmd": "IronWatchCurrentFile", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Neoformat call s:load(['neoformat'], { "cmd": "Neoformat", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Make call s:load(['vim-dispatch'], { "cmd": "Make", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Gstatus call s:load(['vim-fugitive'], { "cmd": "Gstatus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file UndotreeToggle call s:load(['undotree'], { "cmd": "UndotreeToggle", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file IronSend call s:load(['iron.nvim'], { "cmd": "IronSend", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file IronRepl call s:load(['iron.nvim'], { "cmd": "IronRepl", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Gpush call s:load(['vim-fugitive'], { "cmd": "Gpush", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file IronWatchCurrentFile call s:load(['iron.nvim'], { "cmd": "IronWatchCurrentFile", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file MarkdownPreview call s:load(['markdown-preview.nvim'], { "cmd": "MarkdownPreview", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Focus call s:load(['vim-dispatch'], { "cmd": "Focus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Grepper call s:load(['vim-grepper'], { "cmd": "Grepper", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Prosession call s:load(['vim-obsession'], { "cmd": "Prosession", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
@@ -389,27 +377,27 @@ command! -nargs=* -range -bang -complete=file Prosession call s:load(['vim-obses
 augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
-  au FileType jbuild ++once call s:load(['vim-sexp-mappings-for-regular-people', 'vim-sexp', 'parinfer-rust'], { "ft": "jbuild" })
+  au FileType jbuild ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp'], { "ft": "jbuild" })
   au FileType html ++once call s:load(['ale'], { "ft": "html" })
   au FileType sh ++once call s:load(['ale'], { "ft": "sh" })
-  au FileType fennel ++once call s:load(['vim-sexp-mappings-for-regular-people', 'vim-sexp', 'parinfer-rust', 'conjure'], { "ft": "fennel" })
+  au FileType fennel ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp', 'conjure'], { "ft": "fennel" })
   au FileType c ++once call s:load(['ale'], { "ft": "c" })
-  au FileType scheme ++once call s:load(['vim-sexp-mappings-for-regular-people', 'vim-sexp', 'parinfer-rust'], { "ft": "scheme" })
+  au FileType scheme ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp'], { "ft": "scheme" })
   au FileType cpp ++once call s:load(['ale'], { "ft": "cpp" })
   au FileType tex ++once call s:load(['ale'], { "ft": "tex" })
   au FileType cmake ++once call s:load(['ale'], { "ft": "cmake" })
   au FileType bash ++once call s:load(['ale'], { "ft": "bash" })
-  au FileType lisp ++once call s:load(['vim-sexp-mappings-for-regular-people', 'vim-sexp', 'parinfer-rust', 'vlime'], { "ft": "lisp" })
-  au FileType pddl ++once call s:load(['vim-sexp-mappings-for-regular-people', 'vim-sexp', 'parinfer-rust'], { "ft": "pddl" })
+  au FileType lisp ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp', 'vlime'], { "ft": "lisp" })
+  au FileType pddl ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp'], { "ft": "pddl" })
   au FileType markdown ++once call s:load(['ale'], { "ft": "markdown" })
+  au FileType clojure ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp', 'conjure'], { "ft": "clojure" })
   au FileType vim ++once call s:load(['ale'], { "ft": "vim" })
   au FileType lua ++once call s:load(['nvim-luapad'], { "ft": "lua" })
-  au FileType clojure ++once call s:load(['vim-sexp-mappings-for-regular-people', 'vim-sexp', 'parinfer-rust', 'conjure'], { "ft": "clojure" })
   au FileType zsh ++once call s:load(['ale'], { "ft": "zsh" })
-  au FileType racket ++once call s:load(['vim-sexp-mappings-for-regular-people', 'vim-sexp', 'parinfer-rust', 'ale'], { "ft": "racket" })
+  au FileType racket ++once call s:load(['parinfer-rust', 'vim-sexp-mappings-for-regular-people', 'vim-sexp', 'ale'], { "ft": "racket" })
   " Event lazy-loads
   au BufRead ~/gdrive/notes/*.md ++once call s:load(['wiki.vim'], { "event": "BufRead ~/gdrive/notes/*.md" })
-  au BufNewFile ~/gdrive/notes/*.md ++once call s:load(['wiki.vim'], { "event": "BufNewFile ~/gdrive/notes/*.md" })
+  au InsertEnter * ++once call s:load(['vim-vsnip-integ', 'completion-nvim', 'vim-vsnip'], { "event": "InsertEnter *" })
   au VimEnter * ++once call s:load(['vim-matchup'], { "event": "VimEnter *" })
-  au InsertEnter * ++once call s:load(['completion-nvim', 'vim-vsnip', 'vim-vsnip-integ'], { "event": "InsertEnter *" })
+  au BufNewFile ~/gdrive/notes/*.md ++once call s:load(['wiki.vim'], { "event": "BufNewFile ~/gdrive/notes/*.md" })
 augroup END

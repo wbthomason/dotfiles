@@ -37,6 +37,8 @@ function! s:setup_colors() abort
   hi! link LspReferenceText AquaHover
   hi! link LspReferenceRead BlueHover
   hi! link LspReferenceWrite GreenHover
+  hi! link TSDefinition LspReferenceText
+  hi! link TSDefinitionUsage LspReferenceWrite
 
   hi! ALEError guifg=#ff727b ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
   hi! ALEWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
