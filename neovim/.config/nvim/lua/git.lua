@@ -90,7 +90,6 @@ local process_diff = vim.schedule_wrap(function(exit_success, path, ctx, output_
   end
 
   if not exit_success then
-    print(vim.inspect(ctx), vim.inspect(output_log))
     git_info[path].updating = false
     git_info[path].disabled = true
     return
