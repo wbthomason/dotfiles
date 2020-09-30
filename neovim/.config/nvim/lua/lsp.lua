@@ -130,7 +130,13 @@ local servers = {
       Lua = {
         diagnostics = {globals = {'vim'}},
         completion = {keywordSnippet = 'Disable'},
-        runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')}
+        runtime = { version = 'LuaJIT', path = vim.split(package.path, ';')},
+        workspace = {
+          library = {
+            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+          }
+        }
       }
     }
   },
