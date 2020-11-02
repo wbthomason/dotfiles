@@ -15,10 +15,10 @@ local function init()
   use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
   -- Registers
-  use 'junegunn/vim-peekaboo'
+  -- use 'junegunn/vim-peekaboo'
 
   -- Marks
-  use 'kshenoy/vim-signature'
+  -- use 'kshenoy/vim-signature'
 
   -- Buffer management
   use {'mhinz/vim-sayonara', cmd = 'Sayonara'}
@@ -41,10 +41,7 @@ local function init()
   -- use 'tyru/caw.vim'
 
   -- Wrapping/delimiters
-  use {
-    'machakann/vim-sandwich', {'andymass/vim-matchup', event = 'VimEnter *'}, '9mm/vim-closer',
-    'tpope/vim-endwise'
-  }
+  use {'machakann/vim-sandwich', {'andymass/vim-matchup', event = 'VimEnter *'}}
 
   -- Search
   use 'romainl/vim-cool'
@@ -53,19 +50,16 @@ local function init()
   -- use { 'markonm/traces.vim' }
 
   -- Prettification
-  use 'junegunn/vim-easy-align'
+  -- use 'junegunn/vim-easy-align'
   -- TODO: Only load this for filetypes where LSP doesn't provide formatting
-  use {'sbdchd/neoformat', cmd = 'Neoformat'}
+  -- use {'sbdchd/neoformat', cmd = 'Neoformat'}
 
   -- Text objects
   use 'wellle/targets.vim'
 
   -- Search
-  use {
-    {'yuki-ycino/fzf-preview.vim', run = 'npm install', opt = false, disable = true},
-    'junegunn/fzf.vim',
-    {'nvim-lua/telescope.nvim', opt = true }
-  }
+  ---- 'junegunn/fzf.vim',
+  use {'nvim-lua/telescope.nvim', requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}}
 
   -- Project Management/Sessions
   use {
@@ -84,17 +78,16 @@ local function init()
   use {'mhinz/vim-signify', {'tpope/vim-fugitive', cmd = {'Gpull', 'Gpush', 'Gstatus'}}}
 
   -- Terminal
-  use 'voldikss/vim-floaterm'
+  -- use 'voldikss/vim-floaterm'
 
   -- Completion and linting
   use {
-    'neovim/nvim-lspconfig',
-    '~/projects/personal/lsp-status.nvim',
-    {
-      {'haorenW1025/completion-nvim', event = 'InsertEnter *', config = function()
+    'neovim/nvim-lspconfig', '~/projects/personal/lsp-status.nvim', {
+      'nvim-lua/completion-nvim',
+      event = 'InsertEnter *',
+      config = function()
         local completion = require('completion')
         completion.addCompletionSource('vimtex', require('vimtex').complete_item)
-        completion.addCompletionSource('wiki', require('wiki').complete_item)
 
         vim.cmd [[ augroup lsp_aucmds ]]
         vim.cmd [[ au BufEnter * lua require('completion').on_attach() ]]
@@ -104,16 +97,13 @@ local function init()
         vim.cmd [[ doautoall FileType ]]
       end,
       requires = {
-        {'hrsh7th/vim-vsnip', event = 'InsertEnter *'},
-        {'hrsh7th/vim-vsnip-integ', event = 'InsertEnter *'},
-        {'https://gitlab.com/HiPhish/completion-nvim-vlime', after = {'completion-nvim', 'vlime'}},
+        'norcalli/snippets.nvim',
+        event = 'InsertEnter *',
+        config = function() require('snippets').use_suggested_mappings() end
       }
-    },
-    'haorenW1025/diagnostic-nvim',
-    {'nvim-treesitter/completion-treesitter', opt = true},
-    {'nvim-treesitter/nvim-treesitter', config = 'require("treesitter")'}
+    }, 'nvim-lua/diagnostic-nvim', {'nvim-treesitter/completion-treesitter', opt = true},
+    {'nvim-treesitter/nvim-treesitter', config = 'require("treesitter")', event = 'VimEnter *'}
   }
-}
 
   use {'liuchengxu/vista.vim', cmd = 'Vista'}
   use '~/projects/personal/hover.nvim'
@@ -123,50 +113,44 @@ local function init()
   use {
     'puremourning/vimspector',
     setup = function() vim.g.vimspector_enable_mappings = 'HUMAN' end,
+    opt = true
   }
 
   -- Linting
-  use {
-    'w0rp/ale',
-    ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex'},
-    cmd = 'ALEEnable',
-    config = function() vim.cmd [[ ALEEnable ]] end
-  }
+  use 'w0rp/ale'
 
   -- Language multipack
-  use 'sheerun/vim-polyglot'
+  -- use 'sheerun/vim-polyglot'
 
   -- Better Lua highlighting
   use 'euclidianAce/BetterLua.vim'
 
   -- Better Lua development for Neovim
-  use 'tjdevries/nlua.nvim'
+  -- use 'tjdevries/nlua.nvim'
 
   -- Path navigation
   use 'justinmk/vim-dirvish'
   use 'kristijanhusak/vim-dirvish-git'
 
-  -- Clojure/Lisps/Scheme
-  local sexp_filetypes = {'clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel', 'pddl'}
-  use {
-    'guns/vim-sexp',
-    ft = sexp_filetypes,
-    config = function() vim.cmd [[ doautoall sexp_filetypes Filetype ]] end
-  }
-
-  use {
-    'tpope/vim-sexp-mappings-for-regular-people',
-    ft = sexp_filetypes,
-    config = function()
-      vim.cmd [[ doautoall sexp_mappings_for_regular_people Filetype ]]
-    end
-  }
-
-  use {'vlime/vlime', rtp = 'vim/', ft = {'lisp'}}
-  use {'Olical/conjure', ft = {'clojure', 'fennel'}}
-
-  use {'eraserhd/parinfer-rust', ft = sexp_filetypes, run = 'cargo build --release'}
-
+  -- -- Clojure/Lisps/Scheme
+  -- local sexp_filetypes = {'clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel', 'pddl'}
+  -- use {
+  --   'guns/vim-sexp',
+  --   ft = sexp_filetypes,
+  --   config = function() vim.cmd [[ doautoall sexp_filetypes Filetype ]] end
+  -- }
+  --
+  -- use {
+  --   'tpope/vim-sexp-mappings-for-regular-people',
+  --   ft = sexp_filetypes,
+  --   config = function() vim.cmd [[ doautoall sexp_mappings_for_regular_people Filetype ]] end
+  -- }
+  --
+  -- use {'vlime/vlime', rtp = 'vim/', ft = {'lisp'}}
+  -- use {'Olical/conjure', ft = {'clojure', 'fennel'}}
+  --
+  -- use {'eraserhd/parinfer-rust', ft = sexp_filetypes, run = 'cargo build --release'}
+  --
   -- LaTeX
   use 'lervag/vimtex'
 
@@ -182,9 +166,6 @@ local function init()
   -- Highlight colors
   use 'norcalli/nvim-colorizer.lua'
 
-  -- Lua development
-  use {'rafcamlet/nvim-luapad', ft = 'lua'}
-
   -- Color scheme
   use '~/projects/personal/vim-nazgul'
   -- use 'chriskempson/base16-vim'
@@ -192,26 +173,11 @@ local function init()
   -- use 'arzg/vim-substrata'
   -- use {'tjdevries/colorbuddy.vim', opt = true}
 
-  -- Markdown
-  use {
-    'iamcco/markdown-preview.nvim',
-    config = 'vim.cmd [[ doautocmd BufEnter ]]',
-    run = 'cd app && yarn install',
-    cmd = 'MarkdownPreview'
-  }
-
-  -- Wiki
-  use {
-    'lervag/wiki.vim',
-    event = {'BufNewFile ~/gdrive/notes/*.md', 'BufRead ~/gdrive/notes/*.md'},
-    cmd = {'WikiJournal', 'WikiOpen'}
-  }
-
   -- Notes
   use '~/projects/personal/pdf-scribe.nvim'
 
   -- Tasks
-  use '~/projects/personal/import-todoist.nvim'
+  -- use '~/projects/personal/import-todoist.nvim'
 end
 
 local plugins = setmetatable({}, {
