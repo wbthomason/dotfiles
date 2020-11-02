@@ -2,6 +2,7 @@ local ts_configs = require('nvim-treesitter.configs')
 
 ts_configs.setup {
   ensure_installed = {
+    'bash',
     'c',
     'cpp',
     'lua',
@@ -10,6 +11,8 @@ ts_configs.setup {
     'html',
     'javascript',
     'json',
+    'julia',
+    'markdown',
     'ocaml',
     'ocaml_interface',
     'python',
