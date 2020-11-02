@@ -10,7 +10,7 @@
     "vscode-neovim.neovimPath": "/usr/bin/nvim",
     "window.menuBarVisibility": "toggle",
     "editor.scrollBeyondLastLine": false,
-    "editor.fontFamily": "'Fira Code Retina', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Jetbrains Mono', 'Fira Code Retina', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "git.alwaysShowStagedChangesResourceGroup": true,
     "git.openDiffOnClick": true,
     "git.showProgress": true,
@@ -52,4 +52,19 @@
     "window.zoomLevel": 0,
     "path-intellisense.absolutePathToWorkspace": false,
     "path-intellisense.showHiddenFiles": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "python.formatting.provider": "yapf",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "pyright.useLibraryCodeForTypes": true,
+    "python.analysis.logLevel": "Warning",
+    "python.analysis.memory.keepLibraryAst": true,
+    "python.experiments.enabled": false,
+    "python.languageServer": "Pylance",
+    "python.linting.mypyEnabled": true,
+    "python.testing.unittestEnabled": true,
+    "python.venvFolders": [
+        "~/.cache/pypoetry/virtualenvs"
+    ],
 }
