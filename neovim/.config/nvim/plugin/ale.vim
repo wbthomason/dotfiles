@@ -18,8 +18,8 @@ let g:ale_linters = {
       \ 'haskell': ['hdevtools', 'hlint'],
       \ 'cpp': ['cppcheck', 'cpplint', 'flawfinder'],
       \ 'rust': ['rustfmt'],
-      \ 'latex': ['lacheck', 'proselint', 'write-good', 'alex', 'vale'],
-      \ 'tex': ['textidote', 'lacheck', 'proselint', 'write-good', 'alex', 'vale'],
+      \ 'latex': ['lacheck', 'proselint', 'write-good', 'vale'],
+      \ 'tex': ['lacheck', 'proselint', 'write-good', 'vale'],
       \ 'markdown': ['alex', 'markdownlint', 'proselint', 'write-good', 'vale'],
       \ 'python': ['pylint', 'mypy', 'pyre', 'vulture']
       \}
@@ -38,3 +38,8 @@ let g:ale_virtualtext_cursor = v:true
 let g:ale_textlint_use_global = v:true
 let g:ale_alex_executable = 'alexjs'
 let g:ale_alex_use_global = v:true
+let g:ale_fixers = {
+                  \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+                  \ 'python': ['isort', 'yapf'],
+                  \ 'lua': [{buffer -> {'command': 'luaformatter'}}]
+                  \}

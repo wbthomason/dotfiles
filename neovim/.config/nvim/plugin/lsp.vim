@@ -2,25 +2,23 @@
 " anyway
 let g:nvim_lsp = 1
 
-let g:completion_confirm_key = ''
+" let g:completion_confirm_key = ''
 let g:completion_max_items = 30
 let g:completion_trigger_on_delete = 1
-let g:completion_enable_snippet = 'vim-vsnip'
-imap <expr> <Tab> pumvisible() ? "\<c-n>" : (vsnip#available(1) ? '<Plug>(vsnip-expand)' : "\<Tab>")
-imap <expr> <C-j> vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : "\<C-j>"
-smap <expr> <C-j> vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : "\<C-j>"
-imap <expr> <C-k> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : "\<C-k>"
-smap <expr> <C-k> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : "\<C-k>"
+let g:completion_enable_snippet = 'snippets.nvim'
+" imap <expr> <Tab> pumvisible() ? "\<c-n>" : (vsnip#available(1) ? '<Plug>(vsnip-expand)' : "\<Tab>")
+" imap <expr> <C-j> vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : "\<C-j>"
+" smap <expr> <C-j> vsnip#available(1) ? '<Plug>(vsnip-jump-next)' : "\<C-j>"
+" imap <expr> <C-k> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : "\<C-k>"
+" smap <expr> <C-k> vsnip#available(-1) ? '<Plug>(vsnip-jump-prev)' : "\<C-k>"
 
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'
 
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent> <Plug>(ComplCREnd) <cr>
-imap <silent><expr> <Plug>ComplCR pumvisible() ? complete_info()['selected'] != -1 ? "\<Plug>(completion_confirm_completion)"  : "\<c-e>\<CR>" :  "\<Plug>(ComplCREnd)"
-imap <silent><cr> <Plug>ComplCR<Plug>CloserClose<Plug>DiscretionaryEnd
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
 
 call sign_define('LspDiagnosticsErrorSign', {'text' : '🗙', 'texthl' : 'RedHover'})
 call sign_define('LspDiagnosticsWarningSign', {'text' : '➤', 'texthl' : 'YellowHover'})
@@ -48,13 +46,6 @@ let g:completion_chain_complete_list = {
       \],
       \     'comment': [],
       \     'string' : [ {'complete_items': ['path']} ]
-      \},
-      \ 'markdown': {
-      \     'default': [
-      \     { 'complete_items': ['wiki'] },
-      \     { 'mode': '<c-p>' },
-      \     { 'mode': '<c-n>' },
-      \]
       \},
       \ 'lisp': {
       \     'default': [

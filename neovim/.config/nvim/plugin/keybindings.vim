@@ -20,17 +20,11 @@ inoremap <silent><c-x><c-s> <esc><cmd>w<cr>a
 
 " Buffer bindings
 nnoremap <silent> <leader>w <cmd>w<cr>
-nnoremap <silent> <leader>k <cmd>Sayonara!<cr>
-nnoremap <silent> <leader>l <cmd>b#<cr>
-nnoremap <silent> - <cmd>Buffers<cr>
-nnoremap <silent> _ <cmd>FzfPreviewFromResources buffer mru old git directory<cr>
+nnoremap <silent> - <cmd>lua require('telescope.builtin').buffers({show_all_buffers = true})<cr>
+nnoremap <silent> _ <cmd>lua require('telescope.builtin').git_files()<cr>
 
 " Hovering
 nnoremap <silent> gh <cmd>lua require('hover').hover()<cr>
-
-" Error bindings
-nnoremap <silent> <leader>eo <cmd>lopen<CR>
-nnoremap <silent> <leader>ec <cmd>lclose<CR>
 
 " Version control bindings
 nnoremap <silent> gl <cmd>Gpull<cr>
@@ -44,7 +38,7 @@ tnoremap jj <C-\><C-n>
 nnoremap <leader>R <cmd>IronRepl<CR>
 
 " Formatting Bindings
-nnoremap <silent> <leader>f <cmd>Neoformat<CR>
+nnoremap <silent> <leader>f <Plug>(ale_fix)
 
 " Easy-Align bindings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -60,7 +54,7 @@ nnoremap <leader>* :%s/\<<c-r><c-w>\>//g<left><left>
 nnoremap <silent> <c-t> <cmd>normal! za<cr>
 
 " Edit config
-nnoremap <silent> <localleader>c <cmd>FzfPreviewDirectory ~/.config/nvim<cr>
+nnoremap <silent> <localleader>c <cmd>lua require('telescope.builtin').find_files({cwd='~/.config/nvim'})<cr>
 
 " Yank to clipboard
 nnoremap <silent> y+ <cmd>set opfunc=util#clipboard_yank<cr>g@
