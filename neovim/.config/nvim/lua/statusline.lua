@@ -164,10 +164,10 @@ end
 
 local function status()
   local mode = vim.fn.mode()
-  local buf_nr = vim.fn.bufnr()
-  local buf_name = vim.fn.bufname()
-  local buf_path = vim.fn.resolve(vim.fn.fnamemodify(buf_name, ':p'))
   local win_id = vim.fn.win_getid()
+  local buf_nr = vim.fn.winbufnr(win_id)
+  local buf_name = vim.fn.bufname(buf_nr)
+  local buf_path = vim.fn.resolve(vim.fn.fnamemodify(buf_name, ':p'))
 
   update_colors(mode)
   local line_components = {}
@@ -184,4 +184,13 @@ local function status()
   return table.concat(line_components, '')
 end
 
-return status
+local function update()
+  for i = 1, vim.fn.winnr('$') do
+    vim.wo.statusline = status()
+  end
+end
+
+return {
+  status = status,
+  update = update
+}

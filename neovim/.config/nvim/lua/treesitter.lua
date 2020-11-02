@@ -12,7 +12,6 @@ ts_configs.setup {
     'javascript',
     'json',
     'julia',
-    'markdown',
     'ocaml',
     'ocaml_interface',
     'python',

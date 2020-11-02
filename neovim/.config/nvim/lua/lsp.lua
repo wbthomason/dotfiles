@@ -252,7 +252,7 @@ end
 
 for server, config in pairs(servers) do
   config.on_attach = make_on_attach(config)
-  config.capabilities = deep_extend('keep', config.capabilities or {}, lsp_status.capabilities(),
+  config.capabilities = deep_extend('keep', config.capabilities or {}, lsp_status.capabilities,
                                     snippet_capabilities)
 
   nvim_lsp[server].setup(config)

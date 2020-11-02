@@ -193,7 +193,6 @@ _packer_load = function(names, cause)
   for _, name in ipairs(names) do
     if not plugins[name].loaded then
       vim.cmd('packadd ' .. name)
-      vim._update_package_paths()
       if plugins[name].config then
         for _i, config_line in ipairs(plugins[name].config) do
           loadstring(config_line)()
@@ -258,7 +257,6 @@ loadstring("\27LJ\1\2B\0\0\2\0\4\0\0054\0\0\0007\0\1\0%\1\3\0:\1\2\0G\0\1\0\nHUM
 -- Post-load configuration
 -- Conditional loads
 -- Load plugins in order defined by `after`
-vim._update_package_paths()
 END
 
 function! s:load(names, cause) abort

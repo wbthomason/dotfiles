@@ -14,6 +14,9 @@ local function init()
   -- Async building & commands
   use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
+  -- Auto-pairs
+  use 'cohama/lexima.vim'
+
   -- Registers
   -- use 'junegunn/vim-peekaboo'
 
@@ -25,7 +28,7 @@ local function init()
 
   -- Movement
   use {'chaoren/vim-wordmotion', 'justinmk/vim-sneak'}
-  -- use { 'unblevable/quick-scope', opt = true }
+  use { 'unblevable/quick-scope'}
 
   -- Quickfix
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
@@ -50,7 +53,7 @@ local function init()
   -- use { 'markonm/traces.vim' }
 
   -- Prettification
-  -- use 'junegunn/vim-easy-align'
+  use 'junegunn/vim-easy-align'
   -- TODO: Only load this for filetypes where LSP doesn't provide formatting
   -- use {'sbdchd/neoformat', cmd = 'Neoformat'}
 
