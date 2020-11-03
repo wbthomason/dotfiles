@@ -61,7 +61,6 @@ local function init()
   use 'wellle/targets.vim'
 
   -- Search
-  ---- 'junegunn/fzf.vim',
   use {'nvim-lua/telescope.nvim', requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}}
 
   -- Project Management/Sessions
