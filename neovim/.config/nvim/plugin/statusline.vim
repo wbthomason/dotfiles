@@ -25,9 +25,9 @@ augroup END
 
 call s:setup_colors()
 
-lua statusline = require('statusline')
+au VimEnter * ++once lua statusline = require('statusline')
 " augroup statusline_updates
 "   au!
 "   au BufWinEnter,WinEnter,BufEnter,BufDelete,SessionLoadPost,FileChangedShellPost * lua require('statusline').update()
 " augroup END
-lua vim.o.statusline = '%!v:lua.statusline.status()'
+au VimEnter * ++once lua vim.o.statusline = '%!v:lua.statusline.status()'

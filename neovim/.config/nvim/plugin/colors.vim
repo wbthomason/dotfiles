@@ -30,10 +30,10 @@ function! s:setup_colors() abort
 
   hi! HintHighlight guifg=#83a5cb gui=undercurl guisp=#83a5cb
 
-  hi! link LspDiagnosticsError RedHover
-  hi! link LspDiagnosticsWarning YellowHover
-  hi! link LspDiagnosticsInformation WhiteHover
-  hi! link LspDiagnosticsHint HintSign
+  hi! link LspDiagnosticsDefaultError RedHover
+  hi! link LspDiagnosticsDefaultWarning YellowHover
+  hi! link LspDiagnosticsDefaultInformation WhiteHover
+  hi! link LspDiagnosticsDefaultHint HintSign
   hi! link LspReferenceText AquaHover
   hi! link LspReferenceRead BlueHover
   hi! link LspReferenceWrite GreenHover
@@ -72,4 +72,4 @@ augroup colors_customization
   au ColorScheme * call s:setup_colors()
 augroup END
 
-" call s:setup_colors()
+call s:setup_colors()

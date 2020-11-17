@@ -33,11 +33,30 @@ local plugins = {
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-dap"
   },
   ["nvim-treesitter"] = {
+    after = { "nvim-treesitter-refactor", "nvim-treesitter-textobjects" },
     config = { 'require("treesitter")' },
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
+  },
+  ["nvim-treesitter-refactor"] = {
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-refactor"
+  },
+  ["nvim-treesitter-textobjects"] = {
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects"
   },
   ["packer.nvim"] = {
     loaded = false,
