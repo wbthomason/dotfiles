@@ -1,5 +1,6 @@
 local utils = require('utils')
 local git = require('git')
+local ts = require('nvim-treesitter')
 local lsp_status = require('lsp-status')
 
 local indicators = {
@@ -14,11 +15,6 @@ local indicators = {
 local spinner_frames = {'⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷'}
 
 local function icon() return utils.icons.lookup_filetype(vim.bo.filetype) end
-
-local function filetype()
-  local ft = vim.bo.filetype
-  return ft ~= '' and ft or 'no filetype'
-end
 
 local ale = {
   warnings = function(counts)
@@ -66,7 +62,7 @@ setmetatable(ale, {
     local warnings = ale_tbl.warnings(counts)
     local errors = ale_tbl.errors(counts)
     return string.format('%s%s%s%s ', ale_tbl.icon, warnings,
-                         warnings == '' and '' or (errors == '' and '' or ' '), errors)
+    warnings == '' and '' or (errors == '' and '' or ' '), errors)
   end
 })
 
@@ -159,7 +155,7 @@ local function get_paste() return vim.o.paste and 'PASTE ' or '' end
 
 local function get_readonly_space()
   return ((vim.o.paste and vim.bo.readonly) and ' ' or '') and '%r'
-           .. (vim.bo.readonly and ' ' or '')
+  .. (vim.bo.readonly and ' ' or '')
 end
 
 local function status()
@@ -180,6 +176,10 @@ local function status()
   table.insert(line_components, '%#StatuslineLineCol#(Ln %l/%L, %#StatuslineLineCol#Col %c) %<')
   table.insert(line_components, '%=')
   table.insert(line_components, '%#StatuslineVC#' .. vcs(buf_path) .. ' ')
+  local ts_component = ts.statusline(90)
+  if ts_component ~= nil then
+    table.insert(line_components, ts.statusline(90) .. ' ')
+  end
   table.insert(line_components, '%#StatuslineLint#' .. lint_lsp(buf_nr) .. '%#StatuslineFiletype#')
   return table.concat(line_components, '')
 end

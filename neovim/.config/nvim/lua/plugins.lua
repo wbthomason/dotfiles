@@ -2,7 +2,7 @@ local packer = nil
 local function init()
   if packer == nil then
     packer = require('packer')
-    packer.init()
+    packer.init({})
   end
 
   local use = packer.use
@@ -77,6 +77,7 @@ local function init()
   use {'mbbill/undotree', cmd = 'UndotreeToggle'}
 
   -- Git
+  use 'lewis6991/gitsigns.nvim'
   use {'mhinz/vim-signify', {'tpope/vim-fugitive', cmd = {'Gpull', 'Gpush', 'Gstatus'}}}
 
   -- Terminal
@@ -103,8 +104,14 @@ local function init()
         event = 'InsertEnter *',
         config = function() require('snippets').use_suggested_mappings() end
       }
-    }, 'nvim-lua/diagnostic-nvim', {'nvim-treesitter/completion-treesitter', opt = true},
-    {'nvim-treesitter/nvim-treesitter', config = 'require("treesitter")', event = 'VimEnter *'}
+    }, {'nvim-treesitter/completion-treesitter', opt = true},
+    {
+      'nvim-treesitter/nvim-treesitter',
+      requires = {
+        { 'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter'},
+        { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' }},
+        config = 'require("treesitter")', event =
+    'VimEnter *'}
   }
 
   use {'liuchengxu/vista.vim', cmd = 'Vista'}

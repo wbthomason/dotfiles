@@ -1,57 +1,5 @@
-local nvim_lsp = require('nvim_lsp')
+local lspconfig = require('lspconfig')
 local lsp_status = require('lsp-status')
-local diagnostic = require('diagnostic')
-
-local severity_map = {'E', 'W', 'I', 'H'}
-
-local function diagnostics_to_items(diagnostics)
-  local items = {}
-  local grouped = setmetatable({}, {
-    __index = function(t, k)
-      local v = {}
-      rawset(t, k, v)
-      return v
-    end
-  })
-
-  local fname = vim.api.nvim_buf_get_name(0)
-  for _, d in ipairs(diagnostics) do
-    local range = d.range
-    table.insert(grouped[fname], {start = range.start, item = d})
-  end
-
-  local keys = vim.tbl_keys(grouped)
-  table.sort(keys)
-  for _, name in ipairs(keys) do
-    local rows = grouped[name]
-    table.sort(rows, function(a, b)
-      if a.start.line < b.start.line or
-        (a.start.line == b.start.line and a.start.character < b.start.character) then
-        return true
-      end
-
-      return false
-    end)
-
-    for _, row in ipairs(rows) do
-      table.insert(items, {
-        filename = name,
-        lnum = row.start.line + 1,
-        text = row.item.message,
-        ['type'] = severity_map[row.item.severity],
-        col = row.start.character + 1,
-        vcol = true
-      })
-    end
-  end
-
-  return items
-end
-
-diagnostic.diagnostics_loclist = function(local_result)
-  if local_result then for _, v in ipairs(local_result) do v.uri = v.uri or local_result.uri end end
-  vim.lsp.util.set_loclist(diagnostics_to_items(local_result))
-end
 
 local texlab_search_status = vim.tbl_add_reverse_lookup {
   Success = 0,
@@ -76,12 +24,20 @@ lsp_status.config {
 
 lsp_status.register_progress()
 
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+    underline = true
+  }
+)
+
 local function make_on_attach(config)
   return function(client)
     if config.before then config.before(client) end
 
     lsp_status.on_attach(client)
-    diagnostic.on_attach()
     local opts = {noremap = true, silent = true}
     vim.api.nvim_buf_set_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -93,13 +49,14 @@ local function make_on_attach(config)
     vim.api.nvim_buf_set_keymap(0, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(0, 'n', '<leader>e',
-                                '<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>NextDiagnosticCycle<cr>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>PrevDiagnosticCycle<cr>', opts)
+    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>E', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', opts)
+    vim.api.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', opts)
+    vim.api.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', opts)
 
     if client.resolved_capabilities.document_formatting then
       vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>',
-                                  opts)
+      opts)
     end
 
     if client.resolved_capabilities.document_highlight then
@@ -121,7 +78,7 @@ local servers = {
       '--clang-tidy', '--completion-style=bundled', '--header-insertion=iwyu',
       '--suggest-missing-includes', '--cross-file-rename'
     },
-    callbacks = lsp_status.extensions.clangd.setup(),
+    handlers = lsp_status.extensions.clangd.setup(),
     init_options = {
       clangdFileStatus = true,
       usePlaceholders = true,
@@ -131,7 +88,7 @@ local servers = {
   },
   cssls = {
     filetypes = {"css", "scss", "less", "sass"},
-    root_dir = nvim_lsp.util.root_pattern("package.json", ".git")
+    root_dir = lspconfig.util.root_pattern("package.json", ".git")
   },
   ghcide = {},
   html = {},
@@ -139,40 +96,47 @@ local servers = {
   julials = {
     cmd = {
       "julia", "--startup-file=no", "--history-file=no", "-e", [[
-        using Pkg;
-        Pkg.instantiate()
-        using LanguageServer,  LanguageServer.SymbolServer;
-        depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
-        project_path = dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2])))
-        # Make sure that we only load packages from this environment specifically.
-        empty!(LOAD_PATH)
-        push!(LOAD_PATH, "@")
-        server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
-        server.runlinter = true;
-        run(server);
-        ]]
+      using Pkg;
+      Pkg.instantiate()
+      using LanguageServer,  LanguageServer.SymbolServer;
+      depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
+      project_path = dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2])))
+      # Make sure that we only load packages from this environment specifically.
+      empty!(LOAD_PATH)
+      push!(LOAD_PATH, "@")
+      server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
+      server.runlinter = true;
+      run(server);
+      ]]
     },
     settings = {julia = {format = {indent = 2}}}
   },
   ocamllsp = {},
-  pyls_ms = {
-    cmd = {'mspyls'},
-    callbacks = lsp_status.extensions.pyls_ms.setup(),
+  -- pyls_ms = {
+  --   cmd = {'mspyls'},
+  --   handlers = lsp_status.extensions.pyls_ms.setup(),
+  --   settings = {
+  --     python = {
+  --       jediEnabled = false,
+  --       analysis = {cachingLevel = 'Library'},
+  --       formatting = {provider = 'yapf'},
+  --       venvFolders = {"envs", ".pyenv", ".direnv", ".cache/pypoetry/virtualenvs"},
+  --       workspaceSymbols = {enabled = true}
+  --     }
+  --   },
+  --   root_dir = function(fname)
+  --     return lspconfig.util.root_pattern('pyproject.toml', 'setup.py', 'setup.cfg',
+  --     'requirements.txt', 'mypy.ini', '.pylintrc', '.flake8rc',
+  --     '.gitignore')(fname) or
+  --     lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+  --   end
+  -- },
+  pyright = {
     settings = {
-      python = {
-        jediEnabled = false,
-        analysis = {cachingLevel = 'Library'},
-        formatting = {provider = 'yapf'},
-        venvFolders = {"envs", ".pyenv", ".direnv", ".cache/pypoetry/virtualenvs"},
-        workspaceSymbols = {enabled = true}
-      }
+      analysis = { autoSearchPaths= true },
+      pyright = { useLibraryCodeForTypes = true },
+      formatting = { provider = 'yapf' }
     },
-    root_dir = function(fname)
-      return nvim_lsp.util.root_pattern('pyproject.toml', 'setup.py', 'setup.cfg',
-                                        'requirements.txt', 'mypy.ini', '.pylintrc', '.flake8rc',
-                                        '.gitignore')(fname) or
-               nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
-    end
   },
   rust_analyzer = {},
   sumneko_lua = {
@@ -253,7 +217,7 @@ end
 for server, config in pairs(servers) do
   config.on_attach = make_on_attach(config)
   config.capabilities = deep_extend('keep', config.capabilities or {}, lsp_status.capabilities,
-                                    snippet_capabilities)
+  snippet_capabilities)
 
-  nvim_lsp[server].setup(config)
+  lspconfig[server].setup(config)
 end
