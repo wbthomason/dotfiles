@@ -19,7 +19,8 @@ lsp_status.config {
 
       return require('lsp-status/util').in_range(cursor_pos, value_range)
     end
-  end
+  end,
+  current_function = false
 }
 
 lsp_status.register_progress()

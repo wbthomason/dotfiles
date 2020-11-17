@@ -176,9 +176,9 @@ local function status()
   table.insert(line_components, '%#StatuslineLineCol#(Ln %l/%L, %#StatuslineLineCol#Col %c) %<')
   table.insert(line_components, '%=')
   table.insert(line_components, '%#StatuslineVC#' .. vcs(buf_path) .. ' ')
-  local ts_component = ts.statusline(90)
+  local ts_component = ts.statusline(60)
   if ts_component ~= nil then
-    table.insert(line_components, ts.statusline(90) .. ' ')
+    table.insert(line_components, ts_component .. ' ')
   end
   table.insert(line_components, '%#StatuslineLint#' .. lint_lsp(buf_nr) .. '%#StatuslineFiletype#')
   return table.concat(line_components, '')
