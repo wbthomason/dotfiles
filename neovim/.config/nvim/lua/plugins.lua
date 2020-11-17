@@ -18,10 +18,10 @@ local function init()
   use 'cohama/lexima.vim'
 
   -- Registers
-  -- use 'junegunn/vim-peekaboo'
+  use 'junegunn/vim-peekaboo'
 
   -- Marks
-  -- use 'kshenoy/vim-signature'
+  use 'kshenoy/vim-signature'
 
   -- Buffer management
   use {'mhinz/vim-sayonara', cmd = 'Sayonara'}
