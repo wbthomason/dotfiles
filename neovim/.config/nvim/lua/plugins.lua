@@ -15,7 +15,7 @@ local function init()
   use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
   -- Auto-pairs
-  use 'cohama/lexima.vim'
+  -- use 'cohama/lexima.vim'
 
   -- Registers
   use 'junegunn/vim-peekaboo'
@@ -165,6 +165,12 @@ local function init()
 
   -- Meson
   use 'igankevich/mesonic'
+
+  -- TOML
+  use 'cespare/vim-toml'
+
+  -- Julia
+  use 'JuliaEditorSupport/julia-vim'
 
   -- PDDL
   use 'PontusPersson/pddl.vim'
