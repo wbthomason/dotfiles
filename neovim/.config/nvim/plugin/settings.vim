@@ -9,7 +9,7 @@ set lazyredraw
 set showmatch
 set ignorecase
 set smartcase
-set tabstop=4
+set tabstop=2
 set softtabstop=0
 set expandtab
 set shiftwidth=2
