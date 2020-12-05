@@ -60,7 +60,7 @@ local function make_on_attach(config)
       opts)
     end
 
-    if client.resolved_capabilities.document_highlight then
+    if client.resolved_capabilities.document_highlight == true then
       vim.api.nvim_command('augroup lsp_aucmds')
       vim.api.nvim_command('au CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
       vim.api.nvim_command('au CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
