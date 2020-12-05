@@ -118,10 +118,19 @@ local servers = {
   --   end
   -- },
   pyright = {
+    handlers = {
+      ['client/registerCapability'] = function(_, _, z, j)
+        -- print(vim.inspect(y), vim.inspect(z), vim.inspect(j))
+        return {
+          result = nil;
+          error = nil;
+        }
+      end
+    },
     settings = {
-      analysis = { autoSearchPaths= true },
-      pyright = { useLibraryCodeForTypes = true },
+      python = {
       formatting = { provider = 'yapf' }
+    }
     },
   },
   rust_analyzer = {},
@@ -130,7 +139,7 @@ local servers = {
     settings = {
       Lua = {
         diagnostics = {globals = {'vim'}},
-        completion = {keywordSnippet = 'Disable'},
+        -- completion = {keywordSnippet = 'Disable'},
         runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
         workspace = {
           library = {
