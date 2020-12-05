@@ -95,21 +95,6 @@ local servers = {
   html = {},
   jsonls = {cmd = {'json-languageserver', '--stdio'}},
   julials = {
-    cmd = {
-      "julia", "--startup-file=no", "--history-file=no", "-e", [[
-      using Pkg;
-      Pkg.instantiate()
-      using LanguageServer,  LanguageServer.SymbolServer;
-      depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
-      project_path = dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2])))
-      # Make sure that we only load packages from this environment specifically.
-      empty!(LOAD_PATH)
-      push!(LOAD_PATH, "@")
-      server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
-      server.runlinter = true;
-      run(server);
-      ]]
-    },
     settings = {julia = {format = {indent = 2}}}
   },
   ocamllsp = {},
