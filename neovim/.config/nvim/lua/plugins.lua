@@ -77,7 +77,6 @@ local function init()
   use {'mbbill/undotree', cmd = 'UndotreeToggle'}
 
   -- Git
-  use 'lewis6991/gitsigns.nvim'
   use {'mhinz/vim-signify', {'tpope/vim-fugitive', cmd = {'Gpull', 'Gpush', 'Gstatus'}}}
 
   -- Terminal
