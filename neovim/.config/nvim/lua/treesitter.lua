@@ -8,6 +8,7 @@ ts_configs.setup {
     'lua',
     'css',
     'fennel',
+    'haskell',
     'html',
     'javascript',
     'json',
