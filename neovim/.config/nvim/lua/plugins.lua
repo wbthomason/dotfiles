@@ -2,7 +2,7 @@ local packer = nil
 local function init()
   if packer == nil then
     packer = require('packer')
-    packer.init({})
+    packer.init({disable_commands = true})
   end
 
   local use = packer.use
