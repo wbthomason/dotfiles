@@ -22,6 +22,7 @@ ts_configs.setup {
   },
   highlight = {
     enable = true,
+    use_languagetree = true
   },
   indent = {enable = true},
   incremental_selection = {
@@ -72,5 +73,3 @@ ts_configs.setup {
 }}
       },
     }
--- vim.api.nvim_set_option('foldmethod', 'expr')
--- vim.api.nvim_set_option('foldexpr', 'nvim_treesitter#foldexpr()')
