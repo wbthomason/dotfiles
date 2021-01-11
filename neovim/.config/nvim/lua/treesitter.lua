@@ -5,7 +5,7 @@ return function()
       'bash', 'c', 'cpp', 'lua', 'css', 'fennel', 'haskell', 'html', 'javascript', 'json', 'julia',
       'ocaml', 'ocaml_interface', 'python', 'rust', 'toml', 'typescript'
     },
-    highlight = {enable = true},
+    highlight = {enable = true, use_languagetree = true},
     indent = {enable = true},
     incremental_selection = {
       enable = true,
