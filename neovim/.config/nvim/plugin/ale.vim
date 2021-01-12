@@ -41,5 +41,6 @@ let g:ale_alex_use_global = v:true
 let g:ale_fixers = {
                   \ '*': ['remove_trailing_lines', 'trim_whitespace'],
                   \ 'python': ['isort', 'yapf'],
-                  \ 'lua': [{buffer -> {'command': 'luaformatter'}}]
+                  \ 'lua': [{buffer -> {'command': 'luaformatter'}}],
+                  \ 'json': ['prettier']
                   \}
