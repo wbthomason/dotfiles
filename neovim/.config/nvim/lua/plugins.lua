@@ -28,7 +28,7 @@ local function init()
 
   -- Movement
   use {'chaoren/vim-wordmotion', 'justinmk/vim-sneak'}
-  use { 'unblevable/quick-scope'}
+  use {'unblevable/quick-scope'}
 
   -- Quickfix
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
@@ -54,8 +54,7 @@ local function init()
 
   -- Prettification
   use 'junegunn/vim-easy-align'
-  -- TODO: Only load this for filetypes where LSP doesn't provide formatting
-  -- use {'sbdchd/neoformat', cmd = 'Neoformat'}
+  use {'mhartington/formatter.nvim', config = require('format')}
 
   -- Text objects
   use 'wellle/targets.vim'
@@ -80,7 +79,7 @@ local function init()
   use {'mhinz/vim-signify', {'tpope/vim-fugitive', cmd = {'Gpull', 'Gpush', 'Gstatus'}}}
 
   -- Terminal
-  -- use 'voldikss/vim-floaterm'
+  use 'voldikss/vim-floaterm'
 
   -- Completion and linting
   use {
@@ -103,14 +102,15 @@ local function init()
         event = 'InsertEnter *',
         config = function() require('snippets').use_suggested_mappings() end
       }
-    }, {'nvim-treesitter/completion-treesitter', opt = true},
-    {
+    }, {'nvim-treesitter/completion-treesitter', opt = true}, {
       'nvim-treesitter/nvim-treesitter',
       requires = {
-        { 'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter'},
-        { 'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter' }},
-        config = 'require("treesitter")', event =
-    'VimEnter *'}
+        {'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter'},
+        {'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter'}
+      },
+      config = require('treesitter'),
+      event = 'VimEnter *'
+    }
   }
 
   use {'liuchengxu/vista.vim', cmd = 'Vista'}
@@ -123,9 +123,6 @@ local function init()
     setup = function() vim.g.vimspector_enable_mappings = 'HUMAN' end,
     opt = true
   }
-
-  -- Linting
-  use 'w0rp/ale'
 
   -- Language multipack
   -- use 'sheerun/vim-polyglot'
@@ -140,25 +137,6 @@ local function init()
   use 'justinmk/vim-dirvish'
   use 'kristijanhusak/vim-dirvish-git'
 
-  -- -- Clojure/Lisps/Scheme
-  -- local sexp_filetypes = {'clojure', 'lisp', 'scheme', 'racket', 'jbuild', 'fennel', 'pddl'}
-  -- use {
-  --   'guns/vim-sexp',
-  --   ft = sexp_filetypes,
-  --   config = function() vim.cmd [[ doautoall sexp_filetypes Filetype ]] end
-  -- }
-  --
-  -- use {
-  --   'tpope/vim-sexp-mappings-for-regular-people',
-  --   ft = sexp_filetypes,
-  --   config = function() vim.cmd [[ doautoall sexp_mappings_for_regular_people Filetype ]] end
-  -- }
-  --
-  -- use {'vlime/vlime', rtp = 'vim/', ft = {'lisp'}}
-  -- use {'Olical/conjure', ft = {'clojure', 'fennel'}}
-  --
-  -- use {'eraserhd/parinfer-rust', ft = sexp_filetypes, run = 'cargo build --release'}
-  --
   -- LaTeX
   use 'lervag/vimtex'
 
@@ -189,9 +167,6 @@ local function init()
 
   -- Notes
   use '~/projects/personal/pdf-scribe.nvim'
-
-  -- Tasks
-  -- use '~/projects/personal/import-todoist.nvim'
 end
 
 local plugins = setmetatable({}, {

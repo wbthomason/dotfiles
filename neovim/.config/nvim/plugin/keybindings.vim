@@ -38,7 +38,7 @@ tnoremap jj <C-\><C-n>
 nnoremap <leader>R <cmd>IronRepl<CR>
 
 " Formatting Bindings
-nnoremap <silent> <leader>f <cmd>ALEFix<cr>
+nnoremap <silent> <leader>f <cmd>Format<cr>
 
 " Easy-Align bindings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
