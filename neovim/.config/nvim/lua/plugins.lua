@@ -28,7 +28,7 @@ local function init()
 
   -- Movement
   use {'chaoren/vim-wordmotion', 'justinmk/vim-sneak'}
-  use {'unblevable/quick-scope'}
+  use 'unblevable/quick-scope'
 
   -- Quickfix
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
@@ -167,6 +167,12 @@ local function init()
 
   -- Notes
   use '~/projects/personal/pdf-scribe.nvim'
+  use {
+    'oberblastmeister/neuron.nvim',
+    event = 'VimEnter *',
+    config = function() require('neuron').setup {neuron_dir = '~/gdrive/notes/neuron'} end
+  }
+
 end
 
 local plugins = setmetatable({}, {
