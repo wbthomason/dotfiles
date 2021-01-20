@@ -1,7 +1,7 @@
 " Keybindings
 
 " Get rid of the annoying F1 binding
-imap <f1> <nop>
+noremap <f1> <cmd>FloatermToggle<cr>
 
 " Re-run commands
 nnoremap <silent> <localleader>r @:
