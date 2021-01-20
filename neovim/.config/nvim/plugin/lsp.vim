@@ -13,10 +13,15 @@ execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'
 imap <tab> <Plug>(completion_smart_tab)
 imap <s-tab> <Plug>(completion_smart_s_tab)
 
-call sign_define('LspDiagnosticsSignError', {'text' : '🗙', 'texthl' : 'RedHover'})
-call sign_define('LspDiagnosticsSignWarning', {'text' : '➤', 'texthl' : 'YellowHover'})
-call sign_define('LspDiagnosticsSignInformation', {'text' : '🛈', 'texthl' : 'WhiteHover'})
-call sign_define('LspDiagnosticsSignHint', {'text' : '❗', 'texthl' : 'CocHintHighlight'})
+" call sign_define('LspDiagnosticsSignError', {'text' : '🗙', 'texthl' : 'RedHover'})
+" call sign_define('LspDiagnosticsSignWarning', {'text' : '➤', 'texthl' : 'YellowHover'})
+" call sign_define('LspDiagnosticsSignInformation', {'text' : '🛈', 'texthl' : 'WhiteHover'})
+" call sign_define('LspDiagnosticsSignHint', {'text' : '❗', 'texthl' : 'CocHintHighlight'})
+
+call sign_define("LspDiagnosticsSignError", {'text': "", 'numhl': "RedSign"})
+call sign_define("LspDiagnosticsSignWarning", {'text': "", 'numhl': "YellowSign"})
+call sign_define("LspDiagnosticsSignInformation", {'text': "", 'numhl': "WhiteSign"})
+call sign_define("LspDiagnosticsSignHint", {'text': "", 'numhl': "BlueSign"})
 
 let g:completion_auto_change_source = 1
 let g:completion_chain_complete_list = {
