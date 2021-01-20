@@ -25,14 +25,9 @@ lsp_status.config {
 
 lsp_status.register_progress()
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
-    underline = true
-  }
-)
+vim.lsp.handlers['textDocument/publishDiagnostics'] =
+  vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+               {virtual_text = false, signs = true, update_in_insert = false, underline = true})
 
 local function make_on_attach(config)
   return function(client)
@@ -50,19 +45,21 @@ local function make_on_attach(config)
     vim.api.nvim_buf_set_keymap(0, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     vim.api.nvim_buf_set_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     vim.api.nvim_buf_set_keymap(0, 'n', '<leader>e',
-    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>E', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', opts)
+                                '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>E',
+                                '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', opts)
     vim.api.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', opts)
     vim.api.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', opts)
 
     if client.resolved_capabilities.document_formatting then
       vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>',
-      opts)
+                                  opts)
     end
 
     if client.resolved_capabilities.document_highlight == true then
       vim.api.nvim_command('augroup lsp_aucmds')
       vim.api.nvim_command('au CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
+      vim.api.nvim_command('au CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
       vim.api.nvim_command('au CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
       vim.api.nvim_command('augroup END')
     end
@@ -94,9 +91,7 @@ local servers = {
   ghcide = {},
   html = {},
   jsonls = {cmd = {'json-languageserver', '--stdio'}},
-  julials = {
-    settings = {julia = {format = {indent = 2}}}
-  },
+  julials = {settings = {julia = {format = {indent = 2}}}},
   ocamllsp = {},
   -- pyls_ms = {
   --   cmd = {'mspyls'},
@@ -117,22 +112,7 @@ local servers = {
   --     lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
   --   end
   -- },
-  pyright = {
-    handlers = {
-      ['client/registerCapability'] = function(_, _, z, j)
-        -- print(vim.inspect(y), vim.inspect(z), vim.inspect(j))
-        return {
-          result = nil;
-          error = nil;
-        }
-      end
-    },
-    settings = {
-      python = {
-      formatting = { provider = 'yapf' }
-    }
-    },
-  },
+  pyright = {settings = {python = {formatting = {provider = 'yapf'}}}},
   rust_analyzer = {},
   sumneko_lua = {
     cmd = {'lua-language-server'},
@@ -212,7 +192,7 @@ end
 for server, config in pairs(servers) do
   config.on_attach = make_on_attach(config)
   config.capabilities = deep_extend('keep', config.capabilities or {}, lsp_status.capabilities,
-  snippet_capabilities)
+                                    snippet_capabilities)
 
   lspconfig[server].setup(config)
 end
