@@ -6,6 +6,7 @@ local function init()
   end
 
   local use = packer.use
+  local use_rocks = packer.use_rocks
   packer.reset()
 
   -- Packer
