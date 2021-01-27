@@ -9,7 +9,23 @@ endif
 try
 
 lua << END
-local plugins = {
+  local package_path_str = "/home/wil/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?.lua;/home/wil/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?/init.lua;/home/wil/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?.lua;/home/wil/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?/init.lua"
+  local install_cpath_pattern = "/home/wil/.cache/nvim/packer_hererocks/2.0.5/lib/lua/5.1/?.so"
+  if not string.find(package.path, package_path_str, 1, true) then
+    package.path = package.path .. ';' .. package_path_str
+  end
+
+  if not string.find(package.cpath, install_cpath_pattern, 1, true) then
+    package.cpath = package.cpath .. ';' .. install_cpath_pattern
+  end
+
+_G.packer_plugins = {
+  ["BetterLua.vim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/BetterLua.vim"
+  },
   ["completion-nvim"] = {
     config = { "\27LJ\1\2·\2\0\0\5\0\f\0\0294\0\0\0%\1\1\0>\0\2\0027\1\2\0%\2\3\0004\3\0\0%\4\3\0>\3\2\0027\3\4\3>\1\3\0014\1\5\0007\1\6\1%\2\a\0>\1\2\0014\1\5\0007\1\6\1%\2\b\0>\1\2\0014\1\5\0007\1\6\1%\2\t\0>\1\2\0017\1\n\0>\1\1\0014\1\5\0007\1\6\1%\2\v\0>\1\2\1G\0\1\0\25 doautoall FileType \14on_attach\18 augroup END : au BufEnter * lua require('completion').on_attach() \25 augroup lsp_aucmds \bcmd\bvim\18complete_item\vvimtex\24addCompletionSource\15completion\frequire\0" },
     loaded = false,
@@ -23,6 +39,25 @@ local plugins = {
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/completion-treesitter"
   },
+  ["formatter.nvim"] = {
+    config = { "\27LJ\1\2Š\1\0\0\4\0\6\0\n3\0\0\0003\1\1\0004\2\2\0007\2\3\0027\2\4\2'\3\0\0>\2\2\2;\2\2\1:\1\5\0H\0\2\0\targs\22nvim_buf_get_name\bapi\bvim\1\4\0\0\21--stdin-filepath\0\19--single-quote\1\0\2\nstdin\2\bexe\rprettier{\0\0\5\0\a\0\f3\0\0\0002\1\3\0%\2\1\0004\3\2\0007\3\3\0037\3\4\3%\4\5\0>\3\2\2$\2\3\2;\2\1\1:\1\6\0H\0\2\0\targs\b%:t\vexpand\afn\bvim\22-assume-filename=\1\0\2\nstdin\2\bexe\17clang-formatD\0\0\2\0\3\0\0043\0\0\0003\1\1\0:\1\2\0H\0\2\0\targs\1\2\0\0\18--emit=stdout\1\0\2\nstdin\2\bexe\frustfmt(\0\0\1\0\1\0\0023\0\0\0H\0\2\0\1\0\2\bexe\15lua-format\nstdin\2\"\0\0\1\0\1\0\0023\0\0\0H\0\2\0\1\0\2\bexe\tyapf\nstdin\2>\0\0\2\0\3\0\0043\0\0\0003\1\1\0:\1\2\0H\0\2\0\targs\1\3\0\0\6-\f--quiet\1\0\2\nstdin\2\bexe\nisortY\0\0\2\0\3\0\0043\0\0\0003\1\1\0:\1\2\0H\0\2\0\targs\1\4\0\0\b-sl\19-g /dev/stderr\0162>/dev/null\1\0\2\nstdin\2\bexe\16latexindent\2\1\0\v\0\22\0,1\0\0\0001\1\1\0001\2\2\0001\3\3\0001\4\4\0001\5\5\0001\6\6\0004\a\a\0%\b\b\0>\a\2\0027\a\t\a3\b\n\0003\t\v\0002\n\3\0;\0\1\n:\n\f\t2\n\3\0;\0\1\n:\n\r\t2\n\3\0;\0\1\n:\n\14\t2\n\3\0;\2\1\n:\n\15\t2\n\3\0;\5\1\n;\4\2\n:\n\16\t2\n\3\0;\6\1\n:\n\17\t2\n\3\0;\1\1\n:\n\18\t2\n\3\0;\1\1\n:\n\19\t2\n\3\0;\3\1\n:\n\20\t:\t\21\b>\a\2\1G\0\1\0\rfiletype\blua\bcpp\6c\btex\vpython\trust\thtml\tjson\15javascript\1\0\0\1\0\1\flogging\1\nsetup\14formatter\frequire\0\0\0\0\0\0\0\0" },
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/formatter.nvim"
+  },
+  ["hover.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/hover.nvim"
+  },
+  indentLine = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/indentLine"
+  },
   ["iron.nvim"] = {
     commands = { "IronRepl", "IronWatchCurrentFile", "IronSend" },
     loaded = false,
@@ -30,11 +65,48 @@ local plugins = {
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/iron.nvim"
   },
+  ["julia-vim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/julia-vim"
+  },
+  ["lsp-status.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/lsp-status.nvim"
+  },
+  mesonic = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/mesonic"
+  },
+  ["neuron.nvim"] = {
+    config = { "\27LJ\1\2\\\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0>\0\2\1G\0\1\0\1\0\1\15neuron_dir\26~/gdrive/notes/neuron\nsetup\vneuron\frequire\0" },
+    loaded = false,
+    only_sequence = false,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/neuron.nvim"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+  },
   ["nvim-dap"] = {
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-dap"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     after = { "nvim-treesitter-refactor", "nvim-treesitter-textobjects" },
@@ -68,12 +140,84 @@ local plugins = {
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
+  ["pddl.vim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/pddl.vim"
+  },
+  ["pdf-scribe.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/pdf-scribe.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+  },
+  ["popup.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["quick-scope"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/quick-scope"
+  },
+  ["snippets.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/snippets.nvim"
+  },
+  ["targets.vim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/targets.vim"
+  },
+  tcomment_vim = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/tcomment_vim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
   undotree = {
     commands = { "UndotreeToggle" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/undotree"
+  },
+  ["vim-cool"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-cool"
+  },
+  ["vim-dirvish"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-dirvish"
+  },
+  ["vim-dirvish-git"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-dirvish-git"
   },
   ["vim-dispatch"] = {
     commands = { "Dispatch", "Make", "Focus", "Start" },
@@ -82,12 +226,24 @@ local plugins = {
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-dispatch"
   },
+  ["vim-easy-align"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-easy-align"
+  },
   ["vim-enmasse"] = {
     commands = { "EnMasse" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-enmasse"
+  },
+  ["vim-floaterm"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-floaterm"
   },
   ["vim-fugitive"] = {
     commands = { "Gpull", "Gpush", "Gstatus" },
@@ -109,6 +265,12 @@ local plugins = {
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-matchup"
   },
+  ["vim-nazgul"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-nazgul"
+  },
   ["vim-obsession"] = {
     after = { "vim-prosession" },
     commands = { "Prosession" },
@@ -116,6 +278,12 @@ local plugins = {
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-obsession"
+  },
+  ["vim-peekaboo"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-peekaboo"
   },
   ["vim-prosession"] = {
     load_after = {
@@ -126,12 +294,36 @@ local plugins = {
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-prosession"
   },
+  ["vim-sandwich"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-sandwich"
+  },
   ["vim-sayonara"] = {
     commands = { "Sayonara" },
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-sayonara"
+  },
+  ["vim-signature"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-signature"
+  },
+  ["vim-signify"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-signify"
+  },
+  ["vim-sneak"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-sneak"
   },
   ["vim-startuptime"] = {
     commands = { "StartupTime" },
@@ -140,11 +332,29 @@ local plugins = {
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-startuptime"
   },
+  ["vim-toml"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-toml"
+  },
+  ["vim-wordmotion"] = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-wordmotion"
+  },
   vimspector = {
     loaded = false,
     only_sequence = false,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vimspector"
+  },
+  vimtex = {
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vimtex"
   },
   ["vista.vim"] = {
     commands = { "Vista" },
@@ -157,7 +367,7 @@ local plugins = {
 
 local function handle_bufread(names)
   for _, name in ipairs(names) do
-    local path = plugins[name].path
+    local path = packer_plugins[name].path
     for _, dir in ipairs({ 'ftdetect', 'ftplugin', 'after/ftdetect', 'after/ftplugin' }) do
       if #vim.fn.finddir(dir, path) > 0 then
         vim.cmd('doautocmd BufRead')
@@ -169,7 +379,7 @@ end
 
 local packer_load = nil
 local function handle_after(name, before)
-  local plugin = plugins[name]
+  local plugin = packer_plugins[name]
   plugin.load_after[before] = nil
   if next(plugin.load_after) == nil then
     packer_load({name}, {})
@@ -179,7 +389,7 @@ end
 packer_load = function(names, cause)
   local some_unloaded = false
   for _, name in ipairs(names) do
-    if not plugins[name].loaded then
+    if not packer_plugins[name].loaded then
       some_unloaded = true
       break
     end
@@ -191,14 +401,14 @@ packer_load = function(names, cause)
   local del_cmds = {}
   local del_maps = {}
   for _, name in ipairs(names) do
-    if plugins[name].commands then
-      for _, cmd in ipairs(plugins[name].commands) do
+    if packer_plugins[name].commands then
+      for _, cmd in ipairs(packer_plugins[name].commands) do
         del_cmds[cmd] = true
       end
     end
 
-    if plugins[name].keys then
-      for _, key in ipairs(plugins[name].keys) do
+    if packer_plugins[name].keys then
+      for _, key in ipairs(packer_plugins[name].keys) do
         del_maps[key] = true
       end
     end
@@ -213,22 +423,22 @@ packer_load = function(names, cause)
   end
 
   for _, name in ipairs(names) do
-    if not plugins[name].loaded then
+    if not packer_plugins[name].loaded then
       vim.cmd('packadd ' .. name)
-      if plugins[name].config then
-        for _i, config_line in ipairs(plugins[name].config) do
+      if packer_plugins[name].config then
+        for _i, config_line in ipairs(packer_plugins[name].config) do
           loadstring(config_line)()
         end
       end
 
-      if plugins[name].after then
-        for _, after_name in ipairs(plugins[name].after) do
+      if packer_plugins[name].after then
+        for _, after_name in ipairs(packer_plugins[name].after) do
           handle_after(after_name, name)
           vim.cmd('redraw')
         end
       end
 
-      plugins[name].loaded = true
+      packer_plugins[name].loaded = true
     end
   end
 
@@ -306,12 +516,12 @@ command! -nargs=* -range -bang -complete=file Vista call s:load(['vista.vim'], {
 command! -nargs=* -range -bang -complete=file StartupTime call s:load(['vim-startuptime'], { "cmd": "StartupTime", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file EnMasse call s:load(['vim-enmasse'], { "cmd": "EnMasse", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Gstatus call s:load(['vim-fugitive'], { "cmd": "Gstatus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file IronRepl call s:load(['iron.nvim'], { "cmd": "IronRepl", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file IronSend call s:load(['iron.nvim'], { "cmd": "IronSend", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Focus call s:load(['vim-dispatch'], { "cmd": "Focus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file IronWatchCurrentFile call s:load(['iron.nvim'], { "cmd": "IronWatchCurrentFile", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Gpush call s:load(['vim-fugitive'], { "cmd": "Gpush", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file UndotreeToggle call s:load(['undotree'], { "cmd": "UndotreeToggle", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file IronSend call s:load(['iron.nvim'], { "cmd": "IronSend", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Gpush call s:load(['vim-fugitive'], { "cmd": "Gpush", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file IronWatchCurrentFile call s:load(['iron.nvim'], { "cmd": "IronWatchCurrentFile", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Focus call s:load(['vim-dispatch'], { "cmd": "Focus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file IronRepl call s:load(['iron.nvim'], { "cmd": "IronRepl", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Grepper call s:load(['vim-grepper'], { "cmd": "Grepper", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Prosession call s:load(['vim-obsession'], { "cmd": "Prosession", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
@@ -322,7 +532,7 @@ augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
   " Event lazy-loads
-  au VimEnter * ++once call s:load(['vim-matchup', 'nvim-treesitter'], { "event": "VimEnter *" })
+  au VimEnter * ++once call s:load(['vim-matchup', 'neuron.nvim', 'nvim-treesitter'], { "event": "VimEnter *" })
   au InsertEnter * ++once call s:load(['completion-nvim'], { "event": "InsertEnter *" })
   " Function lazy-loads
 augroup END
