@@ -50,7 +50,7 @@ function! s:setup_colors() abort
   hi! link LspDiagnosticsUnderlineHint CocHintHighlight
 
   hi! link SignifySignAdd GreenSign
-  hi! link SignifySignChange AquaSign
+  hi! link SignifySignChange BlueSign
   hi! link SignifySignDelete RedSign
 
   hi! link DirvishGitModified AquaSign
