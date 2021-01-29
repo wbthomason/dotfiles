@@ -11,3 +11,4 @@ if [ -n "$DESKTOP_SESSION" ];then
     export SSH_AUTH_SOCK
 fi
 
+BROWSER=chromium
