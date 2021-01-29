@@ -26,19 +26,6 @@ _G.packer_plugins = {
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/BetterLua.vim"
   },
-  ["completion-nvim"] = {
-    config = { "\27LJ\1\2·\2\0\0\5\0\f\0\0294\0\0\0%\1\1\0>\0\2\0027\1\2\0%\2\3\0004\3\0\0%\4\3\0>\3\2\0027\3\4\3>\1\3\0014\1\5\0007\1\6\1%\2\a\0>\1\2\0014\1\5\0007\1\6\1%\2\b\0>\1\2\0014\1\5\0007\1\6\1%\2\t\0>\1\2\0017\1\n\0>\1\1\0014\1\5\0007\1\6\1%\2\v\0>\1\2\1G\0\1\0\25 doautoall FileType \14on_attach\18 augroup END : au BufEnter * lua require('completion').on_attach() \25 augroup lsp_aucmds \bcmd\bvim\18complete_item\vvimtex\24addCompletionSource\15completion\frequire\0" },
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/completion-nvim"
-  },
-  ["completion-treesitter"] = {
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/completion-treesitter"
-  },
   ["formatter.nvim"] = {
     config = { "\27LJ\1\2Š\1\0\0\4\0\6\0\n3\0\0\0003\1\1\0004\2\2\0007\2\3\0027\2\4\2'\3\0\0>\2\2\2;\2\2\1:\1\5\0H\0\2\0\targs\22nvim_buf_get_name\bapi\bvim\1\4\0\0\21--stdin-filepath\0\19--single-quote\1\0\2\nstdin\2\bexe\rprettier{\0\0\5\0\a\0\f3\0\0\0002\1\3\0%\2\1\0004\3\2\0007\3\3\0037\3\4\3%\4\5\0>\3\2\2$\2\3\2;\2\1\1:\1\6\0H\0\2\0\targs\b%:t\vexpand\afn\bvim\22-assume-filename=\1\0\2\nstdin\2\bexe\17clang-formatD\0\0\2\0\3\0\0043\0\0\0003\1\1\0:\1\2\0H\0\2\0\targs\1\2\0\0\18--emit=stdout\1\0\2\nstdin\2\bexe\frustfmt(\0\0\1\0\1\0\0023\0\0\0H\0\2\0\1\0\2\bexe\15lua-format\nstdin\2\"\0\0\1\0\1\0\0023\0\0\0H\0\2\0\1\0\2\bexe\tyapf\nstdin\2>\0\0\2\0\3\0\0043\0\0\0003\1\1\0:\1\2\0H\0\2\0\targs\1\3\0\0\6-\f--quiet\1\0\2\nstdin\2\bexe\nisortY\0\0\2\0\3\0\0043\0\0\0003\1\1\0:\1\2\0H\0\2\0\targs\1\4\0\0\b-sl\19-g /dev/stderr\0162>/dev/null\1\0\2\nstdin\2\bexe\16latexindent\2\1\0\v\0\22\0,1\0\0\0001\1\1\0001\2\2\0001\3\3\0001\4\4\0001\5\5\0001\6\6\0004\a\a\0%\b\b\0>\a\2\0027\a\t\a3\b\n\0003\t\v\0002\n\3\0;\0\1\n:\n\f\t2\n\3\0;\0\1\n:\n\r\t2\n\3\0;\0\1\n:\n\14\t2\n\3\0;\2\1\n:\n\15\t2\n\3\0;\5\1\n;\4\2\n:\n\16\t2\n\3\0;\6\1\n:\n\17\t2\n\3\0;\1\1\n:\n\18\t2\n\3\0;\1\1\n:\n\19\t2\n\3\0;\3\1\n:\n\20\t:\t\21\b>\a\2\1G\0\1\0\rfiletype\blua\bcpp\6c\btex\vpython\trust\thtml\tjson\15javascript\1\0\0\1\0\1\flogging\1\nsetup\14formatter\frequire\0\0\0\0\0\0\0\0" },
     loaded = true,
@@ -83,18 +70,18 @@ _G.packer_plugins = {
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/mesonic"
   },
-  ["neuron.nvim"] = {
-    config = { "\27LJ\1\2\\\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0>\0\2\1G\0\1\0\1\0\1\15neuron_dir\26~/gdrive/notes/neuron\nsetup\vneuron\frequire\0" },
-    loaded = false,
-    only_sequence = false,
-    only_setup = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/neuron.nvim"
-  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     only_sequence = true,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+  },
+  ["nvim-compe"] = {
+    config = { "\27LJ\1\2,\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\17config.compe\frequire\0" },
+    loaded = true,
+    only_sequence = true,
+    only_setup = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-dap"] = {
     loaded = false,
@@ -169,12 +156,6 @@ _G.packer_plugins = {
     only_sequence = true,
     only_setup = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/quick-scope"
-  },
-  ["snippets.nvim"] = {
-    loaded = true,
-    only_sequence = true,
-    only_setup = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/snippets.nvim"
   },
   ["targets.vim"] = {
     loaded = true,
@@ -496,6 +477,8 @@ end
 -- Setup for: vimspector
 loadstring("\27LJ\1\2B\0\0\2\0\4\0\0054\0\0\0007\0\1\0%\1\3\0:\1\2\0G\0\1\0\nHUMAN\31vimspector_enable_mappings\6g\bvim\0")()
 -- Post-load configuration
+-- Config for: nvim-compe
+loadstring("\27LJ\1\2,\0\0\2\0\2\0\0044\0\0\0%\1\1\0>\0\2\1G\0\1\0\17config.compe\frequire\0")()
 -- Config for: formatter.nvim
 loadstring("\27LJ\1\2Š\1\0\0\4\0\6\0\n3\0\0\0003\1\1\0004\2\2\0007\2\3\0027\2\4\2'\3\0\0>\2\2\2;\2\2\1:\1\5\0H\0\2\0\targs\22nvim_buf_get_name\bapi\bvim\1\4\0\0\21--stdin-filepath\0\19--single-quote\1\0\2\nstdin\2\bexe\rprettier{\0\0\5\0\a\0\f3\0\0\0002\1\3\0%\2\1\0004\3\2\0007\3\3\0037\3\4\3%\4\5\0>\3\2\2$\2\3\2;\2\1\1:\1\6\0H\0\2\0\targs\b%:t\vexpand\afn\bvim\22-assume-filename=\1\0\2\nstdin\2\bexe\17clang-formatD\0\0\2\0\3\0\0043\0\0\0003\1\1\0:\1\2\0H\0\2\0\targs\1\2\0\0\18--emit=stdout\1\0\2\nstdin\2\bexe\frustfmt(\0\0\1\0\1\0\0023\0\0\0H\0\2\0\1\0\2\bexe\15lua-format\nstdin\2\"\0\0\1\0\1\0\0023\0\0\0H\0\2\0\1\0\2\bexe\tyapf\nstdin\2>\0\0\2\0\3\0\0043\0\0\0003\1\1\0:\1\2\0H\0\2\0\targs\1\3\0\0\6-\f--quiet\1\0\2\nstdin\2\bexe\nisortY\0\0\2\0\3\0\0043\0\0\0003\1\1\0:\1\2\0H\0\2\0\targs\1\4\0\0\b-sl\19-g /dev/stderr\0162>/dev/null\1\0\2\nstdin\2\bexe\16latexindent\2\1\0\v\0\22\0,1\0\0\0001\1\1\0001\2\2\0001\3\3\0001\4\4\0001\5\5\0001\6\6\0004\a\a\0%\b\b\0>\a\2\0027\a\t\a3\b\n\0003\t\v\0002\n\3\0;\0\1\n:\n\f\t2\n\3\0;\0\1\n:\n\r\t2\n\3\0;\0\1\n:\n\14\t2\n\3\0;\2\1\n:\n\15\t2\n\3\0;\5\1\n;\4\2\n:\n\16\t2\n\3\0;\6\1\n:\n\17\t2\n\3\0;\1\1\n:\n\18\t2\n\3\0;\1\1\n:\n\19\t2\n\3\0;\3\1\n:\n\20\t:\t\21\b>\a\2\1G\0\1\0\rfiletype\blua\bcpp\6c\btex\vpython\trust\thtml\tjson\15javascript\1\0\0\1\0\1\flogging\1\nsetup\14formatter\frequire\0\0\0\0\0\0\0\0")()
 -- Conditional loads
@@ -516,15 +499,15 @@ command! -nargs=* -range -bang -complete=file Vista call s:load(['vista.vim'], {
 command! -nargs=* -range -bang -complete=file StartupTime call s:load(['vim-startuptime'], { "cmd": "StartupTime", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file EnMasse call s:load(['vim-enmasse'], { "cmd": "EnMasse", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Gstatus call s:load(['vim-fugitive'], { "cmd": "Gstatus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file UndotreeToggle call s:load(['undotree'], { "cmd": "UndotreeToggle", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file IronSend call s:load(['iron.nvim'], { "cmd": "IronSend", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Gpush call s:load(['vim-fugitive'], { "cmd": "Gpush", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file IronWatchCurrentFile call s:load(['iron.nvim'], { "cmd": "IronWatchCurrentFile", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Focus call s:load(['vim-dispatch'], { "cmd": "Focus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file IronRepl call s:load(['iron.nvim'], { "cmd": "IronRepl", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Prosession call s:load(['vim-obsession'], { "cmd": "Prosession", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Focus call s:load(['vim-dispatch'], { "cmd": "Focus", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file IronWatchCurrentFile call s:load(['iron.nvim'], { "cmd": "IronWatchCurrentFile", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file Gpush call s:load(['vim-fugitive'], { "cmd": "Gpush", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file UndotreeToggle call s:load(['undotree'], { "cmd": "UndotreeToggle", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Grepper call s:load(['vim-grepper'], { "cmd": "Grepper", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 command! -nargs=* -range -bang -complete=file Sayonara call s:load(['vim-sayonara'], { "cmd": "Sayonara", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
-command! -nargs=* -range -bang -complete=file Prosession call s:load(['vim-obsession'], { "cmd": "Prosession", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
+command! -nargs=* -range -bang -complete=file IronSend call s:load(['iron.nvim'], { "cmd": "IronSend", "l1": <line1>, "l2": <line2>, "bang": <q-bang>, "args": <q-args> })
 
 " Keymap lazy-loads
 
@@ -532,8 +515,7 @@ augroup packer_load_aucmds
   au!
   " Filetype lazy-loads
   " Event lazy-loads
-  au VimEnter * ++once call s:load(['vim-matchup', 'neuron.nvim', 'nvim-treesitter'], { "event": "VimEnter *" })
-  au InsertEnter * ++once call s:load(['completion-nvim'], { "event": "InsertEnter *" })
+  au VimEnter * ++once call s:load(['vim-matchup', 'nvim-treesitter'], { "event": "VimEnter *" })
   " Function lazy-loads
 augroup END
 

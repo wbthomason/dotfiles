@@ -85,25 +85,6 @@ local function init()
   -- Completion and linting
   use {
     'neovim/nvim-lspconfig', '~/projects/personal/lsp-status.nvim', {
-      'nvim-lua/completion-nvim',
-      event = 'InsertEnter *',
-      config = function()
-        local completion = require('completion')
-        completion.addCompletionSource('vimtex', require('vimtex').complete_item)
-
-        vim.cmd [[ augroup lsp_aucmds ]]
-        vim.cmd [[ au BufEnter * lua require('completion').on_attach() ]]
-        vim.cmd [[ augroup END ]]
-
-        completion.on_attach()
-        vim.cmd [[ doautoall FileType ]]
-      end,
-      requires = {
-        'norcalli/snippets.nvim',
-        event = 'InsertEnter *',
-        config = function() require('snippets').use_suggested_mappings() end
-      }
-    }, {'nvim-treesitter/completion-treesitter', opt = true}, {
       'nvim-treesitter/nvim-treesitter',
       requires = {
         {'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter'},
@@ -113,6 +94,8 @@ local function init()
       event = 'VimEnter *'
     }
   }
+
+  use {'hrsh7th/nvim-compe', config = function() require('config.compe') end}
 
   use {'liuchengxu/vista.vim', cmd = 'Vista'}
   use '~/projects/personal/hover.nvim'
@@ -168,11 +151,11 @@ local function init()
 
   -- Notes
   use '~/projects/personal/pdf-scribe.nvim'
-  use {
-    'oberblastmeister/neuron.nvim',
-    event = 'VimEnter *',
-    config = function() require('neuron').setup {neuron_dir = '~/gdrive/notes/neuron'} end
-  }
+  -- use {
+  --   'oberblastmeister/neuron.nvim',
+  --   event = 'VimEnter *',
+  --   config = function() require('neuron').setup {neuron_dir = '~/gdrive/notes/neuron'} end
+  -- }
 
 end
 

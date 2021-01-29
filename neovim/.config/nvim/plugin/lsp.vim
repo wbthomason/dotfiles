@@ -1,17 +1,17 @@
 " This disables the fairly slow loading of server installation commands, which we don't really use
 " anyway
 let g:nvim_lsp = 1
-let g:completion_max_items = 30
-let g:completion_trigger_on_delete = 1
-let g:completion_enable_snippet = 'snippets.nvim'
-
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'
 
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
+inoremap <silent><expr> <c-c> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+
+" imap <tab> <Plug>(completion_smart_tab)
+" imap <s-tab> <Plug>(completion_smart_s_tab)
 
 " call sign_define('LspDiagnosticsSignError', {'text' : '🗙', 'texthl' : 'RedHover'})
 " call sign_define('LspDiagnosticsSignWarning', {'text' : '➤', 'texthl' : 'YellowHover'})
@@ -22,39 +22,6 @@ call sign_define("LspDiagnosticsSignError", {'text': "", 'numhl': "RedSign"})
 call sign_define("LspDiagnosticsSignWarning", {'text': "", 'numhl': "YellowSign"})
 call sign_define("LspDiagnosticsSignInformation", {'text': "", 'numhl': "WhiteSign"})
 call sign_define("LspDiagnosticsSignHint", {'text': "", 'numhl': "BlueSign"})
-
-let g:completion_auto_change_source = 1
-let g:completion_chain_complete_list = {
-      \ 'default' : {
-      \   'default': [
-      \       {'complete_items': ['lsp']},
-      \       {'mode': '<c-p>'},
-      \       {'mode': '<c-n>'},
-      \],
-      \   'comment': [],
-      \   'string' : [
-      \       {'complete_items': ['path'], 'triggered_only': ['/']}]
-      \},
-      \ 'tex': {
-      \     'default': [
-      \     { 'complete_items': ['lsp'] },
-      \     { 'complete_items': ['vimtex'] },
-      \     { 'mode': '<c-p>' },
-      \     { 'mode': '<c-n>' },
-      \],
-      \     'comment': [],
-      \     'string' : [ {'complete_items': ['path']} ]
-      \},
-      \ 'lisp': {
-      \     'default': [
-      \     { 'complete_items': ['vlime'] },
-      \     { 'mode': '<c-p>' },
-      \     { 'mode': '<c-n>' },
-      \],
-      \     'comment': [],
-      \     'string' : [ {'complete_items': ['path']} ]
-      \}
-      \}
 
 let g:completion_customize_lsp_label = {
       \ 'Function': "\uf794",
