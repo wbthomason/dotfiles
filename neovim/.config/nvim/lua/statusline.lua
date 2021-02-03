@@ -3,68 +3,12 @@ local git = require('git')
 local ts = require('nvim-treesitter')
 local lsp_status = require('lsp-status')
 
-local indicators = {
-  checking = '',
-  warnings = '',
-  errors = '',
-  ok = '',
-  info = '🛈',
-  hint = '❗'
-}
-
-local spinner_frames = {'⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷'}
+-- vim.cmd [[augroup statusline_updates]]
+-- vim.cmd [[au!]]
+-- vim.cmd [[au BufWinEnter,WinEnter,BufEnter,BufDelete,SessionLoadPost,FileChangedShellPost * lua require('statusline').update()]]
+-- vim.cmd [[augroup END]]
 
 local function icon() return utils.icons.lookup_filetype(vim.bo.filetype) end
-
-local ale = {
-  warnings = function(counts)
-    local all_errors = counts['error'] + counts.style_error
-    local all_non_errors = counts.total - all_errors
-    return all_non_errors == 0 and '' or string.format('%s %d', indicators.warnings, all_non_errors)
-  end,
-  errors = function(counts)
-    local all_errors = counts['error'] + counts.style_error
-    return all_errors == 0 and '' or string.format('%s %d', indicators.errors, all_errors)
-  end,
-  ok = function(counts) return counts.total == 0 and indicators.ok or '' end,
-  counts = function(buf) return vim.fn['ale#statusline#Count'](buf) end,
-  enabled = function(buf)
-    local ale_linted = vim.fn.getbufvar(buf, 'ale_linted', false)
-    return ale_linted and ale_linted > 0
-  end,
-  frame_idx = 1,
-  icon = ' 🍺 '
-}
-
-ale.checking = function(buf)
-  local result = ''
-  if vim.fn['ale#engine#IsCheckingBuffer'](buf) ~= 0 then
-    result = spinner_frames[ale.frame_idx % #spinner_frames]
-    ale.frame_idx = ale.frame_idx + 1
-  else
-    ale.frame_idx = 1
-  end
-
-  return result
-end
-
-setmetatable(ale, {
-  __call = function(ale_tbl, buf)
-    if not ale_tbl.enabled(buf) then return '' end
-
-    local checking = ale_tbl.checking(buf)
-    if checking ~= '' then return string.format('%s%s ', ale_tbl.icon, checking) end
-
-    local counts = ale_tbl.counts(buf)
-    local ok = ale_tbl.ok(counts)
-    if ok ~= '' then return string.format('%s%s ', ale_tbl.icon, ok) end
-
-    local warnings = ale_tbl.warnings(counts)
-    local errors = ale_tbl.errors(counts)
-    return string.format('%s%s%s%s ', ale_tbl.icon, warnings,
-    warnings == '' and '' or (errors == '' and '' or ' '), errors)
-  end
-})
 
 local function vcs(path)
   local branch_sign = ''
@@ -80,7 +24,7 @@ local function vcs(path)
 end
 
 local function lint_lsp(buf)
-  local result = ale(buf)
+  local result = ''
   if #vim.lsp.buf_get_clients(buf) > 0 then result = result .. lsp_status.status() end
   return result
 end
@@ -154,13 +98,13 @@ end
 local function get_paste() return vim.o.paste and 'PASTE ' or '' end
 
 local function get_readonly_space()
-  return ((vim.o.paste and vim.bo.readonly) and ' ' or '') and '%r'
-  .. (vim.bo.readonly and ' ' or '')
+  return ((vim.o.paste and vim.bo.readonly) and ' ' or '') and '%r' ..
+           (vim.bo.readonly and ' ' or '')
 end
 
-local function status()
+local function status(win_num)
   local mode = vim.fn.mode()
-  local win_id = vim.fn.win_getid()
+  local win_id = vim.fn.win_getid(win_num)
   local buf_nr = vim.fn.winbufnr(win_id)
   local buf_name = vim.fn.bufname(buf_nr)
   local buf_path = vim.fn.resolve(vim.fn.fnamemodify(buf_name, ':p'))
@@ -177,20 +121,11 @@ local function status()
   table.insert(line_components, '%=')
   table.insert(line_components, '%#StatuslineVC#' .. vcs(buf_path) .. ' ')
   local ts_component = ts.statusline(60)
-  if ts_component ~= nil then
-    table.insert(line_components, ts_component .. ' ')
-  end
+  if ts_component ~= nil then table.insert(line_components, ts_component .. ' ') end
   table.insert(line_components, '%#StatuslineLint#' .. lint_lsp(buf_nr) .. '%#StatuslineFiletype#')
   return table.concat(line_components, '')
 end
 
-local function update()
-  for i = 1, vim.fn.winnr('$') do
-    vim.wo.statusline = status()
-  end
-end
+local function update() for i = 1, vim.fn.winnr('$') do vim.wo.statusline = status(i) end end
 
-return {
-  status = status,
-  update = update
-}
+return {status = status, update = update}
