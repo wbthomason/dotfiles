@@ -29,7 +29,7 @@ local function init()
 
   -- Movement
   use {'chaoren/vim-wordmotion', 'justinmk/vim-sneak'}
-  use 'unblevable/quick-scope'
+  -- use 'unblevable/quick-scope'
 
   -- Quickfix
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
@@ -71,7 +71,7 @@ local function init()
   }
 
   -- REPL
-  use {'hkupty/iron.nvim', cmd = {'IronRepl', 'IronWatchCurrentFile', 'IronSend'}}
+  -- use {'hkupty/iron.nvim', cmd = {'IronRepl', 'IronWatchCurrentFile', 'IronSend'}}
 
   -- Undo tree
   use {'mbbill/undotree', cmd = 'UndotreeToggle'}
@@ -97,7 +97,6 @@ local function init()
 
   use {'hrsh7th/nvim-compe', config = function() require('config.compe') end}
 
-  use {'liuchengxu/vista.vim', cmd = 'Vista'}
   use '~/projects/personal/hover.nvim'
 
   -- Debugger
@@ -108,18 +107,11 @@ local function init()
     opt = true
   }
 
-  -- Language multipack
-  -- use 'sheerun/vim-polyglot'
-
   -- Better Lua highlighting
-  use 'euclidianAce/BetterLua.vim'
-
-  -- Better Lua development for Neovim
-  -- use 'tjdevries/nlua.nvim'
+  -- use 'euclidianAce/BetterLua.vim'
 
   -- Path navigation
   use 'justinmk/vim-dirvish'
-  use 'kristijanhusak/vim-dirvish-git'
 
   -- LaTeX
   use 'lervag/vimtex'
@@ -137,17 +129,16 @@ local function init()
   use 'PontusPersson/pddl.vim'
 
   -- Profiling
-  use {'dstein64/vim-startuptime', cmd = 'StartupTime'}
+  -- use {'dstein64/vim-startuptime', cmd = 'StartupTime'}
+  use {'tweekmonster/startuptime.vim', cmd = 'StartupTime'}
 
   -- Highlight colors
   use 'norcalli/nvim-colorizer.lua'
 
   -- Color scheme
   use '~/projects/personal/vim-nazgul'
-  -- use 'chriskempson/base16-vim'
   -- use 'hardselius/warlock'
   -- use 'arzg/vim-substrata'
-  -- use {'tjdevries/colorbuddy.vim', opt = true}
 
   -- Notes
   use '~/projects/personal/pdf-scribe.nvim'
