@@ -1,7 +1,7 @@
 " This disables the fairly slow loading of server installation commands, which we don't really use
 " anyway
 let g:nvim_lsp = 1
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 set shortmess+=c
 
 execute 'luafile ' . stdpath('config') . '/lua/lsp.lua'
