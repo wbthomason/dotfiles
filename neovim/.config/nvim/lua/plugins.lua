@@ -77,14 +77,14 @@ local function init()
   use {'mbbill/undotree', cmd = 'UndotreeToggle'}
 
   -- Git
-  use {'mhinz/vim-signify', {'tpope/vim-fugitive', cmd = {'Gpull', 'Gpush', 'Gstatus'}}}
+  use {'mhinz/vim-signify', {'tpope/vim-fugitive', cmd = {'Gblame', 'Gpull', 'Gpush', 'Gstatus'}}}
 
   -- Terminal
   use 'voldikss/vim-floaterm'
 
   -- Completion and linting
   use {
-    'neovim/nvim-lspconfig', '~/projects/personal/lsp-status.nvim', {
+    'onsails/lspkind-nvim', 'neovim/nvim-lspconfig', '~/projects/personal/lsp-status.nvim', {
       'nvim-treesitter/nvim-treesitter',
       requires = {
         {'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter'},
@@ -96,8 +96,9 @@ local function init()
   }
 
   use {'hrsh7th/nvim-compe', config = function() require('config.compe') end}
+  use 'hrsh7th/vim-vsnip'
 
-  use '~/projects/personal/hover.nvim'
+  -- use '~/projects/personal/hover.nvim'
 
   -- Debugger
   use {'mfussenegger/nvim-dap', opt = true}

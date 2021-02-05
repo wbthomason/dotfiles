@@ -1,5 +1,6 @@
 local lspconfig = require('lspconfig')
 local lsp_status = require('lsp-status')
+local lspkind = require('lspkind')
 
 local texlab_search_status = vim.tbl_add_reverse_lookup {
   Success = 0,
@@ -24,6 +25,8 @@ lsp_status.config {
 }
 
 lsp_status.register_progress()
+
+lspkind.init()
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
