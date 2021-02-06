@@ -8,7 +8,7 @@ require('compe').setup {
     buffer = true,
     nvim_lsp = true,
     nvim_lua = true,
-    vsnip = false,
-    snippets_nvim = true
+    vsnip = true,
+    treesitter = true
   }
 }
