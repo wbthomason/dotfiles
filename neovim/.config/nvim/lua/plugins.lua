@@ -15,47 +15,49 @@ local function init()
   -- Async building & commands
   use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
-  -- Auto-pairs
-  -- use 'cohama/lexima.vim'
-
   -- Registers
   use 'junegunn/vim-peekaboo'
 
   -- Marks
-  use 'kshenoy/vim-signature'
+  use {'kshenoy/vim-signature', config = [[require('config.signature')]]}
 
   -- Buffer management
   use {'mhinz/vim-sayonara', cmd = 'Sayonara'}
 
   -- Movement
-  use {'chaoren/vim-wordmotion', 'justinmk/vim-sneak'}
-  -- use 'unblevable/quick-scope'
+  use {'chaoren/vim-wordmotion', {'justinmk/vim-sneak', config = [[require('config.sneak')]]}}
 
   -- Quickfix
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
 
   -- Grepping
-  use {'mhinz/vim-grepper', cmd = 'Grepper'}
+  use {
+    'mhinz/vim-grepper',
+    cmd = 'Grepper',
+    setup = function()
+      vim.g.grepper = {tools = {'rg', 'git'}}
+      vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>Grepper<cr>', {noremap = true})
+    end
+  }
 
   -- Indentation tracking
-  use 'yggdroot/indentLine'
+  use {'yggdroot/indentLine', config = [[require('config.indentline')]]}
 
   -- Commenting
   use 'tomtom/tcomment_vim'
-  -- use 'tyru/caw.vim'
 
   -- Wrapping/delimiters
-  use {'machakann/vim-sandwich', {'andymass/vim-matchup', event = 'VimEnter *'}}
+  use {
+    'machakann/vim-sandwich',
+    {'andymass/vim-matchup', event = 'VimEnter *', setup = [[require('config.matchup')]]}
+  }
 
   -- Search
   use 'romainl/vim-cool'
 
-  -- Pattern preview
-  -- use { 'markonm/traces.vim' }
-
   -- Prettification
-  use 'junegunn/vim-easy-align'
-  use {'mhartington/formatter.nvim', config = require('format')}
+  use {'junegunn/vim-easy-align', config = [[require('config.easy_align')]]}
+  use {'mhartington/formatter.nvim', config = [[require('config.format')]]}
 
   -- Text objects
   use 'wellle/targets.vim'
@@ -67,17 +69,22 @@ local function init()
   use {
     'dhruvasagar/vim-prosession',
     after = 'vim-obsession',
-    requires = {{'tpope/vim-obsession', cmd = 'Prosession'}}
+    requires = {{'tpope/vim-obsession', cmd = 'Prosession'}},
+    config = [[require('config.prosession')]]
   }
 
-  -- REPL
-  -- use {'hkupty/iron.nvim', cmd = {'IronRepl', 'IronWatchCurrentFile', 'IronSend'}}
-
   -- Undo tree
-  use {'mbbill/undotree', cmd = 'UndotreeToggle'}
+  use {
+    'mbbill/undotree',
+    cmd = 'UndotreeToggle',
+    config = [[vim.g.undotree_SetFocusWhenToggle = 1]]
+  }
 
   -- Git
-  use {'mhinz/vim-signify', {'tpope/vim-fugitive', cmd = {'Gblame', 'Gpull', 'Gpush', 'Gstatus'}}}
+  use {
+    {'mhinz/vim-signify', config = [[require('config.signify')]]},
+    {'tpope/vim-fugitive', cmd = {'Gblame', 'Gpull', 'Gpush', 'Gstatus'}}
+  }
 
   -- Terminal
   use 'voldikss/vim-floaterm'
@@ -90,32 +97,27 @@ local function init()
         {'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter'},
         {'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter'}
       },
-      config = require('treesitter'),
+      config = [[require('config.treesitter')]],
       event = 'VimEnter *'
     }
   }
 
-  use {'hrsh7th/nvim-compe', config = function() require('config.compe') end}
-  use 'hrsh7th/vim-vsnip'
-
-  -- use '~/projects/personal/hover.nvim'
+  use {'hrsh7th/nvim-compe', config = [[require('config.compe')]]}
+  use {'hrsh7th/vim-vsnip', config = [[require('config.vsnip')]]}
 
   -- Debugger
   use {'mfussenegger/nvim-dap', opt = true}
   use {
     'puremourning/vimspector',
-    setup = function() vim.g.vimspector_enable_mappings = 'HUMAN' end,
+    setup = [[vim.g.vimspector_enable_mappings = 'HUMAN']],
     opt = true
   }
-
-  -- Better Lua highlighting
-  -- use 'euclidianAce/BetterLua.vim'
 
   -- Path navigation
   use 'justinmk/vim-dirvish'
 
   -- LaTeX
-  use 'lervag/vimtex'
+  use {'lervag/vimtex', config = [[require('config.vimtex')]]}
 
   -- Meson
   use 'igankevich/mesonic'
@@ -130,11 +132,14 @@ local function init()
   use 'PontusPersson/pddl.vim'
 
   -- Profiling
-  -- use {'dstein64/vim-startuptime', cmd = 'StartupTime'}
-  use {'tweekmonster/startuptime.vim', cmd = 'StartupTime'}
+  use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 5]]}
 
   -- Highlight colors
-  use 'norcalli/nvim-colorizer.lua'
+  use {
+    'norcalli/nvim-colorizer.lua',
+    event = 'InsertEnter *',
+    config = [[require('colorizer').setup {'css', 'javascript', 'vim', 'html'}]]
+  }
 
   -- Color scheme
   use '~/projects/personal/vim-nazgul'
@@ -142,13 +147,7 @@ local function init()
   -- use 'arzg/vim-substrata'
 
   -- Notes
-  use '~/projects/personal/pdf-scribe.nvim'
-  -- use {
-  --   'oberblastmeister/neuron.nvim',
-  --   event = 'VimEnter *',
-  --   config = function() require('neuron').setup {neuron_dir = '~/gdrive/notes/neuron'} end
-  -- }
-
+  use {'~/projects/personal/pdf-scribe.nvim', config = [[require('config.pdf_scribe')]]}
 end
 
 local plugins = setmetatable({}, {

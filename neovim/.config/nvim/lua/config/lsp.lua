@@ -2,6 +2,12 @@ local lspconfig = require('lspconfig')
 local lsp_status = require('lsp-status')
 local lspkind = require('lspkind')
 
+local sign_define = vim.fn.sign_define
+sign_define('LspDiagnosticsSignError', {text = '', numhl = 'RedSign'})
+sign_define('LspDiagnosticsSignWarning', {text = '', numhl = 'YellowSign'})
+sign_define('LspDiagnosticsSignInformation', {text = '', numhl = 'WhiteSign'})
+sign_define('LspDiagnosticsSignHint', {text = '', numhl = 'BlueSign'})
+
 local texlab_search_status = vim.tbl_add_reverse_lookup {
   Success = 0,
   Error = 1,
@@ -26,7 +32,7 @@ lsp_status.config {
 
 lsp_status.register_progress()
 
-lspkind.init()
+lspkind.init({symbol_map = {Function = 'Ƒ'}})
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] =
   vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
@@ -146,9 +152,9 @@ local servers = {
             position = {line = pos[1] - 1, character = pos[2]}
           }
 
-          vim.lsp.buf_request(0, 'textDocument/forwardSearch', params, function(err, _, result, _)
+          vim.lsp.buf_request(0, 'textDocument/forwardSearch', params,
+                              function(err, _, result, _)
             if err then error(tostring(err)) end
-            print('Forward search ' .. vim.inspect(pos) .. ' ' .. texlab_search_status[result])
           end)
         end,
         description = 'Run synctex forward search'
