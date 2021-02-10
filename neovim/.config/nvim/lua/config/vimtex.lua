@@ -9,5 +9,6 @@ g.vimtex_view_forward_search_on_start = 0
 g.vimtex_view_general_viewer = 'okular'
 g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
 g.vimtex_view_general_options_latexmk = '--unique'
-g.vimtex_syntax_conceal = {}
+-- This must be a dictionary, and {} gets converted to a list
+g.vimtex_syntax_conceal = {foo = true}
 g.vimtex_syntax_conceal_default = 0
