@@ -1,22 +1,40 @@
 local lspconfig = require('lspconfig')
 local lsp_status = require('lsp-status')
 local lspkind = require('lspkind')
+local lsp = vim.lsp
+local buf_keymap = vim.api.nvim_buf_set_keymap
+local cmd = vim.api.nvim_command
+
+local kind_symbols = {
+  Text = '',
+  Method = 'Ƒ',
+  Function = 'ƒ',
+  Constructor = '',
+  Variable = '',
+  Class = '',
+  Interface = 'ﰮ',
+  Module = '',
+  Property = '',
+  Unit = '',
+  Value = '',
+  Enum = '了',
+  Keyword = '',
+  Snippet = '﬌',
+  Color = '',
+  File = '',
+  Folder = '',
+  EnumMember = '',
+  Constant = '',
+  Struct = ''
+}
 
 local sign_define = vim.fn.sign_define
 sign_define('LspDiagnosticsSignError', {text = '', numhl = 'RedSign'})
 sign_define('LspDiagnosticsSignWarning', {text = '', numhl = 'YellowSign'})
 sign_define('LspDiagnosticsSignInformation', {text = '', numhl = 'WhiteSign'})
 sign_define('LspDiagnosticsSignHint', {text = '', numhl = 'BlueSign'})
-
-local texlab_search_status = vim.tbl_add_reverse_lookup {
-  Success = 0,
-  Error = 1,
-  Failure = 2,
-  Unconfigured = 3
-}
-
 lsp_status.config {
-  kind_labels = vim.g.completion_customize_lsp_label,
+  kind_labels = kind_symbols,
   select_symbol = function(cursor_pos, symbol)
     if symbol.valueRange then
       local value_range = {
@@ -31,49 +49,42 @@ lsp_status.config {
 }
 
 lsp_status.register_progress()
+lspkind.init {symbol_map = kind_symbols}
+lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
+  virtual_text = false,
+  signs = true,
+  update_in_insert = false,
+  underline = true
+})
 
-lspkind.init({symbol_map = {Function = 'Ƒ'}})
+local keymap_opts = {noremap = true, silent = true}
+local function on_attach(client)
+  lsp_status.on_attach(client)
+  buf_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
+  buf_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', keymap_opts)
+  buf_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', keymap_opts)
+  buf_keymap(0, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', keymap_opts)
+  buf_keymap(0, 'n', '<c-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
+  buf_keymap(0, 'n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', keymap_opts)
+  buf_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
+  buf_keymap(0, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', keymap_opts)
+  buf_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', keymap_opts)
+  buf_keymap(0, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+             keymap_opts)
+  buf_keymap(0, 'n', '<leader>E', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', keymap_opts)
+  buf_keymap(0, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', keymap_opts)
+  buf_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', keymap_opts)
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] =
-  vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-               {virtual_text = false, signs = true, update_in_insert = false, underline = true})
+  if client.resolved_capabilities.document_formatting then
+    buf_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>', keymap_opts)
+  end
 
-local function make_on_attach(config)
-  return function(client)
-    if config.before then config.before(client) end
-
-    lsp_status.on_attach(client)
-    local opts = {noremap = true, silent = true}
-    vim.api.nvim_buf_set_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', '<c-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>e',
-                                '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', '<leader>E',
-                                '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', opts)
-    vim.api.nvim_buf_set_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', opts)
-
-    if client.resolved_capabilities.document_formatting then
-      vim.api.nvim_buf_set_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>',
-                                  opts)
-    end
-
-    if client.resolved_capabilities.document_highlight == true then
-      vim.api.nvim_command('augroup lsp_aucmds')
-      vim.api.nvim_command('au CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
-      vim.api.nvim_command('au CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
-      vim.api.nvim_command('au CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
-      vim.api.nvim_command('augroup END')
-    end
-
-    if config.after then config.after(client) end
+  if client.resolved_capabilities.document_highlight == true then
+    cmd('augroup lsp_aucmds')
+    cmd('au CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
+    cmd('au CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
+    cmd('au CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
+    cmd('augroup END')
   end
 end
 
@@ -102,25 +113,6 @@ local servers = {
   jsonls = {cmd = {'json-languageserver', '--stdio'}},
   julials = {settings = {julia = {format = {indent = 2}}}},
   ocamllsp = {},
-  -- pyls_ms = {
-  --   cmd = {'mspyls'},
-  --   handlers = lsp_status.extensions.pyls_ms.setup(),
-  --   settings = {
-  --     python = {
-  --       jediEnabled = false,
-  --       analysis = {cachingLevel = 'Library'},
-  --       formatting = {provider = 'yapf'},
-  --       venvFolders = {"envs", ".pyenv", ".direnv", ".cache/pypoetry/virtualenvs"},
-  --       workspaceSymbols = {enabled = true}
-  --     }
-  --   },
-  --   root_dir = function(fname)
-  --     return lspconfig.util.root_pattern('pyproject.toml', 'setup.py', 'setup.cfg',
-  --     'requirements.txt', 'mypy.ini', '.pylintrc', '.flake8rc',
-  --     '.gitignore')(fname) or
-  --     lspconfig.util.find_git_ancestor(fname) or vim.loop.os_homedir()
-  --   end
-  -- },
   pyright = {settings = {python = {formatting = {provider = 'yapf'}}}},
   rust_analyzer = {},
   sumneko_lua = {
@@ -128,7 +120,6 @@ local servers = {
     settings = {
       Lua = {
         diagnostics = {globals = {'vim'}},
-        -- completion = {keywordSnippet = 'Disable'},
         runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
         workspace = {
           library = {
@@ -151,11 +142,8 @@ local servers = {
             textDocument = {uri = vim.uri_from_bufnr(0)},
             position = {line = pos[1] - 1, character = pos[2]}
           }
-
-          vim.lsp.buf_request(0, 'textDocument/forwardSearch', params,
-                              function(err, _, result, _)
-            if err then error(tostring(err)) end
-          end)
+          lsp.buf_request(0, 'textDocument/forwardSearch', params,
+                          function(err, _, _, _) if err then error(tostring(err)) end end)
         end,
         description = 'Run synctex forward search'
       }
@@ -169,39 +157,9 @@ local snippet_capabilities = {
   textDocument = {completion = {completionItem = {snippetSupport = true}}}
 }
 
-local function deep_extend(policy, ...)
-  local result = {}
-  local function helper(policy, k, v1, v2)
-    if type(v1) ~= 'table' or type(v2) ~= 'table' then
-      if policy == 'error' then
-        error('Key ' .. vim.inspect(k) .. ' is already present with value ' .. vim.inspect(v1))
-      elseif policy == 'force' then
-        return v2
-      else
-        return v1
-      end
-    else
-      return deep_extend(policy, v1, v2)
-    end
-  end
-
-  for _, t in ipairs({...}) do
-    for k, v in pairs(t) do
-      if result[k] ~= nil then
-        result[k] = helper(policy, k, result[k], v)
-      else
-        result[k] = v
-      end
-    end
-  end
-
-  return result
-end
-
 for server, config in pairs(servers) do
-  config.on_attach = make_on_attach(config)
-  config.capabilities = deep_extend('keep', config.capabilities or {}, lsp_status.capabilities,
-                                    snippet_capabilities)
-
+  config.on_attach = on_attach
+  config.capabilities = vim.tbl_deep_extend('keep', config.capabilities or {},
+                                            lsp_status.capabilities, snippet_capabilities)
   lspconfig[server].setup(config)
 end
