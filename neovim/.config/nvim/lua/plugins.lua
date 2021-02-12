@@ -19,7 +19,7 @@ local function init()
   use 'junegunn/vim-peekaboo'
 
   -- Marks
-  use {'kshenoy/vim-signature', config = [[require('config.signature')]]}
+  use {'kshenoy/vim-signature', config = [[require('config.signature')]], disable = true}
 
   -- Buffer management
   use {'mhinz/vim-sayonara', cmd = 'Sayonara'}
@@ -30,16 +30,6 @@ local function init()
   -- Quickfix
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
 
-  -- Grepping
-  use {
-    'mhinz/vim-grepper',
-    cmd = 'Grepper',
-    setup = function()
-      vim.g.grepper = {tools = {'rg', 'git'}}
-      vim.api.nvim_set_keymap('n', '<leader>s', '<cmd>Grepper<cr>', {noremap = true})
-    end
-  }
-
   -- Indentation tracking
   use {'yggdroot/indentLine', config = [[require('config.indentline')]]}
 
@@ -47,10 +37,7 @@ local function init()
   use 'tomtom/tcomment_vim'
 
   -- Wrapping/delimiters
-  use {
-    'machakann/vim-sandwich',
-    {'andymass/vim-matchup', event = 'VimEnter *', setup = [[require('config.matchup')]]}
-  }
+  use {'machakann/vim-sandwich', {'andymass/vim-matchup', setup = [[require('config.matchup')]]}}
 
   -- Search
   use 'romainl/vim-cool'
@@ -63,7 +50,12 @@ local function init()
   use 'wellle/targets.vim'
 
   -- Search
-  use {'nvim-lua/telescope.nvim', requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}}
+  use {
+    'nvim-lua/telescope.nvim',
+    requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
+    disable = true
+  }
+  use 'junegunn/fzf.vim'
 
   -- Project Management/Sessions
   use {
@@ -94,11 +86,9 @@ local function init()
     'onsails/lspkind-nvim', 'neovim/nvim-lspconfig', '~/projects/personal/lsp-status.nvim', {
       'nvim-treesitter/nvim-treesitter',
       requires = {
-        {'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter'},
-        {'nvim-treesitter/nvim-treesitter-textobjects', after = 'nvim-treesitter'}
+        'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textobjects'
       },
-      config = [[require('config.treesitter')]],
-      event = 'VimEnter *'
+      config = [[require('config.treesitter')]]
     }
   }
 

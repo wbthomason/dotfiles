@@ -23,11 +23,12 @@ if not string.find(package.cpath, install_cpath_pattern, 1, true) then
 end
 
 local function try_loadstring(s, component, name)
-  local success, err = pcall(loadstring(s))
+  local success, result = pcall(loadstring(s))
   if not success then
     print('Error running ' .. component .. ' for ' .. name)
-    error(err)
+    error(result)
   end
+  return result
 end
 
 _G.packer_plugins = {
@@ -35,6 +36,10 @@ _G.packer_plugins = {
     config = { "require('config.format')" },
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/formatter.nvim"
+  },
+  ["fzf.vim"] = {
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/fzf.vim"
   },
   indentLine = {
     config = { "require('config.indentline')" },
@@ -76,24 +81,17 @@ _G.packer_plugins = {
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
-    after = { "nvim-treesitter-textobjects", "nvim-treesitter-refactor" },
     config = { "require('config.treesitter')" },
-    loaded = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-treesitter"
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-treesitter-refactor"] = {
-    load_after = {
-      ["nvim-treesitter"] = true
-    },
-    loaded = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-refactor"
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
   },
   ["nvim-treesitter-textobjects"] = {
-    load_after = {
-      ["nvim-treesitter"] = true
-    },
-    loaded = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects"
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
   },
   ["packer.nvim"] = {
     loaded = false,
@@ -108,14 +106,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/pdf-scribe.nvim"
   },
-  ["plenary.nvim"] = {
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/plenary.nvim"
-  },
-  ["popup.nvim"] = {
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/popup.nvim"
-  },
   ["targets.vim"] = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/targets.vim"
@@ -123,10 +113,6 @@ _G.packer_plugins = {
   tcomment_vim = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/tcomment_vim"
-  },
-  ["telescope.nvim"] = {
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   undotree = {
     commands = { "UndotreeToggle" },
@@ -166,11 +152,6 @@ _G.packer_plugins = {
     loaded = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-fugitive"
   },
-  ["vim-grepper"] = {
-    commands = { "Grepper" },
-    loaded = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-grepper"
-  },
   ["vim-matchup"] = {
     loaded = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-matchup"
@@ -205,11 +186,6 @@ _G.packer_plugins = {
     commands = { "Sayonara" },
     loaded = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-sayonara"
-  },
-  ["vim-signature"] = {
-    config = { "require('config.signature')" },
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-signature"
   },
   ["vim-signify"] = {
     config = { "require('config.signify')" },
@@ -255,10 +231,11 @@ _G.packer_plugins = {
 vim.g.vimspector_enable_mappings = 'HUMAN'
 -- Setup for: vim-matchup
 require('config.matchup')
--- Setup for: vim-grepper
-try_loadstring("\27LJ\1\2¢\1\0\0\5\0\f\0\0154\0\0\0007\0\1\0003\1\4\0003\2\3\0:\2\5\1:\1\2\0004\0\0\0007\0\6\0007\0\a\0%\1\b\0%\2\t\0%\3\n\0003\4\v\0>\0\5\1G\0\1\0\1\0\1\fnoremap\2\21<cmd>Grepper<cr>\14<leader>s\6n\20nvim_set_keymap\bapi\ntools\1\0\0\1\3\0\0\arg\bgit\fgrepper\6g\bvim\0", "setup", "vim-grepper")
+vim.cmd [[packadd vim-matchup]]
 -- Config for: formatter.nvim
 require('config.format')
+-- Config for: nvim-treesitter
+require('config.treesitter')
 -- Config for: pdf-scribe.nvim
 require('config.pdf_scribe')
 -- Config for: vim-vsnip
@@ -275,8 +252,6 @@ require('config.vimtex')
 require('config.signify')
 -- Config for: vim-sneak
 require('config.sneak')
--- Config for: vim-signature
-require('config.signature')
 
 -- Command lazy-loads
 vim.cmd [[command! -nargs=* -range -bang -complete=file Make lua require("packer.load")({'vim-dispatch'}, { cmd = "Make", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
@@ -285,19 +260,17 @@ vim.cmd [[command! -nargs=* -range -bang -complete=file EnMasse lua require("pac
 vim.cmd [[command! -nargs=* -range -bang -complete=file Gblame lua require("packer.load")({'vim-fugitive'}, { cmd = "Gblame", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Gstatus lua require("packer.load")({'vim-fugitive'}, { cmd = "Gstatus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file UndotreeToggle lua require("packer.load")({'undotree'}, { cmd = "UndotreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Gpush lua require("packer.load")({'vim-fugitive'}, { cmd = "Gpush", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Start lua require("packer.load")({'vim-dispatch'}, { cmd = "Start", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Gpull lua require("packer.load")({'vim-fugitive'}, { cmd = "Gpull", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Gpush lua require("packer.load")({'vim-fugitive'}, { cmd = "Gpush", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Dispatch lua require("packer.load")({'vim-dispatch'}, { cmd = "Dispatch", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Focus lua require("packer.load")({'vim-dispatch'}, { cmd = "Focus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Grepper lua require("packer.load")({'vim-grepper'}, { cmd = "Grepper", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Prosession lua require("packer.load")({'vim-obsession'}, { cmd = "Prosession", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'vim-matchup', 'nvim-treesitter'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-colorizer.lua'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 vim.cmd("augroup END")
 END
