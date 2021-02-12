@@ -11,21 +11,22 @@ local function cap_path_length(path)
 end
 
 local function relativize(path) return cap_path_length(vim.fn.fnamemodify(path, [[:~:.]])) end
+local regex = vim.regex
 local path_skip_list = {
-  vim.regex('runtime/doc/.*\\.txt'), vim.regex('bundle/.*/doc/.*\\.txt'),
-  vim.regex('plugged/.*/doc/.*\\.txt'), vim.regex('/.git/'), vim.regex('fugitiveblame$'),
-  vim.regex(
-    vim.fn.escape(vim.fn.fnamemodify(vim.fn.resolve(os.getenv('VIMRUNTIME')), ':p'), '\\') ..
-      'doc/.*\\.txt')
+  regex('runtime/doc/.*\\.txt'), regex('bundle/.*/doc/.*\\.txt'), regex('plugged/.*/doc/.*\\.txt'),
+  regex('/.git/'), regex('fugitiveblame$'),
+  regex(vim.fn.escape(vim.fn.fnamemodify(vim.fn.resolve(os.getenv('VIMRUNTIME')), ':p'), '\\') ..
+          'doc/.*\\.txt')
 }
 
 local function skip(path)
-  for _, pat in ipairs(path_skip_list) do if pat:match_str(path) then return true end end
+  local n = #path_skip_list
+  for i = 1, n do if path_skip_list[i]:match_str(path) then return true end end
   return false
 end
 
 local function filter_oldfiles(prefix, fmt)
-  prefix = vim.regex('\\V' .. vim.fn.escape(prefix, '\\'))
+  prefix = regex('\\V' .. vim.fn.escape(prefix, '\\'))
   local is_dir = vim.fn.escape('/', '\\') .. '$'
   local oldfiles = {}
   for _, file in ipairs(vim.v.oldfiles) do
@@ -84,11 +85,12 @@ local function make_sections()
   boundaries = {}
   keybindings = {}
   local linenr = 0
+  local set_lines = vim.api.nvim_buf_set_lines
+  local highlight = vim.api.nvim_buf_add_highlight
   for _, section in ipairs(sections) do
     if next(section.show) ~= nil then
-      vim.api.nvim_buf_set_lines(0, linenr, linenr, false, {' ' .. section.title})
-      vim.api.nvim_buf_add_highlight(0, -1, 'Title', linenr, 1, -1)
-
+      set_lines(0, linenr, linenr, false, {' ' .. section.title})
+      highlight(0, -1, 'Title', linenr, 1, -1)
       local size = 1
       for _, item in ipairs(section.show) do
         local key = item.key
@@ -100,19 +102,17 @@ local function make_sections()
         end
 
         local padding = (key_len == 1) and '  ' or ' '
-        vim.api.nvim_buf_set_lines(0, linenr + size, linenr + size, false,
-                                   {'   [' .. key .. ']' .. padding .. item.disp})
-        vim.api.nvim_buf_add_highlight(0, -1, 'StartifyBracket', linenr + size, 3, 4)
-        vim.api.nvim_buf_add_highlight(0, -1, 'StartifyNumber', linenr + size, 4, 4 + key_len)
-        vim.api.nvim_buf_add_highlight(0, -1, 'StartifyBracket', linenr + size, 4 + key_len,
-                                       5 + key_len)
-        vim.api.nvim_buf_add_highlight(0, -1, 'StartifyPath', linenr + size, 5 + key_len, -1)
+        set_lines(0, linenr + size, linenr + size, false,
+                  {'   [' .. key .. ']' .. padding .. item.disp})
+        highlight(0, -1, 'StartifyBracket', linenr + size, 3, 4)
+        highlight(0, -1, 'StartifyNumber', linenr + size, 4, 4 + key_len)
+        highlight(0, -1, 'StartifyBracket', linenr + size, 4 + key_len, 5 + key_len)
+        highlight(0, -1, 'StartifyPath', linenr + size, 5 + key_len, -1)
         table.insert(keybindings, {key = key, cmd = item.cmd})
         size = size + 1
       end
 
-      vim.api.nvim_buf_set_lines(0, -1, -1, false, {''})
-
+      set_lines(0, -1, -1, false, {''})
       table.insert(boundaries, {linenr + 1, linenr + size})
       linenr = linenr + size + 1
     end
@@ -156,23 +156,19 @@ end
 
 local function setup_keys()
   -- First, the nav keys
-  vim.api.nvim_buf_set_keymap(0, 'n', 'h', '<NOP>', {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', 'l', '<NOP>', {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', 'j', '<cmd>lua require"start".handle_j()<cr>',
-                              {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', 'k', '<cmd>lua require"start".handle_k()<cr>',
-                              {noremap = true, silent = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', '<cr>', '<cmd>lua require"start".handle_cr()<cr>',
-                              {noremap = true, silent = true})
+  local map = vim.api.nvim_buf_set_keymap
+  map(0, 'n', 'h', '<NOP>', {noremap = true, silent = true})
+  map(0, 'n', 'l', '<NOP>', {noremap = true, silent = true})
+  map(0, 'n', 'j', '<cmd>lua require"start".handle_j()<cr>', {noremap = true, silent = true})
+  map(0, 'n', 'k', '<cmd>lua require"start".handle_k()<cr>', {noremap = true, silent = true})
+  map(0, 'n', '<cr>', '<cmd>lua require"start".handle_cr()<cr>', {noremap = true, silent = true})
 
   -- Then, the defined keybindings
   for _, binding in ipairs(keybindings) do
-    vim.api.nvim_buf_set_keymap(0, 'n', tostring(binding.key), '<cmd>:' .. binding.cmd .. '<cr>',
-                                {noremap = true, silent = true})
+    map(0, 'n', tostring(binding.key), '<cmd>:' .. binding.cmd .. '<cr>',
+        {noremap = true, silent = true})
   end
 end
-
-local function position_cursor() vim.fn.cursor(2, offset) end
 
 local function start_screen()
   if vim.fn.argc() ~= 0 or vim.fn.line2byte('$') ~= -1 or vim.o.insertmode or not vim.o.modifiable then
@@ -183,7 +179,8 @@ local function start_screen()
   vim.cmd [[silent! setlocal bufhidden=wipe colorcolumn= foldcolumn=0 filetype=startify matchpairs= nobuflisted nocursorcolumn nocursorline nolist nonumber norelativenumber nospell noswapfile signcolumn=no synmaxcol& statusline=]]
   make_sections()
   vim.cmd [[setlocal nomodifiable nomodified]]
-  position_cursor()
+  -- Position cursor
+  vim.fn.cursor(2, offset)
   setup_keys()
 end
 
