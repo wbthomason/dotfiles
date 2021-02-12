@@ -1,3 +1,5 @@
+-- dofile('/home/wil/.config/nvim/lua/profiler.lua')
+
 local g = vim.g
 local cmd = vim.cmd
 local o, wo, bo = vim.o, vim.wo, vim.bo
@@ -48,7 +50,7 @@ opt('showmode', false)
 opt('shada', [['20,<50,s10,h,/100]])
 opt('hidden', true)
 opt('shortmess', o.shortmess .. 'c')
-opt('completeopt', 'menu,menuone,noselect')
+opt('completeopt', 'menuone,noselect')
 opt('joinspaces', false)
 opt('guicursor', [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]])
 opt('updatetime', 500)
