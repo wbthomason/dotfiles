@@ -106,9 +106,9 @@ map('i', '<c-x><c-s>', '<esc><cmd>w<cr>a', silent)
 map('n', '<leader>w', '<cmd>w<cr>', {silent = true})
 
 -- Navigate buffers and repos
-map('n', '-', [[<cmd>lua require('telescope.builtin').buffers({show_all_buffers = true})<cr>]],
+map('n', '-', [[<cmd>History<cr>]],
     silent)
-map('n', '_', [[<cmd>lua require('telescope.builtin').git_files()<cr>]], silent)
+map('n', '_', [[<cmd>GFiles<cr>]], silent)
 
 -- Version control
 map('n', 'gl', '<cmd>Gpull<cr>', silent)
