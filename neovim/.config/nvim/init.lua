@@ -1,5 +1,4 @@
 -- dofile('/home/wil/.config/nvim/lua/profiler.lua')
-
 local g = vim.g
 local cmd = vim.cmd
 local o, wo, bo = vim.o, vim.wo, vim.bo
@@ -108,8 +107,8 @@ map('i', '<c-x><c-s>', '<esc><cmd>w<cr>a', silent)
 map('n', '<leader>w', '<cmd>w<cr>', {silent = true})
 
 -- Version control
-map('n', 'gl', '<cmd>Gpull<cr>', silent)
-map('n', 'gp', '<cmd>Gpushl<cr>', silent)
+map('n', 'gl', '<cmd>Dispatch git pull<cr>', silent)
+map('n', 'gp', '<cmd>Dispatch git push<cr>', silent)
 map('n', 'gs', '<cmd>Gstatus<cr>', silent)
 map('n', ']h', '<plug>(signify-next-hunk)', {silent = true, noremap = false})
 map('n', '[h', '<plug>(signify-prev-hunk)', {silent = true, noremap = false})
