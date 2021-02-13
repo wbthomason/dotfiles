@@ -55,7 +55,8 @@ local function init()
     requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
     disable = true
   }
-  use 'junegunn/fzf.vim'
+  use {'junegunn/fzf.vim', config = [[require('config.fzf')]]}
+  use 'gfanto/fzf-lsp.nvim'
 
   -- Project Management/Sessions
   use {

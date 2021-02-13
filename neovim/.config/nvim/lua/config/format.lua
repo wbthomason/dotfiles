@@ -1,3 +1,5 @@
+local map = require('config.utils').map
+
 local function prettier()
   return {
     exe = 'prettier',
@@ -32,3 +34,6 @@ require('formatter').setup({
     lua = {lua_format}
   }
 })
+
+-- Keymap
+map('n', '<leader>f', '<cmd>Format<cr>', silent)

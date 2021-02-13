@@ -107,11 +107,6 @@ map('i', '<c-x><c-s>', '<esc><cmd>w<cr>a', silent)
 -- Save buffer
 map('n', '<leader>w', '<cmd>w<cr>', {silent = true})
 
--- Navigate buffers and repos
-map('n', '-', [[<cmd>History<cr>]],
-    silent)
-map('n', '_', [[<cmd>GFiles<cr>]], silent)
-
 -- Version control
 map('n', 'gl', '<cmd>Gpull<cr>', silent)
 map('n', 'gp', '<cmd>Gpushl<cr>', silent)
@@ -121,9 +116,6 @@ map('n', '[h', '<plug>(signify-prev-hunk)', {silent = true, noremap = false})
 
 -- Esc in the terminal
 map('t', 'jj', [[<C-\><C-n>]])
-
--- Formatting
-map('n', '<leader>f', '<cmd>Format<cr>', silent)
 
 -- Yank to clipboard
 map({'n', 'v'}, 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', silent)
