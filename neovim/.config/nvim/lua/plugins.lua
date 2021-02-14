@@ -50,11 +50,6 @@ local function init()
   use 'wellle/targets.vim'
 
   -- Search
-  use {
-    'nvim-lua/telescope.nvim',
-    requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
-    disable = true
-  }
   use {'junegunn/fzf.vim', config = [[require('config.fzf')]]}
   use 'gfanto/fzf-lsp.nvim'
 
@@ -84,7 +79,8 @@ local function init()
 
   -- Completion and linting
   use {
-    'onsails/lspkind-nvim', 'neovim/nvim-lspconfig', '~/projects/personal/lsp-status.nvim', {
+    {'kosayoda/nvim-lightbulb', config = [[require('config.lightbulb')]]}, 'onsails/lspkind-nvim',
+    'neovim/nvim-lspconfig', '~/projects/personal/lsp-status.nvim', {
       'nvim-treesitter/nvim-treesitter',
       requires = {
         'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -93,15 +89,15 @@ local function init()
     }
   }
 
-  use {'hrsh7th/nvim-compe', config = [[require('config.compe')]]}
-  use {'hrsh7th/vim-vsnip', config = [[require('config.vsnip')]]}
+  use {'hrsh7th/nvim-compe', config = [[require('config.compe')]], event = 'InsertEnter *'}
+  use {'hrsh7th/vim-vsnip', config = [[require('config.vsnip')]], event = 'InsertEnter *'}
 
   -- Debugger
   use {'mfussenegger/nvim-dap', opt = true}
   use {
     'puremourning/vimspector',
     setup = [[vim.g.vimspector_enable_mappings = 'HUMAN']],
-    opt = true
+    disable = true
   }
 
   -- Path navigation
@@ -113,22 +109,16 @@ local function init()
   -- Meson
   use 'igankevich/mesonic'
 
-  -- TOML
-  use 'cespare/vim-toml'
-
-  -- Julia
-  use 'JuliaEditorSupport/julia-vim'
-
   -- PDDL
   use 'PontusPersson/pddl.vim'
 
   -- Profiling
-  use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 5]]}
+  use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]]}
 
   -- Highlight colors
   use {
     'norcalli/nvim-colorizer.lua',
-    event = 'InsertEnter *',
+    ft = {'css', 'javascript', 'vim', 'html'},
     config = [[require('colorizer').setup {'css', 'javascript', 'vim', 'html'}]]
   }
 
@@ -138,7 +128,11 @@ local function init()
   -- use 'arzg/vim-substrata'
 
   -- Notes
-  use {'~/projects/personal/pdf-scribe.nvim', config = [[require('config.pdf_scribe')]]}
+  use {
+    '~/projects/personal/pdf-scribe.nvim',
+    config = [[require('config.pdf_scribe')]],
+    disable = true
+  }
 end
 
 local plugins = setmetatable({}, {

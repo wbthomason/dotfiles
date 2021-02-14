@@ -51,10 +51,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/indentLine"
   },
-  ["julia-vim"] = {
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/julia-vim"
-  },
   ["lsp-status.nvim"] = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/lsp-status.nvim"
@@ -70,16 +66,25 @@ _G.packer_plugins = {
   ["nvim-colorizer.lua"] = {
     config = { "require('colorizer').setup {'css', 'javascript', 'vim', 'html'}" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua"
   },
   ["nvim-compe"] = {
+    after_files = { "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_buffer.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_calc.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lsp.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lua.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_omni.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_path.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_snippets_nvim.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_spell.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_tags.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_treesitter.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_ultisnips.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsc.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsp.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vsnip.vim" },
     config = { "require('config.compe')" },
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe"
   },
   ["nvim-dap"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-dap"
+  },
+  ["nvim-lightbulb"] = {
+    config = { "require('config.lightbulb')" },
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-lightbulb"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -100,16 +105,12 @@ _G.packer_plugins = {
   },
   ["packer.nvim"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["pddl.vim"] = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/pddl.vim"
-  },
-  ["pdf-scribe.nvim"] = {
-    config = { "require('config.pdf_scribe')" },
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/pdf-scribe.nvim"
   },
   ["targets.vim"] = {
     loaded = true,
@@ -123,6 +124,7 @@ _G.packer_plugins = {
     commands = { "UndotreeToggle" },
     config = { "vim.g.undotree_SetFocusWhenToggle = 1" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/undotree"
   },
   ["vim-cool"] = {
@@ -136,6 +138,7 @@ _G.packer_plugins = {
   ["vim-dispatch"] = {
     commands = { "Dispatch", "Make", "Focus", "Start" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-dispatch"
   },
   ["vim-easy-align"] = {
@@ -146,6 +149,7 @@ _G.packer_plugins = {
   ["vim-enmasse"] = {
     commands = { "EnMasse" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-enmasse"
   },
   ["vim-floaterm"] = {
@@ -155,10 +159,13 @@ _G.packer_plugins = {
   ["vim-fugitive"] = {
     commands = { "Gblame", "Gpull", "Gpush", "Gstatus" },
     loaded = false,
+    needs_bufread = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-fugitive"
   },
   ["vim-matchup"] = {
+    after_files = { "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-matchup/after/plugin/matchit.vim" },
     loaded = false,
+    needs_bufread = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-matchup"
   },
   ["vim-nazgul"] = {
@@ -169,6 +176,7 @@ _G.packer_plugins = {
     after = { "vim-prosession" },
     commands = { "Prosession" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-obsession"
   },
   ["vim-peekaboo"] = {
@@ -181,6 +189,7 @@ _G.packer_plugins = {
       ["vim-obsession"] = true
     },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-prosession"
   },
   ["vim-sandwich"] = {
@@ -190,6 +199,7 @@ _G.packer_plugins = {
   ["vim-sayonara"] = {
     commands = { "Sayonara" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-sayonara"
   },
   ["vim-signify"] = {
@@ -204,26 +214,20 @@ _G.packer_plugins = {
   },
   ["vim-startuptime"] = {
     commands = { "StartupTime" },
-    config = { "vim.g.startuptime_tries = 5" },
+    config = { "vim.g.startuptime_tries = 10" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-startuptime"
-  },
-  ["vim-toml"] = {
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-toml"
   },
   ["vim-vsnip"] = {
     config = { "require('config.vsnip')" },
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-vsnip"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   },
   ["vim-wordmotion"] = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-wordmotion"
-  },
-  vimspector = {
-    loaded = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vimspector"
   },
   vimtex = {
     config = { "require('config.vimtex')" },
@@ -232,19 +236,13 @@ _G.packer_plugins = {
   }
 }
 
--- Setup for: vimspector
-vim.g.vimspector_enable_mappings = 'HUMAN'
 -- Setup for: vim-matchup
 require('config.matchup')
 vim.cmd [[packadd vim-matchup]]
 -- Config for: formatter.nvim
 require('config.format')
--- Config for: nvim-treesitter
-require('config.treesitter')
--- Config for: pdf-scribe.nvim
-require('config.pdf_scribe')
--- Config for: vim-vsnip
-require('config.vsnip')
+-- Config for: nvim-lightbulb
+require('config.lightbulb')
 -- Config for: indentLine
 require('config.indentline')
 -- Config for: fzf.vim
@@ -257,8 +255,8 @@ require('config.vimtex')
 require('config.signify')
 -- Config for: vim-sneak
 require('config.sneak')
--- Config for: nvim-compe
-require('config.compe')
+-- Config for: nvim-treesitter
+require('config.treesitter')
 
 -- Command lazy-loads
 vim.cmd [[command! -nargs=* -range -bang -complete=file Make lua require("packer.load")({'vim-dispatch'}, { cmd = "Make", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
@@ -267,18 +265,23 @@ vim.cmd [[command! -nargs=* -range -bang -complete=file EnMasse lua require("pac
 vim.cmd [[command! -nargs=* -range -bang -complete=file Gblame lua require("packer.load")({'vim-fugitive'}, { cmd = "Gblame", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Gstatus lua require("packer.load")({'vim-fugitive'}, { cmd = "Gstatus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Dispatch lua require("packer.load")({'vim-dispatch'}, { cmd = "Dispatch", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Start lua require("packer.load")({'vim-dispatch'}, { cmd = "Start", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Focus lua require("packer.load")({'vim-dispatch'}, { cmd = "Focus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Gpull lua require("packer.load")({'vim-fugitive'}, { cmd = "Gpull", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Gpush lua require("packer.load")({'vim-fugitive'}, { cmd = "Gpush", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Focus lua require("packer.load")({'vim-dispatch'}, { cmd = "Focus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Start lua require("packer.load")({'vim-dispatch'}, { cmd = "Start", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file UndotreeToggle lua require("packer.load")({'undotree'}, { cmd = "UndotreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Prosession lua require("packer.load")({'vim-obsession'}, { cmd = "Prosession", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
+  -- Filetype lazy-loads
+vim.cmd [[au FileType html ++once lua require("packer.load")({'nvim-colorizer.lua'}, { ft = "html" }, _G.packer_plugins)]]
+vim.cmd [[au FileType javascript ++once lua require("packer.load")({'nvim-colorizer.lua'}, { ft = "javascript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType css ++once lua require("packer.load")({'nvim-colorizer.lua'}, { ft = "css" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vim ++once lua require("packer.load")({'nvim-colorizer.lua'}, { ft = "vim" }, _G.packer_plugins)]]
   -- Event lazy-loads
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-colorizer.lua'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'nvim-compe', 'vim-vsnip'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 vim.cmd("augroup END")
 END
 
