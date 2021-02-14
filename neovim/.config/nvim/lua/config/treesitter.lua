@@ -5,7 +5,7 @@ ts_configs.setup {
     'ocaml', 'ocaml_interface', 'python', 'rust', 'toml', 'typescript'
   },
   highlight = {enable = true, use_languagetree = true},
-  indent = {enable = true},
+  indent = {enable = false},
   incremental_selection = {
     enable = true,
     keymaps = {
