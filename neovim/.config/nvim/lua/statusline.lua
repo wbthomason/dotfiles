@@ -1,6 +1,5 @@
 local utils = require('utils')
 local git = require('git')
-local ts = require('nvim-treesitter')
 local lsp_status = require('lsp-status')
 
 -- vim.cmd [[augroup statusline_updates]]
@@ -120,8 +119,6 @@ local function status(win_num)
   table.insert(line_components, '%#StatuslineLineCol#(Ln %l/%L, %#StatuslineLineCol#Col %c) %<')
   table.insert(line_components, '%=')
   table.insert(line_components, '%#StatuslineVC#' .. vcs(buf_path) .. ' ')
-  local ts_component = ts.statusline(60)
-  if ts_component ~= nil then table.insert(line_components, ts_component .. ' ') end
   table.insert(line_components, '%#StatuslineLint#' .. lint_lsp(buf_nr) .. '%#StatuslineFiletype#')
   return table.concat(line_components, '')
 end
