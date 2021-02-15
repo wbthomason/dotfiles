@@ -47,7 +47,7 @@ _G.packer_plugins = {
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/fzf.vim"
   },
   ["gitsigns.nvim"] = {
-    config = { "\27LJ\1\2�\3\0\0\4\0\16\0\0194\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\14\0003\2\4\0003\3\3\0:\3\5\0023\3\6\0:\3\a\0023\3\b\0:\3\t\0023\3\n\0:\3\v\0023\3\f\0:\3\r\2:\2\15\1>\0\2\1G\0\1\0\nsigns\1\0\0\17changedelete\1\0\3\ttext\b│\nnumhl\21GitSignsChangeNr\ahl\15PurpleSign\14topdelete\1\0\3\ttext\b│\nnumhl\21GitSignsDeleteNr\ahl\fRedSign\vdelete\1\0\3\ttext\b│\nnumhl\21GitSignsDeleteNr\ahl\fRedSign\vchange\1\0\3\ttext\b│\nnumhl\21GitSignsChangeNr\ahl\rBlueSign\badd\1\0\0\1\0\3\ttext\b│\nnumhl\18GitSignsAddNr\ahl\14GreenSign\nsetup\rgitsigns\frequire\0" },
+    config = { "require('config.gitsigns')" },
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
@@ -75,19 +75,15 @@ _G.packer_plugins = {
   ["nvim-colorizer.lua"] = {
     config = { "require('colorizer').setup {'css', 'javascript', 'vim', 'html'}" },
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua"
   },
   ["nvim-compe"] = {
-    after_files = { "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_buffer.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_calc.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lsp.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lua.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_omni.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_path.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_snippets_nvim.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_spell.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_tags.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_treesitter.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_ultisnips.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsc.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsp.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vsnip.vim" },
     config = { "require('config.compe')" },
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe"
   },
   ["nvim-dap"] = {
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-dap"
   },
   ["nvim-lightbulb"] = {
@@ -114,7 +110,6 @@ _G.packer_plugins = {
   },
   ["packer.nvim"] = {
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["pddl.vim"] = {
@@ -137,7 +132,6 @@ _G.packer_plugins = {
     commands = { "UndotreeToggle" },
     config = { "vim.g.undotree_SetFocusWhenToggle = 1" },
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/undotree"
   },
   ["vim-cool"] = {
@@ -151,7 +145,6 @@ _G.packer_plugins = {
   ["vim-dispatch"] = {
     commands = { "Dispatch", "Make", "Focus", "Start" },
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-dispatch"
   },
   ["vim-easy-align"] = {
@@ -162,7 +155,6 @@ _G.packer_plugins = {
   ["vim-enmasse"] = {
     commands = { "EnMasse" },
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-enmasse"
   },
   ["vim-floaterm"] = {
@@ -170,9 +162,7 @@ _G.packer_plugins = {
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-floaterm"
   },
   ["vim-matchup"] = {
-    after_files = { "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-matchup/after/plugin/matchit.vim" },
     loaded = false,
-    needs_bufread = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-matchup"
   },
   ["vim-nazgul"] = {
@@ -183,7 +173,6 @@ _G.packer_plugins = {
     after = { "vim-prosession" },
     commands = { "Prosession" },
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-obsession"
   },
   ["vim-peekaboo"] = {
@@ -196,7 +185,6 @@ _G.packer_plugins = {
       ["vim-obsession"] = true
     },
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-prosession"
   },
   ["vim-sandwich"] = {
@@ -206,7 +194,6 @@ _G.packer_plugins = {
   ["vim-sayonara"] = {
     commands = { "Sayonara" },
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-sayonara"
   },
   ["vim-sneak"] = {
@@ -218,13 +205,11 @@ _G.packer_plugins = {
     commands = { "StartupTime" },
     config = { "vim.g.startuptime_tries = 10" },
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-startuptime"
   },
   ["vim-vsnip"] = {
     config = { "require('config.vsnip')" },
     loaded = false,
-    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   },
   ["vim-wordmotion"] = {
@@ -256,7 +241,7 @@ require('config.vimtex')
 -- Config for: vim-sneak
 require('config.sneak')
 -- Config for: gitsigns.nvim
-try_loadstring("\27LJ\1\2�\3\0\0\4\0\16\0\0194\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\14\0003\2\4\0003\3\3\0:\3\5\0023\3\6\0:\3\a\0023\3\b\0:\3\t\0023\3\n\0:\3\v\0023\3\f\0:\3\r\2:\2\15\1>\0\2\1G\0\1\0\nsigns\1\0\0\17changedelete\1\0\3\ttext\b│\nnumhl\21GitSignsChangeNr\ahl\15PurpleSign\14topdelete\1\0\3\ttext\b│\nnumhl\21GitSignsDeleteNr\ahl\fRedSign\vdelete\1\0\3\ttext\b│\nnumhl\21GitSignsDeleteNr\ahl\fRedSign\vchange\1\0\3\ttext\b│\nnumhl\21GitSignsChangeNr\ahl\rBlueSign\badd\1\0\0\1\0\3\ttext\b│\nnumhl\18GitSignsAddNr\ahl\14GreenSign\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+require('config.gitsigns')
 -- Config for: nvim-lightbulb
 require('config.lightbulb')
 
