@@ -52,9 +52,10 @@ _G.packer_plugins = {
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
   indentLine = {
-    config = { "require('config.indentline')" },
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/indentLine"
+    after_files = { "/home/wil/.local/share/nvim/site/pack/packer/opt/indentLine/after/plugin/indentLine.vim" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/indentLine"
   },
   ["lazygit.nvim"] = {
     loaded = true,
@@ -75,15 +76,19 @@ _G.packer_plugins = {
   ["nvim-colorizer.lua"] = {
     config = { "require('colorizer').setup {'css', 'javascript', 'vim', 'html'}" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua"
   },
   ["nvim-compe"] = {
+    after_files = { "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_buffer.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_calc.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lsp.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_nvim_lua.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_omni.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_path.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_snippets_nvim.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_spell.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_tags.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_treesitter.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_ultisnips.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsc.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vim_lsp.vim", "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe/after/plugin/compe_vsnip.vim" },
     config = { "require('config.compe')" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-compe"
   },
   ["nvim-dap"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-dap"
   },
   ["nvim-lightbulb"] = {
@@ -110,6 +115,7 @@ _G.packer_plugins = {
   },
   ["packer.nvim"] = {
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/packer.nvim"
   },
   ["pddl.vim"] = {
@@ -132,6 +138,7 @@ _G.packer_plugins = {
     commands = { "UndotreeToggle" },
     config = { "vim.g.undotree_SetFocusWhenToggle = 1" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/undotree"
   },
   ["vim-cool"] = {
@@ -145,6 +152,7 @@ _G.packer_plugins = {
   ["vim-dispatch"] = {
     commands = { "Dispatch", "Make", "Focus", "Start" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-dispatch"
   },
   ["vim-easy-align"] = {
@@ -155,6 +163,7 @@ _G.packer_plugins = {
   ["vim-enmasse"] = {
     commands = { "EnMasse" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-enmasse"
   },
   ["vim-floaterm"] = {
@@ -162,7 +171,9 @@ _G.packer_plugins = {
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-floaterm"
   },
   ["vim-matchup"] = {
+    after_files = { "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-matchup/after/plugin/matchit.vim" },
     loaded = false,
+    needs_bufread = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-matchup"
   },
   ["vim-nazgul"] = {
@@ -173,6 +184,7 @@ _G.packer_plugins = {
     after = { "vim-prosession" },
     commands = { "Prosession" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-obsession"
   },
   ["vim-peekaboo"] = {
@@ -185,6 +197,7 @@ _G.packer_plugins = {
       ["vim-obsession"] = true
     },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-prosession"
   },
   ["vim-sandwich"] = {
@@ -194,6 +207,7 @@ _G.packer_plugins = {
   ["vim-sayonara"] = {
     commands = { "Sayonara" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-sayonara"
   },
   ["vim-sneak"] = {
@@ -205,11 +219,13 @@ _G.packer_plugins = {
     commands = { "StartupTime" },
     config = { "vim.g.startuptime_tries = 10" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-startuptime"
   },
   ["vim-vsnip"] = {
     config = { "require('config.vsnip')" },
     loaded = false,
+    needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
   },
   ["vim-wordmotion"] = {
@@ -223,6 +239,9 @@ _G.packer_plugins = {
   }
 }
 
+-- Setup for: indentLine
+require('config.indentline')
+vim.cmd [[packadd indentLine]]
 -- Setup for: vim-matchup
 require('config.matchup')
 vim.cmd [[packadd vim-matchup]]
@@ -230,20 +249,18 @@ vim.cmd [[packadd vim-matchup]]
 require('config.format')
 -- Config for: nvim-treesitter
 require('config.treesitter')
--- Config for: indentLine
-require('config.indentline')
--- Config for: fzf.vim
-require('config.fzf')
--- Config for: vim-easy-align
-require('config.easy_align')
 -- Config for: vimtex
 require('config.vimtex')
+-- Config for: nvim-lightbulb
+require('config.lightbulb')
 -- Config for: vim-sneak
 require('config.sneak')
 -- Config for: gitsigns.nvim
 require('config.gitsigns')
--- Config for: nvim-lightbulb
-require('config.lightbulb')
+-- Config for: fzf.vim
+require('config.fzf')
+-- Config for: vim-easy-align
+require('config.easy_align')
 
 -- Command lazy-loads
 vim.cmd [[command! -nargs=* -range -bang -complete=file Make lua require("packer.load")({'vim-dispatch'}, { cmd = "Make", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]

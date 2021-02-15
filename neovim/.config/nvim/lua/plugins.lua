@@ -31,7 +31,7 @@ local function init()
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
 
   -- Indentation tracking
-  use {'yggdroot/indentLine', config = [[require('config.indentline')]]}
+  use {'yggdroot/indentLine', setup = [[require('config.indentline')]]}
 
   -- Commenting
   use 'tomtom/tcomment_vim'

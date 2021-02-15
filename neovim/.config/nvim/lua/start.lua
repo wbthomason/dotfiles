@@ -176,9 +176,9 @@ local function start_screen()
   end
 
   vim.cmd [[set eventignore=all]]
-  vim.cmd [[noautocmd silent! setlocal bufhidden=wipe colorcolumn= foldcolumn=0 filetype=startify matchpairs= nobuflisted nocursorcolumn nocursorline nolist nonumber norelativenumber nospell noswapfile signcolumn=no synmaxcol& statusline=]]
+  vim.cmd [[noautocmd silent! setlocal bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= nobuflisted nocursorcolumn nocursorline nolist nonumber norelativenumber nospell noswapfile signcolumn=no synmaxcol& statusline= filetype=startify]]
   make_sections()
-  vim.cmd [[setlocal nomodifiable nomodified]]
+  vim.cmd [[noautocmd setlocal nomodifiable nomodified]]
   -- Position cursor
   vim.fn.cursor(2, offset)
   setup_keys()
