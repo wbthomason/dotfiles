@@ -107,11 +107,7 @@ map('i', '<c-x><c-s>', '<esc><cmd>w<cr>a', silent)
 map('n', '<leader>w', '<cmd>w<cr>', {silent = true})
 
 -- Version control
-map('n', 'gl', '<cmd>Dispatch git pull<cr>', silent)
-map('n', 'gp', '<cmd>Dispatch git push<cr>', silent)
-map('n', 'gs', '<cmd>Gstatus<cr>', silent)
-map('n', ']h', '<plug>(signify-next-hunk)', {silent = true, noremap = false})
-map('n', '[h', '<plug>(signify-prev-hunk)', {silent = true, noremap = false})
+map('n', 'gs', '<cmd>LazyGit<cr>', silent)
 
 -- Esc in the terminal
 map('t', 'jj', [[<C-\><C-n>]])

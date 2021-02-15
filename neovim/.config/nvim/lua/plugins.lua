@@ -70,8 +70,23 @@ local function init()
 
   -- Git
   use {
-    {'mhinz/vim-signify', config = [[require('config.signify')]]},
-    {'tpope/vim-fugitive', cmd = {'Gblame', 'Gpull', 'Gpush', 'Gstatus'}}
+    {'mhinz/vim-signify', config = [[require('config.signify')]], disable = true},
+    {'tpope/vim-fugitive', cmd = {'Gblame', 'Gpull', 'Gpush', 'Gstatus'}, disable = true},
+    'kdheepak/lazygit.nvim', {
+      'lewis6991/gitsigns.nvim',
+      requires = {'nvim-lua/plenary.nvim'},
+      config = function()
+        require('gitsigns').setup {
+          signs = {
+            add = {hl = 'GreenSign', text = '│', numhl = 'GitSignsAddNr'},
+            change = {hl = 'BlueSign', text = '│', numhl = 'GitSignsChangeNr'},
+            delete = {hl = 'RedSign', text = '│', numhl = 'GitSignsDeleteNr'},
+            topdelete = {hl = 'RedSign', text = '│', numhl = 'GitSignsDeleteNr'},
+            changedelete = {hl = 'PurpleSign', text = '│', numhl = 'GitSignsChangeNr'}
+          }
+        }
+      end
+    }
   }
 
   -- Terminal
