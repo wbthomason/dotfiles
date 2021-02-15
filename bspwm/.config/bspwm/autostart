@@ -11,7 +11,6 @@ commands=(
   "deadd-notification-center"
   "system-config-printer-applet"
   "start-pulseaudio-x11"
-  "/usr/bin/syncthingtray --wait"
   "xfce4-power-manager"
   "xfce4-screensaver"
   "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
