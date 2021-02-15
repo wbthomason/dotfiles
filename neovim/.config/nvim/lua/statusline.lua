@@ -1,5 +1,4 @@
 local utils = require('utils')
-local git = require('git')
 local lsp_status = require('lsp-status')
 
 -- vim.cmd [[augroup statusline_updates]]
@@ -11,15 +10,14 @@ local function icon() return utils.icons.lookup_filetype(vim.bo.filetype) end
 
 local function vcs(path)
   local branch_sign = ''
-  local git_info = git.info(path)
-  if not git_info or git_info.branch == '' then return '' end
-  local changes = git_info.stats
-  local added = changes.added > 0 and ('+' .. changes.added .. ' ') or ''
-  local modified = changes.modified > 0 and ('~' .. changes.modified .. ' ') or ''
-  local removed = changes.removed > 0 and ('-' .. changes.removed .. ' ') or ''
+  local git_info = vim.b.gitsigns_status_dict
+  if not git_info or git_info.head == '' then return '' end
+  local added = git_info.added and ('+' .. git_info.added .. ' ') or ''
+  local modified = git_info.changed and ('~' .. git_info.changed .. ' ') or ''
+  local removed = git_info.removed and ('-' .. git_info.removed .. ' ') or ''
   local pad = ((added ~= '') or (removed ~= '') or (modified ~= '')) and ' ' or ''
   local diff_str = string.format('%s%s%s%s', added, removed, modified, pad)
-  return string.format('%s%s %s ', diff_str, branch_sign, git_info.branch)
+  return string.format('%s%s %s ', diff_str, branch_sign, git_info.head)
 end
 
 local function lint_lsp(buf)
