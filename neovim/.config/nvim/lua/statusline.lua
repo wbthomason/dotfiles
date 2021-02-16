@@ -1,14 +1,26 @@
-local utils = require('utils')
 local lsp_status = require('lsp-status')
+local devicons = require('nvim-web-devicons')
 
 -- vim.cmd [[augroup statusline_updates]]
 -- vim.cmd [[au!]]
 -- vim.cmd [[au BufWinEnter,WinEnter,BufEnter,BufDelete,SessionLoadPost,FileChangedShellPost * lua require('statusline').update()]]
 -- vim.cmd [[augroup END]]
 
-local function icon() return utils.icons.lookup_filetype(vim.bo.filetype) end
+local mode_fn = vim.fn.mode
+local win_getid = vim.fn.win_getid
+local winbufnr_fn = vim.fn.winbufnr
+local bufname_fn = vim.fn.bufname
+local fnamemod_fn = vim.fn.fnamemodify
+local winwidth_fn = vim.fn.winwidth
+local pathshorten_fn = vim.fn.pathshorten
 
-local function vcs(path)
+local function icon(path)
+  local name = fnamemod_fn(path, ':t')
+  local extension = fnamemod_fn(path, ':e')
+  return devicons.get_icon(name, extension, {default = true})
+end
+
+local function vcs()
   local branch_sign = ''
   local git_info = vim.b.gitsigns_status_dict
   if not git_info or git_info.head == '' then return '' end
@@ -51,35 +63,48 @@ local mode_table = {
 local function get_mode(mode) return string.upper(mode_table[mode] or 'V-Block') end
 
 local function filename(buf_name, win_id)
-  local base_name = vim.fn.fnamemodify(buf_name, [[:~:.]])
-  local space = math.min(60, math.floor(0.6 * vim.fn.winwidth(win_id)))
+  local base_name = fnamemod_fn(buf_name, [[:~:.]])
+  local space = math.min(50, math.floor(0.4 * winwidth_fn(win_id)))
   if string.len(base_name) <= space then
     return base_name
   else
-    return vim.fn.pathshorten(base_name)
+    return pathshorten_fn(base_name)
   end
 end
 
+vim.cmd [[hi StatuslineNormalAccent guibg=#d75f5f gui=bold guifg=#e9e9e9]]
+vim.cmd [[hi StatuslineInsertAccent guifg=#e9e9e9 gui=bold guibg=#dab997]]
+vim.cmd [[hi StatuslineReplaceAccent guifg=#e9e9e9 gui=bold guibg=#afaf00]]
+vim.cmd [[hi StatuslineChangeAccent guifg=#e9e9e9 gui=bold guibg=#83adad]]
+vim.cmd [[hi StatuslineTerminalAccent guifg=#e9e9e9 gui=bold guibg=#6f6f6f]]
+vim.cmd [[hi StatuslineMiscAccent guifg=#e9e9e9 gui=bold guibg=#f485dd]]
+vim.cmd [[hi StatuslineFilenameModified guifg=#d75f5f gui=bold guibg=#3a3a3a]]
+vim.cmd [[hi StatuslineFilenameNoMod guifg=#e9e9e9 gui=bold guibg=#3a3a3a]]
+
 local function update_colors(mode)
+  local mode_color = 'StatuslineMiscAccent'
   if mode == 'n' then
-    vim.cmd [[hi StatuslineAccent guibg=#d75f5f gui=bold guifg=#e9e9e9]]
+    mode_color = 'StatuslineNormalAccent'
   elseif mode == 'i' then
-    vim.cmd [[hi StatuslineAccent guifg=#e9e9e9 gui=bold guibg=#dab997]]
+    mode_color = 'StatuslineInsertAccent'
   elseif mode == 'R' then
-    vim.cmd [[hi StatuslineAccent guifg=#e9e9e9 gui=bold guibg=#afaf00]]
+    mode_color = 'StatuslineReplaceAccent'
   elseif mode == 'c' then
-    vim.cmd [[hi StatuslineAccent guifg=#e9e9e9 gui=bold guibg=#83adad]]
+    mode_color = 'StatuslineChangeAccent'
   elseif mode == 't' then
-    vim.cmd [[hi StatuslineAccent guifg=#e9e9e9 gui=bold guibg=#6f6f6f]]
+    mode_color = 'StatuslineTerminalAccent'
   else
-    vim.cmd [[hi StatuslineAccent guifg=#e9e9e9 gui=bold guibg=#f485dd]]
+    mode_color = 'StatuslineMiscAccent'
   end
 
+  local filename_color
   if vim.bo.modified then
-    vim.cmd [[hi StatuslineFilename guifg=#d75f5f gui=bold guibg=#3a3a3a]]
+    filename_color = 'StatuslineFilenameModified'
   else
-    vim.cmd [[hi StatuslineFilename guifg=#e9e9e9 gui=bold guibg=#3a3a3a]]
+    filename_color = 'StatuslineFilenameNoMod'
   end
+
+  return mode_color, filename_color
 end
 
 local function set_modified_symbol(modified)
@@ -99,26 +124,21 @@ local function get_readonly_space()
            (vim.bo.readonly and ' ' or '')
 end
 
+local statusline_format =
+  '%%#%s# %s %%#StatuslineFiletype# %s%%#StatuslineModified#%s%%#%s# %s%s%%<%%#%s# %s%s%%<%%=%%#StatuslineVC#%s %%#StatuslineLint#%s%%#StatuslineFiletype#'
 local function status(win_num)
-  local mode = vim.fn.mode()
-  local win_id = vim.fn.win_getid(win_num)
-  local buf_nr = vim.fn.winbufnr(win_id)
-  local buf_name = vim.fn.bufname(buf_nr)
-  local buf_path = vim.fn.resolve(vim.fn.fnamemodify(buf_name, ':p'))
-
-  update_colors(mode)
-  local line_components = {}
-  table.insert(line_components, '%#StatuslineAccent# ' .. get_mode(mode) .. ' ')
-  table.insert(line_components, '%#StatuslineFiletype# ' .. icon())
-  table.insert(line_components, '%#StatuslineModified#' .. set_modified_symbol(vim.bo.modified))
-  table.insert(line_components, '%#StatuslineFilename# ' .. filename(buf_name, win_id) .. ' %<')
-  table.insert(line_components, '%#StatuslineFilename# ' .. get_paste())
-  table.insert(line_components, get_readonly_space())
-  table.insert(line_components, '%#StatuslineLineCol#(Ln %l/%L, %#StatuslineLineCol#Col %c) %<')
-  table.insert(line_components, '%=')
-  table.insert(line_components, '%#StatuslineVC#' .. vcs(buf_path) .. ' ')
-  table.insert(line_components, '%#StatuslineLint#' .. lint_lsp(buf_nr) .. '%#StatuslineFiletype#')
-  return table.concat(line_components, '')
+  local mode = mode_fn()
+  local win_id = win_getid(win_num)
+  local buf_nr = winbufnr_fn(win_id)
+  local bufname = bufname_fn(buf_nr)
+  local filename_segment = filename(bufname, win_id)
+  local mode_color, filename_color = update_colors(mode)
+  local line_col_segment = filename_segment ~= '' and
+                             ' %#StatuslineLineCol#| %l:%#StatuslineLineCol#%c ' or ''
+  return string.format(statusline_format, mode_color, get_mode(mode), icon(bufname),
+                       set_modified_symbol(vim.bo.modified), filename_color, filename_segment,
+                       line_col_segment, filename_color, get_paste(), get_readonly_space(), vcs(),
+                       lint_lsp(buf_nr))
 end
 
 local function update() for i = 1, vim.fn.winnr('$') do vim.wo.statusline = status(i) end end

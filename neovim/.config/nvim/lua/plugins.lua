@@ -70,14 +70,15 @@ local function init()
 
   -- Git
   use {
-    {'mhinz/vim-signify', config = [[require('config.signify')]], disable = true},
-    {'tpope/vim-fugitive', cmd = {'Gblame', 'Gpull', 'Gpush', 'Gstatus'}, disable = true},
     'kdheepak/lazygit.nvim', {
       'lewis6991/gitsigns.nvim',
       requires = {'nvim-lua/plenary.nvim'},
       config = [[require('config.gitsigns')]]
     }
   }
+
+  -- Pretty symbols
+  use 'kyazdani42/nvim-web-devicons'
 
   -- Terminal
   use 'voldikss/vim-floaterm'

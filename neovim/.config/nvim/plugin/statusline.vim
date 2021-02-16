@@ -5,7 +5,6 @@ set laststatus=2
 " Setup the colors
 function! s:setup_colors() abort
   hi StatuslineSeparator guifg=#3a3a3a gui=none guibg=none
-  hi StatuslineFiletype guifg=#d9d9d9 gui=none guibg=#3a3a3a
   hi StatuslinePercentage guibg=#3a3a3a gui=none guifg=#dab997
   hi StatuslineNormal guibg=#3a3a3a gui=none guifg=#e9e9e9
   hi StatuslineVC guibg=#3a3a3a gui=none guifg=#a9a9a9
