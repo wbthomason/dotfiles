@@ -19,16 +19,6 @@ function! s:setup_colors() abort
   exec 'hi AquaSign guifg=#8ec07c ctermfg=108 gui=NONE cterm=NONE guibg=' . sign_col_bg
   exec 'hi WhiteSign guifg=#ffffff gui=NONE cterm=NONE guibg=' . sign_col_bg
 
-  hi! link ALEErrorSign RedSign
-  hi! link ALEWarningSign YellowSign
-  hi! link ALEInfoSign WhiteSign
-
-  hi! link ALEVirtualTextError RedHover
-  hi! link ALEVirtualTextWarning YellowHover
-  hi! link ALEVirtualTextInfo WhiteHover
-  hi! link ALEVirtualTextStyleError OrangeHover
-  hi! link ALEVirtualTextStyleWarning BlueHover
-
   hi! HintHighlight guifg=#83a5cb gui=undercurl guisp=#83a5cb
 
   hi! link LspDiagnosticsDefaultError RedHover
@@ -41,14 +31,10 @@ function! s:setup_colors() abort
   hi! link TSDefinition LspReferenceText
   hi! link TSDefinitionUsage LspReferenceWrite
 
-  hi! ALEError guifg=#ff727b ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
-  hi! ALEWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
-  hi! ALEInfo guifg=#83a598 ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl
-
-  hi! link LspDiagnosticsUnderlineError ALEError
-  hi! link LspDiagnosticsUnderlineWarning ALEWarning
-  hi! link LspDiagnosticsUnderlineInformation ALEInfo
-  hi! link LspDiagnosticsUnderlineHint CocHintHighlight
+  hi! LspDiagnosticsUnderlineError guifg=#ff727b ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
+  hi! LspDiagnosticsUnderlineWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
+  hi! LspDiagnosticsUnderlineInformation guifg=#83a598 ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl
+  hi! LspDiagnosticsUnderlineHint guifg=#83a5cb gui=undercurl guisp=#83a5cb
 
   hi! link SignifySignAdd GreenSign
   hi! link SignifySignChange BlueSign

@@ -75,7 +75,7 @@ end
 vim.cmd [[hi StatuslineNormalAccent guibg=#d75f5f gui=bold guifg=#e9e9e9]]
 vim.cmd [[hi StatuslineInsertAccent guifg=#e9e9e9 gui=bold guibg=#dab997]]
 vim.cmd [[hi StatuslineReplaceAccent guifg=#e9e9e9 gui=bold guibg=#afaf00]]
-vim.cmd [[hi StatuslineChangeAccent guifg=#e9e9e9 gui=bold guibg=#83adad]]
+vim.cmd [[hi StatuslineConfirmAccent guifg=#e9e9e9 gui=bold guibg=#83adad]]
 vim.cmd [[hi StatuslineTerminalAccent guifg=#e9e9e9 gui=bold guibg=#6f6f6f]]
 vim.cmd [[hi StatuslineMiscAccent guifg=#e9e9e9 gui=bold guibg=#f485dd]]
 vim.cmd [[hi StatuslineFilenameModified guifg=#d75f5f gui=bold guibg=#3a3a3a]]
@@ -90,7 +90,7 @@ local function update_colors(mode)
   elseif mode == 'R' then
     mode_color = 'StatuslineReplaceAccent'
   elseif mode == 'c' then
-    mode_color = 'StatuslineChangeAccent'
+    mode_color = 'StatuslineConfirmAccent'
   elseif mode == 't' then
     mode_color = 'StatuslineTerminalAccent'
   else
