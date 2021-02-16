@@ -4,8 +4,8 @@ gui:
   mouseEvents: true
   skipUnstageLineWarning: false
   skipStashWarning: false
-  sidePanelWidth: 0.3333
-  expandFocusedSidePanel: false
+  sidePanelWidth: 0.2
+  expandFocusedSidePanel: true
   mainPanelSplitMode: flexible
   theme:
     lightTheme: false
@@ -27,12 +27,12 @@ git:
   paging:
     colorArg: always
     pager: ""
-    useConfig: false
+    useConfig: true
   merging:
     manualCommit: false
     args: ""
   pull:
-    mode: merge
+    mode: rebase
   skipHookPrefix: WIP
   autoFetch: true
   branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative
