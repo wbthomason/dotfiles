@@ -14,6 +14,7 @@ function! s:setup_colors() abort
   hi StatuslineLintOk guibg=#3a3a3a gui=none guifg=#b8bb26
   hi StatuslineLint guibg=#e9e9e9 guifg=#3a3a3a
   hi StatuslineLineCol guibg=#3a3a3a gui=none guifg=#878787
+  hi StatuslineTS guibg=#3a3a3a gui=none guifg=#878787
   hi StatuslineFiletype guibg=#3a3a3a gui=none guifg=#e9e9e9
 endfunction
 

@@ -1,5 +1,6 @@
 local lsp_status = require('lsp-status')
 local devicons = require('nvim-web-devicons')
+local ts = require('nvim-treesitter')
 
 -- vim.cmd [[augroup statusline_updates]]
 -- vim.cmd [[au!]]
@@ -125,7 +126,7 @@ local function get_readonly_space()
 end
 
 local statusline_format =
-  '%%#%s# %s %%#StatuslineFiletype# %s%%#StatuslineModified#%s%%#%s# %s%s%%<%%#%s# %s%s%%<%%=%%#StatuslineVC#%s %%#StatuslineLint#%s%%#StatuslineFiletype#'
+  '%%#%s# %s %%#StatuslineFiletype# %s%%#StatuslineModified#%s%%#%s# %s%s%%<%%#%s# %s%s%%<%%=%%#StatuslineTS#%s %%#StatuslineVC#%s %%#StatuslineLint#%s%%#StatuslineFiletype#'
 local function status(win_num)
   local mode = mode_fn()
   local win_id = win_getid(win_num)
@@ -135,9 +136,11 @@ local function status(win_num)
   local mode_color, filename_color = update_colors(mode)
   local line_col_segment = filename_segment ~= '' and
                              ' %#StatuslineLineCol#| %l:%#StatuslineLineCol#%c ' or ''
+  local ts_component = ts.statusline(50)
+  ts_component = ts_component or ''
   return string.format(statusline_format, mode_color, get_mode(mode), icon(bufname),
                        set_modified_symbol(vim.bo.modified), filename_color, filename_segment,
-                       line_col_segment, filename_color, get_paste(), get_readonly_space(), vcs(),
+                       line_col_segment, filename_color, get_paste(), get_readonly_space(), ts_component, vcs(),
                        lint_lsp(buf_nr))
 end
 
