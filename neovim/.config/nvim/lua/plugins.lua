@@ -70,7 +70,7 @@ local function init()
 
   -- Git
   use {
-    'kdheepak/lazygit.nvim', {
+    {'tpope/vim-fugitive', cmd = {'Gstatus', 'Gblame', 'Gpush', 'Gpull'}}, {
       'lewis6991/gitsigns.nvim',
       requires = {'nvim-lua/plenary.nvim'},
       config = [[require('config.gitsigns')]]
