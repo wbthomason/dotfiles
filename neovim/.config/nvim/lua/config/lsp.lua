@@ -3,7 +3,7 @@ local lsp_status = require('lsp-status')
 local lspkind = require('lspkind')
 local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
-local cmd = vim.api.nvim_command
+local cmd = vim.cmd
 
 local kind_symbols = {
   Text = '',
