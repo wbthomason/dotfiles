@@ -95,6 +95,9 @@ local function init()
     }
   }
 
+  -- Just for tracking progess until this is ready for use
+  use {'mfussenegger/nvim-lint', opt = true}
+
   use {'hrsh7th/nvim-compe', config = [[require('config.compe')]], event = 'InsertEnter *'}
   use {'hrsh7th/vim-vsnip', config = [[require('config.vsnip')]], event = 'InsertEnter *'}
 
