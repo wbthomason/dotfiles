@@ -1,5 +1,5 @@
 rofi.theme: ~/.config/rofi/theme.rasi
-rofi.font: Fira Code 11
+rofi.font: Jetbrains Mono 11
 rofi.terminal: kitty
 rofi.separator-style: none
 rofi.show-icons: true
