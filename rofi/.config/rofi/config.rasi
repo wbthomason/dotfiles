@@ -1,0 +1,13 @@
+configuration {
+	font: "Jetbrains Mono 11";
+	show-icons: true;
+	terminal: "kitty";
+	matching: "glob";
+	separator-style: "none";
+	fake-transparency: false;
+	theme: "~/.config/rofi/theme.rasi";
+	display-window: "";
+	display-run: "";
+	display-ssh: "~#";
+	display-drun: "";
+}
