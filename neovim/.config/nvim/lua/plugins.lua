@@ -133,8 +133,8 @@ local function init()
 
   -- Color scheme
   use '~/projects/personal/vim-nazgul'
-  -- use 'hardselius/warlock'
-  -- use 'arzg/vim-substrata'
+  use 'hardselius/warlock'
+  use 'arzg/vim-substrata'
 
   -- Notes
   use {

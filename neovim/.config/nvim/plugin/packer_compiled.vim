@@ -92,6 +92,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-lightbulb"
   },
+  ["nvim-lint"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/nvim-lint"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
@@ -148,10 +153,6 @@ _G.packer_plugins = {
   ["vim-dirvish"] = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-dirvish"
-  },
-  ["vim-dirvish-git"] = {
-    loaded = true,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-dirvish-git"
   },
   ["vim-dispatch"] = {
     commands = { "Dispatch", "Make", "Focus", "Start" },
@@ -232,6 +233,10 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/vim-startuptime"
   },
+  ["vim-substrata"] = {
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/vim-substrata"
+  },
   ["vim-vsnip"] = {
     config = { "require('config.vsnip')" },
     loaded = false,
@@ -246,6 +251,10 @@ _G.packer_plugins = {
     config = { "require('config.vimtex')" },
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/vimtex"
+  },
+  warlock = {
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/warlock"
   }
 }
 
