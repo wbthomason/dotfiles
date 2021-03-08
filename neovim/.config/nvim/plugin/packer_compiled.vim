@@ -119,9 +119,8 @@ _G.packer_plugins = {
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["packer.nvim"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/wil/.local/share/nvim/site/pack/packer/opt/packer.nvim"
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
   ["pddl.vim"] = {
     loaded = true,
