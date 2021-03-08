@@ -10,7 +10,7 @@ local function init()
   packer.reset()
 
   -- Packer
-  use {'~/projects/personal/packer.nvim', opt = true}
+  use '~/projects/personal/packer.nvim'
 
   -- Async building & commands
   use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
