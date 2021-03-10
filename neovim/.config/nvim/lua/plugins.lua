@@ -6,7 +6,6 @@ local function init()
   end
 
   local use = packer.use
-  local use_rocks = packer.use_rocks
   packer.reset()
 
   -- Packer
@@ -120,6 +119,9 @@ local function init()
 
   -- PDDL
   use 'PontusPersson/pddl.vim'
+
+  -- Zig
+  use 'ziglang/zig.vim'
 
   -- Profiling
   use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]]}
