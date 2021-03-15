@@ -8,7 +8,7 @@ commands=(
   "xset +dpms"
   "volnoti"
   "thunar --daemon"
-  "deadd-notification-center"
+  "/usr/lib/xfce4/notifyd/xfce4-notifyd"
   "system-config-printer-applet"
   "start-pulseaudio-x11"
   "xfce4-power-manager"
@@ -20,6 +20,7 @@ commands=(
   "blueman-applet"
   "dropbox"
   "pasystray"
+  "/usr/lib/geoclue-2.0/demos/agent"
 )
 
 for cmd in "${commands[@]}"; do
