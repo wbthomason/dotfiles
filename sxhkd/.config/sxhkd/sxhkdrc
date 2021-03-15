@@ -65,10 +65,10 @@ alt + Return
   
 # go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
 super + {1-9,0}
-  ~/move_desktop.sh {1-9,0}
+  move_desktop.sh {1-9,0}
 
 super + shift + {1-9,0}
-  ~/move_to_desktop.sh {1-9,0}
+  move_to_desktop.sh {1-9,0}
 
 ## Alternative: i3 style behavior (focus nth, desktop of the focused monitor)
 #super + {1-9,0}
@@ -178,16 +178,16 @@ XF86AudioMute
   pamixer --toggle-mute; if `pamixer --get-mute`; then volnoti-show -m; else volnoti-show `pamixer --get-volume`; fi
   
 XF86MonBrightnessDown
-  xbacklight -dec 5; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
+  xbacklight -dec 5; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)
 
 XF86MonBrightnessUp
-  xbacklight -inc 5; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
+  xbacklight -inc 5; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)
 
 shift + XF86MonBrightnessDown
-  xbacklight -dec 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
+  xbacklight -dec 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)
 
 shift + XF86MonBrightnessUp
-  xbacklight -inc 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight)
+  xbacklight -inc 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)
 
 XF86Sleep
   systemctl suspend

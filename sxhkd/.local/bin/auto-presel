@@ -1,0 +1,13 @@
+#! /bin/sh
+# Original script by https://github.com/ikn/ , modified to use splitting method of
+# https://github.com/baskerville/bspwm/tree/master/examples/external_rules/pseudo_automatic_mode
+fwid=$(bspc query -N -n focused)
+
+wattr wh $fwid | {
+	read width height
+	if [ $width -gt $height ] ; then
+		bspc node -p \~east
+	else
+		bspc node -p \~south
+	fi
+}
