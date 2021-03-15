@@ -254,6 +254,10 @@ _G.packer_plugins = {
   warlock = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/warlock"
+  },
+  ["zig.vim"] = {
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/zig.vim"
   }
 }
 
