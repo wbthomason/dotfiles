@@ -30,7 +30,11 @@ local function init()
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
 
   -- Indentation tracking
-  use {'yggdroot/indentLine', setup = [[require('config.indentline')]]}
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    branch = 'lua',
+    setup = [[require('config.indentline')]]
+  }
 
   -- Commenting
   use 'tomtom/tcomment_vim'
@@ -51,6 +55,10 @@ local function init()
   -- Search
   use {'junegunn/fzf.vim', config = [[require('config.fzf')]]}
   use 'gfanto/fzf-lsp.nvim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+  }
 
   -- Project Management/Sessions
   use {
