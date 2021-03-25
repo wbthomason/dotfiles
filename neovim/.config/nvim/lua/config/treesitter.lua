@@ -1,9 +1,9 @@
 local ts_configs = require('nvim-treesitter.configs')
 ts_configs.setup {
   ensure_installed = {
-    'bash', 'c', 'c_sharp', 'clojure', 'cpp', 'css', 'fennel', 'go', 'haskell', 'html',
-    'javascript', 'json', 'julia', 'kotlin', 'lua', 'ocaml', 'ocaml_interface', 'python', 'regex',
-    'rust', 'teal', 'toml', 'typescript'
+    'bash', 'bibtex', 'c', 'c_sharp', 'clojure', 'comment', 'cpp', 'css', 'fennel', 'go', 'haskell',
+    'html', 'javascript', 'json', 'jsonc', 'julia', 'kotlin', 'latex', 'lua', 'ocaml',
+    'ocaml_interface', 'python', 'regex', 'rust', 'teal', 'toml', 'typescript', 'yaml', 'zig'
   },
   highlight = {enable = true, use_languagetree = true},
   indent = {enable = false},
