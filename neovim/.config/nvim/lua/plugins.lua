@@ -131,6 +131,9 @@ local function init()
   -- Zig
   use 'ziglang/zig.vim'
 
+  -- Julia
+  use 'JuliaEditorSupport/julia-vim'
+
   -- Profiling
   use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]]}
 
