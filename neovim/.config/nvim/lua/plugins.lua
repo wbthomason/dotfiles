@@ -81,7 +81,7 @@ local function init()
       'lewis6991/gitsigns.nvim',
       requires = {'nvim-lua/plenary.nvim'},
       config = [[require('config.gitsigns')]]
-    }
+    }, {'TimUntersberger/neogit', opt = true}
   }
 
   -- Pretty symbols
