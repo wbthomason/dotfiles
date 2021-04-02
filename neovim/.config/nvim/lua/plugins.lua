@@ -90,6 +90,14 @@ local function init()
   -- Terminal
   use 'voldikss/vim-floaterm'
 
+  -- REPLs
+  use {
+    'hkupty/iron.nvim',
+    setup = [[vim.g.iron_map_defaults = 0]],
+    config = [[require('config.iron')]],
+    cmd = {'IronRepl', 'IronSend', 'IronReplHere'}
+  }
+
   -- Completion and linting
   use {
     {'kosayoda/nvim-lightbulb', config = [[require('config.lightbulb')]]}, 'onsails/lspkind-nvim',
