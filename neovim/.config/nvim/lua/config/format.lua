@@ -20,18 +20,23 @@ local function latexindent()
   return {exe = 'latexindent', args = {'-sl', '-g /dev/stderr', '2>/dev/null'}, stdin = true}
 end
 
+local function cmake_format()
+  return {exe = 'cmake-format', args = {vim.fn.expand('%:t')}, stdin = false}
+end
+
 require('formatter').setup({
   logging = false,
   filetype = {
+    c = {clangformat},
+    cmake = {cmake_format},
+    cpp = {clangformat},
+    html = {prettier},
     javascript = {prettier},
     json = {prettier},
-    html = {prettier},
-    rust = {rustfmt},
+    lua = {lua_format},
     python = {isort, yapf},
-    tex = {latexindent},
-    c = {clangformat},
-    cpp = {clangformat},
-    lua = {lua_format}
+    rust = {rustfmt},
+    tex = {latexindent}
   }
 })
 
