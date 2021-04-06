@@ -53,11 +53,12 @@ local function init()
   use 'wellle/targets.vim'
 
   -- Search
-  use {'junegunn/fzf.vim', config = [[require('config.fzf')]]}
-  use 'gfanto/fzf-lsp.nvim'
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    setup = [[require('config.telescope_setup')]],
+    config = [[require('config.telescope')]],
+    cmd = 'Telescope'
   }
 
   -- Project Management/Sessions
