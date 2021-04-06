@@ -100,14 +100,17 @@ local function init()
 
   -- Completion and linting
   use {
-    {'kosayoda/nvim-lightbulb', config = [[require('config.lightbulb')]]}, 'onsails/lspkind-nvim',
-    'neovim/nvim-lspconfig', '~/projects/personal/lsp-status.nvim', {
-      'nvim-treesitter/nvim-treesitter',
-      requires = {
-        'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textobjects'
-      },
-      config = [[require('config.treesitter')]]
-    }
+    'onsails/lspkind-nvim', 'neovim/nvim-lspconfig', '~/projects/personal/lsp-status.nvim',
+    'glepnir/lspsaga.nvim'
+  }
+
+  -- Highlights
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    requires = {
+      'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textobjects'
+    },
+    config = [[require('config.treesitter')]]
   }
 
   -- Just for tracking progess until this is ready for use
