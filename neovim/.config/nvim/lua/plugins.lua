@@ -61,6 +61,8 @@ local function init()
     cmd = 'Telescope'
   }
 
+  use {'nvim-telescope/telescope-frecency.nvim', requires = 'tami5/sql.nvim'}
+
   -- Project Management/Sessions
   use {
     'dhruvasagar/vim-prosession',
