@@ -57,8 +57,7 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
   update_in_insert = false,
   underline = true
 })
-saga.init_lsp_saga()
-
+saga.init_lsp_saga {use_saga_diagnostic_sign = false}
 local keymap_opts = {noremap = true, silent = true}
 local function on_attach(client)
   lsp_status.on_attach(client)
