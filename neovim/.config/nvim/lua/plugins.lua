@@ -162,6 +162,7 @@ local function init()
   use '~/projects/personal/vim-nazgul'
   use 'hardselius/warlock'
   use 'arzg/vim-substrata'
+  use 'sainnhe/gruvbox-material'
 
   -- Notes
   use {
