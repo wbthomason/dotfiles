@@ -106,7 +106,7 @@ map('i', '<c-x><c-s>', '<esc><cmd>w<cr>a', silent)
 map('n', '<leader>w', '<cmd>w<cr>', {silent = true})
 
 -- Version control
-map('n', 'gs', '<cmd>Gstatus<cr>', silent)
+map('n', 'gs', '<cmd>Git<cr>', silent)
 
 -- Esc in the terminal
 map('t', 'jj', [[<C-\><C-n>]])
