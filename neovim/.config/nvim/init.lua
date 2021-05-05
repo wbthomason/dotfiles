@@ -67,8 +67,8 @@ opt('signcolumn', 'yes:1', window)
 -- Colorscheme
 opt('termguicolors', true)
 opt('background', 'dark')
-cmd [[colorscheme gruvbox-material]]
--- cmd [[colorscheme nazgul]]
+-- cmd [[colorscheme gruvbox-material]]
+cmd [[colorscheme nazgul]]
 
 -- Autocommands
 autocmd('start_screen', [[VimEnter * ++once lua require('start').start()]], true)
