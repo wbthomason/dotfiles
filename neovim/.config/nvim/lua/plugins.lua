@@ -40,7 +40,10 @@ local function init()
   use 'tomtom/tcomment_vim'
 
   -- Wrapping/delimiters
-  use {'machakann/vim-sandwich', {'andymass/vim-matchup', setup = [[require('config.matchup')]]}}
+  use {
+    'machakann/vim-sandwich',
+    {'andymass/vim-matchup', setup = [[require('config.matchup')]], event = 'BufEnter'}
+  }
 
   -- Search
   use 'romainl/vim-cool'
@@ -80,10 +83,11 @@ local function init()
 
   -- Git
   use {
-    {'tpope/vim-fugitive', cmd = {'Gstatus', 'Gblame', 'Gpush', 'Gpull'}}, {
+    {'tpope/vim-fugitive', cmd = {'Git', 'Gstatus', 'Gblame', 'Gpush', 'Gpull'}}, {
       'lewis6991/gitsigns.nvim',
       requires = {'nvim-lua/plenary.nvim'},
-      config = [[require('config.gitsigns')]]
+      config = [[require('config.gitsigns')]],
+      event = 'BufEnter'
     }, {'TimUntersberger/neogit', opt = true}
   }
 
