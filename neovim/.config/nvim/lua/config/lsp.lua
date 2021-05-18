@@ -46,7 +46,7 @@ lsp_status.config {
       return require('lsp-status/util').in_range(cursor_pos, value_range)
     end
   end,
-  current_function = true
+  current_function = false
 }
 
 lsp_status.register_progress()
@@ -137,7 +137,11 @@ local servers = {
   },
   texlab = {
     settings = {
-      latex = {forwardSearch = {executable = 'okular', args = {'--unique', 'file:%p#src:%l%f'}}}
+      texlab = {
+        chktex = {onOpenAndSave = true},
+        formatterLineLength = 100,
+        forwardSearch = {executable = 'okular', args = {'--unique', 'file:%p#src:%l%f'}}
+      }
     },
     commands = {
       TexlabForwardSearch = {
