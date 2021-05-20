@@ -108,7 +108,7 @@ local function init()
   -- Completion and linting
   use {
     'onsails/lspkind-nvim', 'neovim/nvim-lspconfig', '~/projects/personal/lsp-status.nvim',
-    'glepnir/lspsaga.nvim'
+    'glepnir/lspsaga.nvim', 'folke/trouble.nvim'
   }
 
   -- Highlights
@@ -154,6 +154,9 @@ local function init()
 
   -- Profiling
   use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]]}
+
+  -- Plugin development
+  use 'folke/lua-dev.nvim'
 
   -- Highlight colors
   use {

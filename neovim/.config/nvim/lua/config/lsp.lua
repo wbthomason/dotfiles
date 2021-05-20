@@ -1,4 +1,6 @@
 local lspconfig = require('lspconfig')
+local luadev = require('lua-dev')
+local trouble = require('trouble')
 local lsp_status = require('lsp-status')
 local saga = require('lspsaga')
 local lspkind = require('lspkind')
@@ -36,6 +38,7 @@ sign_define('LspDiagnosticsSignInformation', {text = '', numhl = 'WhiteSign'})
 sign_define('LspDiagnosticsSignHint', {text = '', numhl = 'BlueSign'})
 lsp_status.config {
   kind_labels = kind_symbols,
+  component_separator = '|',
   select_symbol = function(cursor_pos, symbol)
     if symbol.valueRange then
       local value_range = {
@@ -50,7 +53,9 @@ lsp_status.config {
 }
 
 lsp_status.register_progress()
+local sumneko_lua_config = luadev.setup({lspconfig = {cmd = {'lua-language-server'}}})
 lspkind.init {symbol_map = kind_symbols}
+trouble.setup()
 lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = false,
   signs = true,
@@ -120,21 +125,7 @@ local servers = {
   ocamllsp = {},
   pyright = {settings = {python = {formatting = {provider = 'yapf'}}}},
   rust_analyzer = {},
-  sumneko_lua = {
-    cmd = {'lua-language-server'},
-    settings = {
-      Lua = {
-        diagnostics = {globals = {'vim'}},
-        runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
-        workspace = {
-          library = {
-            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
-          }
-        }
-      }
-    }
-  },
+  sumneko_lua = sumneko_lua_config,
   texlab = {
     settings = {
       texlab = {
