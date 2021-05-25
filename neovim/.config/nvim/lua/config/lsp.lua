@@ -158,6 +158,7 @@ local snippet_capabilities = {
 }
 
 for server, config in pairs(servers) do
+  if type(config) == 'function' then config = config() end
   config.on_attach = on_attach
   config.capabilities = vim.tbl_deep_extend('keep', config.capabilities or {},
                                             lsp_status.capabilities, snippet_capabilities)
