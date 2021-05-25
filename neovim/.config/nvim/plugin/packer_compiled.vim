@@ -114,6 +114,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
+  ["lua-dev.nvim"] = {
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/lua-dev.nvim"
+  },
   mesonic = {
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/mesonic"
@@ -122,6 +126,10 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/neogit"
+  },
+  ["nvim-bqf"] = {
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-bqf"
   },
   ["nvim-colorizer.lua"] = {
     config = { "require('colorizer').setup {'css', 'javascript', 'vim', 'html'}" },
@@ -205,6 +213,10 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/home/wil/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
+  },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/home/wil/.local/share/nvim/site/pack/packer/start/trouble.nvim"
   },
   undotree = {
     commands = { "UndotreeToggle" },
@@ -383,9 +395,9 @@ vim.cmd [[command! -nargs=* -range -bang -complete=file Gblame lua require("pack
 vim.cmd [[command! -nargs=* -range -bang -complete=file Gstatus lua require("packer.load")({'vim-fugitive'}, { cmd = "Gstatus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file UndotreeToggle lua require("packer.load")({'undotree'}, { cmd = "UndotreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file IronReplHere lua require("packer.load")({'iron.nvim'}, { cmd = "IronReplHere", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
+vim.cmd [[command! -nargs=* -range -bang -complete=file Focus lua require("packer.load")({'vim-dispatch'}, { cmd = "Focus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Gpush lua require("packer.load")({'vim-fugitive'}, { cmd = "Gpush", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Prosession lua require("packer.load")({'vim-obsession'}, { cmd = "Prosession", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
-vim.cmd [[command! -nargs=* -range -bang -complete=file Focus lua require("packer.load")({'vim-dispatch'}, { cmd = "Focus", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file IronRepl lua require("packer.load")({'iron.nvim'}, { cmd = "IronRepl", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Git lua require("packer.load")({'vim-fugitive'}, { cmd = "Git", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]
 vim.cmd [[command! -nargs=* -range -bang -complete=file Sayonara lua require("packer.load")({'vim-sayonara'}, { cmd = "Sayonara", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]]

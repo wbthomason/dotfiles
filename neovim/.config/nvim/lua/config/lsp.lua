@@ -1,5 +1,4 @@
 local lspconfig = require('lspconfig')
-local luadev = require('lua-dev')
 local trouble = require('trouble')
 local lsp_status = require('lsp-status')
 local saga = require('lspsaga')
@@ -52,7 +51,6 @@ lsp_status.config {
 }
 
 lsp_status.register_progress()
-local sumneko_lua_config = luadev.setup({lspconfig = {cmd = {'lua-language-server'}}})
 lspkind.init {symbol_map = kind_symbols}
 trouble.setup()
 lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
@@ -124,7 +122,9 @@ local servers = {
   ocamllsp = {},
   pyright = {settings = {python = {formatting = {provider = 'yapf'}}}},
   rust_analyzer = {},
-  sumneko_lua = sumneko_lua_config,
+  sumneko_lua = function()
+    return require('lua-dev').setup({lspconfig = {cmd = {'lua-language-server'}}})
+  end,
   texlab = {
     settings = {
       texlab = {
@@ -157,6 +157,7 @@ local snippet_capabilities = {
 }
 
 for server, config in pairs(servers) do
+  if type(config) == 'function' then config = config() end
   config.on_attach = on_attach
   config.capabilities = vim.tbl_deep_extend('keep', config.capabilities or {},
                                             lsp_status.capabilities, snippet_capabilities)

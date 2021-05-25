@@ -28,6 +28,7 @@ local function init()
 
   -- Quickfix
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
+  use 'kevinhwang91/nvim-bqf'
 
   -- Indentation tracking
   use {
