@@ -117,7 +117,8 @@ local function init()
     requires = {
       'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textobjects'
     },
-    config = [[require('config.treesitter')]]
+    config = [[require('config.treesitter')]],
+    run = ':TSUpdate'
   }
 
   -- Just for tracking progess until this is ready for use
