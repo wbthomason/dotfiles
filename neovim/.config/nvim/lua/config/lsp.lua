@@ -38,7 +38,6 @@ sign_define('LspDiagnosticsSignInformation', {text = '', numhl = 'WhiteSign'})
 sign_define('LspDiagnosticsSignHint', {text = '', numhl = 'BlueSign'})
 lsp_status.config {
   kind_labels = kind_symbols,
-  component_separator = '|',
   select_symbol = function(cursor_pos, symbol)
     if symbol.valueRange then
       local value_range = {

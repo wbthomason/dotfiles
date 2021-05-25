@@ -41,4 +41,4 @@ require('formatter').setup({
 })
 
 -- Keymap
-map('n', '<leader>f', '<cmd>Format<cr>', silent)
+map('n', '<leader>f', '<cmd>Format<cr>', {silent = true})
