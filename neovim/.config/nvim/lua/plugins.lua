@@ -17,6 +17,8 @@ local function init()
   -- Registers
   use 'junegunn/vim-peekaboo'
 
+  use {'camspiers/snap', rocks = 'fzy', config = [[require('config.snap')]], opt = true}
+
   -- Marks
   use {'kshenoy/vim-signature', config = [[require('config.signature')]], disable = true}
 
