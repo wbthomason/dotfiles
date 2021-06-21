@@ -122,9 +122,24 @@ local servers = {
   ocamllsp = {},
   pyright = {settings = {python = {formatting = {provider = 'yapf'}}}},
   rust_analyzer = {},
-  sumneko_lua = function()
-    return require('lua-dev').setup({lspconfig = {cmd = {'lua-language-server'}}})
-  end,
+  -- sumneko_lua = function()
+  --   return require('lua-dev').setup({lspconfig = {cmd = {'lua-language-server'}}})
+  -- end,
+  sumneko_lua = {
+    cmd = {'lua-language-server'},
+    settings = {
+      Lua = {
+        diagnostics = {globals = {'vim'}},
+        runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
+        workspace = {
+          library = {
+            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+          }
+        }
+      }
+    }
+  },
   texlab = {
     settings = {
       texlab = {
