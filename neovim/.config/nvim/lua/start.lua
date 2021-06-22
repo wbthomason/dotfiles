@@ -72,6 +72,8 @@ local commands = {
 local cur_dir = relativize(vim.fn.expand(vim.fn.getcwd()))
 cur_dir = (cur_dir ~= '') and cur_dir or '~'
 
+-- TODO: Maybe make the show functions unevaluated and run async? Would require rewriting using LUV
+-- functions, which isn't a bad idea anyway
 local sections = {
   {title = 'Commands', show = commands},
   {title = string.format('Recent Files in %s', cur_dir), show = current_dir_files()},
