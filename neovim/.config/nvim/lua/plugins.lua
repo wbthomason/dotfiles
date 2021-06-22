@@ -125,7 +125,7 @@ local function init()
   }
 
   -- Just for tracking progess until this is ready for use
-  use {'mfussenegger/nvim-lint', config = [[require('config.lint')]], opt = true}
+  use {'mfussenegger/nvim-lint', config = [[require('config.lint')]]}
 
   use {'hrsh7th/nvim-compe', config = [[require('config.compe')]], event = 'InsertEnter *'}
   use {'hrsh7th/vim-vsnip', config = [[require('config.vsnip')]], event = 'InsertEnter *'}
