@@ -14,7 +14,7 @@ try
 lua << END
   local time
   local profile_info
-  local should_profile = false
+  local should_profile = true
   if should_profile then
     local hrtime = vim.loop.hrtime
     profile_info = {}
@@ -158,7 +158,6 @@ _G.packer_plugins = {
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
-    config = { "require('config.treesitter')" },
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
@@ -191,7 +190,6 @@ _G.packer_plugins = {
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   snap = {
-    config = { "require('config.snap')" },
     loaded = true,
     path = "/home/wil/.local/share/nvim/site/pack/packer/start/snap"
   },
@@ -354,14 +352,6 @@ time([[Setup for iron.nvim]], false)
 time([[Setup for telescope.nvim]], true)
 require('config.telescope_setup')
 time([[Setup for telescope.nvim]], false)
--- Config for: snap
-time([[Config for snap]], true)
-require('config.snap')
-time([[Config for snap]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('config.treesitter')
-time([[Config for nvim-treesitter]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

@@ -2,7 +2,7 @@ local packer = nil
 local function init()
   if packer == nil then
     packer = require('packer')
-    packer.init({disable_commands = true})
+    packer.init({disable_commands = true, profile = {enable = true}})
   end
 
   local use = packer.use
@@ -17,7 +17,7 @@ local function init()
   -- Registers
   use 'junegunn/vim-peekaboo'
 
-  use {'camspiers/snap', rocks = 'fzy', config = [[require('config.snap')]]}
+  use {'camspiers/snap', rocks = 'fzy'}
 
   -- Marks
   use {'kshenoy/vim-signature', config = [[require('config.signature')]], disable = true}
@@ -114,7 +114,6 @@ local function init()
     requires = {
       'nvim-treesitter/nvim-treesitter-refactor', 'nvim-treesitter/nvim-treesitter-textobjects'
     },
-    config = [[require('config.treesitter')]],
     run = ':TSUpdate'
   }
 
