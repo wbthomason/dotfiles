@@ -26,18 +26,14 @@ local function init()
   use {'mhinz/vim-sayonara', cmd = 'Sayonara'}
 
   -- Movement
-  use {'chaoren/vim-wordmotion', {'justinmk/vim-sneak', config = [[require('config.sneak')]]}}
+  use {'chaoren/vim-wordmotion', 'justinmk/vim-sneak'}
 
   -- Quickfix
   use {'Olical/vim-enmasse', cmd = 'EnMasse'}
   use 'kevinhwang91/nvim-bqf'
 
   -- Indentation tracking
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    branch = 'lua',
-    setup = [[require('config.indentline')]]
-  }
+  use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
 
   -- Commenting
   use 'tomtom/tcomment_vim'
@@ -52,8 +48,8 @@ local function init()
   use 'romainl/vim-cool'
 
   -- Prettification
-  use {'junegunn/vim-easy-align', config = [[require('config.easy_align')]]}
-  use {'mhartington/formatter.nvim', config = [[require('config.format')]]}
+  use 'junegunn/vim-easy-align'
+  use 'mhartington/formatter.nvim'
 
   -- Text objects
   use 'wellle/targets.vim'
@@ -123,7 +119,7 @@ local function init()
   }
 
   -- Just for tracking progess until this is ready for use
-  use {'mfussenegger/nvim-lint', config = [[require('config.lint')]]}
+  use 'mfussenegger/nvim-lint'
 
   use {'hrsh7th/nvim-compe', config = [[require('config.compe')]], event = 'InsertEnter *'}
   use {'hrsh7th/vim-vsnip', config = [[require('config.vsnip')]], event = 'InsertEnter *'}
@@ -140,7 +136,7 @@ local function init()
   use 'justinmk/vim-dirvish'
 
   -- LaTeX
-  use {'lervag/vimtex', config = [[require('config.vimtex')]]}
+  use 'lervag/vimtex'
 
   -- Meson
   use 'igankevich/mesonic'

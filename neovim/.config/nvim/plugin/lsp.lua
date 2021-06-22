@@ -89,7 +89,6 @@ local function on_attach(client)
   if client.resolved_capabilities.document_highlight == true then
     cmd('augroup lsp_aucmds')
     cmd('au CursorHold <buffer> lua vim.lsp.buf.document_highlight()')
-    cmd('au CursorHold <buffer> lua require("lspsaga.diagnostic").show_cursor_diagnostics()')
     cmd('au CursorMoved <buffer> lua vim.lsp.buf.clear_references()')
     cmd('augroup END')
   end
