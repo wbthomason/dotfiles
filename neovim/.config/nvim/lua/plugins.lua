@@ -17,7 +17,7 @@ local function init()
   -- Registers
   use 'junegunn/vim-peekaboo'
 
-  use {'camspiers/snap', rocks = 'fzy', config = [[require('config.snap')]], opt = true}
+  use {'camspiers/snap', rocks = 'fzy', config = [[require('config.snap')]]}
 
   -- Marks
   use {'kshenoy/vim-signature', config = [[require('config.signature')]], disable = true}
@@ -66,8 +66,6 @@ local function init()
     config = [[require('config.telescope')]],
     cmd = 'Telescope'
   }
-
-  use {'nvim-telescope/telescope-frecency.nvim', requires = 'tami5/sql.nvim'}
 
   -- Project Management/Sessions
   use {
@@ -154,7 +152,7 @@ local function init()
   use 'ziglang/zig.vim'
 
   -- Julia
-  use 'JuliaEditorSupport/julia-vim'
+  use {'JuliaEditorSupport/julia-vim', setup = [[vim.g.latex_to_unicode_tab = 'off']]}
 
   -- Profiling
   use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]]}
