@@ -147,7 +147,11 @@ local function init()
   use 'ziglang/zig.vim'
 
   -- Julia
-  use {'JuliaEditorSupport/julia-vim', setup = [[vim.g.latex_to_unicode_tab = 'off']]}
+  use {
+    'JuliaEditorSupport/julia-vim',
+    setup = [[vim.g.latex_to_unicode_tab = 'off']],
+    opt = true
+  }
 
   -- Profiling
   use {'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]]}

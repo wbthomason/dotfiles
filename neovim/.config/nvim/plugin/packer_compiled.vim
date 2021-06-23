@@ -337,9 +337,6 @@ time([[Defining packer_plugins]], false)
 time([[Setup for julia-vim]], true)
 vim.g.latex_to_unicode_tab = 'off'
 time([[Setup for julia-vim]], false)
-time([[packadd for julia-vim]], true)
-vim.cmd [[packadd julia-vim]]
-time([[packadd for julia-vim]], false)
 -- Setup for: vim-matchup
 time([[Setup for vim-matchup]], true)
 require('config.matchup')
