@@ -179,6 +179,8 @@ local function init()
     config = [[require('config.pdf_scribe')]],
     disable = true
   }
+
+  use {'kristijanhusak/orgmode.nvim', opt = true}
 end
 
 local plugins = setmetatable({}, {
