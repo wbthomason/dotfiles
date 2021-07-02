@@ -15,13 +15,14 @@ local function init()
   use {'tpope/vim-dispatch', cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
 
   -- Registers
-  use 'junegunn/vim-peekaboo'
+  -- use 'junegunn/vim-peekaboo'
 
   use {'camspiers/snap', rocks = 'fzy'}
 
   -- Marks
   use {'kshenoy/vim-signature', config = [[require('config.signature')]], disable = true}
 
+  use {'tversteeg/registers.nvim', keys = {{'n', '"'}, {'i', '<c-r>'}}}
   -- Buffer management
   use {'mhinz/vim-sayonara', cmd = 'Sayonara'}
 
