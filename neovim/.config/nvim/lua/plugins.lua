@@ -34,7 +34,7 @@ local function init()
   use 'kevinhwang91/nvim-bqf'
 
   -- Indentation tracking
-  use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+  use 'lukas-reineke/indent-blankline.nvim'
 
   -- Commenting
   use 'tomtom/tcomment_vim'
