@@ -13,7 +13,7 @@ require('compe').setup {
   debug = false,
   min_length = 1,
   preselect = 'always',
-  documentation = true,
+  documentation = {border = 'single'},
   source = {path = true, buffer = true, nvim_lsp = true, vsnip = true}
 }
 
