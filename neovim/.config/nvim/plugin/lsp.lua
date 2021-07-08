@@ -1,7 +1,6 @@
 local lspconfig = require('lspconfig')
 local trouble = require('trouble')
 local lsp_status = require('lsp-status')
-local saga = require('lspsaga')
 local lspkind = require('lspkind')
 local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
@@ -59,11 +58,10 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
   update_in_insert = false,
   underline = true
 })
-saga.init_lsp_saga {use_saga_diagnostic_sign = false}
 local keymap_opts = {noremap = true, silent = true}
 local function on_attach(client)
   lsp_status.on_attach(client)
-
+  require('lsp_signature').on_attach({bind = true, handler_opts = {border = 'single'}})
   buf_keymap(0, 'n', 'gh', '<cmd>lua require("lspsaga.provider").lsp_finder()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', keymap_opts)
