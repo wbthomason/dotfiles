@@ -2,7 +2,7 @@
 local g = vim.g
 local cmd = vim.cmd
 local o, wo, bo = vim.o, vim.wo, vim.bo
-local utils = require('config.utils')
+local utils = require 'config.utils'
 local opt = utils.opt
 local autocmd = utils.autocmd
 local map = utils.map
@@ -19,14 +19,25 @@ g.node_host_prog = '/usr/bin/neovim-node-host'
 
 -- Disable some built-in plugins we don't want
 local disabled_built_ins = {
-  'gzip', 'man', 'matchit', 'matchparen', 'shada_plugin', 'tarPlugin', 'tar', 'zipPlugin', 'zip',
-  'netrwPlugin'
+  'gzip',
+  'man',
+  'matchit',
+  'matchparen',
+  'shada_plugin',
+  'tarPlugin',
+  'tar',
+  'zipPlugin',
+  'zip',
+  'netrwPlugin',
 }
-for i = 1, 10 do g['loaded_' .. disabled_built_ins[i]] = 1 end
+
+for i = 1, 10 do
+  g['loaded_' .. disabled_built_ins[i]] = 1
+end
 
 -- Settings
-local buffer = {o, bo}
-local window = {o, wo}
+local buffer = { o, bo }
+local window = { o, wo }
 opt('textwidth', 100, buffer)
 opt('scrolloff', 7)
 opt('wildignore', '*.o,*~,*.pyc')
@@ -72,11 +83,12 @@ cmd [[colorscheme nazgul]]
 
 -- Autocommands
 autocmd('start_screen', [[VimEnter * ++once lua require('start').start()]], true)
-autocmd('syntax_aucmds',
-        [[Syntax * syn match extTodo "\<\(NOTE\|HACK\|BAD\|TODO\):\?" containedin=.*Comment.* | hi! link extTodo Todo]],
-        true)
-autocmd('misc_aucmds',
-        {[[BufWinEnter * checktime]], [[TextYankPost * silent! lua vim.highlight.on_yank()]]}, true)
+autocmd(
+  'syntax_aucmds',
+  [[Syntax * syn match extTodo "\<\(NOTE\|HACK\|BAD\|TODO\):\?" containedin=.*Comment.* | hi! link extTodo Todo]],
+  true
+)
+autocmd('misc_aucmds', { [[BufWinEnter * checktime]], [[TextYankPost * silent! lua vim.highlight.on_yank()]] }, true)
 
 -- Commands
 cmd [[command! WhatHighlight :call util#syntax_stack()]]
@@ -87,7 +99,7 @@ cmd [[command! PackerClean packadd packer.nvim | lua require('plugins').clean()]
 cmd [[command! PackerCompile packadd packer.nvim | lua require('plugins').compile()]]
 
 -- Keybindings
-local silent = {silent = true}
+local silent = { silent = true }
 -- Disable annoying F1 binding
 map('', '<f1>', '<cmd>FloatermToggle<cr>')
 
@@ -97,23 +109,23 @@ map('n', '<localleader><localleader>', '<cmd>Make<cr>', silent)
 -- Quit, close buffers, etc.
 map('n', '<leader>q', '<cmd>qa<cr>', silent)
 map('n', '<leader>x', '<cmd>x!<cr>', silent)
-map('n', '<leader>d', '<cmd>Sayonara<cr>', {silent = true, nowait = true})
+map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true, nowait = true })
 
 -- A little Emacs in my Neovim
 map('n', '<c-x><c-s>', '<cmd>w<cr>', silent)
 map('i', '<c-x><c-s>', '<esc><cmd>w<cr>a', silent)
 
 -- Save buffer
-map('n', '<leader>w', '<cmd>w<cr>', {silent = true})
+map('n', '<leader>w', '<cmd>w<cr>', { silent = true })
 
 -- Version control
-map('n', 'gs', '<cmd>Git<cr>', silent)
+map('n', 'gs', '<cmd>Neogit<cr>', silent)
 
 -- Esc in the terminal
 map('t', 'jj', [[<C-\><C-n>]])
 
 -- Yank to clipboard
-map({'n', 'v'}, 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', silent)
+map({ 'n', 'v' }, 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', silent)
 
 -- Window movement
 map('n', '<c-h>', '<c-w>h')
