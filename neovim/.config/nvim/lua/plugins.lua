@@ -81,12 +81,14 @@ local function init()
 
   -- Git
   use {
-    {'tpope/vim-fugitive', cmd = {'Git', 'Gstatus', 'Gblame', 'Gpush', 'Gpull'}}, {
+    { 'tpope/vim-fugitive', cmd = { 'Git', 'Gstatus', 'Gblame', 'Gpush', 'Gpull' }, disable = true },
+    {
       'lewis6991/gitsigns.nvim',
-      requires = {'nvim-lua/plenary.nvim'},
+      requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('config.gitsigns')]],
-      event = 'BufEnter'
-    }, {'TimUntersberger/neogit', opt = true}
+      event = 'BufEnter',
+    },
+    { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] },
   }
 
   -- Pretty symbols
