@@ -112,7 +112,6 @@ local function init()
     '~/projects/personal/lsp-status.nvim',
     'folke/trouble.nvim',
     'ray-x/lsp_signature.nvim',
-    'glepnir/lspsaga.nvim',
   }
 
   -- Highlights
@@ -183,7 +182,7 @@ local function init()
     disable = true,
   }
 
-  use { 'kristijanhusak/orgmode.nvim', opt = true }
+  use { { 'kristijanhusak/orgmode.nvim', opt = true }, { 'akinsho/org-bullets.nvim', opt = true } }
 end
 
 local plugins = setmetatable({}, {
