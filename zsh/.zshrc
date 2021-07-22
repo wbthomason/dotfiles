@@ -83,9 +83,9 @@ else
   compinit -C
 fi
 
-# pazi
-if command -v pazi &>/dev/null; then
-  eval "$(pazi init zsh)"
+# zoxide
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
 fi
 
 # Thefuck
