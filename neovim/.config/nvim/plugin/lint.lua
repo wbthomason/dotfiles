@@ -1,4 +1,4 @@
-local lint = require('lint')
+local lint = require 'lint'
 local linters = lint.linters
 
 local cppcheck_pattern = [[([^:]*):(%d*):(%d*): %[([^%]\]*)%] ([^:]*): (.*)]]
@@ -6,10 +6,12 @@ linters.cppcheck = {
   cmd = 'cppcheck',
   stdin = false,
   args = {
-    '--enable=warning,style,performance,information', '--language=c++',
-    '--project=build/compile_commands.json', '--inline-suppr', '--quiet',
+    '--enable=warning,style,performance,information',
+    '--language=c++',
+    '--inline-suppr',
+    '--quiet',
     '--cppcheck-build-dir=build',
-    '--template={file}:{line}:{column}: [{id}] {severity}: {message}'
+    '--template={file}:{line}:{column}: [{id}] {severity}: {message}',
   },
   stream = 'stderr',
   parser = function(output, bufnr)
@@ -22,7 +24,7 @@ linters.cppcheck = {
           diagnostic.range = {}
           local line_num = tonumber(lineno)
           local col_num = tonumber(colno)
-          local range = {line = line_num - 1, character = col_num - 1}
+          local range = { line = line_num - 1, character = col_num - 1 }
           diagnostic.range.start = range
           diagnostic.range['end'] = range
           if severity == 'style' or severity == 'information' then
@@ -41,13 +43,13 @@ linters.cppcheck = {
     end
 
     return diagnostics
-  end
+  end,
 }
 
 lint.linters_by_ft = {
-  markdown = {'languagetool', 'vale'},
-  sh = {'shellcheck'},
-  zsh = {'shellcheck'},
-  bash = {'shellcheck'},
-  cpp = {'cppcheck'}
+  markdown = { 'languagetool', 'vale' },
+  sh = { 'shellcheck' },
+  zsh = { 'shellcheck' },
+  bash = { 'shellcheck' },
+  cpp = { 'cppcheck' },
 }
