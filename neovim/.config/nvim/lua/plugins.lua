@@ -143,7 +143,14 @@ local function init()
 
   -- Debugger
   use {
-    { 'mfussenegger/nvim-dap', setup = [[require('config.dap_setup')]], cmd = { 'Debug', 'BreakpointToggle' } },
+    {
+      'mfussenegger/nvim-dap',
+      setup = [[require('config.dap_setup')]],
+      config = [[require('config.dap')]],
+      cmd = { 'Debug', 'BreakpointToggle' },
+      requires = 'jbyuki/one-small-step-for-vimkind',
+      wants = 'one-small-step-for-vimkind',
+    },
     {
       'rcarriga/nvim-dap-ui',
       requires = 'nvim-dap',
