@@ -131,7 +131,18 @@ local function init()
   use { 'hrsh7th/vim-vsnip', config = [[require('config.vsnip')]], event = 'InsertEnter *' }
 
   -- Debugger
-  use { 'mfussenegger/nvim-dap', opt = true }
+  use {
+    { 'mfussenegger/nvim-dap', setup = [[require('config.dap_setup')]], cmd = { 'Debug', 'BreakpointToggle' } },
+    {
+      'rcarriga/nvim-dap-ui',
+      requires = 'nvim-dap',
+      after = 'nvim-dap',
+      config = function()
+        require('dapui').setup()
+      end,
+    },
+  }
+
   use {
     'puremourning/vimspector',
     setup = [[vim.g.vimspector_enable_mappings = 'HUMAN']],
