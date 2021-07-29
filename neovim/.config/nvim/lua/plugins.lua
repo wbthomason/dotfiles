@@ -57,11 +57,22 @@ local function init()
 
   -- Search
   use {
-    'nvim-telescope/telescope.nvim',
-    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
-    setup = [[require('config.telescope_setup')]],
-    config = [[require('config.telescope')]],
-    cmd = 'Telescope',
+    {
+      'nvim-telescope/telescope.nvim',
+      requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'telescope-frecency.nvim' },
+      setup = [[require('config.telescope_setup')]],
+      config = [[require('config.telescope')]],
+      cmd = 'Telescope',
+      module = 'telescope',
+    },
+    {
+      'nvim-telescope/telescope-frecency.nvim',
+      config = function()
+        require('telescope').load_extension 'frecency'
+      end,
+      after = 'telescope.nvim',
+      requires = 'tami5/sql.nvim',
+    },
   }
 
   -- Project Management/Sessions
