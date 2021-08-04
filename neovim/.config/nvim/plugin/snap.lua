@@ -19,7 +19,7 @@ local function icons_consumer(producer)
           coroutine.yield(results)
         else
           coroutine.yield(vim.tbl_map(function(result)
-            return snap.with_meta(result, 'display', add_icon)
+            return snap.with_metas(result, { display = add_icon, highlight_offset = 4 })
           end, results))
         end
       else
@@ -34,7 +34,7 @@ snap.register.map(
   '<Leader>s',
   snap.create(function()
     return {
-      prompt = 'Files',
+      prompt = 'Git Files',
       producer = icons_consumer(snap.get 'consumer.fzy'(snap.get 'producer.git.file')),
       select = snap.get('select.file').select,
       multiselect = snap.get('select.file').multiselect,
@@ -49,7 +49,7 @@ snap.register.map(
   snap.create(function()
     return {
       prompt = 'Files',
-      producer = snap.get 'consumer.fzy'(snap.get 'producer.fd.file'),
+      producer = icons_consumer(snap.get 'consumer.fzy'(snap.get 'producer.fd.file')),
       select = snap.get('select.file').select,
       multiselect = snap.get('select.file').multiselect,
       views = { snap.get 'preview.file' },
@@ -76,9 +76,8 @@ snap.register.map(
   '<leader>b',
   snap.create(function()
     return {
-      producer = snap.get 'consumer.fzy'(
-        snap.get 'consumer.combine'(snap.get 'producer.vim.buffer', snap.get 'producer.vim.oldfile')
-      ),
+      prompt = 'Buffers',
+      producer = icons_consumer(snap.get 'consumer.fzy'(snap.get 'producer.vim.buffer')),
       select = snap.get('select.file').select,
       multiselect = snap.get('select.file').multiselect,
       views = { snap.get 'preview.file' },
