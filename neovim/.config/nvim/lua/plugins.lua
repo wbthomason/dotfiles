@@ -188,6 +188,8 @@ local function init()
   -- Profiling
   use { 'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]] }
 
+  -- Refactoring
+  use { 'ThePrimeagen/refactoring.nvim', opt = true }
   -- Plugin development
   use 'folke/lua-dev.nvim'
 
