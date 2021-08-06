@@ -78,12 +78,14 @@ local function on_attach(client)
     buf_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>', keymap_opts)
   end
 
+  cmd 'augroup lsp_aucmds'
   if client.resolved_capabilities.document_highlight == true then
-    cmd 'augroup lsp_aucmds'
     cmd 'au CursorHold <buffer> lua vim.lsp.buf.document_highlight()'
     cmd 'au CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
-    cmd 'augroup END'
   end
+
+  cmd 'au CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb {sign = {enabled = false}, virtual_text = {enabled = true}}'
+  cmd 'augroup END'
 end
 
 local servers = {

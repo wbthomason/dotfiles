@@ -123,6 +123,7 @@ local function init()
     '~/projects/personal/lsp-status.nvim',
     'folke/trouble.nvim',
     'ray-x/lsp_signature.nvim',
+    'kosayoda/nvim-lightbulb',
   }
 
   -- Highlights
