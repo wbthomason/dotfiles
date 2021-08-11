@@ -42,7 +42,7 @@ local function init()
   -- Wrapping/delimiters
   use {
     'machakann/vim-sandwich',
-    { 'andymass/vim-matchup', setup = [[require('config.matchup')]], event = 'BufEnter' },
+    { 'andymass/vim-matchup', setup = [[require('config.matchup')]], event = 'User ActuallyEditing' },
   }
 
   -- Search
@@ -97,16 +97,12 @@ local function init()
       'lewis6991/gitsigns.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('config.gitsigns')]],
-      event = 'BufEnter',
     },
     { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] },
   }
 
   -- Pretty symbols
   use 'kyazdani42/nvim-web-devicons'
-
-  -- Terminal
-  use 'voldikss/vim-floaterm'
 
   -- REPLs
   use {
