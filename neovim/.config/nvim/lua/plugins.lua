@@ -144,9 +144,9 @@ local function init()
       'mfussenegger/nvim-dap',
       setup = [[require('config.dap_setup')]],
       config = [[require('config.dap')]],
-      cmd = { 'Debug', 'BreakpointToggle' },
       requires = 'jbyuki/one-small-step-for-vimkind',
       wants = 'one-small-step-for-vimkind',
+      module = 'dap',
     },
     {
       'rcarriga/nvim-dap-ui',
