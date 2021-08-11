@@ -6,6 +6,9 @@ local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
 local cmd = vim.cmd
 
+vim.api.nvim_command 'hi link LightBulbFloatWin YellowFloat'
+vim.api.nvim_command 'hi link LightBulbVirtualText YellowFloat'
+
 local kind_symbols = {
   Text = '',
   Method = 'Ƒ',
@@ -58,6 +61,8 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
   update_in_insert = false,
   underline = true,
 })
+
+require('lsp_signature').setup { bind = true, handler_opts = { border = 'single' } }
 local keymap_opts = { noremap = true, silent = true }
 local function on_attach(client)
   lsp_status.on_attach(client)
@@ -84,7 +89,7 @@ local function on_attach(client)
     cmd 'au CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
   end
 
-  cmd 'au CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb {sign = {enabled = false}, virtual_text = {enabled = true}}'
+  cmd 'au CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb {sign = {enabled = false}, virtual_text = {enabled = true, text = ""}, float = {enabled = false, text = "", win_opts = {winblend = 100, anchor = "NE"}}}'
   cmd 'augroup END'
 end
 
