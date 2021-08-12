@@ -59,7 +59,18 @@ local function init()
   use {
     {
       'nvim-telescope/telescope.nvim',
-      requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'telescope-frecency.nvim' },
+      requires = {
+        'nvim-lua/popup.nvim',
+        'nvim-lua/plenary.nvim',
+        'telescope-frecency.nvim',
+        'telescope-fzy-native.nvim',
+      },
+      wants = {
+        'popup.nvim',
+        'plenary.nvim',
+        'telescope-frecency.nvim',
+        'telescope-fzy-native.nvim',
+      },
       setup = [[require('config.telescope_setup')]],
       config = [[require('config.telescope')]],
       cmd = 'Telescope',
@@ -67,11 +78,12 @@ local function init()
     },
     {
       'nvim-telescope/telescope-frecency.nvim',
-      config = function()
-        require('telescope').load_extension 'frecency'
-      end,
       after = 'telescope.nvim',
       requires = 'tami5/sql.nvim',
+    },
+    {
+      'nvim-telescope/telescope-fzy-native.nvim',
+      run = 'git submodule update --init --recursive',
     },
   }
 
