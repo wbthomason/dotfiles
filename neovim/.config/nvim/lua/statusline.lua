@@ -133,7 +133,7 @@ local statusline_format =
 local statuslines = {}
 local function status()
   local win_id = vim.g.statusline_winid
-  if win_id == get_current_win() then
+  if win_id == get_current_win() or statuslines[win_id] == nil then
     local mode = get_mode().mode
     local buf_nr = get_window_buf(win_id)
     local bufname = buf_get_name(buf_nr)
