@@ -223,7 +223,12 @@ local function init()
   use { { 'kristijanhusak/orgmode.nvim', opt = true }, { 'akinsho/org-bullets.nvim', opt = true } }
 
   -- Buffer management
-  use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
+  use {
+    'akinsho/nvim-bufferline.lua',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = [[require('config.bufferline')]],
+    event = 'User ActuallyEditing',
+  }
 end
 
 local plugins = setmetatable({}, {
