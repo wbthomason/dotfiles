@@ -7,7 +7,7 @@ local elem_fg = '#8c8c8c'
 local selected_bg = '#444444'
 local selected_fg = '#efefef'
 local error_fg = '#ca241a'
-local warning_fg = '#fab2df'
+local warning_fg = '#fabd2f'
 local info_fg = '#83a5cb'
 local pick_fg = '#870000'
 
