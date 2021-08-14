@@ -132,3 +132,7 @@ map('n', '<c-h>', '<c-w>h')
 map('n', '<c-j>', '<c-w>j')
 map('n', '<c-k>', '<c-w>k')
 map('n', '<c-l>', '<c-w>l')
+
+-- Tab movement
+map('n', '<c-Left>', '<cmd>tabpre<cr>')
+map('n', '<c-Right>', '<cmd>tabnext<cr>')
