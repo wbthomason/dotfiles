@@ -47,6 +47,7 @@ local mode_table = {
   S = 'S·Line',
   ['^S'] = 'S·Block',
   i = 'Insert',
+  ic = 'Insert',
   R = 'Replace',
   Rv = 'V·Replace',
   c = 'Command',
@@ -86,7 +87,7 @@ local function update_colors(mode)
   local mode_color = 'StatuslineMiscAccent'
   if mode == 'n' then
     mode_color = 'StatuslineNormalAccent'
-  elseif mode == 'i' then
+  elseif mode == 'i' or mode == 'ic' then
     mode_color = 'StatuslineInsertAccent'
   elseif mode == 'R' then
     mode_color = 'StatuslineReplaceAccent'
