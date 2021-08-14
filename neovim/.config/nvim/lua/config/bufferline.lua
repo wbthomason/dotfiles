@@ -42,7 +42,7 @@ bufferline.setup {
       local s = ' '
       for e, n in pairs(diagnostics_dict) do
         local sym = diagnostics_signs[e] or diagnostics_signs.default
-        s = s .. sym .. ' ' .. n
+        s = s .. (#s > 1 and ' ' or '') .. sym .. ' ' .. n
       end
       return s
     end,
