@@ -223,6 +223,14 @@ local function init()
   }
 
   use { { 'kristijanhusak/orgmode.nvim', opt = true }, { 'akinsho/org-bullets.nvim', opt = true } }
+
+  -- Tabs
+  use {
+    'romgrk/barbar.nvim',
+    setup = [[require('config.barbar')]],
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    event = 'User ActuallyEditing',
+  }
 end
 
 local plugins = setmetatable({}, {
