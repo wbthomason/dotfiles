@@ -1,29 +1,26 @@
-local lsp_status = require('lsp-status')
-local devicons = require('nvim-web-devicons')
+local lsp_status = require 'lsp-status'
+local devicons = require 'nvim-web-devicons'
 
--- vim.cmd [[augroup statusline_updates]]
--- vim.cmd [[au!]]
--- vim.cmd [[au BufWinEnter,WinEnter,BufEnter,BufDelete,SessionLoadPost,FileChangedShellPost * lua require('statusline').update()]]
--- vim.cmd [[augroup END]]
-
-local mode_fn = vim.fn.mode
-local win_getid = vim.fn.win_getid
-local winbufnr_fn = vim.fn.winbufnr
-local bufname_fn = vim.fn.bufname
-local fnamemod_fn = vim.fn.fnamemodify
-local winwidth_fn = vim.fn.winwidth
-local pathshorten_fn = vim.fn.pathshorten
+local get_mode = vim.api.nvim_get_mode
+local get_current_win = vim.api.nvim_get_current_win
+local get_window_buf = vim.api.nvim_win_get_buf
+local buf_get_name = vim.api.nvim_buf_get_name
+local fnamemodify = vim.fn.fnamemodify
+local get_window_width = vim.api.nvim_win_get_width
+local pathshorten = vim.fn.pathshorten
 
 local function icon(path)
-  local name = fnamemod_fn(path, ':t')
-  local extension = fnamemod_fn(path, ':e')
-  return devicons.get_icon(name, extension, {default = true})
+  local name = fnamemodify(path, ':t')
+  local extension = fnamemodify(path, ':e')
+  return devicons.get_icon(name, extension, { default = true })
 end
 
 local function vcs()
   local branch_sign = ''
   local git_info = vim.b.gitsigns_status_dict
-  if not git_info or git_info.head == '' then return '' end
+  if not git_info or git_info.head == '' then
+    return ''
+  end
   local added = git_info.added and ('+' .. git_info.added .. ' ') or ''
   local modified = git_info.changed and ('~' .. git_info.changed .. ' ') or ''
   local removed = git_info.removed and ('-' .. git_info.removed .. ' ') or ''
@@ -34,7 +31,9 @@ end
 
 local function lint_lsp(buf)
   local result = ''
-  if #vim.lsp.buf_get_clients(buf) > 0 then result = result .. lsp_status.status() end
+  if #vim.lsp.buf_get_clients(buf) > 0 then
+    result = result .. lsp_status.status()
+  end
   return result
 end
 
@@ -57,18 +56,20 @@ local mode_table = {
   rm = 'More',
   ['r?'] = 'Confirm',
   ['!'] = 'Shell',
-  t = 'Terminal'
+  t = 'Terminal',
 }
 
-local function get_mode(mode) return string.upper(mode_table[mode] or 'V-Block') end
+local function mode_name(mode)
+  return string.upper(mode_table[mode] or 'V-Block')
+end
 
 local function filename(buf_name, win_id)
-  local base_name = fnamemod_fn(buf_name, [[:~:.]])
-  local space = math.min(50, math.floor(0.4 * winwidth_fn(win_id)))
+  local base_name = fnamemodify(buf_name, [[:~:.]])
+  local space = math.min(50, math.floor(0.4 * get_window_width(win_id)))
   if string.len(base_name) <= space then
     return base_name
   else
-    return pathshorten_fn(base_name)
+    return pathshorten(base_name)
   end
 end
 
@@ -117,30 +118,47 @@ local function set_modified_symbol(modified)
   end
 end
 
-local function get_paste() return vim.o.paste and 'PASTE ' or '' end
+local function get_paste()
+  return vim.o.paste and 'PASTE ' or ''
+end
 
 local function get_readonly_space()
-  return ((vim.o.paste and vim.bo.readonly) and ' ' or '') and '%r' ..
-           (vim.bo.readonly and ' ' or '')
+  return ((vim.o.paste and vim.bo.readonly) and ' ' or '') and '%r' .. (vim.bo.readonly and ' ' or '')
 end
 
 local statusline_format =
   '%%#%s# %s %%#StatuslineFiletype# %s%%#StatuslineModified#%s%%#%s# %s%s%%<%%#%s# %s%s%%<%%=%%#StatuslineVC#%s %%#StatuslineLint#%s%%#StatuslineFiletype#'
-local function status(win_num)
-  local mode = mode_fn()
-  local win_id = win_getid(win_num)
-  local buf_nr = winbufnr_fn(win_id)
-  local bufname = bufname_fn(buf_nr)
-  local filename_segment = filename(bufname, win_id)
-  local mode_color, filename_color = update_colors(mode)
-  local line_col_segment = filename_segment ~= '' and
-                             ' %#StatuslineLineCol#| %l:%#StatuslineLineCol#%c ' or ''
-  return string.format(statusline_format, mode_color, get_mode(mode), icon(bufname),
-                       set_modified_symbol(vim.bo.modified), filename_color, filename_segment,
-                       line_col_segment, filename_color, get_paste(), get_readonly_space(), vcs(),
-                       lint_lsp(buf_nr))
+
+local statuslines = {}
+local function status()
+  local win_id = vim.g.statusline_winid
+  if win_id == get_current_win() then
+    local mode = get_mode().mode
+    local buf_nr = get_window_buf(win_id)
+    local bufname = buf_get_name(buf_nr)
+    local filename_segment = filename(bufname, win_id)
+    local mode_color, filename_color = update_colors(mode)
+    local line_col_segment = filename_segment ~= '' and ' %#StatuslineLineCol#| %l:%#StatuslineLineCol#%c ' or ''
+    statuslines[win_id] = string.format(
+      statusline_format,
+      mode_color,
+      mode_name(mode),
+      icon(bufname),
+      set_modified_symbol(vim.bo.modified),
+      filename_color,
+      filename_segment,
+      line_col_segment,
+      filename_color,
+      get_paste(),
+      get_readonly_space(),
+      vcs(),
+      lint_lsp(buf_nr)
+    )
+  else
+    -- print(vim.g.statusline_winid, win_getid(winnr()))
+  end
+
+  return statuslines[win_id]
 end
 
-local function update() for i = 1, vim.fn.winnr('$') do vim.wo.statusline = status(i) end end
-
-return {status = status, update = update}
+return { status = status }
