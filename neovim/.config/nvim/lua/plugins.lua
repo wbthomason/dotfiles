@@ -23,8 +23,6 @@ local function init()
   use { 'kshenoy/vim-signature', config = [[require('config.signature')]], disable = true }
 
   use { 'tversteeg/registers.nvim', keys = { { 'n', '"' }, { 'i', '<c-r>' } } }
-  -- Buffer management
-  use { 'mhinz/vim-sayonara', cmd = 'Sayonara' }
 
   -- Movement
   use { 'chaoren/vim-wordmotion', 'justinmk/vim-sneak' }
@@ -224,13 +222,8 @@ local function init()
 
   use { { 'kristijanhusak/orgmode.nvim', opt = true }, { 'akinsho/org-bullets.nvim', opt = true } }
 
-  -- Tabs
-  use {
-    'romgrk/barbar.nvim',
-    setup = [[require('config.barbar')]],
-    requires = { 'kyazdani42/nvim-web-devicons' },
-    event = 'User ActuallyEditing',
-  }
+  -- Buffer management
+  use { 'akinsho/nvim-bufferline.lua', requires = 'kyazdani42/nvim-web-devicons' }
 end
 
 local plugins = setmetatable({}, {

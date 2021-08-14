@@ -88,7 +88,11 @@ autocmd(
   [[Syntax * syn match extTodo "\<\(NOTE\|HACK\|BAD\|TODO\):\?" containedin=.*Comment.* | hi! link extTodo Todo]],
   true
 )
-autocmd('misc_aucmds', { [[BufWinEnter * checktime]], [[TextYankPost * silent! lua vim.highlight.on_yank()]] }, true)
+autocmd('misc_aucmds', {
+  [[BufWinEnter * checktime]],
+  [[TextYankPost * silent! lua vim.highlight.on_yank()]],
+  [[FileType qf set nobuflisted ]],
+}, true)
 
 -- Commands
 cmd [[command! WhatHighlight :call util#syntax_stack()]]
