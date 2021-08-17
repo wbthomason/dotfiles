@@ -1,24 +1,20 @@
-local ts_configs = require('nvim-treesitter.configs')
+local ts_configs = require 'nvim-treesitter.configs'
 ts_configs.setup {
-  ensure_installed = {
-    'bash', 'bibtex', 'c', 'c_sharp', 'clojure', 'comment', 'cpp', 'css', 'fennel', 'go', 'haskell',
-    'html', 'javascript', 'json', 'jsonc', 'julia', 'kotlin', 'latex', 'lua', 'ocaml',
-    'ocaml_interface', 'python', 'regex', 'rust', 'teal', 'toml', 'typescript', 'yaml', 'zig'
-  },
-  highlight = {enable = true, use_languagetree = true},
-  indent = {enable = false},
+  ensure_installed = 'maintained',
+  highlight = { enable = true, use_languagetree = true },
+  indent = { enable = false },
   incremental_selection = {
     enable = true,
     keymaps = {
       init_selection = 'gnn',
       node_incremental = 'grn',
       scope_incremental = 'grc',
-      node_decremental = 'grm'
-    }
+      node_decremental = 'grm',
+    },
   },
   refactor = {
-    smart_rename = {enable = true, keymaps = {smart_rename = "grr"}},
-    highlight_definitions = {enable = true}
+    smart_rename = { enable = true, keymaps = { smart_rename = 'grr' } },
+    highlight_definitions = { enable = true },
     -- highlight_current_scope = { enable = true }
   },
   textobjects = {
@@ -29,7 +25,7 @@ ts_configs.setup {
           python = '(function_definition) @function',
           cpp = '(function_definition) @function',
           c = '(function_definition) @function',
-          java = '(method_declaration) @function'
+          java = '(method_declaration) @function',
         },
         -- or you use the queries from supported languages with textobjects.scm
         ['af'] = '@function.outer',
@@ -46,8 +42,8 @@ ts_configs.setup {
         ['as'] = '@statement.outer',
         ['ad'] = '@comment.outer',
         ['am'] = '@call.outer',
-        ['im'] = '@call.inner'
-      }
-    }
-  }
+        ['im'] = '@call.inner',
+      },
+    },
+  },
 }
