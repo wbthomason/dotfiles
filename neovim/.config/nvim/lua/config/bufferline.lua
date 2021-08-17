@@ -51,7 +51,7 @@ bufferline.setup {
   highlights = {
     background = colors.elem_inactive,
     buffer_selected = colors.elem_selected,
-    buffer_visible = colors.elem,
+    buffer_visible = colors.elem_inactive,
     close_button = colors.elem,
     close_button_selected = colors.elem_selected,
     close_button_visible = colors.elem,
