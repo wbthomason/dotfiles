@@ -25,7 +25,7 @@ local function isort()
 end
 
 local function latexindent()
-  return { exe = 'latexindent', args = { '-sl', '-g /dev/stderr', '2>/dev/null' }, stdin = true }
+  return { exe = 'latexindent', args = { '2>/dev/null' }, stdin = true }
 end
 
 local function cmake_format()
