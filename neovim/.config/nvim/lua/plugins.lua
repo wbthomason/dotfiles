@@ -61,13 +61,13 @@ local function init()
         'nvim-lua/popup.nvim',
         'nvim-lua/plenary.nvim',
         'telescope-frecency.nvim',
-        'telescope-fzy-native.nvim',
+        'telescope-fzf-native.nvim',
       },
       wants = {
         'popup.nvim',
         'plenary.nvim',
         'telescope-frecency.nvim',
-        'telescope-fzy-native.nvim',
+        'telescope-fzf-native.nvim',
       },
       setup = [[require('config.telescope_setup')]],
       config = [[require('config.telescope')]],
@@ -80,8 +80,8 @@ local function init()
       requires = 'tami5/sql.nvim',
     },
     {
-      'nvim-telescope/telescope-fzy-native.nvim',
-      run = 'git submodule update --init --recursive',
+      'nvim-telescope/telescope-fzf-native.nvim',
+      run = 'make',
     },
   }
 

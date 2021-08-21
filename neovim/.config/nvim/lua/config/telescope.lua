@@ -4,9 +4,15 @@ telescope.setup {
     layout_strategy = 'flex',
     scroll_strategy = 'cycle',
   },
-  file_sorter = require('telescope.sorters').get_fzy_sorter,
-  generic_sorter = require('telescope.sorters').get_fzy_sorter,
-  extensions = { frecency = { workspaces = { exo = '/home/wil/projects/research/exoplanet' } } },
+  extensions = {
+    frecency = { workspaces = { exo = '/home/wil/projects/research/exoplanet' } },
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = 'smart_case',
+    },
+  },
   pickers = {
     lsp_references = { theme = 'dropdown' },
     lsp_code_actions = { theme = 'dropdown' },
@@ -21,4 +27,4 @@ telescope.setup {
 
 -- Extensions
 telescope.load_extension 'frecency'
-telescope.load_extension 'fzy_native'
+telescope.load_extension 'fzf'
