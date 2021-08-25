@@ -101,7 +101,7 @@ alias ls='ls --color=auto'
 
 # Custom functions
 function pdf_to_png() {
-  convert -verbose -density 150 -trim $1 -quality 100 -flatten -sharpen 0x1.0 ${1%.pdf}.png
+  convert -verbose -density 350 -trim $1 -quality 100 -flatten ${1%.pdf}.png
 }
 
 function create() {
