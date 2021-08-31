@@ -1,2 +1,2 @@
-set guifont=Fira\ Code\ Retina
+set guifont=JetBrains\ Mono:14
 set conceallevel=0
