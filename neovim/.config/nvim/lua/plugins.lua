@@ -145,8 +145,20 @@ local function init()
   -- Just for tracking progess until this is ready for use
   use 'mfussenegger/nvim-lint'
 
-  use { 'hrsh7th/nvim-compe', config = [[require('config.compe')]], event = 'InsertEnter *' }
-  use { 'hrsh7th/vim-vsnip', config = [[require('config.vsnip')]], event = 'InsertEnter *' }
+  -- Completion
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'L3MON4D3/LuaSnip',
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
+      'hrsh7th/cmp-nvim-lsp',
+      { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
+      { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
+      { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+    },
+    config = [[require('config.cmp')]],
+    event = 'InsertEnter *',
+  }
 
   -- Debugger
   use {

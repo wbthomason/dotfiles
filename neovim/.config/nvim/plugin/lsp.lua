@@ -170,11 +170,12 @@ local servers = {
   vimls = {},
 }
 
-local snippet_capabilities = vim.lsp.protocol.make_client_capabilities()
-snippet_capabilities.textDocument.completion.completionItem.snippetSupport = true
-snippet_capabilities.textDocument.completion.completionItem.resolveSupport = {
+local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+client_capabilities.textDocument.completion.completionItem.snippetSupport = true
+client_capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { 'documentation', 'detail', 'additionalTextEdits' },
 }
+client_capabilities = require('cmp_nvim_lsp').update_capabilities(client_capabilities)
 
 for server, config in pairs(servers) do
   if type(config) == 'function' then
@@ -184,7 +185,7 @@ for server, config in pairs(servers) do
   config.capabilities = vim.tbl_deep_extend(
     'keep',
     config.capabilities or {},
-    snippet_capabilities,
+    client_capabilities,
     lsp_status.capabilities
   )
   lspconfig[server].setup(config)
