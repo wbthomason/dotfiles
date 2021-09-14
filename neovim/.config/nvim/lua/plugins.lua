@@ -11,6 +11,8 @@ local function init()
   -- Packer
   use '~/projects/personal/packer.nvim'
 
+  use 'lewis6991/impatient.nvim'
+
   -- Async building & commands
   use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
 

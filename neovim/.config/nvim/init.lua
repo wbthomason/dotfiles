@@ -1,4 +1,5 @@
 -- dofile('/home/wil/.config/nvim/lua/profiler.lua')
+require 'impatient'
 local g = vim.g
 local cmd = vim.cmd
 local o, wo, bo = vim.o, vim.wo, vim.bo
