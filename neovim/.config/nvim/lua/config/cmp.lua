@@ -17,6 +17,7 @@ local snippet_next_keys = replace_termcodes('<plug>luasnip-expand-or-jump', true
 local snippet_prev_keys = replace_termcodes('<plug>luasnip-jump-prev', true, true, true)
 
 cmp.setup {
+  completion = { completeopt = 'menu,menuone,noinsert' },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
