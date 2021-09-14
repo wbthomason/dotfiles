@@ -142,7 +142,18 @@ local function init()
     run = ':TSUpdate',
   }
 
-  -- Just for tracking progess until this is ready for use
+  -- Documentation
+  use {
+    'danymat/neogen',
+    requires = 'nvim-treesitter',
+    config = [[require('config.neogen')]],
+    keys = { '<localleader>d', '<localleader>df', '<localleader>dc' },
+  }
+
+  -- Lisps
+  use 'gpanders/nvim-parinfer'
+
+  -- Linting
   use 'mfussenegger/nvim-lint'
 
   -- Completion
@@ -159,6 +170,9 @@ local function init()
     config = [[require('config.cmp')]],
     event = 'InsertEnter *',
   }
+
+  -- Endwise
+  -- use 'tpope/vim-endwise'
 
   -- Debugger
   use {
@@ -240,6 +254,13 @@ local function init()
     requires = 'kyazdani42/nvim-web-devicons',
     config = [[require('config.bufferline')]],
     event = 'User ActuallyEditing',
+  }
+
+  use {
+    'lukas-reineke/headlines.nvim',
+    config = function()
+      require('headlines').setup()
+    end,
   }
 end
 
