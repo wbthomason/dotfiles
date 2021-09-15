@@ -21,6 +21,8 @@ local function init()
 
   use { '~/projects/personal/snap', rocks = 'fzy' }
 
+  use 'mhinz/vim-sayonara'
+
   -- Marks
   use { 'kshenoy/vim-signature', config = [[require('config.signature')]], disable = true }
 
