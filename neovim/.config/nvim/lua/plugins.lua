@@ -19,8 +19,6 @@ local function init()
   -- Registers
   -- use 'junegunn/vim-peekaboo'
 
-  use { '~/projects/personal/snap', rocks = 'fzy' }
-
   use 'mhinz/vim-sayonara'
 
   -- Marks
@@ -52,7 +50,6 @@ local function init()
 
   -- Prettification
   use 'junegunn/vim-easy-align'
-  use 'mhartington/formatter.nvim'
 
   -- Text objects
   use 'wellle/targets.vim'
@@ -156,9 +153,6 @@ local function init()
 
   -- Lisps
   use 'gpanders/nvim-parinfer'
-
-  -- Linting
-  use 'mfussenegger/nvim-lint'
 
   -- Completion
   use {
@@ -266,6 +260,11 @@ local function init()
       require('headlines').setup()
     end,
   }
+
+  use 'teal-language/vim-teal'
+  use({ "jose-elias-alvarez/null-ls.nvim",
+    requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+    })
 end
 
 local plugins = setmetatable({}, {
