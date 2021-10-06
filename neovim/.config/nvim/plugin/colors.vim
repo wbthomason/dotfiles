@@ -21,20 +21,20 @@ function! s:setup_colors() abort
 
   hi! HintHighlight guifg=#83a5cb gui=undercurl guisp=#83a5cb
 
-  hi! link LspDiagnosticsDefaultError RedHover
-  hi! link LspDiagnosticsDefaultWarning YellowHover
-  hi! link LspDiagnosticsDefaultInformation WhiteHover
-  hi! link LspDiagnosticsDefaultHint HintSign
+  hi! link DiagnosticError RedHover
+  hi! link DiagnosticWarning YellowHover
+  hi! link DiagnosticInformation WhiteHover
+  hi! link DiagnosticHint HintSign
   hi! link LspReferenceText AquaHover
   hi! link LspReferenceRead BlueHover
   hi! link LspReferenceWrite GreenHover
   hi! link TSDefinition LspReferenceText
   hi! link TSDefinitionUsage LspReferenceWrite
 
-  hi! LspDiagnosticsUnderlineError guifg=#ff727b ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
-  hi! LspDiagnosticsUnderlineWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
-  hi! LspDiagnosticsUnderlineInformation guifg=#83a598 ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl
-  hi! LspDiagnosticsUnderlineHint guifg=#83a5cb gui=undercurl guisp=#83a5cb
+  hi! DiagnosticUnderlineError guifg=#ff727b ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
+  hi! DiagnosticUnderlineWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
+  hi! DiagnosticUnderlineInformation guifg=#83a598 ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl
+  hi! DiagnosticUnderlineHint guifg=#83a5cb gui=undercurl guisp=#83a5cb
 
   hi! link SignifySignAdd GreenSign
   hi! link SignifySignChange BlueSign

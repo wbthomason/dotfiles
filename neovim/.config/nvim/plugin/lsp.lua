@@ -2,6 +2,8 @@ local lspconfig = require 'lspconfig'
 local trouble = require 'trouble'
 local lsp_status = require 'lsp-status'
 local lspkind = require 'lspkind'
+local null_ls = require 'null-ls'
+
 local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
 local cmd = vim.cmd
@@ -32,11 +34,36 @@ local kind_symbols = {
   Struct = '',
 }
 
+-- null-ls setup
+local null_fmt = null_ls.builtins.formatting
+local null_diag = null_ls.builtins.diagnostics
+null_ls.config {
+  sources = {
+    null_fmt.clang_format,
+    null_fmt.cmake_format,
+    null_fmt.fixjson,
+    null_fmt.isort,
+    null_fmt.prettier,
+    null_fmt.rustfmt,
+    null_diag.shellcheck,
+    null_fmt.shfmt,
+    null_fmt.stylua,
+    null_fmt.trim_whitespace,
+    null_fmt.yapf,
+    null_diag.chktex,
+    null_diag.write_good.with { filetypes = { 'markdown', 'tex' } },
+    null_diag.vale,
+    null_diag.teal,
+    null_diag.vint,
+    null_diag.selene,
+  },
+}
+
 local sign_define = vim.fn.sign_define
-sign_define('LspDiagnosticsSignError', { text = '', numhl = 'RedSign' })
-sign_define('LspDiagnosticsSignWarning', { text = '', numhl = 'YellowSign' })
-sign_define('LspDiagnosticsSignInformation', { text = '', numhl = 'WhiteSign' })
-sign_define('LspDiagnosticsSignHint', { text = '', numhl = 'BlueSign' })
+sign_define('DiagnosticSignError', { text = '', numhl = 'RedSign' })
+sign_define('DiagnosticSignWarning', { text = '', numhl = 'YellowSign' })
+sign_define('DiagnosticSignInformation', { text = '', numhl = 'WhiteSign' })
+sign_define('DiagnosticSignHint', { text = '', numhl = 'BlueSign' })
 lsp_status.config {
   kind_labels = kind_symbols,
   select_symbol = function(cursor_pos, symbol)
@@ -80,7 +107,7 @@ local function on_attach(client)
   buf_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', keymap_opts)
 
   if client.resolved_capabilities.document_formatting then
-    buf_keymap(0, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<cr>', keymap_opts)
+    buf_keymap(0, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<cr>', keymap_opts)
   end
 
   cmd 'augroup lsp_aucmds'
@@ -119,6 +146,7 @@ local servers = {
   html = {},
   jsonls = { cmd = { 'vscode-json-languageserver', '--stdio' } },
   julials = { settings = { julia = { format = { indent = 2 } } } },
+  ['null-ls'] = {},
   ocamllsp = {},
   pyright = { settings = { python = { formatting = { provider = 'yapf' } } } },
   rust_analyzer = {},
