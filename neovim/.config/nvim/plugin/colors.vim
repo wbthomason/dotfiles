@@ -31,10 +31,10 @@ function! s:setup_colors() abort
   hi! link TSDefinition LspReferenceText
   hi! link TSDefinitionUsage LspReferenceWrite
 
-  hi! DiagnosticUnderlineError guifg=#ff727b ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#9d0006
-  hi! DiagnosticUnderlineWarning guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl guisp=#b57614
-  hi! DiagnosticUnderlineInformation guifg=#83a598 ctermfg=NONE guibg=NONE ctermbg=NONE gui=undercurl cterm=undercurl
-  hi! DiagnosticUnderlineHint guifg=#83a5cb gui=undercurl guisp=#83a5cb
+  hi! DiagnosticUnderlineError guifg=#ff727b ctermfg=NONE guibg=NONE ctermbg=NONE guisp=#9d0006
+  hi! DiagnosticUnderlineWarn guifg=#fabd2f ctermfg=NONE guibg=NONE ctermbg=NONE guisp=#b57614
+  hi! DiagnosticUnderlineInfo guifg=#83a598 ctermfg=NONE guibg=NONE ctermbg=NONE 
+  hi! DiagnosticUnderlineHint guifg=#83a5cb ctermfg=NONE guibg=NONE ctermbg=NONE guisp=#83a5cb
 
   hi! link SignifySignAdd GreenSign
   hi! link SignifySignChange BlueSign

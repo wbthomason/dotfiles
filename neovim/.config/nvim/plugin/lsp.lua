@@ -61,8 +61,8 @@ null_ls.config {
 
 local sign_define = vim.fn.sign_define
 sign_define('DiagnosticSignError', { text = '', numhl = 'RedSign' })
-sign_define('DiagnosticSignWarning', { text = '', numhl = 'YellowSign' })
-sign_define('DiagnosticSignInformation', { text = '', numhl = 'WhiteSign' })
+sign_define('DiagnosticSignWarn', { text = '', numhl = 'YellowSign' })
+sign_define('DiagnosticSignInfo', { text = '', numhl = 'WhiteSign' })
 sign_define('DiagnosticSignHint', { text = '', numhl = 'BlueSign' })
 lsp_status.config {
   kind_labels = kind_symbols,
