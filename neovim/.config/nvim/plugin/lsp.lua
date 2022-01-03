@@ -1,7 +1,6 @@
 local lspconfig = require 'lspconfig'
 local trouble = require 'trouble'
 local lsp_status = require 'lsp-status'
-local lspkind = require 'lspkind'
 local null_ls = require 'null-ls'
 
 local lsp = vim.lsp
@@ -12,51 +11,31 @@ vim.api.nvim_command 'hi link LightBulbFloatWin YellowFloat'
 vim.api.nvim_command 'hi link LightBulbVirtualText YellowFloat'
 
 local kind_symbols = {
-  Text = '',
-  Method = 'Ƒ',
-  Function = 'ƒ',
-  Constructor = '',
-  Variable = '',
-  Class = '',
-  Interface = 'ﰮ',
-  Module = '',
-  Property = '',
-  Unit = '',
-  Value = '',
-  Enum = '了',
-  Keyword = '',
-  Snippet = '﬌',
-  Color = '',
-  File = '',
-  Folder = '',
-  EnumMember = '',
-  Constant = '',
-  Struct = '',
-}
-
--- null-ls setup
-local null_fmt = null_ls.builtins.formatting
-local null_diag = null_ls.builtins.diagnostics
-null_ls.config {
-  sources = {
-    null_fmt.clang_format,
-    null_fmt.cmake_format,
-    null_fmt.fixjson,
-    null_fmt.isort,
-    null_fmt.prettier,
-    null_fmt.rustfmt,
-    null_diag.shellcheck,
-    null_fmt.shfmt,
-    null_fmt.stylua,
-    null_fmt.trim_whitespace,
-    null_fmt.yapf,
-    null_diag.chktex,
-    null_diag.write_good.with { filetypes = { 'markdown', 'tex' } },
-    null_diag.vale,
-    null_diag.teal,
-    null_diag.vint,
-    null_diag.selene,
-  },
+  Text = '  ',
+  Method = '  ',
+  Function = '  ',
+  Constructor = '  ',
+  Field = '  ',
+  Variable = '  ',
+  Class = '  ',
+  Interface = '  ',
+  Module = '  ',
+  Property = '  ',
+  Unit = '  ',
+  Value = '  ',
+  Enum = '  ',
+  Keyword = '  ',
+  Snippet = '  ',
+  Color = '  ',
+  File = '  ',
+  Reference = '  ',
+  Folder = '  ',
+  EnumMember = '  ',
+  Constant = '  ',
+  Struct = '  ',
+  Event = '  ',
+  Operator = '  ',
+  TypeParameter = '  ',
 }
 
 local sign_define = vim.fn.sign_define
@@ -80,7 +59,7 @@ lsp_status.config {
 }
 
 lsp_status.register_progress()
-lspkind.init { symbol_map = kind_symbols }
+-- lspkind.init { symbol_map = kind_symbols }
 trouble.setup()
 lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = false,
@@ -103,8 +82,8 @@ local function on_attach(client)
   buf_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gA', '<cmd>lua require"telescope.builtin".lsp_code_actions()<CR>', keymap_opts)
-  buf_keymap(0, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', keymap_opts)
-  buf_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', keymap_opts)
+  buf_keymap(0, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next { float = true }<cr>', keymap_opts)
+  buf_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev { float = true }<cr>', keymap_opts)
 
   if client.resolved_capabilities.document_formatting then
     buf_keymap(0, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<cr>', keymap_opts)
@@ -117,14 +96,23 @@ local function on_attach(client)
   end
 
   cmd 'au CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb {sign = {enabled = false}, virtual_text = {enabled = true, text = ""}, float = {enabled = false, text = "", win_opts = {winblend = 100, anchor = "NE"}}}'
+  -- cmd 'au CursorHold,CursorHoldI <buffer> lua vim.diagnostic.open_float(0, { scope = "line" })'
   cmd 'augroup END'
+end
+
+local function prefer_null_ls_fmt(client)
+  client.resolved_capabilities.document_formatting = false
+  client.resolved_capabilities.document_range_formatting = false
+  on_attach(client)
 end
 
 local servers = {
   bashls = {},
   clangd = {
+    prefer_null_ls = true,
     cmd = {
-      'clangd', -- '--background-index',
+      'clangd',
+      '--background-index',
       '--clang-tidy',
       '--completion-style=bundled',
       '--header-insertion=iwyu',
@@ -144,9 +132,8 @@ local servers = {
   },
   ghcide = {},
   html = {},
-  jsonls = { cmd = { 'vscode-json-languageserver', '--stdio' } },
+  jsonls = { prefer_null_ls = true, cmd = { 'vscode-json-languageserver', '--stdio' } },
   julials = { settings = { julia = { format = { indent = 2 } } } },
-  ['null-ls'] = {},
   ocamllsp = {},
   pyright = { settings = { python = { formatting = { provider = 'yapf' } } } },
   rust_analyzer = {},
@@ -209,7 +196,12 @@ for server, config in pairs(servers) do
   if type(config) == 'function' then
     config = config()
   end
-  config.on_attach = on_attach
+  if config.prefer_null_ls then
+    config.on_attach = prefer_null_ls_fmt
+  else
+    config.on_attach = on_attach
+  end
+
   config.capabilities = vim.tbl_deep_extend(
     'keep',
     config.capabilities or {},
@@ -218,3 +210,31 @@ for server, config in pairs(servers) do
   )
   lspconfig[server].setup(config)
 end
+
+-- null-ls setup
+local null_fmt = null_ls.builtins.formatting
+local null_diag = null_ls.builtins.diagnostics
+null_ls.setup {
+  sources = {
+    null_diag.chktex,
+    -- null_diag.cppcheck,
+    -- null_diag.proselint,
+    -- null_diag.pylint,
+    null_diag.selene,
+    null_diag.shellcheck,
+    null_diag.teal,
+    -- null_diag.vale,
+    null_diag.vint,
+    null_diag.write_good.with { filetypes = { 'markdown', 'tex' } },
+    null_fmt.clang_format,
+    null_fmt.cmake_format,
+    -- null_fmt.isort,
+    null_fmt.prettier,
+    null_fmt.rustfmt,
+    null_fmt.shfmt,
+    null_fmt.stylua,
+    null_fmt.trim_whitespace,
+    null_fmt.yapf,
+  },
+  on_attach = on_attach,
+}
