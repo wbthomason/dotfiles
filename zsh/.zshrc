@@ -12,8 +12,9 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 export ZSH_PLUGINS=/usr/share/zsh/plugins/
 
 source ${ZSH_PLUGINS}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-
+source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.zsh
+
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
