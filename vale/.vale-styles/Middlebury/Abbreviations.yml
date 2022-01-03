@@ -13,5 +13,5 @@ swap:
   M.A.: MA
   M.D.: MD
   aka: a.k.a
-  '(?i)am': a.m.
-  '(?i)pm': p.m.
+  '(?:i)am': a.m.
+  '(?:i)pm': p.m.

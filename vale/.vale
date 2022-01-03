@@ -1,5 +1,5 @@
 # Core settings
-StylesPath = ~/.vale-styles
+StylesPath = .vale-styles
 MinAlertLevel = suggestion # suggestion, warning or error
 
 # Global settings (applied to every syntax)
