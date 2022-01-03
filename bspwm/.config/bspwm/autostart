@@ -18,7 +18,6 @@ commands=(
   "/usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11"
   "/usr/bin/caffeine"
   "blueman-applet"
-  "dropbox"
   "pasystray"
   "/usr/lib/geoclue-2.0/demos/agent"
 )
