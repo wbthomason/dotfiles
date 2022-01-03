@@ -38,7 +38,13 @@ local function init()
   use 'lukas-reineke/indent-blankline.nvim'
 
   -- Commenting
-  use 'tomtom/tcomment_vim'
+  -- use 'tomtom/tcomment_vim'
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end,
+  }
 
   -- Wrapping/delimiters
   use {
@@ -79,7 +85,7 @@ local function init()
     {
       'nvim-telescope/telescope-frecency.nvim',
       after = 'telescope.nvim',
-      requires = 'tami5/sql.nvim',
+      requires = 'tami5/sqlite.lua',
     },
     {
       'nvim-telescope/telescope-fzf-native.nvim',
@@ -126,7 +132,6 @@ local function init()
 
   -- Completion and linting
   use {
-    'onsails/lspkind-nvim',
     'neovim/nvim-lspconfig',
     '~/projects/personal/lsp-status.nvim',
     'folke/trouble.nvim',
@@ -162,16 +167,19 @@ local function init()
       'L3MON4D3/LuaSnip',
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
+      'lukas-reineke/cmp-under-comparator',
+      { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
     },
     config = [[require('config.cmp')]],
     event = 'InsertEnter *',
   }
 
   -- Endwise
-  -- use 'tpope/vim-endwise'
+  use 'tpope/vim-endwise'
 
   -- Debugger
   use {
@@ -262,10 +270,22 @@ local function init()
     end,
   }
 
+  -- use 'https://github.com/numToStr/Comment.nvim'
+
   use 'teal-language/vim-teal'
-  use({ "jose-elias-alvarez/null-ls.nvim",
-    requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
-    })
+  use { 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } }
+  -- use {
+  --   'AckslD/nvim-neoclip.lua',
+  --   event = 'TextYankPost',
+  --   config = function()
+  --     local count = 0
+  --     _G.test_handler = function()
+  --       count = count + 1
+  --       print('called', count, 'times')
+  --     end
+  --     vim.cmd [[autocmd TextYankPost * lua _G.test_handler()]]
+  --   end,
+  -- }
 end
 
 local plugins = setmetatable({}, {
