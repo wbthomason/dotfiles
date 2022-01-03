@@ -1,4 +1,3 @@
--- dofile('/home/wil/.config/nvim/lua/profiler.lua')
 vim.g.did_load_filetypes = 1
 require 'impatient'
 local g = vim.g
@@ -117,7 +116,6 @@ map('n', '<leader>x', '<cmd>x!<cr>', silent)
 map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true, nowait = true })
 
 -- A little Emacs in my Neovim
-map('n', '<c-x><c-s>', '<cmd>w<cr>', silent)
 map('i', '<c-x><c-s>', '<esc><cmd>w<cr>a', silent)
 
 -- Save buffer
