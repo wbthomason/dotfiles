@@ -205,7 +205,7 @@ super + BackSpace
   for i in $(bspc query -N -n .leaf.!window.local); do bspc node $i -k; done
 
 super + d
-  rofi -combi-modi window,drun,run,ssh -mesg -show combi -modi combi
+  rofi -combi-modi window,drun,ssh -mesg -show combi -modi combi
 
 super + space
   xflock4
