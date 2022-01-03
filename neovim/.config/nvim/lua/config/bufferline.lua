@@ -2,6 +2,7 @@ local map = require('config.utils').map
 local bufferline = require 'bufferline'
 
 local bar_bg = '#1f1f1f'
+local bar_fg = '#c9c9c9'
 local elem_bg = '#2d2d2d'
 local elem_fg = '#8c8c8c'
 local selected_bg = '#444444'
@@ -12,7 +13,7 @@ local info_fg = '#83a5cb'
 local pick_fg = '#870000'
 
 local colors = {
-  bar = { guifg = '#c9c9c9', guibg = bar_bg },
+  bar = { guifg = bar_fg, guibg = bar_bg },
   elem = { guifg = elem_fg, guibg = elem_bg },
   elem_inactive = { guifg = elem_fg, guibg = elem_bg },
   elem_selected = { guifg = selected_fg, guibg = selected_bg },
@@ -57,6 +58,7 @@ bufferline.setup {
     close_button_visible = colors.elem,
     diagnostic = colors.info,
     diagnostic_selected = colors.info_selected,
+    diagnostic_visible = colors.info,
     duplicate = colors.elem,
     duplicate_selected = colors.elem_selected,
     duplicate_visible = colors.elem,
@@ -65,10 +67,18 @@ bufferline.setup {
     error_diagnostic_selected = colors.error_selected,
     error_selected = colors.error_selected,
     fill = colors.bar,
+    hint = colors.info,
+    hint_diagnostic = colors.info,
+    hint_diagnostic_selected = colors.info_selected,
+    hint_diagnostic_visible = colors.info,
+    hint_selected = colors.info_selected,
+    hint_visible = colors.info,
     info = colors.info,
     info_diagnostic = colors.info,
     info_diagnostic_selected = colors.info_selected,
+    info_diagnostic_visible = colors.info,
     info_selected = colors.info_selected,
+    info_visible = colors.info,
     modified = colors.elem,
     modified_selected = colors.elem_selected,
     modified_visible = colors.elem,
@@ -83,7 +93,9 @@ bufferline.setup {
     warning = colors.warning,
     warning_diagnostic = colors.warning,
     warning_diagnostic_selected = colors.warning_selected,
+    warning_diagnostic_visible = colors.warning,
     warning_selected = colors.warning_selected,
+    warning_visible = colors.warning,
   },
 }
 
