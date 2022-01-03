@@ -12,6 +12,7 @@ local function init()
   use '~/projects/personal/packer.nvim'
 
   use 'lewis6991/impatient.nvim'
+  use 'nathom/filetype.nvim'
 
   -- Async building & commands
   use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
