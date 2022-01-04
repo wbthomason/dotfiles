@@ -253,7 +253,7 @@ local function init()
     disable = true,
   }
 
-  use { { 'kristijanhusak/orgmode.nvim', opt = true }, { 'akinsho/org-bullets.nvim', opt = true } }
+  use { { 'nvim-orgmode/orgmode.nvim', config = [[require('config.orgmode')]] }, 'akinsho/org-bullets.nvim' }
 
   -- Buffer management
   use {
