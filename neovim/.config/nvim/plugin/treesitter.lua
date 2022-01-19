@@ -17,33 +17,11 @@ ts_configs.setup {
     highlight_definitions = { enable = true },
     -- highlight_current_scope = { enable = true }
   },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        ['iF'] = {
-          python = '(function_definition) @function',
-          cpp = '(function_definition) @function',
-          c = '(function_definition) @function',
-          java = '(method_declaration) @function',
-        },
-        -- or you use the queries from supported languages with textobjects.scm
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['aC'] = '@class.outer',
-        ['iC'] = '@class.inner',
-        ['ac'] = '@conditional.outer',
-        ['ic'] = '@conditional.inner',
-        ['ae'] = '@block.outer',
-        ['ie'] = '@block.inner',
-        ['al'] = '@loop.outer',
-        ['il'] = '@loop.inner',
-        ['is'] = '@statement.inner',
-        ['as'] = '@statement.outer',
-        ['ad'] = '@comment.outer',
-        ['am'] = '@call.outer',
-        ['im'] = '@call.inner',
-      },
+  textsubjects = {
+    enable = true,
+    keymaps = {
+        ['.'] = 'textsubjects-smart',
+        [';'] = 'textsubjects-container-outer',
     },
-  },
+},
 }

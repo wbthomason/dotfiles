@@ -144,7 +144,7 @@ local function init()
     'nvim-treesitter/nvim-treesitter',
     requires = {
       'nvim-treesitter/nvim-treesitter-refactor',
-      'nvim-treesitter/nvim-treesitter-textobjects',
+      'RRethy/nvim-treesitter-textsubjects',
     },
     run = ':TSUpdate',
   }
