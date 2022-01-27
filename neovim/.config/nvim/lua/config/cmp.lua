@@ -19,7 +19,8 @@ local cmp_kinds = {
   Constructor = '  ',
   Field = '  ',
   Variable = '  ',
-  Class = '  ', Interface = '  ',
+  Class = '  ',
+  Interface = '  ',
   Module = '  ',
   Property = '  ',
   Unit = '  ',
@@ -74,6 +75,14 @@ cmp.setup {
     end,
   },
   mapping = {
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable,
+    ['<C-e>'] = cmp.mapping {
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    },
     ['<cr>'] = cmp.mapping.confirm { select = true, behavior = cmp.ConfirmBehavior.Replace },
     ['<tab>'] = function(fallback)
       if cmp.visible() then
