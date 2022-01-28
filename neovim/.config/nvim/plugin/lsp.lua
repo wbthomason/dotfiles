@@ -127,11 +127,12 @@ local servers = {
     },
   },
   cssls = {
+    cmd = { 'vscode-css-languageserver', '--stdio' },
     filetypes = { 'css', 'scss', 'less', 'sass' },
     root_dir = lspconfig.util.root_pattern('package.json', '.git'),
   },
   ghcide = {},
-  html = {},
+  html = { cmd = { 'vscode-html-languageserver', '--stdio' } },
   jsonls = { prefer_null_ls = true, cmd = { 'vscode-json-languageserver', '--stdio' } },
   julials = { settings = { julia = { format = { indent = 2 } } } },
   ocamllsp = {},
