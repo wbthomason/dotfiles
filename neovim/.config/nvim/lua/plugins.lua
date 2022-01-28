@@ -179,7 +179,7 @@ local function init()
   }
 
   -- Endwise
-  use 'tpope/vim-endwise'
+  -- use 'tpope/vim-endwise'
 
   -- Debugger
   use {
