@@ -230,13 +230,14 @@ null_ls.setup {
     null_diag.write_good.with { filetypes = { 'markdown', 'tex' } },
     null_fmt.clang_format,
     null_fmt.cmake_format,
-    -- null_fmt.isort,
+    null_fmt.isort,
     null_fmt.prettier,
     null_fmt.rustfmt,
     null_fmt.shfmt,
     null_fmt.stylua,
     null_fmt.trim_whitespace,
     null_fmt.yapf,
+    -- null_fmt.black
   },
   on_attach = on_attach,
 }
