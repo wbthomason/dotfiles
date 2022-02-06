@@ -161,7 +161,7 @@ local servers = {
       texlab = {
         chktex = { onOpenAndSave = true },
         formatterLineLength = 100,
-        forwardSearch = { executable = 'okular', args = { '--unique', 'file:%p#src:%l%f' } },
+        forwardSearch = { executable = 'zathura', args = { '--synctex-forward', '%l:1:%f', '%p' } },
       },
     },
     commands = {
@@ -230,7 +230,7 @@ null_ls.setup {
     null_diag.write_good.with { filetypes = { 'markdown', 'tex' } },
     null_fmt.clang_format,
     null_fmt.cmake_format,
-    -- null_fmt.isort,
+    null_fmt.isort,
     null_fmt.prettier,
     null_fmt.rustfmt,
     null_fmt.shfmt,
