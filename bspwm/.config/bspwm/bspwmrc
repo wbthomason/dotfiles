@@ -34,6 +34,8 @@ bspc rule -a libreoffice state=tiled
 bspc rule -a '*:libreofficedev' state=tiled
 bspc rule -a '*:soffice' state=tiled
 bspc rule -a Xfce4-notifyd state=floating manage=on layer=above sticky=on follow=off
+bspc rule -a '*:origin.exe' state=floating manage=off
+bspc rule -a '*:Origin' state=floating manage=off
 
 bspc subscribe monitor | while read -r line; do
   case $line in

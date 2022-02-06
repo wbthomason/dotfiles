@@ -17,7 +17,7 @@ commands=(
   "nm-applet"
   "/usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11"
   "/usr/bin/caffeine"
-  "blueman-applet"
+  "blueberry-tray"
   "pasystray"
   "/usr/lib/geoclue-2.0/demos/agent"
 )
