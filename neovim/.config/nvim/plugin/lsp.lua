@@ -3,6 +3,8 @@ local trouble = require 'trouble'
 local lsp_status = require 'lsp-status'
 local null_ls = require 'null-ls'
 
+require('clangd_extensions.config').setup {}
+
 local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
 local cmd = vim.cmd
@@ -109,6 +111,11 @@ end
 local servers = {
   bashls = {},
   clangd = {
+    on_attach = function(client, bufnr)
+      require('clangd_extensions.inlay_hints').setup_autocmd()
+      require('clangd_extensions.inlay_hints').set_inlay_hints()
+      require('clangd_extensions').hint_aucmd_set_up = true
+    end,
     prefer_null_ls = true,
     cmd = {
       'clangd',
@@ -198,10 +205,27 @@ for server, config in pairs(servers) do
   if type(config) == 'function' then
     config = config()
   end
+
   if config.prefer_null_ls then
-    config.on_attach = prefer_null_ls_fmt
+    if config.on_attach then
+      local old_on_attach = config.on_attach
+      config.on_attach = function(client, bufnr)
+        old_on_attach(client, bufnr)
+        prefer_null_ls_fmt(client)
+      end
+    else
+      config.on_attach = config.on_attach and prefer_null_ls_fmt
+    end
   else
-    config.on_attach = on_attach
+    if config.on_attach then
+      local old_on_attach = config.on_attach
+      config.on_attach = function(client, bufnr)
+        old_on_attach(client, bufnr)
+        prefer_null_ls_fmt(client)
+      end
+    else
+      config.on_attach = on_attach
+    end
   end
 
   config.capabilities = vim.tbl_deep_extend(

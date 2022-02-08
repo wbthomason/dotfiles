@@ -138,6 +138,9 @@ local function init()
     'kosayoda/nvim-lightbulb',
   }
 
+  -- C++
+  use 'p00f/clangd_extensions.nvim'
+
   -- Highlights
   use {
     'nvim-treesitter/nvim-treesitter',
