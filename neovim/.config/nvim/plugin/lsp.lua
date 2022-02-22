@@ -3,7 +3,9 @@ local trouble = require 'trouble'
 local lsp_status = require 'lsp-status'
 local null_ls = require 'null-ls'
 
-require('clangd_extensions.config').setup {}
+require('clangd_extensions.config').setup {
+  extensions = { inlay_hints = { only_current_line = true, show_variable_name = true } },
+}
 
 local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
@@ -111,7 +113,7 @@ end
 local servers = {
   bashls = {},
   clangd = {
-    on_attach = function(client, bufnr)
+    on_attach = function()
       require('clangd_extensions.inlay_hints').setup_autocmd()
       require('clangd_extensions.inlay_hints').set_inlay_hints()
       require('clangd_extensions').hint_aucmd_set_up = true
