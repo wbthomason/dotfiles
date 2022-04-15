@@ -12,3 +12,5 @@ if [ -n "$DESKTOP_SESSION" ];then
 fi
 
 BROWSER=chromium
+
+export GRB_LICENSE_FILE=/home/wil/.gurobi/gurobi.lic
