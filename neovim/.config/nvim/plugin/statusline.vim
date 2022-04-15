@@ -1,6 +1,6 @@
 scriptencoding utf-8
 set noshowmode
-set laststatus=2
+set laststatus=3
 
 " Setup the colors
 function! s:setup_colors() abort
