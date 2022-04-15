@@ -164,6 +164,7 @@ local servers = {
         },
       },
     },
+    prefer_null_ls = true,
   },
   texlab = {
     settings = {
@@ -216,7 +217,7 @@ for server, config in pairs(servers) do
         prefer_null_ls_fmt(client)
       end
     else
-      config.on_attach = config.on_attach and prefer_null_ls_fmt
+      config.on_attach = prefer_null_ls_fmt
     end
   else
     if config.on_attach then
