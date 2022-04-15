@@ -13,7 +13,21 @@
   editor = nvim
   autocrlf = input
   excludesfile = /home/wil/.gitignore_global
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  ; pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
 
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
