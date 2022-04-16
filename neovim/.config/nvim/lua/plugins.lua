@@ -182,7 +182,7 @@ local function init()
 
   -- Endwise
   -- use 'tpope/vim-endwise'
-  use {'RRethy/nvim-treesitter-endwise', opt = true}
+  use 'RRethy/nvim-treesitter-endwise'
 
   -- Debugger
   use {
@@ -260,7 +260,7 @@ local function init()
 
   -- Buffer management
   use {
-    'akinsho/nvim-bufferline.lua',
+    'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     config = [[require('config.bufferline')]],
     event = 'User ActuallyEditing',
