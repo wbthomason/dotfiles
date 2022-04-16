@@ -134,7 +134,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # OPAM configuration
-test -r ~/.opam/opam-init/init.zsh && . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+[[ ! -r /home/wil/.opam/opam-init/init.zsh ]] || source /home/wil/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 # Keyring
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then

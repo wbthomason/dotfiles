@@ -182,7 +182,7 @@ local function init()
 
   -- Endwise
   -- use 'tpope/vim-endwise'
-  use 'RRethy/nvim-treesitter-endwise'
+  use {'RRethy/nvim-treesitter-endwise', opt = true}
 
   -- Debugger
   use {
