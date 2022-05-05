@@ -22,7 +22,8 @@ telescope.setup {
     lsp_definitions = { theme = 'dropdown' },
     lsp_implementations = { theme = 'dropdown' },
     buffers = {
-      sort_lastused = true,
+      ignore_current_buffer = true,
+      sort_mru = true,
       previewer = false,
     },
   },
