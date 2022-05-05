@@ -90,12 +90,12 @@ local function on_attach(client)
   buf_keymap(0, 'n', ']e', '<cmd>lua vim.diagnostic.goto_next { float = true }<cr>', keymap_opts)
   buf_keymap(0, 'n', '[e', '<cmd>lua vim.diagnostic.goto_prev { float = true }<cr>', keymap_opts)
 
-  if client.resolved_capabilities.document_formatting then
-    buf_keymap(0, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<cr>', keymap_opts)
+  if client.server_capabilities.documentFormattingProvider then
+    buf_keymap(0, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.format { async = true }<cr>', keymap_opts)
   end
 
   cmd 'augroup lsp_aucmds'
-  if client.resolved_capabilities.document_highlight == true then
+  if client.server_capabilities.documentHighlightProvider then
     cmd 'au CursorHold <buffer> lua vim.lsp.buf.document_highlight()'
     cmd 'au CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
   end
@@ -106,8 +106,8 @@ local function on_attach(client)
 end
 
 local function prefer_null_ls_fmt(client)
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
+  client.server_capabilities.documentHighlightProvider = false
+  client.server_capabilities.documentFormattingProvider = false
   on_attach(client)
 end
 
