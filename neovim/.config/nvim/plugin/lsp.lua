@@ -136,6 +136,7 @@ local servers = {
       semanticHighlighting = true,
     },
   },
+  cmake = {},
   cssls = {
     cmd = { 'vscode-css-languageserver', '--stdio' },
     filetypes = { 'css', 'scss', 'less', 'sass' },
@@ -244,6 +245,7 @@ end
 -- null-ls setup
 local null_fmt = null_ls.builtins.formatting
 local null_diag = null_ls.builtins.diagnostics
+local null_act = null_ls.builtins.code_actions
 null_ls.setup {
   sources = {
     null_diag.chktex,
@@ -266,6 +268,8 @@ null_ls.setup {
     null_fmt.trim_whitespace,
     null_fmt.yapf,
     -- null_fmt.black
+    null_act.gitsigns,
+    null_act.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python', 'c', 'cpp' } },
   },
   on_attach = on_attach,
 }
