@@ -8,6 +8,9 @@ function on_exit() {
 
 trap on_exit EXIT SIGHUP SIGINT SIGTERM
 
+export SESSION_MANAGER=lightdm
+# To deal with gray window and non-resizing problems in Java GUIs
+export _JAVA_AWT_WM_NONREPARENTING=1
 source_these=(
   "/etc/profile"
   "${HOME}/.profile"
@@ -22,6 +25,4 @@ done
 [ -e /bin/dash ] && SXHKD_SHELL="/bin/dash"
 sxhkd &
 
-# To deal with gray window and non-resizing problems in Java GUIs
-export _JAVA_AWT_WM_NONREPARENTING=1
 bspwm
