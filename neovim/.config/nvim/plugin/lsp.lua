@@ -85,9 +85,10 @@ local function on_attach(client)
   buf_keymap(0, 'n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', keymap_opts)
   buf_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'gA', '<cmd>lua require"telescope.builtin".lsp_code_actions()<CR>', keymap_opts)
-  buf_keymap(0, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next { float = true }<cr>', keymap_opts)
-  buf_keymap(0, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev { float = true }<cr>', keymap_opts)
+  buf_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', keymap_opts)
+  buf_keymap(0, 'v', 'gA', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', keymap_opts)
+  buf_keymap(0, 'n', ']e', '<cmd>lua vim.diagnostic.goto_next { float = true }<cr>', keymap_opts)
+  buf_keymap(0, 'n', '[e', '<cmd>lua vim.diagnostic.goto_prev { float = true }<cr>', keymap_opts)
 
   if client.resolved_capabilities.document_formatting then
     buf_keymap(0, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<cr>', keymap_opts)

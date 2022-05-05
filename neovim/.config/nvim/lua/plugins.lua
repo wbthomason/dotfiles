@@ -69,6 +69,7 @@ local function init()
         'nvim-lua/plenary.nvim',
         'telescope-frecency.nvim',
         'telescope-fzf-native.nvim',
+        'nvim-telescope/telescope-ui-select.nvim',
       },
       wants = {
         'popup.nvim',
