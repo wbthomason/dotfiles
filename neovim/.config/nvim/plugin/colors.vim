@@ -54,8 +54,6 @@ function! s:setup_colors() abort
   hi LspCxxHlGroupMemberVariable guifg=#ebebeb
 
   hi! link LspFloatWinBorder IndentBlanklineChar
-  hi! link LspSagaDiagnosticBorder IndentBlanklineChar
-  hi! link LspSagaDiagnosticTruncateLine IndentBlanklineChar
 endfunction
 
 augroup colors_customization
