@@ -138,7 +138,7 @@ bindkey '^[[B' history-substring-search-down
 
 # Keyring
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  eval $(gnome-keyring-daemon --start --components=ssh,secrets,gpg)
+  eval $(gnome-keyring-daemon --start --components=ssh,secrets,gpg 2>/dev/null)
   export SSH_AUTH_SOCK
 fi
 
