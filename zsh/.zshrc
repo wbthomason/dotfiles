@@ -105,6 +105,10 @@ function pdf_to_png() {
   convert -verbose -density 350 -trim $1 -quality 100 -flatten ${1%.pdf}.png
 }
 
+function pdf_compress() {
+  gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$1_compressed" "$1" && mv "$1_compressed" "$1"
+}
+
 function create() {
   mkdir -p $1 && cd $1
 }
