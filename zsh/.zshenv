@@ -7,7 +7,7 @@ export PATH=$PATH:/home/wil/.gem/ruby/2.7.0/bin:/home/wil/.yarn/bin:/home/wil/.l
 
 # gnome-keyring
 if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start --components=gpg,ssh,secrets)
+    eval $(gnome-keyring-daemon --start --components=gpg,ssh,secrets 2>/dev/null)
     export SSH_AUTH_SOCK
 fi
 
