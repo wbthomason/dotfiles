@@ -43,9 +43,9 @@ unsetopt share_history
 export EDITOR=vim
 
 # ROS
-if [ -f /opt/ros/melodic/setup.zsh ]
+if [ -f /opt/ros/noetic/setup.zsh ]
 then
-  source /opt/ros/melodic/setup.zsh
+  source /opt/ros/noetic/setup.zsh
 fi
 
 export ROS_HOSTNAME=localhost
