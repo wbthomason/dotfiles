@@ -11,6 +11,6 @@ if [ -n "$DESKTOP_SESSION" ];then
     export SSH_AUTH_SOCK
 fi
 
-BROWSER=chromium
+BROWSER=firefox
 
 export GRB_LICENSE_FILE=/home/wil/.gurobi/gurobi.lic
