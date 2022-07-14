@@ -146,6 +146,13 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   export SSH_AUTH_SOCK
 fi
 
+function unlock-keyring() 
+{
+  read -rs "pass?Password: "
+  export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock --components=ssh,secrets,gpg)
+  unset pass
+}
+
 # Pyenv
 eval "$(pyenv init -)"
 
