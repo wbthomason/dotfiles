@@ -1,5 +1,3 @@
-vim.g.do_filetype_lua = 1
-vim.g.did_load_filetypes = 0
 require 'impatient'
 local g = vim.g
 local cmd = vim.cmd
@@ -117,7 +115,7 @@ map('n', '<leader>x', '<cmd>x!<cr>', silent)
 map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true, nowait = true })
 
 -- A little Emacs in my Neovim
-map('i', '<c-x><c-s>', '<esc><cmd>w<cr>a', silent)
+map('i', '<c-s>', '<esc><cmd>w<cr>a', silent)
 
 -- Save buffer
 map('n', '<leader>w', '<cmd>w<cr>', { silent = true })

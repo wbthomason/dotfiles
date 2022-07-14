@@ -267,29 +267,11 @@ local function init()
     event = 'User ActuallyEditing',
   }
 
-  use {
-    'lukas-reineke/headlines.nvim',
-    config = function()
-      require('headlines').setup()
-    end,
-  }
-
   -- use 'https://github.com/numToStr/Comment.nvim'
 
+  use 'b0o/incline.nvim'
   use 'teal-language/vim-teal'
   use { 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } }
-  -- use {
-  --   'AckslD/nvim-neoclip.lua',
-  --   event = 'TextYankPost',
-  --   config = function()
-  --     local count = 0
-  --     _G.test_handler = function()
-  --       count = count + 1
-  --       print('called', count, 'times')
-  --     end
-  --     vim.cmd [[autocmd TextYankPost * lua _G.test_handler()]]
-  --   end,
-  -- }
 end
 
 local plugins = setmetatable({}, {
