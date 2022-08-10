@@ -3,16 +3,16 @@ local g = vim.g
 
 -- 2-character Sneak (default)
 local opts = {noremap = false}
-map('n', 'z', '<Plug>Sneak_s', opts)
-map('n', 'Z', '<Plug>Sneak_S', opts)
+map('n', 'z', '<Plug>(leap-forward)', opts)
+map('n', 'Z', '<Plug>(leap-backward)', opts)
 
 -- visual-mode
-map('x', 'z', '<Plug>Sneak_s', opts)
-map('x', 'Z', '<Plug>Sneak_S', opts)
+map('x', 'z', '<Plug>(leap-forward)', opts)
+map('x', 'Z', '<Plug>(leap-backward)', opts)
 
 -- operator-pending-mode
-map('o', 'z', '<Plug>Sneak_s', opts)
-map('o', 'Z', '<Plug>Sneak_S', opts)
+map('o', 'z', '<Plug>(leap-forward)', opts)
+map('o', 'Z', '<Plug>(leap-backward)', opts)
 
 -- repeat motion
 map('', ';', '<Plug>Sneak_;', opts)

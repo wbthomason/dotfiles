@@ -22,6 +22,7 @@ ts_configs.setup {
     keymaps = {
       ['.'] = 'textsubjects-smart',
       [';'] = 'textsubjects-container-outer',
+      ['i;'] = 'textsubjects-container-inner',
     },
   },
   endwise = { enable = true },

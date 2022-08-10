@@ -1,10 +1,10 @@
 local lspconfig = require 'lspconfig'
 local trouble = require 'trouble'
-local lsp_status = require 'lsp-status'
 local null_ls = require 'null-ls'
+local lightbulb = require 'nvim-lightbulb'
 
 require('clangd_extensions.config').setup {
-  extensions = { inlay_hints = { only_current_line = true, show_variable_name = true } },
+  extensions = { inlay_hints = { only_current_line = false, show_variable_name = true } },
 }
 
 local lsp = vim.lsp
@@ -47,24 +47,14 @@ sign_define('DiagnosticSignError', { text = '', numhl = 'RedSign' })
 sign_define('DiagnosticSignWarn', { text = '', numhl = 'YellowSign' })
 sign_define('DiagnosticSignInfo', { text = '', numhl = 'WhiteSign' })
 sign_define('DiagnosticSignHint', { text = '', numhl = 'BlueSign' })
-lsp_status.config {
-  kind_labels = kind_symbols,
-  select_symbol = function(cursor_pos, symbol)
-    if symbol.valueRange then
-      local value_range = {
-        ['start'] = { character = 0, line = vim.fn.byte2line(symbol.valueRange[1]) },
-        ['end'] = { character = 0, line = vim.fn.byte2line(symbol.valueRange[2]) },
-      }
-
-      return require('lsp-status/util').in_range(cursor_pos, value_range)
-    end
-  end,
-  current_function = false,
+trouble.setup()
+lightbulb.setup {
+  sign = { enabled = false },
+  virtual_text = { enabled = true, text = '', hl_mode = 'blend' },
+  float = { enabled = false, text = '', win_opts = { winblend = 100, anchor = 'NE' } },
 }
 
-lsp_status.register_progress()
--- lspkind.init { symbol_map = kind_symbols }
-trouble.setup()
+vim.diagnostic.config { virtual_lines = { only_current_line = true }, virtual_text = false }
 lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = false,
   signs = true,
@@ -75,7 +65,6 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
 require('lsp_signature').setup { bind = true, handler_opts = { border = 'single' } }
 local keymap_opts = { noremap = true, silent = true }
 local function on_attach(client)
-  lsp_status.on_attach(client)
   require('lsp_signature').on_attach { bind = true, handler_opts = { border = 'single' } }
   buf_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', keymap_opts)
@@ -87,8 +76,8 @@ local function on_attach(client)
   buf_keymap(0, 'n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', keymap_opts)
   buf_keymap(0, 'v', 'gA', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', keymap_opts)
-  buf_keymap(0, 'n', ']e', '<cmd>lua vim.diagnostic.goto_next { float = true }<cr>', keymap_opts)
-  buf_keymap(0, 'n', '[e', '<cmd>lua vim.diagnostic.goto_prev { float = true }<cr>', keymap_opts)
+  buf_keymap(0, 'n', ']e', '<cmd>lua vim.diagnostic.goto_next { float = {scope = "line"} }<cr>', keymap_opts)
+  buf_keymap(0, 'n', '[e', '<cmd>lua vim.diagnostic.goto_prev { float = {scope = "line"} }<cr>', keymap_opts)
 
   if client.server_capabilities.documentFormattingProvider then
     buf_keymap(0, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.format { async = true }<cr>', keymap_opts)
@@ -100,7 +89,7 @@ local function on_attach(client)
     cmd 'au CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
   end
 
-  cmd 'au CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb {sign = {enabled = false}, virtual_text = {enabled = true, text = ""}, float = {enabled = false, text = "", win_opts = {winblend = 100, anchor = "NE"}}}'
+  cmd 'au CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb ()'
   -- cmd 'au CursorHold,CursorHoldI <buffer> lua vim.diagnostic.open_float(0, { scope = "line" })'
   cmd 'augroup END'
 end
@@ -128,7 +117,7 @@ local servers = {
       '--header-insertion=iwyu',
       '--cross-file-rename',
     },
-    handlers = lsp_status.extensions.clangd.setup(),
+    -- handlers = lsp_status.extensions.clangd.setup(),
     init_options = {
       clangdFileStatus = true,
       usePlaceholders = true,
@@ -233,12 +222,7 @@ for server, config in pairs(servers) do
     end
   end
 
-  config.capabilities = vim.tbl_deep_extend(
-    'keep',
-    config.capabilities or {},
-    client_capabilities,
-    lsp_status.capabilities
-  )
+  config.capabilities = vim.tbl_deep_extend('keep', config.capabilities or {}, client_capabilities)
   lspconfig[server].setup(config)
 end
 

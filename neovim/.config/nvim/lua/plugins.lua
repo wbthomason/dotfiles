@@ -15,14 +15,10 @@ local function init()
 
   -- Async building & commands
   use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
-
-  -- Registers
-  -- use 'junegunn/vim-peekaboo'
-
   use 'mhinz/vim-sayonara'
 
   -- Marks
-  use { 'kshenoy/vim-signature', config = [[require('config.signature')]], disable = true }
+  use { 'kshenoy/vim-signature', config = [[require('config.signature')]] }
 
   use { 'tversteeg/registers.nvim', keys = { { 'n', '"' }, { 'i', '<c-r>' } } }
 
@@ -136,11 +132,22 @@ local function init()
     '~/projects/personal/lsp-status.nvim',
     'folke/trouble.nvim',
     'ray-x/lsp_signature.nvim',
-    'kosayoda/nvim-lightbulb',
+    {
+      'kosayoda/nvim-lightbulb',
+      requires = 'antoinemadec/FixCursorHold.nvim',
+    },
   }
 
   -- C++
   use 'p00f/clangd_extensions.nvim'
+
+  -- Rust
+  use {
+    'simrat39/rust-tools.nvim',
+    config = function()
+      require('rust-tools').setup {}
+    end,
+  }
 
   -- Highlights
   use {
@@ -170,7 +177,7 @@ local function init()
       'L3MON4D3/LuaSnip',
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
+      { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
@@ -182,7 +189,6 @@ local function init()
   }
 
   -- Endwise
-  -- use 'tpope/vim-endwise'
   use 'RRethy/nvim-treesitter-endwise'
 
   -- Debugger
@@ -220,8 +226,30 @@ local function init()
   -- Meson
   use 'igankevich/mesonic'
 
+  -- CMake
+  use {
+    'Shatur/neovim-cmake',
+    requires = { 'nvim-lua/plenary.nvim', 'mfussenegger/nvim-dap' },
+    wants = 'plenary.nvim',
+    cmd = 'CMake',
+  }
+
   -- PDDL
   use 'PontusPersson/pddl.vim'
+
+  -- ROS
+  use {
+    'thibthib18/ros-nvim',
+    requires = 'nvim-telescope/telescope.nvim',
+    wants = 'telescope.nvim',
+    config = function()
+      require('ros-nvim').setup {
+        catkin_ws_path = '~/projects/research/riposte_ws',
+        catkin_program = 'catkin build',
+      }
+    end,
+    module = 'ros-nvim',
+  }
 
   -- Zig
   use 'ziglang/zig.vim'
@@ -249,6 +277,7 @@ local function init()
   use 'hardselius/warlock'
   use 'arzg/vim-substrata'
   use 'sainnhe/gruvbox-material'
+  use 'RRethy/nvim-base16'
 
   -- Notes
   use {
@@ -256,8 +285,6 @@ local function init()
     config = [[require('config.pdf_scribe')]],
     disable = true,
   }
-
-  use { { 'nvim-orgmode/orgmode.nvim', config = [[require('config.orgmode')]] }, 'akinsho/org-bullets.nvim' }
 
   -- Buffer management
   use {
@@ -267,11 +294,25 @@ local function init()
     event = 'User ActuallyEditing',
   }
 
-  -- use 'https://github.com/numToStr/Comment.nvim'
-
   use 'b0o/incline.nvim'
   use 'teal-language/vim-teal'
   use { 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } }
+
+  -- Pretty UI
+  use 'stevearc/dressing.nvim'
+  use 'rcarriga/nvim-notify'
+
+  use {
+    'ethanholz/nvim-lastplace',
+    config = function()
+      require('nvim-lastplace').setup {}
+    end,
+  }
+
+  use {
+    'ggandor/leap.nvim',
+    requires = 'tpope/vim-repeat',
+  }
 end
 
 local plugins = setmetatable({}, {

@@ -35,20 +35,10 @@ local diagnostics_signs = {
   default = '',
 }
 
-bufferline.setup {
-  options = {
-    always_show_bufferline = false,
-    diagnostics = 'nvim_lsp',
-    diagnostics_indicator = function(count, level, diagnostics_dict, context)
-      local s = ' '
-      for e, n in pairs(diagnostics_dict) do
-        local sym = diagnostics_signs[e] or diagnostics_signs.default
-        s = s .. (#s > 1 and ' ' or '') .. sym .. ' ' .. n
-      end
-      return s
-    end,
-    separator_style = 'slant',
-  },
+local highlights
+if vim.g.colors_name ~= 'nazgul' then
+  highlights = nil
+else
   highlights = {
     background = colors.elem_inactive,
     buffer_selected = colors.elem_selected,
@@ -96,7 +86,24 @@ bufferline.setup {
     warning_diagnostic_visible = colors.warning,
     warning_selected = colors.warning_selected,
     warning_visible = colors.warning,
+  }
+end
+
+bufferline.setup {
+  options = {
+    always_show_bufferline = false,
+    diagnostics = 'nvim_lsp',
+    diagnostics_indicator = function(count, level, diagnostics_dict, context)
+      local s = ' '
+      for e, n in pairs(diagnostics_dict) do
+        local sym = diagnostics_signs[e] or diagnostics_signs.default
+        s = s .. (#s > 1 and ' ' or '') .. sym .. ' ' .. n
+      end
+      return s
+    end,
+    separator_style = 'slant',
   },
+  highlights = highlights,
 }
 
 local opts = { silent = true, nowait = true }

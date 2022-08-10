@@ -7,6 +7,9 @@ local opt = utils.opt
 local autocmd = utils.autocmd
 local map = utils.map
 
+vim.cmd [[highlight Headline1 guibg=#1e2718]]
+vim.cmd [[highlight Headline2 guibg=#21262d]]
+
 -- Leader/local leader
 g.mapleader = [[ ]]
 g.maplocalleader = [[,]]
@@ -62,7 +65,7 @@ opt('hidden', true)
 opt('shortmess', o.shortmess .. 'c')
 opt('joinspaces', false)
 opt('guicursor', [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]])
-opt('updatetime', 500)
+opt('updatetime', 100)
 opt('conceallevel', 2, window)
 opt('concealcursor', 'nc', window)
 opt('previewheight', 5)
@@ -76,9 +79,10 @@ opt('signcolumn', 'yes:1', window)
 
 -- Colorscheme
 opt('termguicolors', true)
-opt('background', 'dark')
+opt('background', 'light')
 -- cmd [[colorscheme gruvbox-material]]
 cmd [[colorscheme nazgul]]
+-- cmd [[colorscheme base16-gruvbox-light-hard]]
 
 -- Autocommands
 autocmd('start_screen', [[VimEnter * ++once lua require('start').start()]], true)

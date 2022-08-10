@@ -2,6 +2,8 @@ local map = require('config.utils').map
 
 local silent = { silent = true }
 -- Navigate buffers and repos
+map('n', '<c-p>', [[<cmd>Telescope buffers show_all_buffers=true theme=get_dropdown<cr>]], silent)
+map('n', '<c-P>', [[<cmd>Telescope commands theme=get_dropdown<cr>]], silent)
 map('n', '<c-a>', [[<cmd>Telescope buffers show_all_buffers=true theme=get_dropdown<cr>]], silent)
 map('n', '<c-e>', [[<cmd>Telescope frecency theme=get_dropdown<cr>]], silent)
 map('n', '<c-s>', [[<cmd>Telescope git_files theme=get_dropdown<cr>]], silent)
