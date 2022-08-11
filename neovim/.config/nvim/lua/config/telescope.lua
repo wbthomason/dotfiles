@@ -2,7 +2,9 @@ local telescope = require 'telescope'
 telescope.setup {
   defaults = {
     layout_strategy = 'flex',
+    layout_config = { anchor = 'N' },
     scroll_strategy = 'cycle',
+    theme = 'dropdown',
   },
   extensions = {
     frecency = { workspaces = { exo = '/home/wil/projects/research/exoplanet' } },
@@ -17,10 +19,6 @@ telescope.setup {
     },
   },
   pickers = {
-    lsp_references = { theme = 'dropdown' },
-    lsp_code_actions = { theme = 'dropdown' },
-    lsp_definitions = { theme = 'dropdown' },
-    lsp_implementations = { theme = 'dropdown' },
     buffers = {
       ignore_current_buffer = true,
       sort_mru = true,
