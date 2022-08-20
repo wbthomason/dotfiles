@@ -13,20 +13,20 @@ local info_fg = '#83a5cb'
 local pick_fg = '#870000'
 
 local colors = {
-  bar = { guifg = bar_fg, guibg = bar_bg },
-  elem = { guifg = elem_fg, guibg = elem_bg },
-  elem_inactive = { guifg = elem_fg, guibg = elem_bg },
-  elem_selected = { guifg = selected_fg, guibg = selected_bg },
-  separator = { guifg = bar_bg, guibg = elem_bg },
-  separator_selected = { guifg = bar_bg, guibg = selected_bg },
-  error = { guifg = error_fg, guibg = elem_bg, guisp = error_fg },
-  error_selected = { guifg = error_fg, guibg = selected_bg },
-  warning = { guifg = warning_fg, guibg = elem_bg, guisp = warning_fg },
-  warning_selected = { guifg = warning_fg, guibg = selected_bg },
-  info = { guifg = info_fg, guibg = elem_bg, guisp = info_fg },
-  info_selected = { guifg = info_fg, guibg = selected_bg },
-  pick = { guifg = pick_fg, guibg = elem_bg },
-  pick_selected = { guifg = pick_fg, guibg = selected_bg },
+  bar = { fg = bar_fg, bg = bar_bg },
+  elem = { fg = elem_fg, bg = elem_bg },
+  elem_inactive = { fg = elem_fg, bg = elem_bg },
+  elem_selected = { fg = selected_fg, bg = selected_bg },
+  separator = { fg = bar_bg, bg = elem_bg },
+  separator_selected = { fg = bar_bg, bg = selected_bg },
+  error = { fg = error_fg, bg = elem_bg, sp = error_fg },
+  error_selected = { fg = error_fg, bg = selected_bg },
+  warning = { fg = warning_fg, bg = elem_bg, sp = warning_fg },
+  warning_selected = { fg = warning_fg, bg = selected_bg },
+  info = { fg = info_fg, bg = elem_bg, sp = info_fg },
+  info_selected = { fg = info_fg, bg = selected_bg },
+  pick = { fg = pick_fg, bg = elem_bg },
+  pick_selected = { fg = pick_fg, bg = selected_bg },
 }
 
 local diagnostics_signs = {
