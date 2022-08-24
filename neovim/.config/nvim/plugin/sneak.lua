@@ -1,4 +1,4 @@
-local map = require('config.utils').map
+local map = vim.api.nvim_set_keymap
 local g = vim.g
 
 -- 2-character Sneak (default)
