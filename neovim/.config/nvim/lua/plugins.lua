@@ -14,11 +14,11 @@ local function init()
   use 'lewis6991/impatient.nvim'
 
   -- Async building & commands
-  use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
+  -- use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
   use 'mhinz/vim-sayonara'
 
   -- Marks
-  use { 'kshenoy/vim-signature', config = [[require('config.signature')]] }
+  -- use { 'kshenoy/vim-signature', config = [[require('config.signature')]] }
 
   use { 'tversteeg/registers.nvim', keys = { { 'n', '"' }, { 'i', '<c-r>' } } }
 
@@ -36,14 +36,15 @@ local function init()
   -- use 'tomtom/tcomment_vim'
   use {
     'numToStr/Comment.nvim',
+    event = 'User ActuallyEditing',
     config = function()
-      require('Comment').setup()
+      require('Comment').setup {}
     end,
   }
 
   -- Wrapping/delimiters
   use {
-    'machakann/vim-sandwich',
+    { 'machakann/vim-sandwich', event = 'User ActuallyEditing' },
     { 'andymass/vim-matchup', setup = [[require('config.matchup')]], event = 'User ActuallyEditing' },
   }
 
@@ -106,11 +107,11 @@ local function init()
 
   -- Git
   use {
-    { 'tpope/vim-fugitive', cmd = { 'Git', 'Gstatus', 'Gblame', 'Gpush', 'Gpull' }, disable = true },
     {
       'lewis6991/gitsigns.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
       config = [[require('config.gitsigns')]],
+      event = 'User ActuallyEditing',
     },
     { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] },
   }
@@ -129,7 +130,7 @@ local function init()
   -- Completion and linting
   use {
     'neovim/nvim-lspconfig',
-    '~/projects/personal/lsp-status.nvim',
+    { '~/projects/personal/lsp-status.nvim', disable = true },
     'folke/trouble.nvim',
     'ray-x/lsp_signature.nvim',
     {
@@ -170,11 +171,13 @@ local function init()
   -- Lisps
   use 'gpanders/nvim-parinfer'
 
+  -- Snippets
+  use { 'L3MON4D3/LuaSnip', event = 'InsertEnter' }
+
   -- Completion
   use {
     'hrsh7th/nvim-cmp',
     requires = {
-      'L3MON4D3/LuaSnip',
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       'hrsh7th/cmp-nvim-lsp',
       { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' },
@@ -185,7 +188,8 @@ local function init()
       { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
     },
     config = [[require('config.cmp')]],
-    event = 'InsertEnter *',
+    event = 'InsertEnter',
+    after = 'LuaSnip',
   }
 
   -- Endwise
@@ -199,22 +203,17 @@ local function init()
       config = [[require('config.dap')]],
       requires = 'jbyuki/one-small-step-for-vimkind',
       wants = 'one-small-step-for-vimkind',
-      module = 'dap',
+      cmd = { 'BreakpointToggle', 'Debug', 'DapREPL' },
     },
     {
       'rcarriga/nvim-dap-ui',
       requires = 'nvim-dap',
+      wants = 'nvim-dap',
       after = 'nvim-dap',
       config = function()
         require('dapui').setup()
       end,
     },
-  }
-
-  use {
-    'puremourning/vimspector',
-    setup = [[vim.g.vimspector_enable_mappings = 'HUMAN']],
-    disable = true,
   }
 
   -- Path navigation
@@ -262,6 +261,7 @@ local function init()
 
   -- Refactoring
   use 'ThePrimeagen/refactoring.nvim'
+
   -- Plugin development
   use 'folke/lua-dev.nvim'
 
