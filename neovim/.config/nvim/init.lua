@@ -88,7 +88,12 @@ autocmd('VimEnter', {
 })
 local misc_aucmds = augroup('misc_aucmds', { clear = true })
 autocmd('BufWinEnter', { group = misc_aucmds, command = 'checktime' })
-autocmd('TextYankPost', { group = misc_aucmds, callback = vim.highlight.on_yank })
+autocmd('TextYankPost', {
+  group = misc_aucmds,
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 autocmd('FileType', { group = misc_aucmds, pattern = 'qf', command = 'set nobuflisted' })
 
 -- Commands
@@ -121,7 +126,7 @@ local silent = { silent = true, noremap = true }
 local map = vim.api.nvim_set_keymap
 map('n', '<leader>q', '<cmd>qa<cr>', silent)
 map('n', '<leader>x', '<cmd>x!<cr>', silent)
-map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true, nowait = true })
+map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true, nowait = true, noremap = true })
 
 -- Save buffer
 map('i', '<c-s>', '<esc><cmd>w<cr>a', silent)
