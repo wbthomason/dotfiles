@@ -53,11 +53,12 @@ local function filter_oldfiles(prefix, fmt)
       and not skip(absolute_path)
     then
       files[absolute_path] = true
-      table.insert(oldfiles, {
+      oldfiles[#oldfiles + 1] = {
         key = total_paths - counter,
         cmd = 'edit ' .. vim.fn.fnameescape(absolute_path),
         disp = cap_path_length(vim.fn.fnamemodify(absolute_path, fmt)),
-      })
+        editing = true,
+      }
       counter = counter - 1
     end
   end
@@ -86,7 +87,7 @@ local commands = {
   { key = 'u', disp = 'Update plugins', cmd = 'PackerUpdate' },
   { key = 'c', disp = 'Clean plugins', cmd = 'PackerClean' },
   { key = 't', disp = 'Time startup', cmd = 'StartupTime' },
-  { key = 's', disp = 'Start Prosession', cmd = 'Prosession .' },
+  { key = 's', disp = 'Start Prosession', cmd = 'Prosession .', editing = true },
   { key = 'q', disp = 'Quit', cmd = 'q!' },
 }
 
@@ -130,12 +131,12 @@ local function make_sections()
         highlight(0, -1, 'StartifyNumber', linenr + size, 4, 4 + key_len)
         highlight(0, -1, 'StartifyBracket', linenr + size, 4 + key_len, 5 + key_len)
         highlight(0, -1, 'StartifyPath', linenr + size, 5 + key_len, -1)
-        table.insert(keybindings, { key = key, cmd = item.cmd })
+        keybindings[#keybindings + 1] = { key = key, cmd = item.cmd, editing = item.editing }
         size = size + 1
       end
 
       set_lines(0, -1, -1, false, { '' })
-      table.insert(boundaries, { linenr + 1, linenr + size })
+      boundaries[#boundaries + 1] = { linenr + 1, linenr + size }
       linenr = linenr + size + 1
     end
   end
@@ -172,16 +173,28 @@ local function handle_k()
   move_cursor(-1)
 end
 
+local function do_binding(binding)
+  if binding.editing then
+    vim.cmd [[ doautocmd User ActuallyEditing ]]
+  end
+
+  vim.cmd(binding.cmd)
+end
+
+local function handle_key(key)
+  for _, binding in ipairs(keybindings) do
+    if binding.key == key then
+      do_binding(binding)
+      return
+    end
+  end
+end
+
 local function handle_cr()
   local line_num = vim.fn.line '.'
   local curr_line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
   local key = string.match(curr_line, '%[([^%]]*)%]')
-  for _, binding in ipairs(keybindings) do
-    if binding.key == key then
-      vim.cmd(binding.cmd)
-      return
-    end
-  end
+  handle_key(key)
 end
 
 local function setup_keys()
@@ -189,13 +202,19 @@ local function setup_keys()
   local map = vim.api.nvim_buf_set_keymap
   map(0, 'n', 'h', '<NOP>', { noremap = true, silent = true })
   map(0, 'n', 'l', '<NOP>', { noremap = true, silent = true })
-  map(0, 'n', 'j', '<cmd>lua require"start".handle_j()<cr>', { noremap = true, silent = true })
-  map(0, 'n', 'k', '<cmd>lua require"start".handle_k()<cr>', { noremap = true, silent = true })
-  map(0, 'n', '<cr>', '<cmd>lua require"start".handle_cr()<cr>', { noremap = true, silent = true })
+  map(0, 'n', 'j', '', { noremap = true, silent = true, callback = handle_j })
+  map(0, 'n', 'k', '', { noremap = true, silent = true, callback = handle_k })
+  map(0, 'n', '<cr>', '', { noremap = true, silent = true, callback = handle_cr })
 
   -- Then, the defined keybindings
   for _, binding in ipairs(keybindings) do
-    map(0, 'n', tostring(binding.key), '<cmd>:' .. binding.cmd .. '<cr>', { noremap = true, silent = true })
+    map(0, 'n', tostring(binding.key), '', {
+      noremap = true,
+      silent = true,
+      callback = function()
+        do_binding(binding)
+      end,
+    })
   end
 end
 
@@ -213,7 +232,6 @@ local function start_screen()
   vim.fn.cursor(2, offset)
   setup_keys()
   vim.cmd [[set eventignore=""]]
-  vim.cmd [[ doautocmd User ActuallyEditing ]]
 end
 
 return { start = start_screen, handle_j = handle_j, handle_k = handle_k, handle_cr = handle_cr }
