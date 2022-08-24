@@ -1,4 +1,3 @@
-local lsp_status = require 'lsp-status'
 local devicons = require 'nvim-web-devicons'
 
 local get_mode = vim.api.nvim_get_mode
@@ -8,6 +7,14 @@ local buf_get_name = vim.api.nvim_buf_get_name
 local fnamemodify = vim.fn.fnamemodify
 local get_window_width = vim.api.nvim_win_get_width
 local pathshorten = vim.fn.pathshorten
+
+local diagnostic_indicators = {
+  [vim.diagnostic.severity.ERROR] = '',
+  [vim.diagnostic.severity.WARN] = '',
+  [vim.diagnostic.severity.INFO] = '🛈',
+  [vim.diagnostic.severity.HINT] = '❗',
+  ok = '  ',
+}
 
 local function icon(path)
   local name = fnamemodify(path, ':t')
@@ -29,12 +36,31 @@ local function vcs()
   return string.format('%s%s %s ', diff_str, branch_sign, git_info.head)
 end
 
-local function lint_lsp(buf)
-  local result = ''
-  if #vim.lsp.buf_get_clients(buf) > 0 then
-    result = result .. lsp_status.status()
+local function render_diagnostics(bufnr)
+  local raw_diagnostics = vim.diagnostic.get(bufnr)
+  if #raw_diagnostics == 0 then
+    return diagnostic_indicators.ok
   end
-  return result
+
+  local diagnostic_counts = {
+    [vim.diagnostic.severity.ERROR] = 0,
+    [vim.diagnostic.severity.WARN] = 0,
+    [vim.diagnostic.severity.INFO] = 0,
+    [vim.diagnostic.severity.HINT] = 0,
+  }
+
+  for i = 1, #raw_diagnostics do
+    diagnostic_counts[raw_diagnostics[i].severity] = diagnostic_counts[raw_diagnostics[i].severity] + 1
+  end
+
+  local result = ''
+  for level, count in pairs(diagnostic_counts) do
+    if count > 0 then
+      result = string.format('%s %s %d', result, diagnostic_indicators[level], count)
+    end
+  end
+
+  return result .. ' '
 end
 
 local mode_table = {
@@ -145,7 +171,7 @@ local function status()
       get_paste(),
       get_readonly_space(),
       vcs(),
-      lint_lsp(buf_nr)
+      render_diagnostics(buf_nr)
     )
   else
     -- print(vim.g.statusline_winid, win_getid(winnr()))
