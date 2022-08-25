@@ -1,7 +1,6 @@
-local ts_configs = require 'nvim-treesitter.configs'
-ts_configs.setup {
-  ensure_installed = 'all',
-  highlight = { enable = true, use_languagetree = true },
+require('nvim-treesitter.configs').setup {
+  auto_install = true,
+  highlight = { enable = true },
   indent = { enable = false },
   incremental_selection = {
     enable = true,
@@ -15,7 +14,6 @@ ts_configs.setup {
   refactor = {
     smart_rename = { enable = true, keymaps = { smart_rename = 'grr' } },
     highlight_definitions = { enable = true },
-    -- highlight_current_scope = { enable = true }
   },
   textsubjects = {
     enable = true,
