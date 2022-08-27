@@ -110,6 +110,17 @@ local servers = {
         forwardSearch = { executable = 'zathura', args = { '--synctex-forward', '%l:1:%f', '%p' } },
       },
     },
+  },
+  ltex = {
+    cmd = { '/usr/bin/ltex-ls' },
+    on_attach = function(client, bufnr)
+      require('ltex_extra').setup {}
+    end,
+    settings = {
+      ltex = {
+        checkFrequency = 'save',
+        additionalRules = { enablePickyRules = true },
+        ['ltex-ls'] = { path = '/opt/ltex-ls' },
       },
     },
   },

@@ -221,6 +221,7 @@ local function init()
 
   -- LaTeX
   use 'lervag/vimtex'
+  use 'barreiroleo/ltex_extra.nvim'
 
   -- Meson
   use 'igankevich/mesonic'
