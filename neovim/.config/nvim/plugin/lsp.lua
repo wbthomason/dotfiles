@@ -83,10 +83,9 @@ local servers = {
   ocamllsp = {},
   pyright = { settings = { python = { formatting = { provider = 'yapf' } } } },
   rust_analyzer = {},
-  -- sumneko_lua = function()
-  --   return require('lua-dev').setup({lspconfig = {cmd = {'lua-language-server'}}})
-  -- end,
+  -- sumneko_lua = require('lua-dev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } },
   sumneko_lua = {
+    prefer_null_ls = true,
     cmd = { 'lua-language-server' },
     settings = {
       Lua = {
@@ -100,7 +99,6 @@ local servers = {
         },
       },
     },
-    prefer_null_ls = true,
   },
   texlab = {
     settings = {
