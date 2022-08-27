@@ -165,21 +165,6 @@ local servers = {
         forwardSearch = { executable = 'zathura', args = { '--synctex-forward', '%l:1:%f', '%p' } },
       },
     },
-    commands = {
-      TexlabForwardSearch = {
-        function()
-          local pos = vim.api.nvim_win_get_cursor(0)
-          local params = {
-            textDocument = { uri = vim.uri_from_bufnr(0) },
-            position = { line = pos[1] - 1, character = pos[2] },
-          }
-          lsp.buf_request(0, 'textDocument/forwardSearch', params, function(err, _, _, _)
-            if err then
-              error(tostring(err))
-            end
-          end)
-        end,
-        description = 'Run synctex forward search',
       },
     },
   },

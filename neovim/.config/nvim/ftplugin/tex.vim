@@ -1,2 +1,2 @@
 " setlocal spell
-nnoremap gt :TexlabForwardSearch<CR>
+nnoremap gt :TexlabForward<CR>
