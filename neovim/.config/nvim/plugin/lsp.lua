@@ -129,17 +129,9 @@ local servers = {
 }
 
 local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-client_capabilities.textDocument.completion.completionItem.snippetSupport = true
-client_capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = { 'documentation', 'detail', 'additionalTextEdits' },
-}
 client_capabilities = require('cmp_nvim_lsp').update_capabilities(client_capabilities)
 client_capabilities.offsetEncoding = { 'utf-16' }
 
-for server, config in pairs(servers) do
-  if type(config) == 'function' then
-    config = config()
-  end
 require('clangd_extensions').setup {
   server = {
     on_attach = prefer_null_ls_fmt,
@@ -162,6 +154,7 @@ require('clangd_extensions').setup {
   extensions = { inlay_hints = { only_current_line = false, show_variable_name = true } },
 }
 
+for server, config in pairs(servers) do
   if config.prefer_null_ls then
     if config.on_attach then
       local old_on_attach = config.on_attach
@@ -172,16 +165,8 @@ require('clangd_extensions').setup {
     else
       config.on_attach = prefer_null_ls_fmt
     end
-  else
-    if config.on_attach then
-      local old_on_attach = config.on_attach
-      config.on_attach = function(client, bufnr)
-        old_on_attach(client, bufnr)
-        prefer_null_ls_fmt(client)
-      end
-    else
-      config.on_attach = on_attach
-    end
+  elseif not config.on_attach then
+    config.on_attach = on_attach
   end
 
   config.capabilities = vim.tbl_deep_extend('keep', config.capabilities or {}, client_capabilities)
