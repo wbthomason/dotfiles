@@ -1,9 +1,6 @@
 local lspconfig = require 'lspconfig'
 local trouble = require 'trouble'
 local null_ls = require 'null-ls'
-require('clangd_extensions.config').setup {
-  extensions = { inlay_hints = { only_current_line = false, show_variable_name = true } },
-}
 -- local lightbulb = require 'nvim-lightbulb'
 
 local lsp = vim.lsp
@@ -73,29 +70,6 @@ end
 
 local servers = {
   bashls = {},
-  clangd = {
-    on_attach = function()
-      require('clangd_extensions.inlay_hints').setup_autocmd()
-      require('clangd_extensions.inlay_hints').set_inlay_hints()
-      require('clangd_extensions').hint_aucmd_set_up = true
-    end,
-    prefer_null_ls = true,
-    cmd = {
-      'clangd',
-      '--background-index',
-      '--clang-tidy',
-      '--completion-style=bundled',
-      '--header-insertion=iwyu',
-      '--cross-file-rename',
-    },
-    -- handlers = lsp_status.extensions.clangd.setup(),
-    init_options = {
-      clangdFileStatus = true,
-      usePlaceholders = true,
-      completeUnimported = true,
-      semanticHighlighting = true,
-    },
-  },
   cmake = {},
   cssls = {
     cmd = { 'vscode-css-languageserver', '--stdio' },
@@ -155,6 +129,27 @@ for server, config in pairs(servers) do
   if type(config) == 'function' then
     config = config()
   end
+require('clangd_extensions').setup {
+  server = {
+    on_attach = prefer_null_ls_fmt,
+    cmd = {
+      'clangd',
+      '--background-index',
+      '--clang-tidy',
+      '--completion-style=bundled',
+      '--header-insertion=iwyu',
+      '--cross-file-rename',
+    },
+    init_options = {
+      clangdFileStatus = true,
+      usePlaceholders = true,
+      completeUnimported = true,
+      semanticHighlighting = true,
+    },
+    capabilities = client_capabilities,
+  },
+  extensions = { inlay_hints = { only_current_line = false, show_variable_name = true } },
+}
 
   if config.prefer_null_ls then
     if config.on_attach then
