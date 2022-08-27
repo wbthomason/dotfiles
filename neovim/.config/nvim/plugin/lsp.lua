@@ -203,7 +203,7 @@ null_ls.setup {
     null_diag.teal,
     -- null_diag.vale,
     null_diag.vint,
-    null_diag.write_good.with { filetypes = { 'markdown', 'tex' } },
+    -- null_diag.write_good.with { filetypes = { 'markdown', 'tex' } },
     null_fmt.clang_format,
     -- null_fmt.cmake_format,
     null_fmt.isort,
