@@ -1,46 +1,17 @@
 local lspconfig = require 'lspconfig'
 local trouble = require 'trouble'
 local null_ls = require 'null-ls'
-local lightbulb = require 'nvim-lightbulb'
-
 require('clangd_extensions.config').setup {
   extensions = { inlay_hints = { only_current_line = false, show_variable_name = true } },
 }
+-- local lightbulb = require 'nvim-lightbulb'
 
 local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
 local cmd = vim.cmd
 
-vim.api.nvim_command 'hi link LightBulbFloatWin YellowFloat'
-vim.api.nvim_command 'hi link LightBulbVirtualText YellowFloat'
-
-local kind_symbols = {
-  Text = '  ',
-  Method = '  ',
-  Function = '  ',
-  Constructor = '  ',
-  Field = '  ',
-  Variable = '  ',
-  Class = '  ',
-  Interface = '  ',
-  Module = '  ',
-  Property = '  ',
-  Unit = '  ',
-  Value = '  ',
-  Enum = '  ',
-  Keyword = '  ',
-  Snippet = '  ',
-  Color = '  ',
-  File = '  ',
-  Reference = '  ',
-  Folder = '  ',
-  EnumMember = '  ',
-  Constant = '  ',
-  Struct = '  ',
-  Event = '  ',
-  Operator = '  ',
-  TypeParameter = '  ',
-}
+-- vim.api.nvim_command 'hi link LightBulbFloatWin YellowFloat'
+-- vim.api.nvim_command 'hi link LightBulbVirtualText YellowFloat'
 
 local sign_define = vim.fn.sign_define
 sign_define('DiagnosticSignError', { text = '', numhl = 'RedSign' })
@@ -48,11 +19,11 @@ sign_define('DiagnosticSignWarn', { text = '', numhl = 'YellowSign' })
 sign_define('DiagnosticSignInfo', { text = '', numhl = 'WhiteSign' })
 sign_define('DiagnosticSignHint', { text = '', numhl = 'BlueSign' })
 trouble.setup()
-lightbulb.setup {
-  sign = { enabled = false },
-  virtual_text = { enabled = true, text = '', hl_mode = 'blend' },
-  float = { enabled = false, text = '', win_opts = { winblend = 100, anchor = 'NE' } },
-}
+-- lightbulb.setup {
+--   sign = { enabled = false },
+--   virtual_text = { enabled = true, text = '', hl_mode = 'blend' },
+--   float = { enabled = false, text = '', win_opts = { winblend = 100, anchor = 'NE' } },
+-- }
 
 vim.diagnostic.config { virtual_lines = { only_current_line = true }, virtual_text = false }
 lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
@@ -89,7 +60,7 @@ local function on_attach(client)
     cmd 'au CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
   end
 
-  cmd 'au CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb ()'
+  -- cmd 'au CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb ()'
   -- cmd 'au CursorHold,CursorHoldI <buffer> lua vim.diagnostic.open_float(0, { scope = "line" })'
   cmd 'augroup END'
 end
