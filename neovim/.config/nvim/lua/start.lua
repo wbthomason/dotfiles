@@ -1,3 +1,8 @@
+-- TODO: Could almost certainly make this a lot faster, especially by using Luv more directly in the
+-- MRU logic, making make_sections() construct the full table of strings first and then call
+-- set_lines only once (still need to deal with highlights), maybe making file info fill in async
+local icons = require 'nvim-web-devicons'
+
 local counter = 25
 local total_paths = 25
 local offset = 5
@@ -6,7 +11,7 @@ local use_vcs_root = true
 local files = {}
 
 local function cap_path_length(path)
-  if string.len(path) > 70 then
+  if string.len(path) > 50 then
     path = vim.fn.pathshorten(path)
   end
   return path
@@ -52,11 +57,14 @@ local function filter_oldfiles(prefix, fmt)
       and prefix:match_str(absolute_path) ~= nil
       and not skip(absolute_path)
     then
+      local escaped_path = vim.fn.fnameescape(absolute_path)
       files[absolute_path] = true
       oldfiles[#oldfiles + 1] = {
         key = total_paths - counter,
-        cmd = 'edit ' .. vim.fn.fnameescape(absolute_path),
-        disp = cap_path_length(vim.fn.fnamemodify(absolute_path, fmt)),
+        cmd = 'edit ' .. escaped_path,
+        disp = icons.get_icon(escaped_path, vim.fn.fnamemodify(escaped_path, ':e'), { default = true })
+          .. ' '
+          .. cap_path_length(vim.fn.fnamemodify(absolute_path, fmt)),
         editing = true,
       }
       counter = counter - 1
@@ -84,11 +92,14 @@ local function recent_files()
 end
 
 local commands = {
-  { key = 'u', disp = 'Update plugins', cmd = 'PackerUpdate' },
-  { key = 'c', disp = 'Clean plugins', cmd = 'PackerClean' },
-  { key = 't', disp = 'Time startup', cmd = 'StartupTime' },
-  { key = 's', disp = 'Start Prosession', cmd = 'Prosession .', editing = true },
-  { key = 'q', disp = 'Quit', cmd = 'q!' },
+  { key = 'e', disp = '  New file', cmd = 'ene | startinsert', editing = true },
+  { key = 'u', disp = '  Update plugins', cmd = 'PackerSync' },
+  { key = 'b', disp = '  File Browser', cmd = 'Telescope file_browser' },
+  { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles' },
+  { key = 's', disp = '  Start Prosession', cmd = 'Prosession .', editing = true },
+  { key = 'g', disp = '  NeoGit', cmd = 'Neogit' },
+  { key = 't', disp = '⏱  Time startup', cmd = 'StartupTime' },
+  { key = 'q', disp = '  Quit', cmd = 'qa' },
 }
 
 local cur_dir = relativize(vim.fn.expand(vim.fn.getcwd()))
@@ -105,16 +116,45 @@ local sections = {
 local boundaries = {}
 local keybindings = {}
 
+local function longest_elems()
+  local longest_title = 0
+  local longest_item = 0
+  for _, section in ipairs(sections) do
+    local title_len = string.len(section.title)
+    if title_len > longest_title then
+      longest_title = title_len
+    end
+    for _, item in ipairs(section.show) do
+      local item_len = string.len(item.disp)
+      if item_len > longest_item then
+        longest_item = item_len
+      end
+    end
+  end
+
+  return longest_title, longest_item
+end
+
 local function make_sections()
   boundaries = {}
   keybindings = {}
-  local linenr = 0
   local set_lines = vim.api.nvim_buf_set_lines
   local highlight = vim.api.nvim_buf_add_highlight
+  local win_width = vim.fn.winwidth(0)
+  local linenr = 2
+  set_lines(0, 0, 0, false, { '', '' })
+  local longest_title, longest_item = longest_elems()
+  local title_indent = bit.arshift(win_width - longest_title, 1)
+  local section_indent = bit.arshift(win_width - longest_item, 1)
+  offset = section_indent + 2
+  local section_padding = string.rep(' ', section_indent)
   for _, section in ipairs(sections) do
     if next(section.show) ~= nil then
-      set_lines(0, linenr, linenr, false, { ' ' .. section.title })
-      highlight(0, -1, 'Title', linenr, 1, -1)
+      local section_title_indent = title_indent + bit.arshift(longest_title - string.len(section.title), 1)
+      local title_padding = string.rep(' ', section_title_indent)
+      set_lines(0, linenr, linenr, false, { title_padding .. section.title, '' })
+      highlight(0, -1, 'SpecialComment', linenr, 1, -1)
+      linenr = linenr + 1
       local size = 1
       for _, item in ipairs(section.show) do
         local key = item.key
@@ -125,19 +165,24 @@ local function make_sections()
           key_len = (key < 10) and 1 or 2
         end
 
-        local padding = (key_len == 1) and '  ' or ' '
-        set_lines(0, linenr + size, linenr + size, false, { '   [' .. key .. ']' .. padding .. item.disp })
-        highlight(0, -1, 'StartifyBracket', linenr + size, 3, 4)
-        highlight(0, -1, 'StartifyNumber', linenr + size, 4, 4 + key_len)
-        highlight(0, -1, 'StartifyBracket', linenr + size, 4 + key_len, 5 + key_len)
-        highlight(0, -1, 'StartifyPath', linenr + size, 5 + key_len, -1)
+        local key_padding = (key_len == 1) and '  ' or ' '
+        set_lines(
+          0,
+          linenr + size,
+          linenr + size,
+          false,
+          { string.format('%s(%s)%s%s', section_padding, key, key_padding, item.disp) }
+        )
+        highlight(0, -1, 'StartifyBracket', linenr + size, section_indent, section_indent + 1)
+        highlight(0, -1, 'StartifyNumber', linenr + size, section_indent + 1, section_indent + 1 + key_len)
+        highlight(0, -1, 'StartifyBracket', linenr + size, section_indent + 1 + key_len, section_indent + 2 + key_len)
         keybindings[#keybindings + 1] = { key = key, cmd = item.cmd, editing = item.editing }
         size = size + 1
       end
 
-      set_lines(0, -1, -1, false, { '' })
+      set_lines(0, -1, -1, false, { '', '' })
       boundaries[#boundaries + 1] = { linenr + 1, linenr + size }
-      linenr = linenr + size + 1
+      linenr = linenr + size + 2
     end
   end
 
@@ -229,7 +274,7 @@ local function start_screen()
   make_sections()
   vim.cmd [[noautocmd setlocal nomodifiable nomodified]]
   -- Position cursor
-  vim.fn.cursor(2, offset)
+  vim.fn.cursor(5, offset)
   setup_keys()
   vim.cmd [[set eventignore=""]]
 end
