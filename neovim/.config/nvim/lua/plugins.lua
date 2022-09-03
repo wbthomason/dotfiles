@@ -28,6 +28,12 @@ local function init()
   -- Quickfix
   use { 'Olical/vim-enmasse', cmd = 'EnMasse' }
   use 'kevinhwang91/nvim-bqf'
+  use {
+    'https://gitlab.com/yorickpeterse/nvim-pqf',
+    config = function()
+      require('pqf').setup()
+    end,
+  }
 
   -- Indentation tracking
   use 'lukas-reineke/indent-blankline.nvim'
@@ -88,13 +94,15 @@ local function init()
       'nvim-telescope/telescope-fzf-native.nvim',
       run = 'make',
     },
+    'crispgm/telescope-heading.nvim',
+    'nvim-telescope/telescope-file-browser.nvim',
   }
 
   -- Project Management/Sessions
   use {
     'dhruvasagar/vim-prosession',
     after = 'vim-obsession',
-    requires = { { 'tpope/vim-obsession', cmd = 'Prosession' } },
+    requires = { 'tpope/vim-obsession', cmd = 'Prosession' },
     config = [[require('config.prosession')]],
   }
 
@@ -109,11 +117,18 @@ local function init()
   use {
     {
       'lewis6991/gitsigns.nvim',
-      requires = { 'nvim-lua/plenary.nvim' },
+      requires = 'nvim-lua/plenary.nvim',
       config = [[require('config.gitsigns')]],
       event = 'User ActuallyEditing',
     },
     { 'TimUntersberger/neogit', cmd = 'Neogit', config = [[require('config.neogit')]] },
+    {
+      'akinsho/git-conflict.nvim',
+      tag = '*',
+      config = function()
+        require('git-conflict').setup()
+      end,
+    },
   }
 
   -- Pretty symbols
@@ -172,7 +187,16 @@ local function init()
   use 'gpanders/nvim-parinfer'
 
   -- Snippets
-  use { 'L3MON4D3/LuaSnip', event = 'InsertEnter' }
+  use {
+    {
+      'L3MON4D3/LuaSnip',
+      event = 'InsertEnter',
+      config = function()
+        require('luasnip.loaders.from_vscode').lazy_load()
+      end,
+    },
+    'rafamadriz/friendly-snippets',
+  }
 
   -- Completion
   use {
@@ -185,6 +209,7 @@ local function init()
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
       'lukas-reineke/cmp-under-comparator',
+      'hrsh7th/cmp-cmdline',
       { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
     },
     config = [[require('config.cmp')]],
@@ -307,6 +332,17 @@ local function init()
     requires = 'nvim-lua/plenary.nvim',
     config = function()
       require('todo-comments').setup {}
+    end,
+  }
+
+  use {
+    'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup {
+        sources = {
+          ['null-ls'] = { ignore = true },
+        },
+      }
     end,
   }
 
