@@ -60,7 +60,6 @@ opt.updatetime = 100
 opt.conceallevel = 2
 opt.concealcursor = 'nc'
 opt.previewheight = 5
-opt.cmdheight = 0
 opt.undofile = true
 opt.synmaxcol = 500
 opt.display = 'msgsep'
