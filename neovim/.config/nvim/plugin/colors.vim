@@ -46,13 +46,6 @@ function! s:setup_colors() abort
   hi! link DirvishGitUnmerged RedSign
   hi! link DirvishGitUntracked YellowSign
   hi! link DirvishGitUntrackedDir OrangeHover
-
-  hi! HoverDisplay guibg=#303030 guifg=#dddddd
-
-  hi LspCxxHlGroupEnumConstant guifg=#818181
-  hi LspCxxHlGroupNamespace guifg=#f0f0f0
-  hi LspCxxHlGroupMemberVariable guifg=#ebebeb
-
   hi! link LspFloatWinBorder IndentBlanklineChar
 endfunction
 
@@ -62,3 +55,4 @@ augroup colors_customization
 augroup END
 
 call s:setup_colors()
+nnoremap <F9> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
