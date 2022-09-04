@@ -84,7 +84,7 @@ autocmd('VimEnter', {
   group = augroup('start_screen', { clear = true }),
   once = true,
   callback = function()
-    require 'start'.start()
+    require('start').start()
   end,
 })
 local misc_aucmds = augroup('misc_aucmds', { clear = true })
