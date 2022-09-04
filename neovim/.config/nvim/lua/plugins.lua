@@ -23,7 +23,14 @@ local function init()
   use { 'tversteeg/registers.nvim', keys = { { 'n', '"' }, { 'i', '<c-r>' } } }
 
   -- Movement
-  use { 'chaoren/vim-wordmotion', 'justinmk/vim-sneak' }
+  use 'chaoren/vim-wordmotion'
+  use {
+    {
+      'ggandor/leap.nvim',
+      requires = 'tpope/vim-repeat',
+    },
+    { 'ggandor/flit.nvim', config = [[require'flit'.setup{}]] },
+  }
 
   -- Quickfix
   use { 'Olical/vim-enmasse', cmd = 'EnMasse' }
@@ -361,11 +368,6 @@ local function init()
     config = function()
       require('nvim-lastplace').setup {}
     end,
-  }
-
-  use {
-    'ggandor/leap.nvim',
-    requires = 'tpope/vim-repeat',
   }
 end
 
