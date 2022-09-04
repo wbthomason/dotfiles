@@ -3,8 +3,8 @@
 -- set_lines only once (still need to deal with highlights), maybe making file info fill in async
 local icons = require 'nvim-web-devicons'
 
-local counter = 25
-local total_paths = 25
+local counter = 15
+local total_paths = 15
 local offset = 5
 
 local use_vcs_root = true
@@ -109,7 +109,7 @@ cur_dir = (cur_dir ~= '') and cur_dir or '~'
 -- functions, which isn't a bad idea anyway
 local sections = {
   { title = 'Commands', show = commands },
-  { title = string.format('Recent Files in %s', cur_dir), show = current_dir_files() },
+  -- { title = string.format('Recent Files in %s', cur_dir), show = current_dir_files() },
   { title = 'Recent Files', show = recent_files() },
 }
 
