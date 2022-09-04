@@ -5,7 +5,7 @@ telescope.setup {
     layout_strategy = 'flex',
     layout_config = { anchor = 'N' },
     scroll_strategy = 'cycle',
-    theme = 'dropdown',
+    theme = require('telescope.themes').get_dropdown { layout_config = { prompt_position = 'top' } },
   },
   extensions = {
     frecency = { workspaces = { exo = '/home/wil/projects/research/exoplanet' } },
@@ -16,11 +16,10 @@ telescope.setup {
       case_mode = 'smart_case',
     },
     ['ui-select'] = {
-      require('telescope.themes').get_dropdown {},
+      require('telescope.themes').get_dropdown { layout_config = { prompt_position = 'top' } },
     },
     heading = { treesitter = true },
     file_browser = {
-      theme = 'ivy',
       hijack_netwrw = true,
       hidden = true,
       mappings = {
