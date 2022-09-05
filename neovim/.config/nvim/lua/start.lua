@@ -278,5 +278,4 @@ local function start_screen()
   setup_keys()
   vim.cmd [[set eventignore=""]]
 end
-
 return { start = start_screen, handle_j = handle_j, handle_k = handle_k, handle_cr = handle_cr }

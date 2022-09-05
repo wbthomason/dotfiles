@@ -1,5 +1,6 @@
 require 'impatient'
 vim.notify = require 'notify'
+
 local g = vim.g
 local cmd = vim.cmd
 
