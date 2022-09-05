@@ -6,34 +6,6 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match '%s' == nil
 end
 
-local cmp_kinds = {
-  Text = '  ',
-  Method = '  ',
-  Function = '  ',
-  Constructor = '  ',
-  Field = '  ',
-  Variable = '  ',
-  Class = '  ',
-  Interface = '  ',
-  Module = '  ',
-  Property = '  ',
-  Unit = '  ',
-  Value = '  ',
-  Enum = '  ',
-  Keyword = '  ',
-  Snippet = '  ',
-  Color = '  ',
-  File = '  ',
-  Reference = '  ',
-  Folder = '  ',
-  EnumMember = '  ',
-  Constant = '  ',
-  Struct = '  ',
-  Event = '  ',
-  Operator = '  ',
-  TypeParameter = '  ',
-}
-
 cmp.setup {
   completion = { completeopt = 'menu,menuone,noinsert' },
   sorting = {
@@ -62,10 +34,21 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
+  window = {
+    completion = {
+      winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None',
+      col_offset = -3,
+      side_padding = 0,
+    },
+  },
   formatting = {
-    format = function(_, vim_item)
-      vim_item.kind = (cmp_kinds[vim_item.kind] or '') .. vim_item.kind
-      return vim_item
+    fields = { 'kind', 'abbr', 'menu' },
+    format = function(entry, vim_item)
+      local kind = require('lspkind').cmp_format { mode = 'symbol_text', maxwidth = 50 }(entry, vim_item)
+      local strings = vim.split(kind.kind, '%s', { trimempty = true })
+      kind.kind = ' ' .. strings[1] .. ' '
+      kind.menu = '    (' .. strings[2] .. ')'
+      return kind
     end,
   },
   mapping = {

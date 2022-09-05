@@ -231,6 +231,7 @@ local function init()
     requires = {
       { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' },
       'hrsh7th/cmp-nvim-lsp',
+      'onsails/lspkind.nvim',
       { 'hrsh7th/cmp-nvim-lsp-signature-help', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-path', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
