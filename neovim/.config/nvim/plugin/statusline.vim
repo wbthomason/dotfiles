@@ -5,7 +5,7 @@ set laststatus=3
 " Setup the colors
 function! s:setup_colors() abort
   if g:colors_name ==# 'nazgul'
-    let s:bg_color = '#333333'
+    let s:bg_color = '#222222'
     let s:fg_color = '#e9e9e9'
   else
     let s:bg_color = synIDattr(synIDtrans(hlID('Statusline')), 'bg#', 'gui') 
