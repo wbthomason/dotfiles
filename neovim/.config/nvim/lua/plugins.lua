@@ -2,7 +2,9 @@ local packer = nil
 local function init()
   if packer == nil then
     packer = require 'packer'
-    packer.init { disable_commands = true }
+    packer.init { disable_commands = true, display = {
+      open_fn = require('packer.util').float,
+    } }
   end
 
   local use = packer.use
