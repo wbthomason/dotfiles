@@ -25,13 +25,13 @@ function! s:setup_colors() abort
   exec 'hi StatuslineLineCol guibg=' . s:bg_color . ' gui=none guifg=#878787'
   exec 'hi StatuslineTS guibg=' . s:bg_color . ' gui=none guifg=#878787'
   exec 'hi StatuslineFiletype guibg=' . s:bg_color . ' gui=none guifg=' . s:fg_color
-  exec 'hi StatuslineNormalAccent guibg=#d75f5f gui=bold guifg=' . s:fg_color
-  exec 'hi StatuslineInsertAccent guifg=' . s:fg_color . ' gui=bold guibg=#dab997'
+  exec 'hi StatuslineNormalAccent guibg=#403834 gui=bold guifg=' . s:fg_color
+  exec 'hi StatuslineInsertAccent guifg=' . s:fg_color . ' gui=bold guibg=#726b67'
   exec 'hi StatuslineReplaceAccent guifg=' . s:fg_color . ' gui=bold guibg=#afaf00'
   exec 'hi StatuslineConfirmAccent guifg=' . s:fg_color . ' gui=bold guibg=#83adad'
   exec 'hi StatuslineTerminalAccent guifg=' . s:fg_color . ' gui=bold guibg=#6f6f6f'
-  exec 'hi StatuslineMiscAccent guifg=' . s:fg_color . ' gui=bold guibg=#f485dd'
-  exec 'hi StatuslineFilenameModified guifg=#d75f5f gui=bold guibg=' . s:bg_color
+  exec 'hi StatuslineMiscAccent guifg=' . s:fg_color . ' gui=bold guibg=#948d89'
+  exec 'hi StatuslineFilenameModified guifg=#b55f5f gui=bold guibg=' . s:bg_color
   exec 'hi StatuslineFilenameNoMod guifg=' . s:fg_color . ' gui=bold guibg=' . s:bg_color
 
 endfunction
