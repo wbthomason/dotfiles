@@ -365,6 +365,7 @@ local function init()
   -- Pretty UI
   use 'stevearc/dressing.nvim'
   use 'rcarriga/nvim-notify'
+  use 'vigoux/notifier.nvim'
   use {
     'B4mbus/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
