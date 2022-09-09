@@ -95,7 +95,7 @@ local servers = {
   jsonls = { prefer_null_ls = true, cmd = { 'vscode-json-languageserver', '--stdio' } },
   julials = { settings = { julia = { format = { indent = 2 } } } },
   ocamllsp = {},
-  pyright = { settings = { python = { formatting = { provider = 'yapf' } } } },
+  pyright = { settings = { python = { formatting = { provider = 'yapf' }, linting = { pytypeEnabled = true } } } },
   rust_analyzer = {},
   sumneko_lua = { prefer_null_ls = true },
   -- sumneko_lua = {
