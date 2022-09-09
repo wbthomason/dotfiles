@@ -1,3 +1,5 @@
+require('lua-dev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } }
+
 local lspconfig = require 'lspconfig'
 local trouble = require 'trouble'
 local null_ls = require 'null-ls'
@@ -51,7 +53,8 @@ local function on_attach(client)
   buf_keymap(0, 'n', 'gi', '<cmd>lua require"telescope.builtin".lsp_implementations()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gS', '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', keymap_opts)
-  buf_keymap(0, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', keymap_opts)
+  buf_keymap(0, 'n', '<leader>rn', '<cmd>lua require"renamer".rename()<CR>', keymap_opts)
+  buf_keymap(0, 'v', '<leader>rn', '<cmd>lua require"renamer".rename()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gr', '<cmd>lua require"telescope.builtin".lsp_references()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', keymap_opts)
   buf_keymap(0, 'v', 'gA', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', keymap_opts)
@@ -94,23 +97,23 @@ local servers = {
   ocamllsp = {},
   pyright = { settings = { python = { formatting = { provider = 'yapf' } } } },
   rust_analyzer = {},
-  -- sumneko_lua = require('lua-dev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } },
-  sumneko_lua = {
-    prefer_null_ls = true,
-    cmd = { 'lua-language-server' },
-    settings = {
-      Lua = {
-        diagnostics = { globals = { 'vim' } },
-        runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
-        workspace = {
-          library = {
-            [vim.fn.expand '$VIMRUNTIME/lua'] = true,
-            [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
-          },
-        },
-      },
-    },
-  },
+  sumneko_lua = { prefer_null_ls = true },
+  -- sumneko_lua = {
+  --   prefer_null_ls = true,
+  --   cmd = { 'lua-language-server' },
+  --   settings = {
+  --     Lua = {
+  --       diagnostics = { globals = { 'vim' } },
+  --       runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
+  --       workspace = {
+  --         library = {
+  --           [vim.fn.expand '$VIMRUNTIME/lua'] = true,
+  --           [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
   texlab = {
     settings = {
       texlab = {
@@ -212,7 +215,7 @@ null_ls.setup {
     null_fmt.yapf,
     -- null_fmt.black
     null_act.gitsigns,
-    null_act.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python', 'c', 'cpp' } },
+    -- null_act.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python', 'c', 'cpp' } },
   },
   on_attach = on_attach,
 }

@@ -6,7 +6,7 @@ local function init()
       disable_commands = true,
       display = {
         open_fn = function()
-          local result, win, buf =  require('packer.util').float {
+          local result, win, buf = require('packer.util').float {
             border = {
               { '╭', 'FloatBorder' },
               { '─', 'FloatBorder' },
@@ -85,7 +85,7 @@ local function init()
   use 'romainl/vim-cool'
 
   -- Prettification
-  use 'junegunn/vim-easy-align'
+  use { 'junegunn/vim-easy-align', disable = true }
 
   -- Text objects
   use 'wellle/targets.vim'
@@ -324,7 +324,7 @@ local function init()
   use { 'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]] }
 
   -- Refactoring
-  use 'ThePrimeagen/refactoring.nvim'
+  use { 'ThePrimeagen/refactoring.nvim', disable = true }
 
   -- Plugin development
   use 'folke/lua-dev.nvim'
@@ -356,9 +356,25 @@ local function init()
     requires = 'kyazdani42/nvim-web-devicons',
     config = [[require('config.bufferline')]],
     event = 'User ActuallyEditing',
+    disable = true,
   }
 
-  use 'b0o/incline.nvim'
+  use {
+    'b0o/incline.nvim',
+    config = function()
+      require('incline').setup {}
+    end,
+  }
+
+  use {
+    'filipdutescu/renamer.nvim',
+    branch = 'master',
+    requires = { { 'nvim-lua/plenary.nvim' } },
+    config = function()
+      require('renamer').setup {}
+    end,
+  }
+
   use 'teal-language/vim-teal'
   use { 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } }
 
