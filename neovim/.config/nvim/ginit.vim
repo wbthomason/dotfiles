@@ -1,2 +1,2 @@
-set guifont=JetBrains\ Mono:14
+set guifont=JetBrains\ Mono:h15
 set conceallevel=0
