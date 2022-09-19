@@ -49,7 +49,7 @@ local function init()
       'ggandor/leap.nvim',
       requires = 'tpope/vim-repeat',
     },
-    { 'ggandor/flit.nvim', config = [[require'flit'.setup{}]] },
+    { 'ggandor/flit.nvim', config = [[require'flit'.setup { labeled_modes = 'nv' }]] },
   }
 
   -- Quickfix
