@@ -7,9 +7,6 @@ local counter = 15
 local total_paths = 15
 local offset = 5
 
-local use_vcs_root = true
-local files = {}
-
 local function cap_path_length(path)
   if string.len(path) > 50 then
     path = vim.fn.pathshorten(path)
@@ -17,16 +14,10 @@ local function cap_path_length(path)
   return path
 end
 
-local function relativize(path)
-  return cap_path_length(vim.fn.fnamemodify(path, [[:~:.]]))
-end
 local regex = vim.regex
 local path_skip_list = {
   regex 'runtime/doc/.*\\.txt',
-  regex 'bundle/.*/doc/.*\\.txt',
-  regex 'plugged/.*/doc/.*\\.txt',
   regex '/.git/',
-  regex 'fugitiveblame$',
   regex(vim.fn.escape(vim.fn.fnamemodify(vim.fn.resolve(os.getenv 'VIMRUNTIME'), ':p'), '\\') .. 'doc/.*\\.txt'),
 }
 
@@ -40,55 +31,34 @@ local function skip(path)
   return false
 end
 
-local function filter_oldfiles(prefix, fmt)
-  prefix = regex('\\V' .. vim.fn.escape(prefix, '\\'))
-  local is_dir = vim.fn.escape('/', '\\') .. '$'
+local function recent_files()
   local oldfiles = {}
-  for _, file in ipairs(vim.v.oldfiles) do
-    if counter <= 0 then
+  local f_mod = vim.fn.fnamemodify
+  local f_esc = vim.fn.fnameescape
+  local get_icon = icons.get_icon
+  local f_stat = vim.loop.fs_stat
+  local unfiltered_oldfiles = vim.v.oldfiles
+  for _, file in ipairs(unfiltered_oldfiles) do
+    if #oldfiles >= counter then
       break
     end
-    local absolute_path = vim.fn.glob(vim.fn.fnamemodify(file, ':p'))
-    if
-      absolute_path
-      and absolute_path ~= ''
-      and not files[absolute_path]
-      and string.match(absolute_path, is_dir) == nil
-      and prefix:match_str(absolute_path) ~= nil
-      and not skip(absolute_path)
-    then
-      local escaped_path = vim.fn.fnameescape(absolute_path)
-      files[absolute_path] = true
+
+    local absolute_path = f_mod(file, ':p')
+    local path_info = f_stat(absolute_path)
+    if path_info and path_info.type ~= 'directory' and not skip(absolute_path) then
+      local escaped_path = f_esc(absolute_path)
       oldfiles[#oldfiles + 1] = {
-        key = total_paths - counter,
+        key = #oldfiles,
         cmd = 'edit ' .. escaped_path,
-        disp = icons.get_icon(escaped_path, vim.fn.fnamemodify(escaped_path, ':e'), { default = true })
-          .. ' '
-          .. cap_path_length(vim.fn.fnamemodify(absolute_path, fmt)),
+        disp = get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length(
+          f_mod(absolute_path, ':~:.')
+        ),
         editing = true,
       }
-      counter = counter - 1
     end
   end
 
   return oldfiles
-end
-
-local function current_dir_files()
-  if use_vcs_root then
-    local path = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h')
-    local root = vim.fn.finddir('.git', path .. ';')
-    if root ~= '' then
-      vim.cmd('lcd ' .. vim.fn.fnameescape(vim.fn.fnamemodify(root, ':h')))
-    end
-  end
-
-  local dir = vim.fn.expand(vim.fn.getcwd())
-  return filter_oldfiles(dir, ':~:.')
-end
-
-local function recent_files()
-  return filter_oldfiles('', ':p:~')
 end
 
 local commands = {
@@ -102,14 +72,10 @@ local commands = {
   { key = 'q', disp = '  Quit', cmd = 'qa' },
 }
 
-local cur_dir = relativize(vim.fn.expand(vim.fn.getcwd()))
-cur_dir = (cur_dir ~= '') and cur_dir or '~'
-
 -- TODO: Maybe make the show functions unevaluated and run async? Would require rewriting using LUV
 -- functions, which isn't a bad idea anyway
 local sections = {
   { title = 'Commands', show = commands },
-  -- { title = string.format('Recent Files in %s', cur_dir), show = current_dir_files() },
   { title = 'Recent Files', show = recent_files() },
 }
 
