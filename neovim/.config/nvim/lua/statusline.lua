@@ -76,7 +76,7 @@ local function get_readonly_space()
   return ((vim.o.paste and vim.bo.readonly) and ' ' or '') and '%r' .. (vim.bo.readonly and ' ' or '')
 end
 
-local statusline_format = '%%#%s# %s %s%%<%%#%s# %s%s%%<%%=%%#StatuslineVC#%s'
+local statusline_format = '%%#%s# %s %%<%%#%s# %s%s%%<%%=%%#StatuslineVC#%s'
 
 local statuslines = {}
 local function status()
@@ -84,12 +84,10 @@ local function status()
   if win_id == get_current_win() or statuslines[win_id] == nil then
     local mode = get_mode().mode
     local mode_color, filename_color = update_colors(mode)
-    local line_col_segment = '%#StatuslineLineCol# %l:%#StatuslineLineCol#%c '
     statuslines[win_id] = string.format(
       statusline_format,
       mode_color,
       mode_name(mode),
-      line_col_segment,
       filename_color,
       get_paste(),
       get_readonly_space(),
