@@ -61,7 +61,11 @@ local function render_label(props)
   local diagnostics = render_diagnostics(props.buf)
   local bg = base_bg
   local fg = base_fg
-  local gui = props.focused and nil or 'italic'
+  local gui = nil
+  if not props.focused then
+    gui = 'italic'
+  end
+
   if props.focused then
     bg = base_fg
     fg = base_bg
