@@ -84,5 +84,7 @@ end
 
 require('incline').setup {
   render = render_label,
-  window = { winhighlight = { Normal = 'Normal' } },
+  window = { zindex = 60, width = 'fit', winhighlight = { Normal = 'Normal' } },
+  hide = { cursorline = 'focused_win', focused_win = false },
+  ignore = { floating_wins = true, unlisted_buffers = true, buftypes = 'special', wintypes = 'special' },
 }
