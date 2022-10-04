@@ -360,9 +360,8 @@ local function init()
 
   use {
     'b0o/incline.nvim',
-    config = function()
-      require('incline').setup {}
-    end,
+    config = [[require('config.incline')]],
+    event = 'User ActuallyEditing',
   }
 
   use {

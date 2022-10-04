@@ -48,7 +48,7 @@ local function recent_files()
     if path_info and path_info.type ~= 'directory' and not skip(absolute_path) then
       local escaped_path = f_esc(absolute_path)
       oldfiles[#oldfiles + 1] = {
-        key = #oldfiles,
+        key = tostring(#oldfiles),
         cmd = 'edit ' .. escaped_path,
         disp = get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length(
           f_mod(absolute_path, ':~:.')
@@ -204,7 +204,7 @@ end
 local function handle_cr()
   local line_num = vim.fn.line '.'
   local curr_line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
-  local key = string.match(curr_line, '%[([^%]]*)%]')
+  local key = string.match(curr_line, '%(([^%]]*)%)')
   handle_key(key)
 end
 
