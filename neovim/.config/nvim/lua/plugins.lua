@@ -177,7 +177,6 @@ local function init()
     'ray-x/lsp_signature.nvim',
     {
       'kosayoda/nvim-lightbulb',
-      requires = 'antoinemadec/FixCursorHold.nvim',
     },
   }
 
