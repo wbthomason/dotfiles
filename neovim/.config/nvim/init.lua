@@ -69,6 +69,7 @@ opt.cursorline = true
 opt.modeline = false
 opt.mouse = 'nivh'
 opt.signcolumn = 'yes:1'
+opt.cmdheight = 0
 
 -- Colorscheme
 opt.termguicolors = true
