@@ -1,0 +1,43 @@
+#!/bin/dash
+# Originally by https://github.com/windelicato/
+# edited beyound recognition
+
+follower() {
+if [ "$(pgrep -cx windowgrabber)" = 1 ] ; then
+	bspc config pointer_follows_focus false
+fi
+}
+
+trap 'follower' INT TERM QUIT EXIT
+
+size=${2:-'20'}
+dir=$1
+
+bspc config pointer_follows_focus true
+# Find current window mode
+is_floating() {
+bspc query -T -n | grep -q '"state":"floating"'
+}
+# If the window is floating, move it
+if is_floating; then
+#only parse input if window is floating,tiled windows accept input as is
+        case "$dir" in
+  		west) switch="-x"
+  		sign="-"
+        	;;
+  		east) switch="-x"
+         	sign="+"
+       		;;
+  		north) switch="-y"
+         	sign="-"
+        	;;
+  		*) switch="-y"
+     		sign="+"
+     		;;
+ 		esac
+ xdo move ${switch} ${sign}${size}
+
+# Otherwise, window is tiled: switch with window in given direction
+else
+        bspc node -n ${dir}.!automatic || bspc node -s ${dir} ||  bspc node -m ${dir} && bspc monitor -f
+fi

@@ -1,0 +1,217 @@
+# terminal emulator
+super + Return
+  kitty
+
+# Close window
+super + x
+  bspc node -c
+
+# Kill window
+super + shift + x
+  bspc node -k
+
+# Toggle tiling mode of window
+super + shift + t
+  bspc node -t {pseudo_tiled,tiled}
+
+super + t
+  {bspc node -t floating && window-placer $(bspc query -T -d | grep -o '"state":"floating"' | wc -l),bspc node -t tiled}
+
+# Toggle fullscreen
+super + shift + f 
+  bspc node -t {fullscreen,tiled}	
+
+# Try to keep size and position of the selected window
+super + o
+  bspc node -g private
+
+# Make window sticky
+super + i
+  bspc node -g sticky
+
+# Lock a window from closing
+super + Escape
+  bspc node -g locked 
+
+### Map or unmap windows (functional equivalent of "minimize")
+super + c
+    whid dmenu
+
+super + shift + c
+    whid hide
+
+super + ctrl + c
+    whid last
+
+#
+# Window moving and splitting
+# ______________    
+
+# Autopresel (split window in its largest dimension)
+ctrl + space
+  auto-presel
+  
+# Presel window for splitting in certain direction
+alt + ctrl + {h,j,k,l}
+  bspc node -p \~{west,south,north,east}
+
+# Set splitting ratio of windows
+alt + ctrl + {1-9}
+  bspc node -o 0.{1-9}
+  	
+# Create a new "master area", splitting the whole desktop instead of just windows.
+alt + Return
+  bspc node -n @/
+  
+# go (Shift=move) to desktop (and focus the monitor that the desktop is located on. Bspwm style)
+super + {1-9,0}
+  move_desktop.sh {1-9,0}
+
+super + shift + {1-9,0}
+  move_to_desktop.sh {1-9,0}
+
+## Alternative: i3 style behavior (focus nth, desktop of the focused monitor)
+#super + {1-9,0}
+#	focusdesktopofthismonitor {1-9}
+#super + shift + {1-9,0}
+#	movetodesktopofthismonitor {1-9,10}
+
+# Another alternative: xmonad style desktops. You have 10 desktops shared between all monitors,
+# and focusing a desktop focuses it on the currently focused monitor
+# super + {1-9,0}
+#   summondesktop.sh {1-9,7}
+
+# super + shift + {1-9,0}
+#   bspc node -d ^{1-9,10}
+
+# cycle windows
+alt + {_,shift + }Tab
+    bspc node -f {next,prev}
+
+# Go to specific window
+super + Tab
+  rofi -show window
+  
+super +  {h,j,k,l}
+    focusmover {west,south,north,east}
+# Move tiled windows. Moving a tiled window to 
+# preselected one moves into preselection instead. 
+# Moving out of the screen should move the window to next monitor if possible
+#super + shift + {a,s,w,d}
+#	windowgrabber {west,south,north,east}
+
+super + shift + {h,j,k,l}
+  windowgrabber {west,south,north,east}
+  
+# Different style of movement: transplant into window in chosen direction
+super + shift + {Left,Down,Up,Right}
+  euclid_mover {west,south,north,east}
+
+#resize windows
+super + ctrl + {h,j,k,l}
+  bspwm_resize.sh {west,south,north,east}
+  
+super + ctrl + {Left,Down,Up,Right}
+  bspwm_resize.sh {west,south,north,east}
+
+# Move desktop to monitor
+super + bracket{left,right}
+  bspc desktop --to-monitor {prev,next} --follow
+
+#
+# Layout manipulation/desktop level controls
+# ______________    
+
+# Toggle monocle mode
+super + f 
+  bspc desktop -l next
+  
+# Balance tree
+super + b
+  bspc node @/ -B
+
+# Balance brother node. If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
+super + alt + b
+  bspc node @brother -B
+  
+# Undo balancing (equalize windows)
+super + ctrl + b
+  bspc node @/ -E
+
+# Toggle automatic balancing of windows
+alt + b
+  euclid_balancer
+
+# Mirror and flip leaves of tree
+super + {comma,period}
+  bspc node @/ -F {horizontal,vertical}
+  
+# Rotate leaves of tree
+super + shift + {comma,period}
+  bspc node @/ -R {90,270}
+
+super + z
+  tdrop -ma -w -30 -x 15 -h "45%" -y 35 -s sysadmin kitty 
+
+Print
+  maim
+
+XF86AudioPrev
+  playerctl previous
+
+XF86AudioNext
+  playerctl next
+
+XF86AudioPlay
+  playerctl play-pause
+
+ctrl + shift + {Left, Right, space}
+  playerctl {prev, next, play-pause}
+
+XF86AudioRaiseVolume
+  pamixer --increase 5; volnoti-show `pamixer --get-volume`
+
+XF86AudioLowerVolume
+  pamixer --decrease 5; volnoti-show `pamixer --get-volume`
+
+XF86AudioMute
+  pamixer --toggle-mute; if `pamixer --get-mute`; then volnoti-show -m; else volnoti-show `pamixer --get-volume`; fi
+  
+XF86MonBrightnessDown
+  xbacklight -dec 5; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)
+
+XF86MonBrightnessUp
+  xbacklight -inc 5; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)
+
+shift + XF86MonBrightnessDown
+  xbacklight -dec 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)
+
+shift + XF86MonBrightnessUp
+  xbacklight -inc 1; volnoti-show -s /usr/share/pixmaps/volnoti/display-brightness-symbolic.svg $(xbacklight -get)
+
+XF86Sleep
+  systemctl suspend
+
+# make sxhkd reload its configuration files:
+super + shift + Escape
+  pkill -USR1 -x sxhkd
+
+# In case bspwmrc fails to execute/you wish have plugged in a new monitor
+super + shift + r
+  bspwmrc
+
+# Remove receptacles
+super + BackSpace
+  for i in $(bspc query -N -n .leaf.!window.local); do bspc node $i -k; done
+
+super + d
+  rofi -combi-modi window,drun,ssh -mesg -show combi -modi combi
+
+super + space
+  xflock4
+
+super + shift + space
+  systemctl suspend
+
+super + p
+  ~/.config/polybar/scripts/powermenu

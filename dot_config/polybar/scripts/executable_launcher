@@ -1,0 +1,17 @@
+#!/bin/bash
+
+## Created By Aditya Shakya
+
+rofi -no-lazy-grab -show drun \
+-display-drun "Applications :" -drun-display-format "{name}" \
+-hide-scrollbar true \
+-bw 0 \
+-lines 10 \
+-line-padding 10 \
+-padding 20 \
+-width 30 \
+-xoffset 10 -yoffset 35 \
+-location 1 \
+-columns 2 \
+-show-icons -icon-theme "Papirus" \
+-font "Lato 12"

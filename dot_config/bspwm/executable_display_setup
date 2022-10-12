@@ -1,0 +1,6 @@
+#! /bin/sh
+
+autorandr --change || "${HOME}"/.screenlayout/default.sh
+DISPLAY=":0" picom -b
+"${XDG_CONFIG_HOME:-"$HOME/.config"}"/polybar/launch.sh &
+"${HOME}"/bgscript.sh &

@@ -1,0 +1,30 @@
+#! /bin/sh
+
+commands=(
+	"xrdb merge .Xresources"
+	"xset +fp /usr/share/fonts/misc"
+	"xset fp rehash"
+	"fc-cache -fv"
+	"xset +dpms"
+	"volnoti"
+	"thunar --daemon"
+	"/usr/lib/xfce4/notifyd/xfce4-notifyd"
+	"system-config-printer-applet"
+	"start-pulseaudio-x11"
+	"xfce4-power-manager"
+	"xfce4-screensaver"
+	"/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+	"nm-applet"
+	"/usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11"
+	"/usr/bin/caffeine"
+	"blueberry-tray"
+	"pasystray"
+	"/usr/lib/geoclue-2.0/demos/agent"
+  "solaar -w hide"
+)
+
+for cmd in "${commands[@]}"; do
+	${cmd} &
+done
+
+dex -a -s ~/.config/autostart/ &

@@ -1,0 +1,9 @@
+#! /bin/sh
+
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+"${XDG_CONFIG_HOME:-"$HOME/.config"}"/bspwm/setup_workspaces
+"${XDG_CONFIG_HOME:-"$HOME/.config"}"/polybar/launch.sh &
+killall bgscript.sh && "${HOME}"/bgscript.sh &
+bspc config remove_disabled_monitors false
+bspc config remove_unplugged_monitors false

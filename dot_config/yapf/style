@@ -1,0 +1,14 @@
+[style]
+based_on_style = yapf
+coalesce_brackets = true
+column_limit = 100
+continuation_align_style = space
+dedent_closing_brackets = true
+indent_width = 2
+split_all_top_level_comma_separated_values = true
+split_before_dict_set_generator = true
+split_before_first_argument = true
+split_before_dot = true
+split_before_logical_operator = true
+split_complex_comprehension = true
+use_tabs = false

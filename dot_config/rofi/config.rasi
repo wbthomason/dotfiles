@@ -1,0 +1,14 @@
+configuration {
+	font: "Jetbrains Mono 11";
+	show-icons: true;
+  sort: true;
+  sorting-method: "fzf";
+	terminal: "kitty";
+	matching: "glob";
+	display-window: "";
+	display-run: "";
+	display-ssh: "~#";
+	display-drun: "";
+  display-combi: "";
+}
+@theme "~/.config/rofi/theme.rasi"

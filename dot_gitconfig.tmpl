@@ -1,0 +1,80 @@
+[user]
+  name = Wil Thomason
+  email = wil.thomason@gmail.com
+  signingkey = {{ .signingkey }}
+
+[credential]
+  helper = /usr/lib/git-core/git-credential-libsecret
+
+[push]
+  default = simple
+	autoSetupRemote = true
+
+[core]
+  editor = nvim
+  autocrlf = input
+  excludesfile = /home/wil/.gitignore_global
+  ; pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+
+[url "ssh://git@github.com/"]
+  insteadOf = git://github.com/
+
+[alias]
+  co    = checkout
+  ci    = commit -m
+  st    = status
+  br    = branch
+  hist  = log --pretty=format:\"%h %af | %s%d [%an]\" --graph --date=short
+  type  = cat-file -t
+  dump  = cat-file -p
+  d     = diff
+  pl    = pull
+  pu    = push
+  a     = add
+  ap    = add -p
+  ac    = !git add . && git commit -m
+  undo  = reset --soft HEAD~1
+  sub   = submodule update --init --recursive
+  cp    = cherry-pick
+  cl    = clone
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[commit]
+  gpgsign = true
+[gpg]
+  program = gpg2
+[color]
+  ui = true
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[color "diff"]
+  meta = yellow
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[init]
+	defaultBranch = main

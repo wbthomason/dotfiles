@@ -1,0 +1,31 @@
+#! /bin/sh
+first="admin"
+second="work"
+third="web"
+fourth="notes"
+fifth="references"
+sixth="music"
+seventh="email"
+eighth="reading"
+ninth="comms"
+tenth="misc"
+##Then, create workspaces on all monitors
+I=1
+M=$(bspc query -M | wc -l)
+if [[ "$M" == 1 ]]; then
+	bspc monitor -d $first $second $third $fourth $fifth $sixth $seventh $eighth $ninth $tenth
+elif [[ "$M" == 2 ]]; then
+  bspc monitor $(bspc query -M | awk NR==2) -d $second $third $fourth $fifth $sixth $seventh $eighth $ninth $tenth
+  bspc monitor $(bspc query -M | awk NR==1) -d $first $third $sixth
+elif [[ "$M" == 3 ]]; then
+	bspc monitor $(bspc query -M | awk NR==1) -d $first $fourth $fifth
+	bspc monitor $(bspc query -M | awk NR==2) -d $second
+	bspc monitor $(bspc query -M | awk NR==3) -d $third $sixth $seventh $eighth $ninth $tenth
+else
+	for monitor in $(bspc query -M); do
+		bspc monitor $monitor \
+			-n "$I" \
+			-d $I/{a,b,c}
+		let I++
+	done
+fi
