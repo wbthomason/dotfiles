@@ -138,9 +138,6 @@ map('n', '<leader>w', '<cmd>w<cr>', silent)
 -- Version control
 map('n', 'gs', '<cmd>Neogit<cr>', silent)
 
--- Esc in the terminal
-map('t', 'jj', [[<C-\><C-n>]], silent)
-
 -- Yank to clipboard
 map('n', 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', silent)
 map('v', 'y+', '<cmd>set opfunc=util#clipboard_yank<cr>g@', silent)
