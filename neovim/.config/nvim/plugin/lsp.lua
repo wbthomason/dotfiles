@@ -84,7 +84,7 @@ end
 
 local servers = {
   bashls = {},
-  cmake = {},
+  neocmake = {},
   cssls = {
     cmd = { 'vscode-css-languageserver', '--stdio' },
     filetypes = { 'css', 'scss', 'less', 'sass' },

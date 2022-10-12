@@ -216,10 +216,7 @@ local function init()
   use {
     {
       'L3MON4D3/LuaSnip',
-      event = 'InsertEnter',
-      config = function()
-        require('luasnip.loaders.from_vscode').lazy_load()
-      end,
+      opt = true,
     },
     'rafamadriz/friendly-snippets',
   }
@@ -236,12 +233,12 @@ local function init()
       { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' },
       { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' },
       'lukas-reineke/cmp-under-comparator',
-      { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp', event = 'CmdlineEnter' },
+      { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' },
       { 'hrsh7th/cmp-nvim-lsp-document-symbol', after = 'nvim-cmp' },
     },
     config = [[require('config.cmp')]],
     event = 'InsertEnter',
-    after = 'LuaSnip',
+    wants = 'LuaSnip',
   }
 
   -- Endwise

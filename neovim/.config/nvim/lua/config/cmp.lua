@@ -1,5 +1,7 @@
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+luasnip.setup { region_check_events = 'InsertEnter', delete_check_events = 'InsertEnter' }
+require('luasnip.loaders.from_vscode').lazy_load()
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
