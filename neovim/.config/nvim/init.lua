@@ -70,6 +70,7 @@ opt.modeline = false
 opt.mouse = 'nivh'
 opt.signcolumn = 'yes:1'
 opt.cmdheight = 0
+opt.fillchars = [[vert:│,horiz:─]]
 
 -- Colorscheme
 opt.termguicolors = true
