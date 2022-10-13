@@ -73,7 +73,7 @@ opt.cmdheight = 0
 opt.splitbelow = true
 opt.splitright = true
 opt.timeoutlen = 200
-opt.fillchars = [[vert:│,horiz:─]]
+opt.fillchars = [[vert:│,horiz:─,eob: ]]
 
 -- Colorscheme
 opt.termguicolors = true
