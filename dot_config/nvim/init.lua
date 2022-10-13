@@ -70,6 +70,10 @@ opt.modeline = false
 opt.mouse = 'nivh'
 opt.signcolumn = 'yes:1'
 opt.cmdheight = 0
+opt.splitbelow = true
+opt.splitright = true
+opt.timeoutlen = 200
+opt.fillchars = [[vert:│,horiz:─]]
 
 -- Colorscheme
 opt.termguicolors = true
