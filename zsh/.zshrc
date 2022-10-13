@@ -19,7 +19,7 @@ source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up			
+bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # General options
@@ -69,13 +69,13 @@ export LESS=-r
 zstyle ':completion:*' completer _complete
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+zstyle ':completion:*' rehash true                              # automatically find new executables in path
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
-fpath=(~/.zfunc ~/.zsh/completions $fpath) 
+fpath=(~/.zfunc ~/.zsh/completions $fpath)
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
   compinit
@@ -134,7 +134,7 @@ source /usr/share/fzf/completion.zsh
 
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up			
+bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 # OPAM configuration
@@ -146,7 +146,7 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   export SSH_AUTH_SOCK
 fi
 
-function unlock-keyring() 
+function unlock-keyring()
 {
   read -rs "pass?Password: "
   export $(echo -n "$pass" | gnome-keyring-daemon --replace --unlock --components=ssh,secrets,gpg)
@@ -163,18 +163,17 @@ eval "$(pyenv init -)"
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/wil/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "/home/wil/mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/home/wil/mambaforge/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/wil/mambaforge/bin:$PATH"
-    fi
+  if [ -f "/home/wil/mambaforge/etc/profile.d/conda.sh" ]; then
+    . "/home/wil/mambaforge/etc/profile.d/conda.sh"
+  else
+    export PATH="/home/wil/mambaforge/bin:$PATH"
+  fi
 fi
 unset __conda_setup
 
 if [ -f "/home/wil/mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/home/wil/mambaforge/etc/profile.d/mamba.sh"
+  . "/home/wil/mambaforge/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
-
