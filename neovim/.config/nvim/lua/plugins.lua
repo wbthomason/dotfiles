@@ -323,7 +323,7 @@ local function init()
   use { 'ThePrimeagen/refactoring.nvim', disable = true }
 
   -- Plugin development
-  use 'folke/lua-dev.nvim'
+  use 'folke/neodev.nvim'
 
   -- Highlight colors
   use {
