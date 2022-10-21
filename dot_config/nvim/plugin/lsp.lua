@@ -1,4 +1,4 @@
-require('lua-dev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } }
+require('neodev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } }
 
 local lspconfig = require 'lspconfig'
 local trouble = require 'trouble'
