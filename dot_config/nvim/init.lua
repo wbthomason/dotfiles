@@ -72,7 +72,7 @@ opt.signcolumn = 'yes:1'
 opt.cmdheight = 0
 opt.splitbelow = true
 opt.splitright = true
-opt.timeoutlen = 200
+opt.timeoutlen = 400
 opt.fillchars = [[vert:│,horiz:─,eob: ]]
 
 -- Colorscheme
