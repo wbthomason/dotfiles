@@ -2,7 +2,6 @@
 
 commands=(
 	"xrdb merge .Xresources"
-	"xset +fp /usr/share/fonts/misc"
 	"xset fp rehash"
 	"fc-cache -fv"
 	"xset +dpms"
@@ -10,7 +9,6 @@ commands=(
 	"thunar --daemon"
 	"/usr/lib/xfce4/notifyd/xfce4-notifyd"
 	"system-config-printer-applet"
-	"start-pulseaudio-x11"
 	"xfce4-power-manager"
 	"xfce4-screensaver"
 	"/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
