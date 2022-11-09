@@ -728,7 +728,7 @@ interface = wlp0s20f3
 ; Normal Module
 [module/network]
 type = internal/network
-interface = wlp0s20f3
+interface = {{ .network_interface }}
 
 ; Seconds to sleep between updates
 ; Default: 1
