@@ -1,7 +1,6 @@
 require('neodev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } }
 
 local lspconfig = require 'lspconfig'
-local trouble = require 'trouble'
 local null_ls = require 'null-ls'
 -- local lightbulb = require 'nvim-lightbulb'
 
@@ -17,7 +16,6 @@ sign_define('DiagnosticSignError', { text = '', numhl = 'RedSign' })
 sign_define('DiagnosticSignWarn', { text = '', numhl = 'YellowSign' })
 sign_define('DiagnosticSignInfo', { text = '', numhl = 'WhiteSign' })
 sign_define('DiagnosticSignHint', { text = '', numhl = 'BlueSign' })
-trouble.setup()
 -- lightbulb.setup {
 --   sign = { enabled = false },
 --   virtual_text = { enabled = true, text = '', hl_mode = 'blend' },
@@ -45,7 +43,13 @@ end
 
 require('lsp_signature').setup { bind = true, handler_opts = { border = 'single' } }
 local keymap_opts = { noremap = true, silent = true }
+local renamer_loaded = false
 local function on_attach(client)
+  if not renamer_loaded then
+    require('renamer').setup {}
+    renamer_loaded = true
+  end
+
   require('lsp_signature').on_attach { bind = true, handler_opts = { border = 'single' } }
   buf_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gd', '<cmd>lua require"telescope.builtin".lsp_definitions()<CR>', keymap_opts)

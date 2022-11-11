@@ -35,7 +35,13 @@ local function init()
 
   -- Async building & commands
   -- use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
-  use 'mhinz/vim-sayonara'
+  use {
+    'ojroques/nvim-bufdel',
+    cmd = 'BufDel',
+    config = function()
+      require('bufdel').setup {}
+    end,
+  }
 
   -- Marks
   -- use { 'kshenoy/vim-signature', config = [[require('config.signature')]] }
@@ -47,9 +53,14 @@ local function init()
   use {
     {
       'ggandor/leap.nvim',
+      event = 'User ActuallyEditing',
       requires = 'tpope/vim-repeat',
     },
-    { 'ggandor/flit.nvim', config = [[require'flit'.setup { labeled_modes = 'nv' }]] },
+    {
+      'ggandor/flit.nvim',
+      config = [[require'flit'.setup { labeled_modes = 'nv' }]],
+      event = 'User ActuallyEditing',
+    },
   }
 
   -- Quickfix
@@ -125,14 +136,6 @@ local function init()
     'nvim-telescope/telescope-file-browser.nvim',
   }
 
-  -- Project Management/Sessions
-  use {
-    'dhruvasagar/vim-prosession',
-    after = 'vim-obsession',
-    requires = { 'tpope/vim-obsession', cmd = 'Prosession' },
-    config = [[require('config.prosession')]],
-  }
-
   -- Undo tree
   use {
     'mbbill/undotree',
@@ -161,19 +164,16 @@ local function init()
   -- Pretty symbols
   use 'kyazdani42/nvim-web-devicons'
 
-  -- REPLs
-  use {
-    'hkupty/iron.nvim',
-    setup = [[vim.g.iron_map_defaults = 0]],
-    config = [[require('config.iron')]],
-    cmd = { 'IronRepl', 'IronSend', 'IronReplHere' },
-  }
-
   -- Completion and linting
   use {
     'neovim/nvim-lspconfig',
-    { '~/projects/personal/lsp-status.nvim', disable = true },
-    'folke/trouble.nvim',
+    {
+      'folke/trouble.nvim',
+      cmd = 'Trouble',
+      config = function()
+        require('trouble').setup {}
+      end,
+    },
     'ray-x/lsp_signature.nvim',
     {
       'kosayoda/nvim-lightbulb',
@@ -266,7 +266,7 @@ local function init()
   }
 
   -- Path navigation
-  use 'justinmk/vim-dirvish'
+  -- use 'justinmk/vim-dirvish'
   use {
     'nvim-neo-tree/neo-tree.nvim',
     branch = 'v2.x',
@@ -317,7 +317,7 @@ local function init()
   use { 'JuliaEditorSupport/julia-vim', setup = [[vim.g.latex_to_unicode_tab = 'off']], opt = true }
 
   -- Profiling
-  use { 'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 10]] }
+  use { 'dstein64/vim-startuptime', cmd = 'StartupTime', config = [[vim.g.startuptime_tries = 15]] }
 
   -- Refactoring
   use { 'ThePrimeagen/refactoring.nvim', disable = true }
@@ -327,9 +327,9 @@ local function init()
 
   -- Highlight colors
   use {
-    'norcalli/nvim-colorizer.lua',
-    ft = { 'css', 'javascript', 'vim', 'html' },
-    config = [[require('colorizer').setup {'css', 'javascript', 'vim', 'html'}]],
+    'NvChad/nvim-colorizer.lua',
+    ft = { 'css', 'javascript', 'vim', 'html', 'latex', 'tex' },
+    config = [[require('colorizer').setup {}]],
   }
 
   -- Color scheme
@@ -365,9 +365,7 @@ local function init()
     'filipdutescu/renamer.nvim',
     branch = 'master',
     requires = { { 'nvim-lua/plenary.nvim' } },
-    config = function()
-      require('renamer').setup {}
-    end,
+    module = 'renamer',
   }
 
   use 'teal-language/vim-teal'

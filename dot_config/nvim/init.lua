@@ -102,6 +102,17 @@ autocmd('TextYankPost', {
   end,
 })
 autocmd('FileType', { group = misc_aucmds, pattern = 'qf', command = 'set nobuflisted' })
+cmd 'silent! autocmd! FileExplorer *'
+autocmd('BufEnter', {
+  pattern = '*',
+  callback = function(args)
+    local file_info = vim.loop.fs_stat(args.file)
+    if file_info and file_info.type == 'directory' then
+      require('neo-tree').setup {}
+      cmd('Neotree position=current ' .. args.file)
+    end
+  end,
+})
 
 -- Commands
 local create_cmd = vim.api.nvim_create_user_command
@@ -133,7 +144,7 @@ local silent = { silent = true, noremap = true }
 local map = vim.api.nvim_set_keymap
 map('n', '<leader>q', '<cmd>qa<cr>', silent)
 map('n', '<leader>x', '<cmd>x!<cr>', silent)
-map('n', '<leader>d', '<cmd>Sayonara<cr>', { silent = true, nowait = true, noremap = true })
+map('n', '<leader>d', '<cmd>BufDel<cr>', { silent = true, nowait = true, noremap = true })
 
 -- Save buffer
 map('i', '<c-s>', '<esc><cmd>w<cr>a', silent)
