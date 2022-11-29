@@ -176,6 +176,14 @@ local function init()
     end,
   }
 
+  use {
+    'DNLHC/glance.nvim',
+    cmd = 'Glance',
+    config = function()
+      require('glance').setup { border = { enable = true } }
+    end,
+  }
+
   -- Pretty symbols
   use 'kyazdani42/nvim-web-devicons'
 
