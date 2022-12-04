@@ -31,6 +31,11 @@ cmp.setup {
       cmp.config.compare.order,
     },
   },
+  -- experimental = {
+  --   ghost_text = {
+  --     hl_group = 'LspCodeLens',
+  --   },
+  -- },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -95,9 +100,11 @@ cmp.setup {
 }
 
 cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = { { name = 'buffer' } },
 })
 
 cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
 })

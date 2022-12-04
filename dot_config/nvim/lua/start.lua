@@ -50,9 +50,8 @@ local function recent_files()
       oldfiles[#oldfiles + 1] = {
         key = tostring(#oldfiles),
         cmd = 'edit ' .. escaped_path,
-        disp = get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length(
-          f_mod(absolute_path, ':~:.')
-        ),
+        -- disp = cap_path_length(f_mod(absolute_path, ':~:.')), --get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length( f_mod(absolute_path, ':~:.')),
+        disp = get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length( f_mod(absolute_path, ':~:.')),
         editing = true,
       }
     end

@@ -3,6 +3,7 @@ local function init()
   if packer == nil then
     packer = require 'packer'
     packer.init {
+      profile = { enable = true },
       disable_commands = true,
       display = {
         open_fn = function()
@@ -34,7 +35,6 @@ local function init()
   use 'lewis6991/impatient.nvim'
 
   -- Async building & commands
-  -- use { 'tpope/vim-dispatch', cmd = { 'Dispatch', 'Make', 'Focus', 'Start' } }
   use {
     'ojroques/nvim-bufdel',
     cmd = 'BufDel',
@@ -74,7 +74,7 @@ local function init()
   }
 
   -- Indentation tracking
-  use 'lukas-reineke/indent-blankline.nvim'
+  use { 'lukas-reineke/indent-blankline.nvim', after = 'nvim-treesitter' }
 
   -- Commenting
   -- use 'tomtom/tcomment_vim'
@@ -158,12 +158,14 @@ local function init()
       config = function()
         require('git-conflict').setup()
       end,
+      event = 'BufReadPost',
     },
   }
 
   -- Hovers
   use {
     'lewis6991/hover.nvim',
+    event = 'BufReadPost',
     config = function()
       require('hover').setup {
         init = function()
@@ -209,19 +211,24 @@ local function init()
   -- Rust
   use {
     'simrat39/rust-tools.nvim',
+    ft = 'rust',
     config = function()
       require('rust-tools').setup {}
     end,
   }
 
+  -- Endwise
+  use { 'RRethy/nvim-treesitter-endwise', after = 'nvim-treesitter' }
   -- Highlights
   use {
     'nvim-treesitter/nvim-treesitter',
     requires = {
-      'nvim-treesitter/nvim-treesitter-refactor',
-      'RRethy/nvim-treesitter-textsubjects',
+      { 'nvim-treesitter/nvim-treesitter-refactor', after = 'nvim-treesitter' },
+      { 'RRethy/nvim-treesitter-textsubjects', after = 'nvim-treesitter' },
     },
     run = ':TSUpdate',
+    event = 'User ActuallyEditing',
+    config = [[require 'config.treesitter']]
   }
 
   -- Documentation
@@ -263,9 +270,6 @@ local function init()
     event = 'InsertEnter',
     wants = 'LuaSnip',
   }
-
-  -- Endwise
-  use 'RRethy/nvim-treesitter-endwise'
 
   -- Debugger
   use {
@@ -401,6 +405,7 @@ local function init()
   use {
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
+    event = 'BufReadPost',
     config = function()
       require('todo-comments').setup {}
     end,
@@ -408,6 +413,7 @@ local function init()
 
   use {
     'j-hui/fidget.nvim',
+    event = 'User ActuallyEditing',
     config = function()
       require('fidget').setup {
         sources = {
