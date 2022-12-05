@@ -1,4 +1,4 @@
---require 'impatient'.enable_profile()
+require 'impatient'.enable_profile()
 -- vim.go.packpath = '~/.local/share/nvim/site'
 vim.notify = function(_, m, l, o)
   local notify = require 'notify'
