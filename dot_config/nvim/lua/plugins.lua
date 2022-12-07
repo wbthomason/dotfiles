@@ -44,9 +44,13 @@ local function init()
   }
 
   -- Marks
-  -- use { 'kshenoy/vim-signature', config = [[require('config.signature')]] }
-
-  use { 'tversteeg/registers.nvim', keys = { { 'n', '"' }, { 'i', '<c-r>' } } }
+  use {
+    'folke/which-key.nvim',
+    config = function()
+      require('which-key').setup {}
+    end,
+    event = 'BufReadPost',
+  }
 
   -- Movement
   use 'chaoren/vim-wordmotion'
@@ -228,7 +232,7 @@ local function init()
     },
     run = ':TSUpdate',
     event = 'User ActuallyEditing',
-    config = [[require 'config.treesitter']]
+    config = [[require 'config.treesitter']],
   }
 
   -- Documentation
