@@ -161,7 +161,7 @@ font-4 = "icomoon\\-feather:size=10;2"
 
 modules-left = launcher
 modules-center = bspwm
-modules-right = network filesystem memory cpu {{- if eq .chezmoi.hostname "kephri" }} battery{{- end }} date sysmenu
+modules-right = network filesystem memory cpu {{- if .laptop }} battery{{- end }} date sysmenu
 
 ; The separator will be inserted between the output of each module
 separator =

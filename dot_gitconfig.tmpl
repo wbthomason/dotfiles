@@ -29,7 +29,7 @@
 [diff]
   colorMoved = default
 
-{{- if ne .chezmoi.hostname "atum" }}
+{{- if not .rice_machine }}
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
 
