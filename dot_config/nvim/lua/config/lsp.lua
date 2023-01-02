@@ -53,12 +53,21 @@ local function on_attach(client)
   require('lsp_signature').on_attach { bind = true, handler_opts = { border = 'single' } }
   buf_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gd', '<cmd>Glance definitions<CR>', keymap_opts)
-  -- buf_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gi', '<cmd>Glance implementations<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gS', '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', keymap_opts)
-  buf_keymap(0, 'n', '<leader>rn', '<cmd>lua require"renamer".rename()<CR>', keymap_opts)
-  buf_keymap(0, 'v', '<leader>rn', '<cmd>lua require"renamer".rename()<CR>', keymap_opts)
+  buf_keymap(0, 'n', '<leader>rn', '', {
+    callback = function()
+      return ':IncRename ' .. vim.fn.expand '<cword>'
+    end,
+    expr = true,
+  })
+  buf_keymap(0, 'v', '<leader>rn', '', {
+    callback = function()
+      return ':IncRename ' .. vim.fn.expand '<cword>'
+    end,
+    expr = true,
+  })
   buf_keymap(0, 'n', 'gr', '<cmd>Glance references<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', keymap_opts)
   buf_keymap(0, 'v', 'gA', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', keymap_opts)
@@ -100,8 +109,61 @@ local servers = {
   julials = { settings = { julia = { format = { indent = 2 } } } },
   ocamllsp = {},
   pyright = { settings = { python = { formatting = { provider = 'yapf' }, linting = { pytypeEnabled = true } } } },
-  rust_analyzer = {},
-  sumneko_lua = { prefer_null_ls = true },
+  rust_analyzer = {
+    settings = {
+      ['rust-analyzer'] = {
+        cargo = { allFeatures = true },
+        checkOnSave = {
+          command = 'clippy',
+          extraArgs = { '--no-deps' },
+        },
+      },
+    },
+  },
+  sumneko_lua = {
+    prefer_null_ls = true,
+    single_file_support = true,
+    settings = {
+      Lua = {
+        workspace = {
+          checkThirdParty = false,
+        },
+        completion = {
+          workspaceWord = true,
+          callSnippet = 'Both',
+        },
+      },
+      diagnostics = {
+        groupSeverity = {
+          strong = 'Warning',
+          strict = 'Warning',
+        },
+        groupFileStatus = {
+          ['ambiguity'] = 'Opened',
+          ['await'] = 'Opened',
+          ['codestyle'] = 'None',
+          ['duplicate'] = 'Opened',
+          ['global'] = 'Opened',
+          ['luadoc'] = 'Opened',
+          ['redefined'] = 'Opened',
+          ['strict'] = 'Opened',
+          ['strong'] = 'Opened',
+          ['type-check'] = 'Opened',
+          ['unbalanced'] = 'Opened',
+          ['unused'] = 'Opened',
+        },
+        unusedLocalExclude = { '_*' },
+      },
+      format = {
+        enable = false,
+        defaultConfig = {
+          indent_style = 'space',
+          indent_size = '2',
+          continuation_indent_size = '2',
+        },
+      },
+    },
+  },
   -- sumneko_lua = {
   --   prefer_null_ls = true,
   --   cmd = { 'lua-language-server' },
@@ -198,6 +260,9 @@ local null_act = null_ls.builtins.code_actions
 null_ls.setup {
   sources = {
     null_diag.chktex,
+    null_act.eslint_d,
+    null_diag.eslint_d,
+    null_fmt.eslint_d,
     -- null_diag.cppcheck,
     -- null_diag.proselint,
     -- null_diag.pylint,
@@ -210,7 +275,7 @@ null_ls.setup {
     null_fmt.clang_format,
     -- null_fmt.cmake_format,
     null_fmt.isort,
-    null_fmt.prettier,
+    -- null_fmt.prettier,
     null_fmt.rustfmt,
     null_fmt.shfmt,
     null_fmt.stylua,

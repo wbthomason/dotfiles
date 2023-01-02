@@ -28,7 +28,7 @@ autocmd('BufEnter', {
     end
   end,
 })
-autocmd('BufReadPost', {
+autocmd('BufReadPre', {
   group = misc_aucmds,
   callback = function()
     require 'config.lsp'

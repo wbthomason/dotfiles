@@ -4,7 +4,6 @@
 local icons = require 'nvim-web-devicons'
 
 local counter = 15
-local total_paths = 15
 local offset = 5
 
 local function cap_path_length(path)
@@ -51,7 +50,9 @@ local function recent_files()
         key = tostring(#oldfiles),
         cmd = 'edit ' .. escaped_path,
         -- disp = cap_path_length(f_mod(absolute_path, ':~:.')), --get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length( f_mod(absolute_path, ':~:.')),
-        disp = get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length( f_mod(absolute_path, ':~:.')),
+        disp = get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length(
+          f_mod(absolute_path, ':~:.')
+        ),
         editing = true,
       }
     end
@@ -62,7 +63,7 @@ end
 
 local commands = {
   { key = 'e', disp = '  New file', cmd = 'ene | startinsert', editing = true },
-  { key = 'u', disp = '  Update plugins', cmd = 'PackerSync' },
+  { key = 'u', disp = '  Update plugins', cmd = 'Lazy sync' },
   { key = 'b', disp = '  File Browser', cmd = 'Telescope file_browser' },
   { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles' },
   { key = 's', disp = '  Start Prosession', cmd = 'Prosession .', editing = true },
@@ -111,7 +112,7 @@ local function make_sections()
   local longest_title, longest_item = longest_elems()
   local title_indent = bit.arshift(win_width - longest_title, 1)
   local section_indent = bit.arshift(win_width - longest_item - 4, 1)
-  offset = section_indent + 2
+  offset = section_indent + 1
   local section_padding = string.rep(' ', section_indent)
   for _, section in ipairs(sections) do
     if next(section.show) ~= nil then
@@ -230,17 +231,34 @@ end
 
 local function start_screen()
   if vim.fn.argc() ~= 0 or vim.fn.line2byte '$' ~= -1 or vim.o.insertmode or not vim.o.modifiable then
-    vim.cmd [[ doautocmd User ActuallyEditing ]]
+    vim.api.nvim_exec_autocmds('User', { pattern = 'ActuallyEditing' })
     return
   end
 
-  vim.cmd [[set eventignore=all]]
-  vim.cmd [[noautocmd silent! setlocal bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= nobuflisted nocursorcolumn nocursorline nolist nonumber norelativenumber nospell noswapfile signcolumn=no synmaxcol& statusline= filetype=startify]]
+  vim.o.eventignore = 'all'
+  vim.opt_local.bufhidden = 'wipe'
+  vim.opt_local.colorcolumn = ''
+  vim.opt_local.foldcolumn = '0'
+  vim.opt_local.matchpairs = ''
+  vim.opt_local.buflisted = false
+  vim.opt_local.cursorcolumn = false
+  vim.opt_local.cursorline = false
+  vim.opt_local.list = false
+  vim.opt_local.number = false
+  vim.opt_local.relativenumber = false
+  vim.opt_local.spell = false
+  vim.opt_local.swapfile = false
+  vim.opt_local.signcolumn = 'no'
+  vim.opt_local.synmaxcol = 0
+  vim.opt_local.statusline = ''
+  vim.opt_local.filetype = 'startify'
+
+  -- vim.cmd [[noautocmd silent! setlocal bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= nobuflisted nocursorcolumn nocursorline nolist nonumber norelativenumber nospell noswapfile signcolumn=no synmaxcol& statusline= filetype=startify]]
   make_sections()
-  vim.cmd [[noautocmd setlocal nomodifiable nomodified]]
-  -- Position cursor
-  vim.fn.cursor(5, offset)
+  vim.opt_local.modifiable = false
+  vim.opt_local.modified = false
+  vim.api.nvim_win_set_cursor(0, { 5, offset })
   setup_keys()
-  vim.cmd [[set eventignore=""]]
+  vim.o.eventignore = ''
 end
 return { start = start_screen, handle_j = handle_j, handle_k = handle_k, handle_cr = handle_cr }

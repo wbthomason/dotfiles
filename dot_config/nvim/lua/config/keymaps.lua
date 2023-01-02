@@ -1,7 +1,3 @@
--- Leader/local leader
-vim.g.mapleader = [[ ]]
-vim.g.maplocalleader = [[,]]
-
 -- Keybindings
 local silent = { silent = true, noremap = true }
 

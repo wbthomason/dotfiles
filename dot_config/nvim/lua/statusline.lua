@@ -1,6 +1,31 @@
 local get_mode = vim.api.nvim_get_mode
 local get_current_win = vim.api.nvim_get_current_win
 
+local function setup_colors()
+  local bg_color = '#222222'
+  local fg_color = '#e9e9e9'
+  if vim.g.colors_name ~= 'nazgul' then
+    local statusline_hl = vim.api.nvim_get_hl_by_name 'Statusline'
+    bg_color = statusline_hl.bg
+    fg_color = statusline_hl.fg
+  end
+
+  local set_hl = vim.api.nvim_set_hl
+  set_hl(0, 'Statusline', { fg = fg_color, bg = bg_color })
+  set_hl(0, 'StatuslineSeparator', { fg = bg_color })
+  set_hl(0, 'StatuslineNormal', { bg = bg_color, fg = fg_color })
+  set_hl(0, 'StatuslineVC', { bg = bg_color, fg = '#a9a9a9' })
+  set_hl(0, 'StatuslineNormalAccent', { bg = '#403834', bold = true, fg = fg_color })
+  set_hl(0, 'StatuslineInsertAccent', { fg = fg_color, bold = true, bg = '#726b67' })
+  set_hl(0, 'StatuslineReplaceAccent', { fg = fg_color, bold = true, bg = '#afaf00' })
+  set_hl(0, 'StatuslineConfirmAccent', { fg = fg_color, bold = true, bg = '#83adad' })
+  set_hl(0, 'StatuslineTerminalAccent', { fg = fg_color, bold = true, bg = '#6f6f6f' })
+  set_hl(0, 'StatuslineMiscAccent', { fg = fg_color, bold = true, bg = '#948d89' })
+end
+
+vim.api.nvim_create_autocmd('ColorScheme', { pattern = '*', callback = setup_colors })
+setup_colors()
+
 local function vcs()
   local branch_sign = ''
   local git_info = vim.b.gitsigns_status_dict
