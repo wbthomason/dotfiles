@@ -1,0 +1,6 @@
+#require "core.top";;
+#require "ppx_jane";;
+open Base;;
+(* ## added by OPAM user-setup for ocamltop / base ## 3ec62baf6f9c219ae06d9814069da862 ## you can edit, but keep this line *)
+#use "topfind";;
+(* ## end of OPAM user-setup addition for ocamltop / base ## keep this line *)
