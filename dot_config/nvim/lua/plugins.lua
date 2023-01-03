@@ -14,7 +14,7 @@ return {
     end,
     event = 'BufReadPost',
   },
-  'chaoren/vim-wordmotion',
+  { 'chaoren/vim-wordmotion', event = 'User ActuallyEditing' },
   {
     'ggandor/leap.nvim',
     event = 'User ActuallyEditing',
@@ -43,12 +43,13 @@ return {
     event = 'User ActuallyEditing',
   },
   { 'Olical/vim-enmasse', cmd = 'EnMasse' },
-  'kevinhwang91/nvim-bqf',
+  { 'kevinhwang91/nvim-bqf', event = 'QuickFixCmdPre' },
   {
     url = 'https://gitlab.com/yorickpeterse/nvim-pqf',
     config = function()
       require('pqf').setup()
     end,
+    event = 'QuickFixCmdPre',
   },
   {
     'lukas-reineke/indent-blankline.nvim',
@@ -113,9 +114,9 @@ return {
     end,
     event = 'User ActuallyEditing',
   },
-  { 'romainl/vim-cool', lazy = false },
+  { 'romainl/vim-cool', event = 'User ActuallyEditing' },
   -- { 'junegunn/vim-easy-align', disable = true }
-  'wellle/targets.vim',
+  { 'wellle/targets.vim', event = 'User ActuallyEditing' },
   {
     'nvim-telescope/telescope.nvim',
     dependencies = {
@@ -249,10 +250,9 @@ return {
     end,
     keys = { '<localleader>d', '<localleader>df', '<localleader>dc' },
   },
-  'gpanders/nvim-parinfer',
+  { 'gpanders/nvim-parinfer', ft = { 'lisp', 'fennel', 'clojure', 'racket' } },
   {
     'L3MON4D3/LuaSnip',
-    lazy = true,
   },
   'rafamadriz/friendly-snippets',
   {
