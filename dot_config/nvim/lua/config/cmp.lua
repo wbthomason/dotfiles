@@ -9,7 +9,7 @@ local has_words_before = function()
 end
 
 cmp.setup {
-  completion = { completeopt = 'menu,menuone,noinsert' },
+  preselect = cmp.PreselectMode.Item,
   sorting = {
     comparators = {
       -- function(entry1, entry2)
@@ -23,8 +23,9 @@ cmp.setup {
       -- The built-in comparators:
       cmp.config.compare.offset,
       cmp.config.compare.exact,
+      require("clangd_extensions.cmp_scores"),
       cmp.config.compare.score,
-      require('cmp-under-comparator').under,
+      -- require('cmp-under-comparator').under,
       cmp.config.compare.kind,
       cmp.config.compare.sort_text,
       cmp.config.compare.length,

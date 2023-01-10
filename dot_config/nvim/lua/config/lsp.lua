@@ -231,7 +231,29 @@ require('clangd_extensions').setup {
     },
     capabilities = client_capabilities,
   },
-  extensions = { inlay_hints = { only_current_line = false, show_variable_name = true } },
+  extensions = {
+    inlay_hints = { only_current_line = false, show_variable_name = true },
+    ast = {
+      role_icons = {
+        type = '',
+        declaration = '',
+        expression = '',
+        specifier = '',
+        statement = '',
+        ['template argument'] = '',
+      },
+
+      kind_icons = {
+        Compound = '',
+        Recovery = '',
+        TranslationUnit = '',
+        PackExpansion = '',
+        TemplateTypeParm = '',
+        TemplateTemplateParm = '',
+        TemplateParamObject = '',
+      },
+    },
+  },
 }
 
 for server, config in pairs(servers) do

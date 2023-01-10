@@ -341,7 +341,6 @@ return {
     end,
     enabled = false,
   },
-  'ziglang/zig.vim',
   {
     'dstein64/vim-startuptime',
     cmd = 'StartupTime',
