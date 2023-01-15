@@ -298,6 +298,7 @@ return {
     init = function()
       vim.g.neo_tree_remove_legacy_commands = true
     end,
+    cmd = 'Neotree',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
