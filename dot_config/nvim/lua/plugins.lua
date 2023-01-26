@@ -1,3 +1,7 @@
+local function in_vscode()
+  return vim.g.vscode ~= nil
+end
+
 return {
   'lewis6991/impatient.nvim',
   {
@@ -349,7 +353,7 @@ return {
       vim.g.startuptime_tries = 15
     end,
   },
-  -- { 'ThePrimeagen/refactoring.nvim', disable = true }
+  -- {'ThePrimeagen/refactoring.nvim',
   'folke/neodev.nvim',
   {
     'NvChad/nvim-colorizer.lua',
@@ -444,10 +448,26 @@ return {
       vim.keymap.set('t', '<f7>', '<c-\\><c-n>:FloatermToggle<cr>')
       vim.keymap.set('t', 'jj', '<c-\\><c-n>')
     end,
+    enabled = false,
     cmd = {
       'FloatermNew',
       'FloatermToggle',
     },
+  },
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    config = function()
+      require('toggleterm').setup { open_mapping = [[<c-\>]] }
+    end,
+    lazy = false,
+  },
+  {
+    'beauwilliams/focus.nvim',
+    config = function()
+      require('focus').setup { excluded_filetypes = { 'toggleterm' } }
+    end,
+    lazy = false,
   },
   {
     'hkupty/iron.nvim',
