@@ -438,8 +438,9 @@ return {
     'ethanholz/nvim-lastplace',
     config = function()
       require('nvim-lastplace').setup {}
+      vim.api.nvim_exec_autocmds('BufWinEnter', { group = 'NvimLastplace' })
     end,
-    lazy = false,
+    event = 'User ActuallyEditing',
   },
   {
     'voldikss/vim-floaterm',
@@ -460,14 +461,14 @@ return {
     config = function()
       require('toggleterm').setup { open_mapping = [[<c-\>]] }
     end,
-    lazy = false,
+    keys = [[<c-\>/]],
   },
   {
     'beauwilliams/focus.nvim',
     config = function()
-      require('focus').setup { excluded_filetypes = { 'toggleterm' } }
+      require('focus').setup { excluded_filetypes = { 'toggleterm', 'TelescopePrompt' }, signcolumn = false }
     end,
-    lazy = false,
+    event = 'User ActuallyEditing',
   },
   {
     'hkupty/iron.nvim',
