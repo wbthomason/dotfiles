@@ -119,7 +119,6 @@ return {
     event = 'User ActuallyEditing',
   },
   { 'romainl/vim-cool', event = 'User ActuallyEditing' },
-  -- { 'junegunn/vim-easy-align', disable = true }
   { 'wellle/targets.vim', event = 'User ActuallyEditing' },
   {
     'nvim-telescope/telescope.nvim',
@@ -137,10 +136,6 @@ return {
       require 'config.telescope'
     end,
     cmd = 'Telescope',
-  },
-  {
-    'nvim-telescope/telescope-frecency.nvim',
-    dependencies = 'tami5/sqlite.lua',
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
@@ -223,8 +218,6 @@ return {
       require('trouble').setup {}
     end,
   },
-  'ray-x/lsp_signature.nvim',
-  'kosayoda/nvim-lightbulb',
   'p00f/clangd_extensions.nvim',
   {
     'simrat39/rust-tools.nvim',
@@ -254,10 +247,8 @@ return {
     end,
     keys = { '<localleader>d', '<localleader>df', '<localleader>dc' },
   },
-  { 'gpanders/nvim-parinfer', ft = { 'lisp', 'fennel', 'clojure', 'racket' } },
-  {
-    'L3MON4D3/LuaSnip',
-  },
+  { 'gpanders/nvim-parinfer', ft = { 'lisp', 'fennel', 'clojure', 'racket', 'pddl' } },
+  'L3MON4D3/LuaSnip',
   'rafamadriz/friendly-snippets',
   {
     'hrsh7th/nvim-cmp',
@@ -373,35 +364,12 @@ return {
   -- 'arzg/vim-substrata',
   -- 'ellisonleao/gruvbox.nvim',
   -- 'RRethy/nvim-base16',
-
-  -- Notes
-  -- {
-  --   '~/projects/personal/pdf-scribe.nvim',
-  --   config = [[require('config.pdf_scribe')]],
-  --   disable = true,
-  -- }
-
-  -- Buffer management
-  -- {
-  --   'akinsho/bufferline.nvim',
-  --   dependencies = 'kyazdani42/nvim-web-devicons',
-  --   config = [[require('config.bufferline')]],
-  --   event = 'User ActuallyEditing',
-  --   disable = true,
-  -- }
-
   {
     'b0o/incline.nvim',
     config = function()
       require 'config.incline'
     end,
     event = 'User ActuallyEditing',
-  },
-
-  {
-    'filipdutescu/renamer.nvim',
-    branch = 'master',
-    dependencies = { { 'nvim-lua/plenary.nvim' } },
   },
   'teal-language/vim-teal',
   { 'jose-elias-alvarez/null-ls.nvim', dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } },
@@ -412,9 +380,6 @@ return {
       require('symbols-outline').setup()
     end,
   },
-  'stevearc/dressing.nvim',
-  'rcarriga/nvim-notify',
-  'vigoux/notifier.nvim',
   {
     'folke/todo-comments.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
@@ -424,37 +389,12 @@ return {
     end,
   },
   {
-    'j-hui/fidget.nvim',
-    event = 'User ActuallyEditing',
-    config = function()
-      require('fidget').setup {
-        sources = {
-          ['null-ls'] = { ignore = true },
-        },
-      }
-    end,
-    enabled = false,
-  },
-  {
     'ethanholz/nvim-lastplace',
     config = function()
       require('nvim-lastplace').setup {}
       vim.api.nvim_exec_autocmds('BufWinEnter', { group = 'NvimLastplace' })
     end,
     event = 'User ActuallyEditing',
-  },
-  {
-    'voldikss/vim-floaterm',
-    init = function()
-      vim.keymap.set('n', '<f7>', '<cmd>FloatermToggle<cr>')
-      vim.keymap.set('t', '<f7>', '<c-\\><c-n>:FloatermToggle<cr>')
-      vim.keymap.set('t', 'jj', '<c-\\><c-n>')
-    end,
-    enabled = false,
-    cmd = {
-      'FloatermNew',
-      'FloatermToggle',
-    },
   },
   {
     'akinsho/toggleterm.nvim',
@@ -513,6 +453,7 @@ return {
     'folke/noice.nvim',
     config = function()
       require('noice').setup {
+        views = { mini = { lang = 'markdown' } },
         routes = {
           {
             filter = {
@@ -546,7 +487,7 @@ return {
         },
       }
     end,
-    dependencies = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' },
+    dependencies = { 'MunifTanjim/nui.nvim' },
     event = 'VeryLazy',
   },
 }
