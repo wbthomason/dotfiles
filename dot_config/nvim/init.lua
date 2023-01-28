@@ -39,13 +39,6 @@ require('lazy').setup('plugins', {
 })
 
 require 'impatient'
-
-vim.notify = function(_, m, l, o)
-  local notify = require 'notify'
-  vim.notify = notify
-  notify(_, m, l, o)
-end
-
 require 'config.options'
 require 'config.autocmds'
 require 'config.keymaps'

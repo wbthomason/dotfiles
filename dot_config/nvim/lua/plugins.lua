@@ -125,7 +125,6 @@ return {
     dependencies = {
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
-      'telescope-frecency.nvim',
       'telescope-fzf-native.nvim',
       'nvim-telescope/telescope-ui-select.nvim',
     },
@@ -374,11 +373,17 @@ return {
   'teal-language/vim-teal',
   { 'jose-elias-alvarez/null-ls.nvim', dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } },
   {
-    'simrat39/symbols-outline.nvim',
-    event = 'BufReadPost',
+    'stevearc/aerial.nvim',
     config = function()
-      require('symbols-outline').setup()
+      require('aerial').setup {
+        backends = { 'lsp', 'treesitter', 'markdown', 'man' },
+        on_attach = function(bufnr)
+          vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+          vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+        end,
+      }
     end,
+    event = 'User ActuallyEditing',
   },
   {
     'folke/todo-comments.nvim',
