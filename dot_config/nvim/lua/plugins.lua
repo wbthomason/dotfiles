@@ -198,6 +198,7 @@ return {
         border = { enable = true, top_char = '─', bottom_char = '─' },
         theme = { mode = 'brighten' },
         indent_lines = { icon = '│' },
+        winbar = { enable = true },
       }
     end,
   },
@@ -470,10 +471,15 @@ return {
           },
           {
             filter = {
-              event = 'msg_show',
-              find = '%d+L, %d+B',
+              event = 'lsp',
+              kind = 'progress',
+              find = 'null-l',
             },
-            view = 'mini',
+            opts = { skip = true, stop = true },
+          },
+          {
+            view = 'notify',
+            filter = { event = 'msg_showmode' },
           },
         },
         lsp = {

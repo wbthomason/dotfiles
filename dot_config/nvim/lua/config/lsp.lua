@@ -1,4 +1,4 @@
-require('neodev').setup { lspconfig = { cmd = { 'lua-language-server' }, prefer_null_ls = true } }
+require('neodev').setup {}
 
 local lspconfig = require 'lspconfig'
 local null_ls = require 'null-ls'
@@ -8,21 +8,27 @@ local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
 local cmd = vim.cmd
 
--- vim.api.nvim_command 'hi link LightBulbFloatWin YellowFloat'
--- vim.api.nvim_command 'hi link LightBulbVirtualText YellowFloat'
+local border = {
+  { '🭽', 'FloatBorder' },
+  { '▔', 'FloatBorder' },
+  { '🭾', 'FloatBorder' },
+  { '▕', 'FloatBorder' },
+  { '🭿', 'FloatBorder' },
+  { '▁', 'FloatBorder' },
+  { '🭼', 'FloatBorder' },
+  { '▏', 'FloatBorder' },
+}
 
 local sign_define = vim.fn.sign_define
 sign_define('DiagnosticSignError', { text = '', numhl = 'RedSign' })
 sign_define('DiagnosticSignWarn', { text = '', numhl = 'YellowSign' })
 sign_define('DiagnosticSignInfo', { text = '', numhl = 'WhiteSign' })
 sign_define('DiagnosticSignHint', { text = '', numhl = 'BlueSign' })
--- lightbulb.setup {
---   sign = { enabled = false },
---   virtual_text = { enabled = true, text = '', hl_mode = 'blend' },
---   float = { enabled = false, text = '', win_opts = { winblend = 100, anchor = 'NE' } },
--- }
-
-vim.diagnostic.config { virtual_lines = { only_current_line = true }, virtual_text = false }
+vim.diagnostic.config {
+  virtual_lines = { only_current_line = true },
+  virtual_text = false,
+  { float = { border = border } },
+}
 lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = false,
   signs = true,
@@ -30,26 +36,13 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
   underline = true,
 })
 
-local severity = {
-  'error',
-  'warn',
-  'info',
-  'hint', -- map both hint and info to info?
-}
-
--- lsp.handlers['window/showMessage'] = function(err, method, params, client_id)
---   vim.notify(method.message, severity[params.type])
--- end
-
--- require('lsp_signature').setup { bind = true, handler_opts = { border = 'single' } }
 local keymap_opts = { noremap = true, silent = true }
 local function on_attach(client)
-  -- require('lsp_signature').on_attach { bind = true, handler_opts = { border = 'single' } }
-  buf_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
+  buf_keymap(0, 'n', 'gD', '', vim.tbl_extend('keep', { callback = vim.lsp.buf.declaration }, keymap_opts))
   buf_keymap(0, 'n', 'gd', '<cmd>Glance definitions<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gi', '<cmd>Glance implementations<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'gS', '<cmd>lua vim.lsp.buf.signature_help()<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'gTD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', keymap_opts)
+  buf_keymap(0, 'n', 'gS', '', vim.tbl_extend('keep', { callback = vim.lsp.buf.signature_help }, keymap_opts))
+  buf_keymap(0, 'n', 'gTD', '', vim.tbl_extend('keep', { callback = vim.lsp.buf.type_definition }, keymap_opts))
   buf_keymap(0, 'n', '<leader>rn', '', {
     callback = function()
       return ':IncRename ' .. vim.fn.expand '<cword>'
@@ -63,23 +56,51 @@ local function on_attach(client)
     expr = true,
   })
   buf_keymap(0, 'n', 'gr', '<cmd>Glance references<CR>', keymap_opts)
-  buf_keymap(0, 'n', 'gA', '<cmd>lua vim.lsp.buf.code_action()<CR>', keymap_opts)
-  buf_keymap(0, 'v', 'gA', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', keymap_opts)
-  buf_keymap(0, 'n', ']e', '<cmd>lua vim.diagnostic.goto_next { float = {scope = "line"} }<cr>', keymap_opts)
-  buf_keymap(0, 'n', '[e', '<cmd>lua vim.diagnostic.goto_prev { float = {scope = "line"} }<cr>', keymap_opts)
+  buf_keymap(0, 'n', 'gA', '', vim.tbl_extend('keep', { callback = vim.lsp.buf.code_action }, keymap_opts))
+  buf_keymap(0, 'v', 'gA', '', vim.tbl_extend('keep', { callback = vim.lsp.buf.range_code_action }, keymap_opts))
+  buf_keymap(
+    0,
+    'n',
+    ']e',
+    '',
+    vim.tbl_extend('keep', {
+      callback = function()
+        vim.diagnostic.goto_next { float = { scope = 'line', border = border } }
+      end,
+    }, keymap_opts)
+  )
+  buf_keymap(
+    0,
+    'n',
+    '[e',
+    '',
+    vim.tbl_extend('keep', {
+      callback = function()
+        vim.diagnostic.goto_prev { float = { scope = 'line', border = border } }
+      end,
+    }, keymap_opts)
+  )
 
   if client.server_capabilities.documentFormattingProvider then
-    buf_keymap(0, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.format { async = true }<cr>', keymap_opts)
+    buf_keymap(
+      0,
+      'n',
+      '<leader>f',
+      '',
+      vim.tbl_extend('keep', {
+        callback = function()
+          vim.lsp.buf.format { async = true }
+        end,
+      }, keymap_opts)
+    )
   end
 
+  -- TODO: Use the nicer new API for autocommands
   cmd 'augroup lsp_aucmds'
   if client.server_capabilities.documentHighlightProvider then
     cmd 'au CursorHold <buffer> lua vim.lsp.buf.document_highlight()'
     cmd 'au CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
   end
-
-  -- cmd 'au CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb ()'
-  -- cmd 'au CursorHold,CursorHoldI <buffer> lua vim.diagnostic.open_float(0, { scope = "line" })'
   cmd 'augroup END'
 end
 
@@ -158,22 +179,6 @@ local servers = {
       },
     },
   },
-  -- sumneko_lua = {
-  --   prefer_null_ls = true,
-  --   cmd = { 'lua-language-server' },
-  --   settings = {
-  --     Lua = {
-  --       diagnostics = { globals = { 'vim' } },
-  --       runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
-  --       workspace = {
-  --         library = {
-  --           [vim.fn.expand '$VIMRUNTIME/lua'] = true,
-  --           [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
   texlab = {
     settings = {
       texlab = {

@@ -2,6 +2,7 @@ local telescope = require 'telescope'
 local fb_actions = telescope.extensions.file_browser.actions
 telescope.setup {
   defaults = {
+    color_devicons = false,
     layout_strategy = 'flex',
     layout_config = { anchor = 'N' },
     scroll_strategy = 'cycle',
@@ -45,8 +46,9 @@ telescope.setup {
 }
 
 -- Extensions
-telescope.load_extension 'fzf'
-telescope.load_extension 'ui-select'
-telescope.load_extension 'heading'
-telescope.load_extension 'file_browser'
 telescope.load_extension 'aerial'
+telescope.load_extension 'file_browser'
+telescope.load_extension 'fzf'
+telescope.load_extension 'heading'
+telescope.load_extension 'noice'
+telescope.load_extension 'ui-select'
