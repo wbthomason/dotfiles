@@ -5,7 +5,7 @@ vim.opt.wildignore = { '*.o', '*~', '*.pyc' }
 vim.opt.wildmode = 'longest,full'
 vim.opt.whichwrap:append '<,>,h,l'
 vim.opt.inccommand = 'nosplit'
-vim.opt.lazyredraw = true
+-- vim.opt.lazyredraw = true
 vim.opt.showmatch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

@@ -37,20 +37,14 @@ local severity = {
   'hint', -- map both hint and info to info?
 }
 
-lsp.handlers['window/showMessage'] = function(err, method, params, client_id)
-  vim.notify(method.message, severity[params.type])
-end
+-- lsp.handlers['window/showMessage'] = function(err, method, params, client_id)
+--   vim.notify(method.message, severity[params.type])
+-- end
 
-require('lsp_signature').setup { bind = true, handler_opts = { border = 'single' } }
+-- require('lsp_signature').setup { bind = true, handler_opts = { border = 'single' } }
 local keymap_opts = { noremap = true, silent = true }
-local renamer_loaded = false
 local function on_attach(client)
-  if not renamer_loaded then
-    require('renamer').setup {}
-    renamer_loaded = true
-  end
-
-  require('lsp_signature').on_attach { bind = true, handler_opts = { border = 'single' } }
+  -- require('lsp_signature').on_attach { bind = true, handler_opts = { border = 'single' } }
   buf_keymap(0, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gd', '<cmd>Glance definitions<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gi', '<cmd>Glance implementations<CR>', keymap_opts)
