@@ -47,13 +47,9 @@ return {
     event = 'User ActuallyEditing',
   },
   { 'Olical/vim-enmasse', cmd = 'EnMasse' },
-  { 'kevinhwang91/nvim-bqf', event = 'QuickFixCmdPre' },
   {
-    url = 'https://gitlab.com/yorickpeterse/nvim-pqf',
-    config = function()
-      require('pqf').setup()
-    end,
-    event = 'QuickFixCmdPre',
+    'kevinhwang91/nvim-bqf',
+    ft = 'qf',
   },
   {
     'lukas-reineke/indent-blankline.nvim',
