@@ -1,0 +1,27 @@
+[FileDialogSize]
+eDP-1 DP-3 Height 1920x1080 DP-3=660
+eDP-1 DP-3 Width 1920x1080 DP-3=980
+
+[KFileDialog Settings]
+Recent Files[$e]=face.png,file:$HOME/desktopbgs/wallpaper-665107.png,file:$HOME/face.jpg
+Recent URLs[$e]=file:$HOME/,file:$HOME/Pictures/,file:$HOME/desktopbgs/
+detailViewIconSize=16
+
+[MainWindow]
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAA/wAAAK8AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+eDP-1=eDP-1
+eDP-1 DP-3=eDP-1
+eDP-1 DP-3 Height 1920x1080 DP-3=1046
+eDP-1 DP-3 Height 1920x1200 eDP-1=1166
+eDP-1 DP-3 Width 1920x1080 DP-3=949
+eDP-1 DP-3 Width 1920x1200 eDP-1=1906
+eDP-1 DP-3 XPosition 1920x1080 DP-3=2818
+eDP-1 DP-3 XPosition 1920x1200 eDP-1=7
+eDP-1 DP-3 YPosition 1920x1080 DP-3=27
+eDP-1 DP-3 YPosition 1920x1200 eDP-1=27
+eDP-1 Height 1920x1200 eDP-1=1166
+eDP-1 Width 1920x1200 eDP-1=949
+eDP-1 XPosition 1920x1200 eDP-1=898
+eDP-1 YPosition 1920x1200 eDP-1=498

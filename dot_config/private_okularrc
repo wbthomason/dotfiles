@@ -1,0 +1,39 @@
+[Desktop Entry]
+FullScreen=false
+
+[MainWindow]
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAAdQAAAIVAAAABAAAAAQAAAAIAAAACPwAAAADAAAAAQAAAAEAAAAsAHEAdQBpAGMAawBBAG4AbgBvAHQAYQB0AGkAbwBuAFQAbwBvAGwAQgBhAHICAAAAAP////8AAAAAAAAAAAAAAAIAAAABAAAAFgBtAGEAaQBuAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAAAAAAAAAAAIAAAABAAAAIgBhAG4AbgBvAHQAYQB0AGkAbwBuAFQAbwBvAGwAQgBhAHIAAAAAAP////8AAAAAAAAAAA==
+ToolBarsMovable=Disabled
+eDP-1 DP-3 Height 1920x1080=1033
+eDP-1 DP-3 Height 1920x1200=1149
+eDP-1 DP-3 Width 1920x1080=1900
+eDP-1 DP-3 Width 1920x1200=944
+eDP-1 DP-3 XPosition 1920x1080=10
+eDP-1 DP-3 XPosition 1920x1200=1802
+eDP-1 DP-3 YPosition 1920x1080=37
+eDP-1 DP-3 YPosition 1920x1200=1119
+eDP-1 Height 1920x1200=570
+eDP-1 Width 1920x1200=468
+eDP-1 XPosition 1920x1200=1440
+eDP-1 YPosition 1920x1200=618
+
+[Recent Files]
+File1[$e]=$HOME/projects/research/cifellows/lydia/fellowship_plan/main.pdf
+File2[$e]=$HOME/projects/research/cifellows/lydia/mentoring_plan/main.pdf
+File3[$e]=$HOME/projects/research/cifellows/lydia/research_statement/main.pdf
+File4[$e]=$HOME/projects/research/cifellows/cv/wil.thomason.cv.pdf
+File5[$e]=$HOME/projects/research/cifellows/lydia/application.pdf
+File6[$e]=$HOME/projects/research/abstraction_repair/main.pdf
+File7[$e]=$HOME/projects/personal/cv/wil.thomason.cv.pdf
+File8[$e]=$HOME/projects/research/thesis/main.pdf
+File9[$e]=$HOME/Downloads/22-0803_03_AR.pdf
+Name1[$e]=main.pdf
+Name2[$e]=main.pdf
+Name3[$e]=main.pdf
+Name4[$e]=wil.thomason.cv.pdf
+Name5[$e]=application.pdf
+Name6[$e]=main.pdf
+Name7[$e]=wil.thomason.cv.pdf
+Name8[$e]=main.pdf
+Name9[$e]=22-0803_03_AR.pdf

@@ -1,0 +1,15 @@
+[$Version]
+update_info=okular.upd:annotation-toolbar,okular.upd:builtin-annotations
+
+[Document]
+ChangeColors=true
+PaperColor=6,6,6
+
+[Main View]
+ShowLeftPanel=false
+
+[PageView]
+MouseMode=TextSelect
+
+[Reviews]
+QuickAnnotationTools=<tool id="1" type="highlight" name="Yellow Highlighter" default="true"><engine color="#ffff00" type="TextSelector"><annotation color="#ffffff00" type="Highlight"/></engine><shortcut>1</shortcut></tool>,<tool id="2" type="highlight" name="Green Highlighter" default="true"><engine color="#00ff00" type="TextSelector"><annotation color="#ff00ff00" type="Highlight"/></engine><shortcut>2</shortcut></tool>,<tool id="3" type="underline"><engine color="#ff0000" type="TextSelector"><annotation color="#ffff0000" type="Underline"/></engine><shortcut>3</shortcut></tool>,<tool id="4" type="typewriter" name="Insert Text" default="true"><engine block="true" type="PickPoint"><annotation width="0" color="#00ffffff" type="Typewriter" textColor="#000000"/></engine><shortcut>4</shortcut></tool>,<tool id="5" type="note-inline"><engine hoverIcon="tool-note-inline" color="#ffff00" block="true" type="PickPoint"><annotation color="#ffffff00" type="FreeText" textColor="#ff000000"/></engine><shortcut>5</shortcut></tool>,<tool id="6" type="note-linked"><engine hoverIcon="tool-note" color="#ffff00" type="PickPoint"><annotation color="#ffffff00" icon="Note" type="Text"/></engine><shortcut>6</shortcut></tool>

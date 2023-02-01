@@ -1,0 +1,17 @@
+[$Version]
+update_info=kwinrules.upd:replace-placement-string-to-enum,kwinrules.upd:use-virtual-desktop-ids
+
+[1]
+Description=Minimum Geometry Size (better tiling)
+minsize=0,0
+minsizerule=2
+types=1
+
+[8d66d6fb-0b43-415f-a8da-86c4d2599bcf]
+Description=Minimum Geometry Size (better tiling)
+minsizerule=2
+types=1
+
+[General]
+count=1
+rules=1

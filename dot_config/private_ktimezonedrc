@@ -1,0 +1,4 @@
+[TimeZones]
+LocalZone=America/Chicago
+ZoneinfoDir=/usr/share/zoneinfo
+Zonetab=/usr/share/zoneinfo/zone.tab

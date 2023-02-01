@@ -1,0 +1,6 @@
+[$Version]
+update_info=kscreenlocker.upd:0.1-autolock
+
+[Greeter][Wallpaper][org.kde.image][General]
+Image=/home/wil/desktopbgs/wallpaper-665107.png
+PreviewImage=/home/wil/desktopbgs/wallpaper-665107.png
