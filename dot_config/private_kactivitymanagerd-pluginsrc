@@ -1,2 +1,3 @@
 [Plugin-org.kde.ActivityManager.Resources.Scoring]
+keep-history-for=1
 off-the-record-activities=78a982cd-30ee-4ed4-a4f7-f591b83f0d17,c20aa290-ed49-4fa8-b047-81d69fd3bd33

@@ -1,2 +1,6 @@
 [$Version]
 update_info=kxkb.upd:remove-empty-lists,kxkb.upd:add-back-resetoptions,kxkb_variants.upd:split-variants
+
+[Layout]
+Options=caps:escape_shifted_capslock
+ResetOldOptions=true

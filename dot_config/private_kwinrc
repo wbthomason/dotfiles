@@ -33,8 +33,13 @@ Meta=
 
 [Plugins]
 bismuthEnabled=true
+kwin4_effect_fullscreenEnabled=false
+kwin4_effect_loginEnabled=false
+kwin4_effect_logoutEnabled=false
+kwin4_effect_maximizeEnabled=false
 kwin4_effect_scaleEnabled=false
 kwin4_effect_squashEnabled=false
+kwin4_effect_windowapertureEnabled=false
 slideEnabled=false
 
 [Script-bismuth]

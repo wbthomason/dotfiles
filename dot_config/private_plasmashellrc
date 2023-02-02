@@ -7,9 +7,6 @@ Recent Files[$e]=file:$HOME/desktopbgs/5899519358fed5eb6c40361e496b63c3.jpg,file
 Recent URLs[$e]=file:$HOME/desktopbgs/
 detailViewIconSize=16
 
-[PlasmaTransientsConfig]
-PreloadWeight=26
-
 [PlasmaViews][Panel 106]
 alignment=1
 
@@ -27,6 +24,9 @@ thickness=20
 [PlasmaViews][Panel 130][Defaults]
 maxLength=1920
 minLength=1920
+thickness=20
+
+[PlasmaViews][Panel 130][Horizontal1680]
 thickness=20
 
 [PlasmaViews][Panel 130][Horizontal1920]

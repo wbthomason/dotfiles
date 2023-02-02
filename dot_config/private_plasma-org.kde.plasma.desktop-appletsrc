@@ -27,7 +27,7 @@ ToolBoxButtonX=443
 ToolBoxButtonY=20
 alignment=1
 arrangement=1
-positions={"1920x1200":[]}
+positions={"1920x1200":[]\\,"1024x768":[""]}
 sortMode=-1
 
 [Containments][105][Wallpaper][org.kde.image][General]
@@ -35,7 +35,7 @@ Image=/usr/share/wallpapers/Altai/
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][105][Wallpaper][org.kde.slideshow][General]
-Image=/home/wil/desktopbgs/w629ci5z53g81.jpg
+Image=/home/wil/desktopbgs/bcwjtdhpd7oy.jpg
 SlideInterval=1800
 SlidePaths=/home/wil/desktopbgs/
 
@@ -224,6 +224,9 @@ plugin=org.kde.plasma.vault
 immutability=1
 plugin=org.kde.plasma.notifications
 
+[Containments][111][Applets][115][Configuration]
+PreloadWeight=70
+
 [Containments][111][Applets][116]
 immutability=1
 plugin=org.kde.plasma.nightcolorcontrol
@@ -248,17 +251,14 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][111][Applets][120][Configuration]
-PreloadWeight=60
-
-[Containments][111][Applets][120][Configuration][General]
-globalMute=true
+PreloadWeight=65
 
 [Containments][111][Applets][122]
 immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][111][Applets][122][Configuration]
-PreloadWeight=55
+PreloadWeight=60
 
 [Containments][111][Applets][122][Configuration][General]
 showPercentage=true
@@ -279,13 +279,14 @@ immutability=1
 plugin=org.kde.plasma.mediacontroller
 
 [Containments][111][Applets][125][Configuration]
-PreloadWeight=2
+PreloadWeight=0
 
 [Containments][111][General]
 extraItems=org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.vault,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol,org.kde.plasma.keyboardlayout,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.plasma.manage-inputmethod,org.kde.plasma.bluetooth,org.kde.plasma.volume
 knownItems=org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.vault,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol,org.kde.plasma.keyboardlayout,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.plasma.manage-inputmethod,org.kde.plasma.bluetooth,org.kde.plasma.volume
 
 [Containments][122]
+ItemGeometries-1680x1050=
 ItemGeometries-1920x1080=
 ItemGeometriesHorizontal=
 activityId=c20aa290-ed49-4fa8-b047-81d69fd3bd33
@@ -306,7 +307,7 @@ ToolBoxButtonX=443
 ToolBoxButtonY=20
 
 [Containments][122][Wallpaper][org.kde.slideshow][General]
-Image=/home/wil/desktopbgs/5899519358fed5eb6c40361e496b63c3.jpg
+Image=/home/wil/desktopbgs/bcwjtdhpd7oy.jpg
 SlideInterval=1800
 SlidePaths=/home/wil/desktopbgs/
 
@@ -328,22 +329,8 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][130][Applets][140][Configuration][General]
-displayedText=Number
 showOnlyCurrentScreen=true
 showWindowIcons=true
-
-[Containments][130][Applets][144]
-immutability=1
-plugin=org.kde.plasma.taskmanager
-
-[Containments][130][Applets][144][Configuration][ConfigDialog]
-DialogHeight=540
-DialogWidth=720
-
-[Containments][130][Applets][144][Configuration][General]
-fill=false
-launchers=
-showOnlyCurrentScreen=true
 
 [Containments][130][Applets][145]
 immutability=1
@@ -365,6 +352,11 @@ plugin=org.kde.plasma.panelspacer
 immutability=1
 plugin=org.kde.plasma.kickoff
 
+[Containments][130][Applets][157][Configuration]
+PreloadWeight=100
+popupHeight=514
+popupWidth=775
+
 [Containments][130][Applets][157][Configuration][ConfigDialog]
 DialogHeight=540
 DialogWidth=720
@@ -380,7 +372,7 @@ DialogHeight=84
 DialogWidth=1920
 
 [Containments][130][General]
-AppletOrder=157;144;152;140;150;145
+AppletOrder=157;152;140;150;145
 
 [ScreenMapping]
 itemsOnDisabledScreens=

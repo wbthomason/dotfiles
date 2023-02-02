@@ -40,6 +40,11 @@ ctime=1674599926
 done=PlasmaVolume_DisableKMixAutostart
 mtime=1672778280
 
+[dolphin_detailsmodesettings.upd]
+ctime=1675293894
+done=rename-leading-padding
+mtime=1672739731
+
 [filepicker.upd]
 ctime=1673901054
 done=filepicker-remove-old-previews-entry
