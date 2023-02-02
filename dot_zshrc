@@ -79,7 +79,7 @@ fpath=(~/.zfunc ~/.zsh/completions $fpath)
 autoload -Uz compinit
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
   compinit
-  kitty + complete setup zsh | source /dev/stdin
+  # kitty + complete setup zsh | source /dev/stdin
 else
   compinit -C
 fi
