@@ -44,6 +44,7 @@ slideEnabled=false
 
 [Script-bismuth]
 enableFloatingLayout=true
+enableMonocleLayout=false
 enableSpreadLayout=false
 enableStairLayout=false
 screenGapBottom=5
@@ -57,7 +58,6 @@ active=-1
 count=0
 
 [Windows]
-ActiveMouseScreen=false
 DelayFocusInterval=0
 FocusPolicy=FocusFollowsMouse
 RollOverDesktops=true

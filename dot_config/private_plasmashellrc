@@ -34,6 +34,12 @@ maxLength=1920
 minLength=1920
 thickness=20
 
+[PlasmaViews][Panel 161][Defaults]
+thickness=20
+
+[PlasmaViews][Panel 161][Horizontal1200]
+thickness=20
+
 [PlasmaViews][Panel 2][Defaults]
 thickness=44
 

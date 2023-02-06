@@ -2,6 +2,7 @@
 update_info=ksmserver_update_loginMode_value.upd:ksmserver_update_loginMode_value_default_enum
 
 [General]
+confirmLogout=false
 loginMode=emptySession
 
 [SubSession: 78a982cd-30ee-4ed4-a4f7-f591b83f0d17]
