@@ -321,7 +321,7 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim', 'mfussenegger/nvim-dap' },
     cmd = 'CMake',
   },
-  'PontusPersson/pddl.vim',
+  { 'PontusPersson/pddl.vim', lazy = false },
   {
     'thibthib18/ros-nvim',
     dependencies = 'nvim-telescope/telescope.nvim',
