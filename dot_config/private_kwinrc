@@ -32,6 +32,7 @@ Rows=1
 Meta=
 
 [Plugins]
+alwaysopenonactivescreenEnabled=true
 bismuthEnabled=true
 kwin4_effect_fullscreenEnabled=false
 kwin4_effect_loginEnabled=false
