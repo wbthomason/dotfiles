@@ -1,4 +1,5 @@
 local cmp = require 'cmp'
+local cmp_types = require 'cmp.types'
 local luasnip = require 'luasnip'
 luasnip.setup { region_check_events = 'InsertEnter', delete_check_events = 'InsertEnter' }
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -23,7 +24,7 @@ cmp.setup {
       -- The built-in comparators:
       cmp.config.compare.offset,
       cmp.config.compare.exact,
-      require("clangd_extensions.cmp_scores"),
+      require 'clangd_extensions.cmp_scores',
       cmp.config.compare.score,
       -- require('cmp-under-comparator').under,
       cmp.config.compare.kind,
@@ -96,13 +97,13 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'nvim_lua' },
     { name = 'path' },
-    { name = 'buffer' },
+    -- { name = 'buffer' },
   },
 }
 
 cmp.setup.cmdline('/', {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = { { name = 'buffer' } },
+  sources = { { name = 'nvim_lsp_document_symbol' }, { name = 'buffer' } },
 })
 
 cmp.setup.cmdline(':', {

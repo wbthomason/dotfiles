@@ -245,7 +245,7 @@ return {
   },
   { 'gpanders/nvim-parinfer', ft = { 'lisp', 'fennel', 'clojure', 'racket', 'pddl' } },
   'L3MON4D3/LuaSnip',
-  'rafamadriz/friendly-snippets',
+  { 'rafamadriz/friendly-snippets', lazy = false },
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -307,12 +307,13 @@ return {
       g.vimtex_quickfix_mode = 0
       g.vimtex_view_forward_search_on_start = 0
       g.vimtex_view_method = 'sioyek'
-      g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
-      g.vimtex_compiler_latexrun = { options = { '-verbose-cmds', '--latex-args="-synctex=1"', '--bibtex-cmd=biber' } }
+      -- g.vimtex_view_general_options = [[--unique file:@pdf\#src:@line@tex]]
+      -- g.vimtex_compiler_latexrun = { options = { '-verbose-cmds', '--latex-args="-synctex=1"', '--bibtex-cmd=biber' } }
       -- This must be a dictionary, and {} gets converted to a list
       g.vimtex_syntax_conceal_disable = 1
     end,
-    ft = 'tex',
+    -- ft = 'tex',
+    lazy = false,
   },
   'barreiroleo/ltex_extra.nvim',
   'igankevich/mesonic',
