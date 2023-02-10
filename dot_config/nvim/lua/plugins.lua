@@ -259,6 +259,7 @@ return {
       'lukas-reineke/cmp-under-comparator',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-nvim-lsp-document-symbol',
+      'doxnit/cmp-luasnip-choice',
     },
     config = function()
       require 'config.cmp'

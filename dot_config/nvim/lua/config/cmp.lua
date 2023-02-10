@@ -1,5 +1,5 @@
 local cmp = require 'cmp'
-local cmp_types = require 'cmp.types'
+require('cmp_luasnip_choice').setup { auto_open = true }
 local luasnip = require 'luasnip'
 luasnip.setup { region_check_events = 'InsertEnter', delete_check_events = 'InsertEnter' }
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -13,14 +13,6 @@ cmp.setup {
   preselect = cmp.PreselectMode.Item,
   sorting = {
     comparators = {
-      -- function(entry1, entry2)
-      --   local score1 = entry1.completion_item.score
-      --   local score2 = entry2.completion_item.score
-      --   if score1 and score2 then
-      --     return (score1 - score2) < 0
-      --   end
-      -- end,
-
       -- The built-in comparators:
       cmp.config.compare.offset,
       cmp.config.compare.exact,
@@ -92,6 +84,7 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
+    { name = 'luasnip_choice' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },

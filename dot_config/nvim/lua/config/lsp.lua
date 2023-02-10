@@ -93,6 +93,18 @@ local function on_attach(client)
         end,
       }, keymap_opts)
     )
+
+    buf_keymap(
+      0,
+      'i',
+      '<c-f>',
+      '',
+      vim.tbl_extend('keep', {
+        callback = function()
+          vim.lsp.buf.format { async = true }
+        end,
+      }, keymap_opts)
+    )
   end
 
   -- TODO: Use the nicer new API for autocommands
