@@ -133,7 +133,15 @@ local servers = {
   -- ghcide = {},
   html = { cmd = { 'vscode-html-languageserver', '--stdio' } },
   jsonls = { prefer_null_ls = true, cmd = { 'vscode-json-languageserver', '--stdio' } },
-  julials = { settings = { julia = { format = { indent = 2 } } } },
+  julials = {
+    on_new_config = function(new_config, _)
+      local julia = vim.fn.expand '~/.julia/environments/nvim-lspconfig/bin/julia'
+      if lspconfig.util.path.is_file(julia) then
+        new_config.cmd[1] = julia
+      end
+    end,
+    settings = { julia = { format = { indent = 2 } } },
+  },
   ocamllsp = {},
   pyright = { settings = { python = { formatting = { provider = 'yapf' }, linting = { pytypeEnabled = true } } } },
   rust_analyzer = {
