@@ -17,7 +17,7 @@ return {
   { 'chaoren/vim-wordmotion', event = 'VeryLazy' },
   {
     'ggandor/leap.nvim',
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
     dependencies = 'tpope/vim-repeat',
     config = function()
       local map = vim.api.nvim_set_keymap
@@ -38,7 +38,7 @@ return {
   {
     'ggandor/flit.nvim',
     opts = { labeled_modes = 'nv' },
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
   },
   { 'Olical/vim-enmasse', cmd = 'EnMasse' },
   {
@@ -47,7 +47,7 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
     dependencies = 'nvim-treesitter',
     config = function()
       require('indent_blankline').setup {
@@ -58,6 +58,7 @@ return {
         show_trailing_blankline_indent = false,
         show_current_context = true,
         use_treesitter_scope = false,
+        filetype_exclude = { 'startify' },
         context_patterns = {
           '^for',
           '^func',
@@ -95,19 +96,19 @@ return {
   },
   {
     'numToStr/Comment.nvim',
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
     opts = {},
   },
-  { 'machakann/vim-sandwich', event = 'User ActuallyEditing' },
+  { 'machakann/vim-sandwich', event = 'VeryLazy' },
   {
     'andymass/vim-matchup',
     init = function()
       require 'config.matchup'
     end,
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
   },
-  { 'romainl/vim-cool', event = 'User ActuallyEditing' },
-  { 'wellle/targets.vim', event = 'User ActuallyEditing' },
+  { 'romainl/vim-cool', event = 'VeryLazy' },
+  { 'wellle/targets.vim', event = 'VeryLazy' },
   {
     'nvim-telescope/telescope.nvim',
     dependencies = {
@@ -143,7 +144,7 @@ return {
     config = function()
       require 'config.gitsigns'
     end,
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
   },
   {
     'sindrets/diffview.nvim',
@@ -345,7 +346,7 @@ return {
     config = function()
       require 'config.incline'
     end,
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
   },
   'teal-language/vim-teal',
   'jose-elias-alvarez/null-ls.nvim',
@@ -358,7 +359,7 @@ return {
         vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
       end,
     },
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
   },
   {
     'folke/todo-comments.nvim',
@@ -372,7 +373,7 @@ return {
       require('nvim-lastplace').setup {}
       vim.api.nvim_exec_autocmds('BufWinEnter', { group = 'NvimLastplace' })
     end,
-    event = 'VeryLazy',
+    event = 'User ActuallyEditing',
   },
   {
     'akinsho/toggleterm.nvim',
@@ -383,7 +384,7 @@ return {
   {
     'beauwilliams/focus.nvim',
     opts = { excluded_filetypes = { 'toggleterm', 'TelescopePrompt' }, signcolumn = false },
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
   },
   {
     'hkupty/iron.nvim',
