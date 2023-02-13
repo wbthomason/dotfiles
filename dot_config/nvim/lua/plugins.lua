@@ -7,18 +7,14 @@ return {
   {
     'ojroques/nvim-bufdel',
     cmd = 'BufDel',
-    config = function()
-      require('bufdel').setup {}
-    end,
+    opts = {},
   },
   {
     'folke/which-key.nvim',
-    config = function()
-      require('which-key').setup {}
-    end,
+    opts = {},
     event = 'BufReadPost',
   },
-  { 'chaoren/vim-wordmotion', event = 'User ActuallyEditing' },
+  { 'chaoren/vim-wordmotion', event = 'VeryLazy' },
   {
     'ggandor/leap.nvim',
     event = 'User ActuallyEditing',
@@ -41,9 +37,7 @@ return {
   },
   {
     'ggandor/flit.nvim',
-    config = function()
-      require('flit').setup { labeled_modes = 'nv' }
-    end,
+    opts = { labeled_modes = 'nv' },
     event = 'User ActuallyEditing',
   },
   { 'Olical/vim-enmasse', cmd = 'EnMasse' },
@@ -102,9 +96,7 @@ return {
   {
     'numToStr/Comment.nvim',
     event = 'User ActuallyEditing',
-    config = function()
-      require('Comment').setup {}
-    end,
+    opts = {},
   },
   { 'machakann/vim-sandwich', event = 'User ActuallyEditing' },
   {
@@ -167,9 +159,7 @@ return {
   {
     'akinsho/git-conflict.nvim',
     version = '*',
-    config = function()
-      require('git-conflict').setup()
-    end,
+    opts = {},
     event = 'BufReadPost',
   },
   {
@@ -202,25 +192,19 @@ return {
   'neovim/nvim-lspconfig',
   {
     'smjonas/inc-rename.nvim',
-    config = function()
-      require('inc_rename').setup()
-    end,
+    opts = {},
     event = 'BufReadPost',
   },
   {
     'folke/trouble.nvim',
     cmd = 'Trouble',
-    config = function()
-      require('trouble').setup {}
-    end,
+    opts = {},
   },
   'p00f/clangd_extensions.nvim',
   {
     'simrat39/rust-tools.nvim',
     ft = 'rust',
-    config = function()
-      require('rust-tools').setup {}
-    end,
+    opts = {},
   },
   {
     'nvim-treesitter/nvim-treesitter',
@@ -230,7 +214,7 @@ return {
       'RRethy/nvim-treesitter-endwise',
     },
     build = ':TSUpdate',
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
     config = function()
       require 'config.treesitter'
     end,
@@ -280,9 +264,7 @@ return {
   {
     'rcarriga/nvim-dap-ui',
     dependencies = 'nvim-dap',
-    config = function()
-      require('dapui').setup()
-    end,
+    opts = {},
   },
   {
     'nvim-neo-tree/neo-tree.nvim',
@@ -327,12 +309,10 @@ return {
   {
     'thibthib18/ros-nvim',
     dependencies = 'nvim-telescope/telescope.nvim',
-    config = function()
-      require('ros-nvim').setup {
-        catkin_ws_path = '~/projects/research/riposte_ws',
-        catkin_program = 'catkin build',
-      }
-    end,
+    opts = {
+      catkin_ws_path = '~/projects/research/riposte_ws',
+      catkin_program = 'catkin build',
+    },
     enabled = false,
   },
   {
@@ -347,9 +327,7 @@ return {
   {
     'NvChad/nvim-colorizer.lua',
     ft = { 'css', 'javascript', 'vim', 'html', 'lua' },
-    config = function()
-      require('colorizer').setup {}
-    end,
+    opts = {},
   },
   {
     dir = '~/projects/personal/vim-nazgul',
@@ -370,27 +348,23 @@ return {
     event = 'User ActuallyEditing',
   },
   'teal-language/vim-teal',
-  { 'jose-elias-alvarez/null-ls.nvim', dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' } },
+  'jose-elias-alvarez/null-ls.nvim',
   {
     'stevearc/aerial.nvim',
-    config = function()
-      require('aerial').setup {
-        backends = { 'lsp', 'treesitter', 'markdown', 'man' },
-        on_attach = function(bufnr)
-          vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
-          vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
-        end,
-      }
-    end,
+    opts = {
+      backends = { 'lsp', 'treesitter', 'markdown', 'man' },
+      on_attach = function(bufnr)
+        vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+        vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+      end,
+    },
     event = 'User ActuallyEditing',
   },
   {
     'folke/todo-comments.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
     event = 'BufReadPost',
-    config = function()
-      require('todo-comments').setup {}
-    end,
+    opts = {},
   },
   {
     'ethanholz/nvim-lastplace',
@@ -398,21 +372,17 @@ return {
       require('nvim-lastplace').setup {}
       vim.api.nvim_exec_autocmds('BufWinEnter', { group = 'NvimLastplace' })
     end,
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy',
   },
   {
     'akinsho/toggleterm.nvim',
     version = '*',
-    config = function()
-      require('toggleterm').setup { open_mapping = [[<c-\>]] }
-    end,
+    opts = { open_mapping = [[<c-\>]] },
     keys = [[<c-\>/]],
   },
   {
     'beauwilliams/focus.nvim',
-    config = function()
-      require('focus').setup { excluded_filetypes = { 'toggleterm', 'TelescopePrompt' }, signcolumn = false }
-    end,
+    opts = { excluded_filetypes = { 'toggleterm', 'TelescopePrompt' }, signcolumn = false },
     event = 'User ActuallyEditing',
   },
   {
@@ -455,47 +425,45 @@ return {
   },
   {
     'folke/noice.nvim',
-    config = function()
-      require('noice').setup {
-        views = { mini = { lang = 'markdown' } },
-        routes = {
-          {
-            filter = {
-              event = 'msg_show',
-              kind = '',
-              find = 'written',
-            },
-            opts = { skip = true },
+    opts = {
+      views = { mini = { lang = 'markdown' } },
+      routes = {
+        {
+          filter = {
+            event = 'msg_show',
+            kind = '',
+            find = 'written',
           },
-          {
-            filter = {
-              event = 'lsp',
-              kind = 'progress',
-              find = 'null-l',
-            },
-            opts = { skip = true, stop = true },
-          },
-          {
-            view = 'notify',
-            filter = { event = 'msg_showmode' },
-          },
+          opts = { skip = true },
         },
-        lsp = {
-          override = {
-            ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-            ['vim.lsp.util.stylize_markdown'] = true,
-            ['cmp.entry.get_documentation'] = true,
+        {
+          filter = {
+            event = 'lsp',
+            kind = 'progress',
+            find = 'null-l',
           },
+          opts = { skip = true, stop = true },
         },
-        presets = {
-          bottom_search = true,
-          command_palette = true,
-          long_message_to_split = true,
-          inc_rename = true,
-          lsp_doc_border = true,
+        {
+          view = 'notify',
+          filter = { event = 'msg_showmode' },
         },
-      }
-    end,
+      },
+      lsp = {
+        override = {
+          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+          ['vim.lsp.util.stylize_markdown'] = true,
+          ['cmp.entry.get_documentation'] = true,
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = true,
+        lsp_doc_border = true,
+      },
+    },
     dependencies = { 'MunifTanjim/nui.nvim' },
     event = 'VeryLazy',
   },
