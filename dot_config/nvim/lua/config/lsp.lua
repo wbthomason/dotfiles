@@ -155,7 +155,7 @@ local servers = {
       },
     },
   },
-  sumneko_lua = {
+  lua_ls = {
     prefer_null_ls = true,
     single_file_support = true,
     settings = {
