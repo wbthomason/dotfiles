@@ -99,7 +99,8 @@ return {
     event = 'VeryLazy',
     opts = {},
   },
-  { 'machakann/vim-sandwich', event = 'VeryLazy' },
+  { 'machakann/vim-sandwich', event = 'VeryLazy', enable = false },
+  { 'echasnovski/mini.surround', event = 'VeryLazy' },
   {
     'andymass/vim-matchup',
     init = function()
