@@ -35,7 +35,7 @@ Image=/usr/share/wallpapers/Altai/
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][105][Wallpaper][org.kde.slideshow][General]
-Image=/home/wil/desktopbgs/bcwjtdhpd7oy.jpg
+Image=/home/wil/desktopbgs/5899519358fed5eb6c40361e496b63c3.jpg
 SlideInterval=1800
 SlidePaths=/home/wil/desktopbgs/
 
@@ -216,6 +216,9 @@ plugin=org.kde.plasma.devicenotifier
 immutability=1
 plugin=org.kde.plasma.keyboardindicator
 
+[Containments][111][Applets][113][Configuration]
+PreloadWeight=55
+
 [Containments][111][Applets][114]
 immutability=1
 plugin=org.kde.plasma.vault
@@ -225,7 +228,7 @@ immutability=1
 plugin=org.kde.plasma.notifications
 
 [Containments][111][Applets][115][Configuration]
-PreloadWeight=70
+PreloadWeight=100
 
 [Containments][111][Applets][116]
 immutability=1
@@ -253,12 +256,15 @@ plugin=org.kde.plasma.volume
 [Containments][111][Applets][120][Configuration]
 PreloadWeight=65
 
+[Containments][111][Applets][120][Configuration][General]
+globalMute=true
+
 [Containments][111][Applets][122]
 immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][111][Applets][122][Configuration]
-PreloadWeight=60
+PreloadWeight=70
 
 [Containments][111][Applets][122][Configuration][General]
 showPercentage=true
@@ -266,6 +272,9 @@ showPercentage=true
 [Containments][111][Applets][123]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
+
+[Containments][111][Applets][123][Configuration]
+PreloadWeight=100
 
 [Containments][111][Applets][124]
 immutability=1
