@@ -144,6 +144,7 @@ local servers = {
   },
   ocamllsp = {},
   pyright = { settings = { python = { formatting = { provider = 'yapf' }, linting = { pytypeEnabled = true } } } },
+  ruff_lsp = {},
   rust_analyzer = {
     settings = {
       ['rust-analyzer'] = {
