@@ -26,3 +26,20 @@ vim.keymap.set('n', '<c-l>', '<c-w>l', silent)
 -- Tab movement
 vim.keymap.set('n', '<c-Left>', '<cmd>tabpre<cr>', silent)
 vim.keymap.set('n', '<c-Right>', '<cmd>tabnext<cr>', silent)
+
+-- Make relative line jumps store jumplist locations
+vim.keymap.set('n', 'k', function()
+  if vim.v.count > 1 then
+    return [[m']] .. vim.v.count .. 'k'
+  end
+
+  return 'k'
+end, { expr = true, silent = true })
+
+vim.keymap.set('n', 'j', function()
+  if vim.v.count > 1 then
+    return [[m']] .. vim.v.count .. 'j'
+  end
+
+  return 'j'
+end, { expr = true, silent = true })
