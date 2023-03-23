@@ -100,7 +100,13 @@ return {
     opts = {},
   },
   { 'machakann/vim-sandwich', event = 'VeryLazy', enabled = false },
-  { 'echasnovski/mini.surround', event = 'VeryLazy' },
+  {
+    'echasnovski/mini.surround',
+    event = 'VeryLazy',
+    config = function()
+      require('mini.surround').setup {}
+    end,
+  },
   {
     'andymass/vim-matchup',
     init = function()
@@ -183,6 +189,7 @@ return {
     cmd = 'Glance',
     config = function()
       require('glance').setup {
+        detached = true,
         border = { enable = true, top_char = '─', bottom_char = '─' },
         theme = { mode = 'brighten' },
         indent_lines = { icon = '│' },
