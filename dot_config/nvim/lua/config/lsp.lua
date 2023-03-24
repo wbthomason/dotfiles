@@ -144,6 +144,7 @@ local servers = {
   },
   ocamllsp = {},
   pyright = { settings = { python = { formatting = { provider = 'yapf' }, linting = { pytypeEnabled = true } } } },
+  ruff_lsp = {},
   rust_analyzer = {
     settings = {
       ['rust-analyzer'] = {
@@ -155,7 +156,6 @@ local servers = {
       },
     },
   },
-  ruff_lsp = {},
   lua_ls = {
     prefer_null_ls = true,
     single_file_support = true,
@@ -318,6 +318,7 @@ null_ls.setup {
     -- null_fmt.cmake_format,
     null_fmt.isort,
     -- null_fmt.prettier,
+    null_fmt.prettierd,
     null_fmt.rustfmt,
     null_fmt.shfmt,
     null_fmt.stylua,
