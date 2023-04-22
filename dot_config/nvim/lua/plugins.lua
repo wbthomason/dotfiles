@@ -556,4 +556,13 @@ return {
     'SmiteshP/nvim-navic',
     dependencies = 'neovim/nvim-lspconfig',
   },
+  {
+    'stevearc/overseer.nvim',
+    config = true,
+    cmd = { 'OverseerRun', 'OverseerToggle' },
+  },
+  {
+    'chrisgrieser/nvim-various-textobjs',
+    opts = { useDefaultKeymaps = true },
+  },
 }
