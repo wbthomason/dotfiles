@@ -12,7 +12,7 @@ end
 
 local silent = { silent = true, noremap = true }
 map('n', '<c-a>', [[<cmd>Telescope buffers show_all_buffers=true theme=get_dropdown<cr>]], silent)
-map('n', '<c-d>', '', { silent = true, noremap = true, callback = files_fallback })
+map('n', '<c-d>', [[<cmd>Telescope find_files theme=get_dropdown<cr>]], silent)
 map('n', '<c-g>', [[<cmd>Telescope live_grep theme=get_dropdown<cr>]], silent)
 map('n', '<c-p>', [[<cmd>Telescope commands theme=get_dropdown<cr>]], silent)
 map('n', '<c-s>', [[<cmd>Telescope aerial theme=get_dropdown<cr>]], silent)

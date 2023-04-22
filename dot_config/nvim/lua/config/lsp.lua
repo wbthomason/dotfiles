@@ -89,9 +89,8 @@ local function setup_keymaps(client, _bufnr)
         callback = function(bufnr)
           vim.lsp.buf.format {
             async = true,
-            filter = function()
-              print(client.name, not client.prefer_null_ls)
-              return client.name == 'null-ls' or not client.prefer_null_ls
+            filter = function(fmtclient)
+              return fmtclient.name == 'null-ls' or not fmtclient.prefer_null_ls
             end,
             bufnr = bufnr,
           }

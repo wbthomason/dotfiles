@@ -32,20 +32,6 @@ return {
     end,
   },
   {
-    enabled = false,
-    'akinsho/bufferline.nvim',
-    version = '*',
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    opts = {
-      options = {
-        indicator = 'underline',
-        diagnostics = 'nvim_lsp',
-        always_show_bufferline = false,
-      },
-    },
-    event = 'VeryLazy',
-  },
-  {
     'ggandor/flit.nvim',
     opts = { labeled_modes = 'nv' },
     event = 'VeryLazy',
@@ -361,6 +347,7 @@ return {
   -- 'RRethy/nvim-base16',
   {
     'utilyre/barbecue.nvim',
+    event = 'User ActuallyEditing',
     name = 'barbecue',
     version = '*',
     dependencies = {
@@ -404,14 +391,6 @@ return {
         return components
       end,
     },
-  },
-  {
-    enabled = false,
-    'b0o/incline.nvim',
-    config = function()
-      require 'config.incline'
-    end,
-    event = 'VeryLazy',
   },
   'teal-language/vim-teal',
   'jose-elias-alvarez/null-ls.nvim',

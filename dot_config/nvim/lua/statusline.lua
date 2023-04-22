@@ -41,7 +41,7 @@ local function vcs()
   local branch_sign = ''
   local git_info = vim.b.gitsigns_status_dict
   if not git_info or git_info.head == '' then
-    return ''
+    return '[ no vcs ]'
   end
   local added = git_info.added and ('+' .. git_info.added .. ' ') or ''
   local modified = git_info.changed and ('~' .. git_info.changed .. ' ') or ''
@@ -140,7 +140,7 @@ local function lsp_servers()
   for _, server in pairs(vim.lsp.get_active_clients { bufnr = 0 }) do
     table.insert(names, server.name)
   end
-  return ' [' .. table.concat(names, ' ') .. ']'
+  return '[ ' .. table.concat(names, ' ') .. ' ]'
 end
 
 local statusline_format =

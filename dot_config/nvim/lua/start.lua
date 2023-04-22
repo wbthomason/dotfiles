@@ -102,7 +102,7 @@ local function make_sections()
   local longest_title, longest_item = longest_elems()
   local title_indent = bit.arshift(win_width - longest_title, 1)
   local section_indent = bit.arshift(win_width - longest_item - 4, 1)
-  offset = section_indent + 1
+  offset = section_indent + 2
   local section_padding = string.rep(' ', section_indent)
   for _, section in ipairs(sections) do
     if next(section.show) ~= nil then
@@ -247,7 +247,7 @@ local function start_screen()
   make_sections()
   vim.opt_local.modifiable = false
   vim.opt_local.modified = false
-  vim.api.nvim_win_set_cursor(0, { 5, offset })
+  vim.api.nvim_win_set_cursor(0, { 5, offset - 1 })
   setup_keys()
   vim.o.eventignore = ''
 end
