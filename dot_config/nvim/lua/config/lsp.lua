@@ -1,5 +1,3 @@
-require('neodev').setup {}
-
 local lspconfig = require 'lspconfig'
 local null_ls = require 'null-ls'
 -- local lightbulb = require 'nvim-lightbulb'
@@ -37,7 +35,7 @@ lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_pub
 })
 
 local keymap_opts = { noremap = true, silent = true }
-local function on_attach(client)
+local function setup_keymaps(client, _bufnr)
   buf_keymap(0, 'n', 'gD', '', vim.tbl_extend('keep', { callback = vim.lsp.buf.declaration }, keymap_opts))
   buf_keymap(0, 'n', 'gd', '<cmd>Glance definitions<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gi', '<cmd>Glance implementations<CR>', keymap_opts)
@@ -88,8 +86,15 @@ local function on_attach(client)
       '<leader>f',
       '',
       vim.tbl_extend('keep', {
-        callback = function()
-          vim.lsp.buf.format { async = true }
+        callback = function(bufnr)
+          vim.lsp.buf.format {
+            async = true,
+            filter = function()
+              print(client.name, not client.prefer_null_ls)
+              return client.name == 'null-ls' or not client.prefer_null_ls
+            end,
+            bufnr = bufnr,
+          }
         end,
       }, keymap_opts)
     )
@@ -114,12 +119,6 @@ local function on_attach(client)
     cmd 'au CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
   end
   cmd 'augroup END'
-end
-
-local function prefer_null_ls_fmt(client)
-  client.server_capabilities.documentHighlightProvider = false
-  client.server_capabilities.documentFormattingProvider = false
-  on_attach(client)
 end
 
 local servers = {
@@ -157,17 +156,22 @@ local servers = {
     },
   },
   lua_ls = {
+    before_init = require('neodev.lsp').before_init,
     prefer_null_ls = true,
     single_file_support = true,
     settings = {
       Lua = {
         workspace = {
           checkThirdParty = false,
+          library = vim.api.nvim_get_runtime_file('', true),
         },
         completion = {
           workspaceWord = true,
           callSnippet = 'Both',
         },
+        runtime = { version = 'LuaJIT' },
+        diagnostics = { globals = { 'vim' } },
+        telemetry = { enable = false },
       },
       diagnostics = {
         groupSeverity = {
@@ -232,9 +236,27 @@ local servers = {
 local client_capabilities = require('cmp_nvim_lsp').default_capabilities()
 client_capabilities.offsetEncoding = { 'utf-16' }
 
+local on_attach_fns = {
+  function(client, bufnr)
+    if client.server_capabilities.documentSymbolProvider then
+      require('nvim-navic').attach(client, bufnr)
+    end
+  end,
+  setup_keymaps,
+}
+
+local function do_on_attach_fns(client, bufnr, use_null_fmt)
+  for _, fn in ipairs(on_attach_fns) do
+    fn(client, bufnr)
+  end
+  client.prefer_null_ls = use_null_fmt
+end
+
 require('clangd_extensions').setup {
   server = {
-    on_attach = prefer_null_ls_fmt,
+    on_attach = function(client, bufnr)
+      do_on_attach_fns(client, bufnr, true)
+    end,
     cmd = {
       'clangd',
       '--background-index',
@@ -262,7 +284,6 @@ require('clangd_extensions').setup {
         statement = '',
         ['template argument'] = '',
       },
-
       kind_icons = {
         Compound = '',
         Recovery = '',
@@ -277,18 +298,17 @@ require('clangd_extensions').setup {
 }
 
 for server, config in pairs(servers) do
-  if config.prefer_null_ls then
-    if config.on_attach then
-      local old_on_attach = config.on_attach
-      config.on_attach = function(client, bufnr)
-        old_on_attach(client, bufnr)
-        prefer_null_ls_fmt(client)
-      end
-    else
-      config.on_attach = prefer_null_ls_fmt
+  -- TODO: maybe refactor to avoid creating a new closure per server
+  if config.on_attach then
+    local old_on_attach = config.on_attach
+    config.on_attach = function(client, bufnr)
+      old_on_attach(client, bufnr)
+      do_on_attach_fns(client, bufnr, config.prefer_null_ls)
     end
-  elseif not config.on_attach then
-    config.on_attach = on_attach
+  else
+    config.on_attach = function(client, bufnr)
+      do_on_attach_fns(client, bufnr, config.prefer_null_ls)
+    end
   end
 
   config.capabilities = vim.tbl_deep_extend('keep', config.capabilities or {}, client_capabilities)
@@ -328,5 +348,5 @@ null_ls.setup {
     null_act.gitsigns,
     -- null_act.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python', 'c', 'cpp' } },
   },
-  on_attach = on_attach,
+  on_attach = setup_keymaps,
 }

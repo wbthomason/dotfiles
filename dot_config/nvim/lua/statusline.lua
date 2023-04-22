@@ -5,7 +5,7 @@ local function setup_colors()
   local bg_color = '#222222'
   local fg_color = '#e9e9e9'
   if vim.g.colors_name ~= 'nazgul' then
-    local statusline_hl = vim.api.nvim_get_hl_by_name 'Statusline'
+    local statusline_hl = vim.api.nvim_get_hl(0, { name = 'Statusline', link = false })
     bg_color = statusline_hl.bg
     fg_color = statusline_hl.fg
   end
@@ -21,6 +21,17 @@ local function setup_colors()
   set_hl(0, 'StatuslineConfirmAccent', { fg = fg_color, bold = true, bg = '#83adad' })
   set_hl(0, 'StatuslineTerminalAccent', { fg = fg_color, bold = true, bg = '#6f6f6f' })
   set_hl(0, 'StatuslineMiscAccent', { fg = fg_color, bold = true, bg = '#948d89' })
+  set_hl(0, 'StatuslineLSPInfo', { fg = '#a9a9a9', bold = true, bg = bg_color })
+
+  -- Diagnostics
+  local error_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticError', link = false })
+  set_hl(0, 'StatuslineDiagnosticError', { fg = error_hl.fg, bg = bg_color })
+  local warning_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticWarning', link = false })
+  set_hl(0, 'StatuslineDiagnosticWarning', { fg = warning_hl.fg, bg = bg_color })
+  local info_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticInfo', link = false })
+  set_hl(0, 'StatuslineDiagnosticInfo', { fg = info_hl.fg, bg = bg_color })
+  local hint_hl = vim.api.nvim_get_hl(0, { name = 'DiagnosticHint', link = false })
+  set_hl(0, 'StatuslineDiagnosticHint', { fg = hint_hl.fg, bg = bg_color })
 end
 
 vim.api.nvim_create_autocmd('ColorScheme', { pattern = '*', callback = setup_colors })
@@ -83,14 +94,7 @@ local function update_colors(mode)
     mode_color = 'StatuslineMiscAccent'
   end
 
-  local filename_color
-  if vim.bo.modified then
-    filename_color = 'StatuslineFilenameModified'
-  else
-    filename_color = 'StatuslineFilenameNoMod'
-  end
-
-  return mode_color, filename_color
+  return mode_color
 end
 
 local function get_paste()
@@ -101,21 +105,61 @@ local function get_readonly_space()
   return ((vim.o.paste and vim.bo.readonly) and ' ' or '') and '%r' .. (vim.bo.readonly and ' ' or '')
 end
 
-local statusline_format = '%%#%s# %s %%<%%#%s# %s%s%%<%%=%%#StatuslineVC#%s'
+-- Copied from @akinsho's config
+local error_icon = '' -- '✗'
+local warning_icon = ''
+local info_icon = '' --  
+local hint_icon = '⚑' --  ⚑
+local function diagnostics()
+  local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+  local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+  local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+  local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+  local components = {}
+  if errors > 0 then
+    components[#components + 1] = '%#StatuslineDiagnosticError#' .. error_icon .. ' ' .. errors
+  end
+
+  if warnings > 0 then
+    components[#components + 1] = '%#StatuslineDiagnosticWarning#' .. warning_icon .. ' ' .. warnings
+  end
+
+  if hints > 0 then
+    components[#components + 1] = '%#StatuslineDiagnosticHint#' .. hint_icon .. ' ' .. hints
+  end
+
+  if info > 0 then
+    components[#components + 1] = '%#StatuslineDiagnosticInfo#' .. info_icon .. ' ' .. info
+  end
+
+  return table.concat(components, ' ')
+end
+
+local function lsp_servers()
+  local names = {}
+  for _, server in pairs(vim.lsp.get_active_clients { bufnr = 0 }) do
+    table.insert(names, server.name)
+  end
+  return ' [' .. table.concat(names, ' ') .. ']'
+end
+
+local statusline_format =
+  '%%#%s# %s %%<%%#StatuslineFilenameNoMod# %s%s%%<%%=%%#StatuslineLSPInfo#%s%%=%%#StatuslineVC#%s'
 
 local statuslines = {}
 local function status()
+  setup_colors()
   local win_id = vim.g.statusline_winid
   if win_id == get_current_win() or statuslines[win_id] == nil then
     local mode = get_mode().mode
-    local mode_color, filename_color = update_colors(mode)
+    local mode_color = update_colors(mode)
     statuslines[win_id] = string.format(
       statusline_format,
       mode_color,
       mode_name(mode),
-      filename_color,
       get_paste(),
       get_readonly_space(),
+      lsp_servers(),
       vcs()
     )
   end

@@ -1,7 +1,3 @@
-local function in_vscode()
-  return vim.g.vscode ~= nil
-end
-
 return {
   'lewis6991/impatient.nvim',
   {
@@ -34,6 +30,20 @@ return {
       map('o', 'z', '<Plug>(leap-forward-x)', opts)
       map('o', 'Z', '<Plug>(leap-backward-x)', opts)
     end,
+  },
+  {
+    enabled = false,
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {
+      options = {
+        indicator = 'underline',
+        diagnostics = 'nvim_lsp',
+        always_show_bufferline = false,
+      },
+    },
+    event = 'VeryLazy',
   },
   {
     'ggandor/flit.nvim',
@@ -197,7 +207,7 @@ return {
       }
     end,
   },
-  'kyazdani42/nvim-web-devicons',
+  'nvim-tree/nvim-web-devicons',
   'neovim/nvim-lspconfig',
   {
     'smjonas/inc-rename.nvim',
@@ -284,7 +294,7 @@ return {
     cmd = 'Neotree',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
     },
   },
@@ -350,6 +360,53 @@ return {
   -- 'ellisonleao/gruvbox.nvim',
   -- 'RRethy/nvim-base16',
   {
+    'utilyre/barbecue.nvim',
+    name = 'barbecue',
+    version = '*',
+    dependencies = {
+      'SmiteshP/nvim-navic',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      create_autocmd = false,
+      attach_navic = false,
+      show_modified = true,
+      custom_section = function()
+        -- Copied from @akinsho's config
+        local error_icon = '' -- '✗'
+        local warning_icon = ''
+        local info_icon = '' --  
+        local hint_icon = '⚑' --  ⚑
+        local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+        local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+        local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+        local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+        local components = {}
+        if errors > 0 then
+          components[#components + 1] = { error_icon .. ' ' .. errors, 'DiagnosticError' }
+        end
+
+        if warnings > 0 then
+          components[#components + 1] =
+            { (#components > 0 and ' ' or '') .. warning_icon .. ' ' .. warnings, 'DiagnosticWarning' }
+        end
+
+        if hints > 0 then
+          components[#components + 1] =
+            { (#components > 0 and ' ' or '') .. hint_icon .. ' ' .. hints, 'DiagnosticHint' }
+        end
+
+        if info > 0 then
+          components[#components + 1] =
+            { (#components > 0 and ' ' or '') .. info_icon .. ' ' .. info, 'DiagnosticInfo' }
+        end
+
+        return components
+      end,
+    },
+  },
+  {
+    enabled = false,
     'b0o/incline.nvim',
     config = function()
       require 'config.incline'
@@ -382,12 +439,31 @@ return {
       vim.api.nvim_exec_autocmds('BufWinEnter', { group = 'NvimLastplace' })
     end,
     event = 'User ActuallyEditing',
+    priority = 1001,
   },
   {
     'akinsho/toggleterm.nvim',
     version = '*',
-    opts = { open_mapping = [[<c-\>]] },
-    keys = [[<c-\>/]],
+    opts = { open_mapping = [[<c-\>]], direction = 'float' },
+    keys = [[<c-\>]],
+  },
+  {
+    'willothy/flatten.nvim',
+    opts = {
+      window = { open = 'alternate' },
+      post_open = function(_bufnr, winnr, _ft, is_blocking)
+        if is_blocking then
+          -- Hide the terminal while it's blocking
+          require('toggleterm').toggle(0)
+        else
+          -- If it's a normal file, just switch to its window
+          vim.api.nvim_set_current_win(winnr)
+        end
+      end,
+    },
+    -- Ensure that it runs first to minimize delay when opening file from terminal
+    lazy = false,
+    priority = 1001,
   },
   {
     'beauwilliams/focus.nvim',
@@ -475,5 +551,9 @@ return {
     },
     dependencies = { 'MunifTanjim/nui.nvim' },
     event = 'VeryLazy',
+  },
+  {
+    'SmiteshP/nvim-navic',
+    dependencies = 'neovim/nvim-lspconfig',
   },
 }

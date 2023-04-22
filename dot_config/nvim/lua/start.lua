@@ -1,17 +1,10 @@
 -- TODO: Could almost certainly make this a lot faster, especially by using Luv more directly in the
 -- MRU logic, making make_sections() construct the full table of strings first and then call
 -- set_lines only once (still need to deal with highlights), maybe making file info fill in async
-local icons = require 'nvim-web-devicons'
+local utils = require 'utils'
 
 local counter = 15
 local offset = 5
-
-local function cap_path_length(path)
-  if string.len(path) > 50 then
-    path = vim.fn.pathshorten(path)
-  end
-  return path
-end
 
 local regex = vim.regex
 local path_skip_list = {
@@ -34,7 +27,6 @@ local function recent_files()
   local oldfiles = {}
   local f_mod = vim.fn.fnamemodify
   local f_esc = vim.fn.fnameescape
-  local get_icon = icons.get_icon
   local f_stat = vim.loop.fs_stat
   local unfiltered_oldfiles = vim.v.oldfiles
   for _, file in ipairs(unfiltered_oldfiles) do
@@ -50,9 +42,7 @@ local function recent_files()
         key = tostring(#oldfiles),
         cmd = 'edit ' .. escaped_path,
         -- disp = cap_path_length(f_mod(absolute_path, ':~:.')), --get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length( f_mod(absolute_path, ':~:.')),
-        disp = get_icon(escaped_path, f_mod(escaped_path, ':e'), { default = true }) .. ' ' .. cap_path_length(
-          f_mod(absolute_path, ':~:.')
-        ),
+        disp = utils.display_path(file),
         editing = true,
       }
     end
@@ -62,20 +52,20 @@ local function recent_files()
 end
 
 local commands = {
-  { key = 'e', disp = '  New file', cmd = 'ene | startinsert', editing = true },
-  { key = 'u', disp = '  Update plugins', cmd = 'Lazy sync' },
-  { key = 'b', disp = '  File Browser', cmd = 'Telescope file_browser' },
-  { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles' },
-  { key = 's', disp = '  Start Prosession', cmd = 'Prosession .', editing = true },
-  { key = 'g', disp = '  NeoGit', cmd = 'Neogit' },
-  { key = 't', disp = '⏱  Time startup', cmd = 'StartupTime' },
-  { key = 'q', disp = '  Quit', cmd = 'qa' },
+  { key = 'e', disp = '  New file',         cmd = 'ene | startinsert',     editing = true },
+  { key = 'u', disp = '  Update plugins',   cmd = 'Lazy sync' },
+  { key = 'b', disp = '  File Browser',     cmd = 'Telescope file_browser' },
+  { key = 'r', disp = '  Recent files',     cmd = 'Telescope oldfiles' },
+  { key = 's', disp = '  Start Prosession', cmd = 'Prosession .',          editing = true },
+  { key = 'g', disp = '  NeoGit',           cmd = 'Neogit' },
+  { key = 't', disp = '⏱  Time startup',     cmd = 'StartupTime' },
+  { key = 'q', disp = '  Quit',             cmd = 'qa' },
 }
 
 -- TODO: Maybe make the show functions unevaluated and run async? Would require rewriting using LUV
 -- functions, which isn't a bad idea anyway
 local sections = {
-  { title = 'Commands', show = commands },
+  { title = 'Commands',     show = commands },
   { title = 'Recent Files', show = recent_files() },
 }
 
