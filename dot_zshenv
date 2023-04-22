@@ -3,7 +3,7 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 fi
 
 # PATH tweaks
-export PATH=$PATH:/home/wil/.gem/ruby/2.7.0/bin:/home/wil/.yarn/bin:/home/wil/.local/bin:/home/wil/.cargo/bin:/home/wil/.luarocks/bin:/home/wil/.roswell/bin
+export PATH=$PATH:/home/wil/.local/bin:/home/wil/.cargo/bin:/home/wil/.luarocks/bin:/home/wil/.config/emacs/bin
 
 # gnome-keyring
 if [ -n "$DESKTOP_SESSION" ];then
