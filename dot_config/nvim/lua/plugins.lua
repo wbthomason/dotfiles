@@ -108,7 +108,7 @@ return {
     init = function()
       require 'config.matchup'
     end,
-    event = 'VeryLazy',
+    event = 'User ActuallyEditing',
   },
   { 'romainl/vim-cool', event = 'VeryLazy' },
   { 'wellle/targets.vim', event = 'VeryLazy' },
@@ -358,6 +358,7 @@ return {
       create_autocmd = false,
       attach_navic = false,
       show_modified = true,
+      exclude_filetypes = { 'netrw', 'toggleterm', 'NeogitCommitMessage' },
       custom_section = function()
         -- Copied from @akinsho's config
         local error_icon = '' -- '✗'
