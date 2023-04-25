@@ -1,9 +1,11 @@
 local get_mode = vim.api.nvim_get_mode
+local get_icon_color = require('nvim-web-devicons').get_icon_color
 local get_current_win = vim.api.nvim_get_current_win
 
+local bg_color = '#222222'
+local fg_color = '#e9e9e9'
+
 local function setup_colors()
-  local bg_color = '#222222'
-  local fg_color = '#e9e9e9'
   if vim.g.colors_name ~= 'nazgul' then
     local statusline_hl = vim.api.nvim_get_hl(0, { name = 'Statusline', link = false })
     bg_color = statusline_hl.bg
@@ -143,8 +145,16 @@ local function lsp_servers()
   return '[ ' .. table.concat(names, ' ') .. ' ]'
 end
 
+local function filetype_icon()
+  local fname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
+  local ft = vim.bo.filetype
+  local icon, color = get_icon_color(fname, vim.fn.fnamemodify(fname, ':e'))
+  vim.api.nvim_set_hl(0, 'StatuslineFiletype', { fg = color, bg = bg_color })
+  return icon, ft .. ' ·'
+end
+
 local statusline_format =
-  '%%#%s# %s %%<%%#StatuslineFilenameNoMod# %s%s%%<%%=%%#StatuslineLSPInfo#%s%%=%%#StatuslineVC#%s'
+  '%%#%s# %s %%<%%#StatuslineFilenameNoMod# %s%s%%<%%=%%#StatuslineFiletype#%s%%#Statusline# %s %s%%=%%#StatuslineVC#%s'
 
 local statuslines = {}
 local function status()
@@ -153,12 +163,15 @@ local function status()
   if win_id == get_current_win() or statuslines[win_id] == nil then
     local mode = get_mode().mode
     local mode_color = update_colors(mode)
+    local ft_icon, ft_name = filetype_icon()
     statuslines[win_id] = string.format(
       statusline_format,
       mode_color,
       mode_name(mode),
       get_paste(),
       get_readonly_space(),
+      ft_icon,
+      ft_name,
       lsp_servers(),
       vcs()
     )
