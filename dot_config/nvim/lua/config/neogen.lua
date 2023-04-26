@@ -1,7 +1,12 @@
 local neogen = require 'neogen'
 local map = vim.api.nvim_set_keymap
 
-neogen.setup { enabled = true, jump_map = '<tab>' }
+neogen.setup {
+  enabled = true,
+  jump_map = '<tab>',
+  snippet_engine = 'luasnip',
+  languages = { python = { template = { annotation_convention = 'numpydoc' } } },
+}
 map('n', '<localleader>d', '', {
   callback = function()
     require('neogen').generate()
