@@ -142,19 +142,23 @@ local function lsp_servers()
   for _, server in pairs(vim.lsp.get_active_clients { bufnr = 0 }) do
     table.insert(names, server.name)
   end
+  if #names == 0 then
+    return ''
+  end
+
   return '[ ' .. table.concat(names, ' ') .. ' ]'
 end
 
 local function filetype_icon()
   local fname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
   local ft = vim.bo.filetype
-  local icon, color = get_icon_color(fname, vim.fn.fnamemodify(fname, ':e'))
+  local icon, color = get_icon_color(fname, vim.fn.fnamemodify(fname, ':e'), { default = true })
   vim.api.nvim_set_hl(0, 'StatuslineFiletype', { fg = color, bg = bg_color })
-  return icon, ft .. ' ·'
+  return icon, ft
 end
 
 local statusline_format =
-  '%%#%s# %s %%<%%#StatuslineFilenameNoMod# %s%s%%<%%=%%#StatuslineFiletype#%s%%#Statusline# %s %s%%=%%#StatuslineVC#%s'
+  '%%#%s# %s %%<%%#StatuslineFilenameNoMod# %s%s%%<%%=%%#StatuslineFiletype#%s%%#Statusline#%s%s%s%s%%=%%#StatuslineVC#%s'
 
 local statuslines = {}
 local function status()
@@ -164,6 +168,7 @@ local function status()
     local mode = get_mode().mode
     local mode_color = update_colors(mode)
     local ft_icon, ft_name = filetype_icon()
+    local lsp_info = lsp_servers()
     statuslines[win_id] = string.format(
       statusline_format,
       mode_color,
@@ -171,8 +176,10 @@ local function status()
       get_paste(),
       get_readonly_space(),
       ft_icon,
-      ft_name,
-      lsp_servers(),
+      (ft_name ~= '') and (' ' .. ft_name) or '',
+      (ft_name ~= '' and lsp_info ~= '') and ' · ' or '',
+      lsp_info,
+      (lsp_info ~= '') and ' ' or '',
       vcs()
     )
   end
