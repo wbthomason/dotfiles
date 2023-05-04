@@ -418,7 +418,7 @@ return {
       require('nvim-lastplace').setup {}
       vim.api.nvim_exec_autocmds('BufWinEnter', { group = 'NvimLastplace' })
     end,
-    event = 'User ActuallyEditing',
+    lazy = false,
     priority = 1001,
   },
   {
