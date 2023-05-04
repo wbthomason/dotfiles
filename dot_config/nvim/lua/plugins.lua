@@ -410,7 +410,7 @@ return {
     'folke/todo-comments.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
     event = 'BufReadPost',
-    opts = {},
+    opts = { colors = { info = { 'AquaHover' } } },
   },
   {
     'ethanholz/nvim-lastplace',
