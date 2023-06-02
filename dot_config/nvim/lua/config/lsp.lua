@@ -272,6 +272,10 @@ require('clangd_extensions').setup {
       '--completion-style=bundled',
       '--header-insertion=iwyu',
       '--cross-file-rename',
+      '--all-scopes-completion',
+      '--log=error',
+      '--suggest-missing-includes',
+      '--pch-storage=memory',
     },
     init_options = {
       clangdFileStatus = true,
