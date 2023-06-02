@@ -278,9 +278,32 @@ return {
       vim.g.neo_tree_remove_legacy_commands = true
     end,
     cmd = 'Neotree',
+    opts = {
+      close_if_last_window = true,
+      window = {
+        width = 30,
+      },
+      buffers = {
+        follow_current_file = true,
+      },
+      filesystem = {
+        follow_current_file = true,
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_by_name = {
+            'node_modules',
+          },
+          never_show = {
+            '.DS_Store',
+            'thumbs.db',
+          },
+        },
+      },
+    },
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'nvim-tree/nvim-web-devicons',
       'MunifTanjim/nui.nvim',
     },
   },
@@ -342,7 +365,7 @@ return {
     lazy = false,
   },
   -- 'hardselius/warlock',
-  -- 'arzg/vim-substrata',
+  'arzg/vim-substrata',
   -- 'ellisonleao/gruvbox.nvim',
   -- 'RRethy/nvim-base16',
   {
@@ -414,11 +437,16 @@ return {
   },
   {
     'ethanholz/nvim-lastplace',
-    config = function()
-      require('nvim-lastplace').setup {}
-      vim.api.nvim_exec_autocmds('BufWinEnter', { group = 'NvimLastplace' })
-    end,
-    lazy = false,
+    opts = {
+      lastplace_ignore_buftype = { 'quickfix', 'nofile', 'help' },
+      lastplace_ignore_filetype = {
+        'gitcommit',
+        'gitrebase',
+        'svn',
+        'hgcommit',
+      },
+    },
+    event = 'BufRead',
     priority = 1001,
   },
   {
@@ -544,5 +572,16 @@ return {
   {
     'chrisgrieser/nvim-various-textobjs',
     opts = { useDefaultKeymaps = true },
+  },
+  {
+    'folke/persistence.nvim',
+    event = 'BufReadPre',
+    module = 'persistence',
+    config = function()
+      require('persistence').setup {
+        dir = vim.fn.expand(vim.fn.stdpath 'config' .. '/session/'),
+        options = { 'buffers', 'curdir', 'tabpages', 'winsize' },
+      }
+    end,
   },
 }
