@@ -142,7 +142,15 @@ local servers = {
     settings = { julia = { format = { indent = 2 } } },
   },
   ocamllsp = {},
-  pyright = { settings = { python = { formatting = { provider = 'yapf' }, linting = { pytypeEnabled = true } } } },
+  pyright = {
+    settings = {
+      python = {
+        analysis = { useLibraryCodeForTypes = true },
+        formatting = { provider = 'yapf' },
+        linting = { pytypeEnabled = true },
+      },
+    },
+  },
   ruff_lsp = {},
   rust_analyzer = {
     settings = {
