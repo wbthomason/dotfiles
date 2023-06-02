@@ -128,6 +128,7 @@ local servers = {
     filetypes = { 'css', 'scss', 'less', 'sass' },
     root_dir = lspconfig.util.root_pattern('package.json', '.git'),
   },
+  dockerls = {},
   -- ghcide = {},
   html = { cmd = { 'vscode-html-languageserver', '--stdio' } },
   jsonls = { prefer_null_ls = true, cmd = { 'vscode-json-languageserver', '--stdio' } },
