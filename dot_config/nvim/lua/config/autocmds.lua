@@ -36,7 +36,7 @@ autocmd('BufReadPre', {
   once = true,
 })
 
-autocmd('User ActuallyEditing', {
+autocmd('BufReadPost', {
   group = misc_aucmds,
   once = true,
   callback = function()
@@ -46,8 +46,6 @@ autocmd('User ActuallyEditing', {
       'BufWinEnter',
       'CursorHold',
       'InsertLeave',
-
-      -- include this if you have set `show_modified` to `true`
       'BufModifiedSet',
     }, {
       group = vim.api.nvim_create_augroup('barbecue.updater', {}),

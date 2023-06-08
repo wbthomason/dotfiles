@@ -103,7 +103,7 @@ return {
     config = function()
       require 'config.gitsigns'
     end,
-    event = 'VeryLazy',
+    event = 'BufReadPost',
   },
   {
     'sindrets/diffview.nvim',
@@ -175,7 +175,7 @@ return {
       'RRethy/nvim-treesitter-endwise',
     },
     build = ':TSUpdate',
-    event = 'VeryLazy',
+    event = 'BufReadPost',
     config = function()
       require 'config.treesitter'
     end,
@@ -299,13 +299,6 @@ return {
     },
     enabled = false,
   },
-  {
-    'dstein64/vim-startuptime',
-    cmd = 'StartupTime',
-    init = function()
-      vim.g.startuptime_tries = 15
-    end,
-  },
   -- {'ThePrimeagen/refactoring.nvim',
   'folke/neodev.nvim',
   {
@@ -383,7 +376,7 @@ return {
         vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
       end,
     },
-    event = 'VeryLazy',
+    cmd = { 'AerialOpen', 'AerialToggle' },
   },
   {
     'folke/todo-comments.nvim',
@@ -417,17 +410,13 @@ return {
       window = { open = 'alternate' },
       post_open = function(_bufnr, winnr, _ft, is_blocking)
         if is_blocking then
-          -- Hide the terminal while it's blocking
           require('toggleterm').toggle(0)
         else
-          -- If it's a normal file, just switch to its window
           vim.api.nvim_set_current_win(winnr)
         end
       end,
     },
-    -- Ensure that it runs first to minimize delay when opening file from terminal
-    lazy = false,
-    priority = 1001,
+    event = 'TermOpen',
   },
   {
     'beauwilliams/focus.nvim',
@@ -538,6 +527,27 @@ return {
         dir = vim.fn.expand(vim.fn.stdpath 'config' .. '/session/'),
         options = { 'buffers', 'curdir', 'tabpages', 'winsize' },
       }
+    end,
+  },
+  {
+    enabled = false,
+    'nanozuki/tabby.nvim',
+    event = 'User ActuallyEditing',
+    config = function()
+      require('tabby.tabline').use_preset('tab_only', {
+        theme = {
+          fill = 'TabLineFill',
+          head = 'TabLine',
+          current_tab = 'TabLineSel',
+          tab = 'TabLine',
+          win = 'TabLine',
+          tail = 'TabLine',
+        },
+        nerdfont = true,
+        buf_name = {
+          mode = 'unique',
+        },
+      })
     end,
   },
 }
