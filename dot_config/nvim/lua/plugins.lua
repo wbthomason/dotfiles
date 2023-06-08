@@ -42,65 +42,23 @@ return {
     ft = 'qf',
   },
   {
-    'lukas-reineke/indent-blankline.nvim',
-    event = 'VeryLazy',
-    dependencies = 'nvim-treesitter',
+    'echasnovski/mini.nvim',
+    version = false,
+    event = 'User ActuallyEditing',
     config = function()
-      require('indent_blankline').setup {
-        char = '│',
-        space_char_blankline = ' ',
-        use_treesitter = true,
-        show_first_indent_level = false,
-        show_trailing_blankline_indent = false,
-        show_current_context = true,
-        use_treesitter_scope = false,
-        filetype_exclude = { 'startify' },
-        context_patterns = {
-          '^for',
-          '^func',
-          '^if',
-          '^object',
-          '^table',
-          '^while',
-          'argument_list',
-          'arguments',
-          'block',
-          'catch_clause',
-          'class',
-          'dictionary',
-          'do_block',
-          'element',
-          'else_clause',
-          'except',
-          'for',
-          'function',
-          'if_statement',
-          'import_statement',
-          'method',
-          'object',
-          'operation_type',
-          'return',
-          'table',
-          'try',
-          'try_statement',
-          'tuple',
-          'while',
-          'with',
-        },
+      require('mini.surround').setup { search_method = 'cover_or_nearest' }
+      require('mini.align').setup { mappings = { start = '', start_with_preview = 'g=' } }
+      require('mini.ai').setup {}
+      require('mini.bracketed').setup {}
+      require('mini.comment').setup { options = { ignore_blank_line = true } }
+      require('mini.indentscope').setup {
+        symbol = '│',
+        options = { try_as_border = true },
+        draw = { animation = require('mini.indentscope').gen_animation.none() },
       }
-    end,
-  },
-  {
-    'numToStr/Comment.nvim',
-    event = 'VeryLazy',
-    opts = {},
-  },
-  { 'machakann/vim-sandwich', event = 'VeryLazy', enabled = false },
-  {
-    'echasnovski/mini.surround',
-    event = 'VeryLazy',
-    config = function()
-      require('mini.surround').setup {}
+      require('mini.move').setup {}
+      require('mini.pairs').setup {}
+      require('mini.splitjoin').setup { mappings = { toggle = 'gJ' } }
     end,
   },
   {
@@ -111,7 +69,6 @@ return {
     event = 'User ActuallyEditing',
   },
   { 'romainl/vim-cool', event = 'VeryLazy' },
-  { 'wellle/targets.vim', event = 'VeryLazy' },
   {
     'nvim-telescope/telescope.nvim',
     dependencies = {

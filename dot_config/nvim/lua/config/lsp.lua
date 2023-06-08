@@ -56,29 +56,6 @@ local function setup_keymaps(client, _bufnr)
   buf_keymap(0, 'n', 'gr', '<cmd>Glance references<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gA', '', vim.tbl_extend('keep', { callback = vim.lsp.buf.code_action }, keymap_opts))
   buf_keymap(0, 'v', 'gA', '', vim.tbl_extend('keep', { callback = vim.lsp.buf.range_code_action }, keymap_opts))
-  buf_keymap(
-    0,
-    'n',
-    ']e',
-    '',
-    vim.tbl_extend('keep', {
-      callback = function()
-        vim.diagnostic.goto_next { float = { scope = 'line', border = border } }
-      end,
-    }, keymap_opts)
-  )
-  buf_keymap(
-    0,
-    'n',
-    '[e',
-    '',
-    vim.tbl_extend('keep', {
-      callback = function()
-        vim.diagnostic.goto_prev { float = { scope = 'line', border = border } }
-      end,
-    }, keymap_opts)
-  )
-
   if client.server_capabilities.documentFormattingProvider then
     buf_keymap(
       0,
