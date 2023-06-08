@@ -14,6 +14,7 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 
+vim.loader.enable()
 vim.opt.runtimepath:prepend(lazypath)
 
 vim.g.loaded_python3_provider = 0
@@ -38,7 +39,6 @@ require('lazy').setup('plugins', {
   },
 })
 
-require 'impatient'
 require 'config.options'
 require 'config.autocmds'
 require 'config.keymaps'

@@ -1,5 +1,4 @@
 return {
-  'lewis6991/impatient.nvim',
   {
     'ojroques/nvim-bufdel',
     cmd = 'BufDel',
