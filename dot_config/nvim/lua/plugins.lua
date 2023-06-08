@@ -234,29 +234,10 @@ return {
       vim.g.neo_tree_remove_legacy_commands = true
     end,
     cmd = 'Neotree',
-    opts = {
-      close_if_last_window = true,
-      window = {
-        width = 30,
-      },
-      buffers = {
-        follow_current_file = true,
-      },
-      filesystem = {
-        follow_current_file = true,
-        filtered_items = {
-          hide_dotfiles = false,
-          hide_gitignored = false,
-          hide_by_name = {
-            'node_modules',
-          },
-          never_show = {
-            '.DS_Store',
-            'thumbs.db',
-          },
-        },
-      },
-    },
+    event = 'User EditingDirectory',
+    config = function()
+      require 'config.neotree'
+    end,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',

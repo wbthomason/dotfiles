@@ -23,8 +23,8 @@ autocmd('BufEnter', {
   callback = function(args)
     local file_info = vim.loop.fs_stat(args.file)
     if file_info and file_info.type == 'directory' then
-      require('neo-tree').setup {}
-      vim.cmd('Neotree position=current ' .. args.file)
+      require 'neo-tree'
+      return true
     end
   end,
 })
