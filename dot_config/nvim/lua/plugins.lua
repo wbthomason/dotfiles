@@ -308,13 +308,13 @@ return {
   },
   {
     dir = '~/projects/personal/vim-nazgul',
-    config = function()
-      require 'config.colorscheme'
-    end,
-    lazy = false,
   },
   -- 'hardselius/warlock',
   'arzg/vim-substrata',
+  {
+    'mcchrish/zenbones.nvim',
+    dependencies = 'rktjmp/lush.nvim',
+  },
   -- 'ellisonleao/gruvbox.nvim',
   -- 'RRethy/nvim-base16',
   {
