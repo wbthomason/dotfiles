@@ -3,6 +3,7 @@ require('cmp_luasnip_choice').setup { auto_open = true }
 local luasnip = require 'luasnip'
 luasnip.setup { region_check_events = 'InsertEnter', delete_check_events = 'InsertEnter' }
 require('luasnip.loaders.from_vscode').lazy_load()
+local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -103,3 +104,5 @@ cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
 })
+
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

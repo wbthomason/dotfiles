@@ -56,9 +56,17 @@ return {
         draw = { animation = require('mini.indentscope').gen_animation.none() },
       }
       require('mini.move').setup {}
-      require('mini.pairs').setup {}
       require('mini.splitjoin').setup { mappings = { toggle = 'gJ' } }
     end,
+  },
+  {
+    'windwp/nvim-autopairs',
+    opts = {
+      enable_check_bracket_line = false,
+      ignored_next_char = '[%w%.]',
+      fast_wrap = {},
+    },
+    event = 'BufReadPost',
   },
   {
     'andymass/vim-matchup',
@@ -173,6 +181,7 @@ return {
       'nvim-treesitter/nvim-treesitter-refactor',
       'RRethy/nvim-treesitter-textsubjects',
       'RRethy/nvim-treesitter-endwise',
+      'windwp/nvim-ts-autotag',
     },
     build = ':TSUpdate',
     event = 'BufReadPost',
