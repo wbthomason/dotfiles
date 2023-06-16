@@ -385,7 +385,7 @@ return {
         'hgcommit',
       },
     },
-    event = 'BufRead',
+    event = 'BufReadPre',
     priority = 1001,
   },
   {
