@@ -173,7 +173,7 @@ return {
   {
     'simrat39/rust-tools.nvim',
     ft = 'rust',
-    opts = {},
+    opts = { tools = { inlay_hints = { auto = false } } },
   },
   {
     'nvim-treesitter/nvim-treesitter',

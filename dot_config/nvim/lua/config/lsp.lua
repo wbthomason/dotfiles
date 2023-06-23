@@ -226,6 +226,8 @@ local on_attach_fns = {
     if client.server_capabilities.documentSymbolProvider then
       require('nvim-navic').attach(client, bufnr)
     end
+
+    vim.lsp.buf.inlay_hint(bufnr, true)
   end,
   setup_keymaps,
 }
@@ -263,7 +265,7 @@ require('clangd_extensions').setup {
     capabilities = client_capabilities,
   },
   extensions = {
-    inlay_hints = { only_current_line = false, show_variable_name = true },
+    autoSetHints = false,
     ast = {
       role_icons = {
         type = '',
