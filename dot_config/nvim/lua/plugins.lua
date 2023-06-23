@@ -521,23 +521,58 @@ return {
   },
   {
     enabled = false,
+    -- enabled = false,
     'nanozuki/tabby.nvim',
     event = 'User ActuallyEditing',
     config = function()
-      require('tabby.tabline').use_preset('tab_only', {
-        theme = {
-          fill = 'TabLineFill',
-          head = 'TabLine',
-          current_tab = 'TabLineSel',
-          tab = 'TabLine',
-          win = 'TabLine',
-          tail = 'TabLine',
-        },
-        nerdfont = true,
-        buf_name = {
-          mode = 'unique',
-        },
-      })
+      local theme = {
+        fill = { fg = '#222222', bg = '#222222' },
+        current_tab = { fg = '#e9e9e9', bg = '#222222' },
+        tab = { fg = '#666666', bg = '#222222' },
+      }
+      local tabby_api = require 'tabby.module.api'
+      require('tabby.tabline').set(function(line)
+        local num_tabs = #tabby_api.get_tabs()
+        local tabs = line.tabs().foreach(function(tab)
+          local hl = tab.is_current() and theme.current_tab or theme.tab
+          local tab_separator = (tab.number() < num_tabs)
+              and line.sep(
+                '／ ',
+                { fg = '#222222', bg = '#e9e9e9', style = 'bold' },
+                { fg = '#e9e9e9', bg = '#222222', style = 'bold' }
+              )
+            or line.sep(
+              '',
+              { fg = '#222222', bg = '#e9e9e9', style = 'bold' },
+              { fg = '#e9e9e9', bg = '#222222', style = 'bold' }
+            )
+          local num_wins = #tabby_api.get_tab_wins(tab.id)
+          local win_idx = 1
+          return {
+            tab.wins().foreach(function(win)
+              local window_separator = (win_idx < num_wins) and '  ' or ''
+              win_idx = win_idx + 1
+              return {
+                win.file_icon(),
+                win.buf_name(),
+                win.buf().is_changed() and '●' or '',
+                window_separator,
+                margin = ' ',
+                hl = hl,
+              }
+            end),
+            tab_separator,
+            hl = hl,
+          }
+        end)
+        return {
+          line.spacer(),
+          tabs,
+          line.spacer(),
+          buf_name = { mode = 'unique' },
+          hl = theme.fill,
+        }
+      end)
     end,
   },
 }
