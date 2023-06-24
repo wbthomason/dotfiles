@@ -454,7 +454,7 @@ return {
   {
     'folke/noice.nvim',
     opts = {
-      views = { mini = { lang = 'markdown' } },
+      views = { mini = { timeout = 10000, lang = 'markdown' } },
       routes = {
         {
           filter = {
