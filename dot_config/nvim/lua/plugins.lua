@@ -520,8 +520,6 @@ return {
     end,
   },
   {
-    enabled = false,
-    -- enabled = false,
     'nanozuki/tabby.nvim',
     event = 'User ActuallyEditing',
     config = function()
