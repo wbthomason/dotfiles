@@ -118,7 +118,7 @@ return {
     dependencies = 'nvim-lua/plenary.nvim',
   },
   {
-    'TimUntersberger/neogit',
+    'NeogitOrg/neogit',
     cmd = 'Neogit',
     config = function()
       require 'config.neogit'
