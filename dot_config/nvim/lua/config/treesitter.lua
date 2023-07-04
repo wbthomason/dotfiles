@@ -26,6 +26,6 @@ require('nvim-treesitter.configs').setup {
     },
   },
   endwise = { enable = true },
-  matchup = { enable = true, include_match_words = true },
+  matchup = { enable = true, include_match_words = true, enable_quotes = true },
   autotag = { enable = true },
 }
