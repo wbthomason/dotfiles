@@ -498,6 +498,7 @@ return {
   {
     'SmiteshP/nvim-navic',
     dependencies = 'neovim/nvim-lspconfig',
+    opts = { lazy_update_context = true },
   },
   {
     'stevearc/overseer.nvim',
