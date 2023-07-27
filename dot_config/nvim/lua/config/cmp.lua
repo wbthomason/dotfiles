@@ -77,9 +77,9 @@ cmp.setup {
     format = function(_, vim_item)
       local original_kind = vim_item.kind
       vim_item.kind = (cmp_kinds[vim_item.kind] or '')
-      vim_item.menu = '    (' .. original_kind .. ')'
+      vim_item.menu = ' (' .. original_kind .. ')'
       local label = vim_item.abbr
-      local truncated_label = string.sub(vim_item.abbr, 0, 50)
+      local truncated_label = string.sub(vim_item.abbr, 0, 70)
       if truncated_label ~= label then
         vim_item.abbr = truncated_label .. '…'
       end
