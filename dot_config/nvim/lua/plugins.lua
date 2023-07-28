@@ -273,12 +273,8 @@ return {
     lazy = false,
   },
   'barreiroleo/ltex_extra.nvim',
-  'igankevich/mesonic',
-  {
-    'Shatur/neovim-cmake',
-    dependencies = { 'nvim-lua/plenary.nvim', 'mfussenegger/nvim-dap' },
-    cmd = 'CMake',
-  },
+  { 'igankevich/mesonic', lazy = false },
+  { 'Civitasv/cmake-tools.nvim', lazy = false },
   { 'PontusPersson/pddl.vim', lazy = false },
   {
     'thibthib18/ros-nvim',
