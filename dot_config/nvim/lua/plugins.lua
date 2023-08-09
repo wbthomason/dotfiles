@@ -73,7 +73,7 @@ return {
     init = function()
       require 'config.matchup'
     end,
-    event = 'User ActuallyEditing',
+    event = 'VeryLazy'
   },
   { 'romainl/vim-cool', event = 'VeryLazy' },
   {
@@ -274,7 +274,7 @@ return {
   },
   'barreiroleo/ltex_extra.nvim',
   { 'igankevich/mesonic', lazy = false },
-  { 'Civitasv/cmake-tools.nvim', lazy = false },
+  { 'Civitasv/cmake-tools.nvim', lazy = true, opts = { cmake_always_use_terminal = true } },
   { 'PontusPersson/pddl.vim', lazy = false },
   {
     'thibthib18/ros-nvim',
