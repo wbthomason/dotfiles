@@ -97,9 +97,59 @@ local function setup_keymaps(client, _bufnr)
   cmd 'augroup END'
 end
 
+local client_capabilities = require('cmp_nvim_lsp').default_capabilities()
+client_capabilities.offsetEncoding = { 'utf-16' }
+
+local on_attach_fns = {
+  function(client, bufnr)
+    if client.server_capabilities.documentSymbolProvider then
+      require('nvim-navic').attach(client, bufnr)
+    end
+
+    vim.lsp.buf.inlay_hint(
+      bufnr,
+      client.server_capabilities.inlayHintProvider ~= nil and client.server_capabilities.inlayHintProvider ~= false
+    )
+  end,
+  setup_keymaps,
+}
+
+local function do_on_attach_fns(client, bufnr, use_null_fmt)
+  for _, fn in ipairs(on_attach_fns) do
+    fn(client, bufnr)
+  end
+  client.prefer_null_ls = use_null_fmt
+end
+
 local servers = {
   bashls = {},
   neocmake = {},
+  clangd = {
+    on_attach = function(client, bufnr)
+      do_on_attach_fns(client, bufnr, true)
+      require('clangd_extensions.inlay_hints').setup_autocmd()
+      require('clangd_extensions.inlay_hints').set_inlay_hints()
+    end,
+    cmd = {
+      'clangd',
+      '--background-index',
+      '--clang-tidy',
+      '--completion-style=bundled',
+      '--header-insertion=iwyu',
+      '--cross-file-rename',
+      '--all-scopes-completion',
+      '--log=error',
+      '--suggest-missing-includes',
+      '--pch-storage=memory',
+    },
+    init_options = {
+      clangdFileStatus = true,
+      usePlaceholders = true,
+      completeUnimported = true,
+      semanticHighlighting = true,
+    },
+    capabilities = client_capabilities,
+  },
   cssls = {
     cmd = { 'vscode-css-languageserver', '--stdio' },
     filetypes = { 'css', 'scss', 'less', 'sass' },
@@ -218,75 +268,24 @@ local servers = {
   vimls = {},
 }
 
-local client_capabilities = require('cmp_nvim_lsp').default_capabilities()
-client_capabilities.offsetEncoding = { 'utf-16' }
-
-local on_attach_fns = {
-  function(client, bufnr)
-    if client.server_capabilities.documentSymbolProvider then
-      require('nvim-navic').attach(client, bufnr)
-    end
-
-    vim.lsp.buf.inlay_hint(
-      bufnr,
-      client.server_capabilities.inlayHintProvider ~= nil and client.server_capabilities.inlayHintProvider ~= false
-    )
-  end,
-  setup_keymaps,
-}
-
-local function do_on_attach_fns(client, bufnr, use_null_fmt)
-  for _, fn in ipairs(on_attach_fns) do
-    fn(client, bufnr)
-  end
-  client.prefer_null_ls = use_null_fmt
-end
-
 require('clangd_extensions').setup {
-  server = {
-    on_attach = function(client, bufnr)
-      do_on_attach_fns(client, bufnr, true)
-    end,
-    cmd = {
-      'clangd',
-      '--background-index',
-      '--clang-tidy',
-      '--completion-style=bundled',
-      '--header-insertion=iwyu',
-      '--cross-file-rename',
-      '--all-scopes-completion',
-      '--log=error',
-      '--suggest-missing-includes',
-      '--pch-storage=memory',
+  ast = {
+    role_icons = {
+      type = '',
+      declaration = '',
+      expression = '',
+      specifier = '',
+      statement = '',
+      ['template argument'] = '',
     },
-    init_options = {
-      clangdFileStatus = true,
-      usePlaceholders = true,
-      completeUnimported = true,
-      semanticHighlighting = true,
-    },
-    capabilities = client_capabilities,
-  },
-  extensions = {
-    autoSetHints = false,
-    ast = {
-      role_icons = {
-        type = '',
-        declaration = '',
-        expression = '',
-        specifier = '',
-        statement = '',
-        ['template argument'] = '',
-      },
-      kind_icons = {
-        Compound = '',
-        Recovery = '',
-        TranslationUnit = '',
-        PackExpansion = '',
-        TemplateTypeParm = '',
-        TemplateTemplateParm = '',
-        TemplateParamObject = '',
-      },
+    kind_icons = {
+      Compound = '',
+      Recovery = '',
+      TranslationUnit = '',
+      PackExpansion = '',
+      TemplateTypeParm = '',
+      TemplateTemplateParm = '',
+      TemplateParamObject = '',
     },
   },
 }
