@@ -73,7 +73,9 @@ return {
     init = function()
       require 'config.matchup'
     end,
-    event = 'VeryLazy'
+    -- event = 'VeryLazy'
+    -- event = 'User ActuallyEditing',
+    lazy = false,
   },
   { 'romainl/vim-cool', event = 'VeryLazy' },
   {
