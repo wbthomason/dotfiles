@@ -24,12 +24,14 @@ vim.g.loaded_node_provider = 0
 require('lazy').setup('plugins', {
   defaults = { lazy = true },
   performance = {
+    cache = { enabled = true },
     rtp = {
       disabled_plugins = {
         'gzip',
         'matchit',
         'matchparen',
         'netrwPlugin',
+        'rplugin',
         'tarPlugin',
         'tohtml',
         'tutor',
