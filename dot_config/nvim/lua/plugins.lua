@@ -11,29 +11,63 @@ return {
   },
   { 'chaoren/vim-wordmotion', event = 'VeryLazy' },
   {
-    'ggandor/leap.nvim',
+    'folke/flash.nvim',
     event = 'VeryLazy',
-    dependencies = 'tpope/vim-repeat',
-    config = function()
-      local map = vim.api.nvim_set_keymap
-      -- 2-character Sneak (default)
-      local opts = { noremap = false }
-      map('n', 'z', '<Plug>(leap-forward-x)', opts)
-      map('n', 'Z', '<Plug>(leap-backward-x)', opts)
-
-      -- visual-mode
-      map('x', 'z', '<Plug>(leap-forward-x)', opts)
-      map('x', 'Z', '<Plug>(leap-backward-x)', opts)
-
-      -- operator-pending-mode
-      map('o', 'z', '<Plug>(leap-forward-x)', opts)
-      map('o', 'Z', '<Plug>(leap-backward-x)', opts)
-    end,
-  },
-  {
-    'ggandor/flit.nvim',
-    opts = { labeled_modes = 'nv' },
-    event = 'VeryLazy',
+    opts = {
+      modes = { search = { enabled = false } },
+      exclude = {
+        'NeogitStatus',
+        'notify',
+        'cmp_menu',
+        'noice',
+        'flash_prompt',
+        function(win)
+          return not vim.api.nvim_win_get_config(win).focusable
+        end,
+      },
+    },
+    keys = {
+      {
+        'z',
+        mode = { 'n', 'x', 'o' },
+        function()
+          require('flash').jump()
+        end,
+        desc = 'Flash',
+      },
+      {
+        'Z',
+        mode = { 'n', 'o', 'x' },
+        function()
+          require('flash').treesitter()
+        end,
+        desc = 'Flash Treesitter',
+      },
+      {
+        'r',
+        mode = 'o',
+        function()
+          require('flash').remote()
+        end,
+        desc = 'Remote Flash',
+      },
+      {
+        'R',
+        mode = { 'o', 'x' },
+        function()
+          require('flash').treesitter_search()
+        end,
+        desc = 'Treesitter Search',
+      },
+      {
+        '<c-F>',
+        mode = { 'c' },
+        function()
+          require('flash').toggle()
+        end,
+        desc = 'Toggle Flash Search',
+      },
+    },
   },
   { 'Olical/vim-enmasse', cmd = 'EnMasse' },
   {
@@ -42,12 +76,11 @@ return {
   },
   {
     'echasnovski/mini.nvim',
-    version = false,
     event = 'User ActuallyEditing',
     config = function()
-      require('mini.surround').setup { search_method = 'cover_or_nearest' }
+      require('mini.surround').setup { search_method = 'cover' }
       require('mini.align').setup { mappings = { start = '', start_with_preview = 'g=' } }
-      require('mini.ai').setup { search_method = 'cover_or_nearest' }
+      require('mini.ai').setup { search_method = 'cover' }
       require('mini.bracketed').setup {}
       require('mini.comment').setup { options = { ignore_blank_line = true } }
       require('mini.indentscope').setup {
@@ -113,7 +146,7 @@ return {
     config = function()
       require 'config.gitsigns'
     end,
-    event = 'BufReadPost',
+    event = { 'BufReadPre', 'BufNewFile' },
   },
   {
     'sindrets/diffview.nvim',
@@ -186,7 +219,7 @@ return {
       'windwp/nvim-ts-autotag',
     },
     build = ':TSUpdate',
-    event = 'BufReadPost',
+    event = { 'BufReadPost', 'BufNewFile' },
     config = function()
       require 'config.treesitter'
     end,
@@ -230,13 +263,32 @@ return {
     config = function()
       require 'config.dap'
     end,
-    dependencies = 'jbyuki/one-small-step-for-vimkind',
+    dependencies = {
+      'jbyuki/one-small-step-for-vimkind',
+      {
+        'rcarriga/nvim-dap-ui',
+        opts = {},
+        config = function(_, opts)
+          local dap = require 'dap'
+          local dapui = require 'dapui'
+          dapui.setup(opts)
+          dap.listeners.after.event_initialized['dapui_config'] = function()
+            dapui.open {}
+          end
+          dap.listeners.before.event_terminated['dapui_config'] = function()
+            dapui.close {}
+          end
+          dap.listeners.before.event_exited['dapui_config'] = function()
+            dapui.close {}
+          end
+        end,
+      },
+      {
+        'theHamsta/nvim-dap-virtual-text',
+        opts = {},
+      },
+    },
     cmd = { 'BreakpointToggle', 'Debug', 'DapREPL' },
-  },
-  {
-    'rcarriga/nvim-dap-ui',
-    dependencies = 'nvim-dap',
-    opts = {},
   },
   {
     'nvim-neo-tree/neo-tree.nvim',
@@ -571,5 +623,11 @@ return {
         }
       end)
     end,
+  },
+  {
+    'linux-cultist/venv-selector.nvim',
+    cmd = 'VenvSelect',
+    opts = {},
+    keys = { { '<leader>pv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
   },
 }

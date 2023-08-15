@@ -1,7 +1,7 @@
 local cmp = require 'cmp'
 require('cmp_luasnip_choice').setup { auto_open = true }
 local luasnip = require 'luasnip'
-luasnip.setup { region_check_events = 'InsertEnter', delete_check_events = 'InsertEnter' }
+luasnip.setup { region_check_events = 'InsertEnter', delete_check_events = 'TextChanged', history = true }
 require('luasnip.loaders.from_vscode').lazy_load()
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 
@@ -55,11 +55,11 @@ cmp.setup {
       cmp.config.compare.order,
     },
   },
-  -- experimental = {
-  --   ghost_text = {
-  --     hl_group = 'LspCodeLens',
-  --   },
-  -- },
+  experimental = {
+    ghost_text = {
+      hl_group = 'LspCodeLens',
+    },
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)

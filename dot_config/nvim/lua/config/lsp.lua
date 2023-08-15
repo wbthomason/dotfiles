@@ -1,6 +1,5 @@
 local lspconfig = require 'lspconfig'
 local null_ls = require 'null-ls'
--- local lightbulb = require 'nvim-lightbulb'
 
 local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
