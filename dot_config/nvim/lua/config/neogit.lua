@@ -17,10 +17,12 @@ require('neogit').setup {
       folded = true
     },
     unpulled = {
-      folded = false
+      folded = false,
+      hidden = false
     },
     unmerged = {
-      folded = false
+      folded = false,
+      hidden = false
     },
     recent = {
       folded = false
