@@ -220,7 +220,7 @@ local function setup_keys()
 end
 
 local function start_screen()
-  if vim.fn.argc() ~= 0 or vim.fn.line2byte '$' ~= -1 or vim.o.insertmode or not vim.o.modifiable then
+  if vim.fn.argc() ~= 0 or vim.o.insertmode or not vim.o.modifiable then
     vim.api.nvim_exec_autocmds('User', { pattern = 'ActuallyEditing' })
     return
   end
