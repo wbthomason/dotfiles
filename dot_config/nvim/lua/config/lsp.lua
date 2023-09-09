@@ -177,6 +177,7 @@ local servers = {
       },
     },
   },
+  -- pylyzer = {},
   ruff_lsp = {},
   rust_analyzer = {
     settings = {
