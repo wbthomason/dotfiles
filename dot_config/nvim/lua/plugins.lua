@@ -78,9 +78,9 @@ return {
     'echasnovski/mini.nvim',
     event = 'User ActuallyEditing',
     config = function()
-      require('mini.surround').setup { search_method = 'cover' }
+      require('mini.surround').setup { search_method = 'cover_or_nearest' }
       require('mini.align').setup { mappings = { start = '', start_with_preview = 'g=' } }
-      require('mini.ai').setup { search_method = 'cover' }
+      require('mini.ai').setup { search_method = 'cover_or_nearest' }
       require('mini.bracketed').setup {}
       require('mini.comment').setup { options = { ignore_blank_line = true } }
       require('mini.indentscope').setup {
