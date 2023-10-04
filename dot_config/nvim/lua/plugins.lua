@@ -408,6 +408,38 @@ return {
   'teal-language/vim-teal',
   'jose-elias-alvarez/null-ls.nvim',
   {
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    keys = {
+      {
+        -- Customize or remove this keymap to your liking
+        '<leader>f',
+        function()
+          require('conform').format { async = true, lsp_fallback = true }
+        end,
+        mode = '',
+        desc = 'Format buffer',
+      },
+    },
+    opts = {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        python = { 'isort', 'yapf' },
+        c = { 'clang_format' },
+        cpp = { 'clang_format' },
+        javascript = { 'eslint_d', 'prettierd' },
+        typescript = { 'eslint_d', 'prettierd' },
+        rust = { 'rustfmt' },
+        bash = { 'shfmt', 'shellcheck' },
+        zsh = { 'shfmt', 'shellcheck' },
+        sh = { 'shfmt', 'shellcheck' },
+        toml = { 'taplo' },
+        ['_'] = { 'trim_whitespace' },
+      },
+    },
+  },
+  {
     'stevearc/aerial.nvim',
     opts = {
       backends = { 'lsp', 'treesitter', 'markdown', 'man' },

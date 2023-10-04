@@ -55,37 +55,6 @@ local function setup_keymaps(client, _bufnr)
   buf_keymap(0, 'n', 'gr', '<cmd>Glance references<CR>', keymap_opts)
   buf_keymap(0, 'n', 'gA', '', vim.tbl_extend('keep', { callback = vim.lsp.buf.code_action }, keymap_opts))
   buf_keymap(0, 'v', 'gA', '', vim.tbl_extend('keep', { callback = vim.lsp.buf.range_code_action }, keymap_opts))
-  if client.server_capabilities.documentFormattingProvider then
-    buf_keymap(
-      0,
-      'n',
-      '<leader>f',
-      '',
-      vim.tbl_extend('keep', {
-        callback = function(bufnr)
-          vim.lsp.buf.format {
-            async = true,
-            filter = function(fmtclient)
-              return fmtclient.name == 'null-ls' or not fmtclient.prefer_null_ls
-            end,
-            bufnr = bufnr,
-          }
-        end,
-      }, keymap_opts)
-    )
-
-    buf_keymap(
-      0,
-      'i',
-      '<c-f>',
-      '',
-      vim.tbl_extend('keep', {
-        callback = function()
-          vim.lsp.buf.format { async = true }
-        end,
-      }, keymap_opts)
-    )
-  end
 
   -- TODO: Use the nicer new API for autocommands
   cmd 'augroup lsp_aucmds'
@@ -113,11 +82,10 @@ local on_attach_fns = {
   setup_keymaps,
 }
 
-local function do_on_attach_fns(client, bufnr, use_null_fmt)
+local function do_on_attach_fns(client, bufnr)
   for _, fn in ipairs(on_attach_fns) do
     fn(client, bufnr)
   end
-  client.prefer_null_ls = use_null_fmt
 end
 
 local servers = {
@@ -157,7 +125,7 @@ local servers = {
   dockerls = {},
   -- ghcide = {},
   html = { cmd = { 'vscode-html-languageserver', '--stdio' } },
-  jsonls = { prefer_null_ls = true, cmd = { 'vscode-json-languageserver', '--stdio' } },
+  jsonls = { cmd = { 'vscode-json-languageserver', '--stdio' } },
   julials = {
     on_new_config = function(new_config, _)
       local julia = vim.fn.expand '~/.julia/environments/nvim-lspconfig/bin/julia'
@@ -192,7 +160,6 @@ local servers = {
   },
   lua_ls = {
     before_init = require('neodev.lsp').before_init,
-    prefer_null_ls = true,
     single_file_support = true,
     settings = {
       Lua = {
@@ -296,11 +263,11 @@ for server, config in pairs(servers) do
     local old_on_attach = config.on_attach
     config.on_attach = function(client, bufnr)
       old_on_attach(client, bufnr)
-      do_on_attach_fns(client, bufnr, config.prefer_null_ls)
+      do_on_attach_fns(client, bufnr)
     end
   else
     config.on_attach = function(client, bufnr)
-      do_on_attach_fns(client, bufnr, config.prefer_null_ls)
+      do_on_attach_fns(client, bufnr)
     end
   end
 
@@ -309,7 +276,6 @@ for server, config in pairs(servers) do
 end
 
 -- null-ls setup
-local null_fmt = null_ls.builtins.formatting
 local null_diag = null_ls.builtins.diagnostics
 local null_act = null_ls.builtins.code_actions
 null_ls.setup {
@@ -317,27 +283,10 @@ null_ls.setup {
     null_diag.chktex,
     null_act.eslint_d,
     null_diag.eslint_d,
-    null_fmt.eslint_d,
-    -- null_diag.cppcheck,
-    -- null_diag.proselint,
-    -- null_diag.pylint,
     null_diag.selene,
     null_diag.shellcheck,
     null_diag.teal,
-    -- null_diag.vale,
     null_diag.vint,
-    -- null_diag.write_good.with { filetypes = { 'markdown', 'tex' } },
-    null_fmt.clang_format,
-    -- null_fmt.cmake_format,
-    null_fmt.isort,
-    -- null_fmt.prettier,
-    null_fmt.prettierd,
-    null_fmt.rustfmt,
-    null_fmt.shfmt,
-    null_fmt.stylua,
-    null_fmt.trim_whitespace,
-    null_fmt.yapf,
-    -- null_fmt.black
     null_act.gitsigns,
     -- null_act.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python', 'c', 'cpp' } },
   },
