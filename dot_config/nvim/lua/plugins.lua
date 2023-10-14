@@ -208,7 +208,7 @@ return {
   {
     'simrat39/rust-tools.nvim',
     ft = 'rust',
-    opts = { tools = { inlay_hints = { auto = false } } },
+    opts = { tools = { inlay_hints = { auto = true } } },
   },
   {
     'nvim-treesitter/nvim-treesitter',
@@ -340,7 +340,7 @@ return {
     enabled = false,
   },
   -- {'ThePrimeagen/refactoring.nvim',
-  'folke/neodev.nvim',
+  { 'folke/neodev.nvim', opts = { lspconfig = false } },
   {
     'NvChad/nvim-colorizer.lua',
     ft = { 'css', 'javascript', 'vim', 'html', 'lua' },
