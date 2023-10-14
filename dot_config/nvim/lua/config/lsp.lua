@@ -74,7 +74,7 @@ local on_attach_fns = {
       require('nvim-navic').attach(client, bufnr)
     end
 
-    vim.lsp.buf.inlay_hint(
+    vim.lsp.inlay_hint(
       bufnr,
       client.server_capabilities.inlayHintProvider ~= nil and client.server_capabilities.inlayHintProvider ~= false
     )
