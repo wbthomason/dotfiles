@@ -94,8 +94,6 @@ local servers = {
   clangd = {
     on_attach = function(client, bufnr)
       do_on_attach_fns(client, bufnr, true)
-      require('clangd_extensions.inlay_hints').setup_autocmd()
-      require('clangd_extensions.inlay_hints').set_inlay_hints()
     end,
     cmd = {
       'clangd',
