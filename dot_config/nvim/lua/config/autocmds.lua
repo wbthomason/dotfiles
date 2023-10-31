@@ -5,6 +5,11 @@ autocmd('VimEnter', {
   group = augroup('start_screen', { clear = true }),
   once = true,
   callback = function()
+    if vim.fn.argc() ~= 0 or vim.o.insertmode or not vim.o.modifiable then
+      vim.api.nvim_exec_autocmds('User', { pattern = 'ActuallyEditing' })
+      return
+    end
+
     require('start').start()
   end,
 })
