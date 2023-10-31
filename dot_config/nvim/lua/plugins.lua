@@ -328,7 +328,7 @@ return {
   },
   'barreiroleo/ltex_extra.nvim',
   { 'igankevich/mesonic', lazy = false },
-  { 'Civitasv/cmake-tools.nvim', lazy = true, opts = { cmake_always_use_terminal = true } },
+  { 'Civitasv/cmake-tools.nvim', opts = { cmake_always_use_terminal = true } },
   { 'PontusPersson/pddl.vim', lazy = false },
   {
     'thibthib18/ros-nvim',
