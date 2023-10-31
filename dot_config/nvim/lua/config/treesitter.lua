@@ -46,11 +46,18 @@ require('nvim-treesitter.configs').setup {
       ['i;'] = 'textsubjects-container-inner',
     },
   },
-  endwise = { enable = true },
+  endwise = { enable = true, disable = { 'noice' } },
   matchup = {
     enable = true,
     include_match_words = true,
     enable_quotes = true,
+    disable = function(lang, buf)
+      if lang == 'noice' then
+        return true
+      end
+
+      return false
+    end,
   },
   -- autotag = { enable = true },
 }
