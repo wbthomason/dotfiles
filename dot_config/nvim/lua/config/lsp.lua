@@ -1,6 +1,4 @@
 local lspconfig = require 'lspconfig'
-local null_ls = require 'null-ls'
-
 local lsp = vim.lsp
 local buf_keymap = vim.api.nvim_buf_set_keymap
 local cmd = vim.cmd
@@ -272,21 +270,3 @@ for server, config in pairs(servers) do
   config.capabilities = vim.tbl_deep_extend('keep', config.capabilities or {}, client_capabilities)
   lspconfig[server].setup(config)
 end
-
--- null-ls setup
-local null_diag = null_ls.builtins.diagnostics
-local null_act = null_ls.builtins.code_actions
-null_ls.setup {
-  sources = {
-    null_diag.chktex,
-    null_act.eslint_d,
-    null_diag.eslint_d,
-    null_diag.selene,
-    null_diag.shellcheck,
-    null_diag.teal,
-    null_diag.vint,
-    null_act.gitsigns,
-    -- null_act.refactoring.with { filetypes = { 'javascript', 'typescript', 'lua', 'python', 'c', 'cpp' } },
-  },
-  on_attach = setup_keymaps,
-}

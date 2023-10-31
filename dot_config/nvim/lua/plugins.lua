@@ -406,7 +406,35 @@ return {
     },
   },
   'teal-language/vim-teal',
-  'jose-elias-alvarez/null-ls.nvim',
+  {
+    'mfussenegger/nvim-lint',
+    event = { 'BufWritePre' },
+    config = function()
+      local lint = require 'lint'
+      local chktex = lint.linters.chktex
+      -- NOTE: chktex returns non-zero exit codes if there are any warnings or errors reported
+      chktex.ignore_exitcode = true
+      lint.linters_by_ft = {
+        tex = { 'chktex' },
+        javascript = { 'eslint_d' },
+        typescript = { 'eslint_d' },
+        NeogitCommitMessage = { 'gitlint' },
+        c = { 'flawfinder' },
+        cpp = { 'flawfinder' },
+        lua = { 'selene' },
+        sh = { 'shellcheck' },
+        bash = { 'shellcheck' },
+        zsh = { 'shellcheck' },
+        vim = { 'vint' },
+      }
+
+      vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+        callback = function()
+          require('lint').try_lint()
+        end,
+      })
+    end,
+  },
   {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
