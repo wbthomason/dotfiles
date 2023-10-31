@@ -690,4 +690,21 @@ return {
     opts = {},
     keys = { { '<leader>pv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
   },
+  {
+    'chrisgrieser/nvim-rulebook',
+    keys = {
+      {
+        '<leader>i',
+        function()
+          require('rulebook').ignoreRule()
+        end,
+      },
+      {
+        '<leader>l',
+        function()
+          require('rulebook').lookupRule()
+        end,
+      },
+    },
+  },
 }
