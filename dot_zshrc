@@ -84,6 +84,11 @@ else
   compinit -C
 fi
 
+# carapace
+if command -v carapace &>/dev/null; then
+  source <(carapace _carapace)
+fi
+
 # zoxide
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
