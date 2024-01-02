@@ -93,6 +93,7 @@ bufferline.setup {
   options = {
     always_show_bufferline = false,
     diagnostics = 'nvim_lsp',
+    mode = 'tabs',
     diagnostics_indicator = function(count, level, diagnostics_dict, context)
       local s = ' '
       for e, n in pairs(diagnostics_dict) do
