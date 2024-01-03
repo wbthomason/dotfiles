@@ -6,12 +6,21 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Prompt
+{{- if ne .chezmoi.os "darwin" }}
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+{{- else }}
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+{{- end }}
 
 # Load plugins
+{{- if ne .chezmoi.os "darwin" }}
 export ZSH_PLUGINS=/usr/share/zsh/plugins/
-
 source ${ZSH_PLUGINS}/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+{{- else }}
+export ZSH_PLUGINS=/opt/homebrew/share/
+source ${ZSH_PLUGINS}/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+{{- end }}
+
 source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${ZSH_PLUGINS}/zsh-history-substring-search/zsh-history-substring-search.zsh
 
@@ -40,7 +49,7 @@ setopt histignorealldups
 unsetopt share_history
 
 # Editor setting
-export EDITOR=vim
+export EDITOR=nvim
 
 # ROS
 if [ -f /opt/ros/noetic/setup.zsh ]
@@ -115,9 +124,11 @@ function create() {
   mkdir -p $1 && cd $1
 }
 
+{{- if ne .chezmoi.os "darwin" }}
 function open() {
   xdg-open $1 > /dev/null 2>&1 &
 }
+{{- end }}
 
 # Auto-cd
 setopt auto_cd
@@ -131,8 +142,12 @@ bindkey -M vicmd v edit-command-line
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
+{{- if ne .chezmoi.os "darwin" }}
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+{{- else }}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+{{- end }}
 
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down

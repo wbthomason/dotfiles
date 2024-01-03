@@ -5,11 +5,13 @@ fi
 # PATH tweaks
 export PATH=$PATH:/home/wil/.local/bin:/home/wil/.cargo/bin:/home/wil/.luarocks/bin:/home/wil/.config/emacs/bin
 
+{{- if ne .chezmoi.os "darwin" }}
 # gnome-keyring
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start --components=gpg,ssh,secrets 2>/dev/null)
     export SSH_AUTH_SOCK
 fi
+{{- end }}
 
 BROWSER=firefox
 
