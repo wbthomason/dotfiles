@@ -1,1 +1,37 @@
 .config/nvim/plugin/packer_compiled.lua
+{{- if ne .chezmoi.os "linux" }}
+.config/KDE
+.config/bspwm
+.config/paru
+.config/picom
+.config/polybar
+.config/rofi
+.config/sxhkd
+.config/*plasma*
+.config/.k*
+.config/*okular*
+.config/*dolphin*
+.config/*baloo*
+.config/*bluedevil*
+.config/*akregator*
+.config/*powermanagement*
+.config/*kactivitymanagerd*
+.config/kateschemarc
+.config/kcminputrc
+.config/kde*
+.config/kfontinstuirc
+.config/kgammarc
+.config/kglobalshortcutsrc
+.config/khotkeysrc
+.config/kmixrc
+.config/krunnerrc
+.config/kscreenlockerrc
+.config/ksmserverrc
+.config/kwalletrc
+.config/kwin*
+.config/kxkbrc
+.config/powerdevil*
+.local/bin
+.X*
+bgscript.sh
+{{- end }}
