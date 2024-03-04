@@ -16,4 +16,6 @@ fi
 BROWSER=firefox
 
 export GRB_LICENSE_FILE=/home/wil/.gurobi/gurobi.lic
-. "$HOME/.cargo/env"
+if [[ -d "$HOME/.cargo/env" ]]; then
+  . "$HOME/.cargo/env"
+fi
