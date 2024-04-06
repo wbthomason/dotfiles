@@ -7,8 +7,12 @@ wheel:Vertical;NoModifier=org.kde.switchdesktop
 RightButton;NoModifier=org.kde.contextmenu
 
 [Containments][105]
+ItemGeometries-1440x2560=
+ItemGeometries-1920x1080=
 ItemGeometries-1920x1200=
+ItemGeometries-2560x1440=
 ItemGeometriesHorizontal=
+ItemGeometriesVertical=
 activityId=c20aa290-ed49-4fa8-b047-81d69fd3bd33
 formfactor=0
 immutability=1
@@ -23,11 +27,11 @@ DialogWidth=720
 
 [Containments][105][General]
 ToolBoxButtonState=topcenter
-ToolBoxButtonX=443
+ToolBoxButtonX=764
 ToolBoxButtonY=20
 alignment=1
 arrangement=1
-positions={"1920x1200":[]\\,"1024x768":[""]}
+positions={"1920x1200":[]\\,"1024x768":[""]\\,"1920x1080":[]\\,"1440x2560":["1"\\,"21"\\,"desktop:/steam.desktop"\\,"0"\\,"1"\\,"desktop:/chrome-aghbiahbpaijignceidepookljebhfak-Default.desktop"\\,"0"\\,"0"]\\,"2560x1440":[]}
 sortMode=-1
 
 [Containments][105][Wallpaper][org.kde.image][General]
@@ -35,7 +39,7 @@ Image=/usr/share/wallpapers/Altai/
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][105][Wallpaper][org.kde.slideshow][General]
-Image=/home/wil/desktopbgs/5899519358fed5eb6c40361e496b63c3.jpg
+Image=file:///home/wil/desktopbgs/Vzh77Je.jpg
 SlideInterval=1800
 SlidePaths=/home/wil/desktopbgs/
 
@@ -68,7 +72,10 @@ immutability=1
 plugin=org.kde.plasma.digitalclock
 
 [Containments][106][Applets][121][Configuration]
+PreloadWeight=55
 immutability=1
+popupHeight=450
+popupWidth=396
 
 [Containments][106][Applets][121][Configuration][Configuration]
 immutability=1
@@ -119,6 +126,10 @@ plugin=org.kde.plasma.panelspacer
 [Containments][106][Applets][158]
 immutability=1
 plugin=org.kde.plasma.systemmonitor
+
+[Containments][106][Applets][158][Configuration]
+CurrentPreset=org.kde.plasma.systemmonitor
+PreloadWeight=55
 
 [Containments][106][Applets][158][Configuration][Appearance]
 chartFace=org.kde.ksysguard.barchart
@@ -171,6 +182,9 @@ showYAxisLabels=false
 immutability=1
 plugin=org.kde.plasma.systemmonitor
 
+[Containments][106][Applets][159][Configuration]
+CurrentPreset=org.kde.plasma.systemmonitor
+
 [Containments][106][Applets][159][Configuration][Appearance]
 chartFace=org.kde.ksysguard.linechart
 title=Memory Usage
@@ -192,7 +206,7 @@ showYAxisLabels=false
 
 [Containments][106][ConfigDialog]
 DialogHeight=84
-DialogWidth=1920
+DialogWidth=2560
 
 [Containments][106][General]
 AppletOrder=148;155;142;156;159;158;110;121
@@ -211,6 +225,9 @@ wallpaperplugin=org.kde.image
 [Containments][111][Applets][112]
 immutability=1
 plugin=org.kde.plasma.devicenotifier
+
+[Containments][111][Applets][112][Configuration]
+PreloadWeight=100
 
 [Containments][111][Applets][113]
 immutability=1
@@ -234,6 +251,9 @@ PreloadWeight=100
 immutability=1
 plugin=org.kde.plasma.nightcolorcontrol
 
+[Containments][111][Applets][116][Configuration]
+PreloadWeight=42
+
 [Containments][111][Applets][117]
 immutability=1
 plugin=org.kde.plasma.keyboardlayout
@@ -254,10 +274,11 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][111][Applets][120][Configuration]
-PreloadWeight=65
+PreloadWeight=100
 
 [Containments][111][Applets][120][Configuration][General]
 globalMute=true
+migrated=true
 
 [Containments][111][Applets][122]
 immutability=1
@@ -281,7 +302,7 @@ immutability=1
 plugin=org.kde.plasma.bluetooth
 
 [Containments][111][Applets][124][Configuration]
-PreloadWeight=55
+PreloadWeight=52
 
 [Containments][111][Applets][125]
 immutability=1
@@ -290,14 +311,24 @@ plugin=org.kde.plasma.mediacontroller
 [Containments][111][Applets][125][Configuration]
 PreloadWeight=0
 
+[Containments][111][Applets][160]
+immutability=1
+plugin=org.kde.kscreen
+
+[Containments][111][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
 [Containments][111][General]
-extraItems=org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.vault,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol,org.kde.plasma.keyboardlayout,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.plasma.manage-inputmethod,org.kde.plasma.bluetooth,org.kde.plasma.volume
-knownItems=org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.vault,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol,org.kde.plasma.keyboardlayout,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.plasma.manage-inputmethod,org.kde.plasma.bluetooth,org.kde.plasma.volume
+extraItems=org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.vault,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol,org.kde.plasma.keyboardlayout,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.plasma.manage-inputmethod,org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.kscreen
+knownItems=org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.plasma.vault,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.nightcolorcontrol,org.kde.plasma.keyboardlayout,org.kde.plasma.mediacontroller,org.kde.plasma.clipboard,org.kde.plasma.manage-inputmethod,org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.kscreen
 
 [Containments][122]
 ItemGeometries-1680x1050=
 ItemGeometries-1920x1080=
+ItemGeometries-2560x1440=
 ItemGeometriesHorizontal=
+ItemGeometriesVertical=
 activityId=c20aa290-ed49-4fa8-b047-81d69fd3bd33
 formfactor=0
 immutability=1
@@ -312,11 +343,11 @@ DialogWidth=720
 
 [Containments][122][General]
 ToolBoxButtonState=topcenter
-ToolBoxButtonX=443
+ToolBoxButtonX=764
 ToolBoxButtonY=20
 
 [Containments][122][Wallpaper][org.kde.slideshow][General]
-Image=/home/wil/desktopbgs/bcwjtdhpd7oy.jpg
+Image=file:///home/wil/desktopbgs/w629ci5z53g81.jpg
 SlideInterval=1800
 SlidePaths=/home/wil/desktopbgs/
 
@@ -376,12 +407,80 @@ icon=homerun
 primaryActions=3
 systemFavorites=lock-screen\\,logout\\,save-session\\,switch-user\\,suspend\\,hibernate\\,reboot\\,shutdown
 
+[Containments][130][Applets][161]
+immutability=1
+plugin=org.kde.plasma.systemmonitor.cpucore
+
+[Containments][130][Applets][161][Configuration]
+CurrentPreset=org.kde.plasma.systemmonitor
+
+[Containments][130][Applets][161][Configuration][Appearance]
+chartFace=org.kde.ksysguard.barchart
+title=Individual Core Usage
+
+[Containments][130][Applets][161][Configuration][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
+[Containments][130][Applets][161][Configuration][SensorColors]
+cpu/cpu0/usage=61,174,233
+cpu/cpu1/usage=61,110,233
+cpu/cpu10/usage=217,233,61
+cpu/cpu11/usage=153,233,61
+cpu/cpu12/usage=88,233,61
+cpu/cpu13/usage=61,233,98
+cpu/cpu14/usage=61,233,163
+cpu/cpu15/usage=61,233,227
+cpu/cpu2/usage=77,61,233
+cpu/cpu3/usage=141,61,233
+cpu/cpu4/usage=206,61,233
+cpu/cpu5/usage=233,61,196
+cpu/cpu6/usage=233,61,131
+cpu/cpu7/usage=233,61,67
+cpu/cpu8/usage=233,120,61
+cpu/cpu9/usage=233,184,61
+
+[Containments][130][Applets][161][Configuration][Sensors]
+highPrioritySensorIds=["cpu/cpu.*/usage"]
+totalSensors=["cpu/all/usage"]
+
+[Containments][130][Applets][161][Configuration][org.kde.ksysguard.barchart][General]
+showYAxisLabels=false
+
+[Containments][130][Applets][162]
+immutability=1
+plugin=org.kde.plasma.systemmonitor.memory
+
+[Containments][130][Applets][162][Configuration]
+CurrentPreset=org.kde.plasma.systemmonitor
+
+[Containments][130][Applets][162][Configuration][Appearance]
+chartFace=org.kde.ksysguard.linechart
+title=Memory Usage
+
+[Containments][130][Applets][162][Configuration][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
+[Containments][130][Applets][162][Configuration][SensorColors]
+memory/physical/used=61,174,233
+
+[Containments][130][Applets][162][Configuration][Sensors]
+highPrioritySensorIds=["memory/physical/used"]
+lowPrioritySensorIds=["memory/physical/total"]
+totalSensors=["memory/physical/usedPercent"]
+
+[Containments][130][Applets][162][Configuration][org.kde.ksysguard.linechart][General]
+showLegend=false
+showYAxisLabels=false
+
 [Containments][130][ConfigDialog]
 DialogHeight=84
-DialogWidth=1920
+DialogWidth=2560
 
 [Containments][130][General]
-AppletOrder=157;152;140;150;145
+AppletOrder=157;152;140;150;162;161;145
 
 [ScreenMapping]
 itemsOnDisabledScreens=
+screenMapping=

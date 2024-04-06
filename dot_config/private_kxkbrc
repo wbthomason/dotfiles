@@ -1,5 +1,5 @@
 [$Version]
-update_info=kxkb_variants.upd:split-variants
+update_info=kxkb_variants.upd:split-variants,kxkb.upd:remove-empty-lists,kxkb.upd:add-back-resetoptions
 
 [Layout]
 Options=caps:escape_shifted_capslock
