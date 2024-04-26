@@ -214,7 +214,15 @@ local servers = {
     },
   },
   ltex = {
-    cmd = { '/usr/bin/ltex-ls' },
+    cmd = {
+      (function()
+        if vim.loop.os_uname().sysname == 'Darwin' then
+          return '/opt/homebrew/bin/ltex-ls'
+        end
+
+        return '/usr/bin/ltex-ls'
+      end)(),
+    },
     on_attach = function(client, bufnr)
       require('ltex_extra').setup {}
     end,
