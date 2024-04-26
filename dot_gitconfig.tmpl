@@ -4,7 +4,11 @@
   signingkey = {{ .signingkey }}
 
 [credential]
+{{- if ne .chezmoi.os "darwin" }}
   helper = /usr/lib/git-core/git-credential-libsecret
+{{- else }}
+  helper = /usr/local/share/gcm-core/git-credential-manager
+{{- end }}
 
 [push]
   default = simple
@@ -56,22 +60,28 @@
   sub   = submodule update --init --recursive
   cp    = cherry-pick
   cl    = clone
+
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+
 [commit]
   gpgsign = true
+
 [gpg]
-  program = gpg2
+  program = gpg
+
 [color]
   ui = true
+
 [color "diff-highlight"]
   oldNormal = red bold
   oldHighlight = red bold 52
   newNormal = green bold
   newHighlight = green bold 22
+
 [color "diff"]
   meta = yellow
   frag = magenta bold
@@ -79,8 +89,15 @@
   old = red bold
   new = green bold
   whitespace = red reverse
+
 [init]
 	defaultBranch = main
 
 [protocol "file"]
   allow = always
+
+[credential "https://git.overleaf.com"]
+	provider = generic
+
+[credential "https://dev.azure.com"]
+	useHttpPath = true
