@@ -3,7 +3,7 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 fi
 
 # PATH tweaks
-export PATH=$PATH:/home/wil/.local/bin:/home/wil/.cargo/bin:/home/wil/.luarocks/bin:/home/wil/.config/emacs/bin
+export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.luarocks/bin:$HOME/.config/emacs/bin"
 
 {{- if ne .chezmoi.os "darwin" }}
 # gnome-keyring
@@ -17,7 +17,7 @@ fi
 BROWSER=firefox
 export BROWSER
 
-export GRB_LICENSE_FILE=/home/wil/.gurobi/gurobi.lic
+export GRB_LICENSE_FILE="$HOME/.gurobi/gurobi.lic"
 if [[ -d "$HOME/.cargo/env" ]]; then
   . "$HOME/.cargo/env"
 fi

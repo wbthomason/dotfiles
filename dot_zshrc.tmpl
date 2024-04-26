@@ -89,6 +89,7 @@ autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
   compinit
 done
+kitty + complete setup zsh | source /dev/stdin
 compinit -C
 
 # carapace
@@ -108,6 +109,10 @@ alias em='emacsclient -nw'
 alias emd='emacs --daemon'
 alias git='hub'
 alias ls='ls --color=auto'
+{{- if eq .chezmoi.os "darwin" }}
+alias vim='nvim'
+alias python='python3'
+{{- end }}
 
 # Custom functions
 function pdf_to_png() {
