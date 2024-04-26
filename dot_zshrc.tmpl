@@ -86,17 +86,15 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 fpath=(~/.zfunc ~/.zsh/completions $fpath)
 autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+for dump in ~/.zcompdump(N.mh+24); do
   compinit
-  # kitty + complete setup zsh | source /dev/stdin
-else
-  compinit -C
-fi
+done
+compinit -C
 
 # carapace
-if command -v carapace &>/dev/null; then
-  source <(carapace _carapace)
-fi
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+source <(carapace _carapace)
 
 # zoxide
 if command -v zoxide &>/dev/null; then
@@ -154,14 +152,14 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# OPAM configuration
-[[ ! -r /home/wil/.opam/opam-init/init.zsh ]] || source /home/wil/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
+{{- if ne .chezmoi.os "darwin" }}
 # Keyring
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   eval $(gnome-keyring-daemon --start --components=ssh,secrets,gpg 2>/dev/null)
+  SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gcr/ssh"
   export SSH_AUTH_SOCK
 fi
+{{- end }}
 
 function unlock-keyring()
 {
@@ -171,29 +169,12 @@ function unlock-keyring()
 }
 
 # Pyenv
-eval "$(pyenv init -)"
+eval "$(pyenv init - --no-rehash)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Mamba
-[ -f /opt/mambaforge/etc/profile.d/conda.sh ] && source /opt/mambaforge/etc/profile.d/conda.sh
+eval "$(micromamba shell hook --shell zsh)"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/opt/mambaforge/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/mambaforge/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "/opt/mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/opt/mambaforge/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
+# Atuin
+eval "$(atuin init zsh --disable-up-arrow)"
