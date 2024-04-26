@@ -283,6 +283,7 @@ return {
             dapui.close {}
           end
         end,
+        dependencies = { 'nvim-neotest/nvim-nio' },
       },
       {
         'theHamsta/nvim-dap-virtual-text',
@@ -341,7 +342,7 @@ return {
     enabled = false,
   },
   -- {'ThePrimeagen/refactoring.nvim',
-  { 'folke/neodev.nvim', opts = { lspconfig = false } },
+  { 'folke/neodev.nvim', opts = { lspconfig = false, library = { plugins = { 'nvim-dap-ui' }, types = true } } },
   {
     'NvChad/nvim-colorizer.lua',
     ft = { 'css', 'javascript', 'vim', 'html', 'lua' },
