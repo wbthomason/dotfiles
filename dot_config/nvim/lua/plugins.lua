@@ -154,6 +154,7 @@ return {
   },
   {
     'NeogitOrg/neogit',
+    branch = 'nightly',
     cmd = 'Neogit',
     config = function()
       require 'config.neogit'
