@@ -9,6 +9,7 @@ export PATH=$PATH:/home/wil/.local/bin:/home/wil/.cargo/bin:/home/wil/.luarocks/
 # gnome-keyring
 if [ -n "$DESKTOP_SESSION" ];then
     eval $(gnome-keyring-daemon --start --components=gpg,ssh,secrets 2>/dev/null)
+    SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gcr/ssh"
     export SSH_AUTH_SOCK
 fi
 {{- end }}
