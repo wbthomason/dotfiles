@@ -73,7 +73,6 @@ local on_attach_fns = {
     end
 
     vim.lsp.inlay_hint.enable(
-      bufnr,
       client.server_capabilities.inlayHintProvider ~= nil and client.server_capabilities.inlayHintProvider ~= false
     )
   end,
