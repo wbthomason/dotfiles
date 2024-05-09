@@ -133,6 +133,10 @@ function open() {
 }
 {{- end }}
 
+function make_venv() {
+  uv venv -p $(pyenv which python) venv
+}
+
 # Auto-cd
 setopt auto_cd
 
