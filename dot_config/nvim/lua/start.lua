@@ -10,7 +10,7 @@ local regex = vim.regex
 local path_skip_list = {
   regex 'runtime/doc/.*\\.txt',
   regex '/.git/',
-  regex(vim.fn.escape(vim.fn.fnamemodify(vim.fn.resolve(os.getenv 'VIMRUNTIME'), ':p'), '\\') .. 'doc/.*\\.txt'),
+  regex(vim.fn.escape(vim.fn.fnamemodify(vim.fn.resolve(vim.env.VIMRUNTIME), ':p'), '\\') .. 'doc/.*\\.txt'),
 }
 
 local function skip(path)
@@ -56,7 +56,6 @@ local commands = {
   { key = 'u', disp = '  Update plugins', cmd = 'Lazy sync' },
   { key = 'b', disp = '  File Browser', cmd = 'Telescope file_browser' },
   { key = 'r', disp = '  Recent files', cmd = 'Telescope oldfiles' },
-  { key = 's', disp = '  Start Prosession', cmd = 'Prosession .', editing = true },
   { key = 'g', disp = '  NeoGit', cmd = 'Neogit' },
   { key = 't', disp = '⏱  Time startup', cmd = 'Lazy profile' },
   { key = 'q', disp = '  Quit', cmd = 'qa' },
@@ -67,6 +66,25 @@ local commands = {
 local sections = {
   { title = 'Commands', show = commands },
   { title = 'Recent Files', show = recent_files() },
+  {
+    title = 'Sessions',
+    show = {
+      {
+        key = 'l',
+        disp = '  load last session',
+        fn = function()
+          require('persistence').load { last = true }
+        end,
+      },
+      {
+        key = 's',
+        disp = '📇 load directory session',
+        fn = function()
+          require('persistence').load()
+        end,
+      },
+    },
+  },
 }
 
 local boundaries = {}
@@ -132,7 +150,7 @@ local function make_sections()
         highlight(0, -1, 'StartifyBracket', linenr + size, section_indent, section_indent + 1)
         highlight(0, -1, 'StartifyNumber', linenr + size, section_indent + 1, section_indent + 1 + key_len)
         highlight(0, -1, 'StartifyBracket', linenr + size, section_indent + 1 + key_len, section_indent + 2 + key_len)
-        keybindings[#keybindings + 1] = { key = key, cmd = item.cmd, editing = item.editing }
+        keybindings[#keybindings + 1] = { key = key, cmd = item.cmd, fn = item.fn, editing = item.editing }
         size = size + 1
       end
 
@@ -179,7 +197,11 @@ local function do_binding(binding)
     vim.api.nvim_exec_autocmds('User', { pattern = 'ActuallyEditing' })
   end
 
-  vim.cmd(binding.cmd)
+  if binding.fn then
+    binding.fn()
+  else
+    vim.cmd(binding.cmd)
+  end
 end
 
 local function handle_key(key)

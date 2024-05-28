@@ -1,9 +1,5 @@
 local cmp = require 'cmp'
-require('cmp_luasnip_choice').setup { auto_open = true }
-local luasnip = require 'luasnip'
-luasnip.setup { region_check_events = 'InsertEnter', delete_check_events = 'TextChanged', history = true }
-require('luasnip.loaders.from_vscode').lazy_load()
-local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+-- local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -62,7 +58,7 @@ cmp.setup {
   },
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      vim.snippet.expand(args.body)
     end,
   },
   window = {
@@ -100,8 +96,10 @@ cmp.setup {
     ['<tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
+      elseif vim.snippet.active { direction = 1 } then
+        vim.schedule(function()
+          vim.snippet.jump(1)
+        end)
       elseif has_words_before() then
         cmp.complete()
       else
@@ -111,8 +109,10 @@ cmp.setup {
     ['<s-tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      elseif vim.snippet.active { direction = -1 } then
+        vim.schedule(function()
+          vim.snippet.jump(-1)
+        end)
       else
         fallback()
       end
@@ -139,4 +139,4 @@ cmp.setup.cmdline(':', {
   sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
 })
 
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+-- cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

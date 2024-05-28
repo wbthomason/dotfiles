@@ -9,8 +9,6 @@ autocmd('VimEnter', {
       vim.api.nvim_exec_autocmds('User', { pattern = 'ActuallyEditing' })
       return
     end
-
-    require('start').start()
   end,
 })
 local misc_aucmds = augroup('misc_aucmds', { clear = true })
