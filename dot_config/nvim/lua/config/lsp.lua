@@ -14,16 +14,26 @@ local border = {
   { '▏', 'FloatBorder' },
 }
 
-local sign_define = vim.fn.sign_define
-sign_define('DiagnosticSignError', { text = '', numhl = 'RedSign' })
-sign_define('DiagnosticSignWarn', { text = '', numhl = 'YellowSign' })
-sign_define('DiagnosticSignInfo', { text = '', numhl = 'WhiteSign' })
-sign_define('DiagnosticSignHint', { text = '', numhl = 'BlueSign' })
 vim.diagnostic.config {
   virtual_lines = { only_current_line = true },
   virtual_text = false,
   { float = { border = border } },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '',
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = 'RedSign',
+      [vim.diagnostic.severity.WARN] = 'YellowSign',
+      [vim.diagnostic.severity.INFO] = 'WhiteSign',
+      [vim.diagnostic.severity.HINT] = 'BlueSign',
+    },
+  },
 }
+
 lsp.handlers['textDocument/publishDiagnostics'] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = false,
   signs = true,
@@ -160,13 +170,13 @@ local servers = {
       Lua = {
         workspace = {
           checkThirdParty = false,
-          library = vim.api.nvim_get_runtime_file('', true),
+          library = { vim.env.VIMRUNTIME },
         },
         completion = {
           workspaceWord = true,
           callSnippet = 'Both',
         },
-        runtime = { version = 'LuaJIT' },
+        runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
         diagnostics = { globals = { 'vim' } },
         telemetry = { enable = false },
       },
