@@ -470,7 +470,7 @@ return {
       -- NOTE: chktex returns non-zero exit codes if there are any warnings or errors reported
       chktex.ignore_exitcode = true
       lint.linters_by_ft = {
-        NeogitCommitMessage = { 'gitlint', 'commitlint' },
+        NeogitCommitMessage = { 'gitlint' },
         bash = { 'shellcheck' },
         c = { 'flawfinder' },
         cpp = { 'flawfinder' },
