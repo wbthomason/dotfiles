@@ -599,10 +599,10 @@ return {
     'vigemus/iron.nvim',
     cmd = { 'IronRepl', 'IronFocus' },
     init = function()
-      vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>', {desc = "Open Iron REPL"})
-      vim.keymap.set('n', '<leader>rr', '<cmd>IronRestart<cr>', {desc = "Restart Iron REPL"})
-      vim.keymap.set('n', '<leader>rf', '<cmd>IronFocus<cr>', {desc = "Focus Iron REPL"})
-      vim.keymap.set('n', '<leader>rh', '<cmd>IronHide<cr>', {desc = "Hide Iron REPL"})
+      vim.keymap.set('n', '<leader>rs', '<cmd>IronRepl<cr>', { desc = 'Open Iron REPL' })
+      vim.keymap.set('n', '<leader>rr', '<cmd>IronRestart<cr>', { desc = 'Restart Iron REPL' })
+      vim.keymap.set('n', '<leader>rf', '<cmd>IronFocus<cr>', { desc = 'Focus Iron REPL' })
+      vim.keymap.set('n', '<leader>rh', '<cmd>IronHide<cr>', { desc = 'Hide Iron REPL' })
     end,
     config = function()
       require('iron.core').setup {
