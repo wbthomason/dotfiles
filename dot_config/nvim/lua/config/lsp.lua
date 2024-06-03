@@ -164,7 +164,6 @@ local servers = {
     },
   },
   lua_ls = {
-    before_init = require('neodev.lsp').before_init,
     single_file_support = true,
     settings = {
       Lua = {

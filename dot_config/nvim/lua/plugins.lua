@@ -400,7 +400,16 @@ return {
   'barreiroleo/ltex_extra.nvim',
   { 'igankevich/mesonic' },
   { 'Civitasv/cmake-tools.nvim', opts = { cmake_always_use_terminal = true } },
-  { 'folke/neodev.nvim', opts = { lspconfig = false, library = { plugins = { 'nvim-dap-ui' }, types = true } } },
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        'luvit-meta/library',
+      },
+    },
+  },
+  { 'Bilal2453/luvit-meta' },
   {
     dir = '~/projects/personal/vim-nazgul',
   },

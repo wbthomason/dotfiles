@@ -119,10 +119,9 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'luasnip_choice' },
+    { name = 'lazydev', group_index = 0 },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
     { name = 'nvim_lua' },
     { name = 'path' },
     -- { name = 'buffer' },
