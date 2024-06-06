@@ -222,7 +222,7 @@ return {
   },
   {
     'NeogitOrg/neogit',
-    branch = 'nightly',
+    branch = 'master',
     cmd = 'Neogit',
     config = function()
       require 'config.neogit'
