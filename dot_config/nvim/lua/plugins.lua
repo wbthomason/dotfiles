@@ -414,7 +414,7 @@ return {
     dir = '~/projects/personal/vim-nazgul',
   },
   -- 'hardselius/warlock',
-  -- 'arzg/vim-substrata',
+  -- 'lunacookies/vim-substrata',
   -- {
   --   'mcchrish/zenbones.nvim',
   --   dependencies = 'rktjmp/lush.nvim',
