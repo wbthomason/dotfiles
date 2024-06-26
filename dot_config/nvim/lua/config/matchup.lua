@@ -5,3 +5,4 @@ g.matchup_matchparen_hi_surround_always = 1
 g.matchup_override_vimtex = 1
 g.matchup_delim_start_plaintext = 0
 g.matchup_transmute_enabled = 0
+g.matchup_matchparen_offscreen = { method = 'popup' }
