@@ -47,3 +47,10 @@ vim.keymap.set('n', '<leader>s', function()
 end, {
   desc = 'Write current session',
 })
+
+vim.keymap.set('n', '<leader><leader>', function()
+  local picked_window_id = require('window-picker').pick_window {
+    include_current_win = true,
+  } or vim.api.nvim_get_current_win()
+  vim.api.nvim_set_current_win(picked_window_id)
+end, { desc = 'Pick a window' })

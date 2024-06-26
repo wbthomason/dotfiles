@@ -5,7 +5,27 @@ return {
     cmd = 'BufDel',
     opts = {},
   },
-  { 'chaoren/vim-wordmotion', event = 'VeryLazy' },
+  -- { 'chaoren/vim-wordmotion', event = 'VeryLazy' },
+  {
+    'chrisgrieser/nvim-spider',
+    keys = {
+      {
+        'e',
+        "<cmd>lua require('spider').motion('e')<CR>",
+        mode = { 'n', 'o', 'x' },
+      },
+      {
+        'w',
+        "<cmd>lua require('spider').motion('w')<CR>",
+        mode = { 'n', 'o', 'x' },
+      },
+      {
+        'b',
+        "<cmd>lua require('spider').motion('b')<CR>",
+        mode = { 'n', 'o', 'x' },
+      },
+    },
+  },
   {
     'folke/flash.nvim',
     event = 'VeryLazy',
@@ -69,6 +89,7 @@ return {
   {
     'kevinhwang91/nvim-bqf',
     ft = 'qf',
+    opts = {},
   },
   {
     'echasnovski/mini.nvim',
@@ -144,8 +165,11 @@ return {
       miniclue.setup {
         triggers = {
           -- Leader triggers
-          { mode = 'n', keys = '<Leader>' },
-          { mode = 'x', keys = '<Leader>' },
+          { mode = 'n', keys = '<leader>' },
+          { mode = 'x', keys = '<leader>' },
+
+          { mode = 'n', keys = '<localleader>' },
+          { mode = 'x', keys = '<localleader>' },
 
           -- Built-in completion
           { mode = 'i', keys = '<C-x>' },
@@ -485,7 +509,6 @@ return {
         cpp = { 'flawfinder' },
         javascript = { 'eslint_d' },
         lua = { 'selene' },
-        python = { 'vulture' },
         sh = { 'shellcheck' },
         tex = { 'chktex' },
         typescript = { 'eslint_d' },
@@ -749,7 +772,11 @@ return {
     'linux-cultist/venv-selector.nvim',
     cmd = 'VenvSelect',
     opts = {},
-    keys = { { '<leader>pv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
+    dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+    keys = {
+      { '<leader>pv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' },
+      { '<leader>pc', '<cmd>VenvSelectCached<cr>', desc = 'Select last-used VirtualEnv for project' },
+    },
   },
   {
     'chrisgrieser/nvim-rulebook',
@@ -767,5 +794,33 @@ return {
         end,
       },
     },
+  },
+  {
+    'pwntester/octo.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {},
+    cmd = 'Octo',
+  },
+  {
+    's1n7ax/nvim-window-picker',
+    version = '2.*',
+    config = function()
+      require('window-picker').setup {
+        autoselect_one = true,
+        include_current = false,
+        filter_rules = {
+          bo = {
+            filetype = { 'neo-tree', 'neo-tree-popup', 'notify', 'quickfix' },
+            buftype = { 'terminal' },
+          },
+        },
+        other_win_hl_color = '#e35e4f',
+      }
+    end,
+    event = 'VeryLazy',
   },
 }
