@@ -823,4 +823,5 @@ return {
     end,
     event = 'VeryLazy',
   },
+  { 'MagicDuck/grug-far.nvim', opts = {} },
 }
