@@ -824,4 +824,11 @@ return {
     event = 'VeryLazy',
   },
   { 'MagicDuck/grug-far.nvim', opts = {} },
+  {
+    'MeanderingProgrammer/markdown.nvim',
+    main = 'render-markdown',
+    ft = 'markdown',
+    opts = {},
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
+  },
 }
