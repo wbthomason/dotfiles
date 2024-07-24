@@ -134,14 +134,14 @@ return {
       require('mini.surround').setup { search_method = 'cover_or_nearest', respect_selection_type = true }
       require('mini.align').setup { mappings = { start = '', start_with_preview = 'g=' } }
       require('mini.ai').setup { search_method = 'cover_or_nearest' }
-      require('mini.bracketed').setup {}
+      require('mini.bracketed').setup()
       require('mini.comment').setup { options = { ignore_blank_line = true } }
       require('mini.indentscope').setup {
         symbol = '│',
         options = { try_as_border = true },
         draw = { animation = require('mini.indentscope').gen_animation.none() },
       }
-      require('mini.move').setup {}
+      require('mini.move').setup()
       require('mini.splitjoin').setup { mappings = { toggle = 'gJ' } }
       require('mini.pairs').setup {
         mappings = {
@@ -159,7 +159,7 @@ return {
           ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^%w][^%w]', register = { cr = false } },
         },
       }
-      require('mini.operators').setup {}
+      require('mini.operators').setup()
       require('mini.hipatterns').setup {
         highlighters = { hex_color = require('mini.hipatterns').gen_highlighter.hex_color() },
       }
