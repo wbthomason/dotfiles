@@ -1,4 +1,4 @@
-local get_icon = require('nvim-web-devicons').get_icon
+local get_icon = require('mini.icons').get_icon
 local f_mod = vim.fn.fnamemodify
 local fmt = string.format
 local get_window_width = vim.api.nvim_win_get_width

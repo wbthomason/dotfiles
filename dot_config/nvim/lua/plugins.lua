@@ -129,6 +129,8 @@ return {
       }
     end,
     config = function()
+      require('mini.icons').setup()
+      require('mini.icons').mock_nvim_web_devicons()
       require('mini.surround').setup { search_method = 'cover_or_nearest', respect_selection_type = true }
       require('mini.align').setup { mappings = { start = '', start_with_preview = 'g=' } }
       require('mini.ai').setup { search_method = 'cover_or_nearest' }
@@ -293,7 +295,6 @@ return {
       }
     end,
   },
-  'nvim-tree/nvim-web-devicons',
   'neovim/nvim-lspconfig',
   {
     'smjonas/inc-rename.nvim',
@@ -402,7 +403,7 @@ return {
     end,
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
+      'echasnovski/mini.nvim', 
       'MunifTanjim/nui.nvim',
     },
   },
@@ -452,7 +453,7 @@ return {
     version = '*',
     dependencies = {
       'SmiteshP/nvim-navic',
-      'nvim-tree/nvim-web-devicons',
+      'echasnovski/mini.nvim', 
     },
     opts = {
       create_autocmd = false,
@@ -800,7 +801,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
+      'echasnovski/mini.nvim', 
     },
     opts = {},
     cmd = 'Octo',

@@ -1,4 +1,4 @@
-local icons = require 'nvim-web-devicons'
+local icons = require 'mini.icons'
 local get_icon = icons.get_icon
 local f_mod = vim.fn.fnamemodify
 local f_esc = vim.fn.fnameescape
