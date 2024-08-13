@@ -243,6 +243,7 @@ local servers = {
       },
     },
   },
+  nil_ls = {},
   tsserver = {},
   vimls = {},
 }
