@@ -403,7 +403,7 @@ return {
     end,
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'echasnovski/mini.nvim', 
+      'echasnovski/mini.nvim',
       'MunifTanjim/nui.nvim',
     },
   },
@@ -453,7 +453,7 @@ return {
     version = '*',
     dependencies = {
       'SmiteshP/nvim-navic',
-      'echasnovski/mini.nvim', 
+      'echasnovski/mini.nvim',
     },
     opts = {
       create_autocmd = false,
@@ -548,6 +548,7 @@ return {
     },
     opts = {
       formatters_by_ft = {
+        nix = { 'alejandra' },
         lua = { 'stylua' },
         python = { 'isort', 'yapf' },
         c = { 'clang_format' },
@@ -801,7 +802,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
-      'echasnovski/mini.nvim', 
+      'echasnovski/mini.nvim',
     },
     opts = {},
     cmd = 'Octo',
